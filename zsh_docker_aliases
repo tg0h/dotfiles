@@ -1,0 +1,18 @@
+################################################### Containers
+alias dc='docker container'
+
+alias dcr='docker container rm '
+alias dcra='docker container rm $(docker container ls -aq)'
+
+alias dcl='docker container ls'
+alias dcla='docker container ls -a'
+
+################################################### Images
+alias di='docker image'
+
+alias dir='docker image rm'
+
+alias dil='docker image ls'
+
+################################################### Network
+alias dn='docker network'

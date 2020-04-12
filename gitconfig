@@ -1,0 +1,8 @@
+[credential]
+	helper = store
+
+[core]
+	excludesfile = ~/.gitignore_global #global gitignore file
+[user]
+	email = ***REMOVED***
+	name = timothy goh
