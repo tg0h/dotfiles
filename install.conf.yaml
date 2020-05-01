@@ -14,6 +14,7 @@
     ~/.zsh_docker_aliases: zsh_docker_aliases
     ~/.zsh_git_aliases: zsh_git_aliases
     ~/.zsh_powerlevel9k: zsh_powerlevel9k
+    ~/.p10k.zsh: p10k.zsh
 
 
 - shell:

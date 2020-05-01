@@ -61,7 +61,7 @@ set incsearch              " highlight search pattern as you typek
 " c                 command line mode map
 " o                 operator pending mode map
 " :map or :noremap  normal, visual, and operator pending mode map
-let mapleader = "\<space>"
+let mapleader = " "
 let maplocalleader = ","
 
 " the map commands cannot be followed by an end of line comment because the " is interpreted as part of the rhs
