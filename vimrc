@@ -34,6 +34,7 @@ colorscheme darkblue " Change a colorscheme.
 " set guifont=Hack:h14 "2019 July 18 Thursday 
 set guifont=RobotoMonoForPowerline-Light:h18
 
+set clipboard=unnamed  " Copy into system (*) register.
 " vim buffer management, press tab to list buffers
 set wildchar=<Tab> wildmenu wildmode=full
 set hlsearch               " highlight search patterns
