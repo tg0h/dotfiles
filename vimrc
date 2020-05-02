@@ -7,6 +7,8 @@ Plug 'scrooloose/nerdtree' "file explorer
 Plug 'ctrlpvim/ctrlp.vim'
 
 Plug 'easymotion/vim-easymotion'
+Plug 'haya14busa/vim-easyoperator-line' "easy motion for line operations
+" Plug 'haya14busa/vim-easyoperator-phrase' "easy motion for line operations
 
 "Plug 'junegunn/fzf', { 'dir': '~/fzf', 'do': './install --all' }
 "Plug 'alok/notational-fzf-vim' "june gunn vim plug :( not working
@@ -21,6 +23,7 @@ Plug 'vim-airline/vim-airline' "20190630 status bar
 Plug 'vim-airline/vim-airline-themes' "20190630 airline themes
 "Plug 'dbeniamine/todo.txt-vim' "20190630
 Plug 'chiel92/vim-autoformat' "20200222
+Plug 'tpope/vim-repeat' "20200502 - repeat plugin actions
 
 call plug#end()
 "Plug 'majutsushi/tagbar' "20190718 a navigation menu of tags, need to install ctags as well? For vimwiki navigation 
@@ -65,6 +68,8 @@ set incsearch              " highlight search pattern as you typek
 let mapleader = " "
 let maplocalleader = ","
 
+map <Leader> <Plug>(easymotion-prefix)
+
 " the map commands cannot be followed by an end of line comment because the " is interpreted as part of the rhs
 
 noremap <F2> :w <cr>
@@ -94,7 +99,46 @@ autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
 
 " Plug Settings ====================================================================================================
-"  vim notational velocity
+"  vim easy motion ---------------------------------------------------
+"display target labels an upper case
+let g:EasyMotion_use_upper = 1
+let g:EasyMotion_keys = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ;'
+" match 3 and # with 3
+let g:EasyMotion_use_smartsign_us = 1
+" when searching, use smart case: v matches both v and V, V only matches V
+let g:EasyMotion_smartcase = 1
+
+"bidirectional (bid) and within line t motion, eg ct<char> change "to" char
+omap t <Plug>(easymotion-bd-tl)
+
+" motion hjkl motion
+map <Leader>l <Plug>(easymotion-lineforward)
+map <Leader>h <Plug>(easymotion-linebackward)
+
+" use easy motion's / instead of vim's /
+map  / <Plug>(easymotion-sn)
+omap / <Plug>(easymotion-tn)
+
+"use easy motion's 2 character search
+nmap s <Plug>(easymotion-s2)
+nmap t <Plug>(easymotion-t2)
+
+" nmap s <Plug>(easymotion-s)
+
+"  vim easy operator line ---------------------------------------------------
+let g:EasyOperator_line_do_mapping = 0
+
+omap <silent>  <Plug>(easymotion-prefix)i <Plug>(easyoperator-line-select)
+xmap <silent>  <Plug>(easymotion-prefix)i <Plug>(easyoperator-line-select)
+nmap <silent> d<Plug>(easymotion-prefix)i <Plug>(easyoperator-line-delete)
+nmap <silent> y<Plug>(easymotion-prefix)i <Plug>(easyoperator-line-yank)
+
+omap <Leader>L  <Plug>(easyoperator-line-select)
+xmap <Leader>L  <Plug>(easyoperator-line-select)
+nmap d<Leader>L <Plug>(easyoperator-line-delete)
+nmap p<Leader>L <Plug>(easyoperator-line-yank)
+
+"  vim notational velocity ----------------------------------------------------------
 let g:nv_search_paths = ['~/certis/wiki']"
 let g:nv_use_short_pathnames = 0 "show full paths
 let g:nv_default_extension = ''
