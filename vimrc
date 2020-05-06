@@ -1,3 +1,5 @@
+set nocompatible "tell vim not to try to be compatible with legacy features
+
 " Manage plugins with vim-plug.
 " => Plugins ======================================================================================================
 call plug#begin()

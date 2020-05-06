@@ -1,3 +1,5 @@
 # ignore vim plugs
 vim/plugged
 vim/view
+
+.swp
