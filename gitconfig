@@ -3,6 +3,7 @@
 
 [core]
 	excludesfile = ~/.gitignore_global #global gitignore file
+	pager = cat
 [user]
 	email = ***REMOVED***
 	name = timothy goh
