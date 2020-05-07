@@ -68,7 +68,15 @@ set autoindent             " Respect indentation when starting a new line.
 set expandtab              " Expand tabs to spaces. Essential in Python.
 set tabstop=2              " Number of spaces tab is counted for.
 set shiftwidth=2           " Number of spaces to use for autoindent.
-set nu                     " show line numbers
+set nu rnu                 " Hybird mode (both absolute and relative line numbers turned on)
+
+" turn off relative number when entering insert mode or buffer loses focus
+:augroup numbertoggle
+:  autocmd!
+:  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+:  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+:augroup END
+
 " set backspace=2            " Fix backspace behavior on most terminals.
 " set cursorline             " show where the cursor is
 
