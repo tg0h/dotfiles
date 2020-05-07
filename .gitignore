@@ -2,4 +2,8 @@
 vim/plugged
 vim/view
 
-.swp
+#ignore vim swp files
+*.swp
+
+#ignore netrw dotfile - don't know what it does
+.netrwhist
