@@ -1,5 +1,3 @@
-set nocompatible "tell vim not to try to be compatible with legacy features
-
 " Manage plugins with vim-plug.
 " => Plugins ======================================================================================================
 call plug#begin()
@@ -30,8 +28,30 @@ Plug 'tpope/vim-repeat' "20200502 - repeat plugin actions
 call plug#end()
 "Plug 'majutsushi/tagbar' "20190718 a navigation menu of tags, need to install ctags as well? For vimwiki navigation 
 " Plug 'christoomey/vim-tmux-navigator' "20191117 use the same window keymappings for tmux and vim
+" => Plugins ======================================================================================================
+
 
 " Vim Settings  ======================================================================================================
+set nocompatible "tell vim not to try to be compatible with legacy features
+syntax enable
+filetype plugin on
+set wildmenu "show menu on tab completion
+
+" FINDING FILES
+" Search down into subfolders
+" Provides tab-completion for all file-related tasks
+set path+=**
+
+" TAG JUMPING
+" Create the `tags` file (may need to install ctags first)
+" ! means run shell command, -R means recursive, dot means dot
+" After this you can use ctrl ] to jum to tag under cursor
+" g ctrl ] for ambiguous tags
+" ctrl t to jump back up the tag stack
+command! MakeTags !ctags -R .
+
+
+
 "set termguicolors "set true color support for gruvbox
 "set background=dark " set dark version of gruvb
 colorscheme darkblue " Change a colorscheme.
@@ -100,7 +120,19 @@ map <S-Space> <Plug>VimwikiToggleListItem
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
 
+"SNIPPETS ====================================================================================================
+nnoremap \html :-1read $HOME/dotfiles/vim/snippets/skeleton.html<CR>3jwf>a
+
+
+"====================================================================================================
+
 " Plug Settings ====================================================================================================
+"NETRW ---------------------------------------------------
+let g:netrw_banner=0       "disable annoying banner
+let g:netrw_browse_split=4 "open in prior window
+let g:netrw_altv=1          " open splits to the right
+let g:netrw_liststyle=3     "tree view
+
 "  vim easy motion ---------------------------------------------------
 "display target labels an upper case
 let g:EasyMotion_use_upper = 1
@@ -138,7 +170,7 @@ nmap <silent> y<Plug>(easymotion-prefix)i <Plug>(easyoperator-line-yank)
 omap <Leader>L  <Plug>(easyoperator-line-select)
 xmap <Leader>L  <Plug>(easyoperator-line-select)
 nmap d<Leader>L <Plug>(easyoperator-line-delete)
-nmap p<Leader>L <Plug>(easyoperator-line-yank)
+" nmap p<Leader>L <Plug>(easyoperator-line-yank) "this slows down the p command
 
 "  vim notational velocity ----------------------------------------------------------
 let g:nv_search_paths = ['~/certis/wiki']"
