@@ -7,3 +7,5 @@
 [user]
 	email = ***REMOVED***
 	name = timothy goh
+[diff]
+	tool = vimdiff
