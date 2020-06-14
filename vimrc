@@ -1,6 +1,9 @@
 " Manage plugins with vim-plug.
 " => Plugins ======================================================================================================
 call plug#begin()
+" Plug 'wikitopian/hardmode' "vim hard mode
+autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode() "enable hard mode by default:v
+
 Plug 'junegunn/vim-plug' "help file for vim-plug
 
 Plug 'scrooloose/nerdtree' "file explorer
@@ -21,10 +24,13 @@ Plug 'sjl/gundo.vim' "undo tree
 "Plug 'morhetz/gruvbox' "color scheme
 Plug 'vim-airline/vim-airline' "20190630 status bar
 Plug 'vim-airline/vim-airline-themes' "20190630 airline themes
+Plug 'gosukiwi/vim-atom-dark' "theme
+Plug 'nanotech/jellybeans.vim' "theme
 "Plug 'dbeniamine/todo.txt-vim' "20190630
 Plug 'chiel92/vim-autoformat' "20200222
 Plug 'tpope/vim-repeat' "20200502 - repeat plugin actions
 
+" Plug 'kana/vim-textobj-function' "20200508 - vim function as textobj use daf etc
 call plug#end()
 "Plug 'majutsushi/tagbar' "20190718 a navigation menu of tags, need to install ctags as well? For vimwiki navigation 
 " Plug 'christoomey/vim-tmux-navigator' "20191117 use the same window keymappings for tmux and vim
@@ -54,7 +60,7 @@ command! MakeTags !ctags -R .
 
 "set termguicolors "set true color support for gruvbox
 "set background=dark " set dark version of gruvb
-colorscheme darkblue " Change a colorscheme.
+colorscheme jellybeans " Change a colorscheme.
 
 " set guifont=Hack:h14 "2019 July 18 Thursday 
 set guifont=RobotoMonoForPowerline-Light:h18
@@ -206,7 +212,7 @@ let NERDTreeShowBookmarks = 1  " Display bookmarks on startup.
 
 "airline settings---------------------------------------------------------------------->
 let g:airline_powerline_fonts = 1 "enable arrow separator
-let g:airline_theme='badwolf'
+let g:airline_theme='jellybeans'
 set encoding=utf-8 "to allow powerline fonts to work
 
 

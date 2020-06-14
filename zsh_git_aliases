@@ -1,7 +1,9 @@
+alias gmb="git merge-base"
 alias gs="git status"
 alias gl="git log --all --decorate --graph"
 
 alias gcmm='git add . && git commit -m'
+alias gbc='git branch --contains'
 
 # GIT Aliases
 alias g='git'
