@@ -2,7 +2,7 @@
 " => Plugins ======================================================================================================
 call plug#begin()
 " Plug 'wikitopian/hardmode' "vim hard mode
-autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode() "enable hard mode by default:v
+" autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode() "enable hard mode by default:v
 
 Plug 'junegunn/vim-plug' "help file for vim-plug
 
