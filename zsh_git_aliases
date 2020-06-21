@@ -1,8 +1,7 @@
-# GIT DEBUG
+# GIT PLUMBING
 alias gcf="git cat-file"
 
 alias gmb="git merge-base"
-alias gl="git log --all --decorate --graph"
 alias gcmm='git add . && git commit -m'
 alias gbc='git branch --contains'
 
@@ -11,6 +10,7 @@ alias g='git'
 alias gst='git status'
 alias gd='git diff'
 alias gdc='git diff --cached'
+alias gdcn='git diff --cached --name-only'
 alias gl='git pull'
 alias gup='git pull --rebase'
 alias gp='git push'
@@ -33,17 +33,22 @@ alias grbc='git rebase --continue'
 alias grba='git rebase --abort'
 alias gb='git branch'
 alias gba='git branch -a'
-alias gcount='git shortlog -sn'
 alias gcl='git config --list'
 alias gcp='git cherry-pick'
+
+alias gcount='git shortlog -sn'
+alias gsl='git shortlog'
+alias gl="git log --all --decorate --graph"
 alias glg='git log --stat --max-count=10'
 alias glgg='git log --graph --max-count=10'
 alias glgga='git log --graph --decorate --all --left-right'
 alias glo='git log --oneline --decorate --color --left-right'
 alias glog='git log --oneline --decorate --color --graph --left-right'
 alias glogm='git log --oneline --decorate --color --graph --max-count=10'
+
 alias gss='git status -s'
 alias ga='git add'
+alias gai='git add -i'
 alias gm='git merge'
 alias gmf='git merge --no-ff'
 alias grh='git reset HEAD'

@@ -125,7 +125,7 @@ alias ag="alias | grep"
 . ~/.zsh_git_aliases
 . ~/.zsh_docker_aliases
 
-. ~/.zsh_powerlevel9k
+# . ~/.zsh_powerlevel9k
 
 #nvm configuration
 export NVM_DIR="$HOME/.nvm"
