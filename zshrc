@@ -121,6 +121,7 @@ export EDITOR='vim'
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias ag="alias | grep"
+alias fork="open . -a /Applications/Fork.app"
 
 . ~/.zsh_git_aliases
 . ~/.zsh_docker_aliases
