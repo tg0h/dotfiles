@@ -1,5 +1,7 @@
 # GIT PLUMBING
 alias gcf="git cat-file"
+alias glf='git ls-files'
+alias glfs='git ls-files -s'
 
 alias gmb="git merge-base"
 alias gcmm='git add . && git commit -m'
@@ -49,16 +51,23 @@ alias glogm='git log --oneline --decorate --color --graph --max-count=10'
 alias gss='git status -s'
 alias ga='git add'
 alias gai='git add -i'
+
+#MERGE
 alias gm='git merge'
 alias gmf='git merge --no-ff'
-alias grh='git reset HEAD'
-alias grhh='git reset HEAD --hard'
-alias gclean='git clean -dfx && git reset --hard'
+
+#dfx - remove untracked (directories, files and ignored) 
+alias gclean='git reset --hard && git clean -dfx' 
+
+#RESET
+alias gr='git reset' 
+alias grh='git reset --hard'
+# alias grhh='git reset HEAD --hard'
+
 alias gwc='git whatchanged -p --abbrev-commit --pretty=medium'
 
 #remove the gf alias
 #alias gf='git ls-files | grep'
-alias glfs='git ls-files -s'
 
 alias gpoat='git push origin --all && git push origin --tags'
 alias gmt='git mergetool --no-prompt'
