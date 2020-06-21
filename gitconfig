@@ -9,3 +9,5 @@
 	name = timothy goh
 [diff]
 	tool = vimdiff
+[merge]
+	tool = vimdiff
