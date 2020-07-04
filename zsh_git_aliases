@@ -1,6 +1,7 @@
 # GIT PLUMBING
 alias gcf="git cat-file"
 alias gcfp="git cat-file -p"
+alias gcfpht="git cat-file -p head^{tree}"
 alias gcft="git cat-file -t"
 alias glf='git ls-files'
 alias glfs='git ls-files -s'
@@ -19,11 +20,14 @@ alias gct='git commit-tree'
 alias gmb="git merge-base"
 alias gcmm='git add . && git commit -m'
 alias gbc='git branch --contains'
+#check remote branches as well
+alias gbca='git branch -a --contains'
 
 # GIT Aliases
 alias g='git'
 alias gst='git status'
 alias gd='git diff'
+alias gdns='git diff --name-status'
 alias gdc='git diff --cached'
 alias gdcn='git diff --cached --name-only'
 alias gl='git pull'
