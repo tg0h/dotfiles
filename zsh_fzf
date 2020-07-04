@@ -17,7 +17,6 @@ export FZF_DEFAULT_OPTS="
 --multi 
 --inline-info 
 --preview='[[ \$(file --mime {}) =~ binary ]] && echo {} is a binary file || (bat --style=numbers --color=always {} || cat {}) 2> /dev/null | head -300' 
---preview-window='right:wrap' 
 --bind='f3:execute(bat --style=numbers {} || less -f {})'
 --bind='f2:toggle-preview'
 --bind='ctrl-d:half-page-down'
@@ -27,6 +26,7 @@ export FZF_DEFAULT_OPTS="
 --bind 'ctrl-e:execute(mvim {+})'
 --bind 'ctrl-v:execute(webstorm {+})'
 "
+#--preview-window='right:hidden:wrap' 
 
 #export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 export FZF_DEFAULT_COMMAND="git ls-files --cached --others --exclude-standard | fd --type f --type l $FD_OPIONS"
@@ -34,9 +34,10 @@ export FZF_DEFAULT_COMMAND="git ls-files --cached --others --exclude-standard | 
 #search to exclude .git and node_modules
 alias fzfi='rg --files --hidden --follow --no-ignore-vcs -g "!{node_modules,.git}" | fzf'
 
-# Using highlight (http://www.andre-simon.de/doku/highlight/en/highlight.html)
+export FZF_CTRL_R_OPTS="--preview-window='right:hidden:wrap'"
+
 export FZF_CTRL_T_COMMAND="fd $FD_OPTIONS"
-#export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
+export FZF_CTRL_T_OPTS="--preview-window='right:wrap'"
 
 #The following example uses tree command to show the entries of the directory.
 #show directories, include hidden dirs, include ignored files/folders from .gitignore

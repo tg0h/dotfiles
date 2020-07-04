@@ -139,8 +139,8 @@ export NVM_DIR="$HOME/.nvm"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # add vim keybinding on command line
-bindkey -v
-bindkey "^R" history-incremental-search-backward
+#bindkey -v
+#bindkey "^R" history-incremental-search-backward
 
 #test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
