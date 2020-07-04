@@ -125,6 +125,9 @@ alias fork="open . -a /Applications/Fork.app"
 
 . ~/.zsh_git_aliases
 . ~/.zsh_docker_aliases
+. ~/.zsh_fzf
+. ~/.zsh_fzf_git
+. ~/.zsh_autocomplete
 
 # . ~/.zsh_powerlevel9k
 

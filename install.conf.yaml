@@ -16,6 +16,7 @@
     ~/.zsh_powerlevel9k: zsh_powerlevel9k
     ~/.zsh_fzf: zsh_fzf
     ~/.zsh_fzf_git: zsh_fzf_git
+    ~/.zsh_autocomplete: zsh_autocomplete
     ~/.p10k.zsh: p10k.zsh
 
 
