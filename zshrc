@@ -82,6 +82,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
     aws
+    jira
     npm
     git
     docker
@@ -125,9 +126,10 @@ alias fork="open . -a /Applications/Fork.app"
 
 . ~/.zsh_git_aliases
 . ~/.zsh_docker_aliases
+. ~/.zsh_autocomplete
 . ~/.zsh_fzf
 . ~/.zsh_fzf_git
-. ~/.zsh_autocomplete
+. ~/.zsh_jira
 
 # . ~/.zsh_powerlevel9k
 
