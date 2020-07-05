@@ -11,5 +11,5 @@ zstyle ':autocomplete:space:*' magic expand-history
 #zstyle ':autocomplete:*' frecent-dirs off
 
 #tab starts menu selection instead of completing the closest match
-#zstyle ':autocomplete:tab:*' completion insert
-zstyle ':autocomplete:tab:*' completion fzf
+zstyle ':autocomplete:tab:*' completion insert
+#zstyle ':autocomplete:tab:*' completion fzf
