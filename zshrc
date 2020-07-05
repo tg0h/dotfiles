@@ -85,11 +85,14 @@ plugins=(
     jira
     npm
     git
+    gitignore
     docker
+    timer
     zsh-autosuggestions
+    zsh-autocomplete
     z
     zsh-syntax-highlighting
-    zsh-nvm
+    #zsh-nvm
 )
 
 # ZSH_DISALE_COMPFIX=true
