@@ -150,4 +150,6 @@ export NVM_DIR="$HOME/.nvm"
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 #add broot
-source /Users/tim/Library/Preferences/org.dystroy.broot/launcher/bash/br
+#source /Users/tim/Library/Preferences/org.dystroy.broot/launcher/bash/br
+
+#autoload -Uz compinit && compinit
