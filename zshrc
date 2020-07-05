@@ -91,6 +91,7 @@ plugins=(
     gitignore
     docker
     timer
+    vi-mode
     zsh-autosuggestions
     zsh-autocomplete
     z
