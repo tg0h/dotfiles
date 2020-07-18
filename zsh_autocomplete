@@ -5,7 +5,7 @@
 zstyle ':autocomplete:space:*' magic expand-history
 
 #always show groups
-#zstyle ':autocomplete:*' groups always
+# zstyle ':autocomplete:*' groups always
 
 #turn off frecent-dirs
 #zstyle ':autocomplete:*' frecent-dirs off
@@ -13,3 +13,6 @@ zstyle ':autocomplete:space:*' magic expand-history
 #tab starts menu selection instead of completing the closest match
 zstyle ':autocomplete:tab:*' completion insert
 #zstyle ':autocomplete:tab:*' completion fzf
+#
+
+# zstyle ':autocomplete:list-choices:*' max-lines 5 #length of autocompletion list
