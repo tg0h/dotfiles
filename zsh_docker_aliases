@@ -1,6 +1,10 @@
 ################################################### Containers
 alias dc='docker container'
 
+alias dce='docker container exec'
+
+alias dci='docker container inspect'
+
 alias dcr='docker container rm '
 alias dcra='docker container rm $(docker container ls -aq)'
 
