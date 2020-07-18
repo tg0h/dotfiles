@@ -20,7 +20,7 @@
     ~/.p10k.zsh: p10k.zsh
     ~/.zsh_jira: zsh_jira
     ~/.ssh/config: ssh_config
-
+    ~/.zsh_functions: zsh_functions/
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]

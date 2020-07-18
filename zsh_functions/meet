@@ -1,0 +1,11 @@
+_greet() {
+echo "Hello, World!"
+}
+
+_meet() {
+    _greet
+    echo "Ohai there $@"
+}
+
+_meet "$@"
+

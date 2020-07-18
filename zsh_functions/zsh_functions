@@ -1,0 +1,12 @@
+ fpath = (~/.zsh_functions $fpath)
+ 
+ _greet(){
+   echo "hello, world!"
+ }
+ 
+ _meet(){
+   _greet
+   echo "Ohai there $@"
+ }
+ 
+ _meet "$@"
