@@ -15,6 +15,18 @@ fi
 export ZSH="/Users/tim/.oh-my-zsh"
 export PATH="/usr/local/mysql/bin:$PATH"
 
+# COMPLETION
+## set up message format
+# zstyle ':completion:*' format %d
+# zstyle ':completion:*:descriptions' format '%B%d%b'
+# zstyle ':completion:*:messages' format %d
+# zstyle ':completion:*:warnings' format 'No matches for: %d'
+# zstyle ':completion:*' group-name '' #add groups to display
+# zstyle ':completion:*' completer _expand _complete _correct #auto correct
+#zstyle ':completion:*' verbose yes #command options show descriptions
+
+fpath+=~/.zsh_functions #add our own zsh functions directory to fpath
+
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
@@ -57,7 +69,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -70,7 +82,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 # or set a custom format using the strftime function format specifications,
 # see 'man strftime' for details.
-# HIST_STAMPS="mm/dd/yyyy"
+HIST_STAMPS="yyyy-mm-dd"
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
@@ -86,7 +98,7 @@ plugins=(
     colored-man-pages
     jira
     npm
-    git
+    #git
     git-auto-fetch
     gitignore
     docker
