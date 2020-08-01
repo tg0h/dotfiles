@@ -14,13 +14,14 @@
     ~/.zsh_docker_aliases: zsh_docker_aliases
     ~/.zsh_git_aliases: zsh_git_aliases
     ~/.zsh_powerlevel9k: zsh_powerlevel9k
+    ~/.zsh_funcs: zsh_funcs
     ~/.zsh_fzf: zsh_fzf
     ~/.zsh_fzf_git: zsh_fzf_git
     ~/.zsh_autocomplete: zsh_autocomplete
     ~/.p10k.zsh: p10k.zsh
     ~/.zsh_jira: zsh_jira
     ~/.ssh/config: ssh_config
-    ~/.zsh_functions: zsh_functions/
+    ~/.zsh_functions: zsh_functions/ #autoload function directory
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]

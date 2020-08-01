@@ -30,7 +30,7 @@ plugins=(
     zsh-autosuggestions
     zsh-autocomplete
     z
-    zsh-syntax-highlighting
+    zsh-syntax-highlighting #source this at the end for syntax highlighting to work
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -39,6 +39,8 @@ source $ZSH/oh-my-zsh.sh
 
 # user configuration
 fpath+=~/.zsh_functions #add our own zsh functions directory to fpath
+autoload -Uz ~/.zsh_functions/*(.) #-U supress alias expansion, -z zsh style function loading. (.) - glob qualifier. dot means show regular files only
+
 export PATH="/usr/local/mysql/bin:$PATH"
 export EDITOR='vim'
 
@@ -61,44 +63,4 @@ alias runp="lsof -i "
 . ~/.zsh_git_aliases
 . ~/.zsh_jira
 
-#get from prod
-function cget() {
-  # aws cognito-idp admin-get-user --user-pool-id ap-southeast-1_Q5BSv9IX7 --username "SG$1" | jq '.UserAttributes[] | select(.Name | endswith("email") or endswith("phone_number") or endswith("employee_id") or endswith("staff_type"))'
-  aws cognito-idp admin-get-user --user-pool-id ap-southeast-1_Q5BSv9IX7 --username "SG$1" | jq '(.UserAttributes | map( {(.Name) : .Value}) | add ) as $fields | {Username,UserStatus,phone_number_verified: $fields.phone_number_verified, phone_number: $fields.phone_number, email_verified: $fields.email_verified, email: $fields.email,company_email: $fields."custom:company_email", personal_email: $fields."custom:personal_email",UserLastModifiedDate}'
-}
-
-#get from staging
-function cgetst() {
-  # aws cognito-idp admin-get-user --user-pool-id ap-southeast-1_Q5BSv9IX7 --username "SG$1" | jq '.UserAttributes[] | select(.Name | endswith("email") or endswith("phone_number") or endswith("employee_id") or endswith("staff_type"))'
-  aws cognito-idp admin-get-user --user-pool-id ap-southeast-1_bbe9csnbP --username "SG$1" | jq '(.UserAttributes | map( {(.Name) : .Value}) | add ) as $fields | {Username,UserStatus,phone_number_verified: $fields.phone_number_verified, phone_number: $fields.phone_number, email_verified: $fields.email_verified, email: $fields.email,company_email: $fields."custom:company_email", personal_email: $fields."custom:personal_email",UserLastModifiedDate}'
-}
-
-# get column headers as well as values
-# function cgetcsv() {
-  # aws cognito-idp admin-get-user --user-pool-id ap-southeast-1_Q5BSv9IX7 --username "SG$1" | jq '.UserAttributes[] | select(.Name | endswith("email") or endswith("phone_number") or endswith("employee_id") or endswith("staff_type"))'
-  # aws cognito-idp admin-get-user --user-pool-id ap-southeast-1_Q5BSv9IX7 --username "SG$1" | jq --raw-output '(.UserAttributes | map( {(.Name) : .Value}) | add ) as $fields | [{Username,UserStatus,phone_number_verified: $fields.phone_number_verified, phone_number: $fields.phone_number, email_verified: $fields.email_verified, email: $fields.email,company_email: $fields."custom:company_email", personal_email: $fields."custom:personal_email",UserLastModifiedDate}] | (.[0] | keys_unsorted) as $keys | $keys, map([.[ $keys[] ]])[] | @csv'
-# }
-
-#get the user values without the column headers
-function cgetcsvrow() {
-  # aws cognito-idp admin-get-user --user-pool-id ap-southeast-1_Q5BSv9IX7 --username "SG$1" | jq '.UserAttributes[] | select(.Name | endswith("email") or endswith("phone_number") or endswith("employee_id") or endswith("staff_type"))'
-  aws cognito-idp admin-get-user --user-pool-id ap-southeast-1_Q5BSv9IX7 --username "SG$1" | jq --raw-output '(.UserAttributes | map( {(.Name) : .Value}) | add ) as $fields | [{Username,UserStatus,phone_number_verified: $fields.phone_number_verified, phone_number: $fields.phone_number, email_verified: $fields.email_verified, email: $fields.email,company_email: $fields."custom:company_email", personal_email: $fields."custom:personal_email",UserLastModifiedDate}] | (.[0] | keys_unsorted) as $keys | map([.[ $keys[] ]])[] | @csv'
-}
-
-function cgetcsv() {
-  if (( $# == 0 ));
-  then echo "no args passed!"
-  else
-    echo '"Username","UserStatus","phone_number_verified","phone_number","email_verified","email","company_email","personal_email","UserLastModified"'
-    for i
-      # if (( i == 1)); then
-      #   echo 1
-      # fi
-      do cgetcsvrow $i
-    done
-  fi
-}
-
-function cgets() {
-  aws cognito-idp admin-list-user-auth-events  --user-pool-id ap-southeast-1_Q5BSv9IX7 --username SG$1 | jq '.AuthEvents[0:6][] | {EventResponse,EventType,CreationDate}'
-}
+. ~/.zsh_funcs #get all my functions
