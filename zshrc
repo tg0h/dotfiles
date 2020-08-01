@@ -1,16 +1,9 @@
+export ZSH="/Users/tim/.oh-my-zsh"
+
 # set up p10k prompt
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-# Path to your oh-my-zsh installation.
-export ZSH="/Users/tim/.oh-my-zsh"
-export PATH="/usr/local/mysql/bin:$PATH"
-
-fpath+=~/.zsh_functions #add our own zsh functions directory to fpath
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
 COMPLETION_WAITING_DOTS="true" #display 3 dots while waiting for completion
@@ -18,44 +11,55 @@ HIST_STAMPS="yyyy-mm-dd" # set up zsh history command date time format
 
 # plugins
 plugins=(
+    zsh-nvm #add at the top so other plugins that use node/npm can work
     adb
     aws
     colored-man-pages
-    jira
-    npm
+    docker
+    dotenv #source the .env file in the root dir when you cd into it
     #git
     git-auto-fetch
     gitignore
-    docker
+    jira #jira from command line
+    last-working-dir #lwd
+    npm
+    osx
     timer
     vi-mode
+    web-search #google from command line
     zsh-autosuggestions
     zsh-autocomplete
     z
     zsh-syntax-highlighting
-    zsh-nvm
 )
 
 source $ZSH/oh-my-zsh.sh
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh # p10k configuration
 
-# User configuration
-
+# user configuration
+fpath+=~/.zsh_functions #add our own zsh functions directory to fpath
+export PATH="/usr/local/mysql/bin:$PATH"
 export EDITOR='vim'
 
 # alias 
 alias ag="alias | grep"
 alias fork="open . -a /Applications/Fork.app"
+alias zshrc='vim ~/.zshrc'
+alias topten="history | commands | sort -rn | head"
+alias myip="curl http://ipecho.net/plain; echo"
+alias dirs='dirs -v | head -10'
+alias usage='du -h -d1'
+alias update="source ~/.zshrc"
+alias sshdir="cd ~/.ssh"
+alias runp="lsof -i "
 
-. ~/.zsh_git_aliases
-. ~/.zsh_docker_aliases
 . ~/.zsh_autocomplete
+. ~/.zsh_docker_aliases
 . ~/.zsh_fzf
 . ~/.zsh_fzf_git
+. ~/.zsh_git_aliases
 . ~/.zsh_jira
-
-#import tools
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-# eval "$(zoxide init zsh)" #use zoxide
 
 #get from prod
 function cget() {
