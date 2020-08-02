@@ -49,6 +49,7 @@ alias ag="alias | grep"
 alias fork="open . -a /Applications/Fork.app"
 alias zshrc='vim ~/.zshrc'
 alias zshrds='vim ~/.zsh_aws_rds'
+alias zshcw='vim ~/.zsh_aws_cloudwatch'
 alias topten="history | commands | sort -rn | head"
 alias myip="curl http://ipecho.net/plain; echo"
 alias dirs='dirs -v | head -10'
@@ -59,12 +60,15 @@ alias runp="lsof -i " #eg runp :1234 tells you whether port 1234 is being used
 alias vpn="networksetup -connectpppoeservice 'edo vpn'"
 alias dvpn="networksetup -disconnectpppoeservice 'edo vpn'"
 
-. ~/.zsh_aws_rds
 . ~/.zsh_autocomplete
 . ~/.zsh_docker_aliases
 . ~/.zsh_fzf
 . ~/.zsh_fzf_git
 . ~/.zsh_git_aliases
 . ~/.zsh_jira
+
+# my functions
+. ~/.zsh_aws_rds
+. ~/.zsh_aws_cloudwatch
 
 . ~/.zsh_funcs #get all my functions

@@ -1,0 +1,19 @@
+# NOTE: zsh parameter expansion only happens within single quotes "$HOME" expands, '$HOME' gives literal value
+# ALL
+# filter pattern requires '"<filter>"' ... strange
+
+function cwargus-ms-session-dev() {
+  awslogs get /aws/ecs/argus-ms-session-dev ALL --filter-pattern='"'$1'"' --since "$2" --no-group --no-stream
+}
+
+function cwargus-ms-userdev() {
+  awslogs get /aws/ecs/argus-ms-user-dev ALL --filter-pattern='"'$1'"' --start "$2" --no-group --no-stream
+}
+
+function ddArgus-UserActivities-dev() {
+local ts=$(($(date -v -$2 +%s)*1000)) ##convert a relative time ymwdHMS to an epoch ts in ms
+
+aws dynamodb query --table-name Argus-UserActivities-dev \
+    --key-condition-expression "userId = :userId and ts > :ts" \
+    --expression-attribute-values  '{":userId":{"S":"'$1'"}, ":ts": {"N": "'$ts'" }}' | jq .
+}
