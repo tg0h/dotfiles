@@ -48,14 +48,18 @@ export EDITOR='vim'
 alias ag="alias | grep"
 alias fork="open . -a /Applications/Fork.app"
 alias zshrc='vim ~/.zshrc'
+alias zshrds='vim ~/.zsh_aws_rds'
 alias topten="history | commands | sort -rn | head"
 alias myip="curl http://ipecho.net/plain; echo"
 alias dirs='dirs -v | head -10'
 alias usage='du -h -d1'
 alias update="source ~/.zshrc"
 alias sshdir="cd ~/.ssh"
-alias runp="lsof -i "
+alias runp="lsof -i " #eg runp :1234 tells you whether port 1234 is being used
+alias vpn="networksetup -connectpppoeservice 'edo vpn'"
+alias dvpn="networksetup -disconnectpppoeservice 'edo vpn'"
 
+. ~/.zsh_aws_rds
 . ~/.zsh_autocomplete
 . ~/.zsh_docker_aliases
 . ~/.zsh_fzf

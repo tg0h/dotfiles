@@ -20,7 +20,7 @@
     ~/.zsh_autocomplete: zsh_autocomplete
     ~/.p10k.zsh: p10k.zsh
     ~/.zsh_jira: zsh_jira
-    ~/.ssh/config: ssh_config
+    ~/.zsh_aws_rds: zsh_aws_rds
     ~/.zsh_functions: zsh_functions/ #autoload function directory
 
 - shell:
