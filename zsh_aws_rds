@@ -284,12 +284,17 @@ EOF
 
 function _dbausers_devices() {
   mysqlsh --sql -u authadmin -h 127.0.0.1 -P 1101 -D argus_auth --result-format=table << EOF 
-select ua.staffId,
-       a.appId,
-       ud.*
+select ua.staffid,
+       a.appid,
+#        ud.userauthid,
+       ud.appid,
+       ud.deviceid,
+#        ud.devicetoken,
+       substr(ud.devicetoken, 1, 10) devicetoken10,
+       ud.endpointarn
 from users_devices ud
-         inner join user_auths ua on ud.UserAuthId = ua.id
-         inner join apps a on ud.AppId = a.id
-where ua.staffId = '$1'
+         inner join user_auths ua on ud.userauthid = ua.id
+         inner join apps a on ud.appid = a.id
+where ua.staffid = 'tim'
 EOF
 }
