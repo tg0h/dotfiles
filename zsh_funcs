@@ -37,6 +37,6 @@ function cgetcsv() {
 }
 
 function cgets() {
-  aws cognito-idp admin-list-user-auth-events  --user-pool-id ap-southeast-1_Q5BSv9IX7 --username SG$1 | jq '.AuthEvents[0:6][] | {EventResponse,EventType,CreationDate}'
+  aws cognito-idp admin-list-user-auth-events  --user-pool-id ap-southeast-1_Q5BSv9IX7 --username SG$1 | jq '.AuthEvents[0:6][] | {EventResponse,EventType,CreationDate,EventRisk,ChallengeResponses}'
 }
 
