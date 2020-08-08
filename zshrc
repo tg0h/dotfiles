@@ -17,7 +17,7 @@ plugins=(
     colored-man-pages
     docker
     dotenv #source the .env file in the root dir when you cd into it
-    #git
+    git
     git-auto-fetch
     gitignore
     jira #jira from command line
@@ -72,3 +72,9 @@ alias dvpn="networksetup -disconnectpppoeservice 'edo vpn'"
 . ~/.zsh_aws_cloudwatch
 
 . ~/.zsh_funcs #get all my functions
+
+function sa {
+  local pre=:
+  local post=:
+  printf "$pre%s$post\n" "$@" 
+}
