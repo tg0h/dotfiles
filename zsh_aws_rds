@@ -128,27 +128,27 @@ function dbuorgs() {
   mysqlsh --sql -u useradmin -h 127.0.0.1 -P 1100 -D argus_users -e "select * from organizations where name = '$1'" --result-format=table
 }
 
-function _dbuuser_auths() {
-  mysqlsh --sql -u useradmin -h 127.0.0.1 -P 1100 -D argus_users --result-format=table << EOF
-select a.name acc,
-       o.name org,
-       ua.id,
-       ua.active,
-       ua.staffId,
-       ua.passwordHash,
-       ua.passwordSalt,
-       ua.phone,
-       ua.photoUrl,
-       ua.lastSigninAt,
-       ua.createdAt,
-       ua.registeredAt,
-       ua.updatedAt
-from user_auths ua
-         left join accounts a on a.id = ua.accountId
-         left join organizations o on ua.organizationId = o.id
-where staffId = '$1'
-EOF
-}
+# function _dbuuser_auths() {
+#   mysqlsh --sql -u useradmin -h 127.0.0.1 -P 1100 -D argus_users --result-format=table << EOF
+# select a.name acc,
+#        o.name org,
+#        ua.id,
+#        ua.active,
+#        ua.staffId,
+#        ua.passwordHash,
+#        ua.passwordSalt,
+#        ua.phone,
+#        ua.photoUrl,
+#        ua.lastSigninAt,
+#        ua.createdAt,
+#        ua.registeredAt,
+#        ua.updatedAt
+# from user_auths ua
+#          left join accounts a on a.id = ua.accountId
+#          left join organizations o on ua.organizationId = o.id
+# where staffId = '$1'
+# EOF
+# }
 
 function _dbuuser_roles() {
   mysqlsh --sql -u useradmin -h 127.0.0.1 -P 1100 -D argus_users --result-format=table << EOF
