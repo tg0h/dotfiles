@@ -59,8 +59,8 @@ function dbuu() {
   _dbuorg-groups $1
   print '====================================== user roles    ========================================='
   _dbuuser_roles $1
-  print '====================================== user auths??  ========================================='
-  _dbuuser_auths $1
+  # print '====================================== user auths??  ========================================='
+  # _dbuuser_auths $1
   print '====================================== accounts     ========================================='
   _dbuaccounts
 }
@@ -319,12 +319,12 @@ select ua.staffid,
 #        ud.userauthid,
        ud.appid,
        ud.deviceid,
-#        ud.devicetoken,
-       substr(ud.devicetoken, 1, 10) devicetoken10,
+       ud.devicetoken,
+       # substr(ud.devicetoken, 1, 10) devicetoken10,
        ud.endpointarn
 from users_devices ud
          inner join user_auths ua on ud.userauthid = ua.id
          inner join apps a on ud.appid = a.id
-where ua.staffid = 'tim'
+where ua.staffid = '$1'
 EOF
 }
