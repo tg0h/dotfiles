@@ -22,6 +22,7 @@
     ~/.zsh_jira: zsh_jira
     ~/.zsh_aws_cloudwatch: zsh_aws_cloudwatch
     ~/.zsh_aws_rds: zsh_aws_rds
+    ~/.zsh_aws_cognito: zsh_aws_cognito
     ~/.zsh_functions: zsh_functions/ #autoload function directory
 
 - shell:

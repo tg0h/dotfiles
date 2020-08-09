@@ -50,6 +50,7 @@ alias fork="open . -a /Applications/Fork.app"
 alias zshrc='vim ~/.zshrc'
 alias zshrds='vim ~/dotfiles/zsh_aws_rds'
 alias zshcw='vim ~/.zsh_aws_cloudwatch'
+alias zshc='vim ~/.zsh_aws_cognito'
 alias topten="history | commands | sort -rn | head"
 alias myip="curl http://ipecho.net/plain; echo"
 alias dirs='dirs -v | head -10'
@@ -70,6 +71,7 @@ alias dvpn="networksetup -disconnectpppoeservice 'edo vpn'"
 # my functions
 . ~/.zsh_aws_rds
 . ~/.zsh_aws_cloudwatch
+. ~/.zsh_aws_cognito
 
 . ~/.zsh_funcs #get all my functions
 
