@@ -2,14 +2,26 @@
 #TODO: environment sensitive commands
 #TODO: refactor commands for host, port and database
 #TODO: why is user_roles, users_orgs,orgs,accounts in auth and users db? which one to use?
-#TODO: why is user_auths in users db? 
+#TODO: why is user_auths in users db?  - it is useless
+#TODO: configuration file - 9 Aug 20 - done
 
 #ports 0 to 1023 are reserved
-#argus-user-dev  - 1100
-#argus-user-auth - 1101
-alias dbconn-dev-argus-users='ssh -N -L 1100:argus-users-dev.cluster-cavqivemi9xz.ap-southeast-1.rds.amazonaws.com:3306 ec2-user@tpd-clb-temp-1215105520.ap-southeast-1.elb.amazonaws.com -i ~/certis/config/secrets/certis-tpd-pmo.pem &'
-alias dbconn-dev-argus-auth='ssh -N -L 1101:argus-auth-dev.cluster-cavqivemi9xz.ap-southeast-1.rds.amazonaws.com:3306 ec2-user@tpd-clb-temp-1215105520.ap-southeast-1.elb.amazonaws.com -i ~/certis/config/secrets/certis-tpd-pmo.pem &'
-#jobs to list running background processess
+
+function dbconn-argus() {
+  _kill_argus_db_ports
+
+  ssh -N -L $_ARGUS_RDS_DB_USER_LOCAL_PORT:$_ARGUS_RDS_DB_USER_HOST $_ARGUS_RDS_SSH_USER@$_ARGUS_RDS_SSH_HOST -i $_ARGUS_RDS_SSH_KEY &
+  ssh -N -L $_ARGUS_RDS_DB_AUTH_LOCAL_PORT:$_ARGUS_RDS_DB_AUTH_HOST $_ARGUS_RDS_SSH_USER@$_ARGUS_RDS_SSH_HOST -i $_ARGUS_RDS_SSH_KEY &
+}
+
+function _kill_argus_db_ports() {
+  for pid in $(dbconn-get | awk {'if(NR>1) print $2'}) ## get pids of processes listening on rds ssh's
+  do
+    kill $pid > /dev/null #supress output
+  done
+}
+
+alias dbconn-get='lsof -Pi tcp@localhost:1100,1101,1200,1201,1300,1301' #-P do not resolve port numbers to port names so you can see 1100 instead of something else
 
 #use mysqlsh's credential store helper to remember your password
 
@@ -39,12 +51,24 @@ argp () {
   _setArgusProfile $1
 }
 
-_setArgusProfile() {
+function _setArgusProfile() {
   local argus_profile
   case $1 in
-    d) argus_profile="development" ;;
-    s) argus_profile="staging" ;;
-    p) argus_profile="production" ;;
+    d) argus_profile="development" 
+       . ~/dotfiles/argus.develop.env
+       vpn
+       dbconn-argus #automatically open ssh ports
+       ;;
+    s) argus_profile="staging"
+       . ~/dotfiles/argus.staging.env
+       vpn
+       dbconn-argus #automatically open ssh ports
+       ;;
+    p) argus_profile="production"
+       vpn
+       . ~/dotfiles/argus.production.env
+       dbconn-argus #automatically open ssh ports
+       ;;
   esac
 
   export _ARGUS_PROFILE=$argus_profile
@@ -65,9 +89,9 @@ function dbuu() {
   _dbuaccounts
 }
 
-
 function _dbuusers() {
-  mysqlsh --sql -u useradmin -h 127.0.0.1 -P 1100 -D argus_users --result-format=json << EOF | jq .
+  # mysqlsh --sql -u useradmin -h 127.0.0.1 -P 1300 -D argus_users  -e "select * from users where staff_id = 'tim'"
+  mysqlsh --sql -u $_ARGUS_RDS_DB_USER_USER -h 127.0.0.1 -P $_ARGUS_RDS_DB_USER_LOCAL_PORT -D $_ARGUS_RDS_DB_USER_NAME --result-format=json << EOF | jq .
 select *
 from users
 where staff_id = '$1'
@@ -75,7 +99,7 @@ EOF
 }
 
 function _dbuorg-groups() {
-  mysqlsh --sql -u useradmin -h 127.0.0.1 -P 1100 -D argus_users --result-format=table << EOF
+  mysqlsh --sql -u $_ARGUS_RDS_DB_USER_USER -h 127.0.0.1 -P $_ARGUS_RDS_DB_USER_LOCAL_PORT -D $_ARGUS_RDS_DB_USER_NAME --result-format=table << EOF
 select
     u.staff_id,
     a.name as acc,
@@ -96,7 +120,7 @@ EOF
 
 
 function _dbuaccounts() {
-  mysqlsh --sql -u useradmin -h 127.0.0.1 -P 1100 -D argus_users --result-format=table << EOF
+  mysqlsh --sql -u $_ARGUS_RDS_DB_USER_USER -h 127.0.0.1 -P $_ARGUS_RDS_DB_USER_LOCAL_PORT -D $_ARGUS_RDS_DB_USER_NAME --result-format=table << EOF
 select name,
        id
 from accounts
@@ -105,7 +129,7 @@ EOF
 }
 
 function dbuasync_tasks() {
-  mysqlsh --sql -u useradmin -h 127.0.0.1 -P 1100 -D argus_users --result-format=table << EOF
+  mysqlsh --sql -u $_ARGUS_RDS_DB_USER_USER -h 127.0.0.1 -P $_ARGUS_RDS_DB_USER_LOCAL_PORT -D $_ARGUS_RDS_DB_USER_NAME --result-format=table << EOF
 select
         a.name 'account name',
         at.*
@@ -117,41 +141,19 @@ EOF
 }
 
 function dbuemail_templates() {
-  mysqlsh --sql -u useradmin -h 127.0.0.1 -P 1100 -D argus_users -e "select * from email_templates" --result-format=json/pretty
+  mysqlsh --sql -u $_ARGUS_RDS_DB_USER_USER -h 127.0.0.1 -P $_ARGUS_RDS_DB_USER_LOCAL_PORT -D $_ARGUS_RDS_DB_USER_NAME -e "select * from email_templates" --result-format=json/pretty
 }
 
 function dbugroups() {
-  mysqlsh --sql -u useradmin -h 127.0.0.1 -P 1100 -D argus_users -e "select * from groups where name = '$1'" --result-format=table
+  mysqlsh --sql -u $_ARGUS_RDS_DB_USER_USER -h 127.0.0.1 -P $_ARGUS_RDS_DB_USER_LOCAL_PORT -D $_ARGUS_RDS_DB_USER_NAME -e "select * from groups where name = '$1'" --result-format=table
 }
 
 function dbuorgs() {
-  mysqlsh --sql -u useradmin -h 127.0.0.1 -P 1100 -D argus_users -e "select * from organizations where name = '$1'" --result-format=table
+  mysqlsh --sql -u $_ARGUS_RDS_DB_USER_USER -h 127.0.0.1 -P $_ARGUS_RDS_DB_USER_LOCAL_PORT -D $_ARGUS_RDS_DB_USER_NAME -e "select * from organizations where name = '$1'" --result-format=table
 }
 
-# function _dbuuser_auths() {
-#   mysqlsh --sql -u useradmin -h 127.0.0.1 -P 1100 -D argus_users --result-format=table << EOF
-# select a.name acc,
-#        o.name org,
-#        ua.id,
-#        ua.active,
-#        ua.staffId,
-#        ua.passwordHash,
-#        ua.passwordSalt,
-#        ua.phone,
-#        ua.photoUrl,
-#        ua.lastSigninAt,
-#        ua.createdAt,
-#        ua.registeredAt,
-#        ua.updatedAt
-# from user_auths ua
-#          left join accounts a on a.id = ua.accountId
-#          left join organizations o on ua.organizationId = o.id
-# where staffId = '$1'
-# EOF
-# }
-
 function _dbuuser_roles() {
-  mysqlsh --sql -u useradmin -h 127.0.0.1 -P 1100 -D argus_users --result-format=table << EOF
+  mysqlsh --sql -u $_ARGUS_RDS_DB_USER_USER -h 127.0.0.1 -P $_ARGUS_RDS_DB_USER_LOCAL_PORT -D $_ARGUS_RDS_DB_USER_NAME --result-format=table << EOF
 select u.staff_id,
        # ur.user_id,
        ur.role_id,
@@ -184,7 +186,8 @@ function dbaua() {
 }
 
 function _dbauser_auths() {
-  mysqlsh --sql -u authadmin -h 127.0.0.1 -P 1101 -D argus_auth --result-format=json << EOF | jq .
+  # mysqlsh --sql -u authadmin -h 127.0.0.1 -P 1301 -D argus_auth  -e "select 1 from user_auths"
+  mysqlsh --sql -u $_ARGUS_RDS_DB_AUTH_USER -h 127.0.0.1 -P $_ARGUS_RDS_DB_AUTH_LOCAL_PORT -D $_ARGUS_RDS_DB_AUTH_NAME --result-format=json << EOF | jq .
 select ua.id,
 #        ua.accountId,
        a.name as acc,
@@ -208,7 +211,7 @@ EOF
 
 
 function _dbaaccount_resets() {
-  mysqlsh --sql -u authadmin -h 127.0.0.1 -P 1101 -D argus_auth --result-format=table << EOF
+  mysqlsh --sql -u $_ARGUS_RDS_DB_AUTH_USER -h 127.0.0.1 -P $_ARGUS_RDS_DB_AUTH_LOCAL_PORT -D $_ARGUS_RDS_DB_AUTH_NAME --result-format=table << EOF
 select
        ua.staffId,
 #        ar.userId,
@@ -223,7 +226,7 @@ EOF
 }
 
 function _dbaapps() {
-  mysqlsh --sql -u authadmin -h 127.0.0.1 -P 1101 -D argus_auth --result-format=table << EOF
+  mysqlsh --sql -u $_ARGUS_RDS_DB_AUTH_USER -h 127.0.0.1 -P $_ARGUS_RDS_DB_AUTH_LOCAL_PORT -D $_ARGUS_RDS_DB_AUTH_NAME --result-format=table << EOF
 select apps.id,
        a.name,
        apps.appId,
@@ -239,7 +242,7 @@ EOF
 
 #not useful
 function _dbaapps_roles() {
-  mysqlsh --sql -u authadmin -h 127.0.0.1 -P 1101 -D argus_auth --result-format=table << EOF
+  mysqlsh --sql -u $_ARGUS_RDS_DB_AUTH_USER -h 127.0.0.1 -P $_ARGUS_RDS_DB_AUTH_LOCAL_PORT -D $_ARGUS_RDS_DB_AUTH_NAME --result-format=table << EOF
 select a.name,
        apps.appId,
 #        r.id,
@@ -259,7 +262,7 @@ EOF
 
 #not useful
 function _dbalogin_attempts() {
-  mysqlsh --sql -u authadmin -h 127.0.0.1 -P 1101 -D argus_auth --result-format=table << EOF
+  mysqlsh --sql -u $_ARGUS_RDS_DB_AUTH_USER -h 127.0.0.1 -P $_ARGUS_RDS_DB_AUTH_LOCAL_PORT -D $_ARGUS_RDS_DB_AUTH_NAME --result-format=table << EOF
 select
        a.name,
        la.staffId,
@@ -285,7 +288,7 @@ EOF
 
 #not useful
 function _dbaphone_regs() {
-  mysqlsh --sql -u authadmin -h 127.0.0.1 -P 1101 -D argus_auth --result-format=table << EOF
+  mysqlsh --sql -u $_ARGUS_RDS_DB_AUTH_USER -h 127.0.0.1 -P $_ARGUS_RDS_DB_AUTH_LOCAL_PORT -D $_ARGUS_RDS_DB_AUTH_NAME --result-format=table << EOF
 select
 #        a.name,
        ua.staffId,
@@ -313,7 +316,7 @@ EOF
 }
 
 function _dbausers_devices() {
-  mysqlsh --sql -u authadmin -h 127.0.0.1 -P 1101 -D argus_auth --result-format=table << EOF 
+  mysqlsh --sql -u $_ARGUS_RDS_DB_AUTH_USER -h 127.0.0.1 -P $_ARGUS_RDS_DB_AUTH_LOCAL_PORT -D $_ARGUS_RDS_DB_AUTH_NAME --result-format=table << EOF 
 select ua.staffid,
        a.appid,
 #        ud.userauthid,
