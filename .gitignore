@@ -4,6 +4,7 @@ vim/view
 
 #ignore vim swp files
 *.swp
+*.env
 
 #ignore netrw dotfile - don't know what it does
 .netrwhist
