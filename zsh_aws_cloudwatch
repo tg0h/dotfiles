@@ -44,6 +44,31 @@ aws dynamodb query --table-name Argus-ActivityAlerts-$_ARGUS_DD_SUFFIX \
     --expression-attribute-values  '{":userId":{"S":"'$userId'"}, ":expiry": {"N": "'$ts'" }}' | jq '.Items[]'
 }
 
+function ddaArgusSettings() {
+
+# local ts=$(($(date -v -$2 +%s)*1000)) ##convert a relative time ymwdHMS to an epoch ts in ms
+# local userId=$(_dbgetUserId $1)
+
+_ddaArgusSettings $1 $2 \
+| convertddjson \
+| jq . \
+| gsed -E 's/(\s)([0-9]{13,})/\1\"\2\"/g; s/(")/\\\1/g' \
+| gsed -E 's/(.*)([0-9]{13,})(.*)/printf "%s%s%s" "\1" "$(date -r $((\2 \/ 1000)))" "\3"/e' \
+| sed -E 's/\\//g' \
+| jq 
+
+}
+
+function _ddaArgusSettings() {
+
+# local ts=$(($(date -v -$2 +%s)*1000)) ##convert a relative time ymwdHMS to an epoch ts in ms
+# local userId=$(_dbgetUserId $1)
+
+aws dynamodb query --table-name Argus-Settings-$_ARGUS_DD_SUFFIX \
+    --key-condition-expression "accountId = :accountId and organizationId = :organizationId" \
+    --expression-attribute-values  '{":accountId":{"S":"'$1'"}, ":organizationId": {"S": "'$2'" }}' | jq '.Items[]'
+}
+
 function ddaActivityAlerts() {
 
 # ddaActivityAlerts 100 12H  \
