@@ -2,6 +2,7 @@
 # ALL
 # filter pattern requires '"<filter>"' ... strange
 
+
 function cwargus-ms-session-dev() {
   awslogs get /aws/ecs/argus-ms-session-dev ALL --filter-pattern='"'$1'"' --since "$2" --no-group --no-stream
 }
@@ -10,10 +11,56 @@ function cwargus-ms-userdev() {
   awslogs get /aws/ecs/argus-ms-user-dev ALL --filter-pattern='"'$1'"' --start "$2" --no-group --no-stream
 }
 
-function ddArgus-UserActivities-dev() {
+# convert epoch time in ms to date
+function ctime() {
+
+  ms=${1: -3} #get last 3 digits (milliseconds)
+  y=${1%???} #another way to remove last 3 chars
+  ts=${1:0:-3} #remove last 3 chars to get epoch ts without ms
+
+  # echo $x
+  # echo $y
+  # echo $z
+
+  strftime "%a %b %e %H:%M:%S.$ms %Y" $ts
+}
+
+function ddaUserActivities() {
 local ts=$(($(date -v -$2 +%s)*1000)) ##convert a relative time ymwdHMS to an epoch ts in ms
 
-aws dynamodb query --table-name Argus-UserActivities-dev \
+aws dynamodb query --table-name Argus-UserActivities-$_ARGUS_DD_SUFFIX \
     --key-condition-expression "userId = :userId and ts > :ts" \
     --expression-attribute-values  '{":userId":{"S":"'$1'"}, ":ts": {"N": "'$ts'" }}' | jq .
 }
+
+function _ddaActivityAlerts() {
+
+local ts=$(($(date -v -$2 +%s)*1000)) ##convert a relative time ymwdHMS to an epoch ts in ms
+local userId=$(_dbgetUserId $1)
+# echo ts
+
+aws dynamodb query --table-name Argus-ActivityAlerts-$_ARGUS_DD_SUFFIX \
+    --key-condition-expression "userId = :userId and expiry > :expiry" \
+    --expression-attribute-values  '{":userId":{"S":"'$userId'"}, ":expiry": {"N": "'$ts'" }}' | jq '.Items[]'
+}
+
+function ddaActivityAlerts() {
+
+# ddaActivityAlerts 100 12H  \
+# | convertddjson \                                                       #use homebrew aws js sdk to convert dynamodb response into something more readable
+# | jq .                                                                  #convertddjson returns a % char at the end??, jq strips the % character
+# | gsed -E 's/(\s)([0-9]{13,})/\1\"\2\"/g; s/(")/\\\1/g'                 #enclose any epoch ts in double quotes, then escape all double quotes by replacing all " with \"
+# | gsed -E 's/(.*)([0-9]{13,})(.*)/printf "%s%s%s" "\1" "$(date -r $((\2 \/ 1000)))" "\3"/e' \ #finally, convert all epoch ts with a datee
+# | sed -E 's/\\//g'                                                      #\there are still \'s left over, replace all \'s with nothing
+# | jq 
+
+_ddaActivityAlerts $1 $2 \
+| convertddjson \
+| jq . \
+| gsed -E 's/(\s)([0-9]{13,})/\1\"\2\"/g; s/(")/\\\1/g' \
+| gsed -E 's/(.*)([0-9]{13,})(.*)/printf "%s%s%s" "\1" "$(date -r $((\2 \/ 1000)))" "\3"/e' \
+| sed -E 's/\\//g' \
+| jq 
+
+}
+

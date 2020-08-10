@@ -92,6 +92,15 @@ function dbuu() {
   _dbuaccounts
 }
 
+#helper function for dynamodb. very useful as dynamo db does not have staff id and requires user id
+function _dbgetUserId() {
+  mysqlsh --sql -u $_ARGUS_RDS_DB_USER_USER -h 127.0.0.1 -P $_ARGUS_RDS_DB_USER_LOCAL_PORT -D $_ARGUS_RDS_DB_USER_NAME --result-format=json << EOF | jq -r .id
+select id
+from users
+where staff_id = '$1'
+EOF
+}
+
 function _dbuusers() {
   # mysqlsh --sql -u useradmin -h 127.0.0.1 -P 1300 -D argus_users  -e "select * from users where staff_id = 'tim'"
   mysqlsh --sql -u $_ARGUS_RDS_DB_USER_USER -h 127.0.0.1 -P $_ARGUS_RDS_DB_USER_LOCAL_PORT -D $_ARGUS_RDS_DB_USER_NAME --result-format=json << EOF | jq .
