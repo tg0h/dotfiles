@@ -46,11 +46,15 @@ export EDITOR='vim'
 
 # alias 
 alias ag="alias | grep"
+alias sg="set | grep"
+
 alias fork="open . -a /Applications/Fork.app"
+
 alias zshrc='vim ~/.zshrc'
 alias zshrds='vim ~/dotfiles/zsh_aws_rds'
 alias zshcw='vim ~/.zsh_aws_cloudwatch'
 alias zshc='vim ~/.zsh_aws_cognito'
+
 alias topten="history | commands | sort -rn | head"
 alias myip="curl http://ipecho.net/plain; echo"
 alias dirs='dirs -v | head -10'
