@@ -35,6 +35,12 @@ function cget() {
   aws cognito-idp admin-get-user --user-pool-id $_CERTIFY_POOL_ID --username "SG$1" | jq '(.UserAttributes | map( {(.Name) : .Value}) | add ) as $fields | {Username,employee_id: $fields."custom:employee_id",UserStatus,phone_number_verified: $fields.phone_number_verified, phone_number: $fields.phone_number, email_verified: $fields.email_verified, email: $fields.email,company_email: $fields."custom:company_email", personal_email: $fields."custom:personal_email",UserLastModifiedDate}'
   _cgetLastLoginStatus $1
 }
+#
+#get user details raw
+function cgetr() {
+  aws cognito-idp admin-get-user --user-pool-id $_CERTIFY_POOL_ID --username "SG$1"
+}
+
 
 #get the user values without the column headers
 function cgetcsvrow() {
