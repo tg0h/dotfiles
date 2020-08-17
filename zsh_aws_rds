@@ -21,6 +21,7 @@ function _kill_argus_db_ports() {
   done
 }
 
+#get all the pids of processes listening at these ports
 alias dbconn-get='lsof -Pi tcp@localhost:1100,1101,1200,1201,1300,1301' #-P do not resolve port numbers to port names so you can see 1100 instead of something else
 
 #use mysqlsh's credential store helper to remember your password
@@ -93,11 +94,29 @@ function dbuu() {
 }
 
 #helper function for dynamodb. very useful as dynamo db does not have staff id and requires user id
-function _dbgetUserId() {
+function _dbGetUserId() {
   mysqlsh --sql -u $_ARGUS_RDS_DB_USER_USER -h 127.0.0.1 -P $_ARGUS_RDS_DB_USER_LOCAL_PORT -D $_ARGUS_RDS_DB_USER_NAME --result-format=json << EOF | jq -r .id
 select id
 from users
 where staff_id = '$1'
+EOF
+}
+
+#helper function for dynamodb.
+function _dbGetAccountId() {
+  mysqlsh --sql -u $_ARGUS_RDS_DB_USER_USER -h 127.0.0.1 -P $_ARGUS_RDS_DB_USER_LOCAL_PORT -D $_ARGUS_RDS_DB_USER_NAME --result-format=json << EOF | jq -r .id
+select id
+from accounts
+where UPPER(name) = UPPER('$1')
+EOF
+}
+
+#helper function for dynamodb.
+function _dbGetOrganizationId() {
+  mysqlsh --sql -u $_ARGUS_RDS_DB_USER_USER -h 127.0.0.1 -P $_ARGUS_RDS_DB_USER_LOCAL_PORT -D $_ARGUS_RDS_DB_USER_NAME --result-format=json << EOF | jq -r .id
+select id
+from organizations
+where UPPER(name) = UPPER('$1')
 EOF
 }
 
