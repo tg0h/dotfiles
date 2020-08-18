@@ -44,12 +44,17 @@ ddget --tableName="Argus-ActivityAlerts-$_ARGUS_DD_SUFFIX" \
 function ddaArgusSettings() {
 local accountId=$(_dbGetAccountId $1)
 local organizationId=$(_dbGetOrganizationId $2)
-_ddaArgusSettings $accountId $organizationId | jq
-}
-
-function ddaArgusSettings() {
 ddget --tableName="Argus-Settings-$_ARGUS_DD_SUFFIX" \
     --keyConditionExpression="accountId = :accountId and organizationId = :organizationId" \
-    --expressionAttributeValues='{":accountId":"'$1'", ":organizationId": "'$2'"}' | jq
+    --expressionAttributeValues='{":accountId":"'$accountId'", ":organizationId": "'$organizationId'"}' | jq
+}
+
+function ddaSessionActivities() {
+local userId=$(_dbGetUserId $1)
+local appId=$(_dbGetAppId $2 $3) #eg _dbGetAppId CAS a|m|cc
+
+ddget --tableName="Argus-SessionActivities-$_ARGUS_DD_SUFFIX" \
+    --keyConditionExpression="userId = :userId and appId = :appId" \
+    --expressionAttributeValues='{":userId":"'$userId'", ":appId": "'$appId'"}' | jq
 }
 

@@ -120,6 +120,36 @@ where UPPER(name) = UPPER('$1')
 EOF
 }
 
+#helper function for dynamodb. AUTH db
+function _dbGetAppId() {
+  # eg _dbGetAppId CAS a - get the app id of CAS Argus Officer
+
+  local appName
+  case $2 in
+    a) appName='Argus Officer';;
+    m) appName='Argus Supervisor';;
+    cc) appName='Argus Admin';;
+  esac
+  
+  mysqlsh --sql -u $_ARGUS_RDS_DB_AUTH_USER -h 127.0.0.1 -P $_ARGUS_RDS_DB_AUTH_LOCAL_PORT -D $_ARGUS_RDS_DB_AUTH_NAME --result-format=json << EOF | jq -r .id
+select apps.id,
+       a.name,
+       apps.appId,
+       apps.appName
+       # apps.checkDevice,
+       # apps.createdAt,
+       # apps.updatedAt
+from apps
+         inner join accounts a on apps.accountId = a.id
+where (appId REGEXP '.admin\$|.dev\$|.staging\$'
+    or appId REGEXP '.officer\$|.staging\$') #in production, appId does not have an environment suffix
+  and a.name = '$1'
+  and apps.appName like '%$appName%'
+order by a.name, appId
+EOF
+}
+
+
 function _dbuusers() {
   # mysqlsh --sql -u useradmin -h 127.0.0.1 -P 1300 -D argus_users  -e "select * from users where staff_id = 'tim'"
   mysqlsh --sql -u $_ARGUS_RDS_DB_USER_USER -h 127.0.0.1 -P $_ARGUS_RDS_DB_USER_LOCAL_PORT -D $_ARGUS_RDS_DB_USER_NAME --result-format=json << EOF | jq .
@@ -299,6 +329,8 @@ select
        la.staffId,
 #        la.userId, #user_auth id
        apps.appName,
+       apps.appId,
+       apps.id,
 #        la.ipAddress,
        la.deviceId,
        la.api,
@@ -309,7 +341,7 @@ select
        la.createdAt
 from login_attempts la
          inner join accounts a on la.accountId = a.id
-         inner join apps on la.appId = apps.appId
+         inner join apps on la.appId = apps.Id
 where staffId = '$1'
 order by createdAt desc
 limit 5
