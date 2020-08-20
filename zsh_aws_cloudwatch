@@ -56,5 +56,116 @@ local appId=$(_dbGetAppId $2 $3) #eg _dbGetAppId CAS a|m|cc
 ddget --tableName="Argus-SessionActivities-$_ARGUS_DD_SUFFIX" \
     --keyConditionExpression="userId = :userId and appId = :appId" \
     --expressionAttributeValues='{":userId":"'$userId'", ":appId": "'$appId'"}' | jq
+
+############################################### TASKS ################################################
+#SAP
+function ddaTaskCategories() {
+# ddaTaskCategories SAP | jq '.Items | map(select(.categoryName | contains("Respond")))'
+local organizationId=$(_dbGetOrganizationId $1)
+ddget --tableName="Argus-TaskCategories-$_ARGUS_DD_SUFFIX" \
+      --indexName="siteId-index" \
+      --keyConditionExpression="siteId = :siteId" \
+      --expressionAttributeValues='{":siteId":"'$organizationId'"}' \
+      | jq
 }
+
+
+#tim 10M
+function ddaTasksOfficer() {
+local userId=$(_dbGetUserId $1)
+local ts=$(($(date -v -$2 +%s)*1000)) ##convert a relative time ymwdHMS to an epoch ts in ms
+#TODO: show error if unable to return json
+ddget --tableName="Argus-Tasks-$_ARGUS_DD_SUFFIX" \
+      --indexName="OfficerID-startTime-index" \
+      --keyConditionExpression="OfficerID = :OfficerID and startTime > :startTime" \
+      --expressionAttributeValues='{":OfficerID":"'$userId'", ":startTime": '"$ts"'}' \
+      --scanIndexForward="false" \
+      | jq
+}
+
+#SAP 10M
+function ddaTasksSite() {
+local organizationId=$(_dbGetOrganizationId $1)
+local ts=$(($(date -v -$2 +%s)*1000)) ##convert a relative time ymwdHMS to an epoch ts in ms
+
+#TODO: getopts
+ddget --tableName="Argus-Tasks-$_ARGUS_DD_SUFFIX" \
+      --indexName="siteId-startTime-index" \
+      --keyConditionExpression="siteId = :siteId and startTime > :startTime" \
+      --expressionAttributeValues='{":siteId":"'$organizationId'", ":startTime": '"$ts"'}' \
+      --scanIndexForward="false" \
+      | jq
+}
+#--------------------------------------------------------------------------------------------------
+#Task Templates
+
+##CAS SAP
+function ddaTaskTemplates() {
+ddget --tableName="Argus-TaskTemplates-$_ARGUS_DD_SUFFIX" \
+    --keyConditionExpression="TaskTemplateID = :TaskTemplateID" \
+    --expressionAttributeValues='{":TaskTemplateID":"'$1'"}' | jq
+}
+
+#-------------------------------------------------------------------------------------------------
+#Task Updates
+
+#SAP 10M
+function ddaTaskUpdatesSite() {
+echo hello
+local organizationId=$(_dbGetOrganizationId $1) #get site id
+local ts=$(($(date -v -$2 +%s)*1000)) ##convert a relative time ymwdHMS to an epoch ts in ms
+
+#TODO: getopts
+ddget --tableName="Argus-TaskUpdates-$_ARGUS_DD_SUFFIX" \
+      --indexName="siteId-updatedAt-index" \
+      --keyConditionExpression="siteId = :siteId and updatedAt > :updatedAt" \
+      --expressionAttributeValues='{":siteId":"'$organizationId'", ":updatedAt": '"$ts"'}' \
+      --scanIndexForward="false" \
+      | jq
+}
+
+#SAP 10M
+function ddaTaskUpdatesTask() {
+local ts=$(($(date -v -$2 +%s)*1000)) ##convert a relative time ymwdHMS to an epoch ts in ms
+#TODO: getopts
+ddget --tableName="Argus-TaskUpdates-$_ARGUS_DD_SUFFIX" \
+      --indexName="taskId-updatedAt-index" \
+      --keyConditionExpression="taskId = :taskId and updatedAt > :updatedAt" \
+      --expressionAttributeValues='{":taskId":"'$1'", ":updatedAt": '"$ts"'}' \
+      --scanIndexForward="false" \
+      | jq
+}
+
+#<duty plan name search string>
+function ddaDutyPlans() {
+#need to specify #name as name is an aws reserved keyword
+#TODO: getopts
+ddget --tableName="Argus-DutyPlans-$_ARGUS_DD_SUFFIX" \
+      --filterExpression="contains(#name, :name)" \
+      --expressionAttributeNames='{"#name":"name"}' \
+      --expressionAttributeValues='{":name":"'$1'"}' \
+      -m scan \
+      | jq
+}
+
+#COMPLETED 5M
+function ddaTaskSchedules() {
+local ts=$(($(date -v -$2 +%s)*1000)) ##convert a relative time ymwdHMS to an epoch ts in ms
+#TODO: getopts
+# trigger states:
+#        WAITING -  Waiting to be created as a task
+#        PAUSED - Job trigger is paused, will not be created as a task until returned to WAITING
+#        EXPIRED - Job trigger is expired / did not trigger at the scheduled time, will not be created as task
+#        CANCELLED - Job trigger is cancelled, will not be created as task
+#        ERROR - Job trigger error
+#        COMPLETED - Completed job trigger, has already been created as a task
+ddget --tableName="Argus-TaskSchedules-$_ARGUS_DD_SUFFIX" \
+      --indexName="triggerState-scheduledAt-index" \
+      --keyConditionExpression="triggerState = :triggerState and scheduledAt > :scheduledAt" \
+      --expressionAttributeValues='{":triggerState":"'$1'", ":scheduledAt": '"$ts"'}' \
+      --scanIndexForward="false" \
+      | jq
+}
+
+####################################################################################################
 
