@@ -117,8 +117,18 @@ ddget --tableName="Argus-TaskTemplates-$_ARGUS_DD_SUFFIX" \
 #--------------------------------------------------------------------------------------------------
 # DUTY PLAN
 
+#
+function ddaDutyPlans-Id() {
+#need to specify #name as name is an aws reserved keyword
+#TODO: getopts
+ddget --tableName="Argus-DutyPlans-$_ARGUS_DD_SUFFIX" \
+      --keyConditionExpression="id = :id" \
+      --expressionAttributeValues='{":id":"'$1'"}' \
+      | jq
+}
+
 #<duty plan name search string>
-function ddaDutyPlans() {
+function ddaDutyPlans-Name() {
 #need to specify #name as name is an aws reserved keyword
 #TODO: getopts
 ddget --tableName="Argus-DutyPlans-$_ARGUS_DD_SUFFIX" \
@@ -161,7 +171,7 @@ ddget --tableName="Argus-TaskSchedules-$_ARGUS_DD_SUFFIX" \
 #Tasks
 
 #tim 10M
-function ddaTasksOfficer() {
+function ddaTasks-Officer() {
 local userId=$(_dbGetUserId $1)
 local ts=$(($(date -v -$2 +%s)*1000)) ##convert a relative time ymwdHMS to an epoch ts in ms
 #TODO: show error if unable to return json
@@ -174,7 +184,7 @@ ddget --tableName="Argus-Tasks-$_ARGUS_DD_SUFFIX" \
 }
 
 #SAP 10M
-function ddaTasksSite() {
+function ddaTasks-Site() {
 local organizationId=$(_dbGetOrganizationId $1)
 local ts=$(($(date -v -$2 +%s)*1000)) ##convert a relative time ymwdHMS to an epoch ts in ms
 
@@ -190,7 +200,7 @@ ddget --tableName="Argus-Tasks-$_ARGUS_DD_SUFFIX" \
 #Task Updates
 
 #SAP 10M
-function ddaTaskUpdatesSite() {
+function ddaTaskUpdates-Site() {
 echo hello
 local organizationId=$(_dbGetOrganizationId $1) #get site id
 local ts=$(($(date -v -$2 +%s)*1000)) ##convert a relative time ymwdHMS to an epoch ts in ms
@@ -205,7 +215,7 @@ ddget --tableName="Argus-TaskUpdates-$_ARGUS_DD_SUFFIX" \
 }
 
 #SAP 10M
-function ddaTaskUpdatesTask() {
+function ddaTaskUpdates-Task() {
 local ts=$(($(date -v -$2 +%s)*1000)) ##convert a relative time ymwdHMS to an epoch ts in ms
 #TODO: getopts
 ddget --tableName="Argus-TaskUpdates-$_ARGUS_DD_SUFFIX" \
