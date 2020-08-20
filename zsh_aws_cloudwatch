@@ -130,6 +130,16 @@ ddget --tableName="Argus-DutyPlans-$_ARGUS_DD_SUFFIX" \
 }
 
 #COMPLETED 5M
+#SAP [projection expression]
+function ddaDutyPlans-Site() {
+local organizationId=$(_dbGetOrganizationId $1)
+ddget --tableName="Argus-DutyPlans-$_ARGUS_DD_SUFFIX" \
+      --filterExpression="contains(siteId, :siteId)" \
+      --expressionAttributeValues='{":siteId":"'$organizationId'"}' \
+      --projectionExpression="$2" \
+      -m scan \
+      | jq
+}
 function ddaTaskSchedules() {
 local ts=$(($(date -v -$2 +%s)*1000)) ##convert a relative time ymwdHMS to an epoch ts in ms
 #TODO: getopts
