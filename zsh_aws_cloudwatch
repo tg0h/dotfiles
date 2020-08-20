@@ -139,7 +139,6 @@ ddget --tableName="Argus-DutyPlans-$_ARGUS_DD_SUFFIX" \
       | jq
 }
 
-#COMPLETED 5M
 #SAP [projection expression]
 function ddaDutyPlans-Site() {
 local organizationId=$(_dbGetOrganizationId $1)
@@ -150,8 +149,12 @@ ddget --tableName="Argus-DutyPlans-$_ARGUS_DD_SUFFIX" \
       -m scan \
       | jq
 }
+
+
+#<duty plan name> COMPLETED 5M (Scheduled At)
 function ddaTaskSchedules() {
-local ts=$(($(date -v -$2 +%s)*1000)) ##convert a relative time ymwdHMS to an epoch ts in ms
+local dutyPlanId=$(ddaDutyPlans-Name "$1" | jq -r '.Items[].id')
+local ts=$(($(date -v -$3 +%s)*1000)) ##convert a relative time ymwdHMS to an epoch ts in ms
 #TODO: getopts
 # trigger states:
 #        WAITING -  Waiting to be created as a task
@@ -163,8 +166,8 @@ local ts=$(($(date -v -$2 +%s)*1000)) ##convert a relative time ymwdHMS to an ep
 ddget --tableName="Argus-TaskSchedules-$_ARGUS_DD_SUFFIX" \
       --indexName="triggerState-scheduledAt-index" \
       --keyConditionExpression="triggerState = :triggerState and scheduledAt > :scheduledAt" \
-      --expressionAttributeValues='{":triggerState":"'$1'", ":scheduledAt": '"$ts"'}' \
-      --scanIndexForward="false" \
+      --filterExpression="dutyPlanId = :dutyPlanId" \
+      --expressionAttributeValues='{":dutyPlanId":"'$dutyPlanId'", ":triggerState":"'$2'", ":scheduledAt": '"$ts"'}' \
       | jq
 }
 #--------------------------------------------------------------------------------------------------
