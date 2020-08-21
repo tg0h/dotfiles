@@ -230,3 +230,100 @@ ddget --tableName="Argus-TaskUpdates-$_ARGUS_DD_SUFFIX" \
 }
 
 ####################################################################################################
+# INCIDENTS
+
+#SAP 10M [projection expression]
+function ddaIncidents-Id() {
+ddget --tableName="Argus-Incidents-$_ARGUS_DD_SUFFIX" \
+      --keyConditionExpression="IncidentID = :IncidentID" \
+      --expressionAttributeValues='{":IncidentID":"'$1'"}' \
+      --projectionExpression="$2" \
+      | jq
+}
+
+#SAP 10M [projection expression]
+function ddaIncidents-Site() {
+local organizationId=$(_dbGetOrganizationId $1)
+local ts=$(($(date -v -$2 +%s)*1000)) ##convert a relative time ymwdHMS to an epoch ts in ms
+# echo $organizationId
+#TODO: getopts
+ddget --tableName="Argus-Incidents-$_ARGUS_DD_SUFFIX" \
+      --indexName="siteId-createdAt-index" \
+      --keyConditionExpression="siteId = :siteId and createdAt > :createdAt" \
+      --expressionAttributeValues='{":siteId":"'$organizationId'", ":createdAt": '"$ts"'}' \
+      --projectionExpression="$3" \
+      --scanIndexForward="false" \
+      | jq
+}
+
+#SAP 10M
+function ddaIncidentUpdates-Id() {
+local incidentId=$1
+local ts=$(($(date -v -$2 +%s)*1000)) ##convert a relative time ymwdHMS to an epoch ts in ms
+#TODO: getopts
+ddget --tableName="Argus-IncidentUpdates-$_ARGUS_DD_SUFFIX" \
+      --indexName="incidentId-updatedAt-index" \
+      --keyConditionExpression="incidentId = :incidentId and updatedAt > :updatedAt" \
+      --expressionAttributeValues='{":incidentId":"'$incidentId'", ":updatedAt": '"$ts"'}' \
+      --scanIndexForward="false" \
+      | jq
+}
+#--------------------------------------------------------------------------------------------------
+# INCIDENT CATEGORIES
+
+#
+function ddaIncidentCategories() {
+ddget --tableName="Argus-IncidentCategories-$_ARGUS_DD_SUFFIX" \
+      -m scan \
+      | jq
+}
+
+#SAP [projection expression]
+function ddaIncidentCategories-Id() {
+ddget --tableName="Argus-IncidentCategories-$_ARGUS_DD_SUFFIX" \
+      --keyConditionExpression="CategoryID = :CategoryID" \
+      --expressionAttributeValues='{":CategoryID":"'$1'"}' \
+      | jq
+}
+
+#SAP [projection expression]
+function ddaIncidentCategories-Site() {
+local organizationId=$(_dbGetOrganizationId $1)
+ddget --tableName="Argus-IncidentCategories-$_ARGUS_DD_SUFFIX" \
+      --indexName="siteId-index" \
+      --keyConditionExpression="siteId = :siteId" \
+      --expressionAttributeValues='{":siteId":"'$organizationId'"}' \
+      --scanIndexForward="false" \
+      | jq
+}
+
+####################################################################################################
+# LOCATIONS
+
+#
+function ddaLocations() {
+ddget --tableName="Argus-Locations-$_ARGUS_DD_SUFFIX" \
+      -m scan \
+      | jq
+}
+
+#SAP 10M [projection expression]
+function ddaLocations-Id() {
+ddget --tableName="Argus-Locations-$_ARGUS_DD_SUFFIX" \
+      --keyConditionExpression="LocationID = :LocationID" \
+      --expressionAttributeValues='{":LocationID":"'$1'"}' \
+      --projectionExpression="$2" \
+      | jq
+}
+
+#SAP [projection expression]
+function ddaLocations-Site() {
+local organizationId=$(_dbGetOrganizationId $1)
+ddget --tableName="Argus-Locations-$_ARGUS_DD_SUFFIX" \
+      --indexName="siteId-active-index" \
+      --keyConditionExpression="siteId = :siteId" \
+      --expressionAttributeValues='{":siteId":"'$organizationId'"}' \
+      --scanIndexForward="false" \
+      | jq
+}
+
