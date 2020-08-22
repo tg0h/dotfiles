@@ -8,6 +8,8 @@
     ~/.dotfiles: ''
     ~/.gitconfig: gitconfig
     ~/.gitignore_global: gitignore_global
+    ~/.mutt/muttrc : muttrc
+    ~/.p10k.zsh: p10k.zsh
     ~/.vim: vim
     ~/.vimrc: vimrc
     ~/.zshrc: zshrc
@@ -18,7 +20,6 @@
     ~/.zsh_fzf: zsh_fzf
     ~/.zsh_fzf_git: zsh_fzf_git
     ~/.zsh_autocomplete: zsh_autocomplete
-    ~/.p10k.zsh: p10k.zsh
     ~/.zsh_jira: zsh_jira
     ~/.zsh_aws_cloudwatch: zsh_aws_cloudwatch
     ~/.zsh_aws_rds: zsh_aws_rds
