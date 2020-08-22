@@ -1,0 +1,50 @@
+set imap_user = timtestallthethings@gmail.com
+set imap_pass = cheever1
+
+set spoolfile = +INBOX
+
+set realname = "timothy"
+set from = "timtestallthethings@gmail.com"
+set folder = imaps://imap.gmail.com
+set smtp_url = "smtps://timtestallthethings@gmail.com@smtp.gmail.com
+set smtp_pass = cheever1
+set ssl_force_tls = yes
+set header_cache = ~/.cache/mutt
+set spoolfile = +Inbox
+# set record = "+Sent" # do not FCC to imap folder? so mutt doesn't nag at you after you send mail
+# set postponed = "+Drafts"
+set trash = "+Trash"
+
+
+# Use vim with 70 character width and put cursor in first blank line
+set editor="vim -c 'set tw=70 et' '+/^$' " 
+set edit_headers=yes                # See the headers when editing
+
+### Colours ###
+
+# (default, white, black, green, magenta, blue, cyan, yellow, red)
+# (bright...)
+# (color1,color2,...,colorN-1)
+#
+#---- --Mutt Colors for Black Background -------
+#       Object	    Foreground	    Background
+color   hdrdefault   yellow            black
+color   quoted       blue              black
+color   signature    blue              black
+color   attachment   red               black
+color   message      brightred         black
+color   error        brightred         black
+color   indicator    black             yellow
+color   status       white             blue
+color   tree         white             black
+color   normal       white             black
+color   markers      red               black
+color   search       white             black
+color   tilde        brightmagenta     black
+color   index        blue              black ~F
+color   index        white             black "~N|~O"
+
+### Odds and Ends ###
+
+set smtp_authenticators = 'gssapi:login' #fix no authenticators available error
+
