@@ -150,6 +150,15 @@ EOF
 }
 
 
+function _dbuusers-Id() {
+  # mysqlsh --sql -u useradmin -h 127.0.0.1 -P 1300 -D argus_users  -e "select * from users where staff_id = 'tim'"
+  mysqlsh --sql -u $_ARGUS_RDS_DB_USER_USER -h 127.0.0.1 -P $_ARGUS_RDS_DB_USER_LOCAL_PORT -D $_ARGUS_RDS_DB_USER_NAME --result-format=json << EOF | jq .
+select *
+from users
+where id = '$1'
+EOF
+}
+
 function _dbuusers() {
   # mysqlsh --sql -u useradmin -h 127.0.0.1 -P 1300 -D argus_users  -e "select * from users where staff_id = 'tim'"
   mysqlsh --sql -u $_ARGUS_RDS_DB_USER_USER -h 127.0.0.1 -P $_ARGUS_RDS_DB_USER_LOCAL_PORT -D $_ARGUS_RDS_DB_USER_NAME --result-format=json << EOF | jq .
@@ -212,6 +221,11 @@ function dbugroups() {
 function dbuorgs() {
   mysqlsh --sql -u $_ARGUS_RDS_DB_USER_USER -h 127.0.0.1 -P $_ARGUS_RDS_DB_USER_LOCAL_PORT -D $_ARGUS_RDS_DB_USER_NAME -e "select * from organizations where name = '$1'" --result-format=table
 }
+
+function dbuorgs-id() {
+  mysqlsh --sql -u $_ARGUS_RDS_DB_USER_USER -h 127.0.0.1 -P $_ARGUS_RDS_DB_USER_LOCAL_PORT -D $_ARGUS_RDS_DB_USER_NAME -e "select * from organizations where id = '$1'" --result-format=table
+}
+
 
 function _dbuuser_roles() {
   mysqlsh --sql -u $_ARGUS_RDS_DB_USER_USER -h 127.0.0.1 -P $_ARGUS_RDS_DB_USER_LOCAL_PORT -D $_ARGUS_RDS_DB_USER_NAME --result-format=table << EOF
@@ -378,10 +392,13 @@ limit 5
 EOF
 }
 
-function _dbausers_devices() {
+
+function _dbausers_devices-deviceToken() {
   mysqlsh --sql -u $_ARGUS_RDS_DB_AUTH_USER -h 127.0.0.1 -P $_ARGUS_RDS_DB_AUTH_LOCAL_PORT -D $_ARGUS_RDS_DB_AUTH_NAME --result-format=table << EOF 
 select ua.staffid,
+       ua.id userId,
        a.appid,
+       acc.name appAccount,
 #        ud.userauthid,
        ud.appid,
        ud.deviceid,
@@ -391,6 +408,27 @@ select ua.staffid,
 from users_devices ud
          inner join user_auths ua on ud.userauthid = ua.id
          inner join apps a on ud.appid = a.id
+         inner join accounts acc on acc.id = a.accountId
+where ud.deviceToken like 'os%'
+EOF
+}
+
+function _dbausers_devices() {
+  mysqlsh --sql -u $_ARGUS_RDS_DB_AUTH_USER -h 127.0.0.1 -P $_ARGUS_RDS_DB_AUTH_LOCAL_PORT -D $_ARGUS_RDS_DB_AUTH_NAME --result-format=table << EOF 
+select ua.staffid,
+       ua.id userId,
+       a.appid,
+       acc.name appAccount,
+#        ud.userauthid,
+       ud.appid,
+       ud.deviceid,
+       ud.devicetoken,
+       # substr(ud.devicetoken, 1, 10) devicetoken10,
+       ud.endpointarn
+from users_devices ud
+         inner join user_auths ua on ud.userauthid = ua.id
+         inner join apps a on ud.appid = a.id
+         inner join accounts acc on acc.id = a.accountId
 where ua.staffid = '$1'
 EOF
 }
