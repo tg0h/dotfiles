@@ -234,6 +234,15 @@ ddget --tableName="Argus-TaskUpdates-$_ARGUS_DD_SUFFIX" \
 
 #SAP 10M [projection expression]
 function ddaIncidents-Id() {
+while getopts 'v' opt; do
+  case "$opt" in
+    v) local v='-v' ;; #verbose
+    s) local s=$(($(date -v -$OPTARG +%s)*1000)) ;; #start time
+    e) local e=$(($(date -v -$OPTARG +%s)*1000)) ;; #end time
+  esac 
+done
+shift $(($OPTIND - 1))
+
 ddget --tableName="Argus-Incidents-$_ARGUS_DD_SUFFIX" \
       --keyConditionExpression="IncidentID = :IncidentID" \
       --expressionAttributeValues='{":IncidentID":"'$1'"}' \
