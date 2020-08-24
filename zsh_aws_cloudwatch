@@ -327,3 +327,127 @@ ddget --tableName="Argus-Locations-$_ARGUS_DD_SUFFIX" \
       | jq
 }
 
+####################################################################################################
+# ANNOUNCEMENTS & ACKNOWLEDGEMENTS
+
+#SAP [projection expression]
+function ddaAcknowledgements() {
+ddget --tableName="Argus-Acknowledgements-$_ARGUS_DD_SUFFIX" \
+      --keyConditionExpression="sourceId = :sourceId" \
+      --expressionAttributeValues='{":sourceId":"'$1'"}' \
+}
+#
+#SAP [projection expression]
+function ddaAnnouncements() {
+while getopts 'vs:e:' opt; do
+  case "$opt" in
+    v) local v='-v' ;; #verbose
+    s) local s=$(($(date -v -$OPTARG +%s)*1000)) ;; #start time
+    e) local e=$(($(date -v -$OPTARG +%s)*1000)) ;; #end time
+  esac 
+done
+shift $(($OPTIND - 1))
+
+local organizationId=$(_dbGetOrganizationId $1)
+
+if [[ -v s ]] && [[ -v e ]]; then
+  kce="siteId = :siteId and startAt between :start and :end" \
+  eav='{":siteId":"'$organizationId'", ":start": '"$s"', ":end":'"$e"'}'
+else
+  local ts=$(($(date -v -$2 +%s)*1000)) ##convert a relative time ymwdHMS to an epoch ts in ms
+  kce="siteId = :siteId and startAt > :startAt" \
+  eav='{":siteId":"'$organizationId'", ":startAt": '"$ts"'}'
+fi
+
+ddget --tableName="Argus-Announcements-$_ARGUS_DD_SUFFIX" \
+      --indexName="siteId-startAt-index" \
+      --keyConditionExpression=$kce \
+      --expressionAttributeValues=$eav \
+      $v \
+      | jq
+}
+
+####################################################################################################
+# Log Books, Duty Posts, Occurrences and Headings
+
+function ddaDutyPosts() {
+while getopts 'v' opt; do
+  case "$opt" in
+    v) local v='-v' ;; #verbose
+  esac 
+done
+shift $(($OPTIND - 1))
+
+local organizationId=$(_dbGetOrganizationId $1)
+ddget --tableName="Argus-DutyPosts-$_ARGUS_DD_SUFFIX" \
+      --filterExpression="siteId = :siteId" \
+      --expressionAttributeValues='{":siteId":"'$organizationId'"}' \
+      -m scan \
+      $v \
+      | jq
+}
+
+function ddaLogBooks() {
+while getopts 'v' opt; do
+  case "$opt" in
+    v) local v='-v' ;; #verbose
+  esac 
+done
+shift $(($OPTIND - 1))
+
+local organizationId=$(_dbGetOrganizationId $1)
+ddget --tableName="Argus-Logbooks-$_ARGUS_DD_SUFFIX" \
+      --filterExpression="siteId = :siteId" \
+      --expressionAttributeValues='{":siteId":"'$organizationId'"}' \
+      -m scan \
+      $v \
+      | jq
+}
+
+function ddaOccurrenceHeadings() {
+while getopts 'v' opt; do
+  case "$opt" in
+    v) local v='-v' ;; #verbose
+  esac 
+done
+shift $(($OPTIND - 1))
+
+local organizationId=$(_dbGetOrganizationId $1)
+ddget --tableName="Argus-OccurrenceHeadings-$_ARGUS_DD_SUFFIX" \
+      --filterExpression="siteId = :siteId" \
+      --expressionAttributeValues='{":siteId":"'$organizationId'"}' \
+      -m scan \
+      $v \
+      | jq
+}
+
+#ddaOccurrences -s 1d -e 1M SAP
+#ddaOccurrences SAP 5m
+function ddaOccurrences() {
+while getopts 'vs:e:' opt; do
+  case "$opt" in
+    v) local v='-v' ;; #verbose
+    s) local s=$(($(date -v -$OPTARG +%s)*1000)) ;; #start time
+    e) local e=$(($(date -v -$OPTARG +%s)*1000)) ;; #end time
+  esac 
+done
+shift $(($OPTIND - 1))
+
+local organizationId=$(_dbGetOrganizationId $1)
+
+if [[ -v s ]] && [[ -v e ]]; then
+  kce="siteId = :siteId and timeAt between :start and :end" \
+  eav='{":siteId":"'$organizationId'", ":start": '"$s"', ":end":'"$e"'}'
+else
+  local ts=$(($(date -v -$2 +%s)*1000)) ##convert a relative time ymwdHMS to an epoch ts in ms
+  kce="siteId = :siteId and timeAt > :startAt" \
+  eav='{":siteId":"'$organizationId'", ":startAt": '"$ts"'}'
+fi
+
+ddget --tableName="Argus-Occurrences-$_ARGUS_DD_SUFFIX" \
+      --indexName="siteId-timeAt-index" \
+      --keyConditionExpression=$kce \
+      --expressionAttributeValues=$eav \
+      $v \
+      | jq
+}
