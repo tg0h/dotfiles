@@ -74,5 +74,15 @@ function _cgetLastLoginStatus() {
 
 #get last 5 login attempt statuses
 function cgets() {
-  aws cognito-idp admin-list-user-auth-events --user-pool-id $_CERTIFY_POOL_ID --username SG$1 | jq '.AuthEvents[0:6][] | {EventResponse,EventType,CreationDate,EventRisk,ChallengeResponses}'
+
+local n=6 #default to get 5 items
+while getopts 'n:' opt; do
+  case "$opt" in
+    n) n=$OPTARG ;;
+  esac 
+done
+shift $(($OPTIND - 1))
+
+  # aws cognito-idp admin-list-user-auth-events --user-pool-id $_CERTIFY_POOL_ID --username SG$1 | jq '.AuthEvents[0:6][] | {EventResponse,EventType,CreationDate,EventRisk,ChallengeResponses}'
+  aws cognito-idp admin-list-user-auth-events --user-pool-id $_CERTIFY_POOL_ID --username SG$1 | jq ".AuthEvents[0:$n][] | {EventResponse,EventType,CreationDate,EventRisk,ChallengeResponses}"
 }
