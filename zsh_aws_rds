@@ -10,6 +10,8 @@
 function dbconn-argus() {
   _kill_argus_db_ports
 
+  # ssh -N -L <local port>:<destination ip>:<remote port> <ssh user>:<ssh host> 
+  # the ssh host forwards your <localhost>:<local port> to the <destination ip>:<remote port>
   ssh -N -L $_ARGUS_RDS_DB_USER_LOCAL_PORT:$_ARGUS_RDS_DB_USER_HOST $_ARGUS_RDS_SSH_USER@$_ARGUS_RDS_SSH_HOST -i $_ARGUS_RDS_SSH_KEY &
   ssh -N -L $_ARGUS_RDS_DB_AUTH_LOCAL_PORT:$_ARGUS_RDS_DB_AUTH_HOST $_ARGUS_RDS_SSH_USER@$_ARGUS_RDS_SSH_HOST -i $_ARGUS_RDS_SSH_KEY &
 }
