@@ -174,6 +174,10 @@ ddget --tableName="Argus-TaskSchedules-$_ARGUS_DD_SUFFIX" \
 #Tasks
 
 #tim 10M
+# TODO: combine all tasks method into 1 function
+# TODO: add projection
+# TODO: add projection
+# TODO: add time between
 function ddaTasks-Officer() {
 local userId=$(_dbGetUserId $1)
 local ts=$(($(date -v -$2 +%s)*1000)) ##convert a relative time ymwdHMS to an epoch ts in ms
@@ -188,6 +192,15 @@ ddget --tableName="Argus-Tasks-$_ARGUS_DD_SUFFIX" \
 
 #SAP 10M
 function ddaTasks-Site() {
+while getopts 'v' opt; do
+  case "$opt" in
+    v) local v='-v' ;; #verbose
+    s) local s=$(($(date -v -$OPTARG +%s)*1000)) ;; #start time
+    e) local e=$(($(date -v -$OPTARG +%s)*1000)) ;; #end time
+  esac 
+done
+shift $(($OPTIND - 1))
+
 local organizationId=$(_dbGetOrganizationId $1)
 local ts=$(($(date -v -$2 +%s)*1000)) ##convert a relative time ymwdHMS to an epoch ts in ms
 
