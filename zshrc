@@ -5,6 +5,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+export EDITOR='vim'
 ZSH_THEME="powerlevel10k/powerlevel10k"
 COMPLETION_WAITING_DOTS="true" #display 3 dots while waiting for completion
 HIST_STAMPS="yyyy-mm-dd" # set up zsh history command date time format
@@ -35,11 +36,11 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh # p10k configuration
 
+
 # zsh vim mode settings
 bindkey -v #use vim keymap for the zsh line editor - set vim key map first to allow other plugins to override keymap
 export KEYTIMEOUT=1 # Make Vi mode transitions faster (KEYTIMEOUT is in hundredths of a second)
 bindkey -M vicmd "^V" edit-command-line # `v` is already mapped to visual mode, so we need to use a different key
-
 # use hjkl to navigate zsh autocomplete menu
 zmodload zsh/complist
 bindkey -M menuselect 'h' vi-backward-char
@@ -47,28 +48,15 @@ bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh #source fzf after the vim keymap so fzf shortcuts take precedence
-
-# user configuration
-fpath+=~/.zsh_functions #add our own zsh functions directory to fpath
-autoload -Uz ~/.zsh_functions/*(.) #-U supress alias expansion, -z zsh style function loading. (.) - glob qualifier. dot means show regular files only
-export PATH="/usr/local/mysql/bin:$PATH"
-export EDITOR='vim'
-
-complete -C '/usr/local/bin/aws_completer' aws #enable aws completion - https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-completion.html
-
 # alias 
 alias j=jira
 alias ag="alias | grep"
 alias sg="set | grep"
-
 alias fork="open . -a /Applications/Fork.app"
-
 alias zshrc='vim ~/.zshrc'
 alias zshrds='vim ~/dotfiles/zsh_aws_rds'
 alias zshcw='vim ~/.zsh_aws_cloudwatch'
 alias zshc='vim ~/.zsh_aws_cognito'
-
 alias topten="history | commands | sort -rn | head"
 alias myip="curl http://ipecho.net/plain; echo"
 alias dirs='dirs -v | head -10'
@@ -79,6 +67,10 @@ alias runp="lsof -i " #eg runp :1234 tells you whether port 1234 is being used
 alias vpn="networksetup -connectpppoeservice 'edo vpn'"
 alias dvpn="networksetup -disconnectpppoeservice 'edo vpn'"
 
+# config
+complete -C '/usr/local/bin/aws_completer' aws # enable aws completion - https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-completion.html
+export PATH="/usr/local/mysql/bin:$PATH" # add my sql to path
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh #source fzf after the vim keymap so fzf shortcuts take precedence
 . ~/.zsh_autocomplete
 . ~/.zsh_docker_aliases
 . ~/.zsh_fzf
@@ -90,11 +82,6 @@ alias dvpn="networksetup -disconnectpppoeservice 'edo vpn'"
 . ~/.zsh_aws_rds
 . ~/.zsh_aws_cloudwatch
 . ~/.zsh_aws_cognito
-
+fpath+=~/.zsh_functions #add our own zsh functions directory to fpath
+autoload -Uz ~/.zsh_functions/*(.) #-U supress alias expansion, -z zsh style function loading. (.) - glob qualifier. dot means show regular files only
 . ~/.zsh_funcs #get all my functions
-
-function sa {
-  local pre=:
-  local post=:
-  printf "$pre%s$post\n" "$@" 
-}
