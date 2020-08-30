@@ -11,6 +11,7 @@
     ~/.gitignore_global: gitignore_global
     ~/.mutt/muttrc : muttrc
     ~/.p10k.zsh: p10k.zsh
+    ~/.taskrc: taskrc #taskwarrior rc file
     ~/.timewarrior/timewarrior.cfg: timewarrior.cfg
     ~/.vim: vim
     ~/.vimrc: vimrc
