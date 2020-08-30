@@ -25,25 +25,33 @@ plugins=(
     npm
     osx
     timer
-    vi-mode
+    # vi-mode #interferes with prompt displaying modes, ctrl key special chars
     web-search #google from command line
     zsh-autosuggestions
     zsh-autocomplete
     z
     zsh-syntax-highlighting #source this at the end for syntax highlighting to work
 )
-
 source $ZSH/oh-my-zsh.sh
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh # p10k configuration
 
-#enable aws completion - https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-completion.html
-complete -C '/usr/local/bin/aws_completer' aws
+# zsh vim mode settings
+bindkey -v #use vim keymap for the zsh line editor - set vim key map first to allow other plugins to override keymap
+export KEYTIMEOUT=1 # Make Vi mode transitions faster (KEYTIMEOUT is in hundredths of a second)
+bindkey -M vicmd "^V" edit-command-line # `v` is already mapped to visual mode, so we need to use a different key
+
+# use hjkl to navigate zsh autocomplete menu
+zmodload zsh/complist
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+bindkey -M menuselect 'j' vi-down-line-or-history
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh #source fzf after the vim keymap so fzf shortcuts take precedence
 
 # user configuration
 fpath+=~/.zsh_functions #add our own zsh functions directory to fpath
 autoload -Uz ~/.zsh_functions/*(.) #-U supress alias expansion, -z zsh style function loading. (.) - glob qualifier. dot means show regular files only
-
 export PATH="/usr/local/mysql/bin:$PATH"
 export EDITOR='vim'
 
