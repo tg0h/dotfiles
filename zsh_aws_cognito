@@ -68,6 +68,27 @@ function cgetcsv() {
   fi
 }
 
+function cgetscsv() {
+  # TODO: run this in parallel with a named pipe?
+  if (( $# == 0 ));
+  then echo "no args passed!"
+  else
+    echo '"Username","EventResponse","EventType","CreationDate","RiskDecision","CompromisedCredentialsCreated","ChallengeName","ChallengeResponse"'
+    for i
+      do cgetscsvrow $i
+    done
+  fi
+}
+
+#get the user values without the column headers
+function cgetscsvrow() {
+  aws cognito-idp admin-list-user-auth-events --user-pool-id $_CERTIFY_POOL_ID --username SG$1 | jq --raw-output ".AuthEvents[0] | [$1,.EventResponse,.EventType,.CreationDate,.EventRisk.RiskDecision,.EventRisk.CompromisedCredentialsDetected,.ChallengeResponses[0].ChallengeName,.ChallengeResponses[0].ChallengeResponse] | @csv"
+}
+
+
+
+
+
 function _cgetLastLoginStatus() {
   aws cognito-idp admin-list-user-auth-events --user-pool-id $_CERTIFY_POOL_ID --username SG$1 | jq '.AuthEvents[0] | {EventResponse,EventType,CreationDate,EventRisk,ChallengeResponses}'
 }
