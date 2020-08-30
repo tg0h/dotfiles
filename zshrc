@@ -45,6 +45,7 @@ export PATH="/usr/local/mysql/bin:$PATH"
 export EDITOR='vim'
 
 # alias 
+alias j=jira
 alias ag="alias | grep"
 alias sg="set | grep"
 
