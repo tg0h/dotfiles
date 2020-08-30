@@ -37,6 +37,9 @@ source $ZSH/oh-my-zsh.sh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh # p10k configuration
 
+#enable aws completion - https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-completion.html
+complete -C '/usr/local/bin/aws_completer' aws
+
 # user configuration
 fpath+=~/.zsh_functions #add our own zsh functions directory to fpath
 autoload -Uz ~/.zsh_functions/*(.) #-U supress alias expansion, -z zsh style function loading. (.) - glob qualifier. dot means show regular files only
