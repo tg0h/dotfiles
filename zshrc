@@ -47,6 +47,8 @@ autoload -Uz ~/.zsh_functions/*(.) #-U supress alias expansion, -z zsh style fun
 export PATH="/usr/local/mysql/bin:$PATH"
 export EDITOR='vim'
 
+complete -C '/usr/local/bin/aws_completer' aws #enable aws completion - https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-completion.html
+
 # alias 
 alias j=jira
 alias ag="alias | grep"
