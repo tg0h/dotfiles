@@ -4,12 +4,14 @@
 
 - clean: ['~']
 
+# <target>:<source (original file)>
 - link:
     ~/.dotfiles: ''
     ~/.gitconfig: gitconfig
     ~/.gitignore_global: gitignore_global
     ~/.mutt/muttrc : muttrc
     ~/.p10k.zsh: p10k.zsh
+    ~/.timewarrior/timewarrior.cfg: timewarrior.cfg
     ~/.vim: vim
     ~/.vimrc: vimrc
     ~/.zshrc: zshrc
