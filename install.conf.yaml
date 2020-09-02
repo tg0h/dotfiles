@@ -9,25 +9,27 @@
     ~/.dotfiles: ''
     ~/.gitconfig: gitconfig
     ~/.gitignore_global: gitignore_global
-    ~/.mutt/muttrc : muttrc
+    ~/.mutt/muttrc : muttrc #mail client
     ~/.p10k.zsh: p10k.zsh
     ~/.taskrc: taskrc #taskwarrior rc file
     ~/.timewarrior/timewarrior.cfg: timewarrior.cfg
     ~/.vim: vim
     ~/.vimrc: vimrc
     ~/.zshrc: zshrc
-    ~/.zsh_docker_aliases: zsh_docker_aliases
-    ~/.zsh_git_aliases: zsh_git_aliases
-    ~/.zsh_powerlevel9k: zsh_powerlevel9k
-    ~/.zsh_funcs: zsh_funcs
-    ~/.zsh_fzf: zsh_fzf
-    ~/.zsh_fzf_git: zsh_fzf_git
+
+    ~/.zsh_autosuggestions: zsh_autosuggestions
     ~/.zsh_autocomplete: zsh_autocomplete
-    ~/.zsh_jira: zsh_jira
     ~/.zsh_aws_cloudwatch: zsh_aws_cloudwatch
     ~/.zsh_aws_rds: zsh_aws_rds
     ~/.zsh_aws_cognito: zsh_aws_cognito
+    ~/.zsh_docker_aliases: zsh_docker_aliases
     ~/.zsh_functions: zsh_functions/ #autoload function directory
+    ~/.zsh_funcs: zsh_funcs
+    ~/.zsh_fzf: zsh_fzf
+    ~/.zsh_fzf_git: zsh_fzf_git
+    ~/.zsh_git_aliases: zsh_git_aliases
+    ~/.zsh_jira: zsh_jira
+    ~/.zsh_powerlevel9k: zsh_powerlevel9k
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
