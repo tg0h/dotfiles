@@ -27,7 +27,7 @@ plugins=(
     osx
     timer
     # vi-mode #interferes with prompt displaying modes, ctrl key special chars
-    web-search #google from command line
+    # web-search #google from command line
     zsh-autosuggestions
     zsh-autocomplete
     z
@@ -35,7 +35,6 @@ plugins=(
 )
 source $ZSH/oh-my-zsh.sh
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh # p10k configuration
-
 
 # zsh vim mode settings
 bindkey -v #use vim keymap for the zsh line editor - set vim key map first to allow other plugins to override keymap
@@ -61,16 +60,28 @@ alias topten="history | commands | sort -rn | head"
 alias myip="curl http://ipecho.net/plain; echo"
 alias dirs='dirs -v | head -10'
 alias usage='du -h -d1'
-alias update="source ~/.zshrc"
+# alias update="source ~/.zshrc" #doesn't work - complains about some fd error
 alias sshdir="cd ~/.ssh"
 alias runp="lsof -i " #eg runp :1234 tells you whether port 1234 is being used
 alias vpn="networksetup -connectpppoeservice 'edo vpn'"
 alias dvpn="networksetup -disconnectpppoeservice 'edo vpn'"
+# - task aliases
+alias tcn='task context none'
+alias tcw='task context work'
+alias tws='timew summary'
+alias twsi='timew summary :id'
+alias twh='timew shorten' #h,min https://timewarrior.net/docs/duration.html
+alias twl='timew lengthen' #h,min https://timewarrior.net/docs/duration.html
+alias twms='timew modify start'
+alias twme='timew modify end'
+
+
 
 # config
 complete -C '/usr/local/bin/aws_completer' aws # enable aws completion - https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-completion.html
 export PATH="/usr/local/mysql/bin:$PATH" # add my sql to path
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh #source fzf after the vim keymap so fzf shortcuts take precedence
+. ~/.zsh_autosuggestions
 . ~/.zsh_autocomplete
 . ~/.zsh_docker_aliases
 . ~/.zsh_fzf
