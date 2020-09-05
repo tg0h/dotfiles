@@ -7,6 +7,8 @@
 # <target>:<source (original file)>
 - link:
     ~/.dotfiles: ''
+    ~/scripts: scripts/
+
     ~/.gitconfig: gitconfig
     ~/.gitignore_global: gitignore_global
     ~/.mutt/muttrc : muttrc #mail client
@@ -16,7 +18,6 @@
     ~/.vim: vim
     ~/.vimrc: vimrc
     ~/.zshrc: zshrc
-
     ~/.zsh_autosuggestions: zsh_autosuggestions
     ~/.zsh_autocomplete: zsh_autocomplete
     ~/.zsh_aws_cloudwatch: zsh_aws_cloudwatch
