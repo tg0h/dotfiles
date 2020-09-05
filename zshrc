@@ -68,8 +68,13 @@ alias dvpn="networksetup -disconnectpppoeservice 'edo vpn'"
 # - task aliases
 alias tcn='task context none'
 alias tcw='task context work'
+## search task tags
+alias ttt='task tag~tooling'
+
+
 alias tws='timew summary'
 alias twsi='timew summary :id'
+alias twu='timew untag' #@1 <tag to remove>
 alias twh='timew shorten' #h,min https://timewarrior.net/docs/duration.html
 alias twl='timew lengthen' #h,min https://timewarrior.net/docs/duration.html
 alias twms='timew modify start'
