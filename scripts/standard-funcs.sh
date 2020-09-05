@@ -1,4 +1,4 @@
-. ~$HOME/scripts/standard-vars.sh
+. $HOME/scripts/standard-vars.sh
 
 get_key() {
   [ -t 0 ] && { ## Check whether input is coming from a terminal
@@ -276,12 +276,12 @@ zpad() {
   _zpad "$@" && printf "%s\n" "$_ZPAD"
 }
 
-#The trap command tells the shell to execute certain commands when a signal is received. If a trap is set on the EXIT signal, the specified commands will be executed whenever the script finishes, whether by a normal completion, and error, or by the user pressing Control+C. The cleanup function is designed for that purpose.
-cleanup() {
-  ## delete temporary directory and files
-  [ -n "$tempfile_dir" ] && rm -rf "$tempfile_dir"
-  ## Reset the terminal characteristics [ -t 0 ] && {
-  [ -n "$_STTY" ] && stty $_STTY || stty sane }
-  exit
-}
-trap cleanup EXIT ## Set trap to call cleanup on exit
+##The trap command tells the shell to execute certain commands when a signal is received. If a trap is set on the EXIT signal, the specified commands will be executed whenever the script finishes, whether by a normal completion, and error, or by the user pressing Control+C. The cleanup function is designed for that purpose.
+#cleanup() {
+#  ## delete temporary directory and files
+#  [ -n "$tempfile_dir" ] && rm -rf "$tempfile_dir"
+#  ## Reset the terminal characteristics [ -t 0 ] && {
+#  [ -n "$_STTY" ] && stty $_STTY || stty sane }
+#  exit
+#}
+#trap cleanup EXIT ## Set trap to call cleanup on exit
