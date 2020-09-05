@@ -1,3 +1,5 @@
+# TODO: awslogs get  sns/ap-southeast-1/474132418168/DirectPublishToPhoneNumber -s '9/1/2020 00:00' -e '9/1/2020 02:00' > certify_sms_publish
+
 ## switch env
 cerp () {
 	if [[ -z "$1" ]]
@@ -34,6 +36,77 @@ function cget() {
   # aws cognito-idp admin-get-user --user-pool-id ap-southeast-1_Q5BSv9IX7 --username "SG$1" | jq '.UserAttributes[] | select(.Name | endswith("email") or endswith("phone_number") or endswith("employee_id") or endswith("staff_type"))'
   aws cognito-idp admin-get-user --user-pool-id $_CERTIFY_POOL_ID --username "SG$1" | jq '(.UserAttributes | map( {(.Name) : .Value}) | add ) as $fields | {Username,employee_id: $fields."custom:employee_id",name: $fields.name,given_name: $fields.given_name,family_name: $fields.family_name,"employment_status>>>>>>>>>>>>>>>>>>>>": $fields."custom:employment_status",join_date: $fields."custom:join_date",UserStatus,phone_number_verified: $fields.phone_number_verified,"phone_number>>>>>>>>>>>>>>>>>>>>": $fields.phone_number, email_verified: $fields.email_verified, "email>>>>>>>>>>>>>>>>>>>>": $fields.email,company_email: $fields."custom:company_email", personal_email: $fields."custom:personal_email",UserCreateDate,UserLastModifiedDate}'
   _cgetLastLoginStatus $1
+  rg "(SG$1).*(NUM|EMAIL|STAT)" ~/certis/projects/certify/s3 --sortr created
+}
+
+crgs () {
+  rg SG$1 --sortr created ~/certis/projects/certify/s3
+}
+
+function cpatch(){
+  local empIds
+  if (( $# == 0 )); then
+    # empIds=( $(</dev/stdin) )
+    empIds=$(tee) #get from stdin into x
+    # echo $empIds
+  else
+    empIds=$@
+    echo $empIds
+  fi
+
+  while getopts 'r' opt; do
+    case "$opt" in
+      r) local r=true ;;
+    esac 
+  done
+  shift $(($OPTIND - 1))
+
+{
+  if ! [[ -v r ]]; then # if not raw, show column headers
+    echo "EE ID","Global ID","Start Date","End Date","FieldName","Field Value","Status"
+  fi 
+  # for i #without in ... this reads the positional params
+  # echo $empIds
+  for empId in ($empIds)
+    do rg -I "(SG$empId).*(NUM|EMAIL|STAT)" ~/certis/projects/certify/s3 --sortr created
+  done
+} | tee /tmp/certifypatch.csv 
+  # rg -I "(SG$1).*(NUM|EMAIL|STAT)" ~/certis/projects/certify/s3 --sortr created } | tee /tmp/certifypatch.csv 
+}
+
+#deleteuser details
+function ccreate() {
+  local handphone="+***REMOVED***" #default
+  local email="***REMOVED***" #default
+
+  while getopts 'e:p:' opt; do
+    case "$opt" in
+      e) email=$OPTARG ;;
+      p) handphone=$OPTARG ;;
+    esac 
+  done
+  shift $(($OPTIND - 1))
+
+  aws cognito-idp admin-create-user \
+    --user-pool-id $_CERTIFY_POOL_ID \
+    --username SG$1 \
+    --temporary-password ***REMOVED*** \
+    --message-action SUPPRESS \
+    --user-attributes \
+      Name=custom:employee_id,Value="$1" \
+      Name=given_name,Value="Timtesty" \
+      Name=family_name,Value="Goh" \
+      Name=email,Value="$email" \
+      Name=phone_number,Value="$handphone" \
+      Name=custom:company,Value="1000" \
+      Name=custom:organization,Value="50794952" \
+      Name=custom:department,Value="Tech Planning & Development" \
+      Name=custom:staff_type,Value="O0001" \
+      Name=custom:employment_status,Value="3" \
+      Name=custom:working_home,Value="C100" \
+      Name=custom:personal_email,Value="timothySL_goh@certisgroup.COM" \
+      Name=custom:legal_home,Value="C400" \
+      Name=custom:join_date,Value="20191111"\
 }
 
 #deleteuser details
@@ -59,10 +132,7 @@ function cgetcsv() {
   then echo "no args passed!"
   else
     echo '"Username","employee_id","name","given_name","family_name","employment_status","join_date","UserStatus","phone_number_verified","phone_number","email_verified","email","company_email","personal_email","UserCreateDate","UserLastModified"'
-    for i
-      # if (( i == 1)); then
-      #   echo 1
-      # fi
+    for i #without in ... this reads the positional params
       do cgetcsvrow $i
     done
   fi
@@ -74,7 +144,7 @@ function cgetscsv() {
   then echo "no args passed!"
   else
     echo '"Username","EventResponse","EventType","CreationDate","RiskDecision","CompromisedCredentialsCreated","ChallengeName","ChallengeResponse"'
-    for i
+    for i #without in ... this reads the positional params
       do cgetscsvrow $i
     done
   fi
