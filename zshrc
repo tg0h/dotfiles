@@ -12,26 +12,26 @@ HIST_STAMPS="yyyy-mm-dd" # set up zsh history command date time format
 
 # plugins
 plugins=(
-    zsh-nvm #add at the top so other plugins that use node/npm can work
-    adb
-    aws
-    colored-man-pages
-    docker
-    dotenv #source the .env file in the root dir when you cd into it
-    git
-    git-auto-fetch
-    gitignore
-    jira #jira from command line
-    last-working-dir #lwd
-    npm
-    osx
-    timer
-    # vi-mode #interferes with prompt displaying modes, ctrl key special chars
-    # web-search #google from command line
-    zsh-autosuggestions
-    zsh-autocomplete
-    z
-    zsh-syntax-highlighting #source this at the end for syntax highlighting to work
+  zsh-nvm #add at the top so other plugins that use node/npm can work
+  adb
+  aws
+  colored-man-pages
+  docker
+  dotenv #source the .env file in the root dir when you cd into it
+  git
+  git-auto-fetch
+  gitignore
+  jira #jira from command line
+  last-working-dir #lwd
+  npm
+  osx
+  timer
+  # vi-mode #interferes with prompt displaying modes, ctrl key special chars
+  # web-search #google from command line
+  zsh-autosuggestions
+  zsh-autocomplete
+  z
+  zsh-syntax-highlighting #source this at the end for syntax highlighting to work
 )
 source $ZSH/oh-my-zsh.sh
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh # p10k configuration
@@ -47,7 +47,7 @@ bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 
-# alias 
+# alias
 alias j=jira
 alias ag="alias | grep"
 alias sg="set | grep"
@@ -71,6 +71,8 @@ alias tcw='task context work'
 ## search task tags
 alias ttt='task tag~tooling'
 
+##certify
+alias ccc="cd $_CERTIFY_S3_BUCKET_SAP_SYNC_LOCAL_FOLDER"
 
 alias tws='timew summary'
 alias twsi='timew summary :id'
@@ -80,7 +82,8 @@ alias twl='timew lengthen' #h,min https://timewarrior.net/docs/duration.html
 alias twms='timew modify start'
 alias twme='timew modify end'
 
-
+#zsh does not word split param expansions https://stackoverflow.com/questions/16200142/zsh-parameter-expansion-inserting-quotes
+setopt sh_word_split #turn on param expansion word split
 
 # config
 complete -C '/usr/local/bin/aws_completer' aws # enable aws completion - https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-completion.html
@@ -101,3 +104,8 @@ export PATH="/usr/local/mysql/bin:$PATH" # add my sql to path
 fpath+=~/.zsh_functions #add our own zsh functions directory to fpath
 autoload -Uz ~/.zsh_functions/*(.) #-U supress alias expansion, -z zsh style function loading. (.) - glob qualifier. dot means show regular files only
 . ~/.zsh_funcs #get all my functions
+
+
+function rgs(){
+  rg $1 --sortr created
+}
