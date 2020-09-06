@@ -31,6 +31,10 @@ function _setCertifyProfile() {
   export _CERTIFY_PROFILE=$certify_profile
 }
 
+##certify
+cz() { cd $_CERTIFY_S3_BUCKET_SAP_SYNC_LOCAL_FOLDER }
+czc() { cd $_CERTIFY_COGNITO_LOCAL_FOLDER }
+
 #get user details
 function cget() {
   # aws cognito-idp admin-get-user --user-pool-id ap-southeast-1_Q5BSv9IX7 --username "SG$1" | jq '.UserAttributes[] | select(.Name | endswith("email") or endswith("phone_number") or endswith("employee_id") or endswith("staff_type"))'
@@ -156,10 +160,6 @@ function cgetscsvrow() {
   aws cognito-idp admin-list-user-auth-events --user-pool-id $_CERTIFY_POOL_ID --username SG$1 | jq --raw-output ".AuthEvents[0] | [$1,.EventResponse,.EventType,.CreationDate,.EventRisk.RiskDecision,.EventRisk.CompromisedCredentialsDetected,.ChallengeResponses[0].ChallengeName,.ChallengeResponses[0].ChallengeResponse] | @csv"
 }
 
-
-
-
-
 function _cgetLastLoginStatus() {
   aws cognito-idp admin-list-user-auth-events --user-pool-id $_CERTIFY_POOL_ID --username SG$1 | jq '.AuthEvents[0] | {EventResponse,EventType,CreationDate,EventRisk,ChallengeResponses}'
 }
@@ -190,3 +190,15 @@ csync() {
   aws s3 sync $_CERTIFY_S3_BUCKET_SAP_SYNC $_CERTIFY_S3_BUCKET_SAP_SYNC_LOCAL_FOLDER \
     --exclude "*" --include "*.csv" --include "*.CSV" --exclude "hk/*"
   }
+
+# cognito list users
+clu() {
+  aws cognito-idp list-users --user-pool-id $_CERTIFY_POOL_ID > $_CERTIFY_COGNITO_LOCAL_DB
+}
+
+clu2csv() {
+  jq --raw-output '.Users[] | (.Attributes | map( {(.Name) : .Value}) | add ) as $fields | [{Username, employee_id: $fields."custom:employee_id",name: $fields.name,given_name: $fields.given_name,family_name: $fields.family_name,employment_status: $fields."custom:employment_status", join_date: $fields."custom:join_date",UserStatus,phone_number_verified: $fields.phone_number_verified, phone_number: $fields.phone_number, email_verified: $fields.email_verified,email: $fields.email,company_email: $fields."custom:company_email", personal_email: $fields."custom:personal_email",UserCreateDate,UserLastModifiedDate}] | (.[0] | keys_unsorted) as $keys | map([.[ $keys[] ]])[] | @csv'  \
+    < $_CERTIFY_COGNITO_LOCAL_DB \
+    > $_CERTIFY_COGNITO_LOCAL_DB.csv
+  }
+

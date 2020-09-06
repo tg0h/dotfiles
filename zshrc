@@ -71,8 +71,6 @@ alias tcw='task context work'
 ## search task tags
 alias ttt='task tag~tooling'
 
-##certify
-alias ccc="cd $_CERTIFY_S3_BUCKET_SAP_SYNC_LOCAL_FOLDER"
 
 alias tws='timew summary'
 alias twsi='timew summary :id'
