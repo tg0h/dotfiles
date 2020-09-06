@@ -2,11 +2,11 @@
 
 ## switch env
 cerp () {
-	if [[ -z "$1" ]]
-	then
+  if [[ -z "$1" ]]
+  then
     echo $_CERTIFY_PROFILE
-		return
-	fi
+    return
+  fi
 
   _setCertifyProfile $1
 }
@@ -14,18 +14,18 @@ cerp () {
 function _setCertifyProfile() {
   local certify_profile
   case $1 in
-    d) certify_profile="development" 
-       . ~/dotfiles/certify.develop.env
-       asp cd #switch to aws cd profile using the zsh aws plugin
-       ;;
+    d) certify_profile="development"
+      . ~/dotfiles/certify.develop.env
+      asp cd #switch to aws cd profile using the zsh aws plugin
+      ;;
     s) certify_profile="staging"
-       . ~/dotfiles/certify.staging.env
-       asp cd
-       ;;
+      . ~/dotfiles/certify.staging.env
+      asp cd
+      ;;
     p) certify_profile="production"
-       . ~/dotfiles/certify.production.env
-       asp cp #switch to aws cp profile using the zsh aws plugin
-       ;;
+      . ~/dotfiles/certify.production.env
+      asp cp #switch to aws cp profile using the zsh aws plugin
+      ;;
   esac
 
   export _CERTIFY_PROFILE=$certify_profile
@@ -57,21 +57,21 @@ function cpatch(){
   while getopts 'r' opt; do
     case "$opt" in
       r) local r=true ;;
-    esac 
+    esac
   done
   shift $(($OPTIND - 1))
 
-{
-  if ! [[ -v r ]]; then # if not raw, show column headers
-    echo "EE ID","Global ID","Start Date","End Date","FieldName","Field Value","Status"
-  fi 
-  # for i #without in ... this reads the positional params
-  # echo $empIds
-  for empId in ($empIds)
+  {
+    if ! [[ -v r ]]; then # if not raw, show column headers
+      echo "EE ID","Global ID","Start Date","End Date","FieldName","Field Value","Status"
+    fi
+    # for i #without in ... this reads the positional params
+    # echo $empIds
+    for empId in ($empIds)
     do rg -I "(SG$empId).*(NUM|EMAIL|STAT)" ~/certis/projects/certify/s3 --sortr created
-  done
-} | tee /tmp/certifypatch.csv 
-  # rg -I "(SG$1).*(NUM|EMAIL|STAT)" ~/certis/projects/certify/s3 --sortr created } | tee /tmp/certifypatch.csv 
+    done
+  } | tee /tmp/certifypatch.csv
+# rg -I "(SG$1).*(NUM|EMAIL|STAT)" ~/certis/projects/certify/s3 --sortr created } | tee /tmp/certifypatch.csv
 }
 
 #deleteuser details
@@ -83,7 +83,7 @@ function ccreate() {
     case "$opt" in
       e) email=$OPTARG ;;
       p) handphone=$OPTARG ;;
-    esac 
+    esac
   done
   shift $(($OPTIND - 1))
 
@@ -93,21 +93,22 @@ function ccreate() {
     --temporary-password ***REMOVED*** \
     --message-action SUPPRESS \
     --user-attributes \
-      Name=custom:employee_id,Value="$1" \
-      Name=given_name,Value="Timtesty" \
-      Name=family_name,Value="Goh" \
-      Name=email,Value="$email" \
-      Name=phone_number,Value="$handphone" \
-      Name=custom:company,Value="1000" \
-      Name=custom:organization,Value="50794952" \
-      Name=custom:department,Value="Tech Planning & Development" \
-      Name=custom:staff_type,Value="O0001" \
-      Name=custom:employment_status,Value="3" \
-      Name=custom:working_home,Value="C100" \
-      Name=custom:personal_email,Value="timothySL_goh@certisgroup.COM" \
-      Name=custom:legal_home,Value="C400" \
-      Name=custom:join_date,Value="20191111"\
-}
+    Name=custom:employee_id,Value="$1" \
+    Name=given_name,Value="Timtesty" \
+    Name=family_name,Value="Goh" \
+    Name=email,Value="$email" \
+    Name=phone_number,Value="$handphone" \
+    Name=custom:company,Value="1000" \
+    Name=custom:organization,Value="50794952" \
+    Name=custom:department,Value="Tech Planning & Development" \
+    Name=custom:staff_type,Value="O0001" \
+    Name=custom:employment_status,Value="3" \
+    Name=custom:working_home,Value="C100" \
+    Name=custom:personal_email,Value="timothySL_goh@certisgroup.COM" \
+    Name=custom:legal_home,Value="C400" \
+    Name=custom:join_date,Value="20191111"\
+  }
+
 
 #deleteuser details
 function cdel() {
@@ -133,7 +134,7 @@ function cgetcsv() {
   else
     echo '"Username","employee_id","name","given_name","family_name","employment_status","join_date","UserStatus","phone_number_verified","phone_number","email_verified","email","company_email","personal_email","UserCreateDate","UserLastModified"'
     for i #without in ... this reads the positional params
-      do cgetcsvrow $i
+    do cgetcsvrow $i
     done
   fi
 }
@@ -145,7 +146,7 @@ function cgetscsv() {
   else
     echo '"Username","EventResponse","EventType","CreationDate","RiskDecision","CompromisedCredentialsCreated","ChallengeName","ChallengeResponse"'
     for i #without in ... this reads the positional params
-      do cgetscsvrow $i
+    do cgetscsvrow $i
     done
   fi
 }
@@ -166,14 +167,26 @@ function _cgetLastLoginStatus() {
 #get last 5 login attempt statuses
 function cgets() {
 
-local n=6 #default to get 5 items
-while getopts 'n:' opt; do
-  case "$opt" in
-    n) n=$OPTARG ;;
-  esac 
-done
-shift $(($OPTIND - 1))
+  local n=6 #default to get 5 items
+  while getopts 'n:' opt; do
+    case "$opt" in
+      n) n=$OPTARG ;;
+    esac
+  done
+  shift $(($OPTIND - 1))
 
   # aws cognito-idp admin-list-user-auth-events --user-pool-id $_CERTIFY_POOL_ID --username SG$1 | jq '.AuthEvents[0:6][] | {EventResponse,EventType,CreationDate,EventRisk,ChallengeResponses}'
   aws cognito-idp admin-list-user-auth-events --user-pool-id $_CERTIFY_POOL_ID --username SG$1 | jq ".AuthEvents[0:$n][] | {EventResponse,EventType,CreationDate,EventRisk,ChallengeResponses}"
 }
+
+## cognito pool operations
+csync() {
+  #sync source to destination (one way)
+  #source is the users uploads dir
+  #include only works if you exclude everything first
+  #include and excludes filter is relative to source folder
+  #eg if your s3 is s3//bucket/folder/tim and your source is s3//bucket/folder
+  #and you want to exclude tim, specify /tim not s3//bucket/folder/tim
+  aws s3 sync $_CERTIFY_S3_BUCKET_SAP_SYNC $_CERTIFY_S3_BUCKET_SAP_SYNC_LOCAL_FOLDER \
+    --exclude "*" --include "*.csv" --include "*.CSV" --exclude "hk/*"
+  }
