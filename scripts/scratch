@@ -1,0 +1,93 @@
+#!/bin/bash
+
+# _put_csv() {
+#   for field in "$@"; do ## loop through the fields (on command line)
+#     # echo this is field: ___________________________ $field
+#     case $field in
+#     ## If field contains non-numerics, enclose in quotes
+#     *[!0-9.-])
+#       echo in 1
+#       _PUT_CSV=${_PUT_CSV:+$_PUT_CSV,}\"$field\"
+#       ;;
+#     *)
+#       echo in 2
+#       _PUT_CSV=${_PUT_CSV:+$_PUT_CSV,}$field
+#       ;;
+#     esac
+#   done
+#   _PUT_CSV=${_PUT_CSV%,} ## remove trailing comma
+# }
+
+# put_csv() {
+#   _put_csv "$@" && printf "%s\n" "$_PUT_CSV"
+# }
+
+#test migration
+tt() {
+  # TODO: use USRID_LONG
+  # TODO: enclose fields with ""
+
+  ## add a row number for a file
+  # -s add a comma after the number
+  # -n, specify number format rz = right justified, leading zeroes
+  # gnl -s, -nrz test > out
+
+  # show line numbers with -n
+  rg -n '.*,SG.*(STAT2|NUM0|EMAIL)' $_CERTIFY_S3_BUCKET_SAP_SYNC_LOCAL_FOLDER >stage1
+
+  #n is name
+  #w is creation date
+  #.19 means first 19 chars
+  gstat -c '%n %.19w' $_CERTIFY_S3_BUCKET_SAP_SYNC_LOCAL_FOLDER* >file_date
+
+  #replace colon after filename with comma
+  #replace blah.csv:45:field1,field2,... to blah.csv,45,field1,field2,
+  gsed -E 's/^(.*.CSV)(:)([0-9]+)(:)/\1,\3,/gI' stage1 | sort >stage2
+  #replace space after filename  with comma
+  gsed -E 's/^(.*.CSV) /\1,/gI' file_date | sort >file_date2
+
+  #combine s3 with file dates
+  join -t, stage2 file_date2 >stage3
+
+  # remove (line feed) ^M in middle of string
+  # \r is carriage return, it means moving the cursor to the beginning of the line
+  # \n is line feed, it means moving one line forward
+  gsed -E 's/\r//g' stage3 >stage4
+
+  #sort rows
+  # emp, - column 4
+  # field (STAT2,NUM0x etc), -column 7
+  # date descending, - column 9
+  # file rownum descending - column 2
+  sort -t, -k4,4 -k7,7 -k10,10r -k2,2r stage4 >stage5
+
+  #get first row of each group
+  #group by emp id and field
+  #eg SG125387 STAT2 is a group
+  #eg SG125387 NUM0x is another group
+  gawk -F, '!a[$4$7]++' stage5 >stage6
+
+  #separate into 4 files
+  #sort so that you can join later
+  #must sort on the join column
+  rg ',STAT2,' <stage6 | sort -t, -k4,4 >s3_stat2
+  rg ',NUM0' <stage6 | sort -t, -k4,4 >s3_num0x #can be NUM03 etc TODO:
+  rg ',C_EMAIL,' <stage6 | sort -t, -k4,4 >s3_cemail
+  rg ',P_EMAIL,' <stage6 | sort -t, -k4,4 >s3_pemail
+
+  #get user.csv containing cognito users
+  #to generate users.csv, run clu and clu2csv
+  cp $_CERTIFY_COGNITO_LOCAL_DB.csv .
+
+  #search for beginning "
+  #match anything that is not a " until you find a "
+  rg '^"SG.*' <users.csv | gsed -E 's/^"([^"]*)"/\1/g' >users_sg.csv
+
+  # join to stat2
+  #the more files you join the fatter the columns become
+  join -t, -2 4 -a1 -e "NULL" -o "1.1,1.2,1.6,1.7,1.10,1.12,1.13,1.14,1.15, 2.1,2.2,2.7,2.8,2.9" users_sg.csv s3_stat2 >join1.csv
+  join -t, -2 4 -a1 -e "NULL" -o "1.1,1.2,1.3,1.4,1.5,1.6,1.7,1.8,1.9, 1.10,1.11,1.12,1.13,1.14, 2.1,2.2,2.7,2.8,2.9" join1.csv s3_num0x >join2.csv
+  join -t, -2 4 -a1 -e "NULL" -o "1.1,1.2,1.3,1.4,1.5,1.6,1.7,1.8,1.9, 1.10,1.11,1.12,1.13,1.14, 1.15,1.16,1.17,1.18,1.19, 2.1,2.2,2.7,2.8,2.9" join2.csv s3_cemail >join3.csv
+  join -t, -2 4 -a1 -e "NULL" -o "1.1,1.2,1.3,1.4,1.5,1.6,1.7,1.8,1.9, 1.10,1.11,1.12,1.13,1.14, 1.15,1.16,1.17,1.18,1.19, 1.20,1.21,1.22,1.23,1.24 2.1,2.2,2.7,2.8,2.9" join3.csv s3_pemail >join4.csv
+
+}
