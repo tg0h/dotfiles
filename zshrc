@@ -48,6 +48,9 @@ bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 
 # alias
+alias tts="source $HOME/dotfiles/scripts/scratch"
+alias ttt="vim $HOME/dotfiles/scripts/scratch"
+
 alias j=jira
 alias ag="alias | grep"
 alias sg="set | grep"
@@ -69,8 +72,7 @@ alias dvpn="networksetup -disconnectpppoeservice 'edo vpn'"
 alias tcn='task context none'
 alias tcw='task context work'
 ## search task tags
-alias ttt='task tag~tooling'
-
+alias tto='task tag~tooling'
 
 alias tws='timew summary'
 alias twsi='timew summary :id'
