@@ -71,6 +71,9 @@ alias dvpn="networksetup -disconnectpppoeservice 'edo vpn'"
 # - task aliases
 alias tcn='task context none'
 alias tcw='task context work'
+alias tcb='task context book'
+alias tci='task context idea'
+alias tcs='task context side'
 ## search task tags
 alias tto='task tag~tooling'
 
