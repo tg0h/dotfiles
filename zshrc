@@ -68,6 +68,10 @@ alias sshdir="cd ~/.ssh"
 alias runp="lsof -i " #eg runp :1234 tells you whether port 1234 is being used
 alias vpn="networksetup -connectpppoeservice 'edo vpn'"
 alias dvpn="networksetup -disconnectpppoeservice 'edo vpn'"
+
+# rg shortcuts
+function rgs(){ rg $1 --sortr created }
+
 # - task aliases
 alias tcn='task context none'
 alias tcw='task context work'
@@ -81,6 +85,7 @@ alias tws='timew summary'
 alias twsi='timew summary :id'
 alias twu='timew untag' #@1 <tag to remove>
 alias twh='timew shorten' #h,min https://timewarrior.net/docs/duration.html
+alias twm='timew move' #h,min https://timewarrior.net/docs/duration.html
 alias twl='timew lengthen' #h,min https://timewarrior.net/docs/duration.html
 alias twms='timew modify start'
 alias twme='timew modify end'
@@ -109,7 +114,3 @@ fpath+=~/.zsh_functions #add our own zsh functions directory to fpath
 autoload -Uz ~/.zsh_functions/*(.) #-U supress alias expansion, -z zsh style function loading. (.) - glob qualifier. dot means show regular files only
 . ~/.zsh_funcs #get all my functions
 
-
-function rgs(){
-  rg $1 --sortr created
-}
