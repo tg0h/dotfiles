@@ -37,3 +37,6 @@ report._reviewed.sort=reviewed+,modified+
 report._reviewed.filter=( reviewed.none: or reviewed.before:now-6days ) and ( +PENDING or +WAITING )
 context.work=+work
 context.bucket=+idea
+context.book=+book
+context.side=-work
+context=work
