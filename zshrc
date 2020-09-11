@@ -91,6 +91,7 @@ setopt sh_word_split #turn on param expansion word split
 # config
 complete -C '/usr/local/bin/aws_completer' aws # enable aws completion - https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-completion.html
 export PATH="/usr/local/mysql/bin:$PATH" # add my sql to path
+export PATH="/usr/local/opt/sqlite/bin:$PATH" # add homebrew sqlite3 to path (do not use macos sqlite which is an older version)
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh #source fzf after the vim keymap so fzf shortcuts take precedence
 . ~/.zsh_autosuggestions
 . ~/.zsh_autocomplete
