@@ -86,7 +86,7 @@ alias twms='timew modify start'
 alias twme='timew modify end'
 
 #zsh does not word split param expansions https://stackoverflow.com/questions/16200142/zsh-parameter-expansion-inserting-quotes
-setopt sh_word_split #turn on param expansion word split
+# setopt sh_word_split #turn on param expansion word split - this disables zsh autocompletion
 
 # config
 complete -C '/usr/local/bin/aws_completer' aws # enable aws completion - https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-completion.html
