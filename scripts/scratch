@@ -208,6 +208,14 @@ delete from s3pemail;
 Select * from SyncErrorReport;
 EOF
 
+  echo generating error report
+  sqlite3 $_CERTIFY_VERIFY_DB <<EOF
+.headers on
+.mode csv
+.output SyncErrorEmploymentStatus.csv
+Select * from SyncErrorEmploymentStatusReport;
+EOF
+
   local errorCount=$(($(wc -l <SyncErrorReport.csv) - 1)) #subtract header row from file
   if [ $errorCount -gt 0 ]; then
     echo "Errors found in Sap Sync" | mutt -s "SAP Sync Error Report" ***REMOVED*** -a SyncErrorReport.csv
