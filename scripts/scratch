@@ -120,6 +120,7 @@ tt() {
   rg ',STAT2,' <stage8 | sort -t, -k4,4 >_s3stat2
   #add column headers
   # -i edit in place
+  gsed -i -E 's/([0-9]{2})\.([0-9]{2})\.([0-9]{4})/\3-\2-\1/g' _s3stat2 #change date format from dd.mm.yyyy to yyyy-mm-dd 
   gsed -i '1i File,FileRow,EEId,GlobalId,StartDate,EndDate,Field,Value,Status,FileCreateDate' _s3stat2
   csvcut -c 3,4,5,6,7,8,9,1,2,10 _s3stat2 >s3stat2
   sqlite3 $_CERTIFY_VERIFY_DB <<EOF
@@ -133,6 +134,7 @@ EOF
   _secs_to_human "$(($(date +%s) - ${start}))"
   rg ',NUM0' <stage8 | sort -t, -k4,4 >_s3num0x #can be NUM03 etc TODO:
   # gsed -i '1i file,filerownum,"EE ID","Global ID","Start Date","End Date","Field Name","Field Value",Status,FileCreateDate' s3_num0x
+  gsed -i -E 's/([0-9]{2})\.([0-9]{2})\.([0-9]{4})/\3-\2-\1/g' _s3num0x #change date format from dd.mm.yyyy to yyyy-mm-dd 
   gsed -i '1i File,FileRow,EEId,GlobalId,StartDate,EndDate,Field,Value,Status,FileCreateDate' _s3num0x
   gsed -E 's/NUM0X,([0-9])/NUM0X,+\1/g' _s3num0x >__s3num0x #add + prefix to phone numbers
   csvcut -c 3,4,5,6,7,8,9,1,2,10 __s3num0x >s3num0x
@@ -145,6 +147,7 @@ EOF
   _secs_to_human "$(($(date +%s) - ${start}))"
   rg ',C_EMAIL,' <stage8 | sort -t, -k4,4 >_s3cemail
   # gsed -i '1i file,filerownum,"EE ID","Global ID","Start Date","End Date","Field Name","Field Value",Status,FileCreateDate' s3_cemail
+  gsed -i -E 's/([0-9]{2})\.([0-9]{2})\.([0-9]{4})/\3-\2-\1/g' _s3cemail #change date format from dd.mm.yyyy to yyyy-mm-dd 
   gsed -i '1i File,FileRow,EEId,GlobalId,StartDate,EndDate,Field,Value,Status,FileCreateDate' _s3cemail
   csvcut -c 3,4,5,6,7,8,9,1,2,10 _s3cemail >s3cemail
   sqlite3 $_CERTIFY_VERIFY_DB <<EOF
@@ -156,6 +159,7 @@ EOF
   _secs_to_human "$(($(date +%s) - ${start}))"
   rg ',P_EMAIL,' <stage8 | sort -t, -k4,4 >_s3pemail
   # gsed -i '1i file,filerownum,"EE ID","Global ID","Start Date","End Date","Field Name","Field Value",Status,FileCreateDate' S3Pemail
+  gsed -i -E 's/([0-9]{2})\.([0-9]{2})\.([0-9]{4})/\3-\2-\1/g' _s3pemail #change date format from dd.mm.yyyy to yyyy-mm-dd 
   gsed -i '1i File,FileRow,EEId,GlobalId,StartDate,EndDate,Field,Value,Status,FileCreateDate' _s3pemail
   csvcut -c 3,4,5,6,7,8,9,1,2,10 _s3pemail >s3pemail
   sqlite3 $_CERTIFY_VERIFY_DB <<EOF
