@@ -62,7 +62,21 @@ tt() {
   #replace blah.csv:45:field1,field2,... to blah.csv,45,field1,field2,
   echo stage 1
   gsed -E 's/^(.*.CSV)(:)([0-9]+)(:)/\1,\3,/gI' stage1 | sort >stage2
-  echo stage 2
+
+  cut -d, -f1 stage2 > stage2filenames
+  cat stage2filenames | sort | uniq > stage2filenamesuniq
+  while read file
+  do
+    echo $file,$(basename $file) | gsed -E 's/(.*),(.*)/\1,"\2"/'
+  done < stage2filenamesuniq > stage2filenamesuniqbase
+  gsed -i '1i FileName,FileNameBase' stage2filenamesuniqbase
+  sqlite3 $_CERTIFY_VERIFY_DB <<EOF
+delete from S3FileName;
+.mode csv
+.import --skip 1 stage2filenamesuniqbase S3FileName
+EOF
+  # parallel -a stage2filenames basename > stage2basenames ## too slow, has 147k records
+
 
   #combine s3 with file dates
   echo stage 3
