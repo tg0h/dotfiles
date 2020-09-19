@@ -64,7 +64,7 @@ crgs () {
 }
 
 crgsu () {
-  rg "($1),(NUM0|C_EMAIL|P_EMAIL|STAT2|USRID_LONG)" $_CERTIFY_S3_BUCKET_SAP_SYNC_REPORTS_LOCAL_FOLDER --sortr created
+  rg "($1),(NUM|C_EMAIL|P_EMAIL|STAT2|USRID_LONG)" $_CERTIFY_S3_BUCKET_SAP_SYNC_REPORTS_LOCAL_FOLDER --sortr created
 }
 
 function cpatch(){
