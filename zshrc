@@ -73,6 +73,8 @@ alias dvpn="networksetup -disconnectpppoeservice 'edo vpn'"
 function rgs(){ rg $1 --sortr created }
 
 # - task aliases
+alias tn='task next'
+alias ts='task summary'
 alias tcn='task context none'
 alias tcw='task context work'
 alias tcb='task context book'
