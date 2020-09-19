@@ -53,11 +53,17 @@ function cget() {
   aws cognito-idp admin-get-user --user-pool-id $_CERTIFY_POOL_ID --username $userName  | jq '(.UserAttributes | map( {(.Name) : .Value}) | add ) as $fields | {Username,employee_id: $fields."custom:employee_id",name: $fields.name,given_name: $fields.given_name,family_name: $fields.family_name,"employment_status>>>>>>>>>>>>>>>>>>>>": $fields."custom:employment_status",join_date: $fields."custom:join_date",UserStatus,phone_number_verified: $fields.phone_number_verified,"phone_number>>>>>>>>>>>>>>>>>>>>": $fields.phone_number, email_verified: $fields.email_verified, "email>>>>>>>>>>>>>>>>>>>>": $fields.email,company_email: $fields."custom:company_email", personal_email: $fields."custom:personal_email",UserCreateDate,UserLastModifiedDate}'
   _cgetLastLoginStatus $userName
   crgs $userName #search s3 folder for empId
+  echo "##### SYNC REPORT ####"
+  crgsu $userName #search s3 report folder for sync report for this user
 }
 
 #expects EE ID
 crgs () {
   rg "($1,).*(,NUM0|,C_EMAIL|,P_EMAIL|,STAT2|,USRID_LONG)" $_CERTIFY_S3_BUCKET_SAP_SYNC_LOCAL_FOLDER --sortr created
+}
+
+crgsu () {
+  rg "($1),(NUM0|C_EMAIL|P_EMAIL|STAT2|USRID_LONG)" $_CERTIFY_S3_BUCKET_SAP_SYNC_REPORTS_LOCAL_FOLDER --sortr created
 }
 
 function cpatch(){
