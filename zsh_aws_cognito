@@ -60,16 +60,6 @@ crgs () {
 }
 
 function cpatch(){
-  local empIds
-  if (( $# == 0 )); then
-    # empIds=( $(</dev/stdin) )
-    empIds=$(tee) #get from stdin into x
-    # echo $empIds
-  else
-    empIds=$@
-    echo $empIds
-  fi
-
   while getopts 'r' opt; do
     case "$opt" in
       r) local r=true ;;
@@ -77,17 +67,21 @@ function cpatch(){
   done
   shift $(($OPTIND - 1))
 
+  local empIds
+  if (( $# == 0 )); then
+    read -d '' empIds #shell behaviour? - the first command reads from stdin. -d do not use newline as delimiter to read entire input
+  else
+    empIds=$@
+  fi
   {
     if ! [[ -v r ]]; then # if not raw, show column headers
       echo "EE ID","Global ID","Start Date","End Date","FieldName","Field Value","Status"
     fi
-    # for i #without in ... this reads the positional params
-    # echo $empIds
-    for empId in ($empIds)
-    do rg -I "(SG$empId).*(NUM|EMAIL|STAT)" ~/certis/projects/certify/s3 --sortr created
+    for empId in ${=empIds} #zsh param expansion to word split param, see man zshexpn, ${=spec}
+    do
+      rg -I "(SG$empId).*(NUM|EMAIL|STAT)" $_CERTIFY_S3_BUCKET_SAP_SYNC_LOCAL_FOLDER --sortr created
     done
-  } | tee /tmp/certifypatch.csv
-# rg -I "(SG$1).*(NUM|EMAIL|STAT)" ~/certis/projects/certify/s3 --sortr created } | tee /tmp/certifypatch.csv
+  }
 }
 
 #deleteuser details
