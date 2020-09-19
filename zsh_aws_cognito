@@ -178,17 +178,20 @@ function _cgetLastLoginStatus() {
 
 #get last 5 login attempt statuses
 function cgets() {
-
+  local userPrefix="SG" #default
   local n=6 #default to get 5 items
-  while getopts 'n:' opt; do
+  while getopts 'n:p:' opt; do
     case "$opt" in
       n) n=$OPTARG ;;
+      p) userPrefix=$OPTARG ;;
     esac
   done
   shift $(($OPTIND - 1))
 
+  local userName=$userPrefix$1
+
   # aws cognito-idp admin-list-user-auth-events --user-pool-id $_CERTIFY_POOL_ID --username SG$1 | jq '.AuthEvents[0:6][] | {EventResponse,EventType,CreationDate,EventRisk,ChallengeResponses}'
-  aws cognito-idp admin-list-user-auth-events --user-pool-id $_CERTIFY_POOL_ID --username SG$1 | jq ".AuthEvents[0:$n][] | {EventResponse,EventType,CreationDate,EventRisk,ChallengeResponses}"
+  aws cognito-idp admin-list-user-auth-events --user-pool-id $_CERTIFY_POOL_ID --username $userName | jq ".AuthEvents[0:$n][] | {EventResponse,EventType,CreationDate,EventRisk,ChallengeResponses}"
 }
 
 ## cognito pool operations
@@ -199,8 +202,8 @@ csync() {
   #include and excludes filter is relative to source folder
   #eg if your s3 is s3//bucket/folder/tim and your source is s3//bucket/folder
   #and you want to exclude tim, specify /tim not s3//bucket/folder/tim
-  aws s3 sync $_CERTIFY_S3_BUCKET_SAP_SYNC $_CERTIFY_S3_BUCKET_SAP_SYNC_LOCAL_FOLDER \
-    --exclude "*" --include "*.csv" --include "*.CSV" --exclude "hk/*"
+  aws s3 sync $_CERTIFY_S3_BUCKET_SAP_SYNC $_CERTIFY_S3_BUCKET_SAP_SYNC_LOCAL_FOLDER --exclude "*" --include "*.csv" --include "*.CSV" --exclude "hk/*"
+  aws s3 sync $_CERTIFY_S3_BUCKET_SAP_SYNC_REPORTS $_CERTIFY_S3_BUCKET_SAP_SYNC_REPORTS_LOCAL_FOLDER
   }
 
 cupload() {
