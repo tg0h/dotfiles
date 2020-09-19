@@ -33,8 +33,9 @@ function _setCertifyProfile() {
 
 ##certify
 ccon() { sqlite3 $_CERTIFY_VERIFY_DB }
-cz() { cd $_CERTIFY_S3_BUCKET_SAP_SYNC_LOCAL_FOLDER }
 czc() { cd $_CERTIFY_COGNITO_LOCAL_FOLDER }
+czu() { cd $_CERTIFY_S3_BUCKET_SAP_SYNC_LOCAL_FOLDER }
+czr() { cd $_CERTIFY_S3_BUCKET_SAP_SYNC_REPORTS_LOCAL_FOLDER }
 
 #get user details
 function cget() {
