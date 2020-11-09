@@ -1,6 +1,5 @@
 #!/usr/local/bin/zsh
-
-echo this is path $path
+echo certify validate sync ran at: $(date) >> /tmp/certify-validate-sync-log
 
 path=('/usr/local/bin' $path) # add homebrew packages
 path=('/usr/local/opt/sqlite/bin' $path) # add homebrew sqlite3 to path (do not use macos sqlite which is an older version)
@@ -11,8 +10,11 @@ echo this is path $path
 . $HOME/dotfiles/zshrc #get everything
 cerp p #get env variables
 
-cd /Users/tim/certis/projects/certify/aws/production/report/certify-validate-sync
-trash /Users/tim/certis/projects/certify/aws/production/report/certify-validate-sync/*
+# WORKING FOLDER FOR THE REPORT
+cd $_CERTIFY_VERIFY_REPORT_FOLDER
+trash $_CERTIFY_VERIFY_REPORT_FOLDER*
+
+csync #get latest dom report and latest user
 
 local start=$(date +%s)
 # TODO: enclose fields with ""
@@ -32,7 +34,14 @@ rg -n '.*,SG.*(,STAT2,|,NUM..,|,P_EMAIL,|,C_EMAIL,|,USRID_LONG,)' $_CERTIFY_S3_B
 #n is name
 #w is creation date
 #.19 means first 19 chars
-gstat -c '%n %.19w' $_CERTIFY_S3_BUCKET_SAP_SYNC_LOCAL_FOLDER* >file_date
+# zsh throws an error "argument list too long" if there are too many files in the folder
+# gstat -c '%n %.19w' $_CERTIFY_S3_BUCKET_SAP_SYNC_LOCAL_FOLDER >file_date
+for file in $_CERTIFY_S3_BUCKET_SAP_SYNC_LOCAL_FOLDER*;
+do
+  # echo $file
+  gstat -c '%n %.19w' $file >> file_date
+done
+
 gsed -E 's/^(.*.CSV) /\1,/gI' file_date | sort >file_date2 #replace space after filename  with comma
 
 #replace colon after filename with comma
@@ -198,5 +207,7 @@ EOF
 
 local errorCount=$(($(wc -l <SyncErrorReport.csv) - 1)) #subtract header row from file
 if [ $errorCount -gt 0 ]; then
-echo "Errors found in Sap Sync" | mutt -s "SAP Sync Error Report" ***REMOVED*** -a SyncErrorReport.csv
+  echo "Errors found in Sap Sync" | mutt -s "SAP Sync Error Report" ***REMOVED*** -a SyncErrorReport.csv
 fi
+
+echo certify validate sync finished at: $(date) >> /tmp/certify-validate-sync-log
