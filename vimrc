@@ -112,6 +112,19 @@ map <Leader> <Plug>(easymotion-prefix)
 
 " the map commands cannot be followed by an end of line comment because the " is interpreted as part of the rhs
 
+"WINDOW MANAGEMENT ====================================================================================================
+noremap <BS> :bprevious<cr>  " backspace is previous buffer
+noremap <S-BS> :bnext<cr>  " next buffer
+"CtrlP mappings
+nnoremap <C-b> :CtrlPBuffer<cr>  " Map CtrlP buffer mode to Ctrl + b
+nnoremap <C-j> :CtrlPMRU<cr>  " Map CtrlP MRU mode to Ctrl + j
+"quickfix
+nnoremap n :cn<cr> " map alt n to next in quickfix list 
+nnoremap p :cp<cr> " map alt p to next in quickfix list 
+"buffers
+:nnoremap <Leader>q :Bdelete<CR> " close the current buffer
+"====================================================================================================
+
 noremap <F2> :w <cr>
 noremap <F3> :e $MYVIMRC<cr>
 nmap <F4> i<C-R>=strftime("%B %d %Y %A")<CR><Esc>
@@ -119,17 +132,10 @@ noremap <f5> :GundoToggle<cr>  " Map Gundo to <F5>.
 noremap <F6> :setlocal spell! spelllang=en_gb<CR> " Toggle Spellcheck
 noremap <F7> :VimwikiTable<CR>
 noremap <F9> :Autoformat<CR>
-noremap <BS> :bprevious<cr>  " backspace is previous buffer
-noremap <S-BS> :bnext<cr>  " next buffer
 nmap <leader>ne :NERDTreeToggle<cr> " NERD Tree
 :map <S-Space> <Plug>VimwikiToggleListItem
 "notational fzf vim
 nnoremap <leader>a :NV<CR>
-"CtrlP mappings
-nnoremap <C-b> :CtrlPBuffer<cr>  " Map CtrlP buffer mode to Ctrl + b
-nnoremap <C-j> :CtrlPMRU<cr>  " Map CtrlP MRU mode to Ctrl + j
-nnoremap n :cn<cr> " map alt n to next in quickfix list 
-nnoremap p :cp<cr> " map alt n to next in quickfix list 
 
 "if fileType is vimwiki -- also, see ToggleCalendar function defined above
 :autocmd FileType vimwiki map <localleader>d :VimwikiMakeDiaryNote<CR>
@@ -231,6 +237,16 @@ set statusline+=%{GitStatus()}
 
 "fugitive ---------------------------------------------------------------------->
 let g:fugitive_gitlab_domains = ['https://git.ads.certis.site']
+" Fugitive mapping
+nmap <leader>gb :Gblame<cr>
+nmap <leader>gc :Gcommit<cr>
+nmap <leader>gd :Gdiff<cr>
+nmap <leader>gg :Ggrep
+nmap <leader>gl :Glog<cr>
+nmap <leader>gp :Git pull<cr>
+nmap <leader>gP :Git push<cr>
+nmap <leader>gs :Gstatus<cr>
+nmap <leader>gw :Gbrowse<cr>
 
 " add - as a keyword, so that when you asterisk search "upper-case", it
 " selects the whole word
