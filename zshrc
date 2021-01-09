@@ -72,39 +72,11 @@ alias dvpn="networksetup -disconnectpppoeservice 'edo vpn'"
 # rg shortcuts
 function rgs(){ rg $1 --sortr created }
 
-# - task aliases
-# alias tl='task list' #alphabetical order
-# alias tn='task next'
-# alias ts='task summary'
-# alias tcn='task context none && task list'
-# alias tcc='task context certify && task list'
-# alias tca='task context argus && task list'
-# alias tcw='task context work && task list'
-# alias tcb='task context book && task list'
-# alias tci='task context idea && task list'
-# alias tcs='task context side && task list'
-## search task tags
-# alias tto='task tag~tooling'
-
-# alias tws='timew summary'
-# alias twsi='timew summary :id'
-# alias twu='timew untag' #@1 <tag to remove>
-# alias twh='timew shorten @1' #h,min https://timewarrior.net/docs/duration.html
-# alias twhh='timew shorten' #h,min https://timewarrior.net/docs/duration.html
-# alias twm='timew move @1' #h,min https://timewarrior.net/docs/duration.html
-# alias twmm='timew move' #h,min https://timewarrior.net/docs/duration.html
-# alias twl='timew lengthen @1' #h,min https://timewarrior.net/docs/duration.html
-# alias twll='timew lengthen' #h,min https://timewarrior.net/docs/duration.html
-# alias twms='timew modify start @1'
-# alias twmss='timew modify start'
-# alias twme='timew modify end @1'
-# alias twmee='timew modify end'
-
 function ffm() {
   ffmpeg -i $1 -vcodec libx265 -crf 28 "$1"-out.mp4
 }
 
-#time tracking
+#toggl time tracking
 ## certis
 alias td="timt -w c -t d"
 alias tdd="timt -w c -t d --dd" #detailed report
