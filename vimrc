@@ -1,18 +1,20 @@
-" Manage plugins with vim-plug.
-" => Plugins ======================================================================================================
-call plug#begin()
-Plug 'tpope/vim-fugitive' "git support
-Plug 'airblade/vim-gitgutter' "git gutter, show +/- in gutter
-" Plug 'wikitopian/hardmode' "vim hard mode
-" autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode() "enable hard mode by default:v
+  " Manage plugins with vim-plug.
+  " => Plugins ======================================================================================================
+  call plug#begin()
+  Plug 'tpope/vim-fugitive' "git support
+  Plug 'tpope/vim-unimpaired' "git mappings for :Glog
+  Plug 'shumphrey/fugitive-gitlab.vim' "enable Gbrowse for gitlab
+  Plug 'airblade/vim-gitgutter' "git gutter, show +/- in gutter
+  " Plug 'wikitopian/hardmode' "vim hard mode
+  " autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode() "enable hard mode by default:v
 
-Plug 'junegunn/vim-plug' "help file for vim-plug
+  Plug 'junegunn/vim-plug' "help file for vim-plug
 
-Plug 'scrooloose/nerdtree' "file explorer
-Plug 'ctrlpvim/ctrlp.vim'
+  Plug 'scrooloose/nerdtree' "file explorer
+  Plug 'ctrlpvim/ctrlp.vim'
 
-Plug 'easymotion/vim-easymotion'
-Plug 'haya14busa/vim-easyoperator-line' "easy motion for line operations
+  Plug 'easymotion/vim-easymotion'
+  Plug 'haya14busa/vim-easyoperator-line' "easy motion for line operations
 " Plug 'haya14busa/vim-easyoperator-phrase' "easy motion for line operations
 
 "Plug 'junegunn/fzf', { 'dir': '~/fzf', 'do': './install --all' }
@@ -126,6 +128,8 @@ nnoremap <leader>a :NV<CR>
 "CtrlP mappings
 nnoremap <C-b> :CtrlPBuffer<cr>  " Map CtrlP buffer mode to Ctrl + b
 nnoremap <C-j> :CtrlPMRU<cr>  " Map CtrlP MRU mode to Ctrl + j
+nnoremap n :cn<cr> " map alt n to next in quickfix list 
+nnoremap p :cp<cr> " map alt n to next in quickfix list 
 
 "if fileType is vimwiki -- also, see ToggleCalendar function defined above
 :autocmd FileType vimwiki map <localleader>d :VimwikiMakeDiaryNote<CR>
@@ -224,6 +228,9 @@ function! GitStatus()
   return printf('+%d ~%d -%d', a, m, r)
 endfunction
 set statusline+=%{GitStatus()}
+
+"fugitive ---------------------------------------------------------------------->
+let g:fugitive_gitlab_domains = ['https://git.ads.certis.site']
 
 " add - as a keyword, so that when you asterisk search "upper-case", it
 " selects the whole word
