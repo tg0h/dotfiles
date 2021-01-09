@@ -55,10 +55,6 @@ alias j=jira
 alias ag="alias | grep"
 alias sg="set | grep"
 alias fork="open . -a /Applications/Fork.app"
-alias zshrc='vim ~/.zshrc'
-alias zshrds='vim ~/dotfiles/zsh_aws_rds'
-alias zshcw='vim ~/.zsh_aws_cloudwatch'
-alias zshc='vim ~/.zsh_aws_cognito'
 alias topten="history | commands | sort -rn | head"
 alias myip="curl http://ipecho.net/plain; echo"
 alias dirs='dirs -v | head -10'
@@ -69,58 +65,18 @@ alias runp="lsof -i " #eg runp :1234 tells you whether port 1234 is being used
 alias vpn="networksetup -connectpppoeservice 'edo vpn'"
 alias dvpn="networksetup -disconnectpppoeservice 'edo vpn'"
 
+# edit config file shortcuts
+alias zshrc='vim ~/.zshrc'
+alias zshrds='vim ~/dotfiles/zsh_aws_rds'
+alias zshcw='vim ~/.zsh_aws_cloudwatch'
+alias zshc='vim ~/.zsh_aws_cognito'
+
 # rg shortcuts
 function rgs(){ rg $1 --sortr created }
 
 function ffm() {
   ffmpeg -i $1 -vcodec libx265 -crf 28 "$1"-out.mp4
 }
-
-#toggl time tracking
-## certis
-alias td="timt -w c -t d"
-alias tdd="timt -w c -t d --dd" #detailed report
-alias tdt="timt -w c -t d -s today"
-
-alias tw="timt -w c -t w"
-alias tww="timt -w c -t d --ww -s 0cw" #detailed report starting this week
-
-alias tm="timt -w c -t d --ww -s 1" #wide report starting from the 1st
-
-alias ts="timt -w c -t s"
-alias tst="timt -w c -t s -s today"
-alias tsw="timt -w c -t s -s 0cw" #since start of this week
-alias tsm="timt -w c -t s -s 1" #since start of this month
-
-alias tsd="timt -w c -t s -d"
-alias tsdt="timt -w c -t s -d -s today"
-alias tsdm="timt -w c -t s -d -r 0m"
-
-## study
-alias ttd="timt -w s -t d"
-alias ttd="timt -w s -t d --dd" #detailed report
-
-alias ttw="timt -w s -t w"
-alias ttww="timt -w s -t d --ww -s 0cw" #detailed report starting this week
-
-alias ttm="timt -w s -t d --ww -s 1" #wide report starting from the 1st
-
-alias tts="timt -w s -t s"
-alias ttsd="timt -w s -t s -d"
-
-## me
-alias tmd="timt -w m -t d"
-alias tmdd="timt -w m -t d --dd" #detailed report
-alias tmdt="timt -w m -t d -s today"
-
-alias tmw="timt -w m -t w"
-alias tmww="timt -w m -t d --ww -s 0cw" #detailed report starting this week
-
-alias tmm="timt -w m -t d --ww -s 1" #wide report starting from the 1st
-
-alias tms="timt -w m -t s"
-alias tmsd="timt -w m -t s -d"
-alias tmsm="timt -w m -t s -d -r 0m"
 
 #zsh does not word split param expansions https://stackoverflow.com/questions/16200142/zsh-parameter-expansion-inserting-quotes
 # setopt sh_word_split #turn on param expansion word split - this disables zsh autocompletion
@@ -138,15 +94,15 @@ export PATH="$PATH:/Users/tim/dev/tools/flutter/bin" # add flutter
 . ~/.zsh_fzf_git
 . ~/.zsh_git_aliases
 . ~/.zsh_jira
+. ~/.zsh_toggl_aliases
 
 # my functions
 . ~/.zsh_aws_rds
 . ~/.zsh_aws_cloudwatch
 . ~/.zsh_aws_cognito
+
 fpath+=~/.zsh_functions #add our own zsh functions directory to fpath
 autoload -Uz ~/.zsh_functions/*(.) #-U supress alias expansion, -z zsh style function loading. (.) - glob qualifier. dot means show regular files only
 . ~/.zsh_funcs #get all my functions
 
-
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
