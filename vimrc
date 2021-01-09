@@ -2,6 +2,7 @@
 " => Plugins ======================================================================================================
 call plug#begin()
 Plug 'tpope/vim-fugitive' "git support
+Plug 'airblade/vim-gitgutter' "git gutter, show +/- in gutter
 " Plug 'wikitopian/hardmode' "vim hard mode
 " autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode() "enable hard mode by default:v
 
