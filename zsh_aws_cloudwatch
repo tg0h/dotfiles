@@ -37,6 +37,15 @@ function ddaGetActivity(){
 }
 
 #tim CAS a
+#tim CAS a
+function ddaSessionsScan() {
+# local userId=$(_dbGetUserId $1) #TODO: throws error if returns more than 1 user
+# local appId=$(_dbGetAppId $2 $3) #eg _dbGetAppId CAS a|m|cc
+ddget --tableName="Argus-Sessions-$_ARGUS_DD_SUFFIX" \
+      -m scan \
+      | jq
+}
+
 function ddaSessions() {
 local userId=$(_dbGetUserId $1) #TODO: throws error if returns more than 1 user
 local appId=$(_dbGetAppId $2 $3) #eg _dbGetAppId CAS a|m|cc
@@ -54,7 +63,7 @@ local accountId=$(_dbGetAccountId $1)
 local organizationId=$(_dbGetOrganizationId $2)
 ddget --tableName="Argus-Settings-$_ARGUS_DD_SUFFIX" \
     --keyConditionExpression="accountId = :accountId and organizationId = :organizationId" \
-    --expressionAttributeValues='{":accountId":"'$accountId'", ":organizationId": "'$organizationId'"}' | jq
+    --expressionAttributeValues='{":accountId":"'$accountId'", ":organizationId": "'$organizationId'"}' 
 }
 
 ##tim -5m
@@ -136,7 +145,7 @@ ddget --tableName="Argus-DutyPlans-$_ARGUS_DD_SUFFIX" \
       --expressionAttributeNames='{"#name":"name"}' \
       --expressionAttributeValues='{":name":"'$1'"}' \
       -m scan \
-      | jq
+      # | jq
 }
 
 #SAP [projection expression]

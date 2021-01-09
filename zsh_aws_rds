@@ -11,7 +11,7 @@
 function dbconn-argus() {
   _kill_argus_db_ports
 
-  # ssh -N -L <local port>:<destination ip>:<remote port> <ssh user>:<ssh host> 
+  # ssh -N -L <local port>:<destination ip>:<remote port> <ssh user>:<ssh host>
   # the ssh host forwards your <localhost>:<local port> to the <destination ip>:<remote port>
   ssh -N -L $_ARGUS_RDS_DB_USER_LOCAL_PORT:$_ARGUS_RDS_DB_USER_HOST $_ARGUS_RDS_SSH_USER@$_ARGUS_RDS_SSH_HOST -i $_ARGUS_RDS_SSH_KEY &
   ssh -N -L $_ARGUS_RDS_DB_AUTH_LOCAL_PORT:$_ARGUS_RDS_DB_AUTH_HOST $_ARGUS_RDS_SSH_USER@$_ARGUS_RDS_SSH_HOST -i $_ARGUS_RDS_SSH_KEY &
@@ -37,45 +37,46 @@ function dball() {
 
 ## switch env
 argp () {
-	if [[ -z "$1" ]]
-	then
-		# unset AWS_DEFAULT_PROFILE AWS_PROFILE AWS_EB_PROFILE
-		# echo AWS profile cleared.
+  if [[ -z "$1" ]]
+  then
+    # unset AWS_DEFAULT_PROFILE AWS_PROFILE AWS_EB_PROFILE
+    # echo AWS profile cleared.
     echo $_ARGUS_PROFILE
-		return
-	fi
-	# local -a available_profiles
-	# available_profiles=($(aws_profiles))
-	# if [[ -z "${available_profiles[(r)$1]}" ]]
-	# then
-	# 	echo "${fg[red]}Profile '$1' not found in '${AWS_CONFIG_FILE:-$HOME/.aws/config}'" >&2
-	# 	echo "Available profiles: ${(j:, :)available_profiles:-no profiles found}${reset_color}" >&2
-	# 	return 1
-	# fi
+    return
+  fi
+  # local -a available_profiles
+  # available_profiles=($(aws_profiles))
+  # if [[ -z "${available_profiles[(r)$1]}" ]]
+  # then
+  #   echo "${fg[red]}Profile '$1' not found in '${AWS_CONFIG_FILE:-$HOME/.aws/config}'" >&2
+  #   echo "Available profiles: ${(j:, :)available_profiles:-no profiles found}${reset_color}" >&2
+  #   return 1
+  # fi
   _setArgusProfile $1
 }
 
 function _setArgusProfile() {
   local argus_profile
   case $1 in
-    d) argus_profile="development" 
-       . ~/dotfiles/argus.develop.env
-       vpn
-       dbconn-argus #automatically open ssh ports
-       asp ad #switch aws profile to dev
-       ;;
+    d) argus_profile="development"
+      _ARGUS_PROFILE="development"
+      . ~/dotfiles/argus.develop.env
+      vpn
+      dbconn-argus #automatically open ssh ports
+      asp ad #switch aws profile to dev
+      ;;
     s) argus_profile="staging"
-       . ~/dotfiles/argus.staging.env
-       vpn
-       dbconn-argus #automatically open ssh ports
-       asp ad #switch aws profile to dev
-       ;;
+      . ~/dotfiles/argus.staging.env
+      vpn
+      dbconn-argus #automatically open ssh ports
+      asp ad #switch aws profile to dev
+      ;;
     p) argus_profile="production"
-       vpn
-       . ~/dotfiles/argus.production.env
-       dbconn-argus #automatically open ssh ports
-       asp ap #switch aws profile to prod
-       ;;
+      vpn
+      . ~/dotfiles/argus.production.env
+      dbconn-argus #automatically open ssh ports
+      asp ap #switch aws profile to prod
+      ;;
   esac
 
   export _ARGUS_PROFILE=$argus_profile
@@ -133,7 +134,7 @@ function _dbGetAppId() {
     m) appName='Argus Supervisor';;
     cc) appName='Argus Admin';;
   esac
-  
+
   mysqlsh --sql -u $_ARGUS_RDS_DB_AUTH_USER -h 127.0.0.1 -P $_ARGUS_RDS_DB_AUTH_LOCAL_PORT -D $_ARGUS_RDS_DB_AUTH_NAME --result-format=json << EOF | jq -r .id
 select apps.id,
        a.name,
@@ -171,23 +172,41 @@ where staff_id = '$1'
 EOF
 }
 
+# function _dbuorg-groups() {
+#   mysqlsh --sql -u $_ARGUS_RDS_DB_USER_USER -h 127.0.0.1 -P $_ARGUS_RDS_DB_USER_LOCAL_PORT -D $_ARGUS_RDS_DB_USER_NAME --result-format=table << EOF
+# select
+#     u.staff_id,
+#     a.name as acc,
+#     o.name as org,
+#     o.id as orgId,
+#     g.name as grp,
+#     g.id as grpId,
+#     ug.role
+# from users u
+#          inner join users_groups ug on u.id = ug.user_id
+#          inner join groups g on ug.group_id = g.id
+#          inner join organizations o on g.org_id = o.id
+#          inner join accounts a on o.account_id = a.id
+# where u.staff_id like '$1'
+# order by a.name, o.name, g.Name, ug.role
+# EOF
+# }
+
 function _dbuorg-groups() {
   mysqlsh --sql -u $_ARGUS_RDS_DB_USER_USER -h 127.0.0.1 -P $_ARGUS_RDS_DB_USER_LOCAL_PORT -D $_ARGUS_RDS_DB_USER_NAME --result-format=table << EOF
-select
-    u.staff_id,
-    a.name as acc,
-    o.name as org,
-    o.id as orgId,
-    g.name as grp,
-    g.id as grpId,
-    ug.role
+select u.staff_id,
+       a.name as acc,
+       p.name as parent,
+       o.name as org,
+       o.type as type,
+       o.id   as orgId
 from users u
-         inner join users_groups ug on u.id = ug.user_id
-         inner join groups g on ug.group_id = g.id
-         inner join organizations o on g.org_id = o.id
+         inner join users_organizations uo on u.id = uo.user_id
+         inner join organizations o on uo.org_id = o.id
+         inner join organizations p on o.parent_id = p.id
          inner join accounts a on o.account_id = a.id
 where u.staff_id like '$1'
-order by a.name, o.name, g.Name, ug.role
+order by a.name, p.name, o.name, o.Name, o.type
 EOF
 }
 
@@ -276,6 +295,7 @@ select ua.id,
        ua.phone,
        ua.photoUrl,
        ua.failures,
+       ua.status,
        ua.lockout,
        ua.lastSigninAt,
        ua.registeredAt,
@@ -397,7 +417,7 @@ EOF
 
 
 function _dbausers_devices-deviceToken() {
-  mysqlsh --sql -u $_ARGUS_RDS_DB_AUTH_USER -h 127.0.0.1 -P $_ARGUS_RDS_DB_AUTH_LOCAL_PORT -D $_ARGUS_RDS_DB_AUTH_NAME --result-format=table << EOF 
+  mysqlsh --sql -u $_ARGUS_RDS_DB_AUTH_USER -h 127.0.0.1 -P $_ARGUS_RDS_DB_AUTH_LOCAL_PORT -D $_ARGUS_RDS_DB_AUTH_NAME --result-format=table << EOF
 select ua.staffid,
        ua.id userId,
        a.appid,
@@ -417,7 +437,7 @@ EOF
 }
 
 function _dbausers_devices() {
-  mysqlsh --sql -u $_ARGUS_RDS_DB_AUTH_USER -h 127.0.0.1 -P $_ARGUS_RDS_DB_AUTH_LOCAL_PORT -D $_ARGUS_RDS_DB_AUTH_NAME --result-format=table << EOF 
+  mysqlsh --sql -u $_ARGUS_RDS_DB_AUTH_USER -h 127.0.0.1 -P $_ARGUS_RDS_DB_AUTH_LOCAL_PORT -D $_ARGUS_RDS_DB_AUTH_NAME --result-format=table << EOF
 select ua.staffid,
        ua.id userId,
        a.appid,
