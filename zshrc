@@ -67,6 +67,7 @@ alias dvpn="networksetup -disconnectpppoeservice 'edo vpn'"
 
 # edit config file shortcuts
 alias zshrc='vim ~/.zshrc'
+alias zshgit='vim ~/.zsh_git_aliases'
 alias zshrds='vim ~/dotfiles/zsh_aws_rds'
 alias zshcw='vim ~/.zsh_aws_cloudwatch'
 alias zshc='vim ~/.zsh_aws_cognito'
