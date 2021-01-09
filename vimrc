@@ -170,8 +170,8 @@ map  / <Plug>(easymotion-sn)
 omap / <Plug>(easymotion-tn)
 
 "use easy motion's 2 character search
-nmap s <Plug>(easymotion-s2)
-nmap t <Plug>(easymotion-t2)
+" nmap s <Plug>(easymotion-s2)
+" nmap t <Plug>(easymotion-t2)
 
 " nmap s <Plug>(easymotion-s)
 
@@ -217,7 +217,17 @@ let g:airline_powerline_fonts = 1 "enable arrow separator
 let g:airline_theme='jellybeans'
 set encoding=utf-8 "to allow powerline fonts to work
 
+"git gutter---------------------------------------------------------------------->
+set updatetime=10 "show git diff markers in git gutter immediately
+function! GitStatus()
+  let [a,m,r] = GitGutterGetHunkSummary()
+  return printf('+%d ~%d -%d', a, m, r)
+endfunction
+set statusline+=%{GitStatus()}
 
 " add - as a keyword, so that when you asterisk search "upper-case", it
 " selects the whole word
 set isk+=-
+
+" prefer vertical splits when doing vimdiff
+set diffopt+=vertical
