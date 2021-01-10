@@ -65,6 +65,11 @@ alias runp="lsof -i " #eg runp :1234 tells you whether port 1234 is being used
 alias vpn="networksetup -connectpppoeservice 'edo vpn'"
 alias dvpn="networksetup -disconnectpppoeservice 'edo vpn'"
 
+# NODE ==========================================================================
+function ns() {
+  npm run serve_local
+}
+
 # edit config file shortcuts
 alias zshrc='vim ~/.zshrc'
 alias zshgit='vim ~/.zsh_git_aliases'
