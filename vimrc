@@ -1,23 +1,29 @@
   " Manage plugins with vim-plug.
   " => Plugins ======================================================================================================
   call plug#begin()
+
   Plug 'tpope/vim-fugitive' "git support
-  Plug 'tpope/vim-unimpaired' "git mappings for :Glog
+  Plug 'tpope/vim-unimpaired' "git mappings for :Glo, January 9 2021 Sundayg
   Plug 'shumphrey/fugitive-gitlab.vim' "enable Gbrowse for gitlab
-  Plug 'airblade/vim-gitgutter' "git gutter, show +/- in gutter
+  Plug 'stsewd/fzf-checkout.vim' "fzf git checkout
+
+  Plug 'christoomey/vim-run-interactive' "January 10 2021 Sunday
+
+  Plug 'airblade/vim-gitgutter' "git gutter, show +/- in gutter January 9 2021 Sunday 
   " Plug 'wikitopian/hardmode' "vim hard mode
   " autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode() "enable hard mode by default:v
 
   Plug 'junegunn/vim-plug' "help file for vim-plug
 
   Plug 'scrooloose/nerdtree' "file explorer
-  Plug 'ctrlpvim/ctrlp.vim'
+  " Plug 'ctrlpvim/ctrlp.vim'
 
   Plug 'easymotion/vim-easymotion'
   Plug 'haya14busa/vim-easyoperator-line' "easy motion for line operations
 " Plug 'haya14busa/vim-easyoperator-phrase' "easy motion for line operations
 
-"Plug 'junegunn/fzf', { 'dir': '~/fzf', 'do': './install --all' }
+Plug 'junegunn/fzf', { 'dir': '~/fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim', 
 "Plug 'alok/notational-fzf-vim' "june gunn vim plug :( not working
 Plug 'vimwiki/vimwiki' "20190628
 " Plug 'mattn/calendar-vim' "20190704
@@ -113,20 +119,69 @@ map <Leader> <Plug>(easymotion-prefix)
 " the map commands cannot be followed by an end of line comment because the " is interpreted as part of the rhs
 
 "WINDOW MANAGEMENT ====================================================================================================
+" Quicker window movement
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
+
 noremap <BS> :bprevious<cr>  " backspace is previous buffer
 noremap <S-BS> :bnext<cr>  " next buffer
-"CtrlP mappings
-nnoremap <C-b> :CtrlPBuffer<cr>  " Map CtrlP buffer mode to Ctrl + b
-nnoremap <C-j> :CtrlPMRU<cr>  " Map CtrlP MRU mode to Ctrl + j
+"CtrlP mappings - kill ctrlp, January 10 2021 Sunday, use fzf instead
+" nnoremap <C-b> :CtrlPBuffer<cr>  " Map CtrlP buffer mode to Ctrl + b
+" nnoremap <C-j> :CtrlPMRU<cr>  " Map CtrlP MRU mode to Ctrl + j
+
+" Map Ctrl + p to open fuzzy find (FZF)
+" ========== fzf vim January 10 2021 Sunday 
+nmap <leader>sr :Rg<cr>
+nnoremap <c-p> :Files<cr>
+nnoremap <c-b> :Buffers<cr>
+nmap <leader>sl :Lines<cr>
+nmap <leader>sbl :BLines<cr>
+
+"History
+nnoremap <c-h> :History<cr>
+"Command History
+nmap <leader>sh :History:<cr>
+"Search History
+nmap <leader>ss :History/<cr>
+
+"Actions
+nmap <leader>sc :Commands<cr>
+nmap <leader>sm :Maps<cr>
+nmap <leader>sk :Marks<cr>
+
+
+" Git ---------------------------------
+nmap <leader>sgc :Commits<cr>
+nmap <leader>sbc :BCommits<cr>
+"git ls-files
+nmap <leader>sgf :GFiles<cr>
+"git status
+nmap <leader>sgs :GFiles?<cr>
+" ---------------------------------
+
+nmap <leader>st :Tags<cr>
+nmap <leader>sbt :BTags<cr>
+" ========== fzf vim January 10 2021 Sunday - END
+
+
 "quickfix
-nnoremap n :cn<cr> " map alt n to next in quickfix list 
-nnoremap p :cp<cr> " map alt p to next in quickfix list 
+nnoremap n :cn<cr> " map alt n to next in quickfix list (this only works in iterm, not in mvim) 
+" nnoremap ˜ :cn<cr> " map alt n to next in quickfix list (this only works in mvim) 
+nnoremap p :cp<cr> " map alt p to next in quickfix list (this only works in iterm, not in mvim)
+nnoremap π :cp<cr> " map alt n to next in quickfix list (this only works in mvim) 
 "buffers
 :nnoremap <Leader>q :Bdelete<CR> " close the current buffer
 "====================================================================================================
 
+" Run commands that require an interactive shell
+nnoremap <Leader>r :RunInInteractiveShell<Space> "January 10 2021 Sunday 
+
+"uses fzf vim :Helptags
+noremap <F1> :Helptags <cr>
 noremap <F2> :w <cr>
-noremap <F3> :e $MYVIMRC<cr>
+noremap <F3> :e ~/dotfiles/vimrc<cr>
 nmap <F4> i<C-R>=strftime("%B %d %Y %A")<CR><Esc>
 noremap <f5> :GundoToggle<cr>  " Map Gundo to <F5>.
 noremap <F6> :setlocal spell! spelllang=en_gb<CR> " Toggle Spellcheck
@@ -247,6 +302,24 @@ nmap <leader>gp :Git pull<cr>
 nmap <leader>gP :Git push<cr>
 nmap <leader>gs :Gstatus<cr>
 nmap <leader>gw :Gbrowse<cr>
+
+"conflict resolution
+nmap <leader>gh :diffget //3<CR> "get right side, h is on the right in dvorak
+nmap <leader>gu :diffget //2<CR> "get left side, h is on the left in dvorak
+
+"Git
+nmap <leader>gr :GBranches<CR>
+"---------------------------------------------------------------------->
+
+" fzf checkout? ------------------------------------------------------>
+let g:fzf_layout = { 'window': {'width': 0.8, 'height': 0.8} }
+
+"ctrl t to checkout remote branch
+let g:fzf_branch_actions = {
+      \ 'track': {'keymap': 'ctrl-t'},
+      \}
+" ------------------------------------------------------>
+
 
 " add - as a keyword, so that when you asterisk search "upper-case", it
 " selects the whole word
