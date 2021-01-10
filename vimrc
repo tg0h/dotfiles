@@ -312,7 +312,10 @@ nmap <leader>gr :GBranches<CR>
 "---------------------------------------------------------------------->
 
 " fzf checkout? ------------------------------------------------------>
-let g:fzf_layout = { 'window': {'width': 0.8, 'height': 0.8} }
+" [[B]Commits] Customize the options used by 'git log':
+let g:fzf_commits_log_options = "--date=human --graph --color=always --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset %C(yellow)%ar%Creset'"
+
+let g:fzf_layout = { 'window': {'width': 0.95, 'height': 0.95} }
 
 "ctrl t to checkout remote branch
 let g:fzf_branch_actions = {
