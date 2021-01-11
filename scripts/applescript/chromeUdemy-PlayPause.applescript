@@ -12,7 +12,7 @@ tell application "Google Chrome"
 				tell the_tab
                     -- look for the play button
 					execute javascript "var udemyPlayButton = document.querySelector('button[data-purpose|=video-play');"
-					execute javascript "var udemyVideo = document.querySelector('udemyVideo');"
+					execute javascript "var udemyVideo = document.querySelector('video');"
 
 					execute javascript "var youtubePlayButton = document.querySelector('button.ytp-play-button');"
                     
