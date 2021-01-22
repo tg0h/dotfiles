@@ -20,6 +20,7 @@
     ~/.zshrc: zshrc
     ~/.zsh_autosuggestions: zsh_autosuggestions
     ~/.zsh_autocomplete: zsh_autocomplete
+    ~/.zsh_aws_calltree: zsh_aws_calltree
     ~/.zsh_aws_cloudwatch: zsh_aws_cloudwatch
     ~/.zsh_aws_rds: zsh_aws_rds
     ~/.zsh_aws_cognito: zsh_aws_cognito
