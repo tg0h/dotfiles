@@ -10,9 +10,11 @@ tell application "Google Chrome"
 		repeat with the_tab in tab_list
 			if the title of the_tab contains "Udemy" 
 				tell the_tab
+					-- problem: playing the video does not dismiss the button from the screen if the button is already present
 					execute javascript "var udemyPlayButton = document.querySelector('button[data-purpose|=video-play');"
 					execute javascript "var udemyVideo = document.querySelector('video');"
-					execute javascript "udemyPlayButton ? udemyPlayButton.click() : udemyVideo.pause()"
+
+					execute javascript "udemyPlayButton ? udemyPlayButton.click(): (udemyVideo.paused ? udemyVideo.play() : udemyVideo.pause()) "
 				end tell
 				set found_video to true
 				exit repeat
