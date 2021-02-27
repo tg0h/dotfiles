@@ -77,6 +77,9 @@ clogs () {
   # awslogs get  /aws/lambda/Certify-SapSync-prod -s '29/9/2020' -e '30/9/2020' 
   awslogs get  /aws/lambda/Certify-ScheduledSync-prod -s $1 -e $2
 }
+function cpatche(){
+cpatch $1 > $1.csv && vim $1.csv
+}
 
 function cpatch(){
   while getopts 'r' opt; do
