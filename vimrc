@@ -120,8 +120,10 @@ map <Leader> <Plug>(easymotion-prefix)
 
 "WINDOW MANAGEMENT ====================================================================================================
 " Quicker window movement
+"not sure why ctrl j does not work
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
+"need to change fzf ctrl h mapping
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 
