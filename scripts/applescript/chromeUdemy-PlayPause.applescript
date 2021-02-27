@@ -15,6 +15,8 @@ tell application "Google Chrome"
 					execute javascript "var udemyVideo = document.querySelector('video');"
 
 					execute javascript "udemyPlayButton ? udemyPlayButton.click(): (udemyVideo.paused ? udemyVideo.play() : udemyVideo.pause()) "
+					execute javascript "udemyPlayButton.click()"
+					-- display dialog "Hello World"
 				end tell
 				set found_video to true
 				exit repeat
