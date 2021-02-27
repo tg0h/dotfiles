@@ -48,8 +48,8 @@ bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 
 # alias
-# alias tts="source $HOME/dotfiles/scripts/scratch"
-# alias ttt="vim $HOME/dotfiles/scripts/scratch"
+alias ee="source $HOME/dotfiles/scripts/scratch"
+alias eee="vim $HOME/dotfiles/scripts/scratch"
 
 alias j=jira
 alias ag="alias | grep"
@@ -67,7 +67,66 @@ alias dvpn="networksetup -disconnectpppoeservice 'edo vpn'"
 
 # NODE ==========================================================================
 function ns() {
+  open http://localhost:4200
   npm run serve_local
+}
+function nt() { nvm use 10 }
+function ntt() { nvm use 14 }
+
+# ADB ==========================================================================
+function aip() {
+  adb -d shell ip route
+}
+function atcp() {
+  adb -d tcpip 5555
+}
+function acon() {
+  # adb -d tcpip 5555
+  adb -d connect 192.168.1.$1:5555
+  # scrcpy -s 192.168.1.$1:5555
+}
+
+function ashow() {
+  adb -d tcpip 5555
+  adb -d connect 192.168.1.$1:5555
+  scrcpy -s 192.168.1.$1:5555
+}
+
+
+#what are the pids of the argus app?
+function ads() {
+  adb shell ps | rg argus
+}
+
+#pass a pid to logcat
+function adl() {
+  adb logcat --pid $1 -v time -v color
+}
+
+#run logcat immediately
+function adll() {
+  local loglevel=v
+  local regex=".*" #default
+
+  while getopts 'l:e:' opt; do
+    case "$opt" in
+      l) loglevel=$OPTARG ;;
+      e) regex=$OPTARG ;;
+    esac
+  done
+  shift $(($OPTIND - 1))
+
+  local pid=$(ads | gawk 'NR==1{print $2}')
+
+  echo connecting to pid $pid with regex $regex
+  adb logcat "*:$loglevel" --pid $pid -v time -v color -e $regex
+}
+
+
+
+# SCRCPY ==========================================================================
+function sc() {
+  scrcpy -s 192.168.1.$1:5555
 }
 
 # edit config file shortcuts
@@ -76,6 +135,7 @@ alias zshgit='vim ~/.zsh_git_aliases'
 alias zshrds='vim ~/dotfiles/zsh_aws_rds'
 alias zshcw='vim ~/.zsh_aws_cloudwatch'
 alias zshc='vim ~/.zsh_aws_cognito'
+alias zshct='vim ~/.zsh_aws_calltree'
 
 # rg shortcuts
 function rgs(){ rg $1 --sortr created }
@@ -92,6 +152,7 @@ complete -C '/usr/local/bin/aws_completer' aws # enable aws completion - https:/
 export PATH="/usr/local/mysql/bin:$PATH" # add my sql to path
 export PATH="/usr/local/opt/sqlite/bin:$PATH" # add homebrew sqlite3 to path (do not use macos sqlite which is an older version)
 export PATH="$PATH:/Users/tim/dev/tools/flutter/bin" # add flutter
+export PATH="$PATH:/Users/tim/Library/Android/sdk/emulator" # add android emulator
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh #source fzf after the vim keymap so fzf shortcuts take precedence
 . ~/.zsh_autosuggestions
 . ~/.zsh_autocomplete
@@ -106,6 +167,7 @@ export PATH="$PATH:/Users/tim/dev/tools/flutter/bin" # add flutter
 . ~/.zsh_aws_rds
 . ~/.zsh_aws_cloudwatch
 . ~/.zsh_aws_cognito
+. ~/.zsh_aws_calltree
 
 fpath+=~/.zsh_functions #add our own zsh functions directory to fpath
 autoload -Uz ~/.zsh_functions/*(.) #-U supress alias expansion, -z zsh style function loading. (.) - glob qualifier. dot means show regular files only
