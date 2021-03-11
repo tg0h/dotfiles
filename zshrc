@@ -92,6 +92,14 @@ function ashow() {
   scrcpy -s 192.168.1.$1:5555
 }
 
+#what are my devices
+function add() {
+  adb devices
+}
+
+function adi() {
+  adb -s 192.168.1.$1:5555 install $2
+}
 
 #what are the pids of the argus app?
 function ads() {
@@ -99,26 +107,46 @@ function ads() {
 }
 
 #pass a pid to logcat
-function adl() {
+function adll() {
   adb logcat --pid $1 -v time -v color
 }
 
 #run logcat immediately
-function adll() {
+# -a - which app d,s,p or fd,fs,fp
+# -e - regex to search message
+# -l - which log level v,d,i,w,e,f
+function adl() {
   local loglevel=v
   local regex=".*" #default
+  local app=""
 
-  while getopts 'l:e:' opt; do
+  while getopts 'l:e:a:' opt; do
     case "$opt" in
       l) loglevel=$OPTARG ;;
       e) regex=$OPTARG ;;
+      a) app=$OPTARG 
+        case "$app" in
+          d) appId="com.certis.argus.apps.officer.dev";;
+          s) appId="com.certis.argus.apps.officer.staging";;
+          p) appId="com.certis.argus.apps.officer$";; #prod - regex checks for end of string
+          fd) appId="com.certisgroup.argus.apps.officer.dev";; #flutter dev
+          fs) appId="com.certisgroup.argus.apps.officer.staging";; #flutter staging
+          fp) appId="com.certisgroup.argus.apps.officer$";; #flutter prod
+        esac
+        ;;
     esac
   done
   shift $(($OPTIND - 1))
 
-  local pid=$(ads | gawk 'NR==1{print $2}')
+  #if -a app argument not given, get the pid of the first app named argus 
+  if [[ -z "$appId" ]]
+  then
+    appId="argus"
+  fi
 
-  echo connecting to pid $pid with regex $regex
+  local pid=$(adb shell ps | rg $appId | gawk 'NR==1{print $2}')
+
+  echo connecting to app $appId with pid $pid with regex $regex
   adb logcat "*:$loglevel" --pid $pid -v time -v color -e $regex
 }
 
