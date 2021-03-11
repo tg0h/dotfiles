@@ -1,6 +1,7 @@
 # ignore vim plugs
 vim/plugged
 vim/view
+vim/pack
 
 #ignore vim swp files
 *.swp
