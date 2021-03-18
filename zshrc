@@ -101,6 +101,11 @@ function adi() {
   adb -s 192.168.1.$1:5555 install $2
 }
 
+# install ios ipa
+function idi() {
+  ideviceinstaller -i $1
+}
+
 #what are the pids of the argus app?
 function ads() {
   adb shell ps | rg argus
@@ -158,6 +163,9 @@ function sc() {
 }
 
 # edit config file shortcuts
+alias zsha='vim ~/.zsh_android'
+alias zshi='vim ~/.zsh_ios'
+
 alias zshrc='vim ~/.zshrc'
 alias zshgit='vim ~/.zsh_git_aliases'
 alias zshrds='vim ~/dotfiles/zsh_aws_rds'
@@ -181,7 +189,9 @@ export PATH="/usr/local/mysql/bin:$PATH" # add my sql to path
 export PATH="/usr/local/opt/sqlite/bin:$PATH" # add homebrew sqlite3 to path (do not use macos sqlite which is an older version)
 export PATH="$PATH:/Users/tim/dev/tools/flutter/bin" # add flutter
 export PATH="$PATH:/Users/tim/Library/Android/sdk/emulator" # add android emulator
+# export PATH="$PATH:/Users/tim/Library/Android/sdk/tools/bin" # add android emulator
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh #source fzf after the vim keymap so fzf shortcuts take precedence
+
 . ~/.zsh_autosuggestions
 . ~/.zsh_autocomplete
 . ~/.zsh_docker_aliases
@@ -192,6 +202,8 @@ export PATH="$PATH:/Users/tim/Library/Android/sdk/emulator" # add android emulat
 . ~/.zsh_toggl_aliases
 
 # my functions
+. ~/.zsh_ios
+. ~/.zsh_android
 . ~/.zsh_aws_rds
 . ~/.zsh_aws_cloudwatch
 . ~/.zsh_aws_cognito

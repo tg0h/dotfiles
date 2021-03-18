@@ -18,6 +18,7 @@
     ~/.vim: vim
     ~/.vimrc: vimrc
     ~/.zshrc: zshrc
+    ~/.zsh_android: zsh_android
     ~/.zsh_autosuggestions: zsh_autosuggestions
     ~/.zsh_autocomplete: zsh_autocomplete
     ~/.zsh_aws_calltree: zsh_aws_calltree
@@ -30,6 +31,7 @@
     ~/.zsh_fzf: zsh_fzf
     ~/.zsh_fzf_git: zsh_fzf_git
     ~/.zsh_git_aliases: zsh_git_aliases
+    ~/.zsh_ios: zsh_ios
     ~/.zsh_jira: zsh_jira
     ~/.zsh_toggl_aliases: zsh_toggl_aliases
     ~/.zsh_powerlevel9k: zsh_powerlevel9k
