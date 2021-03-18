@@ -1,0 +1,5 @@
+#
+# install ios ipa
+function idi() {
+  ideviceinstaller -i $1
+}
