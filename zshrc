@@ -47,32 +47,6 @@ bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 
-# alias
-alias ee="source $HOME/dotfiles/scripts/scratch"
-alias eee="vim $HOME/dotfiles/scripts/scratch"
-
-alias j=jira
-alias ag="alias | grep"
-alias sg="set | grep"
-alias fork="open . -a /Applications/Fork.app"
-alias topten="history | commands | sort -rn | head"
-alias myip="curl http://ipecho.net/plain; echo"
-alias dirs='dirs -v | head -10'
-alias usage='du -h -d1'
-# alias update="source ~/.zshrc" #doesn't work - complains about some fd error
-alias sshdir="cd ~/.ssh"
-alias runp="lsof -i " #eg runp :1234 tells you whether port 1234 is being used
-alias vpn="networksetup -connectpppoeservice 'edo vpn'"
-alias dvpn="networksetup -disconnectpppoeservice 'edo vpn'"
-
-# NODE ==========================================================================
-function ns() {
-  open http://localhost:4200
-  npm run serve_local
-}
-function nt() { nvm use 10 }
-function ntt() { nvm use 14 }
-# NODE ==========================================================================
 
 # edit config file shortcuts
 alias zshrc='vim ~/.zshrc'
@@ -80,6 +54,7 @@ alias zshaa='vim ~/.zsh_aliases'
 
 alias zsha='vim ~/.zsh_android'
 alias zshi='vim ~/.zsh_ios'
+alias zshn='vim ~/.zsh_node'
 alias zshg='vim ~/.zsh_gitlab'
 
 alias zshgit='vim ~/.zsh_git_aliases'
@@ -115,6 +90,7 @@ export PATH="$PATH:/Users/tim/Library/Android/sdk/emulator" # add android emulat
 . ~/.zsh_fzf_git
 . ~/.zsh_git_aliases
 . ~/.zsh_jira
+. ~/.zsh_node
 . ~/.zsh_toggl_aliases
 
 # my functions

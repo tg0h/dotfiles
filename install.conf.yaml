@@ -34,6 +34,7 @@
     ~/.zsh_gitlab: zsh_gitlab
     ~/.zsh_ios: zsh_ios
     ~/.zsh_jira: zsh_jira
+    ~/.zsh_node: zsh_node
     ~/.zsh_toggl_aliases: zsh_toggl_aliases
     ~/.zsh_powerlevel9k: zsh_powerlevel9k
 
