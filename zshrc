@@ -72,12 +72,15 @@ function ns() {
 }
 function nt() { nvm use 10 }
 function ntt() { nvm use 14 }
+# NODE ==========================================================================
 
 # edit config file shortcuts
+alias zshrc='vim ~/.zshrc'
+
 alias zsha='vim ~/.zsh_android'
 alias zshi='vim ~/.zsh_ios'
+alias zshg='vim ~/.zsh_gitlab'
 
-alias zshrc='vim ~/.zshrc'
 alias zshgit='vim ~/.zsh_git_aliases'
 alias zshrds='vim ~/dotfiles/zsh_aws_rds'
 alias zshcw='vim ~/.zsh_aws_cloudwatch'
@@ -116,6 +119,7 @@ export PATH="$PATH:/Users/tim/Library/Android/sdk/emulator" # add android emulat
 . ~/.env
 . ~/.zsh_ios
 . ~/.zsh_android
+. ~/.zsh_gitlab
 
 . ~/.zsh_aws_rds
 . ~/.zsh_aws_cloudwatch

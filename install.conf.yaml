@@ -33,6 +33,7 @@
     ~/.zsh_fzf: zsh_fzf
     ~/.zsh_fzf_git: zsh_fzf_git
     ~/.zsh_git_aliases: zsh_git_aliases
+    ~/.zsh_gitlab: zsh_gitlab
     ~/.zsh_ios: zsh_ios
     ~/.zsh_jira: zsh_jira
     ~/.zsh_toggl_aliases: zsh_toggl_aliases

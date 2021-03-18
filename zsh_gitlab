@@ -1,0 +1,26 @@
+# get pipelines
+function ggp() {
+  # -b prints the body only
+  #download job artifacts from argus officer flutter
+  https -b git.ads.certis.site/api/v4/projects/202/pipelines "PRIVATE-TOKEN: $GITLAB_PRIVATE_TOKEN" | \
+    jq '.[0:19][] | select(.status =="success") | {id,ref,created_at}'
+}
+
+#get pipeline jobs
+function ggpj() {
+  #provide pipeline id
+  # -b prints the body only
+  #download job artifacts from argus officer flutter
+  https -b git.ads.certis.site/api/v4/projects/202/pipelines/$1/jobs "PRIVATE-TOKEN: $GITLAB_PRIVATE_TOKEN" | \
+    jq '.[] | {"id": ((.id|tostring) + " - " + .status),"stage name ref": (.stage + " - " + .name + " - " + .ref + " - " + .created_at), "user": (.user.name + " - " + .commit.message), "fileformat": .artifacts[0].file_format}'
+}
+
+
+#download job artifacts
+function ggd() {
+  # -b prints the body only
+  #download job artifacts from argus officer flutter
+  # unzip -j unzips all files into current directory
+  https -b git.ads.certis.site/api/v4/projects/202/jobs/$1/artifacts "PRIVATE-TOKEN: $GITLAB_PRIVATE_TOKEN" \
+    > argus.zip && unzip -j argus.zip
+}
