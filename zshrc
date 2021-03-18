@@ -76,6 +76,7 @@ function ntt() { nvm use 14 }
 
 # edit config file shortcuts
 alias zshrc='vim ~/.zshrc'
+alias zshaa='vim ~/.zsh_aliases'
 
 alias zsha='vim ~/.zsh_android'
 alias zshi='vim ~/.zsh_ios'
@@ -106,6 +107,7 @@ export PATH="$PATH:/Users/tim/Library/Android/sdk/emulator" # add android emulat
 # export PATH="$PATH:/Users/tim/Library/Android/sdk/tools/bin" # add android emulator
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh #source fzf after the vim keymap so fzf shortcuts take precedence
 
+. ~/.zsh_aliases
 . ~/.zsh_autosuggestions
 . ~/.zsh_autocomplete
 . ~/.zsh_docker_aliases

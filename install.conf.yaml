@@ -27,17 +27,19 @@
     ~/.zsh_aws_cloudwatch: zsh_aws_cloudwatch
     ~/.zsh_aws_rds: zsh_aws_rds
     ~/.zsh_aws_cognito: zsh_aws_cognito
-    ~/.zsh_docker_aliases: zsh_docker_aliases
     ~/.zsh_functions: zsh_functions/ #autoload function directory
     ~/.zsh_funcs: zsh_funcs
     ~/.zsh_fzf: zsh_fzf
     ~/.zsh_fzf_git: zsh_fzf_git
-    ~/.zsh_git_aliases: zsh_git_aliases
     ~/.zsh_gitlab: zsh_gitlab
     ~/.zsh_ios: zsh_ios
     ~/.zsh_jira: zsh_jira
     ~/.zsh_toggl_aliases: zsh_toggl_aliases
     ~/.zsh_powerlevel9k: zsh_powerlevel9k
+
+    ~/.zsh_aliases: zsh_aliases
+    ~/.zsh_git_aliases: zsh_git_aliases
+    ~/.zsh_docker_aliases: zsh_docker_aliases
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
