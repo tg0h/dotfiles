@@ -27,7 +27,7 @@ source $ZSH/oh-my-zsh.sh
 # zsh vim mode settings
 bindkey -v #use vim keymap for the zsh line editor - set vim key map first to allow other plugins to override keymap
 export KEYTIMEOUT=1 # Make Vi mode transitions faster (KEYTIMEOUT is in hundredths of a second)
-bindkey -M vicmd "^V" edit-command-line # `v` is already mapped to visual mode, so we need to use a different key
+# bindkey -M vicmd "^V" edit-command-line # `v` is already mapped to visual mode, so we need to use a different key
 # use hjkl to navigate zsh autocomplete menu
 zmodload zsh/complist
 bindkey -M menuselect 'h' vi-backward-char
