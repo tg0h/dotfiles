@@ -1,5 +1,4 @@
 export ZSH="/Users/tim/.oh-my-zsh"
-
 # set up p10k prompt
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
@@ -13,24 +12,13 @@ HIST_STAMPS="yyyy-mm-dd" # set up zsh history command date time format
 # plugins
 plugins=(
   zsh-nvm #add at the top so other plugins that use node/npm can work
-  adb
-  aws
-  colored-man-pages
-  docker
-  dotenv #source the .env file in the root dir when you cd into it
-  git
-  git-auto-fetch
-  gitignore
-  jira #jira from command line
+  adb aws colored-man-pages docker dotenv #source the .env file in the root dir when you cd into it
+  git git-auto-fetch gitignore jira #jira from command line
   last-working-dir #lwd
-  npm
-  osx
-  timer
+  npm osx timer
   # vi-mode #interferes with prompt displaying modes, ctrl key special chars
   # web-search #google from command line
-  zsh-autosuggestions
-  zsh-autocomplete
-  z
+  zsh-autosuggestions zsh-autocomplete z
   zsh-syntax-highlighting #source this at the end for syntax highlighting to work
 )
 source $ZSH/oh-my-zsh.sh
@@ -46,29 +34,6 @@ bindkey -M menuselect 'h' vi-backward-char
 bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
-
-
-# edit config file shortcuts
-alias zshrc='vim ~/.zshrc'
-alias zshaa='vim ~/.zsh_aliases'
-
-alias zsha='vim ~/.zsh_android'
-alias zshi='vim ~/.zsh_ios'
-alias zshn='vim ~/.zsh_node'
-alias zshg='vim ~/.zsh_gitlab'
-
-alias zshgit='vim ~/.zsh_git_aliases'
-alias zshrds='vim ~/dotfiles/zsh_aws_rds'
-alias zshcw='vim ~/.zsh_aws_cloudwatch'
-alias zshc='vim ~/.zsh_aws_cognito'
-alias zshct='vim ~/.zsh_aws_calltree'
-
-# rg shortcuts
-function rgs(){ rg $1 --sortr created }
-
-function ffm() {
-  ffmpeg -i $1 -vcodec libx265 -crf 28 "$1"-out.mp4
-}
 
 #zsh does not word split param expansions https://stackoverflow.com/questions/16200142/zsh-parameter-expansion-inserting-quotes
 # setopt sh_word_split #turn on param expansion word split - this disables zsh autocompletion
