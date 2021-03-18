@@ -3,6 +3,9 @@
 # git update-index --no-assume-unchanged path/to/file
 scripts/scratch
 
+#ignore env secrets
+env
+
 # ignore vim plugs
 vim/plugged
 vim/view

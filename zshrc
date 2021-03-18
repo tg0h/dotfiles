@@ -202,8 +202,10 @@ export PATH="$PATH:/Users/tim/Library/Android/sdk/emulator" # add android emulat
 . ~/.zsh_toggl_aliases
 
 # my functions
+. ~/.env
 . ~/.zsh_ios
 . ~/.zsh_android
+
 . ~/.zsh_aws_rds
 . ~/.zsh_aws_cloudwatch
 . ~/.zsh_aws_cognito

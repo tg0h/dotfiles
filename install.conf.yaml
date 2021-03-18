@@ -9,6 +9,8 @@
     ~/.dotfiles: ''
     ~/scripts: scripts/
 
+    ~/.env: env
+
     ~/.gitconfig: gitconfig
     ~/.gitignore_global: gitignore_global
     ~/.mutt/muttrc : muttrc #mail client
