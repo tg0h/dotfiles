@@ -3,6 +3,7 @@
 alias zshrc='vim ~/.zshrc'
 alias zshaa='vim ~/.zsh_aliases'
 alias zshf='vim ~/.zsh_funcs' #misc functions, use zsh_functions folder for more organization
+alias zshe='vim ~/.env'
 
 alias zsha='vim ~/.zsh_android'
 alias zshi='vim ~/.zsh_ios'
