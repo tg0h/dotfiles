@@ -1,9 +1,10 @@
-# get pipelines
 function ggp() {
   # -b prints the body only
+  # jq -r -- print raw output without double quotes
   #download job artifacts from argus officer flutter
   https -b git.ads.certis.site/api/v4/projects/202/pipelines "PRIVATE-TOKEN: $GITLAB_PRIVATE_TOKEN" | \
-    jq '.[0:19][] | select(.status =="success") | {id,ref,created_at}'
+    # jq '.[0:19][] | select(.status =="success") | {id,"ref create_at": (.ref + " - " + .created_at)}'
+    jq -r '.[0:19][] | select(.status =="success") | ((.id|tostring) + " - " + .ref + " - " + .created_at)'
 }
 
 #get pipeline jobs
