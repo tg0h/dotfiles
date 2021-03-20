@@ -1,6 +1,18 @@
 # install ios ipa
+
+function idd() {
+  idevice_id
+}
+
 function idi() {
-  ideviceinstaller -i $1
+  # while getopts 'l:e:a:ds:' opt; do
+  #   case "$opt" in
+  #     d) usbMode="-d" ;;
+  #   esac
+  # done
+  # shift $(($OPTIND - 1))
+
+  ideviceinstaller -n -i $1
 }
 
 # run logs
