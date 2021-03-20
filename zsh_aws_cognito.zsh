@@ -110,7 +110,7 @@ function cpatch(){
 # eg ccreate -n 'timmy' 125391
 function ccreate() {
   local handphone="+***REMOVED***" #default
-  local email="***REMOVED***" #default
+  local email="dasonteuh@hotmail.com" #default
   local name="Timtesty" #default
 
   while getopts 'e:p:n:' opt; do
@@ -140,7 +140,7 @@ function ccreate() {
      Name=custom:staff_type,Value="O0001" \
      Name=custom:employment_status,Value="3" \
      Name=custom:working_home,Value="C100" \
-     Name=custom:personal_email,Value="timothySL_goh@certisgroup.COM" \
+     Name=custom:personal_email,Value="$email" \
      Name=custom:legal_home,Value="C400" \
      Name=custom:join_date,Value="20191111"\
   }

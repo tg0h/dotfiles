@@ -20,27 +20,27 @@
     ~/.vim: vim
     ~/.vimrc: vimrc
     ~/.zshrc: zshrc
-    ~/.zsh_android: zsh_android
-    ~/.zsh_autosuggestions: zsh_autosuggestions
-    ~/.zsh_autocomplete: zsh_autocomplete
-    ~/.zsh_aws_calltree: zsh_aws_calltree
-    ~/.zsh_aws_cloudwatch: zsh_aws_cloudwatch
-    ~/.zsh_aws_rds: zsh_aws_rds
-    ~/.zsh_aws_cognito: zsh_aws_cognito
+    ~/.zsh_android.zsh: zsh_android.zsh
+    ~/.zsh_autosuggestions.zsh: zsh_autosuggestions.zsh
+    ~/.zsh_autocomplete.zsh: zsh_autocomplete.zsh
+    ~/.zsh_aws_calltree.zsh: zsh_aws_calltree.zsh
+    ~/.zsh_aws_cloudwatch.zsh: zsh_aws_cloudwatch.zsh
+    ~/.zsh_aws_rds.zsh: zsh_aws_rds.zsh
+    ~/.zsh_aws_cognito.zsh: zsh_aws_cognito.zsh
     ~/.zsh_functions: zsh_functions/ #autoload function directory
-    ~/.zsh_funcs: zsh_funcs
-    ~/.zsh_fzf: zsh_fzf
-    ~/.zsh_fzf_git: zsh_fzf_git
-    ~/.zsh_gitlab: zsh_gitlab
-    ~/.zsh_ios: zsh_ios
-    ~/.zsh_jira: zsh_jira
-    ~/.zsh_node: zsh_node
-    ~/.zsh_toggl_aliases: zsh_toggl_aliases
-    ~/.zsh_powerlevel9k: zsh_powerlevel9k
+    ~/.zsh_funcs.zsh: zsh_funcs.zsh
+    ~/.zsh_fzf.zsh: zsh_fzf.zsh
+    ~/.zsh_fzf_git.zsh: zsh_fzf_git.zsh
+    ~/.zsh_gitlab.zsh: zsh_gitlab.zsh
+    ~/.zsh_ios.zsh: zsh_ios.zsh
+    ~/.zsh_jira.zsh: zsh_jira.zsh
+    ~/.zsh_node.zsh: zsh_node.zsh
+    ~/.zsh_toggl_aliases.zsh: zsh_toggl_aliases.zsh
+    ~/.zsh_powerlevel9k.zsh: zsh_powerlevel9k.zsh
 
-    ~/.zsh_aliases: zsh_aliases
-    ~/.zsh_git_aliases: zsh_git_aliases
-    ~/.zsh_docker_aliases: zsh_docker_aliases
+    ~/.zsh_aliases.zsh: zsh_aliases.zsh
+    ~/.zsh_git_aliases.zsh: zsh_git_aliases.zsh
+    ~/.zsh_docker_aliases.zsh: zsh_docker_aliases.zsh
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]

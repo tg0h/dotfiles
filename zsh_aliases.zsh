@@ -1,20 +1,20 @@
 # =========================================================================
 # edit config file shortcuts
 alias zshrc='vim ~/.zshrc'
-alias zshaa='vim ~/.zsh_aliases'
-alias zshf='vim ~/.zsh_funcs' #misc functions, use zsh_functions folder for more organization
+alias zshaa='vim ~/.zsh_aliases.zsh'
+alias zshf='vim ~/.zsh_funcs.zsh' #misc functions, use zsh_functions folder for more organization
 alias zshe='vim ~/.env'
 
-alias zsha='vim ~/.zsh_android'
-alias zshi='vim ~/.zsh_ios'
-alias zshn='vim ~/.zsh_node'
-alias zshg='vim ~/.zsh_gitlab'
+alias zsha='vim ~/.zsh_android.zsh'
+alias zshi='vim ~/.zsh_ios.zsh'
+alias zshn='vim ~/.zsh_node.zsh'
+alias zshg='vim ~/.zsh_gitlab.zsh'
 
-alias zshgit='vim ~/.zsh_git_aliases'
-alias zshrds='vim ~/dotfiles/zsh_aws_rds'
-alias zshcw='vim ~/.zsh_aws_cloudwatch'
-alias zshc='vim ~/.zsh_aws_cognito'
-alias zshct='vim ~/.zsh_aws_calltree'
+alias zshgit='vim ~/.zsh_git_aliases.zsh'
+alias zshrds='vim ~/zsh_aws_rds.zsh'
+alias zshcw='vim ~/.zsh_aws_cloudwatch.zsh'
+alias zshc='vim ~/.zsh_aws_cognito.zsh'
+alias zshct='vim ~/.zsh_aws_calltree.zsh'
 
 
 # others ====================================================================

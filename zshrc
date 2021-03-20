@@ -47,30 +47,30 @@ export PATH="$PATH:/Users/tim/Library/Android/sdk/emulator" # add android emulat
 # export PATH="$PATH:/Users/tim/Library/Android/sdk/tools/bin" # add android emulator
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh #source fzf after the vim keymap so fzf shortcuts take precedence
 
-. ~/.zsh_aliases
-. ~/.zsh_autosuggestions
-. ~/.zsh_autocomplete
-. ~/.zsh_docker_aliases
-. ~/.zsh_fzf
-. ~/.zsh_fzf_git
-. ~/.zsh_git_aliases
-. ~/.zsh_jira
-. ~/.zsh_node
-. ~/.zsh_toggl_aliases
+. ~/.zsh_aliases.zsh
+. ~/.zsh_autosuggestions.zsh
+. ~/.zsh_autocomplete.zsh
+. ~/.zsh_docker_aliases.zsh
+. ~/.zsh_fzf.zsh
+. ~/.zsh_fzf_git.zsh
+. ~/.zsh_git_aliases.zsh
+. ~/.zsh_jira.zsh
+. ~/.zsh_node.zsh
+. ~/.zsh_toggl_aliases.zsh
 
 # my functions
 . ~/.env
-. ~/.zsh_ios
-. ~/.zsh_android
-. ~/.zsh_gitlab
+. ~/.zsh_ios.zsh
+. ~/.zsh_android.zsh
+. ~/.zsh_gitlab.zsh
 
-. ~/.zsh_aws_rds
-. ~/.zsh_aws_cloudwatch
-. ~/.zsh_aws_cognito
-. ~/.zsh_aws_calltree
+. ~/.zsh_aws_rds.zsh
+. ~/.zsh_aws_cloudwatch.zsh
+. ~/.zsh_aws_cognito.zsh
+. ~/.zsh_aws_calltree.zsh
 
 fpath+=~/.zsh_functions #add our own zsh functions directory to fpath
 autoload -Uz ~/.zsh_functions/*(.) #-U supress alias expansion, -z zsh style function loading. (.) - glob qualifier. dot means show regular files only
-. ~/.zsh_funcs #get all my functions
+. ~/.zsh_funcs.zsh #get all my functions
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
