@@ -1,25 +1,27 @@
-  " Manage plugins with vim-plug.
-  " => Plugins ======================================================================================================
-  call plug#begin()
+" Manage plugins with vim-plug.
+" => Plugins ======================================================================================================
+call plug#begin()
+" Plug 'bluz71/vim-nightfly-guicolors'
+Plug 'agude/vim-eldar' "vim color scheme - courtesy alexgude.com/blog/vim-eldar/
 
-  Plug 'tpope/vim-fugitive' "git support
-  Plug 'tpope/vim-unimpaired' "git mappings for :Glo, January 9 2021 Sundayg
-  Plug 'shumphrey/fugitive-gitlab.vim' "enable Gbrowse for gitlab
-  Plug 'stsewd/fzf-checkout.vim' "fzf git checkout
+Plug 'tpope/vim-fugitive' "git support
+Plug 'tpope/vim-unimpaired' "git mappings for :Glo, January 9 2021 Sundayg
+Plug 'shumphrey/fugitive-gitlab.vim' "enable Gbrowse for gitlab
+Plug 'stsewd/fzf-checkout.vim' "fzf git checkout
 
-  Plug 'christoomey/vim-run-interactive' "January 10 2021 Sunday
+Plug 'christoomey/vim-run-interactive' "January 10 2021 Sunday
 
-  Plug 'airblade/vim-gitgutter' "git gutter, show +/- in gutter January 9 2021 Sunday 
-  " Plug 'wikitopian/hardmode' "vim hard mode
-  " autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode() "enable hard mode by default:v
+Plug 'airblade/vim-gitgutter' "git gutter, show +/- in gutter January 9 2021 Sunday 
+" Plug 'wikitopian/hardmode' "vim hard mode
+" autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode() "enable hard mode by default:v
 
-  Plug 'junegunn/vim-plug' "help file for vim-plug
+Plug 'junegunn/vim-plug' "help file for vim-plug
 
-  Plug 'scrooloose/nerdtree' "file explorer
-  " Plug 'ctrlpvim/ctrlp.vim'
+Plug 'scrooloose/nerdtree' "file explorer
+" Plug 'ctrlpvim/ctrlp.vim'
 
-  Plug 'easymotion/vim-easymotion'
-  Plug 'haya14busa/vim-easyoperator-line' "easy motion for line operations
+Plug 'easymotion/vim-easymotion'
+Plug 'haya14busa/vim-easyoperator-line' "easy motion for line operations
 " Plug 'haya14busa/vim-easyoperator-phrase' "easy motion for line operations
 
 Plug 'junegunn/fzf', { 'dir': '~/fzf', 'do': './install --all' }
@@ -68,9 +70,9 @@ command! MakeTags !ctags -R .
 
 
 
-"set termguicolors "set true color support for gruvbox
+set termguicolors "set true color support for gruvbox
 "set background=dark " set dark version of gruvb
-colorscheme jellybeans " Change a colorscheme.
+colorscheme eldar " Change a colorscheme.
 
 " set guifont=Hack:h14 "2019 July 18 Thursday 
 set guifont=RobotoMonoForPowerline-Light:h18
