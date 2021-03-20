@@ -1,4 +1,8 @@
 #!/usr/local/bin/zsh
+#
+# the plist file is stored in ~/Library/LaunchAgents/certify-validate-sync.plist
+# consider using the launch control app to configure this
+# TODO: if running the script manually, where to output the echo command?
 echo certify validate sync ran at: $(date) >> /tmp/certify-validate-sync-log
 
 path=('/usr/local/bin' $path) # add homebrew packages
