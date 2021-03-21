@@ -40,11 +40,20 @@ czrr() { cd $_CERTIFY_VERIFY_REPORT_FOLDER }
 
 #get user details
 function cget() {
-  local userPrefix="SG" #default
+# examples:
+# note that options MUST come before user id
+# cget -p HK 125387 # search for user HK125387
+# cget 125387 # search for user SG125387
+# cget -s 125387 # search for user SG125387
 
-  while getopts 'p:' opt; do
+  local userPrefix="SG" #default
+  local summary="" #if summary, do not print s3 folder and sync results
+
+  #note that there is no colon after s, which indicates that s does not expect a value to be supplied
+  while getopts 'p:s' opt; do
     case "$opt" in
       p) userPrefix=$OPTARG ;;
+      s) summary=true;;
     esac
   done
   shift $(($OPTIND - 1))
@@ -54,9 +63,14 @@ function cget() {
   # aws cognito-idp admin-get-user --user-pool-id $_CERTIFY_POOL_ID --username "SG$1" | jq '(.UserAttributes | map( {(.Name) : .Value}) | add ) as $fields | {Username,employee_id: $fields."custom:employee_id",name: $fields.name,given_name: $fields.given_name,family_name: $fields.family_name,"employment_status>>>>>>>>>>>>>>>>>>>>": $fields."custom:employment_status",join_date: $fields."custom:join_date",UserStatus,phone_number_verified: $fields.phone_number_verified,"phone_number>>>>>>>>>>>>>>>>>>>>": $fields.phone_number, email_verified: $fields.email_verified, "email>>>>>>>>>>>>>>>>>>>>": $fields.email,company_email: $fields."custom:company_email", personal_email: $fields."custom:personal_email",UserCreateDate,UserLastModifiedDate}'
   aws cognito-idp admin-get-user --user-pool-id $_CERTIFY_POOL_ID --username $userName  | jq '(.UserAttributes | map( {(.Name) : .Value}) | add ) as $fields | {Username,employee_id: $fields."custom:employee_id",name: $fields.name,given_name: $fields.given_name,family_name: $fields.family_name,"employment_status>>>>>>>>>>>>>>>>>>>>": $fields."custom:employment_status",join_date: $fields."custom:join_date",UserStatus,phone_number_verified: $fields.phone_number_verified,"phone_number>>>>>>>>>>>>>>>>>>>>": $fields.phone_number, email_verified: $fields.email_verified, "email>>>>>>>>>>>>>>>>>>>>": $fields.email,company_email: $fields."custom:company_email", personal_email: $fields."custom:personal_email",UserCreateDate,UserLastModifiedDate}'
   _cgetLastLoginStatus $userName
-  crgs $userName #search s3 folder for empId
-  echo "##### SYNC REPORT ####"
-  crgsu $userName #search s3 report folder for sync report for this user
+
+  # if summary is not true, print s3 data and sync data
+  if  [[ -z $summary ]]
+  then
+    crgs $userName #search s3 folder for empId
+    echo "##### SYNC REPORT ####"
+    crgsu $userName #search s3 report folder for sync report for this user
+  fi
 }
 
 #expects EE ID
@@ -69,16 +83,16 @@ crgsu () {
 }
 
 clog () {
-  # awslogs get  /aws/lambda/Certify-SapSync-prod -s '29/9/2020' -e '30/9/2020' 
+  # awslogs get  /aws/lambda/Certify-SapSync-prod -s '29/9/2020' -e '30/9/2020'
   awslogs get  /aws/lambda/Certify-SapSync-prod -s $1 -e $2
 }
 
 clogs () {
-  # awslogs get  /aws/lambda/Certify-SapSync-prod -s '29/9/2020' -e '30/9/2020' 
+  # awslogs get  /aws/lambda/Certify-SapSync-prod -s '29/9/2020' -e '30/9/2020'
   awslogs get  /aws/lambda/Certify-ScheduledSync-prod -s $1 -e $2
 }
 function cpatche(){
-cpatch $1 > $1.csv && vim $1.csv
+  cpatch $1 > $1.csv && vim $1.csv
 }
 
 function cpatch(){
@@ -116,33 +130,33 @@ function ccreate() {
   while getopts 'e:p:n:' opt; do
     case "$opt" in
       e) email=$OPTARG ;;
-      n) name=$OPTARG 
+      n) name=$OPTARG
         echo $name;;
       p) handphone=$OPTARG ;;
     esac
   done
   shift $(($OPTIND - 1))
 
-   aws cognito-idp admin-create-user \
-     --user-pool-id $_CERTIFY_POOL_ID \
-     --username SG$1 \
-     --temporary-password ***REMOVED*** \
-     --message-action SUPPRESS \
-     --user-attributes \
-     Name=custom:employee_id,Value="$1" \
-     Name=given_name,Value="$name" \
-     Name=family_name,Value="Goh" \
-     Name=email,Value="$email" \
-     Name=phone_number,Value="$handphone" \
-     Name=custom:company,Value="1000" \
-     Name=custom:organization,Value="50794952" \
-     Name=custom:department,Value="Tech Planning & Development" \
-     Name=custom:staff_type,Value="O0001" \
-     Name=custom:employment_status,Value="3" \
-     Name=custom:working_home,Value="C100" \
-     Name=custom:personal_email,Value="$email" \
-     Name=custom:legal_home,Value="C400" \
-     Name=custom:join_date,Value="20191111"\
+  aws cognito-idp admin-create-user \
+    --user-pool-id $_CERTIFY_POOL_ID \
+    --username SG$1 \
+    --temporary-password ***REMOVED*** \
+    --message-action SUPPRESS \
+    --user-attributes \
+    Name=custom:employee_id,Value="$1" \
+    Name=given_name,Value="$name" \
+    Name=family_name,Value="Goh" \
+    Name=email,Value="$email" \
+    Name=phone_number,Value="$handphone" \
+    Name=custom:company,Value="1000" \
+    Name=custom:organization,Value="50794952" \
+    Name=custom:department,Value="Tech Planning & Development" \
+    Name=custom:staff_type,Value="O0001" \
+    Name=custom:employment_status,Value="3" \
+    Name=custom:working_home,Value="C100" \
+    Name=custom:personal_email,Value="$email" \
+    Name=custom:legal_home,Value="C400" \
+    Name=custom:join_date,Value="20191111"\
   }
 
 
@@ -224,7 +238,7 @@ csync() {
   #and you want to exclude tim, specify /tim not s3//bucket/folder/tim
   aws s3 sync $_CERTIFY_S3_BUCKET_SAP_SYNC $_CERTIFY_S3_BUCKET_SAP_SYNC_LOCAL_FOLDER --exclude "*" --include "*.csv" --include "*.CSV" --exclude "hk/*"
   aws s3 sync $_CERTIFY_S3_BUCKET_SAP_SYNC_REPORTS $_CERTIFY_S3_BUCKET_SAP_SYNC_REPORTS_LOCAL_FOLDER
-  }
+}
 
 cupload() {
   # TODO: what happens if $has spaces?
