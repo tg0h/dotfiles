@@ -3,7 +3,8 @@
 # the plist file is stored in ~/Library/LaunchAgents/certify-validate-sync.plist
 # consider using the launch control app to configure this
 # TODO: if running the script manually, where to output the echo command?
-echo certify validate sync ran at: $(date) >> /tmp/certify-validate-sync-log
+mkdir -p /tmp/certify
+echo certify validate sync ran at: $(date) >> /tmp/certify/certify-validate-sync-log
 
 path=('/usr/local/bin' $path) # add homebrew packages
 path=('/usr/local/opt/sqlite/bin' $path) # add homebrew sqlite3 to path (do not use macos sqlite which is an older version)
@@ -214,4 +215,5 @@ if [ $errorCount -gt 0 ]; then
   echo "Errors found in Sap Sync" | mutt -s "SAP Sync Error Report" ***REMOVED*** -a SyncErrorReport.csv
 fi
 
-echo certify validate sync finished at: $(date) >> /tmp/certify-validate-sync-log
+mkdir -p /tmp/certify
+echo certify validate sync finished at: $(date) >> /tmp/certify/certify-validate-sync-log
