@@ -33,8 +33,33 @@ function add() {
 #install an apk
 #adi <ip> blah.apk
 function adi() {
-  adb -s 192.168.1.$1:5555 install $2
+  local usbMode=""
+  local ip=""
+  while getopts 'ds:' opt; do
+    case "$opt" in
+      d) usbMode="-d" ;;
+      s) ip="192.168.1.$OPTARG:5555" ;;
+    esac
+  done
+  shift $(($OPTIND - 1))
+
+  if [[ -n $usbMode ]]; then
+    adb -d install $1
+  elif [[ -n $ip ]]; then
+    adb -s $ip install $
+  else;
+    echo neither usbMode or ip given
+  fi
 }
+
+#uninstall all argus apps
+function adu() {
+  for app in `adb shell pm list packages | rg argus`; do
+    #download artifact for each job id
+    adb uninstall $app
+  done;
+}
+
 
 #what are the pids of the argus app?
 function ads() {
