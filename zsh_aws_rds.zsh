@@ -25,7 +25,7 @@ function _kill_argus_db_ports() {
 }
 
 #get all the pids of processes listening at these ports
-alias dbconn-get='lsof -Pi tcp@localhost:1100,1101,1200,1201,1300,1301' #-P do not resolve port numbers to port names so you can see 1100 instead of something else
+alias dbconn-get='lsof -Pi tcp@localhost:1100,1101,1200,1201,1300,1301,1400,1401' #-P do not resolve port numbers to port names so you can see 1100 instead of something else
 
 #use mysqlsh's credential store helper to remember your password
 
@@ -63,19 +63,25 @@ function _setArgusProfile() {
       . ~/dotfiles/argus.develop.env
       vpn
       dbconn-argus #automatically open ssh ports
-      asp ad #switch aws profile to dev
+      asp d #switch aws profile to dev
       ;;
     s) argus_profile="staging"
       . ~/dotfiles/argus.staging.env
       vpn
       dbconn-argus #automatically open ssh ports
-      asp ad #switch aws profile to dev
+      asp d #switch aws profile to dev
+      ;;
+    as) argus_profile="au staging"
+      . ~/dotfiles/argusAu.staging.env
+      vpn
+      dbconn-argus #automatically open ssh ports
+      asp as #switch aws profile to au staging
       ;;
     p) argus_profile="production"
       vpn
       . ~/dotfiles/argus.production.env
       dbconn-argus #automatically open ssh ports
-      asp ap #switch aws profile to prod
+      asp p #switch aws profile to prod
       ;;
   esac
 
@@ -87,6 +93,8 @@ function _setArgusProfile() {
 function dbuu() {
   print '====================================== users         ========================================='
   _dbuusers $1
+  print '====================================== teams         ========================================='
+  _dbuteams $1
   print '====================================== user orggrps  ========================================='
   _dbuorg-groups $1
   print '====================================== user roles    ========================================='
@@ -95,6 +103,68 @@ function dbuu() {
   # _dbuuser_auths $1
   print '====================================== accounts     ========================================='
   _dbuaccounts
+}
+
+#team details
+function dbut() {
+  print '====================================== team         ========================================='
+  _dbuGetTeam $1
+  print '====================================== users         ========================================='
+  _dbuGetTeamUsers $1
+  print '====================================== clients       ========================================='
+  _dbuGetTeamClients $1
+}
+
+function _dbuGetTeam() {
+  mysqlsh --sql -u $_ARGUS_RDS_DB_USER_USER -h 127.0.0.1 -P $_ARGUS_RDS_DB_USER_LOCAL_PORT -D $_ARGUS_RDS_DB_USER_NAME --result-format=table << EOF
+select t.name, t.active, t.id as teamId
+from teams t
+where UPPER(t.name) like UPPER('%$1%')
+EOF
+}
+
+function _dbuGetTeamUsers() {
+  mysqlsh --sql -u $_ARGUS_RDS_DB_USER_USER -h 127.0.0.1 -P $_ARGUS_RDS_DB_USER_LOCAL_PORT -D $_ARGUS_RDS_DB_USER_NAME --result-format=table << EOF 
+select t.name, u.staff_id
+from users u
+         inner join users_teams ut on u.id = ut.user_id
+         inner join teams t on ut.team_id = t.id
+where UPPER(t.name) like UPPER('%$1%')
+order by t.name, u.staff_id
+EOF
+}
+
+function _dbuGetTeamClients() {
+  mysqlsh --sql -u $_ARGUS_RDS_DB_USER_USER -h 127.0.0.1 -P $_ARGUS_RDS_DB_USER_LOCAL_PORT -D $_ARGUS_RDS_DB_USER_NAME --result-format=table << EOF 
+select t.name as team, c.name as client, c.id as clientId
+from clients c
+         inner join clients_teams ct on c.id = ct.client_id
+         inner join teams t on ct.team_id = t.id
+where UPPER(t.name) like UPPER('%$1%')
+order by t.name, c.name
+EOF
+}
+
+#get all the teams and all the users
+function dbutu() {
+  mysqlsh --sql -u $_ARGUS_RDS_DB_USER_USER -h 127.0.0.1 -P $_ARGUS_RDS_DB_USER_LOCAL_PORT -D $_ARGUS_RDS_DB_USER_NAME --result-format=table << EOF
+select t.name, u.staff_id, t.id, u.id
+from users u
+         inner join users_teams ut on u.id = ut.user_id
+         inner join teams t on ut.team_id = t.id
+order by t.name, u.staff_id
+EOF
+}
+#
+#get all the teams and all the clients
+function dbutc() {
+  mysqlsh --sql -u $_ARGUS_RDS_DB_USER_USER -h 127.0.0.1 -P $_ARGUS_RDS_DB_USER_LOCAL_PORT -D $_ARGUS_RDS_DB_USER_NAME --result-format=table << EOF
+select t.name as team, c.name as client, t.id, c.id
+from clients c
+         inner join clients_teams ct on c.id = ct.client_id
+         inner join teams t on ct.team_id = t.id
+order by t.name, c.name
+EOF
 }
 
 #helper function for dynamodb. very useful as dynamo db does not have staff id and requires user id
@@ -191,6 +261,18 @@ EOF
 # order by a.name, o.name, g.Name, ug.role
 # EOF
 # }
+
+function _dbuteams() {
+  mysqlsh --sql -u $_ARGUS_RDS_DB_USER_USER -h 127.0.0.1 -P $_ARGUS_RDS_DB_USER_LOCAL_PORT -D $_ARGUS_RDS_DB_USER_NAME --result-format=table << EOF
+select u.staff_id,
+       t.name
+from users u
+         inner join users_teams ut on u.id = ut.user_id
+         inner join teams t on ut.team_id = t.id
+where u.staff_id like '$1'
+EOF
+}
+
 
 function _dbuorg-groups() {
   mysqlsh --sql -u $_ARGUS_RDS_DB_USER_USER -h 127.0.0.1 -P $_ARGUS_RDS_DB_USER_LOCAL_PORT -D $_ARGUS_RDS_DB_USER_NAME --result-format=table << EOF
