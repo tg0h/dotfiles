@@ -1,10 +1,16 @@
 # SCRCPY ==========================================================================
 function sc() {
-  scrcpy -s 192.168.1.$1:5555
+  if [[ $# -eq 2 ]]; then
+    scrcpy -s 192.168.$1.$2:5555
+  else;
+    scrcpy -s 192.168.1.$1:5555
+  fi
 }
 
 # ADB ==========================================================================
+
 function aip() {
+# gets the ip of the phone connected via usb
   adb -d shell ip route
 }
 
@@ -14,8 +20,14 @@ function atcp() {
 
 function acon() {
   # adb -d tcpip 5555
-  adb -d connect 192.168.1.$1:5555
-  # scrcpy -s 192.168.1.$1:5555
+  # adb -d connect 192.168.1.$1:5555
+  if [[ $# -eq 2 ]]; then
+    # scrcpy -s 192.168.$1.$2:5555
+    # adb -d connect 192.168.1.$1:5555
+    adb connect 192.168.$1.$2:5555
+  else;
+    adb connect 192.168.1.$1:5555
+  fi
 }
 
 #show on scrcpy immediately
