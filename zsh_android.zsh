@@ -1,4 +1,5 @@
 # SCRCPY ==========================================================================
+
 function sc() {
   if [[ $# -eq 2 ]]; then
     scrcpy -s 192.168.$1.$2:5555
@@ -7,14 +8,27 @@ function sc() {
   fi
 }
 
+function sca() {
+  #always on top
+
+  if [[ $# -eq 2 ]]; then
+    scrcpy -s 192.168.$1.$2:5555 --always-on-top
+  else;
+    scrcpy -s 192.168.1.$1:5555 --always-on-top
+  fi
+}
+
+
 # ADB ==========================================================================
 
 function aip() {
-# gets the ip of the phone connected via usb
+  # gets the ip of the phone connected via usb
   adb -d shell ip route
 }
 
 function atcp() {
+  # before connecting to the device, tell the device to listen on port 5555
+
   adb -d tcpip 5555
 }
 
@@ -58,7 +72,7 @@ function adi() {
   if [[ -n $usbMode ]]; then
     adb -d install $1
   elif [[ -n $ip ]]; then
-    adb -s $ip install $
+    adb -s $ip install $1
   else;
     echo neither usbMode or ip given
   fi
