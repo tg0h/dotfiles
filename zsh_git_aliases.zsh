@@ -1,5 +1,89 @@
-REVIEW_BASE=master 
+# the zsh git plugin defines git aliases in ~/.oh-my-zsh/plugins/git/git.plugin.zsh
 
+# my git favourites
+
+# if you don't specify a branch, it compares against the current HEAD you're on, ie which branch you're currently on
+alias gbm="git branch --merged"
+
+# if you don't specify a branch, it compares against the current HEAD you're on, ie which branch you're currently on
+alias gbmr="git branch -r --merged"
+
+# alias gbnm="git branch --no-merged" - defined in git plugin
+# if you don't specify a branch, it compares against the current HEAD you're on, ie which branch you're currently on
+alias gbnmr="git branch -r --no-merged"
+
+function gbdd(){
+  # delete local git branches with a search string
+  #EXAMPLES:
+  # gbdd <search string>
+  # gbdd -d <search string> - force delete
+  
+  #NOTE: git branch -r --merged is with reference to the branch you are currently on!
+  #example: gbdd sprint-13
+  #might need to run git fetch --prune to clean up remote before running this command
+
+  local force=""
+  while getopts 'd' opt; do
+    case "$opt" in
+      d) force=true;;
+    esac
+  done
+  shift $(($OPTIND - 1))
+
+
+  # if [[ -z $1 ]]; then
+  #   echo please provide a search string, eg gbmrd sprint-18
+  #   exit
+  # fi
+  # cut
+  #   f2- - cut from the second field to the end of line
+  #   -d/ - use a field separator of /
+  # xargs
+  #   -P - number of processes to run
+  #   -n - how many arguments from stdin to pass to each xargs command
+  if [[ -n $force ]]; then
+    gb | rg '^\s*'$1 | xargs -P 12 -n 1 -I{} git branch -D {}
+  else;
+    gb | rg '^\s*'$1 | xargs -P 12 -n 1 -I{} git branch -d {}
+  fi
+}
+
+function gbmrd(){
+  #dry run delete git remote branches with a search string
+  #NOTE: git branch -r --merged is with reference to the branch you are currently on!
+  #example: gbmrd sprint-18
+  #might need to run git fetch --prune to clean up remote before running this command
+
+  if [[ -z $1 ]]; then
+    echo please provide a search string, eg gbmrd sprint-18
+    exit
+  fi
+  # cut
+  #   f2- - cut from the second field to the end of line
+  #   -d/ - use a field separator of /
+  # xargs
+  #   -P - number of processes to run
+  #   -n - how many arguments from stdin to pass to each xargs command
+  gbmr | rg $1 | gcut -f2- -d/| xargs -P 12 -n 1 -I{} git push --dry-run -d origin {}
+}
+
+function gbmrdd(){
+  #dry run delete git remote branches with a search string
+  #NOTE: git branch -r --merged is with reference to the branch you are currently on!
+  #example: gbmrd sprint-18
+  #might need to run git fetch --prune to clean up remote before running this command
+
+  # cut
+  #   f2- - cut from the second field to the end of line
+  #   -d/ - use a field separator of /
+  gbmr | rg $1 | gcut -f2- -d/| xargs -P 12 -n 1 -I{} git push -d origin {}
+}
+
+
+# =============================================================================
+
+# REVIEW functions ============================================================
+REVIEW_BASE=master
 gfiles(){
   git diff --name-only $(git merge-base HEAD $REVIEW_BASE)
 }
@@ -17,6 +101,7 @@ greview(){
 greviewone(){
   vim -p +"tabdo Gdiff $REVIEW_BASE" +"let g:gitgutter_diff_base = '$REVIEW_BASE'"
 }
+# REVIEW functions ============================================================
 
 # GIT PLUMBING
 alias gcf="git cat-file"
@@ -97,11 +182,11 @@ alias gai='git add -i'
 alias gm='git merge'
 alias gmf='git merge --no-ff'
 
-#dfx - remove untracked (directories, files and ignored) 
-alias gclean='git reset --hard && git clean -dfx' 
+#dfx - remove untracked (directories, files and ignored)
+alias gclean='git reset --hard && git clean -dfx'
 
 #RESET
-alias gr='git reset' 
+alias gr='git reset'
 alias grh='git reset --hard'
 # alias grhh='git reset HEAD --hard'
 
@@ -150,15 +235,15 @@ alias gignored='git ls-files -v | grep "^[[:lower:]]"'
 #
 function current_branch() {
   ref=$(git symbolic-ref HEAD 2> /dev/null) || \
-  ref=$(git rev-parse --short HEAD 2> /dev/null) || return
-  echo ${ref#refs/heads/}
-}
+    ref=$(git rev-parse --short HEAD 2> /dev/null) || return
+      echo ${ref#refs/heads/}
+    }
 
-function current_repository() {
-  ref=$(git symbolic-ref HEAD 2> /dev/null) || \
-  ref=$(git rev-parse --short HEAD 2> /dev/null) || return
-  echo $(git remote -v | cut -d':' -f 2)
-}
+  function current_repository() {
+    ref=$(git symbolic-ref HEAD 2> /dev/null) || \
+      ref=$(git rev-parse --short HEAD 2> /dev/null) || return
+          echo $(git remote -v | cut -d':' -f 2)
+        }
 
 # these aliases take advantage of the previous function
 alias ggpull='git pull origin $(current_branch)'
