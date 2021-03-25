@@ -11,6 +11,8 @@ alias zshn='vim ~/.zsh_node.zsh'
 alias zshg='vim ~/.zsh_gitlab.zsh'
 
 alias zshgit='vim ~/.zsh_git_aliases.zsh'
+alias zshgitf='vim ~/.zsh_fzf_git.zsh'
+
 alias zshrds='vim ~/.zsh_aws_rds.zsh'
 alias zshcw='vim ~/.zsh_aws_cloudwatch.zsh'
 alias zshc='vim ~/.zsh_aws_cognito.zsh'
