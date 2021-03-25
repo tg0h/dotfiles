@@ -169,6 +169,7 @@ alias glgga='git log --graph --decorate --all --left-right'
 alias glo='git log --oneline --decorate --color --left-right'
 alias glod="git log --date=human --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset %C(yellow)%ar%Creset'"
 alias glodm='glod -10'
+alias glodmm='glod -20'
 alias glog='git log --oneline --decorate --color --graph --left-right'
 # alias glog1="git log --all --decorate --graph --since=1.weeks"
 # alias glog2="git log --all --decorate --graph --since=2.weeks"
