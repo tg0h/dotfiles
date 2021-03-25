@@ -8,6 +8,7 @@ alias zshe='vim ~/.env'
 alias zsha='vim ~/.zsh_android.zsh'
 alias zshi='vim ~/.zsh_ios.zsh'
 alias zshn='vim ~/.zsh_node.zsh'
+alias zshfzf='vim ~/.zsh_fzf.zsh' 
 alias zshg='vim ~/.zsh_gitlab.zsh'
 
 alias zshgit='vim ~/.zsh_git_aliases.zsh'
