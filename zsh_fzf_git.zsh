@@ -52,7 +52,6 @@ _gh() {
   }
 
 # search for remotes
-# NOTE: not useful - i only have 1 remote lol
 _gr() {
   is_in_git_repo || return
   git remote -v | awk '{print $1 "\t" $2}' | uniq |
