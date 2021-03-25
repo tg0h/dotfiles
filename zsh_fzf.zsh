@@ -187,3 +187,12 @@ function drm() {
 
   [ -n "$cid" ] && docker rm "$cid"
 }
+
+# Directly execute the command in shell with ctrl x ctrl r
+# https://github.com/junegunn/fzf/wiki/Configuring-shell-key-bindings
+fzf-history-widget-accept() {
+  fzf-history-widget
+  zle accept-line
+}
+zle     -N     fzf-history-widget-accept
+bindkey '^X^R' fzf-history-widget-accept
