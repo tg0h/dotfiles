@@ -25,15 +25,20 @@ source $ZSH/oh-my-zsh.sh
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh # p10k configuration
 
 # zsh vim mode settings
+# see http://zsh.sourceforge.net/Doc/Release/Zsh-Line-Editor.html for the docs on the -v option
 bindkey -v #use vim keymap for the zsh line editor - set vim key map first to allow other plugins to override keymap
 export KEYTIMEOUT=1 # Make Vi mode transitions faster (KEYTIMEOUT is in hundredths of a second)
 # bindkey -M vicmd "^V" edit-command-line # `v` is already mapped to visual mode, so we need to use a different key
 # use hjkl to navigate zsh autocomplete menu
 zmodload zsh/complist
+# -M specifies the menuselect keymap for the command
 bindkey -M menuselect 'h' vi-backward-char
 bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
+
+#remove ctrl g keybinding in the keymap so that junegunn's fzf_git functions work
+bindkey -r "^G"
 
 #zsh does not word split param expansions https://stackoverflow.com/questions/16200142/zsh-parameter-expansion-inserting-quotes
 # setopt sh_word_split #turn on param expansion word split - this disables zsh autocompletion
