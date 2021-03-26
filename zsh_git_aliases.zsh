@@ -1,6 +1,16 @@
 # the zsh git plugin defines git aliases in ~/.oh-my-zsh/plugins/git/git.plugin.zsh
 
 # my git favourites
+# alias gpdo="git push -d origin" #delete a remote branch
+function gpdo(){
+  # gpdo expects origin/featureBranch to be passed
+  # gpdo will cut away the first field and delete the "featureBranch" branch
+  
+  # pass first parameter to stdin of gcut command
+  local branch=$(gcut -f2- -d/ <<< "$1")
+  git push -d origin $branch
+}
+
 
 # if you don't specify a branch, it compares against the current HEAD you're on, ie which branch you're currently on
 alias gbm="git branch --merged"
@@ -46,6 +56,46 @@ function gbdd(){
   else;
     gb | rg '^\s*'$1 | xargs -P 12 -n 1 -I{} git branch -d {}
   fi
+}
+
+#TODO: refactor gbmrd and gbnmrd, dd
+function gbnmrd(){
+  #dry run delete git remote branches with a search string
+  #NOTE: git branch -r --merged is with reference to the branch you are currently on!
+  #example: gbmrd sprint-18
+  #might need to run git fetch --prune to clean up remote before running this command
+
+  if [[ -z $1 ]]; then
+    echo please provide a search string, eg gbnmrd sprint-18
+    exit
+  fi
+  # cut
+  #   f2- - cut from the second field to the end of line
+  #   -d/ - use a field separator of /
+  # xargs
+  #   -P - number of processes to run
+  #   -n - how many arguments from stdin to pass to each xargs command
+  gbnmr | rg $1 | gcut -f2- -d/| xargs -P 12 -n 1 -I{} git push --dry-run -d origin {}
+}
+
+#TODO: refactor gbmrd and gbnmrd, dd
+function gbnmrdd(){
+  #dry run delete git remote branches with a search string
+  #NOTE: git branch -r --merged is with reference to the branch you are currently on!
+  #example: gbmrd sprint-18
+  #might need to run git fetch --prune to clean up remote before running this command
+
+  if [[ -z $1 ]]; then
+    echo please provide a search string, eg gbnmrd sprint-18
+    exit
+  fi
+  # cut
+  #   f2- - cut from the second field to the end of line
+  #   -d/ - use a field separator of /
+  # xargs
+  #   -P - number of processes to run
+  #   -n - how many arguments from stdin to pass to each xargs command
+  gbnmr | rg $1 | gcut -f2- -d/| xargs -P 12 -n 1 -I{} git push -d origin {}
 }
 
 function gbmrd(){
