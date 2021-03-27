@@ -76,6 +76,7 @@ export PATH="$PATH:/Users/tim/Library/Android/sdk/emulator" # add android emulat
 
 fpath+=~/.zsh_functions #add our own zsh functions directory to fpath
 autoload -Uz ~/.zsh_functions/*(.) #-U supress alias expansion, -z zsh style function loading. (.) - glob qualifier. dot means show regular files only
+autoload -U zmv # add the zsh zmv extension
 . ~/.zsh_funcs.zsh #get all my functions
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
