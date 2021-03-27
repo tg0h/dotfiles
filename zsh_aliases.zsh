@@ -1,3 +1,6 @@
+# GLOBAL ALIASES ==========================================================
+alias -g F='| fzf' # change Z to whatever you like
+
 # =========================================================================
 # edit config file shortcuts
 alias zshrc='vim ~/.zshrc'
@@ -23,6 +26,7 @@ alias zshct='vim ~/.zsh_aws_calltree.zsh'
 # others ====================================================================
 alias ee="source $HOME/dotfiles/scripts/scratch"
 alias eee="vim $HOME/dotfiles/scripts/scratch"
+
 
 alias j=jira
 alias ag="alias | grep"
