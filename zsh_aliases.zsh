@@ -8,6 +8,8 @@ alias zshaa='vim ~/.zsh_aliases.zsh'
 alias zshf='vim ~/.zsh_funcs.zsh' #misc functions, use zsh_functions folder for more organization
 alias zshe='vim ~/.env'
 
+alias zshw='vim ~/.ideavimrc' # the webstorm ideavim rc file
+
 alias zsha='vim ~/.zsh_android.zsh'
 alias zshi='vim ~/.zsh_ios.zsh'
 alias zshn='vim ~/.zsh_node.zsh'

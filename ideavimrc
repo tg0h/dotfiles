@@ -1,0 +1,11 @@
+source ~/.vimrc
+
+let mapleader = " "
+
+set easymotion
+set surround
+set commentary
+
+" set ReplaceWithRegister
+" set argtextobj
+" set textobj-entire
