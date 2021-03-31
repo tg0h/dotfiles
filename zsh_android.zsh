@@ -1,19 +1,58 @@
 # SCRCPY ==========================================================================
 
 function sc() {
-  if [[ $# -eq 2 ]]; then
+  # sc -r - show red phone
+  # sc -y - show yellow phone
+  # sc -g - show green phone
+  # sc 18 123
+  # sc 18
+
+  local ip=""
+  while getopts 'gry' opt; do
+    case "$opt" in
+      # d) usbMode="-d" ;;
+      # s) ip="192.168.1.$OPTARG:5555" ;;
+      r) ip="192.168.1.19:5555" ;;
+      g) ip="192.168.1.6:5555" ;;
+      y) ip="192.168.1.199:5555" ;;
+    esac
+  done
+  shift $(($OPTIND - 1))
+ 
+  if [[ -n $ip ]]; then
+    scrcpy -s $ip --window-x 129 --window-y 427 --window-width 355 --window-height 782
+  elif [[ $# -eq 2 ]]; then
     scrcpy -s 192.168.$1.$2:5555 --window-x 129 --window-y 427 --window-width 355 --window-height 782
-  else;
+  else
     scrcpy -s 192.168.1.$1:5555 --window-x 129 --window-y 427 --window-width 355 --window-height 782
   fi
 }
 
 function sca() {
   #always on top
+  # sca -r - show red phone
+  # sca -y - show yellow phone
+  # sca -g - show green phone
+  # sca 18 123
+  # sca 18
 
-  if [[ $# -eq 2 ]]; then
+  local ip=""
+  while getopts 'gry' opt; do
+    case "$opt" in
+      # d) usbMode="-d" ;;
+      # s) ip="192.168.1.$OPTARG:5555" ;;
+      r) ip="192.168.1.19:5555" ;;
+      g) ip="192.168.1.6:5555" ;;
+      y) ip="192.168.1.199:5555" ;;
+    esac
+  done
+  shift $(($OPTIND - 1))
+
+  if [[ -n $ip ]]; then
+    scrcpy -s $ip --window-x 129 --window-y 427 --window-width 355 --window-height 782
+  elif [[ $# -eq 2 ]]; then
     scrcpy -s 192.168.$1.$2:5555 --always-on-top --window-x 129 --window-y 427 --window-width 355 --window-height 782
-  else;
+  else
     scrcpy -s 192.168.1.$1:5555 --always-on-top --window-x 129 --window-y 427 --window-width 355 --window-height 782
   fi
 }
