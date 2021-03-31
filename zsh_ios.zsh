@@ -17,14 +17,19 @@ function idn() {
 
 
 function idi() {
-  # while getopts 'l:e:a:ds:' opt; do
-  #   case "$opt" in
-  #     d) usbMode="-d" ;;
-  #   esac
-  # done
-  # shift $(($OPTIND - 1))
+  # Example Use
+  # idi - install the latest ipa in this folder 
+  # idi <ipa file name> - install the specified ipa
 
-  ideviceinstaller -n -i $1
+  # fd -d 1 - search with depth 1 (current dir only)
+  # gsort -k1r - sort by the 1st column descending
+  # head -n1 - get me the first row
+  if [[ -z $1 ]]; then
+    local latestIpa=$(fd -d 1 './*.ipa' | gsort -k1r | head -n1)
+    ideviceinstaller -n -i $latestIpa
+  else
+    ideviceinstaller -n -i $1
+  fi
 }
 
 # run logs

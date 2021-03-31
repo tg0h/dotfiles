@@ -98,20 +98,45 @@ function add() {
 #install an apk
 #adi <ip> blah.apk
 function adi() {
+# SENSIBLE DEFAULTS:
+# if no apk provided, install the latest apk in the current folder
+
+#TODO: support 2 ip groups, eg 192.168.xxx.yyy
+#EXAMPLES: 
+# adi -s 19 <apk name> - adb -s 192.168.1.19 <apk name>
+# adi -r <apk name> - install to the red phone's ip
+# if <apk name> not provided, get the latest apk in current folder. Latest is defined as reverse alphabetical order
+
   local usbMode=""
   local ip=""
-  while getopts 'ds:' opt; do
+  while getopts 'dgrys:' opt; do
     case "$opt" in
       d) usbMode="-d" ;;
       s) ip="192.168.1.$OPTARG:5555" ;;
+      r) ip="192.168.1.19:5555" ;;
+      g) ip="192.168.1.6:5555" ;;
+      y) ip="192.168.1.199:5555" ;;
     esac
   done
   shift $(($OPTIND - 1))
 
+  local apkFileName=""
+  #if $1 is not provided
+  if [[ -z $1 ]]; then
+    #fd -d 1 - use fd to search in current directory only
+    #gsort -k1r - sort by 1st column descending
+    #head -n1 - get the 1st row
+    apkFileName=$(fd -d 1 './*.apk' | gsort -k1r | head -n1)
+  else
+    apkFileName=$1
+  fi
+
+  echo "going to install $apkFileName ..."
+
   if [[ -n $usbMode ]]; then
-    adb -d install $1
+    adb -d install $apkFileName
   elif [[ -n $ip ]]; then
-    adb -s $ip install $1
+    adb -s $ip install $apkFileName
   else;
     echo neither usbMode or ip given
   fi
