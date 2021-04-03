@@ -13,7 +13,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 plugins=(
   zsh-nvm #add at the top so other plugins that use node/npm can work
   adb aws colored-man-pages docker dotenv #source the .env file in the root dir when you cd into it
-  git git-auto-fetch gitignore jira last-working-dir #lwd
+  fasd git git-auto-fetch gitignore jira last-working-dir #lwd
   npm osx timer
   # vi-mode #interferes with prompt displaying modes, ctrl key special chars
   # web-search #google from command line
