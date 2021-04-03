@@ -6,10 +6,17 @@ function ffm() {
 }
 
 
+function fsync(){
+  # use free file sync to sync the certis folder with a thumb drive
+  # set now to YYYY-MM-DD_THHMM
+  #see http://zsh.sourceforge.net/Doc/Release/User-Contributions.html for docs on zmv
+  FreeFileSync ~/certis/.certisSync.ffs_batch
+}
+
 function gn(){
-# set now to YYYY-MM-DD_THHMM
-#see http://zsh.sourceforge.net/Doc/Release/User-Contributions.html for docs on zmv
-now=$(date +%Y-%m-%d_T%H%M)
+  # set now to YYYY-MM-DD_THHMM
+  #see http://zsh.sourceforge.net/Doc/Release/User-Contributions.html for docs on zmv
+  now=$(date +%Y-%m-%d_T%H%M)
 
 # # -C forces cp, ln or mv
 # zmv -C '*' './$f-$now'
