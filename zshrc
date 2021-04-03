@@ -14,7 +14,7 @@ plugins=(
   zsh-nvm #add at the top so other plugins that use node/npm can work
   adb aws colored-man-pages docker dotenv #source the .env file in the root dir when you cd into it
   fasd git git-auto-fetch gitignore jira last-working-dir #lwd
-  npm osx timer
+  npm osx ports timer
   # vi-mode #interferes with prompt displaying modes, ctrl key special chars
   # web-search #google from command line
   zsh-autosuggestions zsh-autocomplete z
