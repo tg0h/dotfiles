@@ -18,7 +18,8 @@ plugins=(
   # vi-mode #interferes with prompt displaying modes, ctrl key special chars
   # web-search #google from command line
   zsh-autosuggestions zsh-autocomplete z
-  zsh-syntax-highlighting #source this at the end for syntax highlighting to work
+  # zsh-syntax-highlighting #source this at the end for syntax highlighting to work
+  fast-syntax-highlighting
 )
 source $ZSH/oh-my-zsh.sh
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh # p10k configuration
