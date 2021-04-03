@@ -102,10 +102,12 @@ function adi() {
 # if no apk provided, install the latest apk in the current folder
 
 #TODO: support 2 ip groups, eg 192.168.xxx.yyy
+#TODO: if ip not found, run adb connect first
+
 #EXAMPLES: 
 # adi -s 19 <apk name> - adb -s 192.168.1.19 <apk name>
 # adi -r <apk name> - install to the red phone's ip
-# if <apk name> not provided, get the latest apk in current folder. Latest is defined as reverse alphabetical order
+# if <apk name> not provided, get the latest apk in current folder. Latest as defined by ls -t
 
   local usbMode=""
   local ip=""
@@ -126,7 +128,14 @@ function adi() {
     #fd -d 1 - use fd to search in current directory only
     #gsort -k1r - sort by 1st column descending
     #head -n1 - get the 1st row
-    apkFileName=$(fd -d 1 './*.apk' | gsort -k1r | head -n1)
+    # apkFileName=$(fd -d 1 './*.apk' | gsort -k1r | head -n1)
+    
+    #ls -t sort by time
+    #ls -p add trailing / to directories
+    #rg -v / - invert match, find entries that do not have the '/' character
+    #rg '.*apk' - get all entries with a .apk
+    #get the 1st match
+    apkFileName=$(ls -tp | rg -v / | rg '.*apk' | head -n1)
   else
     apkFileName=$1
   fi

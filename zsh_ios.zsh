@@ -25,7 +25,14 @@ function idi() {
   # gsort -k1r - sort by the 1st column descending
   # head -n1 - get me the first row
   if [[ -z $1 ]]; then
-    local latestIpa=$(fd -d 1 './*.ipa' | gsort -k1r | head -n1)
+    # local latestIpa=$(fd -d 1 './*.ipa' | gsort -k1r | head -n1)
+    
+    #ls -t sort by time
+    #ls -p add trailing / to directories
+    #rg -v / - invert match, find entries that do not have the '/' character
+    #rg '.*apk' - get all entries with a .apk
+    #get the 1st match
+    local latestIpa=$(ls -tp | rg -v / | rg '.*ipa' | head -n1)
     ideviceinstaller -n -i $latestIpa
   else
     ideviceinstaller -n -i $1
