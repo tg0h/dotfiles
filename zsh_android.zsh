@@ -3,19 +3,21 @@
 # SCRCPY ==========================================================================
 
 function sc() {
+  # sc -b - show blue phone
+  # sc -g - show green phone
   # sc -r - show red phone
   # sc -y - show yellow phone
-  # sc -g - show green phone
   # sc 18 123
   # sc 18
 
   local ip=""
-  while getopts 'gry' opt; do
+  while getopts 'bgry' opt; do
     case "$opt" in
       # d) usbMode="-d" ;;
       # s) ip="192.168.1.$OPTARG:5555" ;;
-      r) ip="192.168.1.19:5555" ;;
+      b) ip="192.168.1.48:5555" ;;
       g) ip="192.168.1.6:5555" ;;
+      r) ip="192.168.1.19:5555" ;;
       y) ip="192.168.1.188:5555" ;;
     esac
   done
@@ -32,19 +34,21 @@ function sc() {
 
 function sca() {
   #always on top
+  # sca -b - show blue phone
+  # sca -g - show green phone
   # sca -r - show red phone
   # sca -y - show yellow phone
-  # sca -g - show green phone
   # sca 18 123
   # sca 18
 
   local ip=""
-  while getopts 'gry' opt; do
+  while getopts 'bgry' opt; do
     case "$opt" in
       # d) usbMode="-d" ;;
       # s) ip="192.168.1.$OPTARG:5555" ;;
-      r) ip="192.168.1.19:5555" ;;
+      b) ip="192.168.1.48:5555" ;;
       g) ip="192.168.1.6:5555" ;;
+      r) ip="192.168.1.19:5555" ;;
       y) ip="192.168.1.188:5555" ;;
     esac
   done
@@ -113,12 +117,13 @@ function adi() {
 
   local usbMode=""
   local ip=""
-  while getopts 'dgrys:' opt; do
+  while getopts 'bdgrs:y' opt; do
     case "$opt" in
+      b) ip="192.168.1.48:5555" ;;
       d) usbMode="-d" ;;
-      s) ip="192.168.1.$OPTARG:5555" ;;
-      r) ip="192.168.1.19:5555" ;;
       g) ip="192.168.1.6:5555" ;;
+      r) ip="192.168.1.19:5555" ;;
+      s) ip="192.168.1.$OPTARG:5555" ;;
       y) ip="192.168.1.188:5555" ;;
     esac
   done
