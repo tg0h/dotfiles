@@ -78,13 +78,28 @@ function atcp() {
 }
 
 function acon() {
+  local ip=""
+  while getopts 'bgry' opt; do
+    case "$opt" in
+      b) ip="192.168.1.48:5555" ;;
+      g) ip="192.168.1.6:5555" ;;
+      r) ip="192.168.1.19:5555" ;;
+      y) ip="192.168.1.188:5555" ;;
+    esac
+  done
+  shift $(($OPTIND - 1))
+
   # adb -d tcpip 5555
   # adb -d connect 192.168.1.$1:5555
-  if [[ $# -eq 2 ]]; then
+  if [[ -n $ip ]]; then
+    adb connect $ip:5555
+  elif [[ $# -eq 2 ]]; then
     # scrcpy -s 192.168.$1.$2:5555
     # adb -d connect 192.168.1.$1:5555
+    echo connecting to 192.168.$1.$2:5555
     adb connect 192.168.$1.$2:5555
   else;
+    echo connecting to 192.168.1.$1:5555
     adb connect 192.168.1.$1:5555
   fi
 }
