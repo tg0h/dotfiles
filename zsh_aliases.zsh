@@ -26,9 +26,9 @@ alias zshct='vim ~/.zsh_aws_calltree.zsh'
 
 
 # others ====================================================================
-alias ls='lsd' #use lsd to supercharge ls output
-
-alias lt="l -t"
+alias l='lsd -lah' #use lsd to supercharge ls output
+alias ll='lsd -lh' #use lsd to supercharge ls output
+alias lt="lsd -t"
 
 alias ee="source $HOME/dotfiles/scripts/scratch"
 alias eee="vim $HOME/dotfiles/scripts/scratch"
