@@ -241,6 +241,8 @@ alias gr='git reset'
 alias grh='git reset --hard'
 # alias grhh='git reset HEAD --hard'
 
+alias gs='git show'
+
 alias gwc='git whatchanged -p --abbrev-commit --pretty=medium'
 
 #remove the gf alias
