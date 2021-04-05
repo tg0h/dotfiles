@@ -14,9 +14,9 @@ function fsync(){
 }
 
 function gn(){
-  # set now to YYYY-MM-DD_THHMM
+  # set now to YYYY-MM-DDTHHMM - use iso 8601 format
   #see http://zsh.sourceforge.net/Doc/Release/User-Contributions.html for docs on zmv
-  now=$(date +%Y-%m-%d_T%H%M)
+  now=$(date +%Y-%m-%dT%H%M)
 
 # # -C forces cp, ln or mv
 # zmv -C '*' './$f-$now'
