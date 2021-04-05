@@ -120,6 +120,7 @@ function _dbuGetTeam() {
 select t.name, t.active, t.id as teamId
 from teams t
 where UPPER(t.name) like UPPER('%$1%')
+order by t.name
 EOF
 }
 
