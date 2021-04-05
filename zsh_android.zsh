@@ -92,7 +92,7 @@ function acon() {
   # adb -d tcpip 5555
   # adb -d connect 192.168.1.$1:5555
   if [[ -n $ip ]]; then
-    adb connect $ip:5555
+    adb connect $ip
   elif [[ $# -eq 2 ]]; then
     # scrcpy -s 192.168.$1.$2:5555
     # adb -d connect 192.168.1.$1:5555
