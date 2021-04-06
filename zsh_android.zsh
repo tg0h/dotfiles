@@ -200,9 +200,15 @@ function adll() {
 # -a - which app d,s,p or fd,fs,fp
 # -e - regex to search message
 # -l - which log level v,d,i,w,e,f
+# device flags to specify id quickly
+# -r = red phone
+# -y = yellow phone
+# -g = green phone
+# -b = blue phone
 # examples:
 # adl -d - run logcat with cable
 # adl -s 6 - run logcat, connect to 192.168.1.<6>
+# adl -r - debug on the red phone
 function adl() {
   local loglevel=v
   local regex=".*" #default
@@ -212,12 +218,19 @@ function adl() {
   #if -a app argument not given, get the pid of the first app named argus
   local appId="argus"
 
-  while getopts 'l:e:a:ds:' opt; do
+  while getopts 'bgryl:e:a:ds:' opt; do
     case "$opt" in
+      b) ip="192.168.1.48:5555" ;;
+      g) ip="192.168.1.6:5555" ;;
+      r) ip="192.168.1.19:5555" ;;
+      y) ip="192.168.1.188:5555" ;;
+
+      s) ip="192.168.1.$OPTARG:5555" ;;
+
       d) usbMode="-d" ;;
+
       l) loglevel=$OPTARG ;;
       e) regex=$OPTARG ;;
-      s) ip="192.168.1.$OPTARG:5555" ;;
       a) app=$OPTARG
         case "$app" in
           d) appId="com.certis.argus.apps.officer.dev";;
@@ -246,6 +259,9 @@ function adl() {
   fi
 
   echo connecting to app $appName
+  echo "flutter app name -- com.certisgroup.argus.apps.officer.[env]"
+  echo "sg app name      -- com.certis.argus.apps.officer[env]"
+  echo -------
   echo with pid $pid
   echo with regex $regex
   echo usbMode: $usbMode
