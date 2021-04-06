@@ -167,7 +167,9 @@ function adi() {
   if [[ -n $usbMode ]]; then
     adb -d install $apkFileName &
   elif [[ -n $ip ]]; then
-    adb -s $ip install $apkFileName
+    # -g grants all permissions specified in the app manifest
+    echo "granting all permissions to $apkFileName ..."
+    adb -s $ip install -g --fastdeploy $apkFileName &
   else;
     echo neither usbMode or ip given
   fi
