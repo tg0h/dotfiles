@@ -55,11 +55,11 @@ function sca() {
   shift $(($OPTIND - 1))
 
   if [[ -n $ip ]]; then
-    scrcpy -s $ip --window-x 129 --window-y 427 --window-width 355 --window-height 782
+    scrcpy -s $ip --always-on-top --window-x 129 --window-y 427 --window-width 355 --window-height 782 &
   elif [[ $# -eq 2 ]]; then
-    scrcpy -s 192.168.$1.$2:5555 --always-on-top --window-x 129 --window-y 427 --window-width 355 --window-height 782
+    scrcpy -s 192.168.$1.$2:5555 --always-on-top --window-x 129 --window-y 427 --window-width 355 --window-height 782 &
   else
-    scrcpy -s 192.168.1.$1:5555 --always-on-top --window-x 129 --window-y 427 --window-width 355 --window-height 782
+    scrcpy -s 192.168.1.$1:5555 --always-on-top --window-x 129 --window-y 427 --window-width 355 --window-height 782 &
   fi
 }
 
