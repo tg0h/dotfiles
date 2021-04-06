@@ -165,7 +165,7 @@ function adi() {
   echo "going to install $apkFileName ..."
 
   if [[ -n $usbMode ]]; then
-    adb -d install $apkFileName
+    adb -d install $apkFileName &
   elif [[ -n $ip ]]; then
     adb -s $ip install $apkFileName
   else;
