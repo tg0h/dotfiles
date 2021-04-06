@@ -92,7 +92,10 @@ clogs () {
   awslogs get  /aws/lambda/Certify-ScheduledSync-prod -s $1 -e $2
 }
 function cpatche(){
-  cpatch $1 > $1.csv && vim $1.csv
+  gn #run the gn function to update the current time into the $now global var
+  local filename=timfix_"$now"_$1.csv
+
+  cpatch $1 > $filename && vim $filename
 }
 
 function cpatch(){
