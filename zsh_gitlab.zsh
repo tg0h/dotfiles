@@ -10,7 +10,36 @@ function ggp() {
 
 #download job artifacts, given a pipeline id
 function ggd() {
-  for i in `_gitlab_getPipelineJobIds $1`; do
+  #examples:
+  # ggd
+  #  download the latest build artifacts from the develop branch
+  #
+  # ggd <pipelineId>
+  #  given a pipelineId, download its job artifacts
+
+  # while getopts 'bdgrs:y' opt; do
+  #   case "$opt" in
+  #     b) ip="192.168.1.48:5555" ;;
+  #     d) usbMode="-d" ;;
+  #     g) ip="192.168.1.6:5555" ;;
+  #     r) ip="192.168.1.19:5555" ;;
+  #     s) ip="192.168.1.$OPTARG:5555" ;;
+  #     y) ip="192.168.1.188:5555" ;;
+  #   esac
+  # done
+  # shift $(($OPTIND - 1))
+
+  local pipelineId=""
+  if [ $# -eq 0 ]; then
+    #if no args given, then get latest dev build
+    pipelineId=$(_gitlab_getLatestDevPipelineId)
+  else
+    pipelineId=$1
+  fi
+
+  echo "downloading from pipeline id $pipelineId ..."
+
+  for i in `_gitlab_getPipelineJobIds $pipelineId`; do
     #download artifact for each job id
     _gitlab_dlJobArtifact $i
   done;
@@ -25,6 +54,11 @@ function ggpj() {
     jq '.[] | {"id": ((.id|tostring) + " - " + .status),"stage name ref": (.stage + " - " + .name + " - " + .ref + " - " + .created_at), "user": (.user.name + " - " + .commit.message), "fileformat": .artifacts[0].file_format}'
   }
 
+
+function _gitlab_getLatestDevPipelineId() {
+  https -b git.ads.certis.site/api/v4/projects/202/pipelines "PRIVATE-TOKEN: $GITLAB_PRIVATE_TOKEN" | \
+    jq '[.[] | select (.ref == "develop") ] | .[0].id'
+  }
 
 #download job artifacts
 function _gitlab_dlJobArtifact() {
