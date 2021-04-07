@@ -1,3 +1,5 @@
+# TODO: show local timezone for ggp command
+
 function ggp() {
   # -b prints the body only
   # jq -r -- print raw output without double quotes
