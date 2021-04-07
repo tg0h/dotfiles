@@ -17,6 +17,8 @@ Plug 'airblade/vim-gitgutter' "git gutter, show +/- in gutter January 9 2021 Sun
 
 Plug 'junegunn/vim-plug' "help file for vim-plug
 
+Plug 'junegunn/vim-peekaboo' "view contents of registers
+
 Plug 'scrooloose/nerdtree' "file explorer
 " Plug 'ctrlpvim/ctrlp.vim'
 
