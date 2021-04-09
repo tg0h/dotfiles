@@ -157,7 +157,7 @@ function adi() {
     #rg -v / - invert match, find entries that do not have the '/' character
     #rg '.*apk' - get all entries with a .apk
     #get the 1st match
-    apkFileName=$(ls -tp | rg -v / | rg '.*apk' | head -n1)
+    apkFileName=$(ls -tp | rg -v / | rg '.*apk$' | head -n1)
   else
     apkFileName=$1
   fi
