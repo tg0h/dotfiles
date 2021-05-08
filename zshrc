@@ -1,3 +1,8 @@
+# fonts - https://github.com/powerline/fonts.git
+# iterm2 color scheme - aurora with black background
+
+# this is important - you need to source the oh-my-zsh.sh file here
+
 export ZSH="/Users/tim/.oh-my-zsh"
 # set up p10k prompt
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
@@ -11,15 +16,19 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # plugins
 plugins=(
-  zsh-nvm #add at the top so other plugins that use node/npm can work
+  zsh-nvm #add at the top so other plugins that use node/npm can work ###lukechilds/zsh-nvm
   adb aws colored-man-pages docker dotenv #source the .env file in the root dir when you cd into it
   fasd git git-auto-fetch gitignore jira last-working-dir #lwd
-  npm osx ports timer
+  npm osx 
+  ports ###github: github.com/caarlos0-graveyard/ports
+  timer
   # vi-mode #interferes with prompt displaying modes, ctrl key special chars
   # web-search #google from command line
-  zsh-autosuggestions zsh-autocomplete z
+  zsh-autosuggestions ###zsh-users/zsh-autosuggestions
+  zsh-autocomplete ###marlonrichert/zsh-autocomplete
+  z
   # zsh-syntax-highlighting #source this at the end for syntax highlighting to work
-  fast-syntax-highlighting
+  fast-syntax-highlighting ###zdharma/fast-syntax-highlighting
 )
 source $ZSH/oh-my-zsh.sh
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh # p10k configuration
