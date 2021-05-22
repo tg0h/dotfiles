@@ -88,4 +88,9 @@ autoload -Uz ~/.zsh_functions/*(.) #-U supress alias expansion, -z zsh style fun
 autoload -U zmv # add the zsh zmv extension
 . ~/.zsh_funcs.zsh #get all my functions
 
+#load pyenv automatically
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
+
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
