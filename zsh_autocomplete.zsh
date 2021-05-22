@@ -1,5 +1,5 @@
 # make zsh-autocomplete stay silent until 3 chars have been typed
-#zstyle ':autocomplete:list-choices:*' min-input 3
+zstyle ':autocomplete:*' min-input 3  # number of characters (integer)
 
 #space does history expansion, does not do spelling correction
 zstyle ':autocomplete:space:*' magic expand-history
