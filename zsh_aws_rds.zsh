@@ -6,6 +6,11 @@
 #TODO: configuration file - 9 Aug 20 - done
 #TODO: /usr/local/share/zsh/site-functions/_rg - study rg zsh completion file
 
+# dependencies - 
+# use mysqlsh's credential store helper to remember your password
+# "credentialStore.helper": "keychain",
+# "credentialStore.savePasswords": "always"
+
 #ports 0 to 1023 are reserved
 
 function dbconn-argus() {
@@ -13,6 +18,11 @@ function dbconn-argus() {
 
   # ssh -N -L <local port>:<destination ip>:<remote port> <ssh user>:<ssh host>
   # the ssh host forwards your <localhost>:<local port> to the <destination ip>:<remote port>
+  # if there are problems with this command, eg it suspends immediately, run the actual ssh command without putting it in the bacground (without &)
+  # some possible errors:
+  # ssh key permissions
+  # need to add host fingerprint
+  # _kill_argus_db_ports did not kill the port (eg because a new environment added new ports)
   ssh -N -L $_ARGUS_RDS_DB_USER_LOCAL_PORT:$_ARGUS_RDS_DB_USER_HOST $_ARGUS_RDS_SSH_USER@$_ARGUS_RDS_SSH_HOST -i $_ARGUS_RDS_SSH_KEY &
   ssh -N -L $_ARGUS_RDS_DB_AUTH_LOCAL_PORT:$_ARGUS_RDS_DB_AUTH_HOST $_ARGUS_RDS_SSH_USER@$_ARGUS_RDS_SSH_HOST -i $_ARGUS_RDS_SSH_KEY &
 }
@@ -25,9 +35,8 @@ function _kill_argus_db_ports() {
 }
 
 #get all the pids of processes listening at these ports
-alias dbconn-get='lsof -Pi tcp@localhost:1100,1101,1200,1201,1300,1301,1400,1401' #-P do not resolve port numbers to port names so you can see 1100 instead of something else
+alias dbconn-get='lsof -Pi tcp@localhost:1100,1101,1200,1201,1210,1211,1300,1301,1400,1401' #-P do not resolve port numbers to port names so you can see 1100 instead of something else
 
-#use mysqlsh's credential store helper to remember your password
 
 # ALL
 function dball() {
