@@ -13,6 +13,10 @@
     ~/scripts: scripts/
 
     ~/.env: env
+    
+    ~/.ssh/config: ~/config/ssh/config
+    ~/.ssh/id_ed25519: ~/config/secrets/id_ed25519
+    ~/.ssh/id_ed25519.pub: ~/config/secrets/id_ed25519.pub
 
     ~/.ideavimrc: ideavimrc #webstorm ideavim emulation rc file
 
