@@ -121,6 +121,7 @@ function add() {
 function adi() {
 # SENSIBLE DEFAULTS:
 # if no apk provided, install the latest apk in the current folder
+# TODO: if just adi - default to common case - adi -r?
 
 #TODO: support 2 ip groups, eg 192.168.xxx.yyy
 #TODO: if ip not found, run adb connect first
