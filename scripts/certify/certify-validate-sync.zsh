@@ -1,4 +1,11 @@
-#!/usr/local/bin/zsh
+#!/usr/local/bin/zsh #this is the location of homebrew zsh 
+# to change shell, add the homebrew zsh path, /usr/local/bin/zsh to /etc/shells, then chsh -s to /usr/local/bin/zsh, then restart mac
+#
+# dependencies:
+#  gstat - need to brew install coreutils
+#  gsed - brew install gsed
+#  csvcut - need to sudo pip install csvkit. To install, brew install pyenv, pyenv install (python version) x.y.z then pip install csvkit
+#  trash - npm install -g trash-cli
 #
 # the plist file is stored in ~/Library/LaunchAgents/certify-validate-sync.plist
 # consider using the launch control app to configure this
@@ -16,8 +23,8 @@ echo this is path $path
 cerp p #get env variables
 
 # WORKING FOLDER FOR THE REPORT
-cd $_CERTIFY_VERIFY_REPORT_FOLDER
-trash $_CERTIFY_VERIFY_REPORT_FOLDER*
+cd $_CERTIFY_VERIFY_REPORT_FOLDER_TMP
+trash $_CERTIFY_VERIFY_REPORT_FOLDER_TMP/*
 
 csync #get latest dom report and latest user
 
