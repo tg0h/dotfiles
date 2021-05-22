@@ -5,6 +5,7 @@ let mapleader = " "
 set easymotion
 set surround
 set commentary
+set ideamarks
 
 " set ReplaceWithRegister
 " set argtextobj
