@@ -4,6 +4,9 @@
 
 - clean: ['~']
 
+- create:
+  - ~/.mutt #create the mutt config directory so that the muttrc file below can be placed in it
+
 # <target>:<source (original file)>
 - link:
     ~/.dotfiles: ''
@@ -43,6 +46,33 @@
     ~/.zsh_aliases.zsh: zsh_aliases.zsh
     ~/.zsh_git_aliases.zsh: zsh_git_aliases.zsh
     ~/.zsh_docker_aliases.zsh: zsh_docker_aliases.zsh
+
+
+    # certis
+    ## aws
+    ~/.aws/config: ~/certis/config/aws/config
+    ~/.aws/credentials: ~/certis/config/aws/credentials
+
+    ## abc
+    ### sg
+    ~/src/edo/abc-cli/config/environment/develop.json: ~/certis/config/env/abc-cli/develop.json
+    ~/src/edo/abc-cli/config/environment/staging.json: ~/certis/config/env/abc-cli/staging.json
+    ~/src/edo/abc-cli/config/environment/production.json: ~/certis/config/env/abc-cli/production.json
+    ### au
+    ~/src/edo/abc-cli/config/environment/stagingAu.json: ~/certis/config/env/abc-cli/stagingAu.json
+      
+    ## argus
+    ### sg
+    ~/dotfiles/argus.develop.env: ~/certis/config/env/argus/argus.develop.env
+    ~/dotfiles/argus.staging.env: ~/certis/config/env/argus/argus.staging.env
+    ~/dotfiles/argus.production.env: ~/certis/config/env/argus/argus.production.env
+    ### au
+    ~/dotfiles/argusAu.staging.env: ~/certis/config/env/argus/argusAu.staging.env
+      
+    ## certify
+    ~/dotfiles/certify.develop.env: ~/certis/config/env/certify/certify.develop.env
+    ~/dotfiles/certify.staging.env: ~/certis/config/env/certify/certify.staging.env
+    ~/dotfiles/certify.production.env: ~/certis/config/env/certify/certify.production.env
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
