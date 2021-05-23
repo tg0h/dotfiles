@@ -19,7 +19,7 @@
 
 [user]
 	email = ***REMOVED***
-  name = tim
+	name = tim
 [diff]
 	tool = vimdiff
 [merge]
