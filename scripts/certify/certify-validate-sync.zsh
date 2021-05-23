@@ -184,6 +184,7 @@ echo "copying cognito users.csv"
 clu #get list of cognito users (json)
 clu2csv #convert list of cognito users to csv
 cp $_CERTIFY_COGNITO_LOCAL_USERS.csv .
+# TODO: relative file path code smell?
 echo get sg users
 rg '^"SG.*' <users.csv >userssg.csv
 gsed -i '1i GlobalId,EEId,Name,GivenName,FamilyName,EmploymentStatus,JoinDate,UserStatus,PhoneNumberVerified,PhoneNumber,EmailVerified,Email,CompanyEmail,PersonalEmail,UserCreatedDate,UserLastModified' userssg.csv
@@ -211,12 +212,16 @@ xsv join --left GlobalId join1.csv GlobalId s3num0x >join2.csv
 xsv join --left GlobalId join2.csv GlobalId s3cemail >join3.csv
 xsv join --left GlobalId join3.csv GlobalId s3pemail >join4.csv # join cognito users with latest s3 attributes
 
+# SyncErrorReport is a view in the sqlite3 db
+# There are error views for each s3 table in the sqlite db
+# the SyncErrorReport view then uses these view to generate the report
+
 echo generating error report
 sqlite3 $_CERTIFY_VERIFY_DB <<EOF
 .headers on
 .mode csv
 .output SyncErrorReport.csv
-Select * from SyncErrorReport;
+Select * from SyncErrorReport order by GlobalId, ErrorType;
 EOF
 
 # echo generating error report
