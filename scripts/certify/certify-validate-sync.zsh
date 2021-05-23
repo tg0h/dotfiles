@@ -183,7 +183,6 @@ EOF
 echo "copying cognito users.csv"
 clu #get list of cognito users (json)
 clu2csv #convert list of cognito users to csv
-cp $_CERTIFY_COGNITO_LOCAL_DB.csv .
 cp $_CERTIFY_COGNITO_LOCAL_USERS.csv .
 echo get sg users
 rg '^"SG.*' <users.csv >userssg.csv
