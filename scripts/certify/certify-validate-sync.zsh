@@ -6,6 +6,7 @@
 #  gsed - brew install gsed
 #  csvcut - need to sudo pip install csvkit. To install, brew install pyenv, pyenv install (python version) x.y.z then pip install csvkit
 #  trash - npm install -g trash-cli
+#  xsv - manipulate csv files - from git BurntSushi/xsv - brew install xsv
 #
 # the plist file is stored in ~/Library/LaunchAgents/certify-validate-sync.plist
 # consider using the launch control app to configure this
@@ -22,7 +23,7 @@ echo this is path $path
 . $HOME/dotfiles/zshrc #get everything
 cerp p #get env variables
 
-# WORKING FOLDER FOR THE REPORT
+# WORKING FOLDER FOR THE REPORT ------------------------------------------------------------------------------------
 cd $_CERTIFY_VERIFY_REPORT_FOLDER_TMP
 trash $_CERTIFY_VERIFY_REPORT_FOLDER_TMP/*
 
@@ -48,7 +49,7 @@ rg -n '.*,SG.*(,STAT2,|,NUM..,|,P_EMAIL,|,C_EMAIL,|,USRID_LONG,)' $_CERTIFY_S3_B
 #.19 means first 19 chars
 # zsh throws an error "argument list too long" if there are too many files in the folder
 # gstat -c '%n %.19w' $_CERTIFY_S3_BUCKET_SAP_SYNC_LOCAL_FOLDER >file_date
-for file in $_CERTIFY_S3_BUCKET_SAP_SYNC_LOCAL_FOLDER*;
+for file in $_CERTIFY_S3_BUCKET_SAP_SYNC_LOCAL_FOLDER/*; # note that / after $_CERTIFY_S3_BUCKET_SAP_SYNC_LOCAL_FOLDER
 do
   # echo $file
   gstat -c '%n %.19w' $file >> file_date
@@ -71,7 +72,7 @@ gsed -i '1i FileName,FileNameBase' stage2filenamesuniqbase
 sqlite3 $_CERTIFY_VERIFY_DB <<EOF
 delete from S3FileName;
 .mode csv
-.import --skip 1 stage2filenamesuniqbase S3FileName
+.import --skip 1 $_CERTIFY_VERIFY_REPORT_FOLDER_TMP/stage2filenamesuniqbase S3FileName
 EOF
 # parallel -a stage2filenames basename > stage2basenames ## too slow, has 147k records
 
@@ -129,7 +130,7 @@ csvcut -c 3,4,5,6,7,8,9,1,2,10 _s3stat2 >s3stat2
 sqlite3 $_CERTIFY_VERIFY_DB <<EOF
 delete from s3stat2;
 .mode csv
-.import --skip 1 s3stat2 s3stat2
+.import --skip 1 $_CERTIFY_VERIFY_REPORT_FOLDER_TMP/s3stat2 s3stat2
 EOF
 # skip 1st header row
 #.import <filename> <table name> - import this csv file into this table
@@ -143,7 +144,7 @@ csvcut -c 3,4,5,6,7,8,9,1,2,10 __s3num0x >s3num0x
 sqlite3 $_CERTIFY_VERIFY_DB <<EOF
 delete from s3num0x;
 .mode csv
-.import --skip 1 s3num0x s3num0x
+.import --skip 1 $_CERTIFY_VERIFY_REPORT_FOLDER_TMP/s3num0x s3num0x
 EOF
 
 rg ',C_EMAIL,' <stage8 | sort -t, -k4,4 >_s3cemail
@@ -154,7 +155,7 @@ csvcut -c 3,4,5,6,7,8,9,1,2,10 _s3cemail >s3cemail
 sqlite3 $_CERTIFY_VERIFY_DB <<EOF
 delete from s3cemail;
 .mode csv
-.import --skip 1 s3cemail s3cemail
+.import --skip 1 $_CERTIFY_VERIFY_REPORT_FOLDER_TMP/s3cemail s3cemail
 EOF
 
 rg ',P_EMAIL,' <stage8 | sort -t, -k4,4 >_s3pemail
@@ -165,7 +166,7 @@ csvcut -c 3,4,5,6,7,8,9,1,2,10 _s3pemail >s3pemail
 sqlite3 $_CERTIFY_VERIFY_DB <<EOF
 delete from s3pemail;
 .mode csv
-.import --skip 1 s3pemail s3pemail
+.import --skip 1 $_CERTIFY_VERIFY_REPORT_FOLDER_TMP/s3pemail s3pemail
 EOF
 
 ##get user.csv containing cognito users
@@ -180,7 +181,7 @@ gsed -i '1i GlobalId,EEId,Name,GivenName,FamilyName,EmploymentStatus,JoinDate,Us
 sqlite3 $_CERTIFY_VERIFY_DB <<EOF
 delete from User;
 .mode csv
-.import --skip 1 userssg.csv User
+.import --skip 1 $_CERTIFY_VERIFY_REPORT_FOLDER_TMP/userssg.csv User
 EOF
 
 cp $_CERTIFY_COGNITO_SIGNINS .
@@ -190,7 +191,7 @@ gsed -i '1i Username,EventResponse,EventType,CreationDate,RiskDecision,Compromis
 sqlite3 $_CERTIFY_VERIFY_DB <<EOF
 delete from SignIn;
 .mode csv
-.import --skip 1 signins SignIn
+.import --skip 1 $_CERTIFY_VERIFY_REPORT_FOLDER_TMP/signins SignIn
 EOF
 
 #joining on EE ID fails because of dirty data where EE ID is ./Desktop/SAP data/timfix-missingEmpId-all-1-700.csv:128706
