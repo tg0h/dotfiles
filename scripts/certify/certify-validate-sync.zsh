@@ -40,8 +40,10 @@ local start=$(date +%s)
 # gnl -s, -nrz test > out
 
 # show line numbers with -n
-echo filtering attributes from s3 to stage1
+echo stage 1
+echo filtering SG User attributes from s3 to stage1
 # rg -n '.*,SG.*(,STAT2,|,NUM..,|,P_EMAIL,|,C_EMAIL,|,USRID_LONG,)' $_CERTIFY_S3_BUCKET_SAP_SYNC_LOCAL_FOLDER >stage1
+# only get SG users, ignore HK users
 rg -n '.*,SG.*(,STAT2,|,NUM..,|,P_EMAIL,|,C_EMAIL,|,USRID_LONG,)' $_CERTIFY_S3_BUCKET_SAP_SYNC_LOCAL_FOLDER >stage1
 
 #n is name
@@ -59,15 +61,22 @@ gsed -E 's/^(.*.CSV) /\1,/gI' file_date | sort >file_date2 #replace space after 
 
 #replace colon after filename with comma
 #replace blah.csv:45:field1,field2,... to blah.csv,45,field1,field2,
-echo stage 1
+echo stage 2
 gsed -E 's/^(.*.CSV)(:)([0-9]+)(:)/\1,\3,/gI' stage1 | sort >stage2
 
+# -d - the delimiter is ,
+# -f1 - only get the first field in stage2
 cut -d, -f1 stage2 > stage2filenames
+
+#get unique filenames from stage2filenames
 cat stage2filenames | sort | uniq > stage2filenamesuniq
 while read file
 do
   echo $file,$(basename $file) | gsed -E 's/(.*),(.*)/\1,"\2"/'
 done < stage2filenamesuniq > stage2filenamesuniqbase
+
+# use gsed to add a header row
+# -i - edit in place
 gsed -i '1i FileName,FileNameBase' stage2filenamesuniqbase
 sqlite3 $_CERTIFY_VERIFY_DB <<EOF
 delete from S3FileName;
