@@ -158,6 +158,7 @@ function ccreate() {
     Name=custom:employment_status,Value="3" \
     Name=custom:working_home,Value="C100" \
     Name=custom:personal_email,Value="$email" \
+    Name=custom:company_email,Value="$email" \
     Name=custom:legal_home,Value="C400" \
     Name=custom:join_date,Value="20191111"\
   }
@@ -246,17 +247,21 @@ csync() {
 cupload() {
   # TODO: what happens if $has spaces?
   local basename=$(basename $1)
-  aws s3 cp $1 "$_CERTIFY_S3_BUCKET_SAP_SYNC$basename"
+
+  aws s3 cp $1 "$_CERTIFY_S3_BUCKET_SAP_SYNC/$basename"
 }
 
-# cognito list users
+# cognito list all users
 clu() {
-  aws cognito-idp list-users --user-pool-id $_CERTIFY_POOL_ID > $_CERTIFY_COGNITO_LOCAL_DB
+  #TODO: code smell, .csv?
+  aws cognito-idp list-users --user-pool-id $_CERTIFY_POOL_ID > $_CERTIFY_COGNITO_LOCAL_USERS.json
 }
 
+# convert json to csv, filter for useful user attributes
 clu2csv() {
+  #TODO: code smell, .csv, .json
   jq --raw-output '.Users[] | (.Attributes | map( {(.Name) : .Value}) | add ) as $fields | [{Username, employee_id: $fields."custom:employee_id",name: $fields.name,given_name: $fields.given_name,family_name: $fields.family_name,employment_status: $fields."custom:employment_status", join_date: $fields."custom:join_date",UserStatus,phone_number_verified: $fields.phone_number_verified, phone_number: $fields.phone_number, email_verified: $fields.email_verified,email: $fields.email,company_email: $fields."custom:company_email", personal_email: $fields."custom:personal_email",UserCreateDate,UserLastModifiedDate}] | (.[0] | keys_unsorted) as $keys | map([.[ $keys[] ]])[] | @csv'  \
-    < $_CERTIFY_COGNITO_LOCAL_DB \
-    > $_CERTIFY_COGNITO_LOCAL_DB.csv
+    < $_CERTIFY_COGNITO_LOCAL_USERS.json \
+    > $_CERTIFY_COGNITO_LOCAL_USERS.csv
   }
 
