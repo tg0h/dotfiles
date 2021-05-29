@@ -1,4 +1,5 @@
 # TODO: acon should connect by device flag eg -y for the yellow phone
+# TODO: global var for build folders
 
 # SCRCPY ==========================================================================
 
