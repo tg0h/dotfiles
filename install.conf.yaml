@@ -76,12 +76,17 @@
     ~/dotfiles/argusAu.production.env: ~/certis/config/env/argus/argusAu.production.env
       
     ## certify
+    ### certify cli
     ~/dotfiles/certify.develop.env: ~/certis/config/env/certify/certify.develop.env
     ~/dotfiles/certify.staging.env: ~/certis/config/env/certify/certify.staging.env
     ~/dotfiles/certify.production.env: ~/certis/config/env/certify/certify.production.env
+    
+    ### certify sync job
+    ~/Library/LaunchAgents/certify-validate-sync.plist: ~/dotfiles/scripts/certify/certify-validate-sync.plist
 
+    # me
     ## timtoggl
-    ~/dev/working/timtoggl/timtoggl/.env: ~/certis/config/env/timtoggl/env
+    ~/dev/working/timtoggl/timtoggl/.env: ~/config/env/timtoggl/env
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
