@@ -1,5 +1,5 @@
 set imap_user = timtestallthethings@gmail.com
-set imap_pass = cheever1
+set imap_pass = $GMAIL_TIMTESTALLTHETHINGS_PASSWORD
 
 set spoolfile = +INBOX
 
@@ -7,7 +7,7 @@ set realname = "timothy"
 set from = "timtestallthethings@gmail.com"
 set folder = imaps://imap.gmail.com
 set smtp_url = "smtps://timtestallthethings@gmail.com@smtp.gmail.com
-set smtp_pass = cheever1
+set smtp_pass = $GMAIL_TIMTESTALLTHETHINGS_PASSWORD
 set ssl_force_tls = yes
 set header_cache = ~/.cache/mutt
 set spoolfile = +Inbox
