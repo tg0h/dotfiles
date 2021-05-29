@@ -194,15 +194,15 @@ delete from User;
 .import --skip 1 $_CERTIFY_VERIFY_REPORT_FOLDER_TMP/userssg.csv User
 EOF
 
-cp $_CERTIFY_COGNITO_SIGNINS .
-echo get sign in attempts
-# TODO: get latest signins?
-gsed -i '1i Username,EventResponse,EventType,CreationDate,RiskDecision,CompromisedCredentialsCreated,ChallengeName,ChallengeResponse' signins
-sqlite3 $_CERTIFY_VERIFY_DB <<EOF
-delete from SignIn;
-.mode csv
-.import --skip 1 $_CERTIFY_VERIFY_REPORT_FOLDER_TMP/signins SignIn
-EOF
+# cp $_CERTIFY_COGNITO_SIGNINS .
+# echo get sign in attempts
+# # TODO: get latest signins?
+# gsed -i '1i Username,EventResponse,EventType,CreationDate,RiskDecision,CompromisedCredentialsCreated,ChallengeName,ChallengeResponse' signins
+# sqlite3 $_CERTIFY_VERIFY_DB <<EOF
+# delete from SignIn;
+# .mode csv
+# .import --skip 1 $_CERTIFY_VERIFY_REPORT_FOLDER_TMP/signins SignIn
+# EOF
 
 #joining on EE ID fails because of dirty data where EE ID is ./Desktop/SAP data/timfix-missingEmpId-all-1-700.csv:128706
 #join on Global ID instead
