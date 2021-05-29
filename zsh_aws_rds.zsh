@@ -92,6 +92,12 @@ function _setArgusProfile() {
       dbconn-argus #automatically open ssh ports
       asp p #switch aws profile to prod
       ;;
+    ap) argus_profile="au prod"
+      . ~/dotfiles/argusAu.production.env
+      vpn
+      dbconn-argus #automatically open ssh ports
+      asp ap #switch aws profile to au staging
+      ;;
   esac
 
   export _ARGUS_PROFILE=$argus_profile
