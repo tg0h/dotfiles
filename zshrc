@@ -17,7 +17,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # plugins
 plugins=(
   zsh-nvm #add at the top so other plugins that use node/npm can work ###lukechilds/zsh-nvm
-  adb aws colored-man-pages docker dotenv #source the .env file in the root dir when you cd into it
+  adb aws colored-man-pages docker docker-compose dotenv #source the .env file in the root dir when you cd into it
   fasd git git-auto-fetch gitignore jira last-working-dir #lwd
   npm osx 
   ports ###github: github.com/caarlos0-graveyard/ports
@@ -94,3 +94,6 @@ if command -v pyenv 1>/dev/null 2>&1; then
 fi
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+# load my profiles
+cerp p
