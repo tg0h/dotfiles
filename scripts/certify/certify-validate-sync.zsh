@@ -148,8 +148,8 @@ rg ',NUM0' <stage8 | sort -t, -k4,4 >_s3num0x #can be NUM03 etc TODO:
 # gsed -i '1i file,filerownum,"EE ID","Global ID","Start Date","End Date","Field Name","Field Value",Status,FileCreateDate' s3_num0x
 gsed -i -E 's/([0-9]{2})\.([0-9]{2})\.([0-9]{4})/\3-\2-\1/g' _s3num0x #change date format from dd.mm.yyyy to yyyy-mm-dd
 gsed -i '1i File,FileRow,EEId,GlobalId,StartDate,EndDate,Field,Value,Status,FileCreateDate' _s3num0x
-gsed -E 's/NUM0X,([0-9])/NUM0X,+\1/g' _s3num0x >__s3num0x #add + prefix to phone numbers
-csvcut -c 3,4,5,6,7,8,9,1,2,10 __s3num0x >s3num0x
+# gsed -E 's/NUM0X,([0-9])/NUM0X,+\1/g' _s3num0x >__s3num0x #add + prefix to phone numbers
+csvcut -c 3,4,5,6,7,8,9,1,2,10 _s3num0x >s3num0x
 sqlite3 $_CERTIFY_VERIFY_DB <<EOF
 delete from s3num0x;
 .mode csv
@@ -206,11 +206,12 @@ EOF
 
 #joining on EE ID fails because of dirty data where EE ID is ./Desktop/SAP data/timfix-missingEmpId-all-1-700.csv:128706
 #join on Global ID instead
-echo join to stat2
-xsv join --left GlobalId userssg.csv GlobalId s3stat2 >join1.csv
-xsv join --left GlobalId join1.csv GlobalId s3num0x >join2.csv
-xsv join --left GlobalId join2.csv GlobalId s3cemail >join3.csv
-xsv join --left GlobalId join3.csv GlobalId s3pemail >join4.csv # join cognito users with latest s3 attributes
+# echo join to stat2
+# what is this for ?!?!
+# xsv join --left GlobalId userssg.csv GlobalId s3stat2 >join1.csv
+# xsv join --left GlobalId join1.csv GlobalId s3num0x >join2.csv
+# xsv join --left GlobalId join2.csv GlobalId s3cemail >join3.csv
+# xsv join --left GlobalId join3.csv GlobalId s3pemail >join4.csv # join cognito users with latest s3 attributes
 
 # SyncErrorReport is a view in the sqlite3 db
 # There are error views for each s3 table in the sqlite db
@@ -221,7 +222,23 @@ sqlite3 $_CERTIFY_VERIFY_DB <<EOF
 .headers on
 .mode csv
 .output SyncErrorReport.csv
-Select * from SyncErrorReport order by GlobalId, ErrorType;
+Select * from SyncErrorReport order by SyncDate desc;
+EOF
+
+echo generating phoneNumber patch
+sqlite3 $_CERTIFY_VERIFY_DB <<EOF
+.headers on
+.mode csv
+.output phoneNumberPatch.csv
+Select * from user_phoneNumber_patch order by 'Global Id'
+EOF
+
+echo generating employmentStatus patch
+sqlite3 $_CERTIFY_VERIFY_DB <<EOF
+.headers on
+.mode csv
+.output employmentStatusPatch.csv
+Select * from user_employmentStatus_patch order by 'Global Id'
 EOF
 
 # echo generating error report
@@ -234,7 +251,7 @@ EOF
 
 local errorCount=$(($(wc -l <SyncErrorReport.csv) - 1)) #subtract header row from file
 if [ $errorCount -gt 0 ]; then
-  echo "Errors found in Sap Sync" | mutt -s "SAP Sync Error Report" ***REMOVED*** -a SyncErrorReport.csv
+  echo "Errors found in Sap Sync" | mutt -s "SAP Sync Error Report" ***REMOVED*** -a SyncErrorReport.csv -a phoneNumberPatch.csv -a employmentStatusPatch.csv
 fi
 
 mkdir -p /tmp/certify

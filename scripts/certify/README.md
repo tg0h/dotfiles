@@ -74,6 +74,7 @@ eg SG125387 NUM0x is another group
 
 _s3stat2 
 _s3num0x
+<!-- * add a + prefix to phone numbers -->
 _s3cemail
 _s3pemail
 
@@ -87,3 +88,8 @@ SyncErrorReport is a view in the sqlite3 db
 There are error views for each s3 table in the sqlite db
 the SyncErrorReport view then uses these view to generate the report
 
+comparing emails is particularly tricky.
+* p, c email problem.
+* what if c email has a gmail address, then another p email sync is synced?
+
+what if there is only a difference of a + in the phone number, eg s3 does not have +, cognito has a + is it an error?
