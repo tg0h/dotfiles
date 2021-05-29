@@ -35,9 +35,17 @@
 # fsync 
 
 # add the path to FreeFileSync
-path=('/usr/local/bin' $path) # add homebrew packages
+# path=('/usr/local/bin' $path) # add homebrew packages
 
-FreeFileSync ~/certis/.certisSync.ffs_batch
+# FreeFileSync ~/certis/.certisSync.ffs_batch
 
-echo fysnc done at $(date)
+# echo fysnc done at $(date)
+
+#don't use freefilesync anymore
+
+rsync -a ~/certis /Volumes/joopyo/tim
+rsync -a ~/config /Volumes/joopyo/tim
+rsync -a ~/dotfiles /Volumes/joopyo/tim
+rsync -a ~/dev /Volumes/joopyo/tim
+
 
