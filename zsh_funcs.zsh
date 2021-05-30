@@ -35,3 +35,22 @@ function gn(){
 # # -C forces cp, ln or mv
 # zmv -C '*' './$f-$now'
 }
+
+function nasw(){
+  # nas wakeup
+  # dependencies:
+  #   brew install wakeonlan
+  #   find the mac address of your nas
+  #   of course, you need to enable wake on lan in your nas
+
+  wakeonlan 00:11:32:6F:07:B6
+}
+
+function nass(){
+  # dependencies
+  # brew install expect
+  # env should contain nas_ssh_password
+  
+  expect ~/dotfiles/scripts/nas/nass.zsh
+
+}
