@@ -1,4 +1,5 @@
 # TODO: awslogs get  sns/ap-southeast-1/474132418168/DirectPublishToPhoneNumber -s '9/1/2020 00:00' -e '9/1/2020 02:00' > certify_sms_publish
+# TODO: format cgetss cognito output
 
 ## switch env
 cerp () {
@@ -230,6 +231,20 @@ function cgets() {
 
   # aws cognito-idp admin-list-user-auth-events --user-pool-id $_CERTIFY_POOL_ID --username SG$1 | jq '.AuthEvents[0:6][] | {EventResponse,EventType,CreationDate,EventRisk,ChallengeResponses}'
   aws cognito-idp admin-list-user-auth-events --user-pool-id $_CERTIFY_POOL_ID --username $userName | jq ".AuthEvents[0:$n][] | {EventResponse,EventType,CreationDate,EventRisk,ChallengeResponses}"
+}
+
+function cgetss() {
+  local userPrefix="SG" #default
+  while getopts 'p:' opt; do
+    case "$opt" in
+      p) userPrefix=$OPTARG ;;
+    esac
+  done
+  shift $(($OPTIND - 1))
+
+  local userName=$userPrefix$1
+
+  aws cognito-idp admin-list-user-auth-events --user-pool-id $_CERTIFY_POOL_ID --username $userName
 }
 
 ## cognito pool operations
