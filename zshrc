@@ -58,7 +58,6 @@ complete -C '/usr/local/bin/aws_completer' aws # enable aws completion - https:/
 export PATH="/usr/local/mysql/bin:$PATH" # add my sql to path
 export PATH="/usr/local/opt/sqlite/bin:$PATH" # add homebrew sqlite3 to path (do not use macos sqlite which is an older version)
 export PATH="$PATH:$HOME/dev/tools/flutter/bin" # add flutter
-export PATH="$PATH:$HOME/dev/tools" # add authy alfred workflow - https://github.com/momaek/authy
 export PATH="$PATH:$HOME/Library/Android/sdk/emulator" # add android emulator
 # export PATH="$PATH:/Users/tim/Library/Android/sdk/tools/bin" # add android emulator
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh #source fzf after the vim keymap so fzf shortcuts take precedence
