@@ -244,6 +244,11 @@ csync() {
   aws s3 sync $_CERTIFY_S3_BUCKET_SAP_SYNC_REPORTS $_CERTIFY_S3_BUCKET_SAP_SYNC_REPORTS_LOCAL_FOLDER
 }
 
+#run the certify sync report
+crep() {
+  ~/dotfiles/scripts/certify/certify-validate-sync.zsh
+}
+
 cupload() {
   # TODO: what happens if $has spaces?
   local basename=$(basename $1)
