@@ -3,7 +3,7 @@ alias -g F='| fzf' # change Z to whatever you like
 
 # =========================================================================
 # edit config file shortcuts
-alias zshrc='vim ~/.zshrc'
+alias zshrc='vim ~/dotfiles/zshrc'
 alias zshaa='vim ~/.zsh_aliases.zsh'
 alias zshf='vim ~/.zsh_funcs.zsh' #misc functions, use zsh_functions folder for more organization
 alias zshe='vim ~/.env'
