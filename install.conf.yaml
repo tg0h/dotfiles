@@ -29,6 +29,7 @@
     ~/.vim: vim
     ~/.vimrc: vimrc
     ~/.zshrc: zshrc
+    ~/.zprofile: zprofile # set up env variables for all users/apps system wide
     ~/.zsh_android.zsh: zsh_android.zsh
     ~/.zsh_autosuggestions.zsh: zsh_autosuggestions.zsh
     ~/.zsh_autocomplete.zsh: zsh_autocomplete.zsh
