@@ -19,7 +19,7 @@ function sc() {
       b) ip="192.168.1.48:5555" ;;
       g) ip="192.168.1.6:5555" ;;
       r) ip="192.168.1.19:5555" ;;
-      y) ip="192.168.1.189:5555" ;;
+      y) ip="192.168.1.188:5555" ;;
     esac
   done
   shift $(($OPTIND - 1))
@@ -50,7 +50,7 @@ function sca() {
       b) ip="192.168.1.58:5555" ;;
       g) ip="192.168.1.6:5555" ;;
       r) ip="192.168.1.19:5555" ;;
-      y) ip="192.168.1.189:5555" ;;
+      y) ip="192.168.1.188:5555" ;;
     esac
   done
   shift $(($OPTIND - 1))
@@ -66,6 +66,37 @@ function sca() {
 
 
 # ADB ==========================================================================
+
+function adp() {
+  # get screenshots, etc from phone
+  # gets the ip of the phone connected via usb
+  # Camera
+  # Screenshots
+  # Videocaptures
+  adb -d pull /sdcard/DCIM/screenshots
+}
+
+function adls() {
+  # ls screenshots, etc from phone
+  # gets the ip of the phone connected via usb
+  # Camera
+  # Screenshots
+  # Videocaptures
+  adb -d shell ls /sdcard/DCIM/screenshots
+}
+
+
+function adr() {
+  # remove screenshots from phone
+  # gets the ip of the phone connected via usb
+  # Camera
+  # Screenshots
+  # Videocaptures
+  # -r - recursive
+  adb -d shell rm -r /sdcard/DCIM/screenshots
+}
+
+
 
 function aip() {
   # gets the ip of the phone connected via usb
@@ -85,7 +116,7 @@ function acon() {
       b) ip="192.168.1.58:5555" ;;
       g) ip="192.168.1.6:5555" ;;
       r) ip="192.168.1.19:5555" ;;
-      y) ip="192.168.1.189:5555" ;;
+      y) ip="192.168.1.188:5555" ;;
     esac
   done
   shift $(($OPTIND - 1))
@@ -123,6 +154,7 @@ function adi() {
 # SENSIBLE DEFAULTS:
 # if no apk provided, install the latest apk in the current folder
 # TODO: if just adi - default to common case - adi -r?
+# TODO: add acon and atcp here
 
 #TODO: support 2 ip groups, eg 192.168.xxx.yyy
 #TODO: if ip not found, run adb connect first
@@ -141,7 +173,7 @@ function adi() {
       g) ip="192.168.1.6:5555" ;;
       r) ip="192.168.1.19:5555" ;;
       s) ip="192.168.1.$OPTARG:5555" ;;
-      y) ip="192.168.1.189:5555" ;;
+      y) ip="192.168.1.188:5555" ;;
     esac
   done
   shift $(($OPTIND - 1))
@@ -225,7 +257,7 @@ function adl() {
       b) ip="192.168.1.58:5555" ;;
       g) ip="192.168.1.6:5555" ;;
       r) ip="192.168.1.19:5555" ;;
-      y) ip="192.168.1.189:5555" ;;
+      y) ip="192.168.1.188:5555" ;;
 
       s) ip="192.168.1.$OPTARG:5555" ;;
 
