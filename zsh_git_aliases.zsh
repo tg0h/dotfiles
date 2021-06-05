@@ -5,7 +5,7 @@
 function gpdo(){
   # gpdo expects origin/featureBranch to be passed
   # gpdo will cut away the first field and delete the "featureBranch" branch
-  
+
   # pass first parameter to stdin of gcut command
   local branch=$(gcut -f2- -d/ <<< "$1")
   git push -d origin $branch
@@ -27,7 +27,7 @@ function gbdd(){
   #EXAMPLES:
   # gbdd <search string>
   # gbdd -d <search string> - force delete
-  
+
   #NOTE: git branch -r --merged is with reference to the branch you are currently on!
   #example: gbdd sprint-13
   #might need to run git fetch --prune to clean up remote before running this command
@@ -62,12 +62,20 @@ function gbdd(){
 function gbnmrd(){
   #dry run delete git remote branches with a search string
   #NOTE: git branch -r --merged is with reference to the branch you are currently on!
+  #example: gbmrd -n sprint-18 - dry run delete with search term
   #example: gbmrd sprint-18
   #might need to run git fetch --prune to clean up remote before running this command
+  local dryRun=""
+  while getopts 'n' opt; do
+    case "$opt" in
+      n) dryRun="--dry-run";;
+    esac
+  done
+  shift $(($OPTIND - 1))
 
   if [[ -z $1 ]]; then
     echo please provide a search string, eg gbnmrd sprint-18
-    exit
+    return
   fi
   # cut
   #   f2- - cut from the second field to the end of line
@@ -75,34 +83,27 @@ function gbnmrd(){
   # xargs
   #   -P - number of processes to run
   #   -n - how many arguments from stdin to pass to each xargs command
-  gbnmr | rg $1 | gcut -f2- -d/| xargs -P 12 -n 1 -I{} git push --dry-run -d origin {}
-}
-
-#TODO: refactor gbmrd and gbnmrd, dd
-function gbnmrdd(){
-  #dry run delete git remote branches with a search string
-  #NOTE: git branch -r --merged is with reference to the branch you are currently on!
-  #example: gbmrd sprint-18
-  #might need to run git fetch --prune to clean up remote before running this command
-
-  if [[ -z $1 ]]; then
-    echo please provide a search string, eg gbnmrd sprint-18
-    exit
-  fi
-  # cut
-  #   f2- - cut from the second field to the end of line
-  #   -d/ - use a field separator of /
-  # xargs
-  #   -P - number of processes to run
-  #   -n - how many arguments from stdin to pass to each xargs command
-  gbnmr | rg $1 | gcut -f2- -d/| xargs -P 12 -n 1 -I{} git push -d origin {}
+  
+  #if dryRun, print dry run
+  [[ -n $dryRun ]] && echo dry run:
+  gbnmr | rg $1 | gcut -f2- -d/| xargs -P 12 -n 1 -I{} git push $dryRun -d origin {}
+  # gbnmr | rg $1 | gcut -f2- -d/| xargs -P 12 -n 1 -I{} git push --dry-run -d origin {}
 }
 
 function gbmrd(){
   #dry run delete git remote branches with a search string
   #NOTE: git branch -r --merged is with reference to the branch you are currently on!
+  #example: gbmrd -n sprint-18 - dry run delete with search term sprint-18
   #example: gbmrd sprint-18
   #might need to run git fetch --prune to clean up remote before running this command
+  local dryRun=""
+  while getopts 'n' opt; do
+    case "$opt" in
+      n) dryRun="--dry-run";;
+    esac
+  done
+  shift $(($OPTIND - 1))
+
 
   if [[ -z $1 ]]; then
     echo please provide a search string, eg gbmrd sprint-18
@@ -114,21 +115,12 @@ function gbmrd(){
   # xargs
   #   -P - number of processes to run
   #   -n - how many arguments from stdin to pass to each xargs command
-  gbmr | rg $1 | gcut -f2- -d/| xargs -P 12 -n 1 -I{} git push --dry-run -d origin {}
+  # gbmr | rg $1 | gcut -f2- -d/| xargs -P 12 -n 1 -I{} git push --dry-run -d origin {}
+
+  #if dryRun, print dry run
+  [[ -n $dryRun ]] && echo dry run:
+  gbmr | rg $1 | gcut -f2- -d/| xargs -P 12 -n 1 -I{} git push $dryRun -d origin {}
 }
-
-function gbmrdd(){
-  #dry run delete git remote branches with a search string
-  #NOTE: git branch -r --merged is with reference to the branch you are currently on!
-  #example: gbmrd sprint-18
-  #might need to run git fetch --prune to clean up remote before running this command
-
-  # cut
-  #   f2- - cut from the second field to the end of line
-  #   -d/ - use a field separator of /
-  gbmr | rg $1 | gcut -f2- -d/| xargs -P 12 -n 1 -I{} git push -d origin {}
-}
-
 
 # =============================================================================
 
