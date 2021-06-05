@@ -11,6 +11,7 @@
 - link:
     ~/.dotfiles: ''
     ~/scripts: scripts/
+    ~/Library/Application Support/com.clickontyler.TextBuddy/scripts: scripts/textBuddy/
 
     ~/.env: env
     
