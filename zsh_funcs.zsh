@@ -26,7 +26,7 @@ function fsync(){
   rsync -avP --delete ~/certis /Volumes/joopyo/tim
   rsync -avP --delete ~/config /Volumes/joopyo/tim
   rsync -avP --delete ~/dotfiles /Volumes/joopyo/tim
-  rsync -avP --delete ~/dev /Volumes/joopyo/tim
+  rsync -avP --delete --exclude node_modules ~/dev /Volumes/joopyo/tim
 }
 
 function nsync(){
