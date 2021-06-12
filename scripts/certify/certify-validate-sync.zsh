@@ -1,4 +1,4 @@
-#!/usr/local/bin/zsh #this is the location of homebrew zsh 
+#!/usr/local/bin/zsh #this is the location of homebrew zsh
 # to change shell, add the homebrew zsh path, /usr/local/bin/zsh to /etc/shells, then chsh -s to /usr/local/bin/zsh, then restart mac
 #
 # dependencies:
@@ -15,13 +15,13 @@ mkdir -p /tmp/certify
 echo certify validate sync ran at: $(date) >> /tmp/certify/certify-validate-sync-log
 
 path=('/usr/local/bin' $path) # add homebrew packages
-path=('/usr/local/opt/sqlite/bin' $path) # add homebrew sqlite3 to path (do not use macos sqlite which is an older version)
-export PATH
+  path=('/usr/local/opt/sqlite/bin' $path) # add homebrew sqlite3 to path (do not use macos sqlite which is an older version)
+  export PATH
 
-echo this is path $path
+  echo this is path $path
 
-. $HOME/dotfiles/zshrc #get everything
-cerp p #get env variables
+  . $HOME/dotfiles/zshrc #get everything
+  cerp p #get env variables
 
 # WORKING FOLDER FOR THE REPORT ------------------------------------------------------------------------------------
 cd $_CERTIFY_VERIFY_REPORT_FOLDER_TMP
@@ -225,6 +225,11 @@ sqlite3 $_CERTIFY_VERIFY_DB <<EOF
 Select * from SyncErrorReport order by SyncDate desc;
 EOF
 
+# TODO: == performs pattern matching. it doesn't work?
+# use -eq 0 instead
+# pass filename to wc via standard input so that wc does not output the filename along with the count
+# [[ $(wc -l <SyncErrorReport.csv) -eq 0 ]] && rm SyncErrorReport.csv
+
 echo generating phoneNumber patch
 sqlite3 $_CERTIFY_VERIFY_DB <<EOF
 .headers on
@@ -233,6 +238,8 @@ sqlite3 $_CERTIFY_VERIFY_DB <<EOF
 Select * from user_phoneNumber_patch order by 'Global Id'
 EOF
 
+[[ $(wc -l <phoneNumberPatch.csv) -eq 0 ]] && rm phoneNumberPatch.csv
+
 echo generating employmentStatus patch
 sqlite3 $_CERTIFY_VERIFY_DB <<EOF
 .headers on
@@ -240,6 +247,10 @@ sqlite3 $_CERTIFY_VERIFY_DB <<EOF
 .output employmentStatusPatch.csv
 Select * from user_employmentStatus_patch order by 'Global Id'
 EOF
+
+[[ $(wc -l <employmentStatusPatch.csv) -eq 0 ]] && rm employmentStatusPatch.csv
+
+echo cleaning up employmentStatus patch
 
 # echo generating error report
 # sqlite3 $_CERTIFY_VERIFY_DB <<EOF
@@ -251,8 +262,14 @@ EOF
 
 local errorCount=$(($(wc -l <SyncErrorReport.csv) - 1)) #subtract header row from file
 if [ $errorCount -gt 0 ]; then
-  echo "Errors found in Sap Sync" | mutt -s "SAP Sync Error Report" ***REMOVED*** -a SyncErrorReport.csv -a phoneNumberPatch.csv -a employmentStatusPatch.csv
+  # error thrown if attaching file that does not exist
+  # echo "Errors found in Sap Sync" | mutt -s "SAP Sync Error Report" ***REMOVED*** -a SyncErrorReport.csv -a phoneNumberPatch.csv -a employmentStatusPatch.csv
+  echo "Errors found in Sap Sync" | mutt -s "SAP Sync Error Report" ***REMOVED*** -a SyncErrorReport.csv 
 fi
+
+# if patch file exists, email it
+[ -f phoneNumberPatch.csv ] && echo "phone number patch" | mutt -s "SAP Sync Error Report phone number patch" ***REMOVED*** -a phoneNumberPatch.csv
+[ -f employmentStatusPatch.csv ] && echo "employment status patch" | mutt -s "SAP Sync Error Report employment status patch" ***REMOVED*** -a employmentStatusPatch.csv
 
 mkdir -p /tmp/certify
 echo certify validate sync finished at: $(date) >> /tmp/certify/certify-validate-sync-log
