@@ -13,7 +13,9 @@
     ~/scripts: scripts/
     ~/Library/Application Support/com.clickontyler.TextBuddy/scripts: scripts/textBuddy/
 
-    ~/.env: env
+    ~/.env: ~/config/env/env
+    ~/.zshenv: ~/config/env/zshenv
+    ~/.zprofile: ~/config/env/zprofile
     
     ~/.ssh/config: ~/config/ssh/config
     ~/.ssh/id_ed25519: ~/config/secrets/id_ed25519
@@ -26,7 +28,6 @@
     ~/.mutt/muttrc : muttrc #mail client
     ~/.p10k.zsh: p10k.zsh
     ~/.taskrc: taskrc #taskwarrior rc file
-    ~/.timewarrior/timewarrior.cfg: timewarrior.cfg
     ~/.vim: vim
     ~/.vimrc: vimrc
     ~/.zshrc: zshrc
