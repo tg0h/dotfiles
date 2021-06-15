@@ -78,14 +78,14 @@ function acll {
   acl -n 5 -s # call with -s silent option to stop acl from printing current app
   echo
 
-  acp ap
-  acl -n 5 -s
-
-  echo
   acp is
   acl -n 5 -s
-
   echo
+
+  acp ap
+  acl -n 5 -s
+  echo
+
   acp ip
   acl -n 5 -s
 }
