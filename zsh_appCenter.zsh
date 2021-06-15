@@ -22,7 +22,6 @@ function _setAppCenterApp() {
 acp () {
   if [[ -z "$1" ]]
   then
-    echo tim is here $1 is nothing
     [[ $MOBILE_CENTER_CURRENT_APP == "certis/Argus-Officer-staging" ]] && echo Argus iOS Staging
     [[ $MOBILE_CENTER_CURRENT_APP == "certis/Argus-Officer" ]] && echo Argus iOS  Production
     [[ $MOBILE_CENTER_CURRENT_APP == "certis/Argus-Officer-staging-1" ]] && echo Argus Android Staging
@@ -39,6 +38,11 @@ function acal() {
 }
 
 function acl() {
+  # EXAMPLES:
+  # acl - get the latest 10 releases
+  # acl -n 20 - get the latest 20 releases
+  # acl -s - silent, do not print the current app
+
   #apps list
   # appcenter distribute releases list
   #
@@ -51,31 +55,39 @@ function acl() {
   # join takes an array and combines each array element in the array
 
   local n=10
-  while getopts 'n:' opt; do
+  # there are no booleans in shell scripting. use an empty value to represent false
+  local silent=false
+  while getopts 'n:s' opt; do
     case "$opt" in
       n) n=$OPTARG ;;
+      s) silent= ;;
     esac
   done
+
+  #if silent is empty (true), then print current app with acp
+  ! [[ -z $silent ]] && acp
+
   appcenter distribute releases list --output json | jq --raw-output 'sort_by(.uploadedAt) | reverse | .[0:'$n'][] | ((.id|tostring) + " -" + .shortVersion + " version:" + .version + " uploadAt: " + .uploadedAt + " enabled: " + (.enabled|tostring)) + " distGroups:" + (.distributionGroups | map(.name) | join(",")) + " destinations:" + (.destinations | map(.name) | join(","))'
 }
 
 function acll {
-  # TODO: why doesn't setAppCenterApp get called by acp?
+  # EXAMPLES:
+  # acll - get the latest 5 releases for each app
+
   acp as
-  # _setAppCenterApp as
-  acl -n 5
+  acl -n 5 -s # call with -s silent option to stop acl from printing current app
   echo
+
   acp ap
-  # _setAppCenterApp ap
-  acl -n 5
+  acl -n 5 -s
+
   echo
   acp is
-  # _setAppCenterApp is
-  acl -n 5
+  acl -n 5 -s
+
   echo
   acp ip
-  # _setAppCenterApp ip
-  acl -n 5
+  acl -n 5 -s
 }
 
 
