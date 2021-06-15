@@ -108,4 +108,30 @@ function acd() {
   fi
 }
 
+function acg() {
+  # app center add GROUP
+
+  # add the Public destination group to the release so that it is publically
+  # available for download
+
+  # EXAMPLES:
+  # acg - make the latest release publically availble
+  # acr -i <releaseId> - specify a release id to make publically available
+
+
+  local id
+  id=$(_appCenter_getLatestReleaseId)
+
+  while getopts 'i:' opt; do
+    case "$opt" in
+      i) id=$OPTARG ;;
+    esac
+  done
+
+  appcenter distribute releases add-destination --destination Public --type group --release-id $id --debug
+}
+
+function _appCenter_getLatestReleaseId () {
+  appcenter distribute releases list --output json | jq 'sort_by(.uploadedAt) | reverse | .[0].id'
+}
 
