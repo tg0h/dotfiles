@@ -22,9 +22,12 @@ alias zshn='vim ~/.zsh_node.zsh'
 alias zshfzf='vim ~/.zsh_fzf.zsh' 
 
 # git
-alias zshg='vim ~/.zsh_gitlab.zsh'
 alias zshgit='vim ~/.zsh_git_aliases.zsh'
 alias zshgitf='vim ~/.zsh_fzf_git.zsh'
+
+#deployment
+alias zshg='vim ~/.zsh_gitlab.zsh'
+alias zshac='vim ~/.zsh_appCenter.zsh'
 
 # aws
 alias zshrds='vim ~/.zsh_aws_rds.zsh'

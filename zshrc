@@ -63,6 +63,7 @@ export PATH="$PATH:$HOME/Library/Android/sdk/emulator" # add android emulator
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh #source fzf after the vim keymap so fzf shortcuts take precedence
 
 . ~/.zsh_aliases.zsh
+. ~/.zsh_appCenter.zsh
 . ~/.zsh_autosuggestions.zsh
 . ~/.zsh_autocomplete.zsh
 . ~/.zsh_docker_aliases.zsh
