@@ -12,14 +12,12 @@ function sc() {
   # sc 18
 
   local ip=""
-  while getopts 'bgry' opt; do
+  while getopts 'bryc' opt; do
     case "$opt" in
-      # d) usbMode="-d" ;;
-      # s) ip="192.168.1.$OPTARG:5555" ;;
-      b) ip="192.168.1.48:5555" ;;
-      g) ip="192.168.1.6:5555" ;;
-      r) ip="192.168.1.19:5555" ;;
-      y) ip="192.168.1.188:5555" ;;
+      b) ip=$HP_BLUE_IP;;
+      r) ip=$HP_RED_IP ;;
+      y) ip=$HP_YELLOW_IP ;;
+      c) ip=$HP_CALLTREE_IP ;;
     esac
   done
   shift $(($OPTIND - 1))
@@ -43,14 +41,12 @@ function sca() {
   # sca 18
 
   local ip=""
-  while getopts 'bgry' opt; do
+  while getopts 'bryc' opt; do
     case "$opt" in
-      # d) usbMode="-d" ;;
-      # s) ip="192.168.1.$OPTARG:5555" ;;
-      b) ip="192.168.1.58:5555" ;;
-      g) ip="192.168.1.6:5555" ;;
-      r) ip="192.168.1.19:5555" ;;
-      y) ip="192.168.1.188:5555" ;;
+      b) ip=$HP_BLUE_IP;;
+      r) ip=$HP_RED_IP ;;
+      y) ip=$HP_YELLOW_IP ;;
+      c) ip=$HP_CALLTREE_IP ;;
     esac
   done
   shift $(($OPTIND - 1))
@@ -111,12 +107,12 @@ function atcp() {
 
 function acon() {
   local ip=""
-  while getopts 'bgry' opt; do
+  while getopts 'bryc' opt; do
     case "$opt" in
-      b) ip="192.168.1.58:5555" ;;
-      g) ip="192.168.1.6:5555" ;;
-      r) ip="192.168.1.19:5555" ;;
-      y) ip="192.168.1.188:5555" ;;
+      b) ip=$HP_BLUE_IP;;
+      r) ip=$HP_RED_IP ;;
+      y) ip=$HP_YELLOW_IP ;;
+      c) ip=$HP_CALLTREE_IP ;;
     esac
   done
   shift $(($OPTIND - 1))
@@ -166,14 +162,13 @@ function adi() {
 
   local usbMode=""
   local ip=""
-  while getopts 'bdgrs:y' opt; do
+  while getopts 'bdrs:y' opt; do
     case "$opt" in
-      b) ip="192.168.1.58:5555" ;;
       d) usbMode="-d" ;;
-      g) ip="192.168.1.6:5555" ;;
-      r) ip="192.168.1.19:5555" ;;
       s) ip="192.168.1.$OPTARG:5555" ;;
-      y) ip="192.168.1.188:5555" ;;
+      b) ip=$HP_BLUE_IP;;
+      r) ip=$HP_RED_IP ;;
+      y) ip=$HP_YELLOW_IP ;;
     esac
   done
   shift $(($OPTIND - 1))
@@ -252,12 +247,11 @@ function adl() {
   #if -a app argument not given, get the pid of the first app named argus
   local appId="argus"
 
-  while getopts 'bgryl:e:a:ds:' opt; do
+  while getopts 'bryl:e:a:ds:' opt; do
     case "$opt" in
-      b) ip="192.168.1.58:5555" ;;
-      g) ip="192.168.1.6:5555" ;;
-      r) ip="192.168.1.19:5555" ;;
-      y) ip="192.168.1.188:5555" ;;
+      b) ip=$HP_BLUE_IP;;
+      r) ip=$HP_RED_IP ;;
+      y) ip=$HP_YELLOW_IP ;;
 
       s) ip="192.168.1.$OPTARG:5555" ;;
 
