@@ -75,19 +75,19 @@ function acll {
   # acll - get the latest 5 releases for each app
 
   acp as
-  acl -n 5 -s # call with -s silent option to stop acl from printing current app
+  acl -n 3 -s # call with -s silent option to stop acl from printing current app
   echo
 
   acp is
-  acl -n 5 -s
+  acl -n 3 -s
   echo
 
   acp ap
-  acl -n 5 -s
+  acl -n 3 -s
   echo
 
   acp ip
-  acl -n 5 -s
+  acl -n 3 -s
 }
 
 
@@ -116,7 +116,7 @@ function acg() {
 
   # EXAMPLES:
   # acg - make the latest release publically availble
-  # acr -i <releaseId> - specify a release id to make publically available
+  # acg -i <releaseId> - specify a release id to make publically available
 
 
   local id
@@ -128,10 +128,55 @@ function acg() {
     esac
   done
 
-  appcenter distribute releases add-destination --destination Public --type group --release-id $id --debug
+  appcenter distribute releases add-destination --destination Public --type group --release-id $id 
 }
 
 function _appCenter_getLatestReleaseId () {
   appcenter distribute releases list --output json | jq 'sort_by(.uploadedAt) | reverse | .[0].id'
 }
 
+function acn(){
+  # app center release Notes
+  #
+  # EXAMPLES:
+  # acn notes.md - update the release notes for the latest release of the current
+  #   app, use the notes.md in the current folder
+  #
+  # acn -i <releaseId> notes.md
+  
+  local id
+  id=$(_appCenter_getLatestReleaseId)
+
+  while getopts 'i:' opt; do
+    case "$opt" in
+      i) id=$OPTARG ;;
+    esac
+  done
+  
+  appcenter distribute releases edit-notes --release-id $id  --release-notes-file $1 
+}
+
+function ace(){
+  # app center Enable/Disable
+  # disable the previous release after you have made a new release
+  #
+  # EXAMPLES:
+  # ace - disable the second last release
+  # ace -i <releaseId> - disable the specified release
+  # ace -e - enabled the second last release (without the e option, assume disable)
+  #
+
+  local state=disabled
+  local id
+  local latestId=$(_appCenter_getLatestReleaseId)
+  id=$(($latestId - 1))
+
+  while getopts 'i:e' opt; do
+    case "$opt" in
+      i) id=$OPTARG ;;
+      e) state=enabled ;;
+    esac
+  done
+
+  appcenter distribute releases edit --release-id $id $state 
+} 
