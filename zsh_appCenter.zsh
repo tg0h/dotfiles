@@ -104,7 +104,11 @@ function acd() {
   if [[ -n $id ]]; then
     appcenter distribute groups download --group Collaborators --id $id
   else;
-    appcenter distribute groups download --group Collaborators
+    # run this in the background ?
+    # wrap command in $() to open a new subshell so that when it prints loading
+    # indicator to stdout, it is lost?
+    # TODO: append date time stamp to file ?
+    $(appcenter distribute groups download --group Collaborators) &
   fi
 }
 
