@@ -21,7 +21,7 @@ function sc() {
     esac
   done
   shift $(($OPTIND - 1))
- 
+
   if [[ -n $ip ]]; then
     scrcpy -s $ip --window-x 129 --window-y 427 --window-width 355 --window-height 782
   elif [[ $# -eq 2 ]]; then
@@ -147,40 +147,40 @@ function add() {
 #install an apk
 #adi <ip> blah.apk
 function adi() {
-# SENSIBLE DEFAULTS:
-# if no apk provided, install the latest apk in the current folder
-# TODO: if just adi - default to common case - adi -r?
-# TODO: add acon and atcp here
+  # SENSIBLE DEFAULTS:
+  # if no apk provided, install the latest apk in the current folder
+  # TODO: if just adi - default to common case - adi -r?
+  # TODO: add acon and atcp here
 
 #TODO: support 2 ip groups, eg 192.168.xxx.yyy
 #TODO: if ip not found, run adb connect first
 
-#EXAMPLES: 
+#EXAMPLES:
 # adi -s 19 <apk name> - adb -s 192.168.1.19 <apk name>
 # adi -r <apk name> - install to the red phone's ip
 # if <apk name> not provided, get the latest apk in current folder. Latest as defined by ls -t
 
-  local usbMode=""
-  local ip=""
-  while getopts 'bdrs:y' opt; do
-    case "$opt" in
-      d) usbMode="-d" ;;
-      s) ip="192.168.1.$OPTARG:5555" ;;
-      b) ip=$HP_BLUE_IP;;
-      r) ip=$HP_RED_IP ;;
-      y) ip=$HP_YELLOW_IP ;;
-    esac
-  done
-  shift $(($OPTIND - 1))
+local usbMode=""
+local ip=""
+while getopts 'bdrs:y' opt; do
+  case "$opt" in
+    d) usbMode="-d" ;;
+    s) ip="192.168.1.$OPTARG:5555" ;;
+    b) ip=$HP_BLUE_IP;;
+    r) ip=$HP_RED_IP ;;
+    y) ip=$HP_YELLOW_IP ;;
+  esac
+done
+shift $(($OPTIND - 1))
 
-  local apkFileName=""
-  #if $1 is not provided
-  if [[ -z $1 ]]; then
-    #fd -d 1 - use fd to search in current directory only
-    #gsort -k1r - sort by 1st column descending
-    #head -n1 - get the 1st row
-    # apkFileName=$(fd -d 1 './*.apk' | gsort -k1r | head -n1)
-    
+local apkFileName=""
+#if $1 is not provided
+if [[ -z $1 ]]; then
+  #fd -d 1 - use fd to search in current directory only
+  #gsort -k1r - sort by 1st column descending
+  #head -n1 - get the 1st row
+  # apkFileName=$(fd -d 1 './*.apk' | gsort -k1r | head -n1)
+
     #ls -t sort by time
     #ls -p add trailing / to directories
     #rg -v / - invert match, find entries that do not have the '/' character
@@ -189,19 +189,19 @@ function adi() {
     apkFileName=$(ls -tp | rg -v / | rg '.*apk$' | head -n1)
   else
     apkFileName=$1
-  fi
+fi
 
-  echo "going to install $apkFileName ..."
+echo "going to install $apkFileName ..."
 
-  if [[ -n $usbMode ]]; then
-    adb -d install $apkFileName &
-  elif [[ -n $ip ]]; then
-    # -g grants all permissions specified in the app manifest
-    echo "granting all permissions to $apkFileName ..."
-    adb -s $ip install -g --fastdeploy $apkFileName &
-  else;
-    echo neither usbMode or ip given
-  fi
+if [[ -n $usbMode ]]; then
+  adb -d install $apkFileName &
+elif [[ -n $ip ]]; then
+  # -g grants all permissions specified in the app manifest
+  echo "granting all permissions to $apkFileName ..."
+  adb -s $ip install -g --fastdeploy $apkFileName &
+else;
+  echo neither usbMode or ip given
+fi
 }
 
 #uninstall all argus apps
@@ -229,6 +229,7 @@ function adll() {
 # -a - which app d,s,p or fd,fs,fp
 # -e - regex to search message
 # -l - which log level v,d,i,w,e,f
+# -w - w for raw output do not filter for flutter
 # device flags to specify id quickly
 # -r = red phone
 # -y = yellow phone
@@ -246,8 +247,10 @@ function adl() {
   local ip=""
   #if -a app argument not given, get the pid of the first app named argus
   local appId="argus"
+  #only show log messages with the flutter tag, silence other logs
+  local filter="flutter:V *:S"
 
-  while getopts 'bryl:e:a:ds:' opt; do
+  while getopts 'bryl:e:a:dsw' opt; do
     case "$opt" in
       b) ip=$HP_BLUE_IP;;
       r) ip=$HP_RED_IP ;;
@@ -259,6 +262,7 @@ function adl() {
 
       l) loglevel=$OPTARG ;;
       e) regex=$OPTARG ;;
+      w) filter="";; #if raw option specified, show all log output
       a) app=$OPTARG
         case "$app" in
           d) appId="com.certis.argus.apps.officer.dev";;
@@ -297,9 +301,9 @@ function adl() {
 
   if [[ -n $pid ]]; then
     if [[ -n $usbMode ]]; then
-      adb $usbMode logcat "*:$loglevel" --pid $pid -v time -v color -e $regex
+      adb $usbMode logcat $filter --pid $pid -v time -v color -e $regex
     elif [[ -n $ip ]]; then
-      adb -s $ip logcat "*:$loglevel" --pid $pid -v time -v color -e $regex
+      adb -s $ip logcat $filter --pid $pid -v time -v color -e $regex
     else;
       echo "neither usbMode or ip was given, not running command"
     fi
