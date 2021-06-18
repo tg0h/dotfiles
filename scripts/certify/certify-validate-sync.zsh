@@ -11,6 +11,8 @@
 # the plist file is stored in ~/Library/LaunchAgents/certify-validate-sync.plist
 # consider using the launch control app to configure this
 # TODO: if running the script manually, where to output the echo command?
+# TODO: add timestamp to SyncErrorReport attachment in email
+
 mkdir -p /tmp/certify
 echo certify validate sync ran at: $(date) >> /tmp/certify/certify-validate-sync-log
 
