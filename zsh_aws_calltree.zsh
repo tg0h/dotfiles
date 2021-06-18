@@ -65,9 +65,11 @@ function ctp(){
   if [[ -n $usbMode ]]; then
     adb -d pull sdcard/Download/call-tree-error.log
     adb -d pull sdcard/Download/call-tree-sms-delivery.log
+    adb -d pull sdcard/Download/call-tree-sms-received.log
   else;
     adb -s $ip pull sdcard/Download/call-tree-error.log
     adb -s $ip pull sdcard/Download/call-tree-sms-delivery.log
+    adb -s $ip pull sdcard/Download/call-tree-sms-received.log
   fi
 }
 
@@ -87,9 +89,11 @@ function ctd(){
   if [[ -n $usbMode ]]; then
     adb -d shell rm sdcard/Download/call-tree-error.log
     adb -d shell rm sdcard/Download/call-tree-sms-delivery.log
+    adb -d shell rm sdcard/Download/call-tree-sms-received.log
   else;
     adb -s $ip shell rm sdcard/Download/call-tree-error.log
     adb -s $ip shell rm sdcard/Download/call-tree-sms-delivery.log
+    adb -s $ip shell rm sdcard/Download/call-tree-sms-received.log
   fi
 
 }
