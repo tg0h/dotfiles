@@ -3,6 +3,7 @@
 call plug#begin()
 " Plug 'bluz71/vim-nightfly-guicolors'
 Plug 'agude/vim-eldar' "vim color scheme - courtesy alexgude.com/blog/vim-eldar/
+Plug 'phanviet/vim-monokai-pro'
 
 Plug 'tpope/vim-fugitive' "git support
 Plug 'tpope/vim-unimpaired' "git mappings for :Glo, January 9 2021 Sundayg
@@ -74,7 +75,7 @@ command! MakeTags !ctags -R .
 
 set termguicolors "set true color support for gruvbox
 "set background=dark " set dark version of gruvb
-colorscheme eldar " Change a colorscheme.
+colorscheme monokai_pro " Change a colorscheme.
 
 " set guifont=Hack:h14 "2019 July 18 Thursday 
 set guifont=RobotoMonoForPowerline-Light:h18
