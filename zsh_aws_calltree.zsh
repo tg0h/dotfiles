@@ -1,49 +1,76 @@
 function ct2csv(){
   # convert call tree campaign excel to csv
   # be careful of names with commas
-  in2csv --sheet USERS $1 > report.toSend.csv
- 
+  # the canonical form is a number with a country code
+  # remove spaces and -'s ?
+  # if the number has only 8 digits, assume it is a sg number and add +65 to the number
+
+  in2csv --sheet USERS $1 > report.toSend.orig.csv
+
   # remove lines with only commas,
   # -i - edit file in place
   # gsed option /pattern/command
   # d - delete command
-  gsed -i '/^,*$/d' report.toSend.csv
+  gsed '/^,*$/d' report.toSend.orig.csv > report.toSend.csv
+
+  # remove numbers with spaces in them, since calltree will remove the spaces, these numbers are ok
+  # important, combine whitespaces before removing country code below, there is a sequential dependency
+  gsed -Ei 's/(,[0-9]*)\s+([0-9]*,)/\1\2/' report.toSend.csv
+  #
+  # remove numbers with -'s in them, since calltree will remove the -'s, these numbers are ok
+  gsed -Ei 's/(,[0-9]*)-+([0-9]*,)/\1\2/' report.toSend.csv
+
+  # if the number is 8 digits long, assume it is an sg number and add +65
+  gsed -Ei 's/,([0-9]{8}),/,\+65\1,/' report.toSend.csv
+
+  # if the number is eg 6512345678, add a +
+  gsed -Ei 's/,(65[0-9]{8}),/,\+\1,/' report.toSend.csv
 }
 
 function ctrep(){
+  # TODO: option to specify how many smses in the message body
   # generate calltree campaign report
   # how to generate report
   # ctp to pull logs from phone
   # manually copy campaign csv to local folder
   # ct2csv <filename> to convert excel to csv
   # run ctrep to generate wasNotSent.report.csv
-  
+
   # don't use gawk, you run into trouble if the name has a comma
   # gawk -F, '{print $4}' report.toSend.csv > report.toSend.uniq.csv
+  local smsPerMessage=1
+  while getopts 's:' opt; do
+    case "$opt" in
+      s) smsPerMessage=$OPTARG ;;
+    esac
+  done
+  shift $(($OPTIND - 1))
 
+  # does the campaign try to send the message to the same user more than once?
+  # (user phone number repeated in excel)
   csvcut -c 4 report.toSend.csv | sort | guniq -cd > report.toSend.duplicates.csv
 
-  #generate sms sent report
+  # generate sms sent report
   gawk -F, 'NF {print $3}' call-tree-sms-delivery.log > report.sent.log
 
+  # ASSUMPTION!
   # remove country code
-  #remove the first 3 chars of every line
-  gawk '{gsub(/^.{3}/, ""); print}' report.sent.log > report.sentClean.log
+  # remove the first 3 chars of every line
+  # TODO: DANGEROUS !!!!!
+  # gawk '{gsub(/^.{3}/, ""); print}' report.sent.log > report.sentClean.log
 
   # add a header row to sent
-  gsed -i '1i Sent' report.sentClean.log
+  gsed -i '1i Sent' report.sent.log
 
-  # left join toSend with sentClean
-  # pipe to rg to remove lines with only , 
+  # left join toSend with sent
+  # pipe to rg to remove lines with only ,
   # rg -v means invert match
-  xsv join --left 4 report.toSend.csv 1 report.sentClean.log > report.wasSent.csv
-  
+  xsv join --left 4 report.toSend.csv 1 report.sent.log > report.wasSent.csv
+
   # search the 9th column for nothing
   # which of the toSend was not sent?
   # TODO: 9th column hardcoded?
   xsv search -s Sent '^$' report.wasSent.csv > report.wasNotSent.csv
-
-  gsort report.sentClean.log | guniq -cd > report.duplicateSent.log
 
   # echo begin: $(head -n1 call-tree-error.log | cut -d ' ' -f 1,2)
   local beginDate=$(head -n1 call-tree-error.log | cut -d ' ' -f 1,2)
@@ -53,67 +80,103 @@ function ctrep(){
   local endEpoch=$(gdate --date "$endDate" +%s)
   local duration=$((endEpoch - beginEpoch))
 
-  local toSendTmp=$(wc -l <report.toSend.csv)
-  local toSend=$(( toSendTmp - 1 ))
+  # remove the header row of report.sent.log before processing it for counts
+  gsed 1d report.sent.log | sort | guniq -c | gawk -v smsPerMessage=$smsPerMessage '{ if ($1 == smsPerMessage) print $0}' > report.sent.exactMessage.log
+  local sentExactMessage=$(wc -l < report.sent.exactMessage.log | tr -d " ")
+  gsed 1d report.sent.log | sort | guniq -c | gawk -v smsPerMessage=$smsPerMessage '{ if ($1 > smsPerMessage) print $0}' > report.sent.duplicateMessage.log
+  local sentDuplicateMessage=$(wc -l < report.sent.duplicateMessage.log | tr -d " ")
+  gsed 1d report.sent.log | sort | guniq -c | gawk -v smsPerMessage=$smsPerMessage '{ if ($1 < smsPerMessage) print $0}' > report.sent.partMessage.log
+  local sentPartMessage=$(wc -l < report.sent.partMessage.log | tr -d " ")
+
+  local sentSuccessIncDups=$(( sentExactMessage + sentDuplicateMessage ))
+
+  # TO SEND STATS
+  # local toSendTmp=$(wc -l <report.toSend.csv)
+  # do not count the header
+  local toSend=$(( $(wc -l <report.toSend.csv) - 1 ))
+  # local toSend=$(( toSendTmp - 1 ))
   local toSendDuplicates=$(wc -l <report.toSend.duplicates.csv | tr -d " ")
   local toSendUniqueUsers=$(( toSend - toSendDuplicates ))
+  local sentSuccessRateTmp=$(bc <<< "scale=3; ($sentSuccessIncDups*100/$toSendUniqueUsers)")
+  # use printf to format the decimal places
+  local sentSuccessRate=$(printf %.0f $sentSuccessRateTmp)
 
-  #remove whitespace with tr
-  #use < to remove filename from wc 
-  local sent=$(wc -l <report.sent.log | tr -d " ")
-  local sentUnique=$(sort report.sent.log | guniq -c | wc -l | tr -d " ")
-  local sentSuccessRate=$(bc <<< "scale=3; ($sentUnique/$toSendUniqueUsers)*100")
-
-  local notSentTmp=$(wc -l < report.wasNotSent.csv)
+  # NOT SENT STATS
+  #number of users who did not receive the entire message
+  local notSentTmp=$(wc -l < report.wasNotSent.csv | tr -d " ")
   local notSent=$(( notSentTmp - 1 ))
 
-  local usersWithMultipleSms=$(wc -l <report.duplicateSent.log | tr -d " ")
-  local duplicateSmsTotalTmp=$(gawk -F' ' '{sum += $1} END {print sum}' report.duplicateSent.log)
+  # local usersWithMultipleSms=$(wc -l <report.sent.duplicateMessage.log | tr -d " ")
+  local duplicateSmsTotal=$(( $(gawk -F' ' '{sum += $1} END {print sum}' report.sent.duplicateMessage.log) - $sentDuplicateMessage ))
   # if i receive 2 smses, there is 1 duplicate
-  local duplicateSmsTotal=$(( duplicateSmsTotalTmp - usersWithMultipleSms ))
+  # local duplicateSmsTotal=$(( duplicateSmsTotalTmp - usersWithMultipleSms ))
+
+  rg -v '\+65' report.toSend.csv > report.dodgyNumbers.csv
+  local dodgyNumbers=$(( $(wc -l < report.dodgyNumbers.csv) - 1 ))
 
   #use bc to perform division with floating point numbers
   local durationHours=$(bc <<< "scale=3; $duration/60/60")
+  local sent=$(wc -l <report.sent.log | tr -d " ")
   local smsSpeed=$(bc <<< " $sent/$durationHours")
 
   echo CAMPAIGN RUN DETAILS:
-  echo -e "duration: \t\t $(displaytime $duration)"
-  echo -e "campaign actual begin: \t $beginDate"
-  echo -e "campaign actual end: \t $endDate"
+  printf "%-40s %5s\n" "duration" "$(displaytime $duration)"
+  printf "%-40s %5s\n" "campaign begin:" $beginDate
+  printf "%-40s %5s\n" "campaign end:" $endDate
+  printf "%-40s %5d\n" "sms to send in the message:" $smsPerMessage 
   echo
 
-  echo -e "duration (h): \t $durationHours h"
-  echo -e "sms speed: \t $smsSpeed sms/h"
+  printf "%-40s %5d h\n" "duration (h):" $durationHours
+  printf "%-40s %5d sms/h\n" "sms speed:" $smsSpeed
   echo
 
   echo CAMPAIGN DATA QUALITY:
-  echo -e "to send duplicates (phone number duplicated): \t $toSendDuplicates"
+  printf "%-40s %5d\n" "duplicate phone numbers:" $toSendDuplicates
+  printf "%-40s %5d\n" "dodgy numbers:" $dodgyNumbers
   echo
-
   echo SMS STATISTICS:
-  echo -e "smses to send: \t\t $toSend"
-  echo -e "smses sent (inc dups): \t $sent"
-  echo -e "smses not sent: \t $notSent"
-  echo -e "sms duplicate total: \t $duplicateSmsTotal (example: if i receive 2 smses, there is 1 duplicate sms)"
-
+  LC_ALL=en_US.UTF-8 printf  "%-40s %5d \n" "users to send to:" $toSend
+  # super hack, temporarily change the locale for the gprintf command
+  # note the ' in %'5d to indicate that grouping should be used?
+  LC_ALL=en_US.UTF-8 printf "%-40s %'5d\n" "smses to send:" $(( $toSend * $smsPerMessage ))
+  LC_ALL=en_US.UTF-8 printf  "%-40s %'5d\n" "smses sent (inc dups):" $sent
+  LC_ALL=en_US.UTF-8 printf  "%-40s %'5d\n" "sms duplicate total:" $duplicateSmsTotal
+  gprintf  "\t example:\n"
+  gprintf  "\t   if the message requires 1 sms and I receive 2 smses, there is 1 duplicate sms\n"
+  gprintf  "\t   if the message requires 5 smses and I receive 6 smses, I received 1 duplicate sms\n"
   echo
 
   echo USER STATISTICS:
-  echo -e "Unique users to send to: \t\t $toSendUniqueUsers"
-  echo -e "Users who received at least 1 sms: \t $sentUnique"
-  echo -e "Sent Success Rate (% of users reached): \t $sentSuccessRate%"
+  LC_ALL=en_US.UTF-8 printf "%-40s %'5d" "Unique users to send to:" $toSendUniqueUsers
+  echo
+  echo USER SUCCESS METRICS:
+  LC_ALL=en_US.UTF-8 printf   "%-40s %'5d\n" "Users who received the full message:" $sentSuccessIncDups
+  printf "    of which:\n"
+  LC_ALL=en_US.UTF-8 printf "      received exactly %d smses: \t %'5d\n" $smsPerMessage $sentExactMessage
+  LC_ALL=en_US.UTF-8 printf "%-40s %'5d\n" "      received duplicate smses:" $sentDuplicateMessage
+  echo
+  printf "%-40s %5d%%\n" "Sent Success Rate (% users reached):" $sentSuccessRate
   echo
 
+
   echo USER FAILURE METRICS:
-  echo -e "Users who did not receive an sms:  \t $notSent"
-  echo -e "users w/ multiple sms: \t $usersWithMultipleSms"
-  echo 
+  printf "%-40s %'5d\n" "Did not receive the full message:" $(( sentPartMessage + notSent ))
+  printf "    of which:\n"
+  printf "%-40s %'5d\n" "      received part of the smses" $sentPartMessage
+  printf "%-40s %'5d\n" "       did not receive any sms:" $notSent
+  echo
+  printf "%-40s %'5d" "Users who received duplicate smses:" $sentDuplicateMessage
+  echo
+
+  bat report.dodgyNumbers.csv
 
   bat report.toSend.duplicates.csv
 
   bat report.wasNotSent.csv
 
-  bat report.duplicateSent.log
+  bat report.sent.duplicateMessage.log
+
+  bat report.sent.partMessage.log
 }
 
 function ctlist(){
@@ -255,10 +318,10 @@ function ctcc(){
     adb -d shell cat sdcard/Download/call-tree-sms-delivery.log | wc -l
   else;
     echo "error log ==========="
-    adb -s $ip shell cat sdcard/Download/call-tree-error.log | tail | gawk 'NF > 1 {print $0}' 
+    adb -s $ip shell cat sdcard/Download/call-tree-error.log | tail | gawk 'NF > 1 {print $0}'
     echo
     echo "error wc"
-    adb -s $ip shell cat sdcard/Download/call-tree-error.log | wc -l 
+    adb -s $ip shell cat sdcard/Download/call-tree-error.log | wc -l
     echo
     echo "delivery log ========"
     # not sure why the number of fields on the empty line is 1 when outputting from adb shell cat
@@ -266,7 +329,7 @@ function ctcc(){
     adb -s $ip shell cat sdcard/Download/call-tree-sms-delivery.log | tail | gawk 'NF > 1 {print $0}'
     echo
     echo "delivery wc"
-    adb -s $ip shell cat sdcard/Download/call-tree-sms-delivery.log | wc -l 
+    adb -s $ip shell cat sdcard/Download/call-tree-sms-delivery.log | wc -l
   fi
 }
 
