@@ -40,8 +40,12 @@ alias l='lsd -lah' #use lsd to supercharge ls output
 alias ll='lsd -lh' #use lsd to supercharge ls output
 alias lt="lsd -laht"
 
-alias ee="source $HOME/dotfiles/scripts/scratch"
-alias eee="vim $HOME/dotfiles/scripts/scratch"
+# quick print eval loop
+# source
+alias ss="source $HOME/dotfiles/scripts/scratch"
+alias sss="source $HOME/.zshrc"
+# edit
+alias ee="vim $HOME/dotfiles/scripts/scratch"
 
 
 alias j=jira
