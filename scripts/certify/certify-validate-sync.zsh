@@ -232,27 +232,45 @@ EOF
 # pass filename to wc via standard input so that wc does not output the filename along with the count
 # [[ $(wc -l <SyncErrorReport.csv) -eq 0 ]] && rm SyncErrorReport.csv
 
+gn #run the gn function to update the current time into the $now global var
+local phonePatchFileName=timfix_"$now"_phoneNumberFix.csv
+
 echo generating phoneNumber patch
 sqlite3 $_CERTIFY_VERIFY_DB <<EOF
 .headers on
 .mode csv
-.output phoneNumberPatch.csv
+.output $phonePatchFileName
 Select * from user_phoneNumber_patch order by 'Global Id'
 EOF
 
-[[ $(wc -l <phoneNumberPatch.csv) -eq 0 ]] && rm phoneNumberPatch.csv
+[[ $(wc -l <$phonePatchFileName) -eq 0 ]] && rm $phonePatchFileName
+echo "cleaning up phne number patch if it exists"
 
+local empStatusPatchFileName=timfix_"$now"_empStatusFix.csv
 echo generating employmentStatus patch
 sqlite3 $_CERTIFY_VERIFY_DB <<EOF
 .headers on
 .mode csv
-.output employmentStatusPatch.csv
+.output $empStatusPatchFileName
 Select * from user_employmentStatus_patch order by 'Global Id'
 EOF
 
-[[ $(wc -l <employmentStatusPatch.csv) -eq 0 ]] && rm employmentStatusPatch.csv
+[[ $(wc -l <$empStatusPatchFileName) -eq 0 ]] && rm $empStatusPatchFileName
 
-echo cleaning up employmentStatus patch
+echo "cleaning up employmentStatus patch if it exists"
+
+local emailPatchFileName=timfix_"$now"_emailFix.csv
+echo generating employmentStatus patch
+sqlite3 $_CERTIFY_VERIFY_DB <<EOF
+.headers on
+.mode csv
+.output $emailPatchFileName
+Select * from user_email_patch order by 'Global Id'
+EOF
+
+[[ $(wc -l <$emailPatchFileName) -eq 0 ]] && rm $emailPatchFileName
+
+echo "cleaning up email patch if it exists"
 
 # echo generating error report
 # sqlite3 $_CERTIFY_VERIFY_DB <<EOF
@@ -270,8 +288,9 @@ if [ $errorCount -gt 0 ]; then
 fi
 
 # if patch file exists, email it
-[ -f phoneNumberPatch.csv ] && echo "phone number patch" | mutt -s "SAP Sync Error Report phone number patch" ***REMOVED*** -a phoneNumberPatch.csv
-[ -f employmentStatusPatch.csv ] && echo "employment status patch" | mutt -s "SAP Sync Error Report employment status patch" ***REMOVED*** -a employmentStatusPatch.csv
+[ -f $phonePatchFileName ] && echo "phone number patch" | mutt -s "SAP Sync Error Report phone number patch" ***REMOVED*** -a $phonePatchFileName
+[ -f $empStatusPatchFileName ] && echo "employment status patch" | mutt -s "SAP Sync Error Report employment status patch" ***REMOVED*** -a $empStatusPatchFileName
+[ -f $emailPatchFileName ] && echo "email patch" | mutt -s "SAP Sync Error Report email patch" ***REMOVED*** -a $emailPatchFileName
 
 mkdir -p /tmp/certify
 echo certify validate sync finished at: $(date) >> /tmp/certify/certify-validate-sync-log
