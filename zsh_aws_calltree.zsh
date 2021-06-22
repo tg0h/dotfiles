@@ -120,13 +120,13 @@ function ctrep(){
   local smsSpeed=$(bc <<< " $sent/$durationHours")
 
   echo CAMPAIGN RUN DETAILS:
-  printf "%-40s %5s\n" "duration" "$(displaytime $duration)"
-  printf "%-40s %5s\n" "campaign begin:" $beginDate
-  printf "%-40s %5s\n" "campaign end:" $endDate
-  printf "%-40s %5d\n" "sms to send in the message:" $smsPerMessage 
+  printf "%41s\n" "$(displaytime $duration)"
+  printf "%-20s %20s\n" "campaign begin:" $beginDate
+  printf "%-20s %20s\n" "campaign end:" $endDate
+  printf "%-30s %10s\n" "sms to send in the message:" $smsPerMessage
   echo
 
-  printf "%-40s %5d h\n" "duration (h):" $durationHours
+  printf "%-40s %.3f h\n" "duration (h):" $durationHours
   printf "%-40s %5d sms/h\n" "sms speed:" $smsSpeed
   echo
 
