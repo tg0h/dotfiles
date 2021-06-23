@@ -1,5 +1,6 @@
 # TODO: acon should connect by device flag eg -y for the yellow phone
 # TODO: global var for build folders
+# TODO: add adb logcat -c to clear logcat
 
 # SCRCPY ==========================================================================
 
@@ -225,6 +226,55 @@ function adll() {
 # ADB ==========================================================================
 
 # logcat ==========================================================================
+function adc(){
+  # clear the log buffer
+  # EXAMPLES:
+  # adc -r
+
+  local ip=""
+  #connectionMode is either -s or -d
+  local connectionMode=""
+  while getopts 'bryd' opt; do
+    case "$opt" in
+      b) ip=$HP_BLUE_IP;;
+      r) ip=$HP_RED_IP ;;
+      y) ip=$HP_YELLOW_IP ;;
+      c) ip=$HP_CALLTREE_IP ;;
+      d) connectionMode="-d"
+    esac
+  done
+  shift $(($OPTIND - 1))
+
+  [[ -n $ip ]] && connectionMode="-s"
+
+  #clear the logcat buffer
+  adb $connectionMode $ip logcat -c
+}
+
+function adg(){
+  # show buffer size
+  # EXAMPLES:
+  # adg
+
+  local ip=""
+  #connectionMode is either -s or -d
+  local connectionMode=""
+  while getopts 'bryd' opt; do
+    case "$opt" in
+      b) ip=$HP_BLUE_IP;;
+      r) ip=$HP_RED_IP ;;
+      y) ip=$HP_YELLOW_IP ;;
+      c) ip=$HP_CALLTREE_IP ;;
+      d) connectionMode="-d"
+    esac
+  done
+  shift $(($OPTIND - 1))
+
+  [[ -n $ip ]] && connectionMode="-s"
+  #clear the logcat buffer
+  adb $connectionMode $ip logcat -g
+}
+
 #run logcat immediately
 # -a - which app d,s,p or fd,fs,fp
 # -e - regex to search message
@@ -240,6 +290,7 @@ function adll() {
 # adl -s 6 - run logcat, connect to 192.168.1.<6>
 # adl -r - debug on the red phone
 function adl() {
+  # TODO: use adb shell pidof -s com.example.app to get the pid
   local loglevel=v
   local regex=".*" #default
   local app=""
