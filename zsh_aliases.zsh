@@ -21,11 +21,13 @@ alias zshn='vim ~/.zsh_node.zsh'
 # tools
 alias zshfzf='vim ~/.zsh_fzf.zsh' 
 
+
 # git
 alias zshgit='vim ~/.zsh_git_aliases.zsh'
 alias zshgitf='vim ~/.zsh_fzf_git.zsh'
 
-#deployment
+# devops, deployment
+alias zshj='vim ~/.zsh_jira.zsh'
 alias zshg='vim ~/.zsh_gitlab.zsh'
 alias zshac='vim ~/.zsh_appCenter.zsh'
 
@@ -48,6 +50,7 @@ alias sss="source $HOME/.zshrc"
 alias ee="vim $HOME/dotfiles/scripts/scratch"
 
 
+#zsh jira plugin
 alias j=jira
 alias ag="alias | grep"
 alias sg="set | grep"
