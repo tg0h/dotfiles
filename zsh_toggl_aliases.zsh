@@ -29,6 +29,7 @@ alias ttm="timt -w s -t d --ww -s 1" #wide report starting from the 1st
 
 alias tts="timt -w s -t s"
 alias ttsd="timt -w s -t s -d"
+alias ttsdt="timt -w s -t s -d -s today"
 
 ## me
 alias tmd="timt -w m -t d"
