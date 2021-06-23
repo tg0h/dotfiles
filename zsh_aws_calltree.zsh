@@ -65,12 +65,12 @@ function ctrep(){
   # left join toSend with sent
   # pipe to rg to remove lines with only ,
   # rg -v means invert match
-  xsv join --left 4 report.toSend.csv 1 report.sent.log > report.wasSent.csv
+  xsv join --left 4 report.toSend.csv 1 report.sent.log > report.toSendLeftJoinSent.csv
 
   # search the 9th column for nothing
   # which of the toSend was not sent?
   # TODO: 9th column hardcoded?
-  xsv search -s Sent '^$' report.wasSent.csv > report.wasNotSent.csv
+  xsv search -s Sent '^$' report.toSendLeftJoinSent.csv > report.wasNotSent.csv
 
   # echo begin: $(head -n1 call-tree-error.log | cut -d ' ' -f 1,2)
   local beginDate=$(head -n1 call-tree-error.log | cut -d ' ' -f 1,2)
