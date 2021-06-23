@@ -1,10 +1,22 @@
 # TODO: show local timezone for ggp command
 
 function ggp() {
+  # EXAMPLES:
+  # ggp # default get 20 rows
+  # ggp -n 40 # maximum of 100 rows
+  # ggp -l  # long format, get 40 rows
+  local rows=20
+  while getopts 'n:l' opt; do
+    case "$opt" in
+      n) rows=$GETOPT ;;
+      l) rows=40 ;;
+    esac
+  done
+  shift $(($OPTIND - 1))
   # -b prints the body only
   # jq -r -- print raw output without double quotes
   #download job artifacts from argus officer flutter
-  https -b git.ads.certis.site/api/v4/projects/202/pipelines "PRIVATE-TOKEN: $GITLAB_PRIVATE_TOKEN" | \
+  https -b "git.ads.certis.site/api/v4/projects/202/pipelines?per_page=$rows" "PRIVATE-TOKEN: $GITLAB_PRIVATE_TOKEN" | \
     # jq '.[0:19][] | select(.status =="success") | {id,"ref create_at": (.ref + " - " + .created_at)}'
       # jq -r '.[0:19][] | select(.status =="success") | ((.id|tostring) + " - " + .ref + " - " + .created_at)'
       jq -r '.[] | ((.id|tostring) + " - " + .ref + " - " + .created_at + " - " + .status)'
