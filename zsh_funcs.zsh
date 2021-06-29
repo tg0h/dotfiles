@@ -23,11 +23,7 @@ function fsync(){
   # -P - progress bar
   
   # Risk: what if i rysync wrongly and delete my home folder?
-  rsync -avP --delete ~/certis /Volumes/joopyo/tim
-  rsync -avP --delete ~/config /Volumes/joopyo/tim
-  rsync -avP --delete ~/dotfiles /Volumes/joopyo/tim
-  rsync -avP --delete --exclude node_modules ~/dev /Volumes/joopyo/tim
-  rsync -avP --delete --exclude node_modules ~/src /Volumes/joopyo
+  rsync -avP --delete --exclude node_modules ~/certis ~/dotfiles ~/dev ~/src /Volumes/joopyo/tim
 }
 
 function nsync(){
