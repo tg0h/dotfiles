@@ -1,4 +1,33 @@
 # TODO: show local timezone for ggp command
+function _setGitlabProj() {
+  # export the command so that processes (eg app center cli commands) forked from
+  # your terminal session inherit the GITLAB_PROJECT_ID variable
+  case $1 in
+    a) export GITLAB_PROJECT_ID=80
+      echo Argus Kotlin
+      ;;
+    f) export GITLAB_PROJECT_ID=202
+      echo Argus Flutter
+      ;;
+    c) export GITLAB_PROJECT_ID=118
+      echo Argus CC
+      ;;
+  esac
+}
+
+gsp () {
+  # gitlab switch profile
+
+  if [[ -z "$1" ]]
+  then
+    [[ $GITLAB_PROJECT_ID == 80 ]] && echo Argus Android
+    [[ $GITLAB_PROJECT_ID == 202 ]] && echo Argus Flutter
+    [[ $GITLAB_PROJECT_ID == 118 ]] && echo Argus CC
+    return
+  fi
+
+  _setGitlabProj $1
+}
 
 function ggp() {
   # EXAMPLES:
@@ -8,7 +37,7 @@ function ggp() {
   local rows=20
   while getopts 'n:l' opt; do
     case "$opt" in
-      n) rows=$GETOPT ;;
+      n) rows=$OPTARG ;;
       l) rows=40 ;;
     esac
   done
@@ -16,7 +45,7 @@ function ggp() {
   # -b prints the body only
   # jq -r -- print raw output without double quotes
   #download job artifacts from argus officer flutter
-  https -b "git.ads.certis.site/api/v4/projects/202/pipelines?per_page=$rows" "PRIVATE-TOKEN: $GITLAB_PRIVATE_TOKEN" | \
+  https -b "git.ads.certis.site/api/v4/projects/$GITLAB_PROJECT_ID/pipelines?per_page=$rows" "PRIVATE-TOKEN: $GITLAB_PRIVATE_TOKEN" | \
     # jq '.[0:19][] | select(.status =="success") | {id,"ref create_at": (.ref + " - " + .created_at)}'
       # jq -r '.[0:19][] | select(.status =="success") | ((.id|tostring) + " - " + .ref + " - " + .created_at)'
       jq -r '.[] | ((.id|tostring) + " - " + .ref + " - " + .created_at + " - " + .status)'
@@ -59,18 +88,26 @@ function ggd() {
   done;
 }
 
+#get projects
+function _ggproj() {
+  #provide pipeline id
+  # -b prints the body only
+  #download job artifacts from argus officer flutter
+  https -b git.ads.certis.site/api/v4/projects "PRIVATE-TOKEN: $GITLAB_PRIVATE_TOKEN" 
+ }
+
 #get pipeline jobs
 function ggpj() {
   #provide pipeline id
   # -b prints the body only
   #download job artifacts from argus officer flutter
-  https -b git.ads.certis.site/api/v4/projects/202/pipelines/$1/jobs "PRIVATE-TOKEN: $GITLAB_PRIVATE_TOKEN" | \
+  https -b git.ads.certis.site/api/v4/projects/$GITLAB_PROJECT_ID/pipelines/$1/jobs "PRIVATE-TOKEN: $GITLAB_PRIVATE_TOKEN" | \
     jq '.[] | {"id": ((.id|tostring) + " - " + .status),"stage name ref": (.stage + " - " + .name + " - " + .ref + " - " + .created_at), "user": (.user.name + " - " + .commit.message), "fileformat": .artifacts[0].file_format}'
   }
 
 
 function _gitlab_getLatestDevPipelineId() {
-  https -b git.ads.certis.site/api/v4/projects/202/pipelines "PRIVATE-TOKEN: $GITLAB_PRIVATE_TOKEN" | \
+  https -b git.ads.certis.site/api/v4/projects/$GITLAB_PROJECT_ID/pipelines "PRIVATE-TOKEN: $GITLAB_PRIVATE_TOKEN" | \
     jq '[.[] | select (.ref == "develop") ] | .[0].id'
   }
 
@@ -86,14 +123,14 @@ function _gitlab_dlJobArtifact() {
 
   # unzip -j unzips all files into current directory
   # unzip -o overwrites files without prompting
-  (https -b git.ads.certis.site/api/v4/projects/202/jobs/$1/artifacts "PRIVATE-TOKEN: $GITLAB_PRIVATE_TOKEN" \
+  (https -b git.ads.certis.site/api/v4/projects/$GITLAB_PROJECT_ID/jobs/$1/artifacts "PRIVATE-TOKEN: $GITLAB_PRIVATE_TOKEN" \
     > $filename && unzip -jo $filename ) &
   }
 
 function _gitlab_getPipelineJobIds() {
   #TODO repo id is hardcoded to officer flutter
   #get job ids only if they have a .zip artifact
-  https -b git.ads.certis.site/api/v4/projects/202/pipelines/$1/jobs "PRIVATE-TOKEN: $GITLAB_PRIVATE_TOKEN" \
+  https -b git.ads.certis.site/api/v4/projects/$GITLAB_PROJECT_ID/pipelines/$1/jobs "PRIVATE-TOKEN: $GITLAB_PRIVATE_TOKEN" \
     | jq --compact-output '.[] | select (.artifacts_file.filename|tostring | endswith("zip")) | .id'
   }
 
