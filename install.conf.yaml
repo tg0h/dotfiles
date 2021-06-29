@@ -13,13 +13,13 @@
     ~/scripts: scripts/
     ~/Library/Application Support/com.clickontyler.TextBuddy/scripts: scripts/textBuddy/
 
-    ~/.env: ~/config/env/env
-    ~/.zshenv: ~/config/env/zshenv
-    ~/.zprofile: ~/config/env/zprofile
+    ~/.env: ~/dev/config/env/env
+    ~/.zshenv: ~/dev/config/env/zshenv
+    ~/.zprofile: ~/dev/config/env/zprofile
     
-    ~/.ssh/config: ~/config/ssh/config
-    ~/.ssh/id_ed25519: ~/config/secrets/id_ed25519
-    ~/.ssh/id_ed25519.pub: ~/config/secrets/id_ed25519.pub
+    ~/.ssh/config: ~/dev/config/ssh/config
+    ~/.ssh/id_ed25519: ~/dev/config/secrets/id_ed25519
+    ~/.ssh/id_ed25519.pub: ~/dev/config/secrets/id_ed25519.pub
 
     ~/.ideavimrc: ideavimrc #webstorm ideavim emulation rc file
 
@@ -90,7 +90,7 @@
 
     # me
     ## timtoggl
-    ~/dev/working/timtoggl/timtoggl/.env: ~/config/env/timtoggl/env
+    ~/dev/working/timtoggl/timtoggl/.env: ~/dev/config/env/timtoggl/env
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
