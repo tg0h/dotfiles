@@ -13,7 +13,8 @@ set smtp_pass = $GMAIL_TIMTESTALLTHETHINGS_PASSWORD
 set ssl_force_tls = yes
 set header_cache = ~/.cache/mutt
 set spoolfile = +Inbox
-# set record = "+Sent" # do not FCC to imap folder? so mutt doesn't nag at you after you send mail
+# set record = "+sent" #put sent mail in a sent folder in mutt
+set record = "~/.mutt/sent" #save sent log in .mutt folder instead of ~ folder
 # set postponed = "+Drafts"
 set trash = "+Trash"
 
