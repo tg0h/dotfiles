@@ -4,11 +4,17 @@ function _setAppCenterApp() {
   # export the command so that processes (eg app center cli commands) forked from
   # your terminal session inherit the MOBILE_CENTER_CURRENT_APP variable
   case $1 in
+    id) export MOBILE_CENTER_CURRENT_APP="certis/Officer-Flutter-Dev-1" #argus ios dev
+      echo Argus iOS Dev
+      ;;
     is) export MOBILE_CENTER_CURRENT_APP="certis/Argus-Officer-staging" #argus ios staging
       echo Argus iOS Staging
       ;;
     ip) export MOBILE_CENTER_CURRENT_APP="certis/Argus-Officer" #argus ios flutter
       echo Argus iOS Production
+      ;;
+    ad) export MOBILE_CENTER_CURRENT_APP="certis/Officer-Flutter-Dev" #argus android dev
+      echo Argus Android Dev
       ;;
     as) export MOBILE_CENTER_CURRENT_APP="certis/Argus-Officer-staging-1" #argus android staging
       echo Argus Android Staging
