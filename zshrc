@@ -71,6 +71,7 @@ export PATH="$PATH:$HOME/Library/Android/sdk/emulator" # add android emulator
 . ~/.zsh_fzf_git.zsh
 . ~/.zsh_git_aliases.zsh
 . ~/.zsh_jira.zsh
+. ~/.zsh_jira.plug.zsh
 . ~/.zsh_node.zsh
 . ~/.zsh_toggl_aliases.zsh
 
