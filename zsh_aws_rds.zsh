@@ -6,7 +6,7 @@
 #TODO: configuration file - 9 Aug 20 - done
 #TODO: /usr/local/share/zsh/site-functions/_rg - study rg zsh completion file
 
-# dependencies - 
+# dependencies -
 # use mysqlsh's credential store helper to remember your password
 # "credentialStore.helper": "keychain",
 # "credentialStore.savePasswords": "always"
@@ -140,7 +140,7 @@ EOF
 }
 
 function _dbuGetTeamUsers() {
-  mysqlsh --sql -u $_ARGUS_RDS_DB_USER_USER -h 127.0.0.1 -P $_ARGUS_RDS_DB_USER_LOCAL_PORT -D $_ARGUS_RDS_DB_USER_NAME --result-format=table << EOF 
+  mysqlsh --sql -u $_ARGUS_RDS_DB_USER_USER -h 127.0.0.1 -P $_ARGUS_RDS_DB_USER_LOCAL_PORT -D $_ARGUS_RDS_DB_USER_NAME --result-format=table << EOF
 select t.name, u.staff_id
 from users u
          inner join users_teams ut on u.id = ut.user_id
@@ -151,7 +151,7 @@ EOF
 }
 
 function _dbuGetTeamClients() {
-  mysqlsh --sql -u $_ARGUS_RDS_DB_USER_USER -h 127.0.0.1 -P $_ARGUS_RDS_DB_USER_LOCAL_PORT -D $_ARGUS_RDS_DB_USER_NAME --result-format=table << EOF 
+  mysqlsh --sql -u $_ARGUS_RDS_DB_USER_USER -h 127.0.0.1 -P $_ARGUS_RDS_DB_USER_LOCAL_PORT -D $_ARGUS_RDS_DB_USER_NAME --result-format=table << EOF
 select t.name as team, c.name as client, c.id as clientId
 from clients c
          inner join clients_teams ct on c.id = ct.client_id
@@ -370,14 +370,25 @@ EOF
 
 # auth db ################################################################################################
 function dbaua() {
+
+  local staffId
+  local rows=5
+  while getopts 'n:u:' opt; do
+    case "$opt" in
+      n) rows=$OPTARG ;;
+      u) staffId=$OPTARG ;;
+    esac
+  done
+  shift $(($OPTIND - 1))
+
   print '====================================== user auths    ========================================='
-  _dbauser_auths $1
+  _dbauser_auths $staffId
   print '====================================== login attempts ========================================='
-  _dbalogin_attempts $1
+  _dbalogin_attempts -u $staffId -n $rows
   print '====================================== users devices  ========================================='
-  _dbausers_devices $1
+  _dbausers_devices $staffId
   print '====================================== phone regs     ========================================='
-  _dbaphone_regs $1
+  _dbaphone_regs $staffId
 }
 
 function _dbauser_auths() {
@@ -458,6 +469,19 @@ EOF
 
 #not useful
 function _dbalogin_attempts() {
+  # EXAMPLES:
+  # _dbalogin_attempts -n 20 -u SG123456 - get last 20 attempts for user SG123456
+  # _dbalogin_attempts -u SG123456 - get last 5 rows for user SG123456
+
+  local rows=5
+  local staffId
+  while getopts 'n:u:' opt; do
+    case "$opt" in
+      n) rows=$OPTARG ;;
+      u) staffId=$OPTARG ;;
+    esac
+  done
+  shift $(($OPTIND - 1))
   mysqlsh --sql -u $_ARGUS_RDS_DB_AUTH_USER -h 127.0.0.1 -P $_ARGUS_RDS_DB_AUTH_LOCAL_PORT -D $_ARGUS_RDS_DB_AUTH_NAME --result-format=table << EOF
 select
        a.name,
@@ -478,9 +502,9 @@ select
 from login_attempts la
          inner join accounts a on la.accountId = a.id
          inner join apps on la.appId = apps.Id
-where staffId = '$1'
+where staffId = '$staffId'
 order by createdAt desc
-limit 5
+limit $rows
 EOF
 }
 
