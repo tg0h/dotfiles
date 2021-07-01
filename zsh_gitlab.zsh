@@ -115,16 +115,28 @@ function _gitlab_getLatestDevPipelineId() {
 function _gitlab_dlJobArtifact() {
   # use a random filename so that filename does not collide with multiple background jobs
   # -p creates directories only if it does not exist
-  mkdir -p '/tmp/myGitlabZips/'
-  local filename="/tmp/myGitlabZips/$RANDOM.zip"
-  echo $1
+  local gitlabTmpFolder='/tmp/myGitlabZips'
+  mkdir -p $gitlabTmpFolder
+  local rnd=$RANDOM
+  local filename="$gitlabTmpFolder/$rnd.zip"
   # echo $filename
   # -b prints the body only
 
   # unzip -j unzips all files into current directory
   # unzip -o overwrites files without prompting
+  # unzip -d - ouotput directory
+  # unzip -q - quietly unzip
+  # (https -b git.ads.certis.site/api/v4/projects/$GITLAB_PROJECT_ID/jobs/$1/artifacts "PRIVATE-TOKEN: $GITLAB_PRIVATE_TOKEN" \
+  #   > $filename && unzip -jo $filename ) &
+  
+  # fd .apk <folder> - find apk files in this folder
+  # rg -v app-debug - v means invert match - exclude  app-debug.apk
+  # finally, cp the good apk file to the current folder
   (https -b git.ads.certis.site/api/v4/projects/$GITLAB_PROJECT_ID/jobs/$1/artifacts "PRIVATE-TOKEN: $GITLAB_PRIVATE_TOKEN" \
-    > $filename && unzip -jo $filename ) &
+    > $filename && unzip -q $filename -d $gitlabTmpFolder/$rnd && fd .apk $gitlabTmpFolder/$rnd | rg -v app-debug | xargs -I{} cp {} . \
+    && echo pipeline $1 downloaded
+    ) &
+  # echo $filename unzipped
   }
 
 function _gitlab_getPipelineJobIds() {
