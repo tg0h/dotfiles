@@ -298,8 +298,9 @@ function adl() {
   local ip=""
   #if -a app argument not given, get the pid of the first app named argus
   local appId="argus"
-  #only show log messages with the flutter tag, silence other logs
-  local filter="flutter:V *:S"
+
+  local filter #filter used to filter log message
+  local filterIsRaw #if this option is set, set the filter to an empty string
 
   while getopts 'bryl:e:a:dsw' opt; do
     case "$opt" in
@@ -313,7 +314,7 @@ function adl() {
 
       l) loglevel=$OPTARG ;;
       e) regex=$OPTARG ;;
-      w) filter="";; #if raw option specified, show all log output
+      w) filterIsRaw=true;; #if raw option specified, show all log output
       a) app=$OPTARG
         case "$app" in
           d) appId="com.certis.argus.apps.officer.dev";;
@@ -341,12 +342,43 @@ function adl() {
     echo "neither usbMode or ip was given, will leave it to the gods"
   fi
 
+  local appType
+
+  # the globar variable contains a text file with a tag name and a log level.
+  # each entry in the text file begins on a new line
+  # eg tag1:S
+  #    tag2:S
+  # kotlinSilenceFilter then contains the string "tag1:S tag2:S", which silences 
+  # logs with these tags in the logcat output
+  local kotlinSilenceFilter=$(cat $ARGUS_LOGCAT_FILTER_KOTLIN | tr '\n' ' ')
+
+  ## double escape the \
+  # https://stackoverflow.com/questions/61242119/matching-regex-not-working-properly-in-zsh
+  # in zsh, you do not need to escape the .
+  echo appName is ""$appName""
+  if [[ $appName =~ '.certisgroup.' ]]; then
+    appType=flutter
+    # only show log messages with the flutter tag, silence other logs
+    filter="flutter:V *:S"
+  elif [[ $appName =~ '.certis.' ]]; then
+    appType=kotlin
+    filter="$kotlinSilenceFilter"
+  fi;
+
+  if [[ -n $filterIsRaw ]]; then
+    filter="" #do not filter the log message
+  fi;
+
+
   echo connecting to app $appName
   echo "flutter app name -- com.certisgroup.argus.apps.officer.[env]"
   echo "sg app name      -- com.certis.argus.apps.officer[env]"
   echo -------
-  echo with pid $pid
-  echo with regex $regex
+  echo appType is argus $appType
+  echo using filter: $filter
+  echo with pid: $pid
+  echo with filter: $filter
+  echo with regex: $regex
   echo usbMode: $usbMode
   echo ip: $ip
 
@@ -363,3 +395,5 @@ function adl() {
   fi
   # adb $usbMode logcat
 }
+
+alias adfk="vim $ARGUS_LOGCAT_FILTER_KOTLIN"
