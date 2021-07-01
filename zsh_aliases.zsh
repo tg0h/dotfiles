@@ -59,3 +59,6 @@ alias dirs='dirs -v | head -10'
 # alias update="source ~/.zshrc" #doesn't work - complains about some fd error
 alias vpn="networksetup -connectpppoeservice 'edo vpn'"
 alias dvpn="networksetup -disconnectpppoeservice 'edo vpn'"
+
+# exa
+alias exat="exa --tree --long"
