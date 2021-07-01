@@ -22,7 +22,7 @@
   </dict>
 
   <key>RunAtLoad</key>
-  <true/>
+  <false/>
 
   <key>StandardErrorPath</key>
   <string>/tmp/certify/certifySyncReport.err</string>
