@@ -48,6 +48,7 @@ bindkey -M menuselect 'j' vi-down-line-or-history
 
 #remove ctrl g keybinding in the keymap so that junegunn's fzf_git functions work
 bindkey -r "^G"
+bindkey -r "^H"
 
 #zsh does not word split param expansions https://stackoverflow.com/questions/16200142/zsh-parameter-expansion-inserting-quotes
 # setopt sh_word_split #turn on param expansion word split - this disables zsh autocompletion
@@ -69,6 +70,7 @@ export PATH="$PATH:$HOME/Library/Android/sdk/emulator" # add android emulator
 . ~/.zsh_docker_aliases.zsh
 . ~/.zsh_fzf.zsh
 . ~/.zsh_fzf_git.zsh
+. ~/.zsh_fzf_cloudwatch.zsh
 . ~/.zsh_git_aliases.zsh
 . ~/.zsh_jira.zsh
 . ~/.zsh_jira.plug.zsh
@@ -99,4 +101,5 @@ fi
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 # load my profiles
+# certify production
 cerp p
