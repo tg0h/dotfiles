@@ -43,6 +43,7 @@
     ~/.zsh_funcs.zsh: zsh_funcs.zsh
     ~/.zsh_fzf.zsh: zsh_fzf.zsh
     ~/.zsh_fzf_git.zsh: zsh_fzf_git.zsh
+    ~/.zsh_fzf_cloudwatch.zsh: zsh_fzf_cloudwatch.zsh
     ~/.zsh_gitlab.zsh: zsh_gitlab.zsh
     ~/.zsh_ios.zsh: zsh_ios.zsh
     ~/.zsh_jira.zsh: zsh_jira.zsh
