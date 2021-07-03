@@ -2,10 +2,13 @@
 # list logs
 _ch(){
   # jq will not escape strings with --raw-output
-  aws logs describe-log-groups | jq --raw-output '.logGroups[].logGroupName' | fzf
+  # aws logs describe-log-groups | jq --raw-output '.logGroups[].logGroupName' | fzf
+  cat $FZF_CLOUDWATCH_LOGNAME_CACHE | fzf
 }
 
+# refresh the cache
 _fzf_cloudwatch_getCache(){
+  aws logs describe-log-groups | jq --raw-output '.logGroups[].logGroupName' > $FZF_CLOUDWATCH_LOGNAME_CACHE
 }
 
 join-lines() {
