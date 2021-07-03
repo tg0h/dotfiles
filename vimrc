@@ -1,54 +1,47 @@
 " Manage plugins with vim-plug.
 " => Plugins ======================================================================================================
 call plug#begin()
-" Plug 'bluz71/vim-nightfly-guicolors'
-Plug 'agude/vim-eldar' "vim color scheme - courtesy alexgude.com/blog/vim-eldar/
 Plug 'phanviet/vim-monokai-pro'
 
+" FZF
+" Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+" reference homebrew path
+Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim',
+
+Plug 'junegunn/vim-plug' "help file for vim-plug
+Plug 'junegunn/vim-peekaboo' "view contents of registers
+
+" Git
 Plug 'tpope/vim-fugitive' "git support
 Plug 'tpope/vim-unimpaired' "git mappings for :Glo, January 9 2021 Sundayg
+Plug 'airblade/vim-gitgutter' "git gutter, show +/- in gutter January 9 2021 Sunday 
 Plug 'shumphrey/fugitive-gitlab.vim' "enable Gbrowse for gitlab
 Plug 'stsewd/fzf-checkout.vim' "fzf git checkout
 
-Plug 'christoomey/vim-run-interactive' "January 10 2021 Sunday
-
-Plug 'airblade/vim-gitgutter' "git gutter, show +/- in gutter January 9 2021 Sunday 
-" Plug 'wikitopian/hardmode' "vim hard mode
-" autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode() "enable hard mode by default:v
-
-Plug 'junegunn/vim-plug' "help file for vim-plug
-
-Plug 'junegunn/vim-peekaboo' "view contents of registers
-
-Plug 'scrooloose/nerdtree' "file explorer
-" Plug 'ctrlpvim/ctrlp.vim'
-
-Plug 'easymotion/vim-easymotion'
-Plug 'haya14busa/vim-easyoperator-line' "easy motion for line operations
-" Plug 'haya14busa/vim-easyoperator-phrase' "easy motion for line operations
-
-Plug 'junegunn/fzf', { 'dir': '~/fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim', 
-"Plug 'alok/notational-fzf-vim' "june gunn vim plug :( not working
-Plug 'vimwiki/vimwiki' "20190628
-" Plug 'mattn/calendar-vim' "20190704
-
+" Utils
+Plug 'tpope/vim-repeat' "20200502 - repeat plugin actions
 Plug 'tpope/vim-surround' "surround text with '
 Plug 'tpope/vim-commentary' "comment with gc, uncomment with gc again (it toggles)
-Plug 'sjl/gundo.vim' "undo tree
-"Plug 'morhetz/gruvbox' "color scheme
+
+" Movement
+Plug 'easymotion/vim-easymotion'
+Plug 'haya14busa/vim-easyoperator-line' "easy motion for line operations
+
+" Status
 Plug 'vim-airline/vim-airline' "20190630 status bar
 Plug 'vim-airline/vim-airline-themes' "20190630 airline themes
-Plug 'gosukiwi/vim-atom-dark' "theme
-Plug 'nanotech/jellybeans.vim' "theme
-"Plug 'dbeniamine/todo.txt-vim' "20190630
-Plug 'chiel92/vim-autoformat' "20200222
-Plug 'tpope/vim-repeat' "20200502 - repeat plugin actions
 
-" Plug 'kana/vim-textobj-function' "20200508 - vim function as textobj use daf etc
+" Files
+Plug 'scrooloose/nerdtree' "file explorer
+Plug 'sjl/gundo.vim' "undo tree
+Plug 'chiel92/vim-autoformat' "20200222
+
+" Misc
+Plug 'christoomey/vim-run-interactive' "January 10 2021 Sunday
+Plug 'vimwiki/vimwiki' "20190628
+
 call plug#end()
-"Plug 'majutsushi/tagbar' "20190718 a navigation menu of tags, need to install ctags as well? For vimwiki navigation 
-" Plug 'christoomey/vim-tmux-navigator' "20191117 use the same window keymappings for tmux and vim
 " => Plugins ======================================================================================================
 
 
@@ -70,8 +63,6 @@ set path+=**
 " g ctrl ] for ambiguous tags
 " ctrl t to jump back up the tag stack
 command! MakeTags !ctags -R .
-
-
 
 set termguicolors "set true color support for gruvbox
 "set background=dark " set dark version of gruvb
@@ -128,28 +119,36 @@ map <Leader> <Plug>(easymotion-prefix)
 "WINDOW MANAGEMENT ====================================================================================================
 " Quicker window movement
 "not sure why ctrl j does not work
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-"need to change fzf ctrl h mapping
-nnoremap <C-h> <C-w>h
-nnoremap <C-l> <C-w>l
+"nnoremap <C-j> <C-w>j
+"nnoremap <C-k> <C-w>k
+""need to change fzf ctrl h mapping
+"nnoremap <C-h> <C-w>h
+"nnoremap <C-l> <C-w>l
+nmap <silent> <A-Up> :wincmd k<CR>
+nmap <silent> <A-Down> :wincmd j<CR>
+nmap <silent> <A-Left> :wincmd h<CR>
+nmap <silent> <A-Right> :wincmd l<CR>
+
+" see the ANSI key code by running sed -n l
+" alt arrow keys go to window
+nmap <silent> <Esc>[1;9C :wincmd l<CR>
+nmap <silent> <Esc>[1;9B :wincmd j<CR>
+nmap <silent> <Esc>[1;9D :wincmd h<CR>
+nmap <silent> <Esc>[1;9A :wincmd k<CR>
 
 noremap <BS> :bprevious<cr>  " backspace is previous buffer
 noremap <S-BS> :bnext<cr>  " next buffer
-"CtrlP mappings - kill ctrlp, January 10 2021 Sunday, use fzf instead
-" nnoremap <C-b> :CtrlPBuffer<cr>  " Map CtrlP buffer mode to Ctrl + b
-" nnoremap <C-j> :CtrlPMRU<cr>  " Map CtrlP MRU mode to Ctrl + j
 
-" Map Ctrl + p to open fuzzy find (FZF)
-" ========== fzf vim January 10 2021 Sunday 
-nmap <leader>sr :Rg<cr>
-nnoremap <c-p> :Files<cr>
-nnoremap <c-b> :Buffers<cr>
-nmap <leader>sl :Lines<cr>
-nmap <leader>sbl :BLines<cr>
+" ========== fzf vim January 10 2021 Sunday =============================
+" rip grep
+nmap <leader>sr :Rg<cr> 
 
-"History
-nnoremap <c-h> :History<cr>
+nnoremap <C-H> :History<cr>
+nnoremap <C-T> :Files<cr>
+nnoremap <C-B> :Buffers<cr>
+nmap <C-L> :Lines<cr>
+nmap <LEADER>sbl :BLines<cr>
+
 "Command History
 nmap <leader>sh :History:<cr>
 "Search History
@@ -159,7 +158,6 @@ nmap <leader>ss :History/<cr>
 nmap <leader>sc :Commands<cr>
 nmap <leader>sm :Maps<cr>
 nmap <leader>sk :Marks<cr>
-
 
 " Git ---------------------------------
 nmap <leader>sgc :Commits<cr>
@@ -174,7 +172,6 @@ nmap <leader>st :Tags<cr>
 nmap <leader>sbt :BTags<cr>
 " ========== fzf vim January 10 2021 Sunday - END
 
-
 "quickfix
 nnoremap n :cn<cr> " map alt n to next in quickfix list (this only works in iterm, not in mvim) 
 " nnoremap ˜ :cn<cr> " map alt n to next in quickfix list (this only works in mvim) 
@@ -188,18 +185,19 @@ nnoremap π :cp<cr> " map alt n to next in quickfix list (this only works in mvi
 nnoremap <Leader>r :RunInInteractiveShell<Space> "January 10 2021 Sunday 
 
 "uses fzf vim :Helptags
-noremap <F1> :Helptags <cr>
-noremap <F2> :w <cr>
-noremap <F3> :e ~/dotfiles/vimrc<cr>
+noremap <F10> :term<CR>
+noremap <F1> :NERDTreeToggle<CR>
+" even in insert mode, F2 means save
+" ctrl o escapes insert mode so we can send :w
+inoremap <F2> <C-O>:w <CR>
+noremap <F2> :w <CR>
+noremap <F3> :e ~/dotfiles/vimrc<CR>
 nmap <F4> i<C-R>=strftime("%B %d %Y %A")<CR><Esc>
 noremap <f5> :GundoToggle<cr>  " Map Gundo to <F5>.
 noremap <F6> :setlocal spell! spelllang=en_gb<CR> " Toggle Spellcheck
 noremap <F7> :VimwikiTable<CR>
 noremap <F9> :Autoformat<CR>
-nmap <leader>ne :NERDTreeToggle<cr> " NERD Tree
 :map <S-Space> <Plug>VimwikiToggleListItem
-"notational fzf vim
-nnoremap <leader>a :NV<CR>
 
 "if fileType is vimwiki -- also, see ToggleCalendar function defined above
 :autocmd FileType vimwiki map <localleader>d :VimwikiMakeDiaryNote<CR>
@@ -324,7 +322,7 @@ nmap <leader>gr :GBranches<CR>
 " [[B]Commits] Customize the options used by 'git log':
 let g:fzf_commits_log_options = "--date=human --graph --color=always --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset %C(yellow)%ar%Creset'"
 
-let g:fzf_layout = { 'window': {'width': 0.95, 'height': 0.95} }
+" let g:fzf_layout = { 'window': {'width': 0.95, 'height': 0.95} }
 
 "ctrl t to checkout remote branch
 let g:fzf_branch_actions = {
