@@ -1,5 +1,8 @@
+# TODO: prefix '.' doesn't seem to be working, how to create a .filename alias with a glob pattern?
 - defaults:
     link:
+      # create directories to create symlink if needed
+      create: true
       relink: true
       # glob: true
 
@@ -10,100 +13,57 @@
 
 # <target>:<source (original file)>
 - link:
-    # ~/.dotfiles: ''
+    ~/.env: ~/dev/config/env/env
+    ~/.zshenv: ~/dev/config/env/zshenv
+    ~/.zprofile: ~/dev/config/env/zprofile
+    ~/.zshrc: 
+
     ~/scripts: scripts/
     ~/Library/Application Support/com.clickontyler.TextBuddy/scripts: scripts/textBuddy/
-
-    ~/:
-      glob: true
-      path: ~/dev/config/env/*
-      prefix: '.' 
-      exclude: [ ~/dev/config/env/timtoggl ]
-    # ~/.env: ~/dev/config/env/env
-    # ~/.zshenv: ~/dev/config/env/zshenv
-    # ~/.zprofile: ~/dev/config/env/zprofile
     
+    ~/.ssh/: 
+      glob: true
+      path: ~/certis/config/aws/*
+
     ~/.ssh/config: ~/dev/config/ssh/config
     ~/.ssh/id_ed25519: ~/dev/config/secrets/id_ed25519
     ~/.ssh/id_ed25519.pub: ~/dev/config/secrets/id_ed25519.pub
 
     ~/.ideavimrc: ideavimrc #webstorm ideavim emulation rc file
 
-      # in a symlink, we map a target to the source. the source contains the actual
-      # file. it is to the right
-      #
-      # the source can be implicit, if implicit, dotbot will use the basename of
-      # the destination with any leading . stripped if present
-      # eg ~/.gitconfig: is == to ~/.gitconfig: gitconfig
     ~/.gitconfig:
     ~/.gitignore_global:
     ~/.mutt/muttrc : muttrc #mail client
     ~/.p10k.zsh: 
-    ~/.taskrc: taskrc #taskwarrior rc file
     ~/.vim: 
     ~/.vimrc: 
-    ~/.zshrc: 
-    ~/.zsh_android.zsh: 
-    ~/.zsh_appCenter.zsh: 
-    ~/.zsh_autosuggestions.zsh: 
-    ~/.zsh_autocomplete.zsh: 
-    ~/.zsh_aws_calltree.zsh: 
-    ~/.zsh_aws_cloudwatch.zsh: 
-    ~/.zsh_aws_rds.zsh: 
-    ~/.zsh_aws_cognito.zsh: 
-    ~/.zsh_functions: zsh_functions/ #autoload function directory
-    ~/.zsh_funcs.zsh: 
-    ~/.zsh_fzf.zsh: 
-    ~/.zsh_fzf_git.zsh: 
-    ~/.zsh_fzf_cloudwatch.zsh: 
-    ~/.zsh_gitlab.zsh: 
-    ~/.zsh_ios.zsh: 
-    ~/.zsh_jira.zsh: 
-    ~/.zsh_jira.plug.zsh: 
-    ~/.zsh_node.zsh: 
-    ~/.zsh_toggl_aliases.zsh: 
-    ~/.zsh_powerlevel9k.zsh: 
 
-    ~/.zsh_aliases.zsh: 
-    ~/.zsh_git_aliases.zsh: 
-    ~/.zsh_docker_aliases.zsh: 
+    ~/.zsh_functions: zsh_functions/ #autoload function directory
+
+    # create a .zsh alias to the dotfiles/zsh folder
+    # this contains aliases, functions etc
+    ~/.zsh:
 
     # certis
-    ## aws
     ~/.aws/: 
-      # create ~/.aws if needed
-      # create: true
       glob: true
       path: ~/certis/config/aws/*
 
-    ## abc
     ~/src/edo/abc-cli/config/environment/: 
       glob: true
       path: ~/certis/config/env/abc-cli/*
       
-    ## argus
-    ~/src/edo/abc-cli/config/environment/: 
+    ~/.argus/:
       glob: true
-      path: ~/certis/config/env/abc-cli/*
-    ### sg
-    ~/dotfiles/argus.develop.env: ~/certis/config/env/argus/argus.develop.env
-    ~/dotfiles/argus.staging.env: ~/certis/config/env/argus/argus.staging.env
-    ~/dotfiles/argus.production.env: ~/certis/config/env/argus/argus.production.env
-    ### au
-    ~/dotfiles/argusAu.staging.env: ~/certis/config/env/argus/argusAu.staging.env
-    ~/dotfiles/argusAu.production.env: ~/certis/config/env/argus/argusAu.production.env
-      
-    ## certify
-    ### certify cli
-    ~/dotfiles/certify.develop.env: ~/certis/config/env/certify/certify.develop.env
-    ~/dotfiles/certify.staging.env: ~/certis/config/env/certify/certify.staging.env
-    ~/dotfiles/certify.production.env: ~/certis/config/env/certify/certify.production.env
-    
+      path: ~/certis/config/env/argus/*.env
+
+    ~/.certify:
+      glob: true
+      path: ~/certis/config/env/certify/*.env
     ### certify sync job
     ~/Library/LaunchAgents/certify-validate-sync.plist: ~/dotfiles/scripts/certify/certify-validate-sync.plist
 
     # me
-    ## timtoggl
     ~/dev/working/timtoggl/timtoggl/.env: ~/dev/config/env/timtoggl/env
 
 - shell:

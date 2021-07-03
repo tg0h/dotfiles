@@ -5,6 +5,9 @@ _ch(){
   aws logs describe-log-groups | jq --raw-output '.logGroups[].logGroupName' | fzf
 }
 
+_fzf_cloudwatch_getCache(){
+}
+
 join-lines() {
   local item
   while read item; do

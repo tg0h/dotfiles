@@ -16,16 +16,16 @@ function _setCertifyProfile() {
   local certify_profile
   case $1 in
     d) certify_profile="development"
-      . ~/dotfiles/certify.develop.env
-      asp cd #switch to aws cd profile using the zsh aws plugin
+      . ~/.certify/certify.develop.env
+      asp cdev #switch to aws cd profile using the zsh aws plugin
       ;;
     s) certify_profile="staging"
-      . ~/dotfiles/certify.staging.env
-      asp cd
+      . ~/.certify/certify.staging.env
+      asp cdev
       ;;
     p) certify_profile="production"
-      . ~/dotfiles/certify.production.env
-      asp cp #switch to aws cp profile using the zsh aws plugin
+      . ~/.certify./certify.production.env
+      asp cprod #switch to aws cp profile using the zsh aws plugin
       ;;
   esac
 

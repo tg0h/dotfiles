@@ -69,34 +69,34 @@ function _setArgusProfile() {
   case $1 in
     d) argus_profile="development"
       _ARGUS_PROFILE="development"
-      . ~/dotfiles/argus.develop.env
+      . ~/.argus/argus.develop.env
       vpn
       dbconn-argus #automatically open ssh ports
-      asp d #switch aws profile to dev
+      asp adev #switch aws profile to dev
       ;;
     s) argus_profile="staging"
-      . ~/dotfiles/argus.staging.env
+      . ~/.argus/argus.staging.env
       vpn
       dbconn-argus #automatically open ssh ports
-      asp d #switch aws profile to dev
+      asp adev #switch aws profile to dev
       ;;
     as) argus_profile="au staging"
-      . ~/dotfiles/argusAu.staging.env
+      . ~/.argus/argusAu.staging.env
       vpn
       dbconn-argus #automatically open ssh ports
-      asp as #switch aws profile to au staging
+      asp aastg #switch aws profile to au staging
       ;;
     p) argus_profile="production"
       vpn
-      . ~/dotfiles/argus.production.env
+      . ~/.argus/argus.production.env
       dbconn-argus #automatically open ssh ports
-      asp p #switch aws profile to prod
+      asp aprod #switch aws profile to prod
       ;;
     ap) argus_profile="au prod"
-      . ~/dotfiles/argusAu.production.env
+      . ~/.argus/argusAu.production.env
       vpn
       dbconn-argus #automatically open ssh ports
-      asp ap #switch aws profile to au staging
+      asp aaprod #switch aws profile to au staging
       ;;
   esac
 
@@ -370,6 +370,8 @@ EOF
 
 # auth db ################################################################################################
 function dbaua() {
+  # EXAMPLES:
+  # dbaua -u 100 - get data from user 100
 
   local staffId
   local rows=5

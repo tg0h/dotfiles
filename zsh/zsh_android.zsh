@@ -163,13 +163,15 @@ function adi() {
 
 local usbMode=""
 local ip=""
-while getopts 'bdrs:y' opt; do
+local g="-g" # grant all permissions by default
+while getopts 'bdrs:yG' opt; do
   case "$opt" in
     d) usbMode="-d" ;;
     s) ip="192.168.1.$OPTARG:5555" ;;
     b) ip=$HP_BLUE_IP;;
     r) ip=$HP_RED_IP ;;
     y) ip=$HP_YELLOW_IP ;;
+    G)  g="" ;;
   esac
 done
 shift $(($OPTIND - 1))
@@ -198,7 +200,9 @@ if [[ -n $usbMode ]]; then
   adb -d install $apkFileName &
 elif [[ -n $ip ]]; then
   # -g grants all permissions specified in the app manifest
-  echo "granting all permissions to $apkFileName ..."
+  # if $g is empty, then we are granting all permissions when installing
+  # [[ -z $g ]] && 
+    echo "granting all permissions to $apkFileName ..."
   adb -s $ip install -g --fastdeploy $apkFileName &
 else;
   echo neither usbMode or ip given
@@ -291,6 +295,7 @@ function adg(){
 # adl -r - debug on the red phone
 function adl() {
   # TODO: use adb shell pidof -s com.example.app to get the pid
+  # TODO: test option to just show pid, app etc outputs without showing log
   local loglevel=v
   local regex=".*" #default
   local app=""
@@ -377,7 +382,6 @@ function adl() {
   echo appType is argus $appType
   echo using filter: $filter
   echo with pid: $pid
-  echo with filter: $filter
   echo with regex: $regex
   echo usbMode: $usbMode
   echo ip: $ip

@@ -2,6 +2,10 @@
 # ALL
 # filter pattern requires '"<filter>"' ... strange
 
+function cwl(){
+  aws logs describe-log-groups  | jq '.logGroups[].logGroupName' F
+}
+
 function cwargus-ms-session-dev() {
   awslogs get /aws/ecs/argus-ms-session-dev ALL --filter-pattern='"'$1'"' --since "$2" --no-group --no-stream
 }
