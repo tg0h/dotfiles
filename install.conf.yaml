@@ -1,6 +1,7 @@
 - defaults:
     link:
       relink: true
+      # glob: true
 
 - clean: ['~']
 
@@ -9,13 +10,18 @@
 
 # <target>:<source (original file)>
 - link:
-    ~/.dotfiles: ''
+    # ~/.dotfiles: ''
     ~/scripts: scripts/
     ~/Library/Application Support/com.clickontyler.TextBuddy/scripts: scripts/textBuddy/
 
-    ~/.env: ~/dev/config/env/env
-    ~/.zshenv: ~/dev/config/env/zshenv
-    ~/.zprofile: ~/dev/config/env/zprofile
+    ~/:
+      glob: true
+      path: ~/dev/config/env/*
+      prefix: '.' 
+      exclude: [ ~/dev/config/env/timtoggl ]
+    # ~/.env: ~/dev/config/env/env
+    # ~/.zshenv: ~/dev/config/env/zshenv
+    # ~/.zprofile: ~/dev/config/env/zprofile
     
     ~/.ssh/config: ~/dev/config/ssh/config
     ~/.ssh/id_ed25519: ~/dev/config/secrets/id_ed25519
@@ -23,55 +29,62 @@
 
     ~/.ideavimrc: ideavimrc #webstorm ideavim emulation rc file
 
-    ~/.gitconfig: gitconfig
-    ~/.gitignore_global: gitignore_global
+      # in a symlink, we map a target to the source. the source contains the actual
+      # file. it is to the right
+      #
+      # the source can be implicit, if implicit, dotbot will use the basename of
+      # the destination with any leading . stripped if present
+      # eg ~/.gitconfig: is == to ~/.gitconfig: gitconfig
+    ~/.gitconfig:
+    ~/.gitignore_global:
     ~/.mutt/muttrc : muttrc #mail client
-    ~/.p10k.zsh: p10k.zsh
+    ~/.p10k.zsh: 
     ~/.taskrc: taskrc #taskwarrior rc file
-    ~/.vim: vim
-    ~/.vimrc: vimrc
-    ~/.zshrc: zshrc
-    ~/.zsh_android.zsh: zsh_android.zsh
-    ~/.zsh_appCenter.zsh: zsh_appCenter.zsh
-    ~/.zsh_autosuggestions.zsh: zsh_autosuggestions.zsh
-    ~/.zsh_autocomplete.zsh: zsh_autocomplete.zsh
-    ~/.zsh_aws_calltree.zsh: zsh_aws_calltree.zsh
-    ~/.zsh_aws_cloudwatch.zsh: zsh_aws_cloudwatch.zsh
-    ~/.zsh_aws_rds.zsh: zsh_aws_rds.zsh
-    ~/.zsh_aws_cognito.zsh: zsh_aws_cognito.zsh
+    ~/.vim: 
+    ~/.vimrc: 
+    ~/.zshrc: 
+    ~/.zsh_android.zsh: 
+    ~/.zsh_appCenter.zsh: 
+    ~/.zsh_autosuggestions.zsh: 
+    ~/.zsh_autocomplete.zsh: 
+    ~/.zsh_aws_calltree.zsh: 
+    ~/.zsh_aws_cloudwatch.zsh: 
+    ~/.zsh_aws_rds.zsh: 
+    ~/.zsh_aws_cognito.zsh: 
     ~/.zsh_functions: zsh_functions/ #autoload function directory
-    ~/.zsh_funcs.zsh: zsh_funcs.zsh
-    ~/.zsh_fzf.zsh: zsh_fzf.zsh
-    ~/.zsh_fzf_git.zsh: zsh_fzf_git.zsh
-    ~/.zsh_fzf_cloudwatch.zsh: zsh_fzf_cloudwatch.zsh
-    ~/.zsh_gitlab.zsh: zsh_gitlab.zsh
-    ~/.zsh_ios.zsh: zsh_ios.zsh
-    ~/.zsh_jira.zsh: zsh_jira.zsh
-    ~/.zsh_jira.plug.zsh: zsh_jira.plug.zsh
-    ~/.zsh_node.zsh: zsh_node.zsh
-    ~/.zsh_toggl_aliases.zsh: zsh_toggl_aliases.zsh
-    ~/.zsh_powerlevel9k.zsh: zsh_powerlevel9k.zsh
+    ~/.zsh_funcs.zsh: 
+    ~/.zsh_fzf.zsh: 
+    ~/.zsh_fzf_git.zsh: 
+    ~/.zsh_fzf_cloudwatch.zsh: 
+    ~/.zsh_gitlab.zsh: 
+    ~/.zsh_ios.zsh: 
+    ~/.zsh_jira.zsh: 
+    ~/.zsh_jira.plug.zsh: 
+    ~/.zsh_node.zsh: 
+    ~/.zsh_toggl_aliases.zsh: 
+    ~/.zsh_powerlevel9k.zsh: 
 
-    ~/.zsh_aliases.zsh: zsh_aliases.zsh
-    ~/.zsh_git_aliases.zsh: zsh_git_aliases.zsh
-    ~/.zsh_docker_aliases.zsh: zsh_docker_aliases.zsh
-
+    ~/.zsh_aliases.zsh: 
+    ~/.zsh_git_aliases.zsh: 
+    ~/.zsh_docker_aliases.zsh: 
 
     # certis
     ## aws
-    ~/.aws/config: ~/certis/config/aws/config
-    ~/.aws/credentials: ~/certis/config/aws/credentials
+    ~/.aws/: 
+      # create ~/.aws if needed
+      # create: true
+      glob: true
+      path: ~/certis/config/aws/*
 
     ## abc
-    ### sg
-    ~/src/edo/abc-cli/config/environment/develop.json: ~/certis/config/env/abc-cli/develop.json
-    ~/src/edo/abc-cli/config/environment/staging.json: ~/certis/config/env/abc-cli/staging.json
-    ~/src/edo/abc-cli/config/environment/production.json: ~/certis/config/env/abc-cli/production.json
-    ### au
-    ~/src/edo/abc-cli/config/environment/stagingAu.json: ~/certis/config/env/abc-cli/stagingAu.json
-    ~/src/edo/abc-cli/config/environment/productionAu.json: ~/certis/config/env/abc-cli/productionAu.json
+    ~/src/edo/abc-cli/config/environment/: 
+      glob: true
+      path: ~/certis/config/env/abc-cli/*
       
     ## argus
+    ~/src/edo/abc-cli/config/environment/: 
+      glob: true
+      path: ~/certis/config/env/abc-cli/*
     ### sg
     ~/dotfiles/argus.develop.env: ~/certis/config/env/argus/argus.develop.env
     ~/dotfiles/argus.staging.env: ~/certis/config/env/argus/argus.staging.env
