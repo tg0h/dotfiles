@@ -2,35 +2,35 @@
 # TODO: format cgetss cognito output
 
 ## switch env
-cerp () {
-  if [[ -z "$1" ]]
-  then
-    echo $_CERTIFY_PROFILE
-    return
-  fi
+# cerp () {
+#   if [[ -z "$1" ]]
+#   then
+#     echo $_CERTIFY_PROFILE
+#     return
+#   fi
 
-  _setCertifyProfile $1
-}
+#   _setCertifyProfile $1
+# }
 
-function _setCertifyProfile() {
-  local certify_profile
-  case $1 in
-    d) certify_profile="development"
-      . ~/.certify/certify.develop.env
-      asp cdev #switch to aws cd profile using the zsh aws plugin
-      ;;
-    s) certify_profile="staging"
-      . ~/.certify/certify.staging.env
-      asp cdev
-      ;;
-    p) certify_profile="production"
-      . ~/.certify./certify.production.env
-      asp cprod #switch to aws cp profile using the zsh aws plugin
-      ;;
-  esac
+# function _setCertifyProfile() {
+#   # local certify_profile
+#   case $1 in
+#     d) certify_profile="development"
+#       . ~/.certify/certify.develop.env
+#       asp cdev #switch to aws cd profile using the zsh aws plugin
+#       ;;
+#     s) certify_profile="staging"
+#       . ~/.certify/certify.staging.env
+#       asp cdev
+#       ;;
+#     p) certify_profile="production"
+#       . ~/.certify./certify.production.env
+#       asp cprod #switch to aws cp profile using the zsh aws plugin
+#       ;;
+#   esac
 
-  export _CERTIFY_PROFILE=$certify_profile
-}
+#   # export _CERTIFY_PROFILE=$certify_profile
+# }
 
 ##certify
 ccon() { sqlite3 $_CERTIFY_VERIFY_DB }
