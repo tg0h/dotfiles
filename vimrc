@@ -9,6 +9,9 @@ Plug 'phanviet/vim-monokai-pro'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim',
 
+"2021-07-04
+Plug 'sheerun/vim-polyglot', 
+
 Plug 'junegunn/vim-plug' "help file for vim-plug
 Plug 'junegunn/vim-peekaboo' "view contents of registers
 
@@ -141,7 +144,7 @@ noremap <S-BS> :bnext<cr>  " next buffer
 
 " ========== fzf vim January 10 2021 Sunday =============================
 " rip grep
-nmap <leader>sr :Rg<cr> 
+nnoremap <C-S> :Rg<CR> 
 
 nnoremap <C-H> :History<cr>
 nnoremap <C-T> :Files<cr>
@@ -197,12 +200,11 @@ noremap <f5> :GundoToggle<cr>  " Map Gundo to <F5>.
 noremap <F6> :setlocal spell! spelllang=en_gb<CR> " Toggle Spellcheck
 noremap <F7> :VimwikiTable<CR>
 noremap <F9> :Autoformat<CR>
-:map <S-Space> <Plug>VimwikiToggleListItem
+map <S-Space> <Plug>VimwikiToggleListItem
 
 "if fileType is vimwiki -- also, see ToggleCalendar function defined above
 :autocmd FileType vimwiki map <localleader>d :VimwikiMakeDiaryNote<CR>
 :autocmd FileType vimwiki map <localleader>c :call ToggleCalendar()<CR> 
-map <S-Space> <Plug>VimwikiToggleListItem
 
 "yaml tab spacing
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
