@@ -63,18 +63,22 @@ export PATH="$PATH:$HOME/Library/Android/sdk/emulator" # add android emulator
 # export PATH="$PATH:/Users/tim/Library/Android/sdk/tools/bin" # add android emulator
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh #source fzf after the vim keymap so fzf shortcuts take precedence
 
-# source every file in the .zsh folder
+# source every file in the .zsh and .abs folder
 # the **/* glob is peculiar to zsh
 # it allows zsh to search recursively
 # source every file (include subdirs) in .zsh
-for f in ~/.zsh/**/*; do
-  [[ -f $f ]] && . $f
-done;
+# local f
+for f in ~/.zsh/**/*; do [[ -f $f ]] && . $f; done
+for f in ~/.abs/src/**/*.zsh; do [[ -f $f ]] && . $f; done
 
 # my functions
 . ~/.env
 
 fpath+=~/.zsh_functions #add our own zsh functions directory to fpath
+# https://stackoverflow.com/questions/30840651/what-does-autoload-do-in-zsh
+# use functions modify your shell environment
+# whereas scripts get their copy of the shell process
+# autoload tells zsh where to find the function
 autoload -Uz ~/.zsh_functions/*(.) #-U supress alias expansion, -z zsh style function loading. (.) - glob qualifier. dot means show regular files only
 autoload -U zmv # add the zsh zmv extension
 . ~/.zsh/zsh_funcs.zsh #get all my functions
@@ -83,5 +87,8 @@ autoload -U zmv # add the zsh zmv extension
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
+
+# load env parallel
+. `which env_parallel.zsh`
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
