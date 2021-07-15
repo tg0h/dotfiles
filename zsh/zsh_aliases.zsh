@@ -1,5 +1,7 @@
 # GLOBAL ALIASES ==========================================================
 alias -g F='| fzf' # change Z to whatever you like
+alias -g T='| jq ".pay | fromjson"' # converT argus api stringifield payload back to json
+alias -g G='| gron' 
 
 # =========================================================================
 # edit config file shortcuts
@@ -44,10 +46,9 @@ alias sss="source $HOME/.zshrc"
 # edit
 alias ee="vim $HOME/dotfiles/scripts/scratch"
 
-
-
-
 # others ====================================================================
+alias norg="gron --ungron"
+
 alias l='lsd -lah' #use lsd to supercharge ls output
 alias ll='lsd -lh' #use lsd to supercharge ls output
 alias lt="lsd -laht"
