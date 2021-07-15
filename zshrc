@@ -14,6 +14,11 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # COMPLETION_WAITING_DOTS="true" #display 3 dots while waiting for completion
 # HIST_STAMPS="yyyy-mm-dd" # set up zsh history command date time format
 
+# zsh-nvm plugin config
+# so that the .nvmrc project file is loaded automatically
+# must be set befor loading the zsh-nvm plugin
+export NVM_AUTO_USE=true
+
 # plugins
 plugins=(
   zsh-nvm #add at the top so other plugins that use node/npm can work ###lukechilds/zsh-nvm
@@ -92,3 +97,4 @@ fi
 . `which env_parallel.zsh`
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
