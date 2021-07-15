@@ -23,7 +23,8 @@ path=('/usr/local/bin' $path) # add homebrew packages
   echo this is path $path
 
   . $HOME/dotfiles/zshrc #get everything
-  cerp p #get env variables
+  # cerp p #get env variables
+  as cp
 
 # WORKING FOLDER FOR THE REPORT ------------------------------------------------------------------------------------
 cd $_CERTIFY_VERIFY_REPORT_FOLDER_TMP
