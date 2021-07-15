@@ -1,7 +1,0 @@
-#!/bin/zsh
-ttest() {
-}
-
-#test migration
-tt() {
-}
