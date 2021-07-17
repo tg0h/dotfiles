@@ -38,6 +38,7 @@
     ~/.p10k.zsh: 
     ~/.vim: 
     ~/.vimrc: 
+    ~/.config/nvim/init.vim: ~/dotfiles/nvim/init.vim
 
     ~/.zsh_functions: zsh_functions/ #autoload function directory
 
