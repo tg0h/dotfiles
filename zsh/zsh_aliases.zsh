@@ -49,9 +49,10 @@ alias ee="vim $HOME/dotfiles/scripts/scratch"
 # others ====================================================================
 alias norg="gron --ungron"
 
-alias l='lsd -lah' #use lsd to supercharge ls output
-alias ll='lsd -lh' #use lsd to supercharge ls output
-alias lt="lsd -laht"
+alias l='lsd -la' # -a show hidden files
+alias ll='lsd -l' # use lsd to supercharge ls output
+alias lt="lsd -lat"
+alias lr="lsd -lar" #reverse the sort
 #zsh jira plugin
 alias j=jira
 alias zt="cd /tmp"
@@ -65,3 +66,6 @@ alias vpn="networksetup -connectpppoeservice 'edo vpn'"
 alias dvpn="networksetup -disconnectpppoeservice 'edo vpn'"
 # exa
 alias exat="exa --tree --long --icons --git"
+# vim
+alias vim="nvim"
+alias oldvim="\vim"
