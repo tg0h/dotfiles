@@ -20,7 +20,7 @@ alias gbmr="git branch -r --merged"
 
 # alias gbnm="git branch --no-merged" - defined in git plugin
 # if you don't specify a branch, it compares against the current HEAD you're on, ie which branch you're currently on
-alias gbnmr="git branch -r --no-merged"
+alias gbnmr="git branch -r --no-merged | rg -v 'release'"
 
 function gbdd(){
   # delete local git branches with a search string
