@@ -9,7 +9,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-export EDITOR='vim'
+export EDITOR='nvim'
 ZSH_THEME="powerlevel10k/powerlevel10k"
 # COMPLETION_WAITING_DOTS="true" #display 3 dots while waiting for completion
 # HIST_STAMPS="yyyy-mm-dd" # set up zsh history command date time format
