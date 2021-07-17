@@ -6,6 +6,10 @@
 # use highlight to preview file with colour
 # export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --border"
 # turn off preview window by adding right:hidden:wrap
+#
+# TODO: understand piping wizadry needed to open terminal nvim with ctrl e keybind
+# https://github.com/junegunn/fzf/issues/1593#issuecomment-498007983
+
 export FZF_DEFAULT_OPTS="
 --no-mouse
 --height 50%
@@ -18,11 +22,13 @@ export FZF_DEFAULT_OPTS="
 --bind='f2:toggle-preview'
 --bind='ctrl-d:half-page-down'
 --bind='ctrl-u:half-page-up'
+--bind 'shift-up:preview-half-page-up'
+--bind 'shift-down:preview-half-page-down'
 --bind='ctrl-a:select-all+accept'
 --bind='ctrl-y:execute-silent(echo {+} | pbcopy)'
---bind 'ctrl-e:execute(mvim {+})'
---bind 'ctrl-v:execute(webstorm {+})'
+--bind 'ctrl-e:execute(nvim {} < /dev/tty > /dev/tty 2>&1)'
 "
+
 #--preview-window='right:hidden:wrap' 
 
 #export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
