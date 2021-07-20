@@ -89,7 +89,7 @@ set termguicolors "set true color support for gruvbox
 colorscheme monokai_pro " Change a colorscheme.
 
 " set guifont=Hack:h14 "2019 July 18 Thursday 
-set guifont=RobotoMonoForPowerline-Light:h18
+set guifont=RobotoMonoForPowerline-Light:h24
 
 set clipboard=unnamed  " Copy into system (*) register.
 " vim buffer management, press tab to list buffers
@@ -411,15 +411,15 @@ set statusline+=%{GitStatus()}
 "fugitive ---------------------------------------------------------------------->
 let g:fugitive_gitlab_domains = ['https://git.ads.certis.site']
 " Fugitive mapping
-nmap <leader>gb :Gblame<cr>
-nmap <leader>gc :Gcommit<cr>
-nmap <leader>gd :Gdiff<cr>
+nmap <leader>gb :Gblame<CR>
+nmap <leader>gc :Git commit<CR>
+nmap <leader>go :Gdiff<CR>
 nmap <leader>gg :Ggrep
-nmap <leader>gl :Glog<cr>
-nmap <leader>gp :Git pull<cr>
-nmap <leader>gP :Git push<cr>
-nmap <leader>gs :Gstatus<cr>
-nmap <leader>gw :Gbrowse<cr>
+nmap <leader>gl :Gclog<CR>
+nmap <leader>gp :Git pull<CR>
+nmap <leader>gP :Git push<CR>
+nmap <leader>gs :Git<CR>
+nmap <leader>gw :Gbrowse<CR>
 
 "conflict resolution
 nmap <leader>gh :diffget //3<CR> "get right side, h is on the right in dvorak
