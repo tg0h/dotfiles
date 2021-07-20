@@ -232,3 +232,45 @@ fzf-search-dotfiles-widget() {
 
 zle     -N   fzf-search-dotfiles-widget  
 bindkey '^N' fzf-search-dotfiles-widget
+
+fzf-search-abs-function-widget(){
+  # nvim
+  # see man vim options
+  # nvim +<number> <file> opens the file at the number
+  # nvim -c 'normal! zz' executes the normal command, the ! ensures that no keymappings are used
+  #
+  # rg
+  # --only-matching - only return whatever matches the regex, not the entire line
+  # --field-match-separator - instead of : to delimit the filepath, line etc, use another delimiter
+  # -e -use this regex pattern, specify mulitiple regex patterns to AND them
+  #
+  # gsed
+  # this 'N;s/\n/ /' incantation somehow combines every pair of lines
+  #
+  # choose
+  # this is a rust implementation of cut
+  # brew install choose-rust
+  #
+  # fzf
+  # --preview {number} - get the nth field that is fed to fzf
+  #
+  # zsh
+  # reset the prompt and add the result to the buffer
+  local absdir="/Users/tim/dev/working/abs/abs/"
+  
+  local result=$(
+rg --type zsh \
+  --only-matching \
+  -n \
+  --field-match-separator ' ' \
+  $absdir \
+  -e 'function[^(]*' -e "\s*}$" | gsed 'N;s/\n/ /' | choose 0 1 5 3 | fzf --preview 'bat --color=always {1} -r{2}:{3}' \
+  --bind "ctrl-e:execute(nvim {1} +{2} -c 'normal! zz' < /dev/tty > /dev/tty 2>&1)" \
+  | choose 3 
+)
+zle reset-prompt;
+LBUFFER+=$result
+}
+
+zle     -N   fzf-search-abs-function-widget  
+bindkey '^E' fzf-search-abs-function-widget
