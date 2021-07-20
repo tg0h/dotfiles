@@ -204,3 +204,9 @@ fzf-history-widget-accept() {
 }
 zle     -N     fzf-history-widget-accept
 bindkey '^X^R' fzf-history-widget-accept
+
+fzf-search-wiki-widget() {
+  fd . '/Users/tim/certis/resources/wiki' | fzf
+}
+zle     -N   fzf-search-wiki-widget  
+bindkey '^S' fzf-search-wiki-widget

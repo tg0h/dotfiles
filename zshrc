@@ -55,6 +55,9 @@ bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -r "^G"
 bindkey -r "^H"
 
+#remove to use myself to fzf search wiki
+bindkey -r "^S"
+
 #zsh does not word split param expansions https://stackoverflow.com/questions/16200142/zsh-parameter-expansion-inserting-quotes
 # setopt sh_word_split #turn on param expansion word split - this disables zsh autocompletion
 
