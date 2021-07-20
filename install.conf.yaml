@@ -22,7 +22,7 @@
     ~/scripts: scripts/
     ~/Library/Application Support/com.clickontyler.TextBuddy/scripts: scripts/textBuddy/
 
-    ~/.ssh/:
+    ~/.aws/:
       glob: true
       path: ~/certis/config/aws/*
 
