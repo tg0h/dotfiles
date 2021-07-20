@@ -1,3 +1,6 @@
+# apple file finder metadata
+.DS_STORE
+
 # ignore webstorm
 .idea
 
