@@ -38,7 +38,6 @@
     ~/.p10k.zsh: 
     ~/.vim: 
     ~/.vimrc: 
-    ~/.config/nvim/init.vim: ~/dotfiles/nvim/init.vim
 
     ~/.zsh_functions: zsh_functions/ #autoload function directory
 
@@ -47,6 +46,8 @@
     ~/.zsh:
 
     ~/.config/httpie: config/httpie/
+    ~/.config/nvim/init.vim: ~/dotfiles/nvim/init.vim
+    ~/.config/kitty/kitty.conf: ~/dotfiles/config/kitty/kitty.conf
 
     # certis
     ~/.aws/: 
