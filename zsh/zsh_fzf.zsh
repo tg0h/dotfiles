@@ -28,6 +28,7 @@ export FZF_DEFAULT_OPTS="
 --bind='ctrl-y:execute-silent(echo {+} | pbcopy)'
 --bind 'ctrl-e:execute(nvim {} < /dev/tty > /dev/tty 2>&1)'
 "
+# --bind 'ctrl-s:toggle-sort'
 
 #--preview-window='right:hidden:wrap' 
 
@@ -210,3 +211,24 @@ fzf-search-wiki-widget() {
 }
 zle     -N   fzf-search-wiki-widget  
 bindkey '^S' fzf-search-wiki-widget
+
+fzf-search-dotfiles-widget() {
+
+  #include f - files and l - symlinks
+  local FD_FILETYPE="--type f --type l"
+  # --follow - follow symlinks
+  # --hidden - include hidden files and directories
+  local FD_OPTIONS="--follow --hidden --exclude .git --exclude node_modules"
+
+  #do not show hidden files, since my files in dotfiles will not be hidden
+  fd . \
+      --color always \
+      --type f --type l \
+      --follow \
+      --exclude .git \
+      --exclude node_modules \
+      --exclude dotbot '/Users/tim/dotfiles' | fzf --ansi
+}
+
+zle     -N   fzf-search-dotfiles-widget  
+bindkey '^N' fzf-search-dotfiles-widget
