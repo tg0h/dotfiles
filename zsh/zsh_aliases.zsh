@@ -6,6 +6,7 @@ alias -g G='| gron'
 # =========================================================================
 # edit config file shortcuts
 alias zshe='nvim ~/.env'
+alias zshz='nvim ~/.zshenv'
 alias zshrc='nvim ~/dotfiles/zshrc'
 
 alias zshaa='nvim ~/.zsh/zsh_aliases.zsh'
