@@ -1,4 +1,21 @@
 #toggl time tracking
+# t
+#  d
+#  dd
+#  dt
+  #  w
+  #  ww
+  #  m
+#  Summary
+    # s
+    # st
+    # sw
+    # sm
+# tt
+# tm
+
+# 
+
 ## certis
 alias td="timt -w c -t d"
 alias tdd="timt -w c -t d --dd" #detailed report
@@ -20,7 +37,8 @@ alias tsdm="timt -w c -t s -d -r 0m"
 
 ## study
 alias ttd="timt -w s -t d"
-alias ttd="timt -w s -t d --dd" #detailed report
+alias ttd="timt -w s -t d -s today" #today
+alias ttdd="timt -w s -t d --dd" #detailed report
 
 alias ttw="timt -w s -t w"
 alias ttww="timt -w s -t d --ww -s 0cw" #detailed report starting this week
