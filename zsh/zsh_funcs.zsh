@@ -21,7 +21,7 @@ function fsync(){
   # delete - remove files in target that do not belong in source
   # -v - verbose
   # -P - progress bar
-  
+
   # Risk: what if i rysync wrongly and delete my home folder?
   rsync -avP --delete --exclude node_modules ~/certis ~/dotfiles ~/dev ~/src /Volumes/joopyo/tim
 }
@@ -84,4 +84,34 @@ function displaytime {
   (( $M > 0 )) && printf '%d minutes ' $M
   (( $D > 0 || $H > 0 || $M > 0 )) && printf 'and '
   printf '%d seconds\n' $S
+}
+
+function so {
+  # source a function, source the previous function if none provided
+  # examples:
+  # so <functionName>
+  # so - if no function name provided, use the previously sourced function
+
+  local file
+  file=$1
+  local cache=/tmp/_so_cache
+
+  if [[ -n $1 ]]; then
+    source $file
+
+    # store filepath in cache
+    local fullpath=$(realpath $1)
+    echo $fullpath > $cache
+  else
+    echo "$fg[yellow] sourcing from cache ... $reset_color"
+    local cachedFile
+    cachedFile=$(cat $cache | head -n 1)
+    echo "$fg[yellow] sourced $cachedFile $reset_color"
+    if [[ -n cachedFile ]]; then
+      source $cachedFile
+    else
+      echo no function found in cache
+    fi
+
+  fi
 }
