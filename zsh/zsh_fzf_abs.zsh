@@ -45,11 +45,12 @@ _fzf_abs_getFunctions(){
 
      # | gsed -E 's!(\s*)(#)!\2!'
      # remove any whitespace before the # 
+     # s! ... ! ... !  - use an alternative delimiter, ! instead of /
   rg \
     --color always \
     --field-context-separator '' \
     --no-context-separator \
-    --only-matching -e 'function\s+(?P<fname>\w+)' -r '$fname' -A 1 \
+    --only-matching -e '^\s*function\s+(?P<fname>([^\s(]+))' -r '$fname' -A 1 \
     --field-match-separator ' ' \
     $_fzf_absdir \
     | gsed -E 's!(\s*)(#)!\2!' \
@@ -97,7 +98,7 @@ _fzf_abs_displayFunction(){
      # --field-match-separator ' ' \
      # | choose 0 1 5 | read -r outFile funcStart funcEnd
 
-  local dir="$HOME/dev/working/abs/abs/"
+  local file=$_fzf_absdir$inputFile 
 
   # ?s is rust regex syntax to specify that the dot also captures a \n
   # *? is non greedy
@@ -106,25 +107,29 @@ _fzf_abs_displayFunction(){
   rg --only-matching \
      --multiline \
      -nH \
-     -e '^function\s+'$inputFunc'\s*\(''(?s:.)*?(^\s*}$)' $_fzf_absdir$inputFile \
+     -e '^function\s+'$inputFunc'\s*\(''(?s:.)*?(^\s*}$)' $file \
      | gsed '1b;$!d' | gsed 'N;s/\n/ /' \
      | rg '(?::)(\d+)(?::)' -or '$1' | join-lines | read -r funcStart funcEnd _
     # | choose 0 1 5 
 
-  # echo outfile $outFile
-  # echo fstart $funcStart
-  # echo fend $funcEnd
-  bat --color=always $_fzf_absdir$inputFile -r $funcStart:$funcEnd
+  echo file: $file
+  echo func: $inputFunc
+  echo fstart: $funcStart
+  echo fend: $funcEnd
+  bat --color=always $file -r $funcStart:$funcEnd
 }
 
 function _fzf_abs_nvim_edit(){
 
   local file=$1
   local func=$2
+  # echo file: $file
+  # echo func: $func
 
-  local line=$(rg '^function\s+'$func'\s*\(' $_fzf_abs_dir$file -n | choose -f ':' 0)
- 
-  nvim $_fzf_abs_dir$file +$line -c 'normal! zz'
+  local line=$(rg '^function\s+'$func'\s*\(' $_fzf_absdir$file -n | choose -f ':' 0)
+  # echo line: $line
+  
+  nvim $_fzf_absdir$file +$line -c 'normal! zz'
 }
 
 

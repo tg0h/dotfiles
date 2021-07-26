@@ -7,6 +7,7 @@ _fzf_home_getFunctions(){
   # each function is defined as function <functionName> () { ...
   # following each function definition, a single line comment describes the function
   # functions end with a single solitary }
+  # 1 line functions not supported
   #
   # EXAMPLE:
   # function hello () {
@@ -22,9 +23,11 @@ _fzf_home_getFunctions(){
   # --field-context-separator - as we specify -A 1, we do do not want fzf to 
   # prefix the context lines with a -
   #
-  # -e 'function\s+(?P<fname>\w+)'
+  # -e '^\s*function\s+(?P<fname>[^\s(]+)'
+  # [^\s(] - anything that is not a space or a (
   # the regex searches for function, whitespace, and then uses a named capturing
   # group of a word character
+  # exclude commented functions
   #
   # -r - replace matching output with the named capture group fname
   #
@@ -50,7 +53,7 @@ _fzf_home_getFunctions(){
     --color always \
     --field-context-separator '' \
     --no-context-separator \
-    --only-matching -e 'function\s+(?P<fname>\w+)' -r '$fname' -A 1 \
+    --only-matching -e '^\s*function\s+(?P<fname>([^\s(]+))' -r '$fname' -A 1 \
     --field-match-separator ' ' \
     $_fzf_homeFn_dir \
     | gsed -E 's!(\s*)(#)!\2!' \
@@ -101,18 +104,24 @@ _fzf_home_displayFunction(){
   # ?s is rust regex syntax to specify that the dot also captures a \n
   # *? is non greedy
   # (?s:.)*?
+  # (?:) - non capturing group
+  # (?::) - match :
+
+  local file=$_fzf_homeFn_dir$inputFile
 
   rg --only-matching \
      --multiline \
      -nH \
-     -e '^function\s+'$inputFunc'\s*\(''(?s:.)*?(^\s*}$)' $_fzf_homeFn_dir$inputFile \
+     -e '\s*function\s+'$inputFunc'\s*\(''(?s:.)*?(^\s*}$)' $file \
      | gsed '1b;$!d' | gsed 'N;s/\n/ /' \
      | rg '(?::)(\d+)(?::)' -or '$1' | join-lines | read -r funcStart funcEnd _
+    # : delimiter - problematic if function has : as well?
     # | choose 0 1 5 
 
-  # echo outfile $outFile
-  # echo fstart $funcStart
-  # echo fend $funcEnd
+  # echo file: $file
+  # echo func: $inputFunc
+  # echo fstart: $funcStart
+  # echo fend: $funcEnd
   bat --color=always $_fzf_homeFn_dir$inputFile -r $funcStart:$funcEnd
 }
 
@@ -120,10 +129,13 @@ function _fzf_home-function_nvim_edit(){
 
   local file=$1
   local func=$2
+  # echo file: $file
+  # echo func: $func
 
   local line=$(rg '^function\s+'$func'\s*\(' $_fzf_homeFn_dir$file -n | choose -f ':' 0)
+  # echo line: $line
  
-  nvim $_fzf_abs_dir$file +$line -c 'normal! zz'
+  nvim $_fzf_homeFn_dir$file +$line -c 'normal! zz'
 }
 
 
@@ -151,7 +163,6 @@ fzf-search-home-function-widget(){
   #
   # zsh
   # reset the prompt and add the result to the buffer
-  local absdir="/Users/tim/dev/working/abs/abs/"
   
 # rg --type zsh \
 #   --only-matching \
@@ -164,7 +175,7 @@ fzf-search-home-function-widget(){
   local result=$(
   _fzf_home_getFunctions | fzf --ansi \
     --preview="_fzf_home_displayFunction {1} {2}" \
-    --bind "ctrl-e:execute(_fzf_abs_nvim_edit {1} {2} < /dev/tty > /dev/tty 2>&1)"
+    --bind "ctrl-e:execute(_fzf_home-function_nvim_edit {1} {2} < /dev/tty > /dev/tty 2>&1)"
 )
 zle reset-prompt;
 LBUFFER+=$result
