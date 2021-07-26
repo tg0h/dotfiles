@@ -1,4 +1,4 @@
-as(){
+function as(){
   local profile
   case $1 in
     d)

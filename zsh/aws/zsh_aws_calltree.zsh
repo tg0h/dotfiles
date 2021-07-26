@@ -28,6 +28,7 @@ function ct2csv(){
 }
 
 function ctrep(){
+  # REPORT - generate a report of the smses sent
   # TODO: option to specify how many smses in the message body
   # generate calltree campaign report
   # how to generate report
@@ -381,7 +382,7 @@ function ctcc(){
 }
 
 function ctp(){
-  # pull logs from pirate ship to current directory
+  # PULL logs from pirate ship to current directory
   local usbMode=
   local ip=$HP_CALLTREE_IP
 
