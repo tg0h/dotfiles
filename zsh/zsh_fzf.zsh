@@ -213,6 +213,7 @@ zle     -N   fzf-search-wiki-widget
 bindkey '^S' fzf-search-wiki-widget
 
 fzf-search-dotfiles-widget() {
+  # TODO: does not paste selection on command line nicely, unlike fzf ctrl t
 
   #include f - files and l - symlinks
   local FD_FILETYPE="--type f --type l"
