@@ -328,6 +328,7 @@ function adl() {
           fd) appId="com.certisgroup.argus.apps.officer.dev";; #flutter dev
           fs) appId="com.certisgroup.argus.apps.officer.staging";; #flutter staging
           fp) appId="com.certisgroup.argus.apps.officer$";; #flutter prod
+          cd) appId="com.certisgroup.cathy.debug";; #certify dev
         esac
         ;;
     esac
@@ -361,14 +362,17 @@ function adl() {
   # https://stackoverflow.com/questions/61242119/matching-regex-not-working-properly-in-zsh
   # in zsh, you do not need to escape the .
   echo appName is ""$appName""
-  if [[ $appName =~ '.certisgroup.' ]]; then
+  if [[ $appName =~ '.cathy.' ]]; then
+    appType=certify
+    filter=""
+  elif [[ $appName =~ '.certisgroup.' ]]; then
     appType=flutter
     # only show log messages with the flutter tag, silence other logs
     filter="flutter:V *:S"
   elif [[ $appName =~ '.certis.' ]]; then
     appType=kotlin
     filter="$kotlinSilenceFilter"
-  fi;
+  fi
 
   if [[ -n $filterIsRaw ]]; then
     filter="" #do not filter the log message
@@ -379,7 +383,7 @@ function adl() {
   echo "flutter app name -- com.certisgroup.argus.apps.officer.[env]"
   echo "sg app name      -- com.certis.argus.apps.officer[env]"
   echo -------
-  echo appType is argus $appType
+  echo appType is $appType
   echo using filter: $filter
   echo with pid: $pid
   echo with regex: $regex
