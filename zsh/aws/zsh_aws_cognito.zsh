@@ -128,7 +128,7 @@ function cpatch(){
 # eg ccreate -n 'timmy' 125391
 function ccreate() {
   local handphone="+***REMOVED***" #default
-  local email="dasonteuh@hotmail.com" #default
+  local email="***REMOVED***" #default
   local name="Timtesty" #default
 
   while getopts 'e:p:n:' opt; do
