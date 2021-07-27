@@ -11,13 +11,14 @@
 # https://github.com/junegunn/fzf/issues/1593#issuecomment-498007983
 
 export FZF_DEFAULT_OPTS="
+--ansi
 --no-mouse
 --height 50%
 -1
---reverse 
---multi 
---inline-info 
---preview='[[ \$(file --mime {}) =~ binary ]] && echo {} is a binary file || (bat --style=numbers --color=always {} || cat {}) 2> /dev/null | head -300' 
+--reverse
+--multi
+--inline-info
+--preview='[[ \$(file --mime {}) =~ binary ]] && echo {} is a binary file || (bat --style=numbers --color=always {} || cat {}) 2> /dev/null | head -300'
 --bind='f3:execute(bat --style=numbers {} || less -f {})'
 --bind='f2:toggle-preview'
 --bind='ctrl-d:half-page-down'
@@ -30,15 +31,15 @@ export FZF_DEFAULT_OPTS="
 "
 # --bind 'ctrl-s:toggle-sort'
 
-#--preview-window='right:hidden:wrap' 
+#--preview-window='right:hidden:wrap'
 
-#export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
-export FZF_DEFAULT_COMMAND="git ls-files --cached --others --exclude-standard | fd --type f --type l $FD_OPIONS"
+FD_OPTIONS="--color always --follow --hidden --exclude .git --exclude node_modules"
+export FZF_DEFAULT_COMMAND="fd . --type f --hidden --follow --exclude .git $FD_OPTIONS"
+# export FZF_DEFAULT_COMMAND="git ls-files --cached --others --exclude-standard | fd --type f --type l $FD_OPIONS"
 # --hidden -include hidden files
 # --follow -include symbolic links
 # --no-ignore-vcs - include vcs files
 #export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --no-ignore-vcs'
-FD_OPTIONS="--follow --hidden --exclude .git --exclude node_modules"
 
 #search to exclude .git and node_modules
 alias fzfi='rg --files --hidden --follow --no-ignore-vcs -g "!{node_modules,.git}" | fzf'
@@ -78,8 +79,8 @@ _fzf_compgen_dir() {
 # like normal z when used with arguments but displays an fzf prompt when used without.
 unalias z 2> /dev/null
 z() {
-    [ $# -gt 0 ] && _z "$*" && return
-    cd "$(_z -l 2>&1 | fzf --height 40% --nth 2.. --reverse --inline-info +s --tac --query "${*##-* }" | sed 's/^[0-9,.]* *//')"
+  [ $# -gt 0 ] && _z "$*" && return
+  cd "$(_z -l 2>&1 | fzf --height 40% --nth 2.. --reverse --inline-info +s --tac --query "${*##-* }" | sed 's/^[0-9,.]* *//')"
 }
 
 # FILE SEARCH
@@ -97,11 +98,11 @@ b() {
   local bookmarks_path=~/Library/Application\ Support/Google/Chrome/Default/Bookmarks
   local jq_script='def ancestors: while(. | length >= 2; del(.[-1,-2])); . as $in | paths(.url?) as $key | $in | getpath($key) | {name,url, path: [$key[0:-2] | ancestors as $a | $in | getpath($a) | .name?] | reverse | join("/") } | .path + "/" + .name + "\t" + .url'
   jq -r $jq_script < "$bookmarks_path" \
-  | sed -E $'s/(.*)\t(.*)/\\1\t\x1b[36m\\2\x1b[m/g' \
-  | fzf --ansi \
-  | cut -d$'\t' -f2 \
-  | xargs open
-}
+    | sed -E $'s/(.*)\t(.*)/\\1\t\x1b[36m\\2\x1b[m/g' \
+    | fzf --ansi \
+    | cut -d$'\t' -f2 \
+    | xargs open
+  }
 
 #brew management
 # Install (one or multiple) selected application(s)
@@ -134,44 +135,6 @@ bcp() {
     for prog in $(echo $uninst);
     do; brew uninstall $prog; done;
   fi
-}
-# Install or open the webpage for the selected application
-# using brew cask search as input source
-# and display a info quickview window for the currently marked application
-install() {
-    local token
-    token=$(brew search --casks | fzf-tmux --query="$1" +m --preview 'brew cask info {}')
-
-    if [ "x$token" != "x" ]
-    then
-        echo "(I)nstall or open the (h)omepage of $token"
-        read input
-        if [ $input = "i" ] || [ $input = "I" ]; then
-            brew cask install $token
-        fi
-        if [ $input = "h" ] || [ $input = "H" ]; then
-            brew cask home $token
-        fi
-    fi
-}
-# Uninstall or open the webpage for the selected application
-# using brew list as input source (all brew cask installed applications)
-# and display a info quickview window for the currently marked application
-uninstall() {
-    local token
-    token=$(brew cask list | fzf-tmux --query="$1" +m --preview 'brew cask info {}')
-
-    if [ "x$token" != "x" ]
-    then
-        echo "(U)ninstall or open the (h)omepage of $token"
-        read input
-        if [ $input = "u" ] || [ $input = "U" ]; then
-            brew cask uninstall $token
-        fi
-        if [ $input = "h" ] || [ $token = "h" ]; then
-            brew cask home $token
-        fi
-    fi
 }
 
 ## DOCKER
@@ -208,9 +171,11 @@ bindkey '^X^R' fzf-history-widget-accept
 
 fzf-search-wiki-widget() {
   fd --color always . '/Users/tim/certis/resources/wiki' | fzf --ansi
+  zle reset-prompt;
+  LBUFFER+=$result
 }
-zle     -N   fzf-search-wiki-widget  
-bindkey '^S' fzf-search-wiki-widget
+zle     -N   fzf-search-wiki-widget
+bindkey '^N^W' fzf-search-wiki-widget
 
 fzf-search-dotfiles-widget() {
   # TODO: does not paste selection on command line nicely, unlike fzf ctrl t
@@ -222,15 +187,51 @@ fzf-search-dotfiles-widget() {
   local FD_OPTIONS="--follow --hidden --exclude .git --exclude node_modules"
 
   #do not show hidden files, since my files in dotfiles will not be hidden
+  local result=$(
   fd . \
-      --color always \
-      --type f --type l \
-      --follow \
-      --exclude .git \
-      --exclude node_modules \
-      --exclude dotbot '/Users/tim/dotfiles' | fzf --ansi
+    --color always \
+    --type f --type l \
+    --follow \
+    --exclude .git \
+    --exclude node_modules \
+    --exclude dotbot '/Users/tim/dotfiles' | fzf --ansi)
+
+  # reset the prompt so that it is shown again
+  zle reset-prompt;
+  # add the fzf result to your existing buffer, if not, the result is shown above
+  # your existing buffer
+  LBUFFER+=$result
 }
 
-zle     -N   fzf-search-dotfiles-widget  
-bindkey '^N' fzf-search-dotfiles-widget
+zle     -N   fzf-search-dotfiles-widget
+bindkey '^N^H' fzf-search-dotfiles-widget
 
+fzf-rg-widget(){
+  # INITIAL_QUERY=""
+  # RG_PREFIX="rg --column --line-number --no-heading --color=always --smart-case "
+  # FZF_DEFAULT_COMMAND="$RG_PREFIX '$INITIAL_QUERY'" \
+  #   fzf
+  #   --bind "change:reload:$RG_PREFIX {q} || true" \
+  #   --ansi --disabled --query "$INITIAL_QUERY" \
+  #   --height=50% --layout=reverse
+  # local result=$(
+  # rg --column --line-number --no-heading --color=always --smart-case  | fzf \
+  # --bind "change:reload:$RG_PREFIX {q} || true" \
+  # --ansi --disabled --query "$INITIAL_QUERY" \
+  # --height=50% --layout=reverse
+
+  # )
+  INITIAL_QUERY=""
+  RG_PREFIX="rg --column --line-number --no-heading --color=always --smart-case "
+
+  FZF_DEFAULT_COMMAND="$RG_PREFIX '$INITIAL_QUERY'" \
+    fzf \
+    --bind "change:reload:$RG_PREFIX {q} || true" \
+    --ansi --disabled --query "$INITIAL_QUERY" \
+    --height=50% --layout=reverse \
+    --preview-window hidden
+
+  zle reset-prompt;
+}
+zle     -N   fzf-rg-widget
+bindkey '^N^T' fzf-rg-widget
