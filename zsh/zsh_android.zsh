@@ -201,8 +201,8 @@ if [[ -n $usbMode ]]; then
 elif [[ -n $ip ]]; then
   # -g grants all permissions specified in the app manifest
   # if $g is empty, then we are granting all permissions when installing
-  # [[ -z $g ]] && 
-    echo "granting all permissions to $apkFileName ..."
+  # [[ -z $g ]] &&
+  echo "granting all permissions to $apkFileName ..."
   adb -s $ip install -g --fastdeploy $apkFileName &
 else;
   echo neither usbMode or ip given
@@ -211,10 +211,68 @@ fi
 
 #uninstall all argus apps
 function adu() {
-  for app in `adb shell pm list packages | rg argus`; do
-    #download artifact for each job id
-    adb uninstall $app
-  done;
+
+  local usbMode=""
+  local ip=""
+  local appId="argus"
+
+  while getopts 'bryl:e:a:dsw' opt; do
+    case "$opt" in
+      b) ip=$HP_BLUE_IP;;
+      r) ip=$HP_RED_IP ;;
+      y) ip=$HP_YELLOW_IP ;;
+
+      d) usbMode="-d" ;;
+
+      a) app=$OPTARG
+        case "$app" in
+          a) appId="argus" ;;
+          c) appId="cathy" ;; # certify
+          # d) appId="com.certis.argus.apps.officer.dev";;
+          # s) appId="com.certis.argus.apps.officer.staging";;
+          # p) appId="com.certis.argus.apps.officer$";; #prod - regex checks for end of string
+          # fd) appId="com.certisgroup.argus.apps.officer.dev";; #flutter dev
+          # fs) appId="com.certisgroup.argus.apps.officer.staging";; #flutter staging
+          # fp) appId="com.certisgroup.argus.apps.officer$";; #flutter prod
+          # cd) appId="com.certisgroup.cathy.debug";; #certify dev
+        esac
+        ;;
+    esac
+  done
+  shift $(($OPTIND - 1))
+
+  local listPkgcmd=""
+
+  if [[ -n $usbMode ]]; then
+    # do nothing
+  elif [[ -n $ip ]]; then
+    local sOPT="-s"
+    local ipOpt="$ip"
+    # local ipOPT="-s $ip" # this doesn't work?? ¯\_(ツ)_/¯
+  else
+    echo neither usbMode or ip given
+    return 1
+  fi
+
+  # adb shell pm list packages outputs a list of packages with a package:<package name> prefix
+  # remove the package: prefix with choose
+  # echo $usbMode
+  # echo $sOPT
+  # echo $ip
+  local apps=$(adb $usbMode $sOPT $ip shell pm list packages | rg $appId | choose -f ':' 1)
+
+  echo $fg[yellow] trying to delete $appId apps
+  # for app in "adb $usbMode shell pm list packages | rg argus"; do
+  if [[ -z $apps ]]; then
+    echo $fg[yellow] no $appId apps found
+  else
+    for app in $apps ; do
+      # adb uninstall $app
+      # echo $app
+      echo $fg[yellow] uninstalling $app
+      adb $usbMode $sOPT $ip uninstall --user 0 $app
+    done;
+  fi
 }
 
 
@@ -354,7 +412,7 @@ function adl() {
   # each entry in the text file begins on a new line
   # eg tag1:S
   #    tag2:S
-  # kotlinSilenceFilter then contains the string "tag1:S tag2:S", which silences 
+  # kotlinSilenceFilter then contains the string "tag1:S tag2:S", which silences
   # logs with these tags in the logcat output
   local kotlinSilenceFilter=$(cat $ARGUS_LOGCAT_FILTER_KOTLIN | tr '\n' ' ')
 
