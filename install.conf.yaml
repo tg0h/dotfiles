@@ -48,6 +48,7 @@
     ~/.config/httpie: config/httpie/
     ~/.config/nvim/init.vim: ~/dotfiles/nvim/init.vim
     ~/.config/kitty/kitty.conf: ~/dotfiles/config/kitty/kitty.conf
+    ~/.config/bookmarks: ~/dev/config/bookmarks
 
     # certis
     ~/.aws/: 

@@ -54,6 +54,7 @@ bindkey -M menuselect 'j' vi-down-line-or-history
 #remove ctrl g keybinding in the keymap so that junegunn's fzf_git functions work
 bindkey -r "^G"
 bindkey -r "^H"
+bindkey -r "^N"
 
 #remove to use myself to fzf search wiki
 bindkey -r "^S"
