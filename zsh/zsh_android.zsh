@@ -79,7 +79,47 @@ function adls() {
   # Camera
   # Screenshots
   # Videocaptures
-  adb -d shell ls /sdcard/DCIM/screenshots
+  # adb -d shell ls /sdcard/DCIM/screenshots
+
+  local appFilter="argus"
+  while getopts 'bryda:' opt; do
+    case "$opt" in
+      b) ip=$HP_BLUE_IP;;
+      r) ip=$HP_RED_IP ;;
+      y) ip=$HP_YELLOW_IP ;;
+
+      d) usbMode="-d" ;;
+
+      a) app=$OPTARG
+        case "$app" in
+          a) appFilter="argus" ;;
+          c) appFilter="cathy" ;; # certify
+          *) appFilter=".*" ;; # show all apps
+        esac
+        ;;
+    esac
+  done
+  shift $(($OPTIND - 1))
+
+  local listPkgcmd=""
+
+  if [[ -n $usbMode ]]; then
+    # do nothing
+  elif [[ -n $ip ]]; then
+    local sOPT="-s"
+    local ipOpt="$ip"
+    # local ipOPT="-s $ip" # this doesn't work?? ¯\_(ツ)_/¯
+  else
+    echo neither usbMode or ip given
+    return 1
+  fi
+
+  # adb shell pm list packages outputs a list of packages with a package:<package name> prefix
+  # remove the package: prefix with choose
+  # echo $usbMode
+  # echo $sOPT
+  # echo $ip
+  adb $usbMode $sOPT $ip shell pm list packages | rg $appFilter | choose -f ':' 1
 }
 
 
@@ -216,7 +256,7 @@ function adu() {
   local ip=""
   local appId="argus"
 
-  while getopts 'bryl:e:a:dsw' opt; do
+  while getopts 'bryd' opt; do
     case "$opt" in
       b) ip=$HP_BLUE_IP;;
       r) ip=$HP_RED_IP ;;
