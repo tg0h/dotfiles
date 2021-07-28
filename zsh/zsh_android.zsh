@@ -81,6 +81,8 @@ function adls() {
   # Videocaptures
   # adb -d shell ls /sdcard/DCIM/screenshots
 
+  local sOPT
+  local usbMode
   local appFilter="argus"
   while getopts 'bryda:' opt; do
     case "$opt" in
@@ -101,14 +103,11 @@ function adls() {
   done
   shift $(($OPTIND - 1))
 
-  local listPkgcmd=""
 
   if [[ -n $usbMode ]]; then
     # do nothing
   elif [[ -n $ip ]]; then
-    local sOPT="-s"
-    local ipOpt="$ip"
-    # local ipOPT="-s $ip" # this doesn't work?? ¯\_(ツ)_/¯
+    sOPT="-s"
   else
     echo neither usbMode or ip given
     return 1
@@ -116,9 +115,9 @@ function adls() {
 
   # adb shell pm list packages outputs a list of packages with a package:<package name> prefix
   # remove the package: prefix with choose
-  # echo $usbMode
-  # echo $sOPT
-  # echo $ip
+  # echo usbMode: $usbMode
+  # echo sOPT: $sOPT
+  # echo ip: $ip
   adb $usbMode $sOPT $ip shell pm list packages | rg $appFilter | choose -f ':' 1
 }
 
