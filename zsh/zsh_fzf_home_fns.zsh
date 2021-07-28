@@ -134,6 +134,8 @@ function _fzf_home-function_nvim_edit(){
 
   local line=$(rg '^function\s+'$func'\s*\(' $_fzf_homeFn_dir$file -n | choose -f ':' 0)
   # echo line: $line
+
+  echo $_fzf_homeFn_dir$file $line > /tmp/_nvim_cache
  
   nvim $_fzf_homeFn_dir$file +$line -c 'normal! zz'
 }
