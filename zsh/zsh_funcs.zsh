@@ -121,6 +121,9 @@ function so (){
     echo "$fg[green] sourcing from nvim cache ... $reset_color"
     source $nvimfile
     echo "$fg[green] sourced $nvimfile $reset_color"
+
+    echo $nvimfile > $cache
+    echo "$fg[cyan] stored $nvimfile in so cache ... $reset_color"
   else
     echo "$fg[yellow] sourcing from so cache ... $reset_color"
     local cachedFile
