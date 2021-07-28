@@ -1,0 +1,11 @@
+function eun (){
+  #edit the file in the nvim cache
+  local cache=/tmp/_nvim_cache
+
+  local file
+  local line
+
+  cat $cache | head -n 1 | read file line _
+
+  nvim $file +$line
+}
