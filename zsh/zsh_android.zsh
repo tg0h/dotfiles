@@ -74,8 +74,10 @@ function adp() {
 }
 
 function adls() {
-  # ls screenshots, etc from phone
+  # list installed packages on phone
+  #
   # gets the ip of the phone connected via usb
+  # ls screenshots, etc from phone
   # Camera
   # Screenshots
   # Videocaptures
@@ -96,6 +98,7 @@ function adls() {
         case "$app" in
           a) appFilter="argus" ;;
           c) appFilter="cathy" ;; # certify
+          t) appFilter="titus" ;; # certify
           *) appFilter=".*" ;; # show all apps
         esac
         ;;
@@ -118,6 +121,7 @@ function adls() {
   # echo usbMode: $usbMode
   # echo sOPT: $sOPT
   # echo ip: $ip
+  # pm is the package manager
   adb $usbMode $sOPT $ip shell pm list packages | rg $appFilter | choose -f ':' 1
 }
 
