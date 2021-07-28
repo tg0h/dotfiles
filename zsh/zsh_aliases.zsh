@@ -71,3 +71,7 @@ alias dvpn="networksetup -disconnectpppoeservice 'edo vpn'"
 alias exat="exa --tree --long --icons --git"
 # nvim
 alias eu="nvim"
+
+#source
+# source from nvim cache
+alias son="so -n"

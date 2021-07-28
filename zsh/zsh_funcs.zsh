@@ -86,24 +86,43 @@ function displaytime {
   printf '%d seconds\n' $S
 }
 
-function so {
+function so (){
   # source a function, source the previous function if none provided
   # examples:
   # so <functionName>
   # so - if no function name provided, use the previously sourced function
+  # so -n - source the previously edited file in nvim
 
-  local file
-  file=$1
+  local nvimCacheOpt=""
+  while getopts 'n' opt; do
+    case "$opt" in
+      n) nvimCacheOpt=true;;
+    esac
+  done
+  shift $(($OPTIND - 1))
+
+
+  local file=$1
   local cache=/tmp/_so_cache
+  local nvim_cache=/tmp/_nvim_cache
 
-  if [[ -n $1 ]]; then
+  # if no argument provided
+  if [[ -n $file ]]; then
     source $file
+    echo "$fg[cyan] $file sourced $reset_color"
 
     # store filepath in cache
-    local fullpath=$(realpath $1)
+    local fullpath=$(realpath $file)
+    echo "$fg[cyan] storing in so cache ... $reset_color"
     echo $fullpath > $cache
+    echo "$fg[cyan] stored $file in so cache ... $reset_color"
+  elif [[ -n $nvimCacheOpt ]]; then
+    local nvimfile=$(cat /tmp/_nvim_cache | head -n 1 | choose 0)
+    echo "$fg[green] sourcing from nvim cache ... $reset_color"
+    source $nvimfile
+    echo "$fg[green] sourced $nvimfile $reset_color"
   else
-    echo "$fg[yellow] sourcing from cache ... $reset_color"
+    echo "$fg[yellow] sourcing from so cache ... $reset_color"
     local cachedFile
     cachedFile=$(cat $cache | head -n 1)
     echo "$fg[yellow] sourced $cachedFile $reset_color"
