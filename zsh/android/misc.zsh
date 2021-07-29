@@ -256,8 +256,8 @@ function adu() {
 }
 
 
-#what are the pids of the argus app?
-function ads() {
-  adb shell ps | rg argus
-}
+##what are the pids of the argus app?
+#function ads() {
+#  adb shell ps | rg argus
+#}
 

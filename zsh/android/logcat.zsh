@@ -114,6 +114,7 @@ function adl() {
   local pid=""
   local appName=""
   # if length of usbMode is non-zero
+  # adb shell pidof <packageName> only matches a package name, unable to search
   if [[ -n $usbMode ]]; then
     pid=$(adb -d shell ps | rg $appId | gawk 'NR==1{print $2}')
     appName=$(adb -d shell ps | rg $appId | gawk 'NR==1{print $9}')
