@@ -1,0 +1,76 @@
+# NOTE the key bindings, ctrl e, ctrl v etc
+# to get mvim on the command line, brew install macvim
+
+# show fzf options top down instead of bottom up
+# use height of 40%
+# use highlight to preview file with colour
+# export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --border"
+# turn off preview window by adding right:hidden:wrap
+#
+# TODO: understand piping wizadry needed to open terminal nvim with ctrl e keybind
+# https://github.com/junegunn/fzf/issues/1593#issuecomment-498007983
+
+export FZF_DEFAULT_OPTS="
+--ansi
+--no-mouse
+--height 50%
+-1
+--reverse
+--multi
+--inline-info
+--preview='[[ \$(file --mime {}) =~ binary ]] && echo {} is a binary file || (bat --style=numbers --color=always {} || cat {}) 2> /dev/null | head -300'
+--bind='f3:execute(bat --style=numbers {} || less -f {})'
+--bind='f2:toggle-preview'
+--bind='ctrl-d:half-page-down'
+--bind='ctrl-u:half-page-up'
+--bind 'shift-up:preview-half-page-up'
+--bind 'shift-down:preview-half-page-down'
+--bind='ctrl-a:select-all+accept'
+--bind='ctrl-y:execute-silent(echo {+} | pbcopy)'
+--bind 'ctrl-e:execute(nvim {} < /dev/tty > /dev/tty 2>&1)'
+"
+# --bind 'ctrl-s:toggle-sort'
+
+#--preview-window='right:hidden:wrap'
+
+FD_OPTIONS="--color always --follow --hidden --exclude .git --exclude node_modules"
+export FZF_DEFAULT_COMMAND="fd . --type f --hidden --follow --exclude .git $FD_OPTIONS"
+# export FZF_DEFAULT_COMMAND="git ls-files --cached --others --exclude-standard | fd --type f --type l $FD_OPIONS"
+# --hidden -include hidden files
+# --follow -include symbolic links
+# --no-ignore-vcs - include vcs files
+#export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --no-ignore-vcs'
+
+#search to exclude .git and node_modules
+alias fzfi='rg --files --hidden --follow --no-ignore-vcs -g "!{node_modules,.git}" | fzf'
+
+export FZF_CTRL_R_OPTS="--preview-window='right:hidden:wrap'"
+
+export FZF_CTRL_T_COMMAND="fd $FD_OPTIONS"
+export FZF_CTRL_T_OPTS="--preview-window='right:wrap'"
+
+#The following example uses tree command to show the entries of the directory.
+#show directories, include hidden dirs, include ignored files/folders from .gitignore
+export FZF_ALT_C_COMMAND="fd --type d --hidden --no-ignore $FD_OPTIONS"
+export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
+
+
+
+#use ~~ instead of **
+export FZF_COMPLETION_TRIGGER='##'
+# Options to fzf command
+export FZF_COMPLETION_OPTS='+c -x'
+
+# Use fd (https://github.com/sharkdp/fd) instead of the default find
+# command for listing path candidates.
+# - The first argument to the function ($1) is the base path to start traversal
+# - See the source code (completion.{bash,zsh}) for the details.
+_fzf_compgen_path() {
+  fd --hidden --follow --exclude ".git" . "$1"
+}
+
+# Use fd to generate the list for directory completion
+_fzf_compgen_dir() {
+  fd --type d --hidden --follow --exclude ".git" . "$1"
+}
+

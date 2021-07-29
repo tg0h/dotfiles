@@ -138,7 +138,7 @@ function acg() {
     esac
   done
 
-  appcenter distribute releases add-destination --destination Public --type group --release-id $id 
+  appcenter distribute releases add-destination --destination Public --type group --release-id $id
 }
 
 function _appCenter_getLatestReleaseId () {
@@ -153,7 +153,7 @@ function acn(){
   #   app, use the notes.md in the current folder
   #
   # acn -i <releaseId> notes.md
-  
+
   local id
   id=$(_appCenter_getLatestReleaseId)
 
@@ -162,8 +162,8 @@ function acn(){
       i) id=$OPTARG ;;
     esac
   done
-  
-  appcenter distribute releases edit-notes --release-id $id  --release-notes-file $1 
+
+  appcenter distribute releases edit-notes --release-id $id  --release-notes-file $1
 }
 
 function ace(){
@@ -171,10 +171,12 @@ function ace(){
   # disable the previous release after you have made a new release
   #
   # EXAMPLES:
+  # DISABLE
   # ace - disable the second last release
   # ace -i <releaseId> - disable the specified release
+  # ENABLE
+  # ace -e -i <releaseId> - enable the specified release
   # ace -e - enabled the second last release (without the e option, assume disable)
-  #
 
   local state=disabled
   local id
@@ -188,5 +190,5 @@ function ace(){
     esac
   done
 
-  appcenter distribute releases edit --release-id $id $state 
-} 
+  appcenter distribute releases edit --release-id $id $state
+}
