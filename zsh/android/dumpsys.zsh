@@ -1,4 +1,5 @@
 function ads(){
+  # adb shell dumpsys packageName
 
   # list installed packages on phone
   #
