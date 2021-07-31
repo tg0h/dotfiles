@@ -105,4 +105,4 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 # eval "$(zoxide init zsh)"
 eval $(thefuck --alias)
 # hack to rebind mcfly's ctrl r to ctrl e
-eval "$(mcfly init zsh | sed "s,\^R,^E,")"
+# eval "$(mcfly init zsh | sed "s,\^R,^E,")"
