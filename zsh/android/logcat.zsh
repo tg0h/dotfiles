@@ -1,3 +1,4 @@
+# TODO:  permanently increase buffer size setprop persist.logd.size 16M to 
 
 #pass a pid to logcat
 function adll() {
