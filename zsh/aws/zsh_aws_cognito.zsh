@@ -96,7 +96,7 @@ function cpatche(){
   gn #run the gn function to update the current time into the $now global var
   local filename=timfix_"$now"_$1.csv
 
-  cpatch $1 > $filename && vim $filename
+  cpatch $1 > $filename && eu $filename
 }
 
 function cpatch(){
