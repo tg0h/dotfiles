@@ -3,6 +3,7 @@ alias -g F='| fzf' # change Z to whatever you like
 alias -g T='| jq ".pay | fromjson"' # converT argus api stringifield payload back to json
 alias -g G='| gron' 
 alias -g L='| wc -l' 
+alias -g J='| jq .' 
 # =========================================================================
 # edit config file shortcuts
 alias zshr='nvim ~/dotfiles/zshrc'
@@ -12,7 +13,7 @@ alias zshaa='nvim ~/.zsh/zsh_aliases.zsh'
 alias zshf='nvim ~/.zsh/zsh_funcs.zsh' #misc functions, use zsh_functions folder for more organization
 alias zshk='nvim ~/.config/kitty/kitty.conf' # the kitty config file
 # mobile
-alias zsha='nvim ~/.zsh/zsh_android.zsh'
+alias zsha='nvim ~/.zsh/android/misc.zsh'
 alias zshi='nvim ~/.zsh/zsh_ios.zsh'
 # tools
 alias zshd='nvim ~/.zsh/zsh_docker_aliases.zsh'
