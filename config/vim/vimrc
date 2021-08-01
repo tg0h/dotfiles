@@ -194,7 +194,7 @@ noremap <F1> :NERDTreeToggle<CR>
 " ctrl o escapes insert mode so we can send :w
 inoremap <F2> <C-O>:w <CR>
 noremap <F2> :w <CR>
-noremap <F3> :e ~/dotfiles/vimrc<CR>
+noremap <F3> :e ~/.vimrc<CR>
 nmap <F4> i<C-R>=strftime("%B %d %Y %A")<CR><Esc>
 noremap <f5> :GundoToggle<cr>  " Map Gundo to <F5>.
 noremap <F6> :setlocal spell! spelllang=en_gb<CR> " Toggle Spellcheck
