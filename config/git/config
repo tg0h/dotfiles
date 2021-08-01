@@ -2,7 +2,6 @@
 	helper = store
 
 [core]
-	excludesfile = ~/.gitignore_global #global gitignore file
 	pager = delta
 
 [interactive]
