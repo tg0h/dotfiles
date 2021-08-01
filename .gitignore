@@ -1,3 +1,5 @@
+#ssh secret
+id_ed25519
 
 # ignore files or folders with name secret*
 secret*
