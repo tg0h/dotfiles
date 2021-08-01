@@ -69,31 +69,31 @@ function _setArgusProfile() {
   case $1 in
     d) argus_profile="development"
       _ARGUS_PROFILE="development"
-      . ~/.argus/argus.develop.env
+      . $XDG_CONFIG_HOME/argus/argus.develop.env
       vpn
       dbconn-argus #automatically open ssh ports
       asp adev #switch aws profile to dev
       ;;
     s) argus_profile="staging"
-      . ~/.argus/argus.staging.env
+      . $XDG_CONFIG_HOME/argus/argus.staging.env
       vpn
       dbconn-argus #automatically open ssh ports
       asp adev #switch aws profile to dev
       ;;
     as) argus_profile="au staging"
-      . ~/.argus/argusAu.staging.env
+      . $XDG_CONFIG_HOME/argus/argusAu.staging.env
       vpn
       dbconn-argus #automatically open ssh ports
       asp aastg #switch aws profile to au staging
       ;;
     p) argus_profile="production"
       vpn
-      . ~/.argus/argus.production.env
+      . $XDG_CONFIG_HOME/argus/argus.production.env
       dbconn-argus #automatically open ssh ports
       asp aprod #switch aws profile to prod
       ;;
     ap) argus_profile="au prod"
-      . ~/.argus/argusAu.production.env
+      . $XDG_CONFIG_HOME/argus/argusAu.production.env
       vpn
       dbconn-argus #automatically open ssh ports
       asp aaprod #switch aws profile to au staging

@@ -139,8 +139,8 @@ nmap <silent> <Esc>[1;9B :wincmd j<CR>
 nmap <silent> <Esc>[1;9D :wincmd h<CR>
 nmap <silent> <Esc>[1;9A :wincmd k<CR>
 
-noremap <BS> :bprevious<cr>  " backspace is previous buffer
-noremap <S-BS> :bnext<cr>  " next buffer
+" noremap <BS> :bprevious<cr>  " backspace is previous buffer
+" noremap <S-BS> :bnext<cr>  " next buffer
 
 " ========== fzf vim January 10 2021 Sunday =============================
 " rip grep

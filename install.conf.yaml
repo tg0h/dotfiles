@@ -4,8 +4,9 @@
       # create directories to create symlink if needed
       create: true
       relink: true
-      # glob: true
+      glob: true
 
+#remove dead symobolic links from the ~ directory
 - clean: ['~']
 
 - create:
@@ -13,71 +14,53 @@
 
 # <target>:<source (original file)>
 - link:
-    ~/.env: ~/dev/config/env/env
-    ~/.zshenv: ~/dev/config/env/zshenv
-    ~/.zprofile: ~/dev/config/env/zprofile
-    ~/.zshrc:
-    ~/.iterm2_shell_integration.zsh:
+    ~/.env: config/secret/env/env
+    ~/.zshenv: config/secret/env/zshenv
+    ~/.zprofile: config/secret/env/zprofile
+    ~/.zshrc: config/secret/env/zshrc
+    ~/.iterm2_shell_integration.zsh: config/iterm2/iterm2_shell_integration.zsh
 
     ~/scripts: scripts/
     ~/Library/Application Support/com.clickontyler.TextBuddy/scripts: scripts/textBuddy/
 
-    ~/.aws/:
-      glob: true
-      path: ~/certis/config/aws/*
+    ~/.ssh/config: config/ssh/config
+    ~/.ssh/id_ed25519: config/ssh/secrets/id_ed25519
+    ~/.ssh/id_ed25519.pub: config/ssh/secrets/id_ed25519.pub
 
-    ~/.ssh/config: ~/dev/config/ssh/config
-    ~/.ssh/id_ed25519: ~/dev/config/secrets/id_ed25519
-    ~/.ssh/id_ed25519.pub: ~/dev/config/secrets/id_ed25519.pub
+    ~/.ideavimrc: config/ideavim/ideavimrc #webstorm ideavim emulation rc file
 
-    ~/.ideavimrc: ideavimrc #webstorm ideavim emulation rc file
-
-    ~/.gitconfig:
-    ~/.gitignore_global:
-    ~/.mutt/muttrc : muttrc #mail client
-    ~/.p10k.zsh: 
+    ~/.gitconfig: config/git/gitconfig
+    ~/.gitignore_global: config/git/gitignore_global
+    ~/.mutt/muttrc : config/mutt/muttrc #mail client
+    ~/.p10k.zsh: config/zsh/p10k/p10k.zsh
     ~/.vim: 
-    ~/.vimrc: 
+    ~/.vimrc: config/vim/vimrc
 
     ~/.zsh_functions: zsh_functions/ #autoload function directory
 
     # create a .zsh alias to the dotfiles/zsh folder
     # this contains aliases, functions etc
-    ~/.zsh:
+    ~/.zsh: 
 
-    ~/.config/httpie: config/httpie/
+    ~/.config/httpie: config/httpie/config.json
     ~/.config/nvim/init.vim: ~/dotfiles/nvim/init.vim
     ~/.config/kitty/kitty.conf: ~/dotfiles/config/kitty/kitty.conf
-    ~/.config/bookmarks: ~/dev/config/bookmarks
+    ~/.config/bookmarks: config/bookmarks
+    ~/.config/cheat/conf.yml: config/cheat/conf.yml
+    ~/.config/cheat/cheatsheets/personal: config/cheat/cheatsheets/personal
 
     # certis
-    ~/.aws/: 
-      glob: true
-      path: ~/certis/config/aws/*
-
-    ~/src/edo/abc-cli/config/environment/: 
-      glob: true
-      path: ~/certis/config/env/abc-cli/*
-
-    ~/.argus/:
-      glob: true
-      path: ~/certis/config/env/argus/*.env
-
-    ~/.certify:
-      glob: true
-      path: ~/certis/config/env/certify/*.env
-
-    # argus bagus service cli
-    ~/.abs:
-      glob: true
-      path: ~/certis/config/env/abs/*.env
-
+    ~/.aws/: config/aws/*
+    ~/src/edo/abc-cli/config/environment/: config/abc-cli/env/*
+    ~/.config/argus/: config/argus/env/*.env
+    ~/.config/certify/: config/certify/*
+    ~/.config/abs: config/abs/*.env
 
     ### certify sync job
     ~/Library/LaunchAgents/certify-validate-sync.plist: ~/dotfiles/scripts/certify/certify-validate-sync.plist
 
     # me
-    ~/dev/working/timtoggl/timtoggl/.env: ~/dev/config/env/timtoggl/env
+    ~/dev/working/timtoggl/timtoggl/.env: config/timtoggl/secret/env
     ~/.abs/src: ~/dev/working/abs/abs
 
 - shell:
