@@ -98,7 +98,8 @@ function acll {
 
 
 function acd() {
-  #apps download
+  # download app from appcenter
+  # if no id is specified, the release must be enabled to be downloadable
 
   local id
   while getopts 'i:' opt; do
@@ -107,7 +108,8 @@ function acd() {
     esac
   done
 
-  if [[ -n $id ]]; then
+  if [[ -n "$id" ]]; then
+    echo this is $id 
     appcenter distribute groups download --group Collaborators --id $id
   else;
     # run this in the background ?
@@ -115,6 +117,7 @@ function acd() {
     # indicator to stdout, it is lost?
     # TODO: append date time stamp to file ?
     $(appcenter distribute groups download --group Collaborators) &
+    # appcenter distribute groups download --group Collaborators
   fi
 }
 
