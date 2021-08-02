@@ -45,7 +45,7 @@ function dball() {
 }
 
 ## switch env
-argp () {
+function argp () {
   if [[ -z "$1" ]]
   then
     # unset AWS_DEFAULT_PROFILE AWS_PROFILE AWS_EB_PROFILE
@@ -69,31 +69,31 @@ function _setArgusProfile() {
   case $1 in
     d) argus_profile="development"
       _ARGUS_PROFILE="development"
-      . $XDG_CONFIG_HOME/argus/argus.develop.env
+      . $XDG_CONFIG_HOME/argus/env/argus.develop.env
       vpn
       dbconn-argus #automatically open ssh ports
       asp adev #switch aws profile to dev
       ;;
     s) argus_profile="staging"
-      . $XDG_CONFIG_HOME/argus/argus.staging.env
+      . $XDG_CONFIG_HOME/argus/env/argus.staging.env
       vpn
       dbconn-argus #automatically open ssh ports
       asp adev #switch aws profile to dev
       ;;
     as) argus_profile="au staging"
-      . $XDG_CONFIG_HOME/argus/argusAu.staging.env
+      . $XDG_CONFIG_HOME/argus/env/argusAu.staging.env
       vpn
       dbconn-argus #automatically open ssh ports
       asp aastg #switch aws profile to au staging
       ;;
     p) argus_profile="production"
       vpn
-      . $XDG_CONFIG_HOME/argus/argus.production.env
+      . $XDG_CONFIG_HOME/argus/env/argus.production.env
       dbconn-argus #automatically open ssh ports
       asp aprod #switch aws profile to prod
       ;;
     ap) argus_profile="au prod"
-      . $XDG_CONFIG_HOME/argus/argusAu.production.env
+      . $XDG_CONFIG_HOME/argus/env/argusAu.production.env
       vpn
       dbconn-argus #automatically open ssh ports
       asp aaprod #switch aws profile to au staging
