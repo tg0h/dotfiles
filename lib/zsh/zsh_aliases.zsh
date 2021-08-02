@@ -2,7 +2,7 @@
 alias -g F='| fzf' # change Z to whatever you like
 alias -g T='| jq ".pay | fromjson"' # converT argus api stringifield payload back to json
 alias -g G='| gron' 
-alias -g L='| wc -l' 
+alias -g W='| wc -l' 
 alias -g J='| jq .' 
 # =========================================================================
 # edit config file shortcuts
