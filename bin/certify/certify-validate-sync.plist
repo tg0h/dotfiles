@@ -7,7 +7,7 @@
 
   <key>ProgramArguments</key>
   <array>
-    <string>/Users/tim/dotfiles/scripts/certify/certify-validate-sync.zsh</string>
+    <string>/Users/tim/dotfiles/bin/certify/certify-validate-sync.zsh</string>
   </array>
 
   <key>Nice</key>

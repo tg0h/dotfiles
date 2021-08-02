@@ -10,38 +10,38 @@ alias doi='dotbot --verbose -c install.conf.yaml'
 alias zshr='nvim ~/dotfiles/config/env/zshrc'
 alias zshe='nvim ~/.env'
 alias zshz='nvim ~/.zshenv'
-alias zshaa='nvim ~/.zsh/zsh_aliases.zsh'
-alias zshf='nvim ~/.zsh/zsh_funcs.zsh' #misc functions, use zsh_functions folder for more organization
+alias zshaa='nvim ~/.local/lib/zsh/zsh_aliases.zsh'
+alias zshf='nvim ~/local/lib/zsh/zsh_funcs.zsh' #misc functions, use zsh_functions folder for more organization
 alias zshk='nvim ~/.config/kitty/kitty.conf' # the kitty config file
 # mobile
-alias zsha='nvim ~/.zsh/android/misc.zsh'
-alias zshi='nvim ~/.zsh/zsh_ios.zsh'
+alias zsha='nvim ~/.local/lib/zsh/android/misc.zsh'
+alias zshi='nvim ~/.local/lib/zsh/zsh_ios.zsh'
 # tools
-alias zshd='nvim ~/.zsh/zsh_docker_aliases.zsh'
-alias zshfzf='nvim ~/.zsh/zsh_fzf.zsh' 
-alias zshrc='nvim ~/dotfiles/zsh/redis.zsh'
+alias zshd='nvim ~/.local/lib/zsh/zsh_docker_aliases.zsh'
+alias zshfzf='nvim ~/.local/lib/zsh/zsh_fzf.zsh' 
+alias zshrc='nvim ~/.local/lib/zsh/redis.zsh'
 # git
-alias zshgit='nvim ~/.zsh/zsh_git_aliases.zsh'
-alias zshgitf='nvim ~/.zsh/zsh_fzf_git.zsh'
+alias zshgit='nvim ~/.local/lib/zsh/zsh_git_aliases.zsh'
+alias zshgitf='nvim ~/.local/lib/zsh/zsh_fzf_git.zsh'
 # devops, deployment
-alias zshj='nvim ~/.zsh/zsh_jira.zsh'
-alias zshg='nvim ~/.zsh/zsh_gitlab.zsh'
-alias zshac='nvim ~/.zsh/zsh_appCenter.zsh'
+alias zshj='nvim ~/.local/lib/zsh/zsh_jira.zsh'
+alias zshg='nvim ~/.local/lib/zsh/zsh_gitlab.zsh'
+alias zshac='nvim ~/.local/lib/zsh/zsh_appCenter.zsh'
 # aws
-alias zshrds='nvim ~/.zsh/aws/zsh_aws_rds.zsh'
-alias zshcw='nvim ~/.zsh/aws/zsh_aws_cloudwatch.zsh'
-alias zshc='nvim ~/.zsh/aws/zsh_aws_cognito.zsh'
-alias zshct='nvim ~/.zsh/aws/zsh_aws_calltree.zsh'
+alias zshrds='nvim ~/.local/lib/zsh/aws/zsh_aws_rds.zsh'
+alias zshcw='nvim ~/.local/lib/zsh/aws/zsh_aws_cloudwatch.zsh'
+alias zshc='nvim ~/.local/lib/zsh/aws/zsh_aws_cognito.zsh'
+alias zshct='nvim ~/.local/lib/zsh/aws/zsh_aws_calltree.zsh'
 # quick print eval loop ====================================================
 # nvim
 alias eu="nvim"
 # source from nvim cache
 alias son="so -n"
 # source
-alias ss="source $HOME/dotfiles/scripts/scratch"
+alias ss="source $HOME/.local/lib/scratch"
 alias sss="source $HOME/.zshrc"
 # edit
-alias ee="nvim $HOME/dotfiles/scripts/scratch"
+alias ee="nvim $HOME/.local/lib/scratch"
 # dir   ====================================================================
 alias l='lsd -la' # -a show hidden files
 alias ll='lsd -l' # use lsd to supercharge ls output

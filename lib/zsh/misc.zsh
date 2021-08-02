@@ -64,11 +64,12 @@ function nasw(){
 }
 
 function nass(){
+  # nas shutdown
   # dependencies
   # brew install expect
   # env should contain nas_ssh_password
 
-  expect ~/dotfiles/scripts/nas/nass.zsh
+  expect $HOME/.local/bin/nas/nass.zsh
 }
 # NAS WAKUP/SLEEP FUNCTIONS -----------------------------------------------
 

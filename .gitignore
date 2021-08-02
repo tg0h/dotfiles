@@ -1,3 +1,7 @@
+archive
+
+lib/scratch
+
 #ssh secret
 id_ed25519
 

@@ -1,5 +1,7 @@
 #!/usr/bin/expect -f
 # !/usr/bin/expect -df
+# nass - nas shutdown
+
 # docs: https://www.tcl-lang.org/man/expect5.31/expect.1.html
 # -f - only useful when specified in the shebang, tells expect to run the commands below
 # -d - debug mode

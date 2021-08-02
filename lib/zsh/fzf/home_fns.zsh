@@ -1,4 +1,4 @@
-export _fzf_homeFn_dir="$HOME/dotfiles/zsh/"
+export _fzf_homeFn_dir="$HOME/.local/lib/zsh"
 
 _fzf_home_getFunctions(){
   # get all functions and description in abs folder
