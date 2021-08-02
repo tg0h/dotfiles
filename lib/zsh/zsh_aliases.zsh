@@ -60,3 +60,9 @@ alias norg="gron --ungron"
 # alias update="source ~/.zshrc" #doesn't work - complains about some fd error
 alias vpn="networksetup -connectpppoeservice 'edo vpn'"
 alias dvpn="networksetup -disconnectpppoeservice 'edo vpn'"
+# slack
+alias sl=slackcat
+alias sld="slackcat --channel dominicsq_soh"
+alias slt="slackcat --channel ***REMOVED***"
+alias sln="slackcat --channel nashtech-dev"
+alias sll="slackcat --list"
