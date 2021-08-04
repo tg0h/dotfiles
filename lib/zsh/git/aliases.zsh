@@ -1,149 +1,12 @@
 # the zsh git plugin defines git aliases in ~/.oh-my-zsh/plugins/git/git.plugin.zsh
 
-# my git favourites
-# alias gpdo="git push -d origin" #delete a remote branch
-function gpdo(){
-  # gpdo expects origin/featureBranch to be passed
-  # gpdo will cut away the first field and delete the "featureBranch" branch
-
-  # pass first parameter to stdin of gcut command
-  local branch=$(gcut -f2- -d/ <<< "$1")
-  git push -d origin $branch
-}
-
-
 # if you don't specify a branch, it compares against the current HEAD you're on, ie which branch you're currently on
 alias gbm="git branch --merged"
-
 # if you don't specify a branch, it compares against the current HEAD you're on, ie which branch you're currently on
 alias gbmr="git branch -r --merged"
-
 # alias gbnm="git branch --no-merged" - defined in git plugin
 # if you don't specify a branch, it compares against the current HEAD you're on, ie which branch you're currently on
 alias gbnmr="git branch -r --no-merged | rg -v 'release'"
-
-function gbdd(){
-  # delete local git branches with a search string
-  #EXAMPLES:
-  # gbdd <search string>
-  # gbdd -d <search string> - force delete
-
-  #NOTE: git branch -r --merged is with reference to the branch you are currently on!
-  #example: gbdd sprint-13
-  #might need to run git fetch --prune to clean up remote before running this command
-
-  local force=""
-  while getopts 'd' opt; do
-    case "$opt" in
-      d) force=true;;
-    esac
-  done
-  shift $(($OPTIND - 1))
-
-
-  # if [[ -z $1 ]]; then
-  #   echo please provide a search string, eg gbmrd sprint-18
-  #   exit
-  # fi
-  # cut
-  #   f2- - cut from the second field to the end of line
-  #   -d/ - use a field separator of /
-  # xargs
-  #   -P - number of processes to run
-  #   -n - how many arguments from stdin to pass to each xargs command
-  if [[ -n $force ]]; then
-    gb | rg '^\s*'$1 | xargs -P 12 -n 1 -I{} git branch -D {}
-  else;
-    gb | rg '^\s*'$1 | xargs -P 12 -n 1 -I{} git branch -d {}
-  fi
-}
-
-#TODO: refactor gbmrd and gbnmrd, dd
-function gbnmrd(){
-  #dry run delete git remote branches with a search string
-  #NOTE: git branch -r --merged is with reference to the branch you are currently on!
-  #example: gbmrd -n sprint-18 - dry run delete with search term
-  #example: gbmrd sprint-18
-  #might need to run git fetch --prune to clean up remote before running this command
-  local dryRun=""
-  while getopts 'n' opt; do
-    case "$opt" in
-      n) dryRun="--dry-run";;
-    esac
-  done
-  shift $(($OPTIND - 1))
-
-  if [[ -z $1 ]]; then
-    echo please provide a search string, eg gbnmrd sprint-18
-    return
-  fi
-  # cut
-  #   f2- - cut from the second field to the end of line
-  #   -d/ - use a field separator of /
-  # xargs
-  #   -P - number of processes to run
-  #   -n - how many arguments from stdin to pass to each xargs command
-  
-  #if dryRun, print dry run
-  [[ -n $dryRun ]] && echo dry run:
-  gbnmr | rg $1 | gcut -f2- -d/| xargs -P 12 -n 1 -I{} git push $dryRun -d origin {}
-  # gbnmr | rg $1 | gcut -f2- -d/| xargs -P 12 -n 1 -I{} git push --dry-run -d origin {}
-}
-
-function gbmrd(){
-  #dry run delete git remote branches with a search string
-  #NOTE: git branch -r --merged is with reference to the branch you are currently on!
-  #example: gbmrd -n sprint-18 - dry run delete with search term sprint-18
-  #example: gbmrd sprint-18
-  #might need to run git fetch --prune to clean up remote before running this command
-  local dryRun=""
-  while getopts 'n' opt; do
-    case "$opt" in
-      n) dryRun="--dry-run";;
-    esac
-  done
-  shift $(($OPTIND - 1))
-
-
-  if [[ -z $1 ]]; then
-    echo please provide a search string, eg gbmrd sprint-18
-    exit
-  fi
-  # cut
-  #   f2- - cut from the second field to the end of line
-  #   -d/ - use a field separator of /
-  # xargs
-  #   -P - number of processes to run
-  #   -n - how many arguments from stdin to pass to each xargs command
-  # gbmr | rg $1 | gcut -f2- -d/| xargs -P 12 -n 1 -I{} git push --dry-run -d origin {}
-
-  #if dryRun, print dry run
-  [[ -n $dryRun ]] && echo dry run:
-  gbmr | rg $1 | gcut -f2- -d/| xargs -P 12 -n 1 -I{} git push $dryRun -d origin {}
-}
-
-# =============================================================================
-
-# REVIEW functions ============================================================
-REVIEW_BASE=master
-gfiles(){
-  git diff --name-only $(git merge-base HEAD $REVIEW_BASE)
-}
-
-gstats(){
-  git diff --stat $(git merge-base HEAD $REVIEW_BASE)
-}
-
-greview(){
-  #-p - open files in tabs in vim
-  #+ run the command in vim
-  vim -p $(gfiles) +"tabdo Gdiff $REVIEW_BASE" +"let g:gitgutter_diff_base = '$REVIEW_BASE'"
-}
-
-greviewone(){
-  vim -p +"tabdo Gdiff $REVIEW_BASE" +"let g:gitgutter_diff_base = '$REVIEW_BASE'"
-}
-# REVIEW functions ============================================================
 
 # GIT PLUMBING
 alias gcf="git cat-file"
@@ -168,7 +31,8 @@ alias gmb="git merge-base"
 alias gcmm='git add . && git commit -m'
 alias gbc='git branch --contains'
 #check remote branches as well
-alias gbca='git branch -a --contains'
+# promote gbca to a function
+# alias gbca='git branch -a --contains'
 
 # GIT Aliases
 alias g='git'
