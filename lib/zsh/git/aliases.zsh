@@ -1,4 +1,10 @@
 # the zsh git plugin defines git aliases in ~/.oh-my-zsh/plugins/git/git.plugin.zsh
+function gg(){ 
+  #lazy git commiting when prototyping
+  git add .
+  git commit -m 'gg'
+  git push
+}
 
 # if you don't specify a branch, it compares against the current HEAD you're on, ie which branch you're currently on
 alias gbm="git branch --merged"
