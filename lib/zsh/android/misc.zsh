@@ -43,7 +43,8 @@ function adls() {
           a) appFilter="argus" ;;
           c) appFilter="cathy" ;; # certify
           t) appFilter="titus" ;; # certify
-          *) appFilter=".*" ;; # show all apps
+          o) appFilter="optimax" ;; # certify
+          *) appFilter="argus|cathy|titus|optimax" ;; # show all apps
         esac
         ;;
     esac
@@ -65,6 +66,7 @@ function adls() {
   # echo usbMode: $usbMode
   # echo sOPT: $sOPT
   # echo ip: $ip
+  echo using filter $appFilter
   # pm is the package manager
   adb $usbMode $sOPT $ip shell pm list packages | rg $appFilter | choose -f ':' 1
 }
@@ -189,14 +191,18 @@ else;
 fi
 }
 
-#uninstall all argus apps
 function adu() {
+# uninstall all argus apps
+# adu - uninstall all argus apps (default to argus)
+# adu -aa - uninstall all argus apps
+# adu -ac - uninstall all certify apps
+# adu -aA - uninstall all apps - argus, certify and optimax
 
-  local usbMode=""
-  local ip=""
+  local usbMode
+  local ip
   local appId="argus"
 
-  while getopts 'bryd' opt; do
+  while getopts 'bryda:' opt; do
     case "$opt" in
       b) ip=$HP_BLUE_IP;;
       r) ip=$HP_RED_IP ;;
@@ -208,6 +214,9 @@ function adu() {
         case "$app" in
           a) appId="argus" ;;
           c) appId="cathy" ;; # certify
+          o) appId="optimax" ;;
+          t) appId="titus" ;;
+          A) appId="argus|cathy|optimax" ;; #ALL
           # d) appId="com.certis.argus.apps.officer.dev";;
           # s) appId="com.certis.argus.apps.officer.staging";;
           # p) appId="com.certis.argus.apps.officer$";; #prod - regex checks for end of string
@@ -223,9 +232,9 @@ function adu() {
 
   local listPkgcmd=""
 
-  if [[ -n $usbMode ]]; then
+  if [[ -n "$usbMode" ]]; then
     # do nothing
-  elif [[ -n $ip ]]; then
+  elif [[ -n "$ip" ]]; then
     local sOPT="-s"
     local ipOpt="$ip"
     # local ipOPT="-s $ip" # this doesn't work?? ¯\_(ツ)_/¯
@@ -239,19 +248,25 @@ function adu() {
   # echo $usbMode
   # echo $sOPT
   # echo $ip
+  echo $fg[cyan]filter: $appId
   local apps=$(adb $usbMode $sOPT $ip shell pm list packages | rg $appId | choose -f ':' 1)
 
-  echo $fg[yellow] trying to delete $appId apps
+  echo $fg[yellow] trying to delete:
+  echo $apps
+
   # for app in "adb $usbMode shell pm list packages | rg argus"; do
-  if [[ -z $apps ]]; then
+  if [[ -z "$apps" ]]; then
     echo $fg[yellow] no $appId apps found
   else
-    for app in $apps ; do
+    #for loop does not iterate over lines, use while
+    while read -r app
+    do
+    # for app in $apps ; do
       # adb uninstall $app
       # echo $app
-      echo $fg[yellow] uninstalling $app
+      echo $fg[red] uninstalling $app
       adb $usbMode $sOPT $ip uninstall --user 0 $app
-    done;
+    done <<< "$apps"
   fi
 }
 
