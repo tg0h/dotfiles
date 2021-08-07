@@ -70,6 +70,7 @@ set wildmenu "show menu on tab completion
 set hidden
 set smartcase " set to be cas sensitive when there is capital letter, this need set incsearch to work
 set incsearch " set search to be case insensitive
+set scrolloff=8 " don't have to go to the last line before it starts scrolling
 
 " FINDING FILES
 " Search down into subfolders
@@ -129,7 +130,6 @@ autocmd BufWinEnter *.* silent loadview
 let mapleader = " "
 let maplocalleader = ","
 
-map <Leader> <Plug>(easymotion-prefix)
 
 " the map commands cannot be followed by an end of line comment because the " is interpreted as part of the rhs
 
@@ -228,7 +228,7 @@ noremap <F1> :NERDTreeToggle<CR>
 " ctrl o escapes insert mode so we can send :w
 inoremap <F2> <C-O>:w <CR>
 noremap <F2> :w <CR>
-noremap <F3> :e ~/dotfiles/nvim/init.vim<CR>
+noremap <F3> :e ~/dotfiles/config/nvim/init.vim<CR>
 nmap <F4> i<C-R>=strftime("%B %d %Y %A")<CR><Esc>
 noremap <f5> :UndotreeShow<CR>
 noremap <F6> :setlocal spell! spelllang=en_gb<CR> " Toggle Spellcheck
@@ -263,6 +263,8 @@ let g:netrw_liststyle=3     "tree view
 
 "  vim easy motion ---------------------------------------------------
 "display target labels an upper case
+" map <Leader> <Plug>(easymotion-prefix)
+
 let g:EasyMotion_use_upper = 1
 let g:EasyMotion_keys = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ;'
 " match 3 and # with 3
@@ -271,15 +273,15 @@ let g:EasyMotion_use_smartsign_us = 1
 let g:EasyMotion_smartcase = 1
 
 "bidirectional (bid) and within line t motion, eg ct<char> change "to" char
-omap t <Plug>(easymotion-bd-tl)
+" omap t <Plug>(easymotion-bd-tl)
 
 " motion hjkl motion
-map <Leader>l <Plug>(easymotion-lineforward)
-map <Leader>h <Plug>(easymotion-linebackward)
+" map <Leader>l <Plug>(easymotion-lineforward)
+" map <Leader>h <Plug>(easymotion-linebackward)
 
 " use easy motion's / instead of vim's /
-map  / <Plug>(easymotion-sn)
-omap / <Plug>(easymotion-tn)
+" map  / <Plug>(easymotion-sn)
+" omap / <Plug>(easymotion-tn)
 
 "use easy motion's 2 character search
 " nmap s <Plug>(easymotion-s2)
@@ -288,16 +290,16 @@ omap / <Plug>(easymotion-tn)
 " nmap s <Plug>(easymotion-s)
 
 "  vim easy operator line ---------------------------------------------------
-let g:EasyOperator_line_do_mapping = 0
+" let g:EasyOperator_line_do_mapping = 0
 
-omap <silent>  <Plug>(easymotion-prefix)i <Plug>(easyoperator-line-select)
-xmap <silent>  <Plug>(easymotion-prefix)i <Plug>(easyoperator-line-select)
-nmap <silent> d<Plug>(easymotion-prefix)i <Plug>(easyoperator-line-delete)
-nmap <silent> y<Plug>(easymotion-prefix)i <Plug>(easyoperator-line-yank)
+" omap <silent>  <Plug>(easymotion-prefix)i <Plug>(easyoperator-line-select)
+" xmap <silent>  <Plug>(easymotion-prefix)i <Plug>(easyoperator-line-select)
+" nmap <silent> d<Plug>(easymotion-prefix)i <Plug>(easyoperator-line-delete)
+" nmap <silent> y<Plug>(easymotion-prefix)i <Plug>(easyoperator-line-yank)
 
-omap <Leader>L  <Plug>(easyoperator-line-select)
-xmap <Leader>L  <Plug>(easyoperator-line-select)
-nmap d<Leader>L <Plug>(easyoperator-line-delete)
+" omap <Leader>L  <Plug>(easyoperator-line-select)
+" xmap <Leader>L  <Plug>(easyoperator-line-select)
+" nmap d<Leader>L <Plug>(easyoperator-line-delete)
 " nmap p<Leader>L <Plug>(easyoperator-line-yank) "this slows down the p command
 
 "  vim notational velocity ----------------------------------------------------------
