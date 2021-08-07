@@ -9,13 +9,19 @@ function _setGitlabProj() {
     f) export GITLAB_PROJECT_ID=202
       echo Argus Flutter
       ;;
+    o) export GITLAB_PROJECT_ID=229
+      echo Optimax
+      ;;
     c) export GITLAB_PROJECT_ID=118
       echo Argus CC
+      ;;
+    t) export GITLAB_PROJECT_ID=223
+      echo My Gitlab Test Project
       ;;
   esac
 }
 
-gsp () {
+function gsp () {
   # gitlab switch profile
 
   if [[ -z "$1" ]]
@@ -23,6 +29,7 @@ gsp () {
     [[ $GITLAB_PROJECT_ID == 80 ]] && echo Argus Android
     [[ $GITLAB_PROJECT_ID == 202 ]] && echo Argus Flutter
     [[ $GITLAB_PROJECT_ID == 118 ]] && echo Argus CC
+    [[ $GITLAB_PROJECT_ID == 223 ]] && echo My Gitlab Test Project
     return
   fi
 
@@ -98,6 +105,9 @@ function _ggproj() {
 
 #get pipeline jobs
 function ggpj() {
+  # TODO: support downloading job log output
+  # https://docs.gitlab.com/ee/api/jobs.html
+  
   #provide pipeline id
   # -b prints the body only
   #download job artifacts from argus officer flutter
