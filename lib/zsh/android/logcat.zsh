@@ -106,6 +106,9 @@ function adl() {
           fs) appId="com.certisgroup.argus.apps.officer.staging";; #flutter staging
           fp) appId="com.certisgroup.argus.apps.officer$";; #flutter prod
           cd) appId="com.certisgroup.cathy.debug";; #certify dev
+          od) appId="tech.augment.optimax.officer.dev";;
+          os) appId="tech.augment.optimax.officer.staging";;
+          op) appId="tech.augment.optimax.officer";;
         esac
         ;;
     esac
