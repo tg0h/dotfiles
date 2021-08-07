@@ -1,29 +1,45 @@
-" source ~/.vimrc
+""" Map leader to space ---------------------
+let mapleader=" "
 
-let mapleader = " "
-
-set easymotion
-set surround
+""" Plugins  --------------------------------
+" set surround
+" set multiple-cursors
 set commentary
-set ideamarks
-set NERDTree
-
-" set ReplaceWithRegister
 " set argtextobj
+set easymotion
 " set textobj-entire
+" set ReplaceWithRegister
 
-set hlsearch               " highlight search patterns
+""" Plugin settings -------------------------
+" let g:argtextobj_pairs="[:],(:),<:>"
 
-set autoindent             " Respect indentation when starting a new line.
-set expandtab              " Expand tabs to spaces. Essential in Python.
-set tabstop=2              " Number of spaces tab is counted for.
-set shiftwidth=2           " Number of spaces to use for autoindent.
-set nu rnu                 " Hybrid mode (both absolute and relative line numbers turned on)
-" turn off relative number when entering insert mode or buffer loses focus
-:augroup numbertoggle
-:  autocmd!
-:  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
-:  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
-:augroup END
+""" Common settings -------------------------
+set showmode
+set so=5
+set incsearch
+set nu
 
-let mapleader = " "
+""" Idea specific settings ------------------
+" set ideajoin
+" set ideastatusicon=gray
+" set idearefactormode=keep
+
+""" Mappings --------------------------------
+" map <leader>f <Plug>(easymotion-s)
+" map <leader>e <Plug>(easymotion-f)
+
+" map <leader>d <Action>(Debug)
+" map <leader>r <Action>(RenameElement)
+" map <leader>c <Action>(Stop)
+" map <leader>z <Action>(ToggleDistractionFreeMode)
+
+" map <leader>s <Action>(SelectInProjectView)
+" map <leader>a <Action>(Annotate)
+" map <leader>h <Action>(Vcs.ShowTabbedFileHistory)
+" map <S-Space> <Action>(GotoNextError)
+
+" map <leader>b <Action>(ToggleLineBreakpoint)
+" map <leader>o <Action(FileStructurePopup)>
+
+""" Easymotion
+" omap t <Plug>(easymotion-bd-tl)

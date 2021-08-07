@@ -18,7 +18,6 @@
       exclude: 
         - config/aws
         - config/cheat
-        - config/ideavim
         - config/iterm2
         - config/ssh
         - config/nvim
