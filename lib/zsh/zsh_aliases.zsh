@@ -66,3 +66,5 @@ alias sld="slackcat --channel dominicsq_soh"
 alias slt="slackcat --channel ***REMOVED***"
 alias sln="slackcat --channel nashtech-dev"
 alias sll="slackcat --list"
+#ide
+alias ws=webstorm
