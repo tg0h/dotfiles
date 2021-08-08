@@ -1,0 +1,6 @@
+# zprofile is sourced at login
+# use this file for commands and variables that don't need to be updated frequently
+# run exec zsh --login to apply any configuration updates by running a login shell
+
+# https://github.com/pyenv/pyenv
+eval "$(pyenv init --path)"

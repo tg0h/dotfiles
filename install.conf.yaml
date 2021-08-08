@@ -7,7 +7,7 @@
       create: true
       relink: true
 #remove dead symobolic links from the ~ directory
-- clean: ['~']
+- clean: ['~', '~/.config']
 - create:
   - ~/.mutt #create the mutt config directory so that the muttrc file below can be placed in it
 # <target>:<source (original file)>
@@ -31,10 +31,16 @@
     #   glob: true
     #   path: config/env/*
     #   prefix: '.'
-    ~/.env: config/env/env
-    ~/.zshenv: config/env/zshenv
-    ~/.zprofile: config/env/zprofile
-    ~/.zshrc: config/env/zshrc
+    ~/.zshenv: config/zsh/boot.zshenv
+    ~/.config/zsh/.zshenv: config/zsh/zshenv
+    ~/.config/zsh/.zprofile: config/zsh/zprofile
+    ~/.config/zsh/.zshrc: config/zsh/zshrc
+    # ~/.config/zsh/env: config/env/env
+
+    # ~/.env: config/env/env
+    # ~/.zshenv: config/env/zshenv
+    # ~/.zprofile: config/env/zprofile
+    # ~/.zshrc: config/env/zshrc
 
     ~/.ssh/ : 
       glob: true
