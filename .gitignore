@@ -1,39 +1,25 @@
 archive
-
-lib/scratch
-
-#ssh secret
-id_ed25519
-
-# ignore files or folders with name secret*
-secret*
-*.secret
-
-# ignore aws credential
-credentials
-
-# apple file finder metadata
-.DS_STORE
-
-# ignore webstorm
-.idea
-
 # ignore scratch file
 # git update-index --assume-unchanged path/to/file
 # git update-index --no-assume-unchanged path/to/file
-scripts/scratch
+lib/scratch
 
-#ignore env secrets
+
+# Secrets
+# ignore env secrets
 env
-
-# ignore vim plugs
-vim/plugged
-vim/view
-vim/pack
-
-#ignore vim swp files
-*.swp
 *.env
+# ssh secret
+id_ed25519
+# ignore files or folders with name secret*
+secret*
+*.secret
+# ignore aws credential
+credentials
 
-#ignore netrw dotfile - don't know what it does
-.netrwhist
+# Apple
+.DS_STORE
+
+# Intellij
+.idea
+
