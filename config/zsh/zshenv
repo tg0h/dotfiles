@@ -86,6 +86,10 @@ export MCFLY_FUZZY=true
 # export ZDOTDIR=${ZDOTDIR:=${XDG_CONFIG_HOME}/zsh}
 # source $ZDOTDIR/.zshenv
 
+# z stores its dir frecency list here
+_Z_DATA=$XDG_DATA_HOME/z/z
+export PARALLEL_HOME=$XDG_CONFIG_HOME/parallel
+
 NETLIFY_AUTH_TOKEN=***REMOVED***
 
 JIRA_USERNAME=***REMOVED***

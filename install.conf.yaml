@@ -9,7 +9,8 @@
 #remove dead symobolic links from the ~ directory
 - clean: ['~', '~/.config']
 - create:
-  - ~/.mutt #create the mutt config directory so that the muttrc file below can be placed in it
+  - $XDG_DATA_HOME/z # for z to store its frecency dir list
+  - $XDG_CONFIG_HOME/parallel
 # <target>:<source (original file)>
 - link:
     ~/.config/: 
