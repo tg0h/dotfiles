@@ -1,71 +1,59 @@
-# TODO: prefix '.' doesn't seem to be working, how to create a .filename alias with a glob pattern?
+# TODO: prefix '.' doesn't seem to be working, how to create a .filename alias with
+# a glob pattern?
 # TODO: see https://github.com/rafi/.config for a solution to how to store secrets!
-
+# TODO: recursive globbing should not match deep dirs, only files
 - defaults:
     link:
       # create directories to create symlink if needed
       create: true
+      # removes the old target if it's a symlink 
       relink: true
-#remove dead symobolic links from the ~ directory
-- clean: ['~', '~/.config']
+      # TODO: is default glob to true a good idea?
+      glob: true
+
+# remove dead symbolic links from the ~ directory
+# only removes links that point to the dotfiles dir, unless the force option is true
+- clean:
+    ~/:
+      force: true # remove dead links even if they don't point to the dotfiles dir
+    ~/.config:
+      recursive: true
+
 - create:
   - $XDG_DATA_HOME/z # for z to store its frecency dir list
   - $XDG_CONFIG_HOME/parallel
+
 # <target>:<source (original file)>
+# if linking directories, do not include a trailing slash
 - link:
     ~/.config/: 
-      glob: true
-      path: config/*
+      path: config/*/**
       exclude: 
-        - config/aws
-        - config/cheat
-        - config/iterm2
-        - config/ssh
-        - config/nvim
-        - config/vim
+        - config/aws/config
+        - config/aws/credentials
+        - config/cheat/cheatsheets
+        - config/ssh/*
         - config/zsh
-    ~/.config/nvim/init.vim: config/nvim/init.vim
-    ~/.config/cheat/conf.yml: config/cheat/conf.yml
-    ~/.config/cheat/cheatsheets/personal: config/cheat/cheatsheets/personal
 
-    # ~/: 
-    #   glob: true
-    #   path: config/env/*
-    #   prefix: '.'
     ~/.zshenv: config/zsh/boot.zshenv
     ~/.config/zsh/.zshenv: config/zsh/zshenv
     ~/.config/zsh/.zprofile: config/zsh/zprofile
     ~/.config/zsh/.zshrc: config/zsh/zshrc
-    # ~/.config/zsh/env: config/env/env
-
-    # ~/.env: config/env/env
-    # ~/.zshenv: config/env/zshenv
-    # ~/.zprofile: config/env/zprofile
-    # ~/.zshrc: config/env/zshrc
-
-    ~/.ssh/ : 
-      glob: true
-      path: config/ssh/*
+    ~/.ssh: config/ssh # link the directory
+    ~/.aws/config: config/aws/config
+    ~/.aws/credentials: config/aws/credentials
 
     ~/Library/Application Support/com.clickontyler.TextBuddy/scripts: share/textBuddy/
     ~/.ideavimrc: config/ideavim/ideavimrc #webstorm ideavim emulation rc file
     ~/.p10k.zsh: config/zsh/p10k/p10k.zsh
-    ~/.vimrc: config/vim/vimrc
 
+    ~/.local/lib/scratch: lib/scratch
+    ~/.local/lib/abs: ~/dev/working/abs/abs
     ~/.local/bin/zsh_functions: bin/zsh_functions/ #autoload function directory
-    ~/.local/lib/:
-      glob: true
-      path: lib/*
-    ~/.aws/: 
-      glob: true
-      path: config/aws/*
+    ~/.local/lib/: lib/*/**
 
     # certis
-    ~/src/edo/abc-cli/config/environment/: 
-      glob: true
-      path: config/abc-cli/env/*
-    ### certify sync job
-    ~/Library/LaunchAgents/certify-validate-sync.plist: bin/certify/certify-validate-sync.plist
+    ~/src/edo/abc-cli/config/environment/: config/abc-cli/env/*
+    ~/Library/LaunchAgents/certify-validate-sync.plist: bin/certify/certify-validate-sync.plist #certify sync job
     # me
     ~/dev/working/timtoggl/timtoggl/.env: config/timtoggl/secret/env
-    ~/.local/lib/abs: ~/dev/working/abs/abs
