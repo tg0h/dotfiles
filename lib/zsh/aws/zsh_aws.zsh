@@ -14,14 +14,14 @@ function as(){
       ;;
     s)
       export AWS_DEFAULT_REGION=ap-southeast-1
-      . ~/.aws/aws.argus.develop.env
+      . $XDG_CONFIG_HOME/aws.argus.develop.env
       . $XDG_CONFIG_HOME/argus/env/argus.staging.env
       . ~/.abs/argus.staging.env
       asp adev
       ;;
     p)
       export AWS_DEFAULT_REGION=ap-southeast-1
-      . ~/.aws/aws.argus.production.env
+      . $XDG_CONFIG_HOME/aws/aws.argus.production.env
       . $XDG_CONFIG_HOME/argus/env/argus.production.env
       . ~/.abs/argus.production.env
       asp aprod
@@ -29,14 +29,14 @@ function as(){
 
     as)
       export AWS_DEFAULT_REGION=ap-southeast-2
-      . ~/.aws/aws.argus.au.staging.env
+      . $XDG_CONFIG_HOME/aws/aws.argus.au.staging.env
       . $XDG_CONFIG_HOME/argus/env/argusAu.staging.env
       # . ~/.abs/argus.au.staging.env
       asp aastg
       ;;
     ap)
       export AWS_DEFAULT_REGION=ap-southeast-2
-      . ~/.aws/aws.argus.au.production.env
+      . $XDG_CONFIG_HOME/aws/aws.argus.au.production.env
       . $XDG_CONFIG_HOME/argus/env/argusAu.production.env
       # . ~/.abs/argus.au.production.env
       asp aaprod
@@ -44,19 +44,19 @@ function as(){
 
     cd)
       export AWS_DEFAULT_REGION=ap-southeast-1
-      . ~/.aws/aws.certify.develop.env
+      . $XDG_CONFIG_HOME/aws/aws.certify.develop.env
       . $XDG_CONFIG_HOME/certify/certify.develop.env
       asp cdev
       ;;
     cs)
       export AWS_DEFAULT_REGION=ap-southeast-1
-      . ~/.aws/aws.certify.develop.env
+      . $XDG_CONFIG_HOME/aws/aws.certify.develop.env
       . $XDG_CONFIG_HOME/certify/certify.staging.env
       asp cdev
       ;;
     cp)
       export AWS_DEFAULT_REGION=ap-southeast-1
-      . ~/.aws/aws.certify.production.env
+      . $XDG_CONFIG_HOME/aws/aws.certify.production.env
       . $XDG_CONFIG_HOME/certify/certify.production.env
       asp cprod
       ;;
