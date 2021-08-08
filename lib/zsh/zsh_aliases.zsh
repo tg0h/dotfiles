@@ -7,10 +7,10 @@ alias -g J='| jq .'
 # =========================================================================
 # edit config file shortcuts
 alias dos='nvim ~/.dotfiles/install.conf.yaml' # dotbot sourcefile
-alias doi='dotbot --verbose -c install.conf.yaml'
+alias doi='dotbot --verbose -c ~/.dotfiles/install.conf.yaml'
 alias zshr='nvim ~/dotfiles/config/env/zshrc'
 alias zshe='nvim ~/.env'
-alias zshz='nvim ~/.zshenv'
+alias zshz='nvim ~/.config/zsh/.zshenv'
 alias zshaa='nvim ~/.local/lib/zsh/zsh_aliases.zsh'
 alias zshf='nvim ~/local/lib/zsh/zsh_funcs.zsh' #misc functions, use zsh_functions folder for more organization
 alias zshk='nvim ~/.config/kitty/kitty.conf' # the kitty config file
@@ -40,7 +40,7 @@ alias eu="nvim"
 alias son="so -n"
 # source
 alias ss="source $HOME/.local/lib/scratch"
-alias sss="source $HOME/.zshrc"
+alias sss="source $HOME/.config/zsh/.zshrc"
 # edit
 alias ee="nvim $HOME/.local/lib/scratch"
 # dir   ====================================================================
