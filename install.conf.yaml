@@ -48,7 +48,6 @@
 
     ~/Library/Application Support/com.clickontyler.TextBuddy/scripts: share/textBuddy/
     ~/.ideavimrc: config/ideavim/ideavimrc #webstorm ideavim emulation rc file
-    ~/.mutt/muttrc : config/mutt/muttrc #mail client
     ~/.p10k.zsh: config/zsh/p10k/p10k.zsh
     ~/.vimrc: config/vim/vimrc
 

@@ -11,10 +11,10 @@ set smtp_url = "smtps://timtestallthethings@smtp.gmail.com"
 set smtp_pass = $GMAIL_TIMTESTALLTHETHINGS_PASSWORD
 # echo "this is $GMAIL_TIMTESTALLTHETHINGS_PASSWORD"
 set ssl_force_tls = yes
-set header_cache = ~/.cache/mutt
+set header_cache = "$XDG_CACHE_HOME/mutt" # ~/.cache/mutt
 set spoolfile = +Inbox
 # set record = "+sent" #put sent mail in a sent folder in mutt
-set record = "~/.mutt/sent" #save sent log in .mutt folder instead of ~ folder
+set record = "$XDG_STATE_HOME/mutt/sent" #save sent log in .mutt folder instead of ~ folder
 # set postponed = "+Drafts"
 set trash = "+Trash"
 
