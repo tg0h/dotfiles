@@ -6,6 +6,7 @@ alias -g W='| wc -l'
 alias -g J='| jq .' 
 # =========================================================================
 # edit config file shortcuts
+alias dos='nvim ~/.dotfiles/install.conf.yaml' # dotbot sourcefile
 alias doi='dotbot --verbose -c install.conf.yaml'
 alias zshr='nvim ~/dotfiles/config/env/zshrc'
 alias zshe='nvim ~/.env'
