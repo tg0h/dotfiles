@@ -8,7 +8,7 @@ alias -g J='| jq .'
 # edit config file shortcuts
 alias dos='nvim ~/.dotfiles/install.conf.yaml' # dotbot sourcefile
 alias doi='dotbot --verbose -c ~/.dotfiles/install.conf.yaml'
-alias zshr='nvim ~/dotfiles/config/env/zshrc'
+alias zshr='nvim ~/.dotfiles/config/zsh/zshrc'
 alias zshe='nvim ~/.env'
 alias zshz='nvim ~/.config/zsh/.zshenv'
 alias zshaa='nvim ~/.local/lib/zsh/zsh_aliases.zsh'
