@@ -1,4 +1,6 @@
-fzf-search-wiki-widget() {
+function fzf-search-wiki-widget() {
+  # ^N^W to search the wiki
+  
   fd --color always . '/Users/tim/certis/resources/wiki' | fzf --ansi
   zle reset-prompt;
   LBUFFER+=$result
@@ -6,7 +8,9 @@ fzf-search-wiki-widget() {
 zle     -N   fzf-search-wiki-widget
 bindkey '^N^W' fzf-search-wiki-widget
 
-fzf-search-dotfiles-widget() {
+function fzf-search-dotfiles-widget() {
+  # ^N^H to search my dotfiles
+  
   # TODO: does not paste selection on command line nicely, unlike fzf ctrl t
 
   #include f - files and l - symlinks
@@ -35,7 +39,9 @@ fzf-search-dotfiles-widget() {
 zle     -N   fzf-search-dotfiles-widget
 bindkey '^N^H' fzf-search-dotfiles-widget
 
-fzf-rg-widget(){
+function fzf-rg-widget(){
+  # ^N^T to fuzzy rg current dir
+  
   # INITIAL_QUERY=""
   # RG_PREFIX="rg --column --line-number --no-heading --color=always --smart-case "
   # FZF_DEFAULT_COMMAND="$RG_PREFIX '$INITIAL_QUERY'" \
