@@ -14,7 +14,7 @@ id_ed25519
 # ignore files or folders with name secret*
 secret*
 *.secret
-# ignore aws credential
+# ignore aws, git credentials
 credentials
 
 # Apple
