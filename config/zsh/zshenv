@@ -163,3 +163,5 @@ export GNUPGHOME="$XDG_DATA_HOME"/gnupg
 # https://dbrgn.github.io/tealdeer/config.html
 export TEALDEER_CONFIG_DIR=~/.config/tealdeer
 export TEALDEER_CACHE_DIR=~/.cache/tealdeer
+
+export PYENV_ROOT=$XDG_DATA_HOME/pyenv
