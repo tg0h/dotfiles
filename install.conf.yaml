@@ -44,11 +44,8 @@
 
     ~/.ssh/: 
       path: config/ssh/*
-    ~/.aws/config: config/aws/config
-    ~/.aws/credentials: config/aws/credentials
 
     ~/Library/Application Support/com.clickontyler.TextBuddy/scripts: share/textBuddy/
-    # ~/.ideavimrc: config/ideavim/ideavimrc #webstorm ideavim emulation rc file
 
     ~/.local/lib/scratch: lib/scratch
     ~/.local/lib/abs: ~/dev/working/abs/abs
