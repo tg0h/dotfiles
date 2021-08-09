@@ -39,7 +39,8 @@
     ~/.config/zsh/.zshenv: config/zsh/zshenv
     ~/.config/zsh/.zprofile: config/zsh/zprofile
     ~/.config/zsh/.zshrc: config/zsh/zshrc
-    ~/.ssh: config/ssh # link the directory
+    ~/.ssh/: 
+      path: config/ssh/*
     ~/.aws/config: config/aws/config
     ~/.aws/credentials: config/aws/credentials
 
