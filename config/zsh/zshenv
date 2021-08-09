@@ -38,11 +38,11 @@ export APPCENTER_ACCESS_TOKEN=***REMOVED***
 # the **/* glob is peculiar to zsh
 # it allows zsh to search recursively
 # source every file (include subdirs) in .zsh
-local f
-for f in ~/.local/lib/zsh/**/*; do [[ -f $f ]] && . $f; done
-for f in ~/.local/lib/abs/**/*.zsh; do [[ -f $f ]] && . $f; done
+# local f
+# for f in ~/.local/lib/zsh/**/*; do [[ -f $f ]] && . $f; done
+# for f in ~/.local/lib/abs/**/*.zsh; do [[ -f $f ]] && . $f; done
 
-. ~/.local/lib/scratch
+# . ~/.local/lib/scratch
 
 # https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html
 # https://wiki.archlinux.org/title/XDG_Base_Directoryhttps://wiki.archlinux.org/title/XDG_Base_Directory
