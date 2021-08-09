@@ -48,7 +48,9 @@ _fzf_home_getFunctions(){
 
      # | gsed -E 's!(\s*)(#)!\2!'
      # remove any whitespace before the # 
+
   rg \
+    --follow \
     --type zsh \
     --color always \
     --field-context-separator '' \
