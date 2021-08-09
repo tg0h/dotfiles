@@ -3,7 +3,7 @@
 
 # this is important - you need to source the oh-my-zsh.sh file here
 
-export ZSH="/Users/tim/.oh-my-zsh"
+export ZSH="$XDG_DATA_HOME/oh-my-zsh"
 # set up p10k prompt
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
@@ -19,6 +19,8 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # must be set befor loading the zsh-nvm plugin
 export NVM_AUTO_USE=true
 
+# note that custom plugins and themes are stored in the 
+# $XDG_DATA_HOME/oh-my-zsh/custom dir
 # plugins
 plugins=(
   zsh-nvm #add at the top so other plugins that use node/npm can work ###lukechilds/zsh-nvm
@@ -38,7 +40,7 @@ plugins=(
   fast-syntax-highlighting ###zdharma/fast-syntax-highlighting
 )
 source $ZSH/oh-my-zsh.sh
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh # p10k configuration
+source $XDG_CONFIG_HOME/zsh/p10k/p10k.zsh # p10k configuration
 
 # zsh vim mode settings
 # see http://zsh.sourceforge.net/Doc/Release/Zsh-Line-Editor.html for the docs on the -v option
@@ -79,7 +81,11 @@ export PATH="/usr/local/opt/sqlite/bin:$PATH" # add homebrew sqlite3 to path (do
 export PATH="$PATH:$HOME/dev/tools/flutter/bin" # add flutter
 export PATH="$PATH:$HOME/Library/Android/sdk/emulator" # add android emulator
 # export PATH="$PATH:/Users/tim/Library/Android/sdk/tools/bin" # add android emulator
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh #source fzf after the vim keymap so fzf shortcuts take precedence
+
+# the fzf key bindings and shell completions are here
+# they are sourced from the /usr/local/opt folder (brew)
+#source fzf after the vim keymap so fzf shortcuts take precedence
+source $XDG_CONFIG_HOME/fzf/fzf.zsh 
 
 # source every file in the .zsh and .abs folder
 # the **/* glob is peculiar to zsh
@@ -90,7 +96,7 @@ for f in ~/.local/lib/zsh/**/*; do [[ -f $f ]] && . $f; done
 for f in ~/.local/lib/abs/**/*.zsh; do [[ -f $f ]] && . $f; done
 
 # my functions
-. ~/.env
+# . ~/.env
 
 fpath+=~/.local/bin/zsh_functions #add our own zsh functions directory to fpath
 # https://stackoverflow.com/questions/30840651/what-does-autoload-do-in-zsh

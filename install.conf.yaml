@@ -22,6 +22,8 @@
 - create:
   - $XDG_DATA_HOME/z # for z to store its frecency dir list
   - $XDG_CONFIG_HOME/parallel
+  - $XDG_CONFIG_HOME/sqlite3
+  - $XDG_CACHE_HOME/tealdeer
 
 # <target>:<source (original file)>
 # if linking directories, do not include a trailing slash
@@ -29,24 +31,24 @@
     ~/.config/: 
       path: config/*/**
       exclude: 
-        - config/aws/config
-        - config/aws/credentials
         - config/cheat/cheatsheets
         - config/ssh/*
-        - config/zsh
+        - config/zsh/**
 
     ~/.zshenv: config/zsh/boot.zshenv
+    # zsh reads the dot files in the $ZDOTDIR dir
     ~/.config/zsh/.zshenv: config/zsh/zshenv
     ~/.config/zsh/.zprofile: config/zsh/zprofile
     ~/.config/zsh/.zshrc: config/zsh/zshrc
+    ~/.config/zsh/p10k: config/zsh/p10k
+
     ~/.ssh/: 
       path: config/ssh/*
     ~/.aws/config: config/aws/config
     ~/.aws/credentials: config/aws/credentials
 
     ~/Library/Application Support/com.clickontyler.TextBuddy/scripts: share/textBuddy/
-    ~/.ideavimrc: config/ideavim/ideavimrc #webstorm ideavim emulation rc file
-    ~/.p10k.zsh: config/zsh/p10k/p10k.zsh
+    # ~/.ideavimrc: config/ideavim/ideavimrc #webstorm ideavim emulation rc file
 
     ~/.local/lib/scratch: lib/scratch
     ~/.local/lib/abs: ~/dev/working/abs/abs
