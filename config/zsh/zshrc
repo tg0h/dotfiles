@@ -63,7 +63,7 @@ bindkey -r "^N"
 #remove to use myself to fzf search wiki
 bindkey -r "^S"
 
-local f
+# local f - declaring a local variable prints output during zsh initialization
 # zsh *** glob follows symlinks
 for f in ~/.local/lib/zsh/***/*; do [[ -f $f ]] && . $f; done
 for f in ~/.local/lib/abs/***/*.zsh; do [[ -f $f ]] && . $f; done

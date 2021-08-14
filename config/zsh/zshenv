@@ -39,8 +39,9 @@ export APPCENTER_ACCESS_TOKEN=***REMOVED***
 # it allows zsh to search recursively
 # source every file (include subdirs) in .zsh
 # local f
-# for f in ~/.local/lib/zsh/**/*; do [[ -f $f ]] && . $f; done
-# for f in ~/.local/lib/abs/**/*.zsh; do [[ -f $f ]] && . $f; done
+# the *** glob lets zsh follow symlinks
+for f in ~/.local/lib/zsh/***/*; do [[ -f $f ]] && . $f; done
+for f in ~/.local/lib/abs/***/*.zsh; do [[ -f $f ]] && . $f; done
 
 # . ~/.local/lib/scratch
 
@@ -165,3 +166,5 @@ export TEALDEER_CONFIG_DIR=~/.config/tealdeer
 export TEALDEER_CACHE_DIR=~/.cache/tealdeer
 
 export PYENV_ROOT=$XDG_DATA_HOME/pyenv
+
+export FVM_HOME=$XDG_DATA_HOME/fvm
