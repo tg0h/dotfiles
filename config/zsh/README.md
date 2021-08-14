@@ -35,6 +35,9 @@ zsh non-login non-interactive
 ### ZSH Files
 
 #### zshrc
+* aws completion
+
+enable aws completion - https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-completion.html
 
 * fonts - https://github.com/powerline/fonts.git
 * iterm2 color scheme - aurora with black background
@@ -45,6 +48,9 @@ zsh non-login non-interactive
  $XDG_DATA_HOME/oh-my-zsh/custom dir
 
 * zshenv
+
+source functions here so they are available to a non-interactive shell?
+eg zsh -c <function name> will work
 
 ``` bash
 # the **/* glob is peculiar to zsh, allows zsh to search recursively

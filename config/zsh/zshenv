@@ -1,3 +1,4 @@
+#XDG setup
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME=$HOME/.cache # analogous to /var/cache
 export XDG_DATA_HOME=$HOME/.local/share # data that doesn't need to be modified
@@ -5,45 +6,24 @@ export XDG_STATE_HOME=$HOME/.local/state #eg logs, history. data persists btw re
 
 export EDITOR=nvim
 
-# source my functions in the .zshenv file so that they are available
-# in a non-interactive shell, eg zsh -c "<my function name>" will work
 # source every file (include subdirs) in .zsh
 for f in ~/.local/lib/zsh/***/*; do [[ -f $f ]] && . $f; done
 for f in ~/.local/lib/abs/***/*.zsh; do [[ -f $f ]] && . $f; done
 
 # SECRETS
-# export the env variable so other apps, eg mutt can use them
-export GMAIL_TIMTESTALLTHETHINGS_PASSWORD=***REMOVED***
+export GMAIL_TIMTESTALLTHETHINGS_PASSWORD=***REMOVED*** # export email pw for mutt
 export APPCENTER_ACCESS_TOKEN=***REMOVED***
 NETLIFY_AUTH_TOKEN=***REMOVED***
 GITHUB_TOKEN=***REMOVED***
 GITLAB_PRIVATE_TOKEN=***REMOVED*** # use this for my gitlab
 NAS_SSH_PASSWORD=***REMOVED*** # use this to shut down nas via ssh
 
-export PARALLEL_HOME=$XDG_CONFIG_HOME/parallel
-
-# JIRA_USERNAME=***REMOVED***
-# JIRA_PASSWORD="***REMOVED***"
-# JIRA_SECRET=$JIRA_USERNAME:$JIRA_PASSWORD
-# app center current app
 
 export MOBILE_CENTER_CURRENT_APP=***REMOVED***
 
-# my phones
-# android 11 wireless debugging changes the port and turns off wireless debugging
-# when you restart the wifi
-# not convenient!
-
-export HP_RED_IP=192.168.1.19:5555
-export HP_RED_SERIAL=R58M52BJJXP
-export HP_YELLOW_IP=192.168.1.188:5555
-export HP_BLUE_IP=192.168.1.64:5555
-export HP_CALLTREE_IP=192.168.1.170:5555
-
-export ARGUS_LOGCAT_FILTER_KOTLIN="$XDG_CONFIG_HOME/argus/adb/argus.logcatFilter.kotlin.txt"
-
 #XDG - store your config and data somewhere tidy
 _Z_DATA=$XDG_DATA_HOME/z/z # z stores its dir frecency list here
+export PARALLEL_HOME=$XDG_CONFIG_HOME/parallel
 export NVM_DIR=$XDG_DATA_HOME/nvm
 export REDISCLI_HISTFILE=$XDG_DATA_HOME/redis/rediscli_history
 export REDISCLI_RCFILE=$XDG_CONFIG_HOME/redis/redisclirc
@@ -54,16 +34,12 @@ export GEM_SPEC_CACHE="$XDG_CACHE_HOME"/gem
 export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker #not working?
 export CARGO_HOME="$XDG_DATA_HOME"/cargo
 export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
-# . "$CARGO_HOME/env"
 export SQLITE_HISTORY=$XDG_DATA_HOME/sqlite_history
-# sqlite3 -init "$XDG_CONFIG_HOME"/sqlite3/sqliterc
-export AWS_SHARED_CREDENTIALS_FILE="$XDG_CONFIG_HOME"/aws/credentials
-# export AWS_CREDENTIALS_FILE="$XDG_DATA_HOME/aws/credentials"
+export AWS_SHARED_CREDENTIALS_FILE="$XDG_CONFIG_HOME"/aws/credentials # vs AWS_CREDENTIALS?
 export AWS_CONFIG_FILE="$XDG_CONFIG_HOME"/aws/config
 export AWS_WEB_IDENTITY_TOKEN_FILE="$XDG_DATA_HOME/aws/token"
 export GNUPGHOME="$XDG_DATA_HOME"/gnupg
-# https://dbrgn.github.io/tealdeer/config.html
-export TEALDEER_CONFIG_DIR=~/.config/tealdeer
+export TEALDEER_CONFIG_DIR=~/.config/tealdeer # https://dbrgn.github.io/tealdeer/config.html
 export TEALDEER_CACHE_DIR=~/.cache/tealdeer
 export PYENV_ROOT=$XDG_DATA_HOME/pyenv
 export FVM_HOME=$XDG_DATA_HOME/fvm
