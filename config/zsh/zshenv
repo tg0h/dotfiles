@@ -18,7 +18,6 @@ GITHUB_TOKEN=***REMOVED***
 GITLAB_PRIVATE_TOKEN=***REMOVED*** # use this for my gitlab
 NAS_SSH_PASSWORD=***REMOVED*** # use this to shut down nas via ssh
 
-
 export MOBILE_CENTER_CURRENT_APP=***REMOVED***
 
 #XDG - store your config and data somewhere tidy
