@@ -261,7 +261,7 @@ csync() {
 
 #run the certify sync report
 crep() {
-  ~/dotfiles/scripts/certify/certify-validate-sync.zsh
+  ~/.dotfiles/lib/certify/certify-validate-sync.zsh
 }
 
 cupload() {

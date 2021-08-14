@@ -17,14 +17,14 @@ mkdir -p /tmp/certify
 echo certify validate sync ran at: $(date) >> /tmp/certify/certify-validate-sync-log
 
 path=('/usr/local/bin' $path) # add homebrew packages
-  path=('/usr/local/opt/sqlite/bin' $path) # add homebrew sqlite3 to path (do not use macos sqlite which is an older version)
-  export PATH
+path=('/usr/local/opt/sqlite/bin' $path) # add homebrew sqlite3 to path (do not use macos sqlite which is an older version)
+export PATH
 
-  echo this is path $path
+echo this is path $path
 
-  . $HOME/dotfiles/zshrc #get everything
-  # cerp p #get env variables
-  as cp
+. $HOME/.dotfiles/config/zsh/zshrc #get everything
+# cerp p #get env variables
+as cp
 
 # WORKING FOLDER FOR THE REPORT ------------------------------------------------------------------------------------
 cd $_CERTIFY_VERIFY_REPORT_FOLDER_TMP
@@ -285,7 +285,7 @@ local errorCount=$(($(wc -l <SyncErrorReport.csv) - 1)) #subtract header row fro
 if [ $errorCount -gt 0 ]; then
   # error thrown if attaching file that does not exist
   # echo "Errors found in Sap Sync" | mutt -s "SAP Sync Error Report" ***REMOVED*** -a SyncErrorReport.csv -a phoneNumberPatch.csv -a employmentStatusPatch.csv
-  echo "Errors found in Sap Sync" | mutt -s "SAP Sync Error Report" ***REMOVED*** -a SyncErrorReport.csv 
+  echo "Errors found in Sap Sync" | mutt -s "SAP Sync Error Report" ***REMOVED*** -a SyncErrorReport.csv
 fi
 
 # if patch file exists, email it
