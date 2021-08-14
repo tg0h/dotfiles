@@ -68,7 +68,7 @@ bindkey -r "^S"
 for f in ~/.local/lib/zsh/***/*; do [[ -f $f ]] && . $f; done
 for f in ~/.local/lib/abs/***/*.zsh; do [[ -f $f ]] && . $f; done
 
-. ~/.local/lib/scratch
+. ~/.local/lib/scratch.zsh
 
 #zsh does not word split param expansions https://stackoverflow.com/questions/16200142/zsh-parameter-expansion-inserting-quotes
 # setopt sh_word_split #turn on param expansion word split - this disables zsh autocompletion
@@ -99,12 +99,12 @@ for f in ~/.local/lib/abs/**/*.zsh; do [[ -f $f ]] && . $f; done
 # my functions
 # . ~/.env
 
-fpath+=~/.local/bin/zsh_functions #add our own zsh functions directory to fpath
+fpath+=~/.local/lib/zsh_functions #add our own zsh functions directory to fpath
 # https://stackoverflow.com/questions/30840651/what-does-autoload-do-in-zsh
 # use functions modify your shell environment
 # whereas scripts get their copy of the shell process
 # autoload tells zsh where to find the function
-autoload -Uz ~/.local/bin/zsh_functions/*(.) #-U supress alias expansion, -z zsh style function loading. (.) - glob qualifier. dot means show regular files only
+autoload -Uz ~/.local/lib/zsh_functions/*(.) #-U supress alias expansion, -z zsh style function loading. (.) - glob qualifier. dot means show regular files only
 autoload -U zmv # add the zsh zmv extension
 # . ~/.local/lib/zsh_funcs.zsh #get all my functions
 

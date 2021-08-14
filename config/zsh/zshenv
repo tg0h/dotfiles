@@ -61,15 +61,17 @@ export XDG_CACHE_HOME=$HOME/.cache
 # whatever was particular to a computer was in /usr/local
 # software in / or /usr may be overwritten by system upgrades, let the sysadmin 
 # have full reign over /usr/local
-# Any program or package which contains or requires data that doesn't need to be modified should store that data in /usr/share (or /usr/local/share, if installed locally).
+# Any program or package which contains or requires data that doesn't need to be 
+# modified should store that data in /usr/share (or /usr/local/share, if installed 
+# locally).
 export XDG_DATA_HOME=$HOME/.local/share
 
 # state data that should persist between (application) restarts, but that is not 
 # important or portable enough to the user that it should be stored in 
 # $XDG_DATA_HOME. It may contain:
 # actions history (logs, history, recently used files)
-# current state of the application that can be reused on a restart (view, layout, open files, undo history)
-# analogous to /var/lib
+# current state of the application that can be reused on a restart (view, layout, 
+# open files, undo history) analogous to /var/lib
 export XDG_STATE_HOME=$HOME/.local/state
 
 # Runtime files include filesystem objects such are sockets or named pipes that 
