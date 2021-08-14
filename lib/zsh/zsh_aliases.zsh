@@ -17,6 +17,8 @@ alias udc='cd $XDG_CONFIG_HOME'
 alias uda='cd $XDG_CACHE_HOME'
 alias udt='cd $XDG_DATA_HOME'
 alias uds='cd $XDG_STATE_HOME'
+alias udb='cd ~/.local/bin'
+alias udl='cd ~/.local/lib'
 
 alias zshf='nvim ~/local/lib/zsh/zsh_funcs.zsh' #misc functions, use zsh_functions folder for more organization
 alias zshk='nvim ~/.config/kitty/kitty.conf' # the kitty config file
