@@ -76,10 +76,11 @@ for f in ~/.local/lib/abs/***/*.zsh; do [[ -f $f ]] && . $f; done
 # config
 # add folders to path, not the executable!
 complete -C '/usr/local/bin/aws_completer' aws # enable aws completion - https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-completion.html
-export PATH="/usr/local/mysql/bin:$PATH" # add my sql to path
+export PATH="$PATH:$HOME/.local/bin"
+# export PATH="/usr/local/mysql/bin:$PATH" # add my sql to path
 export PATH="/usr/local/opt/sqlite/bin:$PATH" # add homebrew sqlite3 to path (do not use macos sqlite which is an older version)
-export PATH="$PATH:$HOME/dev/tools/flutter/bin" # add flutter
-export PATH="$PATH:$HOME/Library/Android/sdk/emulator" # add android emulator
+# export PATH="$PATH:$HOME/dev/tools/flutter/bin" # add flutter
+# export PATH="$PATH:$HOME/Library/Android/sdk/emulator" # add android emulator
 # export PATH="$PATH:/Users/tim/Library/Android/sdk/tools/bin" # add android emulator
 
 # the fzf key bindings and shell completions are here
@@ -122,3 +123,5 @@ eval $(thefuck --alias)
 # hack to rebind mcfly's ctrl r to ctrl e
 # eval "$(mcfly init zsh | sed "s,\^R,^E,")"
 unalias gg #god knows where the gg alias is coming from
+
+source $XDG_DATA_HOME/iterm2/iterm2_shell_integration.zsh
