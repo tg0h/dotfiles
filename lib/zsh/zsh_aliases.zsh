@@ -47,10 +47,10 @@ alias eu="nvim"
 # source from nvim cache
 alias son="so -n"
 # source
-alias ss="source $HOME/.local/lib/scratch"
+alias ss="source $HOME/.local/lib/scratch.zsh"
 alias sss="source $HOME/.config/zsh/.zshrc"
 # edit
-alias ee="nvim $HOME/.local/lib/scratch"
+alias ee="nvim $HOME/.local/lib/scratch.zsh"
 # dir   ====================================================================
 alias l='lsd -la' # -a show hidden files
 alias ll='lsd -l' # use lsd to supercharge ls output
