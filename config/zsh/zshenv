@@ -42,3 +42,6 @@ export TEALDEER_CONFIG_DIR=~/.config/tealdeer # https://dbrgn.github.io/tealdeer
 export TEALDEER_CACHE_DIR=~/.cache/tealdeer
 export PYENV_ROOT=$XDG_DATA_HOME/pyenv
 export FVM_HOME=$XDG_DATA_HOME/fvm
+export PUB_CACHE=$XDG_CACHE_HOME/pub-cache # for flutter/dart
+# export ANDROID_SDK_HOME=$XDG_DATA_HOME/android/.android # adb key
+# export ANDROID_PREFS_ROOT=$XDG_DATA_HOME/android/.android # adb key
