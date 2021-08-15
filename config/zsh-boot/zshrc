@@ -17,6 +17,9 @@ plugins=(
   zsh-autocomplete ###marlonrichert/zsh-autocomplete
   z fast-syntax-highlighting ###zdharma/fast-syntax-highlighting
 )
+
+#source my aliases and plugin settings
+for f in $XDG_CONFIG_HOME/zsh/***/*.zsh; do [[ -f $f ]] && . $f; done
 source $XDG_DATA_HOME/iterm2/iterm2_shell_integration.zsh
 source $ZSH/oh-my-zsh.sh
 source $XDG_CONFIG_HOME/zsh/p10k/p10k.zsh # p10k configuration
