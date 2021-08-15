@@ -21,9 +21,12 @@ function fsync(){
   # delete - remove files in target that do not belong in source
   # -v - verbose
   # -P - progress bar
+  # --quiet - don't show non-error messages
+  # --stats - show a summary of changes
 
   # Risk: what if i rysync wrongly and delete my home folder?
-  rsync -avP --delete --exclude node_modules ~/certis ~/dotfiles ~/dev ~/src /Volumes/joopyo/tim
+  rsync -aP --stats --delete --exclude node_modules --exclude tmp ~/certis ~/dotfiles ~/dev ~/src /Volumes/joopyo/tim
+  rsync -aP --stats --delete ~/Dropbox /Volumes/joopyo
 }
 
 function nsync(){
@@ -31,7 +34,7 @@ function nsync(){
   # delete - remove files in target that do not belong in source
   # -v - verbose
   # -P - progress bar
-  rsync -avP --delete /Volumes/joopyo/archive thoreau@tardis:~/backup
+  rsync -avP --delete /Volumes/joopyo/passport-archive thoreau@tardis:~/backup
 }
 
 function tsync(){
