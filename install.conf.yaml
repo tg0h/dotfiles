@@ -24,6 +24,7 @@
   - $XDG_DATA_HOME/android
   - $XDG_CONFIG_HOME/parallel
   - $XDG_CONFIG_HOME/sqlite3
+  - $XDG_CONFIG_HOME/zsh
   - $XDG_CACHE_HOME/tealdeer
 
 # <target>:<source (original file)>
@@ -37,14 +38,14 @@
       exclude: 
         - config/cheat/cheatsheets
         - config/ssh/*
-        - config/zsh/**
+        - config/zsh-boot/**
 
-    ~/.zshenv: config/zsh/boot.zshenv
+    ~/.zshenv: config/zsh-boot/boot.zshenv
     # zsh reads the dot files in the $ZDOTDIR dir
-    ~/.config/zsh/.zshenv: config/zsh/zshenv
-    ~/.config/zsh/.zprofile: config/zsh/zprofile
-    ~/.config/zsh/.zshrc: config/zsh/zshrc
-    ~/.config/zsh/p10k: config/zsh/p10k
+    ~/.config/zsh/.zshenv: config/zsh-boot/zshenv
+    ~/.config/zsh/.zprofile: config/zsh-boot/zprofile
+    ~/.config/zsh/.zshrc: config/zsh-boot/zshrc
+    ~/.config/zsh/p10k: config/zsh-boot/p10k
 
     ~/.ssh/: 
       path: config/ssh/*
