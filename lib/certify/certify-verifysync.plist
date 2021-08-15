@@ -7,7 +7,7 @@
 
   <key>ProgramArguments</key>
   <array>
-    <string>/Users/tim/dotfiles/bin/certify/certify-validate-sync.zsh</string>
+    <string>/Users/tim/.dotfiles/lib/certify/certify-verifysync.zsh</string>
   </array>
 
   <key>Nice</key>
@@ -27,9 +27,9 @@
   <false/>
 
   <key>StandardErrorPath</key>
-  <string>/tmp/certify/certifySyncReport.err</string>
+  <string>/tmp/certify-verifysync/certify-verifysync.err</string>
 
   <key>StandardOutPath</key>
-  <string>/tmp/certify/certifySyncReport.out</string>
+  <string>/tmp/certify-verifysync/certify-verifysync.out</string>
 </dict>
 </plist>

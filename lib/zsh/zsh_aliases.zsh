@@ -41,6 +41,12 @@ alias zshrds='nvim ~/.local/lib/zsh/aws/zsh_aws_rds.zsh'
 alias zshcw='nvim ~/.local/lib/zsh/aws/zsh_aws_cloudwatch.zsh'
 alias zshc='nvim ~/.local/lib/zsh/aws/zsh_aws_cognito.zsh'
 alias zshct='nvim ~/.local/lib/zsh/aws/zsh_aws_calltree.zsh'
+##certify
+ccon() { sqlite3 $_CERTIFY_VERIFY_DB }
+czc() { cd $_CERTIFY_COGNITO_LOCAL_FOLDER }
+czu() { cd $_CERTIFY_S3_BUCKET_SAP_SYNC_LOCAL_FOLDER }
+czr() { cd $_CERTIFY_S3_BUCKET_SAP_SYNC_REPORTS_LOCAL_FOLDER }
+czrr() { cd $_CERTIFY_VERIFY_REPORT_FOLDER }
 # quick print eval loop ====================================================
 # nvim
 alias eu="nvim"

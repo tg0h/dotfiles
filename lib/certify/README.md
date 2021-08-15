@@ -1,3 +1,19 @@
+## directories
+
+
+$XDG_DATA_HOME/certify-verifysync/envs/prod/report/
+$XDG_DATA_HOME/certify-verifysync/envs/prod/report/cognito_verify.sqlite3
+
+$XDG_STATE_HOME/certify-verifysync/envs/prod/s3/
+$XDG_STATE_HOME/certify-verifysync/envs/prod/s3/users/uploads
+$XDG_STATE_HOME/certify-verifysync/envs/prod/s3/users/reports
+
+$XDG_CACHE_HOME/certify-verifysync/envs/prod/cognito
+$XDG_CACHE_HOME/certify-verifysync/envs/prod/cognito/users.csv
+$XDG_CACHE_HOME/certify-verifysync/envs/prod/cognito/users.json
+$XDG_CACHE_HOME/certify-verifysync/envs/prod/report
+$XDG_CACHE_HOME/certify-verifysync/envs/prod/report/... tmp files
+
 ## Stage 1
 ###Get s3 files , filter for SG users and put in stage1 file
 * only get SG users

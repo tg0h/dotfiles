@@ -32,12 +32,6 @@
 #   # export _CERTIFY_PROFILE=$certify_profile
 # }
 
-##certify
-ccon() { sqlite3 $_CERTIFY_VERIFY_DB }
-czc() { cd $_CERTIFY_COGNITO_LOCAL_FOLDER }
-czu() { cd $_CERTIFY_S3_BUCKET_SAP_SYNC_LOCAL_FOLDER }
-czr() { cd $_CERTIFY_S3_BUCKET_SAP_SYNC_REPORTS_LOCAL_FOLDER }
-czrr() { cd $_CERTIFY_VERIFY_REPORT_FOLDER }
 
 #get user details
 function cget() {
@@ -261,7 +255,7 @@ csync() {
 
 #run the certify sync report
 crep() {
-  ~/.dotfiles/lib/certify/certify-validate-sync.zsh
+  ~/.dotfiles/lib/certify/certify-verifysync.zsh
 }
 
 cupload() {

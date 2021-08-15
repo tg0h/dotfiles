@@ -13,8 +13,8 @@
 # TODO: if running the script manually, where to output the echo command?
 # TODO: add timestamp to SyncErrorReport attachment in email
 
-mkdir -p /tmp/certify
-echo certify validate sync ran at: $(date) >> /tmp/certify/certify-validate-sync-log
+mkdir -p /tmp/certify-verifysync
+echo certify-verifysync ran at: $(date) >> /tmp/certify-verifysync/log
 
 path=('/usr/local/bin' $path) # add homebrew packages
 path=('/usr/local/opt/sqlite/bin' $path) # add homebrew sqlite3 to path (do not use macos sqlite which is an older version)
@@ -293,5 +293,5 @@ fi
 [ -f $empStatusPatchFileName ] && echo "employment status patch" | mutt -s "SAP Sync Error Report employment status patch" ***REMOVED*** -a $empStatusPatchFileName
 [ -f $emailPatchFileName ] && echo "email patch" | mutt -s "SAP Sync Error Report email patch" ***REMOVED*** -a $emailPatchFileName
 
-mkdir -p /tmp/certify
-echo certify validate sync finished at: $(date) >> /tmp/certify/certify-validate-sync-log
+mkdir -p /tmp/certify-verifysync
+echo certify validate sync finished at: $(date) >> /tmp/certify-verifysync/log

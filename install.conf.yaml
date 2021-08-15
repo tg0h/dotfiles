@@ -21,6 +21,7 @@
 
 - create:
   - $XDG_DATA_HOME/z # for z to store its frecency dir list
+  - $XDG_DATA_HOME/android
   - $XDG_CONFIG_HOME/parallel
   - $XDG_CONFIG_HOME/sqlite3
   - $XDG_CACHE_HOME/tealdeer
@@ -58,6 +59,6 @@
 
     # certis
     ~/src/certis/edo/abc-cli/config/environment/: config/abc-cli/env/*
-    ~/Library/LaunchAgents/certify-validate-sync.plist: lib/certify/certify-validate-sync.plist #certify sync job
+    ~/Library/LaunchAgents/certify-verifysync.plist: lib/certify/certify-verifysync.plist #certify sync job
     # me
     ~/src/me/timtoggl/timtoggl/.env: config/timtoggl/secret/env
