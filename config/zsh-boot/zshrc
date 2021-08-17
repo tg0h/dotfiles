@@ -59,3 +59,5 @@ export HP_BLUE_IP=192.168.1.64:5555
 export HP_CALLTREE_IP=192.168.1.170:5555
 
 export ARGUS_LOGCAT_FILTER_KOTLIN="$XDG_CONFIG_HOME/argus/adb/argus.logcatFilter.kotlin.txt"
+
+autoload zmv # so i can use zmv immediately
