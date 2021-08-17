@@ -1,7 +1,7 @@
 function fzf-search-wiki-widget() {
   # ^N^W to search the wiki
   
-  fd --color always . '/Users/tim/certis/resources/wiki' | fzf --ansi
+  fd --color always . '/Users/tim/certis/docs/wiki' | fzf --ansi
   zle reset-prompt;
   LBUFFER+=$result
 }

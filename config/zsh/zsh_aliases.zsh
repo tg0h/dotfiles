@@ -8,10 +8,10 @@ alias -g J='| jq .'
 # edit config file shortcuts
 alias dos='nvim ~/.dotfiles/install.conf.yaml' # dotbot sourcefile
 alias doi='dotbot --verbose -c ~/.dotfiles/install.conf.yaml'
-alias zshr='nvim ~/.dotfiles/config/zsh/zshrc'
+alias zshr='nvim ~/.dotfiles/config/zsh-boot/zshrc'
 alias zshe='nvim ~/.env'
 alias zshz='nvim ~/.config/zsh/.zshenv'
-alias zshaa='nvim ~/.local/lib/zsh/zsh_aliases.zsh'
+alias zshaa='nvim $XDG_CONFIG_HOME/zsh/zsh_aliases.zsh'
 
 alias udc='cd $XDG_CONFIG_HOME'
 alias uda='cd $XDG_CACHE_HOME'
@@ -19,6 +19,8 @@ alias udt='cd $XDG_DATA_HOME'
 alias uds='cd $XDG_STATE_HOME'
 alias udb='cd ~/.local/bin'
 alias udl='cd ~/.local/lib'
+
+alias doc='cd ~/src/me/website/docs/'
 
 alias zshf='nvim ~/local/lib/zsh/zsh_funcs.zsh' #misc functions, use zsh_functions folder for more organization
 alias zshk='nvim ~/.config/kitty/kitty.conf' # the kitty config file

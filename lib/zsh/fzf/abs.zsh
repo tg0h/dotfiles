@@ -1,4 +1,4 @@
-export _fzf_absdir="$HOME/dev/working/abs/abs/"
+export _fzf_absdir="$HOME/src/me/abs/abs/"
 
 _fzf_abs_getFunctions(){
   # get all functions and description in abs folder
