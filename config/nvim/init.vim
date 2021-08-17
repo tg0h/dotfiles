@@ -116,8 +116,8 @@ set list listchars=tab:»\ ,trail:·,nbsp:⎵,precedes:<,extends:>
 " set cursorline             " show where the cursor is
 
 "save your folds
-autocmd BufWinLeave *.* mkview
-autocmd BufWinEnter *.* silent loadview 
+" autocmd BufWinLeave *.* mkview
+" autocmd BufWinEnter *.* silent loadview 
 " Vim mappings ====================================================================================================
 " n                 normal mode map
 " i                 insert
