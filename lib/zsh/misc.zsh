@@ -1,3 +1,12 @@
+function zar(){
+  # move all files to the archive folder in the current directory
+  # -Q - force bare qualifiers on
+  # move only files to the archive folder
+  # . is a glob qualifier it matches on files
+  # https://stackoverflow.com/questions/12565974/rename-multiple-files-with-zmv-but-not-directories
+
+  zmv -Q '(*)(.D)' archive/$1
+}
 # rg shortcuts
 function rgs(){ rg $1 --sortr created }
 
