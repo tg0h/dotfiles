@@ -17,8 +17,13 @@ export XDG_DOCUMENTS_DIR="$HOME/Documents"
 export EDITOR=nvim
 
 # source every file (include subdirs) in .zsh
-for f in ~/.local/lib/zsh/***/*; do [[ -f $f ]] && . $f; done
 for f in ~/.local/lib/abs/***/*.zsh; do [[ -f $f ]] && . $f; done
+
+# the join-lines function in git.zsh is used by my widgets and must be sourced here
+source ~/.local/lib/zsh/fzf/git.zsh #the join-lines function is used by my widget
+# the display function for my abs and home function widgets must be sourced here
+source ~/.local/lib/zsh/fzf/abs.zsh #the display function is used by my widget
+source ~/.local/lib/zsh/fzf/home_fns.zsh
 
 # SECRETS
 export GMAIL_TIMTESTALLTHETHINGS_PASSWORD=***REMOVED*** # export email pw for mutt
