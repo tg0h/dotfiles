@@ -116,8 +116,8 @@ function acd() {
     # wrap command in $() to open a new subshell so that when it prints loading
     # indicator to stdout, it is lost?
     # TODO: append date time stamp to file ?
-    $(appcenter distribute groups download --group Collaborators) &
-    # appcenter distribute groups download --group Collaborators
+    # $(appcenter distribute groups download --group Collaborators) &
+    appcenter distribute groups download --group Collaborators
   fi
 }
 
