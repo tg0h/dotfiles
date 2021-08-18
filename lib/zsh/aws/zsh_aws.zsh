@@ -29,7 +29,7 @@ function as(){
       export AWS_DEFAULT_REGION=ap-southeast-2
       . $XDG_CONFIG_HOME/aws/aws.argus.au.staging.env
       . $XDG_CONFIG_HOME/argus/env/argusAu.staging.env
-      # . ~/.abs/argus.au.staging.env
+      . $XDG_CONFIG_HOME/abs/argus.au.staging.env
       asp aastg
       ;;
     ap)
