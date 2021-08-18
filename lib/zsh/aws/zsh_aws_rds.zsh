@@ -192,6 +192,17 @@ where staff_id = '$1'
 EOF
 }
 
+function oesi() {
+  # get Staff Id from user id
+  # examples:
+  # o
+  mysqlsh --sql -u $_ARGUS_RDS_DB_USER_USER -h 127.0.0.1 -P $_ARGUS_RDS_DB_USER_LOCAL_PORT -D $_ARGUS_RDS_DB_USER_NAME --result-format=table << EOF
+select staff_id
+from users
+where id = '$1'
+EOF
+}
+
 #helper function for dynamodb.
 function _dbGetAccountId() {
   mysqlsh --sql -u $_ARGUS_RDS_DB_USER_USER -h 127.0.0.1 -P $_ARGUS_RDS_DB_USER_LOCAL_PORT -D $_ARGUS_RDS_DB_USER_NAME --result-format=json << EOF | jq -r .id
