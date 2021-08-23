@@ -12,7 +12,7 @@ function as(){
       ;;
     s)
       export AWS_DEFAULT_REGION=ap-southeast-1
-      . $XDG_CONFIG_HOME/aws.argus.develop.env
+      . $XDG_CONFIG_HOME/aws/aws.argus.staging.env #TODO: duplication?
       . $XDG_CONFIG_HOME/argus/env/argus.staging.env
       . $XDG_CONFIG_HOME/abs/argus.staging.env
       asp adev
