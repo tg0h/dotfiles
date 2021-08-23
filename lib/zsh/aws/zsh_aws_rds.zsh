@@ -510,6 +510,8 @@ select
        la.status,
        la.reason,
        la.method,
+       la.photo,
+       la.regPhoto,
        la.similarity,
        la.createdAt
 from login_attempts la
