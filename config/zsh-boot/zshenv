@@ -52,7 +52,8 @@ export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
 export SQLITE_HISTORY=$XDG_DATA_HOME/sqlite_history
 export AWS_SHARED_CREDENTIALS_FILE="$XDG_CONFIG_HOME"/aws/credentials # vs AWS_CREDENTIALS?
 export AWS_CONFIG_FILE="$XDG_CONFIG_HOME"/aws/config
-export AWS_WEB_IDENTITY_TOKEN_FILE="$XDG_DATA_HOME/aws/token"
+# if enabled, web identity token breaks aws sb profile?
+# export AWS_WEB_IDENTITY_TOKEN_FILE="$XDG_DATA_HOME/aws/token" 
 export GNUPGHOME="$XDG_DATA_HOME"/gnupg
 export TEALDEER_CONFIG_DIR=~/.config/tealdeer # https://dbrgn.github.io/tealdeer/config.html
 export TEALDEER_CACHE_DIR=~/.cache/tealdeer
