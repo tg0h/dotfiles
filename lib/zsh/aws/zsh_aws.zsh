@@ -58,11 +58,14 @@ function as(){
       . $XDG_CONFIG_HOME/certify/certify.production.env
       asp cprod
       ;;
-
     sb)
       export AWS_DEFAULT_REGION=ap-southeast-1
-      . ~/.aws/aws.sandbox.env
+      . $XDG_CONFIG_HOME/aws/aws.sandbox.env
       asp sb
+      ;;
+    cvs)
+      export AWS_DEFAULT_REGION=ap-southeast-1
+      asp cvs
       ;;
     *)
       echo "${fg[red]} no profile found ${reset_color}"
