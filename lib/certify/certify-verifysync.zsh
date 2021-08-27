@@ -22,7 +22,8 @@ export PATH
 
 echo this is path $path
 
-. $HOME/.dotfiles/config/zsh/zshrc #get everything
+# TODO: this is a code smell
+. $HOME/.dotfiles/config/zsh-boot/zshrc #get everything
 # cerp p #get env variables
 as cp
 
