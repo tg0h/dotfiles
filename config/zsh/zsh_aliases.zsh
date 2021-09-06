@@ -62,7 +62,7 @@ alias ee="nvim $HOME/.local/lib/scratch.zsh"
 # dir   ====================================================================
 alias l='lsd -la' # -a show hidden files
 alias ll='lsd -l' # use lsd to supercharge ls output
-alias lt="lsd -lat"
+alias lt="lsd -lt" # exclude hidden files to exclude . and ..
 alias lr="lsd -lar" #reverse the sort
 # exa
 alias exat="exa --tree --long --icons --git"
