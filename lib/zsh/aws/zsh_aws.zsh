@@ -40,6 +40,30 @@ function as(){
       asp aaprod
       ;;
 
+    od)
+      export AWS_DEFAULT_REGION=ap-southeast-1
+      #stores cloudwatch cache log name
+      . $XDG_CONFIG_HOME/aws/aws.optimax.develop.env
+      # argus ssh and rds settings
+      . $XDG_CONFIG_HOME/argus/env/optimax.develop.env
+      . $XDG_CONFIG_HOME/abs/optimax.develop.env
+      asp odev
+      ;;
+    os)
+      export AWS_DEFAULT_REGION=ap-southeast-1
+      . $XDG_CONFIG_HOME/aws/aws.optimax.staging.env #TODO: duplication?
+      . $XDG_CONFIG_HOME/argus/env/optimax.staging.env
+      . $XDG_CONFIG_HOME/abs/optimax.staging.env
+      asp odev
+      ;;
+    op)
+      export AWS_DEFAULT_REGION=ap-southeast-1
+      . $XDG_CONFIG_HOME/aws/aws.optimax.production.env
+      . $XDG_CONFIG_HOME/argus/env/optimax.production.env
+      . $XDG_CONFIG_HOME/abs/optimax.production.env
+      asp oprod
+      ;;
+
     cd)
       export AWS_DEFAULT_REGION=ap-southeast-1
       . $XDG_CONFIG_HOME/aws/aws.certify.develop.env
