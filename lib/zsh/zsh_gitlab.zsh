@@ -10,7 +10,10 @@ function _setGitlabProj() {
       echo Argus Flutter
       ;;
     o) export GITLAB_PROJECT_ID=229
-      echo Optimax
+      echo Optimax Android
+      ;;
+    oc) export GITLAB_PROJECT_ID=231
+      echo Optimax CC
       ;;
     c) export GITLAB_PROJECT_ID=118
       echo Argus CC
@@ -23,6 +26,12 @@ function _setGitlabProj() {
 
 function gsp () {
   # gitlab switch profile
+  # a - argus kotlin
+  # f - argus flutter
+  # o - optimax
+  # c - cc
+  # oc - optimax cc
+  # t - argus cc test
 
   if [[ -z "$1" ]]
   then
@@ -30,6 +39,8 @@ function gsp () {
     [[ $GITLAB_PROJECT_ID == 202 ]] && echo Argus Flutter
     [[ $GITLAB_PROJECT_ID == 118 ]] && echo Argus CC
     [[ $GITLAB_PROJECT_ID == 223 ]] && echo My Gitlab Test Project
+    [[ $GITLAB_PROJECT_ID == 229 ]] && echo Optimax Android
+    [[ $GITLAB_PROJECT_ID == 231 ]] && echo Optimax CC
     return
   fi
 
