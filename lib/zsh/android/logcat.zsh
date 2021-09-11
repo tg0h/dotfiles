@@ -79,7 +79,7 @@ function adl() {
   local usbMode=""
   local ip=""
   #if -a app argument not given, get the pid of the first app named argus
-  local appId="argus"
+  local appId="argus|optimax"
 
   local filter #filter used to filter log message
   local filterIsRaw #if this option is set, set the filter to an empty string
