@@ -1,5 +1,5 @@
 _fzf-sb-getDirs(){
-  #remove # comments and empty lines
+  # remove # comments and empty lines
   cat $1 | sed 's/#.*//g' | sed '/^\s*$/d'
 }
 
