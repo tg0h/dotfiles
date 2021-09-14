@@ -242,7 +242,7 @@ function cgetss() {
 }
 
 ## cognito pool operations
-csync() {
+function csync() {
   #sync source to destination (one way)
   #source is the users uploads dir
   #include only works if you exclude everything first
@@ -254,11 +254,11 @@ csync() {
 }
 
 #run the certify sync report
-crep() {
+function crep() {
   ~/.dotfiles/lib/certify/certify-verifysync.zsh
 }
 
-cupload() {
+function cup() {
   # TODO: what happens if $has spaces?
   local basename=$(basename $1)
 
