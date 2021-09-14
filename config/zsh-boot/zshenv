@@ -26,13 +26,8 @@ source ~/.local/lib/zsh/fzf/git.zsh #the join-lines function is used by my widge
 source ~/.local/lib/zsh/fzf/abs.zsh #the display function is used by my widget
 source ~/.local/lib/zsh/fzf/home_fns.zsh
 
-# SECRETS
-export GMAIL_TIMTESTALLTHETHINGS_PASSWORD=***REMOVED*** # export email pw for mutt
-export APPCENTER_ACCESS_TOKEN=***REMOVED***
-NETLIFY_AUTH_TOKEN=***REMOVED***
-GITHUB_TOKEN=***REMOVED***
-GITLAB_PRIVATE_TOKEN=***REMOVED*** # use this for my gitlab
-NAS_SSH_PASSWORD=***REMOVED*** # use this to shut down nas via ssh
+# SECRETS - do not store secrets in git
+source ~/.dotfiles/.env
 
 export MOBILE_CENTER_CURRENT_APP=***REMOVED***
 
