@@ -1,4 +1,5 @@
 # https://docs.atlassian.com/jira-software/REST/7.3.1/
+# https://docs.atlassian.com/software/jira/docs/api/REST/8.19.0
 # $JIRA_URL is defined in zsh_jira.plug.zsh
 # $JIRA_SECRET is defined in the env file
 
@@ -9,7 +10,7 @@ function rab(){
 
   # jq
   # -r - raw output
-  https -b -a $JIRA_SECRET $JIRA_URL/rest/agile/1.0/board \
+  https --print=HhBb -b -a $JIRA_SECRET $JIRA_URL/rest/agile/1.0/board \
     | jq -r  '.values[] | (.id|tostring) + " - " + .name'
   }
 
