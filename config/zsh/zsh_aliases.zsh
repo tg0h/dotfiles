@@ -9,7 +9,7 @@ alias -g J='| jq .'
 alias dos='nvim ~/.dotfiles/install.conf.yaml' # dotbot sourcefile
 alias doi='dotbot --verbose -c ~/.dotfiles/install.conf.yaml'
 alias zshr='nvim ~/.dotfiles/config/zsh-boot/zshrc'
-alias zshe='nvim ~/.env'
+alias zshe='nvim ~/.dotfiles/.env'
 alias zshz='nvim ~/.config/zsh/.zshenv'
 alias zshaa='nvim $XDG_CONFIG_HOME/zsh/zsh_aliases.zsh'
 
