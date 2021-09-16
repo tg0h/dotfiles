@@ -1,9 +1,12 @@
 # the zsh git plugin defines git aliases in ~/.oh-my-zsh/plugins/git/git.plugin.zsh
-function gg(){ 
+function gg(){
   #lazy git commiting when prototyping
   git add .
-  git commit -m 'gg'
-  git push
+  if [ -z "$1" ]; then
+    git commit -m 'gg'
+  else
+    git commit -m "$1"
+  fi
 }
 
 # if you don't specify a branch, it compares against the current HEAD you're on, ie which branch you're currently on
