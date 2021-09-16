@@ -44,7 +44,7 @@ function adls() {
           c) appFilter="cathy" ;; # certify
           t) appFilter="titus" ;; # certify
           o) appFilter="optimax" ;; # certify
-          *) appFilter="argus|cathy|titus|optimax" ;; # show all apps
+          A) appFilter="argus|cathy|titus|optimax" ;; # show all apps
         esac
         ;;
     esac
