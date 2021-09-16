@@ -289,10 +289,16 @@ if [ $errorCount -gt 0 ]; then
   echo "Errors found in Sap Sync" | mutt -s "SAP Sync Error Report" ***REMOVED*** -a SyncErrorReport.csv
 fi
 
+# put the patch files in the tmp folder
 # if patch file exists, email it
-[ -f $phonePatchFileName ] && echo "phone number patch" | mutt -s "SAP Sync Error Report phone number patch" ***REMOVED*** -a $phonePatchFileName
-[ -f $empStatusPatchFileName ] && echo "employment status patch" | mutt -s "SAP Sync Error Report employment status patch" ***REMOVED*** -a $empStatusPatchFileName
-[ -f $emailPatchFileName ] && echo "email patch" | mutt -s "SAP Sync Error Report email patch" ***REMOVED*** -a $emailPatchFileName
+# [ -f $phonePatchFileName ] && echo "phone number patch" | mutt -s "SAP Sync Error Report phone number patch" ***REMOVED*** -a $phonePatchFileName
+# [ -f $empStatusPatchFileName ] && echo "employment status patch" | mutt -s "SAP Sync Error Report employment status patch" ***REMOVED*** -a $empStatusPatchFileName
+# [ -f $emailPatchFileName ] && echo "email patch" | mutt -s "SAP Sync Error Report email patch" ***REMOVED*** -a $emailPatchFileName
 
 mkdir -p /tmp/certify-verifysync
+
+[ -f $phonePatchFileName ] && cp $phonePatchFileName /tmp/certify-verifysync
+[ -f $empStatusPatchFileName ] && cp $empStatusPatchFileName /tmp/certify-verifysync
+[ -f $emailPatchFileName ] && cp $emailPatchFileName /tmp/certify-verifysync
+
 echo certify validate sync finished at: $(date) >> /tmp/certify-verifysync/log
