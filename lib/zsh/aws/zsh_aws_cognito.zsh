@@ -262,7 +262,7 @@ function cup() {
   # TODO: what happens if $has spaces?
   local basename=$(basename $1)
 
-  aws s3 cp $1 "$_CERTIFY_S3_BUCKET_SAP_SYNC/$basename"
+  aws s3 cp $1 "$_CERTIFY_S3_BUCKET_SAP_SYNC/"
 }
 
 # cognito list all users
