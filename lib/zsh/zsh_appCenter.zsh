@@ -130,6 +130,7 @@ function acg() {
   # EXAMPLES:
   # acg - make the latest release publically availble
   # acg -i <releaseId> - specify a release id to make publically available
+  # -m|--mandatory Whether the release is mandatory for the testers (Not used for stores) 
 
 
   local id
@@ -141,7 +142,7 @@ function acg() {
     esac
   done
 
-  appcenter distribute releases add-destination --destination Public --type group --release-id $id
+  appcenter distribute releases add-destination --mandatory --destination Public --type group --release-id $id
 }
 
 function _appCenter_getLatestReleaseId () {
