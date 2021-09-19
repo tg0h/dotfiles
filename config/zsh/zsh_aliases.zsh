@@ -1,4 +1,4 @@
-# GLOBAL ALIASES ==========================================================
+#tmp GLOBAL ALIASES ==========================================================
 alias -g F='| fzf' # change Z to whatever you like
 alias -g T='| jq ".pay | fromjson"' # converT argus api stringifield payload back to json
 alias -g G='| gron' 
@@ -63,6 +63,7 @@ alias exat="exa --tree --long --icons --git"
 #zsh jira plugin
 alias j=jira
 alias zt="cd /tmp"
+alias zd="cd ~/Downloads"
 alias ag="alias | grep"
 alias sg="set | grep"
 alias fork="open . -a /Applications/Fork.app"
