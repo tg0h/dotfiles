@@ -55,7 +55,7 @@ unalias gg #god knows where the gg alias is coming from
 export HP_RED_IP=192.168.1.19:5555
 export HP_RED_SERIAL=R58M52BJJXP
 export HP_YELLOW_IP=192.168.1.188:5555
-export HP_BLUE_IP=192.168.1.64:5555
+export HP_BLUE_IP=192.168.1.110:5555 # xcover 5
 export HP_CALLTREE_IP=192.168.1.170:5555
 
 export ARGUS_LOGCAT_FILTER_KOTLIN="$XDG_CONFIG_HOME/argus/adb/argus.logcatFilter.kotlin.txt"
