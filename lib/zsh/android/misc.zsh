@@ -17,6 +17,15 @@ function adp() {
   adb -d pull /sdcard/DCIM/screenshots
 }
 
+function adpush() {
+  # push screenshots, etc from phone
+  # gets the ip of the phone connected via usb
+  # Camera
+  # Screenshots
+  # Videocaptures
+  adb -d push $1 /sdcard/DCIM/screenshots
+}
+
 function adls() {
   # list installed packages on phone
   #
