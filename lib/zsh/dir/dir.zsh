@@ -19,6 +19,8 @@ function lt1(){
 
 function ud(){
   # switch to my config folder
+  # ud <searchDir> <searchDepth)
+  # eg ud ~/.locall/bin 2
   # udc - config
   # uda - cache
   # udt - data
@@ -27,7 +29,10 @@ function ud(){
   # udl - lib
   local changeToDir
   local searchDir=${1:-$XDG_CONFIG_HOME} # var expansion with default - get the $1 arg, if not found, default to $XDG_CONFIG_HOME
-  changeToDir=$(fd . $searchDir --hidden --color always --max-depth 1 | fzf +m --preview='[[ $(file --mime {}) =~ inode/directory ]] && exa --tree --long --icons --git --color always --octal-permissions --sort created --reverse --level 1 {} || (bat --style=numbers --color=always {} || cat {}) 2> /dev/null | head -300') &&
+  local searchDepth=${2:-1} # var expansion with default - get the $1 arg, if not found, default to $XDG_CONFIG_HOME
+  # fd --follow - follow symlink
+  # TODO: exa does not show the contents for the symlink if you do not specify a trailing /
+  changeToDir=$(fd . $searchDir --hidden --follow --color always --max-depth $searchDepth | fzf +m --preview='[[ $(file --mime {}) =~ inode/directory ]] && exa --tree --long --icons --git --color always --octal-permissions --sort created --reverse --level 3 {}/ || (bat --style=numbers --color=always {} || cat {}) 2> /dev/null | head -300') &&
   cd "$changeToDir"
 }
 function udc(){ ud $XDG_CONFIG_HOME }
@@ -35,4 +40,4 @@ function uda(){ ud $XDG_CACHE_HOME }
 function udt(){ ud $XDG_DATA_HOME }
 function uds(){ ud $XDG_STATE_HOME }
 function udb(){ ud ~/.local/bin }
-function udl(){ ud ~/.local/lib }
+function udl(){ ud ~/.local/lib 2}
