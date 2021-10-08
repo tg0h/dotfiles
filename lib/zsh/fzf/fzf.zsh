@@ -10,6 +10,8 @@
 # TODO: understand piping wizadry needed to open terminal nvim with ctrl e keybind
 # https://github.com/junegunn/fzf/issues/1593#issuecomment-498007983
 
+# --preview='[[ \$(file --mime {}) =~ binary ]] && echo {} is a binary file || (bat --style=numbers --color=always {} || cat {}) 2> /dev/null | head -300'
+# --preview='[[ \$(file --mime {}) =~ inode/directory ]] && fd . {} --hidden --color always --max-depth 2 || (bat --style=numbers --color=always {} || cat {}) 2> /dev/null | head -300'
 export FZF_DEFAULT_OPTS="
 --ansi
 --no-mouse
@@ -18,7 +20,7 @@ export FZF_DEFAULT_OPTS="
 --reverse
 --multi
 --inline-info
---preview='[[ \$(file --mime {}) =~ binary ]] && echo {} is a binary file || (bat --style=numbers --color=always {} || cat {}) 2> /dev/null | head -300'
+--preview='[[ \$(file --mime {}) =~ inode/directory ]] && exa --tree --long --icons --git --color always --octal-permissions --sort created --reverse {} || (bat --style=numbers --color=always {} || cat {}) 2> /dev/null | head -300'
 --bind='f3:execute(bat --style=numbers {} || less -f {})'
 --bind='f2:toggle-preview'
 --bind='ctrl-d:half-page-down'
@@ -52,7 +54,7 @@ export FZF_CTRL_T_OPTS="--preview-window='right:wrap'"
 #The following example uses tree command to show the entries of the directory.
 #show directories, include hidden dirs, include ignored files/folders from .gitignore
 export FZF_ALT_C_COMMAND="fd --type d --hidden --no-ignore $FD_OPTIONS"
-export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
+export FZF_ALT_C_OPTS="--preview 'lsd {} --tree --color always --icon always'"
 
 
 
