@@ -3,6 +3,11 @@
 # $JIRA_URL is defined in zsh_jira.plug.zsh
 # $JIRA_SECRET is defined in the env file
 
+function f(){
+  # f 2805 opens ARG-2805 in jira in firefox
+  open -a firefox https://jira.ads.certis.site/browse/ARG-$1
+}
+
 function rab(){
   # list jira boards
   # -a means --auth
