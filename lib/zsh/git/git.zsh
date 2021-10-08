@@ -1,3 +1,30 @@
+function gtd (){
+  # delete local tags with git tag -d <tagName>
+  # gtd <tagName>
+  git tag -d $1
+}
+
+function gtdd (){
+  # delete remote tags with git push --delete origin
+  # gtdd <tagName>
+  # this uses the same base git command that gbrmd etc uses
+  
+  git push --delete origin $1
+}
+
+function gtaf(){
+  # overwrite a tag
+  # gtaf <tagName> <tag annotation>
+  
+  git tag -f -a $1 -m $2
+}
+function gta (){
+  # add an annotated git tag with git tag -a
+  # optionally support a message with -m
+  # gta <tagName>
+  # gta <tagName> <tag annotation>
+  git tag -a $1 -m $2
+}
 function gbca (){
   # accept a single branch or a space delimited branch
   # gbca <branch1>
@@ -86,7 +113,7 @@ function gbnmrd(){
 
   #if dryRun, print dry run
   [[ -n $dryRun ]] && echo dry run:
-  gbnmr | rg $1 | gcut -f2- -d/| xargs -P 12 -n 1 -I{} git push $dryRun -d origin {}
+  git branch -r --no-merged | rg -v 'release' | rg $1 | gcut -f2- -d/| xargs -P 12 -n 1 -I{} git push $dryRun -d origin {}
   # gbnmr | rg $1 | gcut -f2- -d/| xargs -P 12 -n 1 -I{} git push --dry-run -d origin {}
 }
 
@@ -119,7 +146,7 @@ function gbmrd(){
 
   #if dryRun, print dry run
   [[ -n $dryRun ]] && echo dry run:
-  gbmr | rg $1 | gcut -f2- -d/| xargs -P 12 -n 1 -I{} git push $dryRun -d origin {}
+  git branch -r --merged | rg $1 | gcut -f2- -d/| xargs -P 12 -n 1 -I{} git push $dryRun -d origin {}
 }
 
 # =============================================================================
