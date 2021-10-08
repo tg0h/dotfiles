@@ -1,4 +1,5 @@
 #!/usr/local/bin/zsh #this is the location of homebrew zsh
+#
 # to change shell, add the homebrew zsh path, /usr/local/bin/zsh to /etc/shells, then chsh -s to /usr/local/bin/zsh, then restart mac
 #
 # dependencies:
@@ -296,7 +297,9 @@ fi
 # [ -f $emailPatchFileName ] && echo "email patch" | mutt -s "SAP Sync Error Report email patch" ***REMOVED*** -a $emailPatchFileName
 
 mkdir -p /tmp/certify-verifysync
+mkdir -p /tmp/certify-verifysync/report
 
+[ -f SyncErrorReport.csv ] && cp SyncErrorReport.csv /tmp/certify-verifysync/report
 [ -f $phonePatchFileName ] && cp $phonePatchFileName /tmp/certify-verifysync
 [ -f $empStatusPatchFileName ] && cp $empStatusPatchFileName /tmp/certify-verifysync
 [ -f $emailPatchFileName ] && cp $emailPatchFileName /tmp/certify-verifysync
