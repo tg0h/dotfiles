@@ -98,6 +98,7 @@ _fzf_home_displayFunction(){
   # rg
   # -n - show line numbers
   # -H - show filename
+  # -e means expression aka --regexp
   # -e 'function[^(]*'$inputFunc'\W' -e "\s*}$" $inputFile \
   
      # --field-match-separator ' ' \
