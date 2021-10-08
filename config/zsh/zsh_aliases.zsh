@@ -25,7 +25,7 @@ alias zshd='nvim ~/.local/lib/zsh/zsh_docker_aliases.zsh'
 alias zshfzf='nvim ~/.local/lib/zsh/zsh_fzf.zsh' 
 alias zshrc='nvim ~/.local/lib/zsh/redis.zsh'
 # git
-alias zshgit='nvim ~/.local/lib/zsh/zsh_git_aliases.zsh'
+alias zshgit='nvim ~/.config/zsh/git_aliases.zsh'
 alias zshgitf='nvim ~/.local/lib/zsh/zsh_fzf_git.zsh'
 # devops, deployment
 alias zshj='nvim ~/.local/lib/zsh/zsh_jira.zsh'
@@ -58,12 +58,17 @@ alias ll='lsd -l' # use lsd to supercharge ls output
 alias lt="lsd -lt" # exclude hidden files to exclude . and ..
 alias lr="lsd -lar" #reverse the sort
 # exa
-alias exat="exa --tree --long --icons --git"
+alias exat="exa --tree --long --icons --git --color always --octal-permissions --sort created --reverse"
+alias exatl="exat --level"
+alias exatal="exat --all --level" #include hidden and dot files
 # utils ====================================================================
 #zsh jira plugin
 alias j=jira
 alias zt="cd /tmp"
+alias ztc="cd /tmp/certify-verifysync/"
+alias ztcr="cd /tmp/certify-verifysync/report"
 alias zd="cd ~/Downloads"
+alias zz=" cd ~/.dotfiles"
 alias ag="alias | grep"
 alias sg="set | grep"
 alias fork="open . -a /Applications/Fork.app"
