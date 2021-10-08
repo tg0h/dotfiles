@@ -26,7 +26,6 @@ zle -N _fzf-redraw-prompt
 function fzf-search-bookmarks-widget(){
   local dest_dir=$(_fzf-sb-showDirs | fzf --preview-window hidden --height 100)
 
-
    if [[ $dest_dir != '' ]]; then
       cd "$dest_dir"
    fi
