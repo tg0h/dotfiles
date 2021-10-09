@@ -3,7 +3,7 @@ function as(){
   local profile
   case $1 in
     d)
-      export AWS_DEFAULT_REGION=ap-southeast-1
+      # export AWS_DEFAULT_REGION=ap-southeast-1
       #stores cloudwatch cache log name
       . $XDG_CONFIG_HOME/aws/aws.argus.develop.env
       # argus ssh and rds settings
@@ -12,14 +12,14 @@ function as(){
       asp adev
       ;;
     s)
-      export AWS_DEFAULT_REGION=ap-southeast-1
+      # export AWS_DEFAULT_REGION=ap-southeast-1
       . $XDG_CONFIG_HOME/aws/aws.argus.staging.env #TODO: duplication?
       . $XDG_CONFIG_HOME/argus/env/argus.staging.env
       . $XDG_CONFIG_HOME/abs/argus.staging.env
       asp adev
       ;;
     p)
-      export AWS_DEFAULT_REGION=ap-southeast-1
+      # export AWS_DEFAULT_REGION=ap-southeast-1
       . $XDG_CONFIG_HOME/aws/aws.argus.production.env
       . $XDG_CONFIG_HOME/argus/env/argus.production.env
       . $XDG_CONFIG_HOME/abs/argus.production.env
@@ -27,14 +27,14 @@ function as(){
       ;;
 
     as)
-      export AWS_DEFAULT_REGION=ap-southeast-2
+      # export AWS_DEFAULT_REGION=ap-southeast-2
       . $XDG_CONFIG_HOME/aws/aws.argus.au.staging.env
       . $XDG_CONFIG_HOME/argus/env/argusAu.staging.env
       . $XDG_CONFIG_HOME/abs/argus.au.staging.env
       asp aastg
       ;;
     ap)
-      export AWS_DEFAULT_REGION=ap-southeast-2
+      # export AWS_DEFAULT_REGION=ap-southeast-2
       . $XDG_CONFIG_HOME/aws/aws.argus.au.production.env
       . $XDG_CONFIG_HOME/argus/env/argusAu.production.env
       # . ~/.abs/argus.au.production.env
@@ -42,7 +42,7 @@ function as(){
       ;;
 
     od)
-      export AWS_DEFAULT_REGION=ap-southeast-1
+      # export AWS_DEFAULT_REGION=ap-southeast-1
       #stores cloudwatch cache log name
       . $XDG_CONFIG_HOME/aws/aws.optimax.develop.env
       # argus ssh and rds settings
@@ -51,14 +51,14 @@ function as(){
       asp odev
       ;;
     os)
-      export AWS_DEFAULT_REGION=ap-southeast-1
+      # export AWS_DEFAULT_REGION=ap-southeast-1
       . $XDG_CONFIG_HOME/aws/aws.optimax.staging.env #TODO: duplication?
       . $XDG_CONFIG_HOME/argus/env/optimax.staging.env
       . $XDG_CONFIG_HOME/abs/optimax.staging.env
       asp odev
       ;;
     op)
-      export AWS_DEFAULT_REGION=ap-southeast-1
+      # export AWS_DEFAULT_REGION=ap-southeast-1
       . $XDG_CONFIG_HOME/aws/aws.optimax.production.env
       . $XDG_CONFIG_HOME/argus/env/optimax.production.env
       . $XDG_CONFIG_HOME/abs/optimax.production.env
@@ -66,30 +66,31 @@ function as(){
       ;;
 
     cd)
-      export AWS_DEFAULT_REGION=ap-southeast-1
+      # export AWS_DEFAULT_REGION=ap-southeast-1
       . $XDG_CONFIG_HOME/aws/aws.certify.develop.env
       . $XDG_CONFIG_HOME/certify/certify.develop.env
       asp cdev
       ;;
     cs)
-      export AWS_DEFAULT_REGION=ap-southeast-1
+      # export AWS_DEFAULT_REGION=ap-southeast-1
       . $XDG_CONFIG_HOME/aws/aws.certify.develop.env
       . $XDG_CONFIG_HOME/certify/certify.staging.env
       asp cdev
       ;;
     cp)
-      export AWS_DEFAULT_REGION=ap-southeast-1
+      # export AWS_DEFAULT_REGION=ap-southeast-1
       . $XDG_CONFIG_HOME/aws/aws.certify.production.env
       . $XDG_CONFIG_HOME/certify/certify.production.env
       asp cprod
       ;;
     sb)
-      export AWS_DEFAULT_REGION=ap-southeast-1
+      # export AWS_DEFAULT_REGION=ap-southeast-1
       . $XDG_CONFIG_HOME/aws/aws.sandbox.env
       asp sb
+      asst #the sb account requires mfa, use sts to get the token
       ;;
     cvs)
-      export AWS_DEFAULT_REGION=ap-southeast-1
+      # export AWS_DEFAULT_REGION=ap-southeast-1
       asp cvs
       ;;
     *)
