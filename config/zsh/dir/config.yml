@@ -1,0 +1,43 @@
+# set up the fzf directory switcher 
+# specify the bindkey for the ud function
+# ud is a fzf directory switcher
+# the fzf preview window previews the directory/file contents
+# the depth of the directory preview can be configured with the options key
+keymaps:
+  # XDG folders
+  - bindkey: c #udc opens fzf and lists its directory contents
+    dir: $XDG_CONFIG_HOME
+  - bindkey: a
+    dir: $XDG_CACHE_HOME
+  - bindkey: t
+    dir: $XDG_DATA_HOME
+  - bindkey: s
+    dir: $XDG_STATE_HOME
+    options: 5
+  - bindkey: b
+    dir: $HOME/.local/bin
+  - bindkey: l
+    dir: $HOME/.local/lib
+    options: 2 # specify how deep the directory preview should be
+
+  # my dotfiles
+  - bindkey: z
+    dir: $HOME/.dotfiles
+  # other folders
+  - bindkey: d
+    dir: $HOME/Downloads
+
+  # tmp folders
+  - bindkey: p # tmP
+    dir: /tmp
+  - bindkey: pc
+    dir: /tmp/certify-verifysync
+  - bindkey: pcr
+    dir: /tmp/certify-verifysync/report
+
+  - bindkey: scu # State Certify Users - sap s3 uploads
+    dir: $_CERTIFY_S3_BUCKET_SAP_SYNC_LOCAL_FOLDER
+
+  # my projects
+  - bindkey: w # my website
+    dir: $HOME/src/me/website/docs

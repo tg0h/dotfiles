@@ -13,8 +13,6 @@ alias zshe='nvim ~/.dotfiles/.env'
 alias zshz='nvim ~/.config/zsh/.zshenv'
 alias zshaa='nvim $XDG_CONFIG_HOME/zsh/zsh_aliases.zsh'
 
-alias doc='cd ~/src/me/website/docs/'
-
 alias zshf='nvim ~/local/lib/zsh/zsh_funcs.zsh' #misc functions, use zsh_functions folder for more organization
 alias zshk='nvim ~/.config/kitty/kitty.conf' # the kitty config file
 # mobile
@@ -38,10 +36,6 @@ alias zshc='nvim ~/.local/lib/zsh/aws/zsh_aws_cognito.zsh'
 alias zshct='nvim ~/.local/lib/zsh/aws/zsh_aws_calltree.zsh'
 ##certify
 ccon() { sqlite3 $_CERTIFY_VERIFY_DB }
-czc() { cd $_CERTIFY_COGNITO_LOCAL_FOLDER }
-czu() { cd $_CERTIFY_S3_BUCKET_SAP_SYNC_LOCAL_FOLDER }
-czr() { cd $_CERTIFY_S3_BUCKET_SAP_SYNC_REPORTS_LOCAL_FOLDER }
-czrr() { cd $_CERTIFY_VERIFY_REPORT_FOLDER }
 # quick print eval loop ====================================================
 # nvim
 alias eu="nvim"
@@ -64,11 +58,6 @@ alias exatal="exat --all --level" #include hidden and dot files
 # utils ====================================================================
 #zsh jira plugin
 alias j=jira
-alias zt="cd /tmp"
-alias ztc="cd /tmp/certify-verifysync/"
-alias ztcr="cd /tmp/certify-verifysync/report"
-alias zd="cd ~/Downloads"
-alias zz=" cd ~/.dotfiles"
 alias ag="alias | grep"
 alias sg="set | grep"
 alias fork="open . -a /Applications/Fork.app"
