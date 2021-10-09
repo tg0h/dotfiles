@@ -5,6 +5,7 @@ alias -g G='| gron'
 alias -g W='| wc -l' 
 alias -g J='| jq .' 
 # =========================================================================
+alias udcl='ud configure list' #show ud configuration
 # edit config file shortcuts
 alias dos='nvim ~/.dotfiles/install.conf.yaml' # dotbot sourcefile
 alias doi='dotbot --verbose -c ~/.dotfiles/install.conf.yaml'
@@ -52,7 +53,8 @@ alias ll='lsd -l' # use lsd to supercharge ls output
 alias lt="lsd -lt" # exclude hidden files to exclude . and ..
 alias lr="lsd -lar" #reverse the sort
 # exa
-alias exat="exa --tree --long --icons --git --color always --octal-permissions --sort created --reverse"
+alias exat="exa --tree --long --icons --git --color always --octal-permissions --sort created --reverse --links --git --no-user"
+alias exatd="exa --tree --long --icons --git --color always --octal-permissions --sort created --reverse --links --git --binary --blocks --header --inode --created --changed --classify"
 alias exatl="exat --level"
 alias exatal="exat --all --level" #include hidden and dot files
 # utils ====================================================================
