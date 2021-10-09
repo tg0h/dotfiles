@@ -3,10 +3,15 @@
 # ud is a fzf directory switcher
 # the fzf preview window previews the directory/file contents
 # the depth of the directory preview can be configured with the options key
+# TODO: add namespaces, don't restrict to just ud
+# TODO: add ignore glob options (use exa -i)
+# TODO: cache edited files with nvim
+
 keymaps:
   # XDG folders
   - bindkey: c #udc opens fzf and lists its directory contents
     dir: $XDG_CONFIG_HOME
+    options: 3
   - bindkey: a
     dir: $XDG_CACHE_HOME
   - bindkey: t
@@ -18,11 +23,13 @@ keymaps:
     dir: $HOME/.local/bin
   - bindkey: l
     dir: $HOME/.local/lib
-    options: 2 # specify how deep the directory preview should be
+    options: 3 # specify how deep the directory preview should be
 
   # my dotfiles
   - bindkey: z
     dir: $HOME/.dotfiles
+    options: 3
+
   # other folders
   - bindkey: d
     dir: $HOME/Downloads
@@ -41,3 +48,9 @@ keymaps:
   # my projects
   - bindkey: w # my website
     dir: $HOME/src/me/website/docs
+    options: 5 # specify how deep the directory preview should be
+
+  # (ノ ゜Д゜)ノ ︵ ┻━┻ flipping playground
+  - bindkey: dp # my website
+    dir: $HOME/dev/playground
+    options: 3 # specify how deep the directory preview should be
