@@ -8,6 +8,7 @@ function gtdd (){
   # delete remote tags with git push --delete origin
   # gtdd <tagName>
   # this uses the same base git command that gbrmd etc uses
+  # git tag -l | rg '^v' | xargs -I {} git push --delete --dry-run origin {}
   
   git push --delete origin $1
 }
