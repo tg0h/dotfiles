@@ -18,6 +18,9 @@ export EDITOR=nvim
 
 # source every file (include subdirs) in .zsh
 source $XDG_CONFIG_HOME/abs/abs.env
+# if my libs refer to aliases, they will fail, since they are not defined?
+# sequence -
+# if my libs refer to functions that have not yet been defined, they will fail ?
 for f in ~/.local/lib/abs/***/*.zsh; do [[ -f $f ]] && . $f; done
 
 # the join-lines function in git.zsh is used by my widgets and must be sourced here
