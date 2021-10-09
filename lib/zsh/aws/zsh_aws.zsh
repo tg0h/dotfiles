@@ -1,4 +1,5 @@
 function as(){
+  asiu #unset all the variables set by asst
   local profile
   case $1 in
     d)
