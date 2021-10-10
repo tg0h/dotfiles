@@ -118,6 +118,11 @@ _fzf_home_displayFunction(){
      -e '\s*function\s+'$inputFunc'\s*\(''(?s:.)*?(^\s*}$)' $file \
      | gsed '1b;$!d' | gsed 'N;s/\n/ /' \
      | rg '(?::)(\d+)(?::)' -or '$1' | join-lines | read -r funcStart funcEnd _
+    # what is read -r
+    # read -normally allows long lines to be broken using a trailing backslash 
+    # character, and normally reconstructs such lines. This slightly surprising 
+    # behavior can be deactivated using -r
+    
     # : delimiter - problematic if function has : as well?
     # | choose 0 1 5 
 
