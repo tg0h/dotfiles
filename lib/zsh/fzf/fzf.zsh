@@ -29,8 +29,10 @@ export FZF_DEFAULT_OPTS="
 --bind 'shift-down:preview-half-page-down'
 --bind='ctrl-a:select-all+accept'
 --bind='ctrl-y:execute-silent(echo {+} | pbcopy)'
---bind 'ctrl-e:execute(nvim {} < /dev/tty > /dev/tty 2>&1)'
+--bind 'ctrl-e:execute(echo {} > /tmp/_nvim_cache && nvim {} < /dev/tty > /dev/tty 2>&1)'
 "
+# the _nvim_cache should only contain 1 file
+
 # --bind 'ctrl-s:toggle-sort'
 
 #--preview-window='right:hidden:wrap'
