@@ -26,7 +26,7 @@ function ud(){
   # eg ud ~/.local/bin 2
   local configFile=$XDG_CONFIG_HOME/zsh/dir/config.yml
 
-  [[ $1 == "configure" ]] && [[ $2 != "edit" ]] && yq e '.keymaps' $configFile && return
+  [[ $1 == "configure" ]] && [[ $2 != "edit" ]] && yq eval '.keymaps' $configFile --colors | fzf && return
 
   # prefer nvim over eu for clarity and unneeded dependency on eu alias
   [[ $1 == "configure" ]] && [[ $2 == "edit" ]] && nvim $configFile && return
@@ -38,10 +38,17 @@ function ud(){
   # TODO: exa does not show the contents for the symlink if you do not specify a trailing /
 
   # fd show --hidden ?
-  changeToDir=$(fd . $searchDir --follow --color always --max-depth $searchDepth | fzf +m --preview='[[ $(file --mime {}) =~ inode/directory ]] &&
+  local changeToTarget=$(fd . $searchDir --follow --color always --max-depth $searchDepth | fzf +m --preview='[[ $(file --mime {}) =~ inode/directory ]] &&
     exa --tree --long --icons --git --color always --sort modified --reverse --level '$searchDepth' --no-permissions --no-user --changed --git {}/ || (bat --style=numbers --color=always {} || cat {}) 2> /dev/null | head -300') &&
-    cd "$changeToDir"
-  }
+
+  # change to directory if it is not null, needed if fzf does not return a dir, eg
+  # if fzf cancels via ctrl c
+  if [[ -n "$changeToTarget" ]]; then
+    # if target is a file (check with -f), change to its dir instead
+    [[ -f $changeToTarget ]] && changeToTarget=${changeToTarget%/*} # zsh variable expansion - min match pattern /* and remove from tail
+    cd $changeToTarget
+  fi
+}
 
 _udInitialize(){
   # read from the config.yml file and dynamically define the ud<key> functions
