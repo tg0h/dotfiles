@@ -77,6 +77,7 @@ alias gb='git branch'
 alias gba='git branch -a'
 alias gbav='git branch -a -v'
 alias gcl='git config --list'
+alias gcls='git config --list --show-origin'
 alias gcp='git cherry-pick'
 
 alias gcount='git shortlog -sn'
