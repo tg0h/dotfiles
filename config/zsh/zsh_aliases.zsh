@@ -6,6 +6,7 @@ alias -g W='| wc -l'
 alias -g J='| jq .' 
 # =========================================================================
 alias udcl='ud configure list' #show ud configuration
+alias udce='ud configure edit' #edit ud configuration
 # edit config file shortcuts
 alias dos='nvim ~/.dotfiles/install.conf.yaml' # dotbot sourcefile
 alias doi='dotbot --verbose -c ~/.dotfiles/install.conf.yaml'
