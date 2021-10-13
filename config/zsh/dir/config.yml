@@ -16,9 +16,10 @@ keymaps:
     dir: $XDG_CACHE_HOME
   - bindkey: t
     dir: $XDG_DATA_HOME
+    options: 4
   - bindkey: s
     dir: $XDG_STATE_HOME
-    options: 5
+    options: 2
   - bindkey: b
     dir: $HOME/.local/bin
   - bindkey: l
@@ -28,7 +29,7 @@ keymaps:
   # my dotfiles
   - bindkey: z
     dir: $HOME/.dotfiles
-    options: 3
+    options: 4
 
   # other folders
   - bindkey: d
@@ -44,6 +45,18 @@ keymaps:
 
   - bindkey: scu # State Certify Users - sap s3 uploads
     dir: $_CERTIFY_S3_BUCKET_SAP_SYNC_LOCAL_FOLDER
+
+  # read the src
+  - bindkey: oc
+    dir: $HOME/src/certis
+    options: 3 # specify how deep the directory preview should be
+  - bindkey: om
+    dir: $HOME/src/me
+    options: 3
+  - bindkey: ob
+    dir: $HOME/src/books
+  - bindkey: oo
+    dir: $HOME/src/open
 
   # my projects
   - bindkey: w # my website
