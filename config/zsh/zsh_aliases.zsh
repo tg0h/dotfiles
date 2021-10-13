@@ -1,9 +1,14 @@
+# TODO: how to cache nvim files if accessed via alias
+# TODO: alias fzf manager - with comments
 #tmp GLOBAL ALIASES ==========================================================
-alias -g F='| fzf' # change Z to whatever you like
+alias -g F='| fzf --preview-window hidden' 
 alias -g T='| jq ".pay | fromjson"' # converT argus api stringifield payload back to json
-alias -g G='| gron' 
+alias -g G='| gron --colorize' 
 alias -g W='| wc -l' 
 alias -g J='| jq .' 
+# history
+alias 11="!!" # repeat last command
+alias 111="!-2" # repeat second last command
 # =========================================================================
 alias udcl='ud configure list' #show ud configuration
 alias udce='ud configure edit' #edit ud configuration
@@ -58,6 +63,8 @@ alias exat="exa --tree --long --icons --git --color always --octal-permissions -
 alias exatd="exa --tree --long --icons --git --color always --octal-permissions --sort created --reverse --links --git --binary --blocks --header --inode --created --changed --classify"
 alias exatl="exat --level"
 alias exatal="exat --all --level" #include hidden and dot files
+# bat
+alias bats="bat *.csv"
 # utils ====================================================================
 #zsh jira plugin
 alias j=jira
