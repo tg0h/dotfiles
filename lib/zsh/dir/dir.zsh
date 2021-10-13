@@ -40,6 +40,8 @@ function ud(){
   # examples:
   # ud <searchDir> <searchDepth)
   # eg ud ~/.local/bin 2
+  # TODO: how to implement priority with most frequently used first?
+
   local configFile=$XDG_CONFIG_HOME/zsh/dir/config.yml
 
   if [[ $1 == "configure" ]] && [[ $2 == "list" ]]; then
@@ -58,7 +60,7 @@ function ud(){
 
   # fd show --hidden ?
   local changeToTarget=$(fd . $searchDir --follow --color always --max-depth $searchDepth | fzf +m --preview='[[ $(file --mime {}) =~ inode/directory ]] &&
-    exa --tree --long --icons --git --color always --sort modified --reverse --level '$searchDepth' --no-permissions --no-user --changed --git {}/ || (bat --style=numbers --color=always {} || cat {}) 2> /dev/null | head -300') &&
+    exa --tree --long --icons --git --color always --sort modified --reverse --level '$searchDepth' --no-permissions --no-user --changed --git {}/ || (bat --style=numbers --color=always {} || cat {}) 2> /dev/null | head -300')
 
   # change to directory if it is not null, needed if fzf does not return a dir, eg
   # if fzf cancels via ctrl c
