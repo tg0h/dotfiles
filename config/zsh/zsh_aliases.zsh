@@ -65,6 +65,7 @@ alias exatl="exat --level"
 alias exatal="exat --all --level" #include hidden and dot files
 # bat
 alias bats="bat *.csv"
+alias bata="bat *"
 # utils ====================================================================
 #zsh jira plugin
 alias j=jira
