@@ -15,7 +15,7 @@
 export FZF_DEFAULT_OPTS="
 --ansi
 --no-mouse
---height 50%
+--height 70%
 -1
 --reverse
 --multi
@@ -29,6 +29,7 @@ export FZF_DEFAULT_OPTS="
 --bind 'shift-down:preview-half-page-down'
 --bind='ctrl-a:select-all+accept'
 --bind='ctrl-y:execute-silent(echo {+} | pbcopy)'
+--bind='ctrl-s:execute(echo {} > /tmp/_so_cache)'
 --bind 'ctrl-e:execute(echo {} > /tmp/_nvim_cache && nvim {} < /dev/tty > /dev/tty 2>&1)'
 "
 # the _nvim_cache should only contain 1 file
