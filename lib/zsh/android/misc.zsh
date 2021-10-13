@@ -155,14 +155,14 @@ function adi() {
 local usbMode=""
 local ip=""
 local g="-g" # grant all permissions by default
-while getopts 'bdrs:yG' opt; do
+while getopts 'bdrs:yg' opt; do
   case "$opt" in
     d) usbMode="-d" ;;
     s) ip="192.168.1.$OPTARG:5555" ;;
     b) ip=$HP_BLUE_IP;;
     r) ip=$HP_RED_IP ;;
     y) ip=$HP_YELLOW_IP ;;
-    G)  g="" ;;
+    g) g="" ;;
   esac
 done
 shift $(($OPTIND - 1))
