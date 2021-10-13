@@ -251,6 +251,10 @@ function csync() {
   #and you want to exclude tim, specify /tim not s3//bucket/folder/tim
   aws s3 sync $_CERTIFY_S3_BUCKET_SAP_SYNC $_CERTIFY_S3_BUCKET_SAP_SYNC_LOCAL_FOLDER --exclude "*" --include "*.csv" --include "*.CSV" --exclude "hk/*"
   aws s3 sync $_CERTIFY_S3_BUCKET_SAP_SYNC_REPORTS $_CERTIFY_S3_BUCKET_SAP_SYNC_REPORTS_LOCAL_FOLDER
+  # sync the user/uploads/hk bucket as well
+  # exclude some folders because for some strange reason, i do not have access to them
+  # the [sequence] excludes chars in the sequence
+  aws s3 sync $_CERTIFY_S3_BUCKET_SAP_SYNC/hk $_CERTIFY_S3_BUCKET_SAP_SYNC_LOCAL_FOLDER/hk --include "*.csv" --include "*.CSV" --exclude 'COPS-Certify-20210[12345]*' --exclude 'COPS-Certify-2020*'
 }
 
 #run the certify sync report
