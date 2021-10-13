@@ -52,6 +52,21 @@ function rai(){
                           url: .self,
                           # subtasks: (.fields.subtasks | map (.key) | reduce .[] as '$item' (""; . + " " + '$item')),
                           subtasks: (.fields.subtasks | map (.key)),
+                          git: (.fields.comment.comments | 
+                                map(select(.author.name == "certis.ads")) |
+                                map(.body |
+                                      # jq uses the oniguruma regex engine https://github.com/kkos/oniguruma/blob/master/doc/RE
+                                      # to escape a word class, eg \w, use \\w
+                                      # however, since we are running this from a terminal, we need to escape again.
+                                      # hence \\ becomes \\\\ . fun
+                                      # +? is non greedy it matches conservatively until it finds the next expression
+                                      # eg (.+?)(|) if there are several pipes | in the string, the nongreedy expression matches
+                                      # everything until the first pipe. the greedy expression matches everything until the last pipe.
+                                      # (?<group>(exp) is a jq named capturing group
+
+                                      capture("(\\\\[)(?<name>.+?)(\\\\|)(.+?)(\\\\|)(?<url>.+?)(\\\\])") | .url
+                                   )
+                               ),
                           # for merge commit comments, look for author certis.ads
                           # merge commit mentioned in .fields.comment.comments[n].body [Hanh Nguyen Han|https://git.ads.certis.site/hanh.nguyenhan] mentioned this issue in [a commit of optimax/optimax-apps/optimax-officer-android|https://git.ads.certis.site/optimax/optimax-apps/optimax-officer-android/-/commit/b27ff0a4c50b21444c10cef1aa0eb82c426ea727]:\n'Merge branch 'sprint-23/feature/ARG-2723/develop' into sprint-23/feature/ARG-2723/ARG-2879'
                         }
