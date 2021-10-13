@@ -2,6 +2,8 @@
 # see https://mhttps://apihandyman.io/api-toolbox-jq-and-openapi-part-4-bonus-coloring-jqs-raw-output/isc.flogisoft.com/bash/tip_colors_and_formatting
 
 # use with -r flag on jq command
+# sample code to include this custom jq module:
+# jq -L "~/.config/jq" -r 'include "module-colour"; .Parameters[] | .Name + " = " + colour_text(.Value; "green")'
 
 # Unicode escape character
 # \e, \033 and \x1b cause "Invalid escape" error
