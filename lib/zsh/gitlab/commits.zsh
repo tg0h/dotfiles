@@ -12,6 +12,7 @@ function ggc() {
   }
 
 function ggcr() {
+  # THIS IS THE IMPORTANT ONE
   # gitlab Commit Refs
   # get branches/tags commit is pushed to
   # ggcr <commit sha>
