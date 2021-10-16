@@ -77,3 +77,27 @@ EOF
 
   }
 
+function _ggpo(){
+  # paginate and get all projects
+   # local outdir=$(mktemp -d)
+  # local outdir=/tmp/test
+
+  trash /tmp/gitlabProjects/*
+  mkdir -p /tmp/gitlabProjects
+  local outdir=/tmp/gitlabProjects
+  local page=1
+  local nextUrl=https://git.ads.certis.site/api/v4/projects
+
+  while [ ! -z "${nextUrl}" ]; do
+    https -dh $nextUrl PRIVATE-TOKEN:$GITLAB_PRIVATE_TOKEN per_page==100  > $outdir/page${page}.json 2>$outdir/header
+
+    # sample link: Link: <https://git.ads.certis.site/api/v4/projects?membership=false&order_by=created_at&owned=false&page=2&per_page=100&simple=false&sort=desc&starred=false&statistics=false&with_custom_attributes=false&with_issues_enabled=false&with_merge_requests_enabled=false>; rel="next",
+    # use tr to split the link at < and >
+    nextUrl=$(cat $outdir/header | tr '<,' '\n' | rg next | tr '>' '\n' | head -n 1)
+    page=$(( $page + 1 ))
+  done
+
+  local allProjects=$(jq -n '[inputs| .[]]' $outdir/*.json)
+  jq -r 'tostring' <<< $allProjects
+
+}
