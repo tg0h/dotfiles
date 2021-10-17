@@ -1,4 +1,5 @@
 export _fzf_homeFn_dir="$HOME/.local/lib/zsh"
+# TODO: pressing enter should leave the function name, not the entire line
 
 _fzf_home_getFunctions(){
   # get all functions and description in abs folder

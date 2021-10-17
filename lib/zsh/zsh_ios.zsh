@@ -17,9 +17,11 @@ function idn() {
 
 
 function idi() {
-  # Example Use
-  # idi - install the latest ipa in this folder 
+  # iphone device installer
+  # idi - install the latest ipa in this folder to the network phone
   # idi <ipa file name> - install the specified ipa
+  # idid -i <ipa file name> - install
+
 
   # fd -d 1 - search with depth 1 (current dir only)
   # gsort -k1r - sort by the 1st column descending
