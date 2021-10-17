@@ -77,27 +77,56 @@ EOF
 
   }
 
+function _ggpo_scrape_page() {
+  # get from url in $1
+  # download results to $2
+  # save header response to $3
+  # _ggpo_scrape_page url result.json header
+  echo $fg[yellow] Downloading$reset_color $1 to $fg[green]$2$reset_color
+  # https -dh $1 PRIVATE-TOKEN:$GITLAB_PRIVATE_TOKEN per_page==100 >$2 2>$3
+  https -dh $1 PRIVATE-TOKEN:$GITLAB_PRIVATE_TOKEN per_page==100 >$2 2>$3
+}
+
+function _ggpo_next_link_from_header() {
+  # rg - get the next link, not the prev or last etc link
+  # use tr to split the link at < and >
+  # sample link: Link: <https://git.ads.certis.site/api/v4/projects?membership=false&order_by=created_at&owned=false&page=2&per_page=100&simple=false&sort=desc&starred=false&statistics=false&with_custom_attributes=false&with_issues_enabled=false&with_merge_requests_enabled=false>; rel="next",
+  cat $1 | tr '<,' '\n' | rg next | tr '>' '\n' | head -n 1
+}
+
 function _ggpo(){
   # paginate and get all projects
-   # local outdir=$(mktemp -d)
-  # local outdir=/tmp/test
+  # use the next link header to get the next page
+  # use jq to combine all the intermediate json results into 1 json
+  # _ggpo
 
-  trash /tmp/gitlabProjects/*
-  mkdir -p /tmp/gitlabProjects
-  local outdir=/tmp/gitlabProjects
+  local outdir=$(mktemp -d /tmp/gitlab.XXX)
   local page=1
   local nextUrl=https://git.ads.certis.site/api/v4/projects
 
   while [ ! -z "${nextUrl}" ]; do
-    https -dh $nextUrl PRIVATE-TOKEN:$GITLAB_PRIVATE_TOKEN per_page==100  > $outdir/page${page}.json 2>$outdir/header
-
-    # sample link: Link: <https://git.ads.certis.site/api/v4/projects?membership=false&order_by=created_at&owned=false&page=2&per_page=100&simple=false&sort=desc&starred=false&statistics=false&with_custom_attributes=false&with_issues_enabled=false&with_merge_requests_enabled=false>; rel="next",
-    # use tr to split the link at < and >
-    nextUrl=$(cat $outdir/header | tr '<,' '\n' | rg next | tr '>' '\n' | head -n 1)
+    _ggpo_scrape_page $nextUrl $outdir/page${page}.json $outdir/header
+    nextUrl=$(_ggpo_next_link_from_header $outdir/header)
     page=$(( $page + 1 ))
   done
 
-  local allProjects=$(jq -n '[inputs| .[]]' $outdir/*.json)
-  jq -r 'tostring' <<< $allProjects
+  # https://stackoverflow.com/questions/55995980/why-does-inputs-skip-the-first-line-of-the-input-file 
+  # jq - -n == --null-input
+  # inputs takes each json file and outputs them all
+  # null input works with inputs
+  # if you do jq '[.[]]', it won't work
+  # assuming each json file is a row with an array
+  # the above simply unwraps the array and then adds the array again
+  #
+  # you want to pass every row, unwrap each row, then wrap everything
+  # [inputs | .[]]
+  # inputs will eat the first row and output all the ramaining rows by default
+  # so pass null input so that inputs will pass all the rows
+  local allProjects=$(jq --null-input '[inputs| .[]]' $outdir/*.json)
+  # local allProjects=$(jq '[.[]]' $outdir/*.json)
+  # jq -r 'tostring' <<< $allProjects
+  local jqQuery='.[] | (.id|tostring) + " " + .name + " " + .created_at'
 
+  # -V - version sort, so that 1,2 ..., 11 are sorted correctly
+  jq --raw-output $jqQuery <<< $allProjects | sort -V | column -t
 }
