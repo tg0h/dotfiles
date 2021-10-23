@@ -33,8 +33,18 @@ function _jira_get_next_startAt(){
     return 0
   fi
 }
-
 function rab(){
+  # get jira boards from cache
+  local key="jira/rab"
+  local val=$(rcg $key)
+  if [[ -z "$val" ]]; then
+    val=$(_rab)
+    rcs $key $val 604800 #1 week in seconds
+  fi
+  echo $val
+}
+
+function _rab(){
   # list jira boards
   # -a means --auth
   # use basic authentication by default
@@ -51,7 +61,7 @@ function rab(){
     startAt=$(_jira_get_next_startAt $resp)
     # if the return status of _jira_get_next_startAt is 1, exit the while loop
     [ $? -eq 1 ] && break;
-    page=$(( page+1 ))
+    (( page++ ))
   done
 
   local allBoards=$(jq --null-input '[inputs| .values[]]' $outdir/*.json)
