@@ -1,6 +1,6 @@
 " Manage plugins with vim-plug.
 " => Plugins ======================================================================================================
-call plug#begin("~/.config/nvim/plugged")
+call plug#begin("$XDG_DATA_HOME/nvim/plugged")
 Plug 'phanviet/vim-monokai-pro'
 
 " FZF
@@ -252,7 +252,7 @@ nnoremap \html :-1read $HOME/dotfiles/vim/snippets/skeleton.html<CR>3jwf>a
 
 " Plug Settings ====================================================================================================
 " undotree
-set undodir=~/.config/nvim/undodir " set undotree file directory
+set undodir=$XDG_CACHE_HOME/nvim/undodir
 set undofile " set undotree to save to file
 
 "NETRW ---------------------------------------------------
