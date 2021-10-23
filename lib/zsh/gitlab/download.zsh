@@ -1,5 +1,5 @@
 function _gitlab_getLatestDevPipelineId() {
-  https -b git.ads.certis.site/api/v4/projects/$GITLAB_PROJECT_ID/pipelines "PRIVATE-TOKEN: $GITLAB_PRIVATE_TOKEN" | \
+  https -b $GITLAB_URL/api/v4/projects/$GITLAB_PROJECT_ID/pipelines "PRIVATE-TOKEN: $GITLAB_PRIVATE_TOKEN" | \
     jq '[.[] | select (.ref == "develop") ] | .[0].id'
   }
 
@@ -44,10 +44,11 @@ function _gitlab_dlJobArtifact() {
   # download job artifacts
   # use a random filename so that filename does not collide with multiple background jobs
   # -p creates directories only if it does not exist
-  local gitlabTmpFolder='/tmp/myGitlabZips'
+  local gitlabTmpFolder=$(mktemp -d /tmp/gitlab.jobArtifacts.XXX)
   mkdir -p $gitlabTmpFolder
-  local rnd=$RANDOM
-  local filename="$gitlabTmpFolder/$rnd.zip"
+  # local rnd=$RANDOM
+  local filename="$gitlabTmpFolder/download.zip"
+  local outputDir="$gitlabTmpFolder"
   # echo $filename
   # -b prints the body only
 
@@ -61,8 +62,8 @@ function _gitlab_dlJobArtifact() {
   # fd .apk <folder> - find apk files in this folder
   # rg -v app-debug - v means invert match - exclude  app-debug.apk
   # finally, cp the good apk file to the current folder
-  (https -b git.ads.certis.site/api/v4/projects/$GITLAB_PROJECT_ID/jobs/$1/artifacts "PRIVATE-TOKEN: $GITLAB_PRIVATE_TOKEN" \
-    > $filename && unzip -q $filename -d $gitlabTmpFolder/$rnd && fd .apk $gitlabTmpFolder/$rnd | rg -v app-debug | xargs -I{} cp {} . \
+  (https -b $GITLAB_URL/api/v4/projects/$GITLAB_PROJECT_ID/jobs/$1/artifacts "PRIVATE-TOKEN: $GITLAB_PRIVATE_TOKEN" \
+    > $filename && unzip -q $filename -d $outputDir && fd .apk $outputDir | rg -v app-debug | xargs -I{} cp {} . \
     && echo pipeline $1 downloaded
       ) &
       # echo $filename unzipped
@@ -71,7 +72,7 @@ function _gitlab_dlJobArtifact() {
   function _gitlab_getPipelineJobIds() {
     #TODO repo id is hardcoded to officer flutter
     #get job ids only if they have a .zip artifact
-    https -b git.ads.certis.site/api/v4/projects/$GITLAB_PROJECT_ID/pipelines/$1/jobs "PRIVATE-TOKEN: $GITLAB_PRIVATE_TOKEN" \
+    https -b $GITLAB_URL/api/v4/projects/$GITLAB_PROJECT_ID/pipelines/$1/jobs "PRIVATE-TOKEN: $GITLAB_PRIVATE_TOKEN" \
       | jq --compact-output '.[] | select (.artifacts_file.filename|tostring | endswith("zip")) | .id'
     }
 

@@ -28,7 +28,7 @@ function ggmr() {
     verbiage=${verbose:-"-b"}
     
     #if long 
-  [[ -n $long ]] && https $verbiage git.ads.certis.site/api/v4/projects/$GITLAB_PROJECT_ID/merge_requests/$1 \
+  [[ -n $long ]] && https $verbiage $GITLAB_URL/api/v4/projects/$GITLAB_PROJECT_ID/merge_requests/$1 \
     PRIVATE-TOKEN:$GITLAB_PRIVATE_TOKEN
 
 local jqQuery=$(cat <<-EOF
@@ -70,7 +70,7 @@ EOF
 )
 
     #if short
-  [[ -z $long ]] && https $verbiage git.ads.certis.site/api/v4/projects/$GITLAB_PROJECT_ID/merge_requests/$1 \
+  [[ -z $long ]] && https $verbiage $GITLAB_URL/api/v4/projects/$GITLAB_PROJECT_ID/merge_requests/$1 \
     PRIVATE-TOKEN:$GITLAB_PRIVATE_TOKEN | jq $jqQuery
 
   }

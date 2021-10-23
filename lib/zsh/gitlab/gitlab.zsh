@@ -1,4 +1,6 @@
 # TODO: show local timezone for ggp command
+
+# the password is defined in ~/.dotfiles/.env
 function _setGitlabProj() {
   # export the command so that processes (eg app center cli commands) forked from
   # your terminal session inherit the GITLAB_PROJECT_ID variable

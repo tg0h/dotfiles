@@ -46,10 +46,10 @@ function ggpo() {
     verbiage=${verbose:-"-b"}
     
     #if long 
-  [[ -n $long ]] && https -b git.ads.certis.site/api/v4/projects \
+  [[ -n $long ]] && https -b $GITLAB_URL/api/v4/projects \
     "PRIVATE-TOKEN: $GITLAB_PRIVATE_TOKEN"
 
-  [[ -n $verbose ]] && https --verbose git.ads.certis.site/api/v4/projects \
+  [[ -n $verbose ]] && https --verbose $GITLAB_URL/api/v4/projects \
     "PRIVATE-TOKEN: $GITLAB_PRIVATE_TOKEN"
 
 local jqQuery=$(cat <<-EOF
@@ -68,11 +68,11 @@ local jqQuery=$(cat <<-EOF
 EOF
 )
 
-  [[ -n $oneline ]] && https $verbiage git.ads.certis.site/api/v4/projects \
+  [[ -n $oneline ]] && https $verbiage $GITLAB_URL/api/v4/projects \
     PRIVATE-TOKEN:$GITLAB_PRIVATE_TOKEN | jq -r '.[] | .namespace.name + " " + (.id|tostring) + " " + .name'
 
     #if short
-  [[ -z "$long" ]] && [[ -z "$verbose" ]] && [[ -z "$oneline" ]] && https $verbiage git.ads.certis.site/api/v4/projects \
+  [[ -z "$long" ]] && [[ -z "$verbose" ]] && [[ -z "$oneline" ]] && https $verbiage $GITLAB_URL/api/v4/projects \
     PRIVATE-TOKEN:$GITLAB_PRIVATE_TOKEN | jq $jqQuery
 
   }
@@ -100,7 +100,7 @@ function _ggpo(){
   # use jq to combine all the intermediate json results into 1 json
   # _ggpo
 
-  local outdir=$(mktemp -d /tmp/gitlab.XXX)
+  local outdir=$(mktemp -d /tmp/gitlab.projects.XXX)
   local page=1
   local nextUrl=https://git.ads.certis.site/api/v4/projects
 
