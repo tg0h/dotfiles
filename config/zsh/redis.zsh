@@ -9,6 +9,8 @@ alias rcjg="redis-cli JSON.GET"
 
 alias rcfa="redis-cli FLUSHALL"
 
+alias rcka="redis-cli keys '*'"
+
 function rcf(){
   # flush redis
   redis-cli flushall
