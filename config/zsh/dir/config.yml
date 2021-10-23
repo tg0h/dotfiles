@@ -38,6 +38,7 @@ keymaps:
   # tmp folders
   - bindkey: p # tmP
     dir: /tmp
+    options: 3
   - bindkey: pc
     dir: /tmp/certify-verifysync
   - bindkey: pcr
@@ -57,6 +58,8 @@ keymaps:
     dir: $HOME/src/books
   - bindkey: oo
     dir: $HOME/src/open
+  - bindkey: og
+    dir: $HOME/src/garden
 
   # my projects
   - bindkey: w # my website
