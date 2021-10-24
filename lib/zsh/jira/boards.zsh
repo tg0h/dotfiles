@@ -34,14 +34,10 @@ function _jira_get_next_startAt(){
   fi
 }
 function rab(){
-  # get jira boards from cache
-  local key="jira/rab"
-  local val=$(rcg $key)
-  if [[ -z "$val" ]]; then
-    val=$(_rab)
-    rcs $key $val 604800 #1 week in seconds
-  fi
-  echo $val
+  # get jira boards
+  local result
+  result=$(rcache "$@" jira/rab.604800 _rab)
+  echo $result
 }
 
 function _rab(){
