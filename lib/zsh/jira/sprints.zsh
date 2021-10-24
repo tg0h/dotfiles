@@ -1,29 +1,29 @@
 function ras(){
-  local res=$(redis-cli get ras)
-  # gotcha! - compare empty string, surround with quotes;
-  if [[ -z "$res" ]] ; then
-    res=$(_ras-api)
-    redis-cli set ras $res > /dev/null #silence the OK
-    redis-cli expire ras 604800 #1 week
-  fi
-  # ras-api
-  _ras-view $res
+  # get jira sprints
+  # ras
+  # ras -r - reload the cache (force an api call)
+  local result
+  # 1 week expiry
+  # do not use getopts, pass through $ to rcache
+  # getopts is too much code for passthrough
+  result=$(rcache "$@" jira/ras.604800 _ras)
+  _ras-view "$result"
 }
 _ras-view(){
   # notice that i use the [0:10] notation to substring the date
   jq -r '. | sort_by(.id) | reverse | .[] | (.id|tostring) + " - " + .name + " - " + (.startDate | .[0:10]) + " - " + (.endDate | .[0:10]) + " - " + (.completeDate | .[0:10])' <<< $1
 }
 
-_ras-api(){
+_ras(){
   # call the api, paginate, store the results
   # return a non-pretty string of json (not json escaped)
-  boardId=1 #Argus
+  boardId=244 #Argus
 
   local result
   local startAt=0
   local maxResults
   local isLast=false
-  
+
   # use single brackets for string equality test
   # else [[ ]] performs pattern matching
   mkdir -p /tmp/jira
