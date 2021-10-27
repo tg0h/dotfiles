@@ -28,6 +28,10 @@ bindkey -v #use vim keymap for zsh, set first to allow other plugins to override
 bindkey -r "^G" #remove ctrl g so that junegunn's fzf_git functions work
 bindkey -r "^H"
 bindkey -r "^N"
+#
+# load core files first, eg, they may contain pagination helpers
+# the core files allow me to set up depedencies that the zsh function may need
+for f in ~/.local/lib/zsh/***/*.core.zsh; do [[ -f $f ]] && . $f; done
 for f in ~/.local/lib/zsh/***/*; do [[ -f $f ]] && . $f; done
 for f in $XDG_CONFIG_HOME/zsh/***/*.zsh; do [[ -f $f ]] && . $f; done 
 
