@@ -1,5 +1,5 @@
 function _gitlab_getLatestDevPipelineId() {
-  https -b $GITLAB_URL/api/v4/projects/$GITLAB_PROJECT_ID/pipelines "PRIVATE-TOKEN: $GITLAB_PRIVATE_TOKEN" | \
+  https -b $GITLAB_URL/projects/$GITLAB_PROJECT_ID/pipelines "PRIVATE-TOKEN: $GITLAB_PRIVATE_TOKEN" | \
     jq '[.[] | select (.ref == "develop") ] | .[0].id'
   }
 
@@ -56,13 +56,13 @@ function _gitlab_dlJobArtifact() {
   # unzip -o overwrites files without prompting
   # unzip -d - ouotput directory
   # unzip -q - quietly unzip
-  # (https -b git.ads.certis.site/api/v4/projects/$GITLAB_PROJECT_ID/jobs/$1/artifacts "PRIVATE-TOKEN: $GITLAB_PRIVATE_TOKEN" \
+  # (https -b <url>/api/v4/projects/$GITLAB_PROJECT_ID/jobs/$1/artifacts "PRIVATE-TOKEN: $GITLAB_PRIVATE_TOKEN" \
   #   > $filename && unzip -jo $filename ) &
 
   # fd .apk <folder> - find apk files in this folder
   # rg -v app-debug - v means invert match - exclude  app-debug.apk
   # finally, cp the good apk file to the current folder
-  (https -b $GITLAB_URL/api/v4/projects/$GITLAB_PROJECT_ID/jobs/$1/artifacts "PRIVATE-TOKEN: $GITLAB_PRIVATE_TOKEN" \
+  (https -b $GITLAB_URL/projects/$GITLAB_PROJECT_ID/jobs/$1/artifacts "PRIVATE-TOKEN: $GITLAB_PRIVATE_TOKEN" \
     > $filename && unzip -q $filename -d $outputDir && fd .apk $outputDir | rg -v app-debug | xargs -I{} cp {} . \
     && echo pipeline $1 downloaded
       ) &
@@ -72,7 +72,7 @@ function _gitlab_dlJobArtifact() {
   function _gitlab_getPipelineJobIds() {
     #TODO repo id is hardcoded to officer flutter
     #get job ids only if they have a .zip artifact
-    https -b $GITLAB_URL/api/v4/projects/$GITLAB_PROJECT_ID/pipelines/$1/jobs "PRIVATE-TOKEN: $GITLAB_PRIVATE_TOKEN" \
+    https -b $GITLAB_URL/projects/$GITLAB_PROJECT_ID/pipelines/$1/jobs "PRIVATE-TOKEN: $GITLAB_PRIVATE_TOKEN" \
       | jq --compact-output '.[] | select (.artifacts_file.filename|tostring | endswith("zip")) | .id'
     }
 

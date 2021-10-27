@@ -4,7 +4,7 @@ function ggc() {
   #
   # TODO: use headers to paginate request
 
-  https --verbose git.ads.certis.site/api/v4/projects/$GITLAB_PROJECT_ID/repository/commits/ \
+  https --verbose $GITLAB_URL/projects/$GITLAB_PROJECT_ID/repository/commits/ \
     PRIVATE-TOKEN:$GITLAB_PRIVATE_TOKEN \
     all==true \
     pagination==keyset \
@@ -16,7 +16,7 @@ function ggcr() {
   # get branches/tags commit is pushed to
   # ggcr <commit sha>
 
-  https --verbose git.ads.certis.site/api/v4/projects/$GITLAB_PROJECT_ID/repository/commits/$1/refs \
+  https -b $GITLAB_URL/projects/$GITLAB_PROJECT_ID/repository/commits/$1/refs \
     PRIVATE-TOKEN:$GITLAB_PRIVATE_TOKEN \
   }
 
@@ -50,7 +50,7 @@ function ggcm() {
     verbiage=${verbose:-"-b"}
     
     #if long 
-  [[ -n $long ]] && https $verbiage git.ads.certis.site/api/v4/projects/$GITLAB_PROJECT_ID/repository/commits/$1/merge_requests \
+  [[ -n $long ]] && https $verbiage $GITLAB_URL/projects/$GITLAB_PROJECT_ID/repository/commits/$1/merge_requests \
     PRIVATE-TOKEN:$GITLAB_PRIVATE_TOKEN
 
 local jqQuery=$(cat <<-EOF
@@ -81,7 +81,7 @@ EOF
 )
 
     #if short
-  [[ -z $long ]] && https $verbiage git.ads.certis.site/api/v4/projects/$GITLAB_PROJECT_ID/repository/commits/$1/merge_requests \
+  [[ -z $long ]] && https $verbiage $GITLAB_URL/projects/$GITLAB_PROJECT_ID/repository/commits/$1/merge_requests \
     PRIVATE-TOKEN:$GITLAB_PRIVATE_TOKEN | jq $jqQuery
 
   }

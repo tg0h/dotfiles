@@ -4,7 +4,7 @@ function ggb() {
   #
   # TODO: use headers to paginate request
 
-  https $GITLAB_URL/api/v4/projects/$GITLAB_PROJECT_ID/repository/branches \
+  https $GITLAB_URL/projects/$GITLAB_PROJECT_ID/repository/branches \
     PRIVATE-TOKEN:$GITLAB_PRIVATE_TOKEN \
     all==true \
     pagination==keyset \
@@ -16,7 +16,7 @@ function ggbp() {
   #
   # TODO: use headers to paginate request
 
-  https $GITLAB_URL/api/v4/projects/$GITLAB_PROJECT_ID/protected_branches \
+  https $GITLAB_URL/projects/$GITLAB_PROJECT_ID/protected_branches \
     PRIVATE-TOKEN:$GITLAB_PRIVATE_TOKEN \
     all==true \
     pagination==keyset \
