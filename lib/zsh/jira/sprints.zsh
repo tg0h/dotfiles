@@ -34,7 +34,7 @@ _ras(){
 
     # to debug it is useful to reduce the number of items in the page
     # result=$(https -b -a $JIRA_SECRET $JIRA_URL/rest/agile/1.0/board/$boardId/sprint'?'startAt=$startAt'&'maxResults=1)
-    result=$(https -b -a $JIRA_SECRET $JIRA_URL/rest/agile/1.0/board/$boardId/sprint'?'startAt=$startAt)
+    result=$(https -b -a $JIRA_SECRET $JIRA_API_URL/agile/1.0/board/$boardId/sprint'?'startAt=$startAt)
     echo $result >/tmp/jira/$i.json
 
     maxResults=$(echo $result | jq '.maxResults')

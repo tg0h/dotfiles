@@ -19,7 +19,7 @@ function rae(){
   done
   shift $(($OPTIND - 1))
 
-  local result=$(https -b -a $JIRA_SECRET $JIRA_URL/rest/agile/1.0/board/$boardId/epic)
+  local result=$(https -b -a $JIRA_SECRET $JIRA_API_URL/agile/1.0/board/$boardId/epic)
   if [[ -z $raw ]]; then
     jq -r '.values | sort_by(.id) | reverse | .[] | (.id|tostring) + " - " + .key + " - " + .name + " - " + (.done|tostring)' \
       <<< $result
@@ -47,7 +47,7 @@ function raei(){
   done
   shift $(($OPTIND - 1))
 
-  local result=$(https -b -a $JIRA_SECRET $JIRA_URL/rest/agile/1.0/board/$boardId/epic/$epicId/issue)
+  local result=$(https -b -a $JIRA_SECRET $JIRA_API_URL/agile/1.0/board/$boardId/epic/$epicId/issue)
   if [[ -z $raw ]]; then
     jq -r '.issues[] | .key + " - " + .fields.status.name + " - " + .fields.summary + " - " + .fields.assignee.displayName + " - " +  .fields.creator.displayName' \
       <<< $result

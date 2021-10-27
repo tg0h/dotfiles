@@ -16,7 +16,7 @@ function rai(){
     done
     shift $(($OPTIND - 1))
 
-    local ticket=$(https -b -a $JIRA_SECRET $JIRA_URL/rest/agile/1.0/issue/ARG-$1)
+    local ticket=$(https -b -a $JIRA_SECRET $JIRA_API_URL/agile/1.0/issue/ARG-$1)
 
     if [[ -n "$long" ]]; then
       jq . <<< $ticket
@@ -41,10 +41,11 @@ function rai(){
                           # project (argus)
                           # issuelinks
                           # subtasks
-                          creator: .fields.creator.name, 
-                          reporter: .fields.reporter.name, 
-                          assignee: .fields.assignee.name,
+                          creator: .fields.creator.displayName, 
+                          reporter: .fields.reporter.displayName, 
+                          assignee: .fields.assignee.displayName,
                           issuetype: .fields.issuetype.name,
+                          hierarchyLevel: .fields.issuetype.hierarchyLevel,
                           isSubtask: .fields.issuetype.subtask,
                           priority: .fields.priority.name,
                           labels: .fields.labels,
@@ -53,7 +54,7 @@ function rai(){
                           # subtasks: (.fields.subtasks | map (.key) | reduce .[] as '$item' (""; . + " " + '$item')),
                           subtasks: (.fields.subtasks | map (.key)),
                           git: (.fields.comment.comments | 
-                                map(select(.author.name == "certis.ads")) |
+                                map(select(.author.displayName == "AugmentTech DSFO")) |
                                 map(
                                       {
                                       created,
@@ -104,7 +105,7 @@ function raib(){
       # heredoc redirects doc to cat input, unable to redirect directly into a variable
       # the hypen <<- allows you to indent your heredoc
       # not sure why # is allowed in the jqQuery ¯\_(ツ)_/¯
-    local ticket=$(https -b -a $JIRA_SECRET $JIRA_URL/rest/agile/1.0/issue/ARG-$1)
+    local ticket=$(https -b -a $JIRA_SECRET $JIRA_API_URL/agile/1.0/issue/ARG-$1)
 
       local jqQuery=$(cat <<-EOF
                         {
@@ -115,10 +116,10 @@ function raib(){
                           epicname: .fields.epic.name,
                           status: .fields.status.name,
                           created: .fields.created,
-                          reporter: .fields.reporter.name, 
-                          assignee: .fields.assignee.name,
+                          reporter: .fields.reporter.displayName, 
+                          assignee: .fields.assignee.displayName,
                           git: (.fields.comment.comments | 
-                                map(select(.author.name == "certis.ads")) |
+                                map(select(.author.displayName == "AugmentTech DSFO")) |
                                 map(
                                       {
                                       created,
