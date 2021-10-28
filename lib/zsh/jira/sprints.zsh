@@ -29,7 +29,6 @@ _ras(){
   mkdir -p /tmp/jira
 
   local i=0
-  trash /tmp/jira/*.json
   while [ $isLast = "false" ]; do
 
     # to debug it is useful to reduce the number of items in the page
