@@ -6,6 +6,7 @@ function ras(){
   # 1 week expiry
   # do not use getopts, pass through $ to rcache
   # getopts is too much code for passthrough
+  # but what if i want to parse opts here, eg -n to show head -n 5
   result=$(rcache "$@" jira/ras.604800 _ras)
   _ras-view "$result"
 }
