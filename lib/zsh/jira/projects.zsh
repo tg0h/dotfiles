@@ -1,9 +1,4 @@
 function rap(){
-  # get all jira projects
-  https -b -a $JIRA_SECRET $JIRA_URL/api/3/project/search
-}
-
-function rap(){
   # get jira projects
   local result
   result=$(rcache "$@" 'jira/rap.604800' '_rap')
