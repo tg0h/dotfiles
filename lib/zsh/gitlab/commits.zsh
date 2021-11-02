@@ -15,9 +15,12 @@ function ggcr() {
   # gitlab Commit Refs - IMPORTANT
   # get branches/tags commit is pushed to
   # ggcr <commit sha>
+  
+  # column -t separates columns with tabs
 
   https -b $GITLAB_URL/projects/$GITLAB_PROJECT_ID/repository/commits/$1/refs \
     PRIVATE-TOKEN:$GITLAB_PRIVATE_TOKEN \
+    | jq -r '.[] | .name +" "+ .type' | column -t
   }
 
 function ggcm() {
