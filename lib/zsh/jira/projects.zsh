@@ -1,14 +1,31 @@
 function rap(){
   # get jira projects
+  # prettifies the data
+
   local result
   result=$(rcache "$@" 'jira/rap.604800' '_rap')
-  echo $result
+
+  # use , in jq to manually specify a column header
+  local jqQuery='["id","name","key","style","projectTypeKey","simplified","isPrivate"] , (.[] | [ (.id|tostring) , .name , .key , .style , .projectTypeKey, .simplified, .isPrivate] ) | @tsv'
+  # TODO: how to use heredoc to specify jq string?
+  # local jQuery=$(cat <<-EOF
+  #                   .[] | (.id|tostring) +  "-" + .name
+  # EOF
+  # )
+  # echo $jQuery
+
+  # https://unix.stackexchange.com/questions/57222/how-can-i-use-column-to-delimit-on-tabs-and-not-spaces
+  # use $'\t' to specify c style tab characters
+  # specifying '\t' causes column to separate on the \ and the t character
+  # TODO: how to use rg to capture the header?
+  jq --raw-output "$jqQuery" <<< $result \
+    | column -ts $'\t' \
+    | rg --color never -e id -e Argus -e Certify -e Optimax
 }
 
 function _rap(){
-  # list jira boards
-  # -a means --auth
-  # use basic authentication by default
+  # get jira projects
+  # _rap gets the raw data
 
   local outdir=$(mktemp -d '/tmp/jira.projects.XXX')
   local page=1
@@ -25,8 +42,7 @@ function _rap(){
     (( page++ ))
   done
 
-  local allBoards=$(jq --null-input '[inputs| .values[]]' $outdir/*.json)
-  local jqQuery='.[] | (.id|tostring) + " - " + .name'
+  local data=$(jq --null-input '[inputs| .values[]]' $outdir/*.json)
 
-  jq --raw-output $jqQuery <<< $allBoards | sort -r -V 
+  jq <<< $data
 }
