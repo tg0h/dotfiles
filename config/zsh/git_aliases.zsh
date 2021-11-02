@@ -55,6 +55,7 @@ alias gdc='git diff --cached'
 alias gdcn='git diff --cached --name-only'
 alias gl='git pull'
 alias gup='git pull --rebase'
+alias gpro='git pull --rebase origin'
 alias gp='git push'
 alias gpo='git push origin'
 alias gc='git commit -v'
@@ -130,6 +131,8 @@ alias gsta='git stash'
 alias gstac='git stash clear'
 alias gstal='git stash list'
 alias gstp='git stash pop'
+# gstu <path to file>
+alias gstu='git stash push' 
 alias gstd='git stash drop'
 
 # Will cd into the top of the current repository
