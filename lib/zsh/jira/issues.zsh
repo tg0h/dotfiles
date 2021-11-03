@@ -27,6 +27,7 @@ function rai(){
       local jqQuery=$(cat <<-EOF
                         {
                           sprint: .fields.sprint.name,
+                          closedSprint: .fields.closedSprints[0]?.name,
                           key: .key,
                           summary: .fields.summary,
                           components: .fields.components[0]?.name,
@@ -112,6 +113,7 @@ function raib(){
                           key: .key,
                           summary: .fields.summary,
                           sprint: .fields.sprint.name,
+                          closedSprint: .fields.closedSprints[0]?.name,
                           components: .fields.components[0]?.name,
                           epicname: .fields.epic.name,
                           status: .fields.status.name,

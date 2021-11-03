@@ -42,9 +42,9 @@ function raiet(){
 }
 
 
-function raiet(){
-  # get jira issue transitions
-  # raiet 3106
+function raie(){
+  # edit ticket fields
+  # raie 3106
   # raiem -p OTXSC 1234 # searches for OTXSC-1234
   # https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issues/#api-rest-api-3-issue-issueidorkey-transitions-get
   
@@ -65,8 +65,16 @@ function raiet(){
   echo $labels
   update=$(jo labels=$labels)
   echo $update
+  echo this is labels $labels
+
+  # fVersions=$(jo -p -d. "fixVersions[]=$(jo -d. add.name='argus cc au 1.23-au')")
+  # fVersions=$(jo -d. add.name='argus cc au 1.23-au')
+
+  # update=$(jo -d. "labels=$labels fixVersions[]=$fVersions")
+  # echo this is update $update
+  # echo $fVersions
 
   # rapir /issue/$prefix-$1/transitions
-  https PUT -b -a $JIRA_SECRET $JIRA_API_URL/api/3/issue/$prefix-$1
+  https --verbose -a $JIRA_SECRET PUT $JIRA_API_URL/api/3/issue/$prefix-$1 \
     update:=$update
 }
