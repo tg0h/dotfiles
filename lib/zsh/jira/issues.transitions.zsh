@@ -1,10 +1,11 @@
 function rait(){
-  # get jira status issue transitions
-  # raiet 3106
-  # raiem -p OTXSC 1234 # searches for OTXSC-1234
+  # jira issue transition
+  # rait <transitionId> ticketId1 ticketId2 ... - transition ticket ids with transitionId
+  # get transition ids with raitm <ticketId>
+  # -p - specify a ticket prefix
   # https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issues/#api-rest-api-3-issue-issueidorkey-transitions-get
   
-  local prefix
+  local prefix transition statusId
 
   while getopts 'p:' opt; do
     case "$opt" in
@@ -14,9 +15,19 @@ function rait(){
   shift $(($OPTIND - 1))
 
   prefix="${prefix:-ARG}"
+  statusId=$1
+  transition=$(jo id=$1)
 
+  shift # pop argv so that only ticket args remain in $@
+
+  for ticket in "$@"; do
+    echo transitioning ticket $fg[yellow]"$prefix-$ticket"$reset_color to status $fg[yellow]$statusId$reset_color
   # rapir /issue/$prefix-$1/transitions
-  https -b -a $JIRA_SECRET $JIRA_API_URL/api/3/issue/$prefix-$1/transitions \
+    https -b -a $JIRA_SECRET POST $JIRA_API_URL/api/3/issue/$prefix-$ticket/transitions \
+      transition:=$transition \
+      | gawk '{$1=$1;print}' #trim whitespace
+  # https://unix.stackexchange.com/questions/102008/how-do-i-trim-leading-and-trailing-whitespace-from-each-line-of-some-output
+  done;
 }
 
 function raitm(){
