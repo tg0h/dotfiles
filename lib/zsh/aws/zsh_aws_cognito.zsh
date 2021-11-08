@@ -1,45 +1,13 @@
 # TODO: awslogs get  sns/ap-southeast-1/474132418168/DirectPublishToPhoneNumber -s '9/1/2020 00:00' -e '9/1/2020 02:00' > certify_sms_publish
 # TODO: format cgetss cognito output
 
-## switch env
-# cerp () {
-#   if [[ -z "$1" ]]
-#   then
-#     echo $_CERTIFY_PROFILE
-#     return
-#   fi
-
-#   _setCertifyProfile $1
-# }
-
-# function _setCertifyProfile() {
-#   # local certify_profile
-#   case $1 in
-#     d) certify_profile="development"
-#       . ~/.certify/certify.develop.env
-#       asp cdev #switch to aws cd profile using the zsh aws plugin
-#       ;;
-#     s) certify_profile="staging"
-#       . ~/.certify/certify.staging.env
-#       asp cdev
-#       ;;
-#     p) certify_profile="production"
-#       . ~/.certify./certify.production.env
-#       asp cprod #switch to aws cp profile using the zsh aws plugin
-#       ;;
-#   esac
-
-#   # export _CERTIFY_PROFILE=$certify_profile
-# }
-
-
 #get user details
 function cget() {
-# examples:
-# note that options MUST come before user id
-# cget -p HK 125387 # search for user HK125387
-# cget 125387 # search for user SG125387
-# cget -s 125387 # search for user SG125387
+  # examples:
+  # note that options MUST come before user id
+  # cget -p HK 125387 # search for user HK125387
+  # cget 125387 # search for user SG125387
+  # cget -s 125387 # search for user SG125387
 
   local userPrefix="SG" #default
   local summary="" #if summary, do not print s3 folder and sync results
@@ -69,8 +37,22 @@ function cget() {
 }
 
 #expects EE ID
-crgs () {
-  rg "($1,).*(,NUM|,C_EMAIL|,P_EMAIL|,STAT2|,USRID_LONG)" $_CERTIFY_S3_BUCKET_SAP_SYNC_LOCAL_FOLDER --sortr created
+function crgs () {
+  # search for SAP sync files after 21 Oct after the dirty data was uploaded
+  fd . --type file --change-newer-than '2021-10-21 00:00:00' $_CERTIFY_S3_BUCKET_SAP_SYNC_LOCAL_FOLDER \
+    --exec-batch rg --sortr created "($1,).*(,NUM|,C_EMAIL|,P_EMAIL|,STAT2|,USRID_LONG)"
+      # rg "($1,).*(,NUM|,C_EMAIL|,P_EMAIL|,STAT2|,USRID_LONG)" $_CERTIFY_S3_BUCKET_SAP_SYNC_LOCAL_FOLDER --sortr created
+    }
+
+function crgss () {
+    # search for all SAP sync files in the s3 bucket
+    # --no-heading - show all files without grouping by filename
+    rg --no-heading "($1,).*(,NUM|,C_EMAIL|,P_EMAIL|,STAT2|,USRID_LONG)" $_CERTIFY_S3_BUCKET_SAP_SYNC_LOCAL_FOLDER --sortr created
+}
+
+function crgsss () {
+  # get s3 sync files for user with grouping
+  rg --color always "($1,).*(,NUM|,C_EMAIL|,P_EMAIL|,STAT2|,USRID_LONG)" $_CERTIFY_S3_BUCKET_SAP_SYNC_LOCAL_FOLDER --sortr created
 }
 
 crgsu () {
