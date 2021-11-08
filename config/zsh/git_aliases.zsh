@@ -97,6 +97,7 @@ alias glog='git log --oneline --decorate --color --graph --left-right'
 # alias glog1="git log --all --decorate --graph --since=1.weeks"
 # alias glog2="git log --all --decorate --graph --since=2.weeks"
 alias glogm='git log --oneline --decorate --color --graph --max-count=10'
+alias glps='git log --patch -S'
 
 alias gss='git status -s'
 alias ga='git add'
