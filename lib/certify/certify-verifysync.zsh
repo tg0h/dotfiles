@@ -56,7 +56,8 @@ rg -n '.*,SG.*(,STAT2,|,NUM..,|,P_EMAIL,|,C_EMAIL,|,USRID_LONG,)' $_CERTIFY_S3_B
 #.19 means first 19 chars
 # zsh throws an error "argument list too long" if there are too many files in the folder
 # gstat -c '%n %.19w' $_CERTIFY_S3_BUCKET_SAP_SYNC_LOCAL_FOLDER >file_date
-for file in $_CERTIFY_S3_BUCKET_SAP_SYNC_LOCAL_FOLDER/*; # note that / after $_CERTIFY_S3_BUCKET_SAP_SYNC_LOCAL_FOLDER
+# search files in child directories with **/* glob
+for file in $_CERTIFY_S3_BUCKET_SAP_SYNC_LOCAL_FOLDER/**/*; # note that / after $_CERTIFY_S3_BUCKET_SAP_SYNC_LOCAL_FOLDER
 do
   # echo $file
   gstat -c '%n %.19w' $file >> file_date

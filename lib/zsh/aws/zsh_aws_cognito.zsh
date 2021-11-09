@@ -41,13 +41,27 @@ function crgs () {
   # search for SAP sync files after 21 Oct after the dirty data was uploaded
   fd . --type file --change-newer-than '2021-10-21 00:00:00' $_CERTIFY_S3_BUCKET_SAP_SYNC_LOCAL_FOLDER \
     --exec-batch rg --sortr created "($1,).*(,NUM|,C_EMAIL|,P_EMAIL|,STAT2|,USRID_LONG)"
-      # rg "($1,).*(,NUM|,C_EMAIL|,P_EMAIL|,STAT2|,USRID_LONG)" $_CERTIFY_S3_BUCKET_SAP_SYNC_LOCAL_FOLDER --sortr created
-    }
+  }
 
 function crgss () {
-    # search for all SAP sync files in the s3 bucket
-    # --no-heading - show all files without grouping by filename
-    rg --no-heading "($1,).*(,NUM|,C_EMAIL|,P_EMAIL|,STAT2|,USRID_LONG)" $_CERTIFY_S3_BUCKET_SAP_SYNC_LOCAL_FOLDER --sortr created
+  # get s3 sync files for user
+  # crgss <userId> - defaults to 10 rows
+  # crgss <userId> -a - get all s3 sync file rows for user
+
+  local rows
+
+  rows=10
+
+  while getopts 'a' opt; do
+    case "$opt" in
+      a) rows=999;;
+    esac
+  done
+  shift $(($OPTIND - 1))
+
+  # search for all SAP sync files in the s3 bucket
+  # --no-heading - show all files without grouping by filename
+  rg --color always "($1,).*(,NUM|,C_EMAIL|,P_EMAIL|,STAT2|,USRID_LONG)" $_CERTIFY_S3_BUCKET_SAP_SYNC_LOCAL_FOLDER --sortr created | head -n $rows
 }
 
 function crgsss () {
