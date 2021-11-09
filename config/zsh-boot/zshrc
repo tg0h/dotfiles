@@ -12,7 +12,7 @@ plugins=(
   zsh-nvm #add at the top so other plugins that use node/npm can work ###lukechilds/zsh-nvm
   aliases adb aws colored-man-pages docker docker-compose dotenv
   fasd git git-auto-fetch gitignore jira last-working-dir
-  npm osx ports ###github: github.com/caarlos0-graveyard/ports
+  npm macos ports ###github: github.com/caarlos0-graveyard/ports
   timer zsh-autosuggestions ###zsh-users/zsh-autosuggestions
   zsh-autocomplete ###marlonrichert/zsh-autocomplete
   z fast-syntax-highlighting ###zdharma/fast-syntax-highlighting
