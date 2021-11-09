@@ -6,9 +6,9 @@
   <string>certify.to.certifySyncReport</string>
 
   <key>ProgramArguments</key>
-  <array>
-    <string>/Users/tim/.dotfiles/lib/certify/certify-verifysync.zsh</string>
-  </array>
+  <!-- <array> -->
+  <!--   <string>/Users/tim/.dotfiles/lib/certify/certify-verifysync.zsh</string> -->
+  <!-- </array> -->
 
   <key>Nice</key>
   <integer>1</integer>
