@@ -26,5 +26,5 @@ def colours:
 # will output 
 # \u001b[31msome text\u001b[0m
 # WARNING parameters are separated by ; not ,
-def colour_text(text; colour):
+def colour(text; colour):
   escape + colours[colour] + text + escape + colours.reset;
