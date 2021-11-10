@@ -15,6 +15,9 @@ function _jira_get_next_page(){
 }
 
 function _jira_get_next_startAt(){
+  # https://docs.atlassian.com/jira-software/REST/7.3.1/
+  # https://docs.atlassian.com/jira-servicedesk/REST/3.6.2/#pagination
+  # note that pagination for jira rest and jira service desk rest is different
   local response=$1
 
   maxResults=$(echo $response | jq '.maxResults')
