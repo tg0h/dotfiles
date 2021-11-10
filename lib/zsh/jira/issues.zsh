@@ -2,10 +2,12 @@ function rai(){
   # get jira issue
   # rai 1234 gets rai ARG-1234
 
-  local long # full details
-  while getopts 'l' opt; do
+  local long comments
+
+  while getopts 'lc' opt; do
     case "$opt" in
       l) long=true;;
+      c) comments=true;;
 
       # a) app=$OPTARG
         #   case "$app" in
@@ -35,8 +37,13 @@ EOF
 )
 
     if [[ -n "$long" ]]; then
+      # display entire json response
       jq . <<< $ticket
+    elif [[ -n "$comments" ]]; then
+      # display raw comments from gitlab
+      jq '.fields.comment.comments | map(select(.author.displayName == "AugmentTech DSFO") | .body)' <<< $ticket
     else
+      # display pretty printed json response summary
       _rai $1 | jq $jqQuery 
       # heredoc redirects doc to cat input, unable to redirect directly into a variable
       # the hypen <<- allows you to indent your heredoc
