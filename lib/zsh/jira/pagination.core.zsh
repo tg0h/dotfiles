@@ -20,6 +20,9 @@ function _jira_get_next_startAt(){
   # note that pagination for jira rest and jira service desk rest is different
   local response=$1
 
+  # TODO: this fails if the json response contains a newline
+  # eg if the service desk ticket summary has a newline
+  # jq complains with 'parse error: Invalid string: control characters from U+0000 through U+001F must be escaped at line 3, column 33'
   maxResults=$(echo $response | jq '.maxResults')
   startAt=$(echo $response | jq '.startAt')
   isLast=$(echo $response | jq '.isLast')
