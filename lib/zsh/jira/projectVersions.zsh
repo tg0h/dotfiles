@@ -47,4 +47,3 @@ function _rapv(){
   local data=$(jq --null-input '[inputs| .values[]]' $outdir/*.json)
   jq <<< $data
 }
-
