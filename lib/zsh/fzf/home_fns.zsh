@@ -195,3 +195,15 @@ LBUFFER+=$result
 
 zle     -N   fzf-search-home-function-widget  
 bindkey '^H^N' fzf-search-home-function-widget
+
+function au(){
+  # search home functions
+
+  local result=$(
+  _fzf_home_getFunctions | fzf --ansi \
+    --preview="_fzf_home_displayFunction {1} {2}" \
+    --bind "ctrl-e:execute(_fzf_home-function_nvim_edit {1} {2} < /dev/tty > /dev/tty 2>&1)"
+)
+# zle reset-prompt;
+# LBUFFER+=$result
+}
