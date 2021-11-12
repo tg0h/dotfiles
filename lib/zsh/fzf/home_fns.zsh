@@ -202,7 +202,8 @@ function au(){
   local result=$(
   _fzf_home_getFunctions | fzf --ansi \
     --preview="_fzf_home_displayFunction {1} {2}" \
-    --bind "ctrl-e:execute(_fzf_home-function_nvim_edit {1} {2} < /dev/tty > /dev/tty 2>&1)"
+    --bind "enter:execute(_fzf_home-function_nvim_edit {1} {2} < /dev/tty > /dev/tty 2>&1)"
+    # --bind "ctrl-e:execute(_fzf_home-function_nvim_edit {1} {2} < /dev/tty > /dev/tty 2>&1)"
 )
 # zle reset-prompt;
 # LBUFFER+=$result
