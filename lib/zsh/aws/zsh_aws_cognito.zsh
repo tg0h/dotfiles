@@ -274,6 +274,15 @@ clu() {
 # convert json to csv, filter for useful user attributes
 clu2csv() {
   #TODO: code smell, .csv, .json
+    # local jqQuery=$(cat <<-EOF
+    #                     .Users[] | 
+    #                     (.Attributes | map( {(.Name) : .Value}) | add ) as \$fields | 
+    #                     [{Username, employee_id: \$fields."custom:employee_id",name: \$fields.name,given_name: \$fields.given_name,family_name: \$fields.family_name,employment_status: \$fields."custom:employment_status", join_date: \$fields."custom:join_date",UserStatus,phone_number_verified: \$fields.phone_number_verified, phone_number: \$fields.phone_number, email_verified: \$fields.email_verified,email: \$fields.email,company_email: \$fields."custom:company_email", personal_email: \$fields."custom:personal_email",UserCreateDate,UserLastModifiedDate}] | 
+    #                     (.[0] | keys_unsorted) as \$keys | 
+    #                     map([.[ \$keys[] ]
+# EOF
+# )
+
   jq --raw-output '.Users[] | (.Attributes | map( {(.Name) : .Value}) | add ) as $fields | [{Username, employee_id: $fields."custom:employee_id",name: $fields.name,given_name: $fields.given_name,family_name: $fields.family_name,employment_status: $fields."custom:employment_status", join_date: $fields."custom:join_date",UserStatus,phone_number_verified: $fields.phone_number_verified, phone_number: $fields.phone_number, email_verified: $fields.email_verified,email: $fields.email,company_email: $fields."custom:company_email", personal_email: $fields."custom:personal_email",UserCreateDate,UserLastModifiedDate}] | (.[0] | keys_unsorted) as $keys | map([.[ $keys[] ]])[] | @csv'  \
     < $_CERTIFY_COGNITO_LOCAL_USERS.json \
     > $_CERTIFY_COGNITO_LOCAL_USERS.csv
