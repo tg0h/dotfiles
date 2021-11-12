@@ -3,7 +3,8 @@
 
 # use with -r flag on jq command
 # sample code to include this custom jq module:
-# jq -L "~/.config/jq" -r 'include "module-colour"; .Parameters[] | .Name + " = " + colour_text(.Value; "green")'
+
+# jq -L "~/.config/jq" -r 'include "colour"; .Parameters[] | .Name + " = " + colour_text(.Value; "green")'
 
 # Unicode escape character
 # \e, \033 and \x1b cause "Invalid escape" error
@@ -28,3 +29,23 @@ def colours:
 # WARNING parameters are separated by ; not ,
 def colour(text; colour):
   escape + colours[colour] + text + escape + colours.reset;
+
+def _r(text):
+  escape + colours["red"] + text + escape + colours.reset;
+
+def _g(text):
+  escape + colours["green"] + text + escape + colours.reset;
+
+def _b(text):
+  escape + colours["blue"] + text + escape + colours.reset;
+
+def _y(text):
+  escape + colours["yellow"] + text + escape + colours.reset;
+
+def __(text):
+  escape + colours["darkgray"] + text + escape + colours.reset;
+
+def colourdd(text):
+  escape + colours["disabled"] + text + escape + colours.reset;
+
+
