@@ -17,11 +17,31 @@ function rapv(){
   local result
   # TODO: how to pass reload param to rcache?
   result=$(rcache 'jira/rapv.604800' '_rapv')
+
+  local jqQuery=$(cat <<-EOF
+                include "colour";
+                include "pad";
+
+                def _(\$bool): (\$bool|tostring) | if . == "true" then _g("X") else __("-") end;
+
+                # add a column header row
+                [ "name","id",  __("R"), __("A"), __("start"), __("rel"), "description" ] ,
+                ( 
+                  sort_by(-(.id|tonumber), .name)
+                  # | reverse
+                  | .[] 
+                  | [ .name, .id , _(.released), _(.archived) , __(.startDate[5:10]), __(.releaseDate[5:10]), .description ] 
+                ) 
+                | @tsv
+EOF
+)
+
   # local jqQuery='["name","id","released","archived","projectId"] , (.[] | [ .name, (.id|tostring), .released, .archived , .projectId ] ) | @tsv'
-  local jqQuery='(.[] | [ .name, (.id|tostring), .released, .archived , .projectId ] ) | @tsv'
-  jq --raw-output $jqQuery <<< $result \
-    | sort -t$'\t' -k2r | head -n $number | sort -t$'\t' -k1 \
+  jq --raw-output -L "~/.config/jq" $jqQuery <<< $result \
+    | head -n $number \
     | column -ts $'\t'
+    # | sort -t$'\t' -k2r | head -n $number | sort -t$'\t' -k1 \
+    # | column -ts $'\t'
 }
 
 function _rapv(){
