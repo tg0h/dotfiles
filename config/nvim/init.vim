@@ -227,6 +227,9 @@ nnoremap <Leader>r :RunInInteractiveShell<Space> "January 10 2021 Sunday
 noremap <F10> :term<CR>
 " noremap <F1> :NERDTreeToggle<CR>
 noremap <leader>nt :NERDTreeToggle<CR>
+" view the current buffer in NERDTree - helpful when working directory is
+" different for file
+noremap <leader>nc :NERDTree %<CR>
 " even in insert mode, F2 means save
 " ctrl o escapes insert mode so we can send :w
 inoremap <F2> <C-O>:w <CR>
@@ -238,7 +241,8 @@ nmap <F4> i<C-R>=strftime("%B %d %Y %A")<CR><Esc>
 noremap <f5> :UndotreeShow<CR>
 noremap <F6> :setlocal spell! spelllang=en_gb<CR> " Toggle Spellcheck
 noremap <F7> :VimwikiTable<CR>
-noremap <F9> :Autoformat<CR>
+" noremap <F9> :Autoformat<CR>
+noremap <leader>ff :Autoformat<CR>
 " map <S-Space> <Plug>VimwikiToggleListItem
 
 "if fileType is vimwiki -- also, see ToggleCalendar function defined above
@@ -589,13 +593,13 @@ tnoremap <C-\><C-\> <C-\><C-n>
 " neoterm keymaps
 " scratch function -----
 "run the zsh ss command to source my scratch function
-nnoremap <leader>nh :T ss<cr> 
+nnoremap <leader>hn :T ss<cr> 
 "run the zsh tt to run my scratch function
-nnoremap <leader>th :T tt<cr> 
+nnoremap <leader>ht :T tt<cr> 
 " current file  -----
-" tell neo term to source current file
-nnoremap <leader>ts :T source %<cr> 
 "copy the last run command into the t register
-nnoremap <leader>hn :let @t=@:<cr> 
+nnoremap <leader>nh :let @t=@:<cr> 
+" tell neo term to source current file
+nnoremap <localleader>nh :T source %<cr> 
 "run the t register as an ex command
-nnoremap <leader>ht :@t<cr> 
+nnoremap <localleader>th :@t<cr> 
