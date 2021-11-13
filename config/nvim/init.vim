@@ -1,6 +1,8 @@
 " Manage plugins with vim-plug.
 " => Plugins ======================================================================================================
 call plug#begin("$XDG_DATA_HOME/nvim/plugged")
+Plug 'kassio/neoterm'
+
 Plug 'phanviet/vim-monokai-pro'
 
 " FZF
@@ -555,3 +557,29 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 " " NOTE: Please see `:h coc-status` for integrations with external plugins that
 " " provide custom statusline: lightline.vim, vim-airline.
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+
+" go to last edit position
+" https://stackoverflow.com/questions/7894330/preserve-last-editing-position-in-vim
+" Return to last edit position when opening files (You want this!)
+autocmd BufReadPost *
+     \ if line("'\"") > 0 && line("'\"") <= line("$") |
+     \   exe "normal! g`\"" |
+     \ endif
+
+" let g:neoterm_default_mod='belowright' " open terminal in bottom split
+let g:neoterm_default_mod='botright vertical' " open terminal in bottom split
+" let g:neoterm_size=150 " terminal split size
+let g:neoterm_autoscroll=1 " scroll to the bottom when running a command
+" nnoremap <leader>ts :TREPLSendLine<cr>
+nnoremap <leader>th :T tt<cr> 
+" toggle terminal window
+nnoremap <leader>tt :Ttoggle<cr> 
+" open new neoterm terminal
+nnoremap <leader>tn :Tnew<cr>
+nnoremap <leader>tl :Tls<cr>
+nnoremap <leader>tc :Tclose<cr>
+nnoremap <leader>nh :T ss<cr> 
+" vnoremap <leader><cr> :TREPLSendSelection<cr> " send current selection
+" https://github.com/kassio/neoterm/issues/314
+" use this remap to escape from a neoterm terminal
+tnoremap <C-\><C-\> <C-\><C-n>
