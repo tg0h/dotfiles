@@ -27,8 +27,8 @@ function rcache(){
 
   local cacheKeyExpiry func
   # echo number of args is $#
-  cacheKeyExpiry=$1
-  func=$2
+  cacheKeyExpiry="$1"
+  func="$2"
   shift 2
   # pop the 1st 2 args off the arg list
   # now the old $3 is the new $1
@@ -37,9 +37,14 @@ function rcache(){
   # cacheKeyExpiry may be test.123 ( key of test, expiry of 123 seconds ) or
   # test (no expiry specified)
   if [[ "$cacheKeyExpiry" =~ "\." ]]; then
+    # we do not want a greedy match for the cache key?
     # a greedy match will ignore multiple periods
     # eg passing in prefix..suffix will stil parse correctly, removing both periods
-    cacheKey=${cacheKeyExpiry%%\.*} # % means greedily match pattern \.* and remove pattern from end
+
+    # eg compare jira/ras.123
+    # eg compare jira/ras.app.1.6.7.123
+    # eg compare jira/ras
+    cacheKey=${cacheKeyExpiry%\.*} # % means lazily match the first pattern \.* and remove pattern from end
     cacheExpiry=${cacheKeyExpiry##*\.} # # means greedily match pattern *\. and remove from the start
   else
     cacheKey=$cacheKeyExpiry
@@ -47,16 +52,38 @@ function rcache(){
 
   local response cacheValue funcResult
   #rcg = redis-cli get
-  cacheValue=$(rcg $cacheKey)
+  # cacheKey may contain spaces, add quotes around $cacheKey
+  # eg jira/rapvi/Optimax CC 1.2.3
+  cacheValue=$(rcg "$cacheKey") 
 
   if [[ -z "$cacheValue" ]] || [[ -n "$cacheReload" ]]; then
     # echo number of args is $#
     # echo remaining args is $@
     # echo $fg[green] 'calling function' $func $reset_color
-    funcResult=$(eval $func $@)
+    # TODO: if there are spaces in $@, then each space results in separate args to $func
+    # this is a difficult problem to solve
+    # echo rcache: calling funcResult with $@ >> timtest
+    funcResult=$(eval $func "$@")
     #rcs sets the cache, ignores expiry if none provided
-    rcs $cacheKey $funcResult $cacheExpiry
+    rcs "$cacheKey" "$funcResult" "$cacheExpiry"
   fi
   # return the cache value. if null, return funcResult
   echo ${cacheValue:-$funcResult}
 }
+
+# this is a hard problem
+# passing 
+# tt(){
+#   func="ttt"
+#   eval "$func "$@""
+# }
+
+# ttt(){
+#   local arg1 arg2
+#   arg1=$1
+#   arg2=$2
+
+#   echo arg1 is $arg1
+#   echo arg2 is $arg2
+# }
+
