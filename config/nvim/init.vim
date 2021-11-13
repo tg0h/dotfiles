@@ -225,12 +225,15 @@ nnoremap <Leader>r :RunInInteractiveShell<Space> "January 10 2021 Sunday
 
 "uses fzf vim :Helptags
 noremap <F10> :term<CR>
-noremap <F1> :NERDTreeToggle<CR>
+" noremap <F1> :NERDTreeToggle<CR>
+noremap <leader>nt :NERDTreeToggle<CR>
 " even in insert mode, F2 means save
 " ctrl o escapes insert mode so we can send :w
 inoremap <F2> <C-O>:w <CR>
-noremap <F2> :w <CR>
-noremap <F3> :e ~/dotfiles/config/nvim/init.vim<CR>
+" noremap <F2> :w <CR>
+noremap <localleader>w :w<CR>
+noremap <leader>ev :e ~/dotfiles/config/nvim/init.vim<CR>
+noremap <leader>sv :source ~/dotfiles/config/nvim/init.vim<CR>
 nmap <F4> i<C-R>=strftime("%B %d %Y %A")<CR><Esc>
 noremap <f5> :UndotreeShow<CR>
 noremap <F6> :setlocal spell! spelllang=en_gb<CR> " Toggle Spellcheck
