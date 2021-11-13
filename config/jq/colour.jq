@@ -45,7 +45,7 @@ def _y(text):
 def __(text):
   escape + colours["darkgray"] + text + escape + colours.reset;
 
-def colourdd(text):
+def ___(text):
   escape + colours["disabled"] + text + escape + colours.reset;
 
 
