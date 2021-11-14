@@ -1,11 +1,11 @@
 # TODO: how to cache nvim files if accessed via alias
 # TODO: alias fzf manager - with comments
 #tmp GLOBAL ALIASES ==========================================================
-alias -g F='| fzf --preview-window hidden' 
+alias -g F='| fzf --preview-window hidden'
 alias -g T='| jq ".pay | fromjson"' # converT argus api stringifield payload back to json
-alias -g G='| gron --colorize' 
-alias -g W='| wc -l' 
-alias -g J='| jq .' 
+alias -g G='| gron --colorize'
+alias -g W='| wc -l'
+alias -g J='| jq .'
 # history
 alias 11="!!" # repeat last command
 alias 111="!-2" # repeat second last command
@@ -27,7 +27,7 @@ alias zsha='nvim ~/.local/lib/zsh/android/misc.zsh'
 alias zshi='nvim ~/.local/lib/zsh/zsh_ios.zsh'
 # tools
 alias zshd='nvim ~/.local/lib/zsh/zsh_docker_aliases.zsh'
-alias zshfzf='nvim ~/.local/lib/zsh/zsh_fzf.zsh' 
+alias zshfzf='nvim ~/.local/lib/zsh/zsh_fzf.zsh'
 alias zshrc='nvim ~/.local/lib/zsh/redis.zsh'
 # git
 alias zshgit='nvim ~/.config/zsh/git_aliases.zsh'
@@ -56,6 +56,7 @@ alias ee="nvim $HOME/.local/lib/scratch.zsh"
 # dir   ====================================================================
 alias l='lsd -la' # -a show hidden files
 alias ll='lsd -l' # use lsd to supercharge ls output
+alias lll='exatd' # use lsd to supercharge ls output
 alias lt="lsd -lt" # exclude hidden files to exclude . and ..
 alias lr="lsd -lar" #reverse the sort
 # exa
