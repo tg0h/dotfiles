@@ -19,7 +19,8 @@ function aoeu(){
   fc -l
 }
 
-function fclf(){
-  # list commands with timestamp
-  fc -lf
+function hist(){
+  # list commands with timestamp with seconds
+  # fc -lf
+  history -t '%F %T'
 }
