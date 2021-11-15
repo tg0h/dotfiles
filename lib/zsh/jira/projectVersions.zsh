@@ -4,10 +4,11 @@ function rapv(){
   # sort by version id descending
   # rapv - gets 20 versions by default
   # rapv -n 100 - get 100 versions
-  local number
-  while getopts 'n:' opt; do
+  local number all
+  while getopts 'n:a' opt; do
     case "$opt" in
       n) number=$OPTARG;;
+      a) all="| .";; # jq no op if all option passed
     esac
   done
   shift $(($OPTIND - 1))
@@ -18,6 +19,8 @@ function rapv(){
   # TODO: how to pass reload param to rcache?
   result=$(rcache 'jira/rapv.604800' '_rapv')
 
+  # if all is set, then pass all value (| .) (jq no op)
+  local notReleasedFilter=${all:-"| map(select(.released != true))"}
   local jqQuery=$(cat <<-EOF
                 include "colour";
                 include "pad";
@@ -29,19 +32,17 @@ function rapv(){
                 ( 
                   sort_by(-(.id|tonumber), .name)
                   # | reverse
+                  # | map(select(.released != true))
+                  $notReleasedFilter
                   | .[] 
                   | [ .name, .id , _(.released), _(.archived) , __(.startDate[5:10]), __(.releaseDate[5:10]), .description ] 
                 ) 
                 | @tsv
 EOF
 )
-
-  # local jqQuery='["name","id","released","archived","projectId"] , (.[] | [ .name, (.id|tostring), .released, .archived , .projectId ] ) | @tsv'
   jq --raw-output -L "~/.config/jq" $jqQuery <<< $result \
     | head -n $number \
     | column -ts $'\t'
-    # | sort -t$'\t' -k2r | head -n $number | sort -t$'\t' -k1 \
-    # | column -ts $'\t'
 }
 
 function _rapv(){
