@@ -11,7 +11,7 @@ keymaps:
   # XDG folders
   - bindkey: c #udc opens fzf and lists its directory contents
     dir: $XDG_CONFIG_HOME
-    options: 3
+    options: 5
   - bindkey: a
     dir: $XDG_CACHE_HOME
   - bindkey: t
@@ -57,6 +57,7 @@ keymaps:
   - bindkey: ob
     dir: $HOME/src/books
   - bindkey: oo
+    options: 3
     dir: $HOME/src/open
   - bindkey: og
     dir: $HOME/src/garden
