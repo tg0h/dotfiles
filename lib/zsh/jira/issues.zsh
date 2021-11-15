@@ -24,11 +24,17 @@ function rai(){
                                def rpad(\$len; \$fill): tostring | (\$len - length) as \$l | . + (\$fill * \$l)[:\$l];
                                def lpad(\$len; \$fill): tostring | (\$len - length) as \$l | (\$fill * \$l)[:\$l] + .;
                                { 
-                                  "ticket-status|time": "\(.key) - \(.issuetype) - \(.status) | \(.epickey) - \(.epicname) | \(.created[8:10])\(.created[5:7]) \(.created[11:16]) - \(.updated[8:10])\(.updated[5:7]) \(.updated[11:16])",
+                                  "status": "\(.status)",
+                                  "components": "\(.components)",
+                                  "fixVersions": "\(.fixVersions)",
+                                  "-------------------------------",
+                                  "epic": "\(.epickey) - \(.epicname)",
+                                  "parent": "\(.parent) - \(.parentSummary)",
+                                  "ticket-status|time": "\(.key) - \(.issuetype) | \(.created[8:10])\(.created[5:7]) \(.created[11:16]) - \(.updated[8:10])\(.updated[5:7]) \(.updated[11:16])",
                                   "summary": .summary,
-                                  "sprint|fixVersion": "\(.sprint // .closedSprint| rpad(15;" ")) | \(.components) | \(.fixVersions | sort_by(.name) | map(.name) | join(", ") )",
+                                  "sprint|fixVersion": "\(.sprint // .closedSprint| rpad(15;" "))",
+                                  "hLvl|isSub|parent": "\(.hierarchyLevel) | \(.isSubtask)",
                                   subtasks: .subtasks| map("\(.key) | \(.status) | \(.summary)"),
-                                  "hLvl|isSub|parent": "\(.hierarchyLevel) | \(.isSubtask) | \(.parent) - \(.parentSummary)",
                                   people: "\(.creator) - \(.reporter) - \(.assignee)",
                                   links: .links | map("\(.rel | lpad(13;" ")): \(.key) | \(.status | rpad(5;" ")) | \(.type| rpad(8;" "))| \(.summary) "),
                                   git: .git | map("\(.created[8:10])-\(.created[5:7]) \(.created[11:16]) | \(.mention.mentionRef[0:7] | rpad(8;" ")) | \(.mention.appName | capture (".*/(?<appName>.*)") | .appName | rpad(23;" ")) | \(.mention.userName| rpad(20;" ")) | \(.mention.mentionDescription)"),
@@ -60,7 +66,8 @@ function _rai(){
                           closedSprint: .fields.closedSprints[0]?.name,
                           key: .key,
                           summary: .fields.summary,
-                          components: .fields.components[0]?.name,
+                          # components: .fields.components[0]?.name,
+                          components: .fields.components | map (.name) | sort | join(", "),
                           epickey: .fields.epic.key,
                           epicname: .fields.epic.name,
                           parent: .fields.parent.key,
@@ -78,12 +85,7 @@ function _rai(){
                           isSubtask: .fields.issuetype.subtask,
                           priority: .fields.priority.name,
                           labels: .fields.labels,
-                          fixVersions: .fields.fixVersions | map (
-                                                                   {
-                                                                      name,
-                                                                   }
-                                                                 ),
-                                                                  
+                          fixVersions: .fields.fixVersions | map (.name) | sort | join(", "),
                           url: .self,
                           # subtasks: (.fields.subtasks | map (.key) | reduce .[] as '$item' (""; . + " " + '$item')),
                           # subtasks: (.fields.subtasks | map (.key)),
