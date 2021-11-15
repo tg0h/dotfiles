@@ -2,7 +2,7 @@
 # TODO: alias fzf manager - with comments
 #tmp GLOBAL ALIASES ==========================================================
 alias -g F='| fzf --preview-window hidden'
-alias -g T='| jq ".pay | fromjson"' # converT argus api stringifield payload back to json
+alias -g T='| tail -n 10'
 alias -g G='| gron --colorize'
 alias -g W='| wc -l'
 alias -g J='| jq .'
