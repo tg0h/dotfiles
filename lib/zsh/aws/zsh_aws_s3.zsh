@@ -1,6 +1,6 @@
 function std(){
   # download face picture from argus s3 bucket and open it
-  # std <facePath>
+  # std -p <facePath>
 #TODO: use redis?
 
   local s3path
