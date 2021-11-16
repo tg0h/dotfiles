@@ -26,6 +26,10 @@ keymaps:
     dir: $HOME/.local/lib
     options: 3 # specify how deep the directory preview should be
 
+  - bindkey: k
+    dir: $HOME/certis/docs/wiki
+    options: 4
+
   # my dotfiles
   - bindkey: z
     dir: $HOME/.dotfiles

@@ -8,6 +8,15 @@ function fzf-search-wiki-widget() {
 zle     -N   fzf-search-wiki-widget
 bindkey '^N^W' fzf-search-wiki-widget
 
+function ae() {
+  # search wiki
+  
+  fd --color always . '/Users/tim/certis/docs/wiki' | fzf --ansi \
+    --bind 'enter:execute(echo {} > /tmp/_nvim_cache && nvim {} < /dev/tty > /dev/tty 2>&1)'
+
+}
+
+
 function fzf-search-dotfiles-widget() {
   # ^N^H to search my dotfiles
   
