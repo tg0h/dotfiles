@@ -6,8 +6,11 @@ augroup numbertoggle
 augroup END
 
 "save your folds
-" autocmd BufWinLeave *.* mkview
-" autocmd BufWinEnter *.* silent loadview 
+augroup remember_folds
+  autocmd!
+  autocmd BufWinLeave *.* mkview
+  autocmd BufWinEnter *.* silent! loadview 
+augroup END
 
 "yaml tab spacing
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
