@@ -7,6 +7,7 @@ alias -g G='| gron --colorize'
 alias -g W='| wc -l'
 alias -g J='| jq .'
 alias -g R='| rg'
+alias -g S='| sort'
 # history
 alias 11="!!" # repeat last command
 alias 111="!-2" # repeat second last command
@@ -67,7 +68,7 @@ alias exatl="exat --level"
 alias exatal="exat --all --level" #include hidden and dot files
 # bat
 alias bats="bat *.csv"
-alias bata="bat *"
+alias bata="bat *(.)" # glob qualifier to only search for files, not dirs
 # utils ====================================================================
 #zsh jira plugin
 alias j=jira
