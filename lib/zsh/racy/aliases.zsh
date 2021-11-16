@@ -1,1 +1,1 @@
-alias rate="racy tickets edit"
+alias rate="ra tickets edit"

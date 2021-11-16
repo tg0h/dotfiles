@@ -6,6 +6,7 @@ alias -g T='| tail -n 10'
 alias -g G='| gron --colorize'
 alias -g W='| wc -l'
 alias -g J='| jq .'
+alias -g R='| rg'
 # history
 alias 11="!!" # repeat last command
 alias 111="!-2" # repeat second last command
