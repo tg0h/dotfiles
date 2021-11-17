@@ -49,9 +49,11 @@ function nsync(){
 }
 
 function tsync(){
-  # start a time machine backup to tardis
+  # start a time machine backup
   # run tmutil destination info to find the destination ids of the set up
-  tmutil startbackup --destination 82F5CE2B-24BF-4518-9700-B60B6EE757BD
+  # tmutil startbackup --destination 82F5CE2B-24BF-4518-9700-B60B6EE757BD
+
+  tmutil startbackup
 
   # tmutil status gives you the status of the backup
   # running=0 means the backup is done
