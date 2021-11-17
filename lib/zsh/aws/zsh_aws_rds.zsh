@@ -481,46 +481,157 @@ EOF
 }
 
 #not useful
+# function _dbalogin_attempts() {
+#   # EXAMPLES:
+#   # _dbalogin_attempts -n 20 -u SG123456 - get last 20 attempts for user SG123456
+#   # _dbalogin_attempts -u SG123456 - get last 5 rows for user SG123456
+
+#   local sqlQuery rows=5
+#   # local staffId
+#   while getopts 'n:u:o:' opt; do
+#     case "$opt" in
+#       n) rows=$OPTARG ;;
+#       # u) staffId=$OPTARG ;;
+#       u) filter="staffId = '$OPTARG'" ;;
+#     esac
+#   done
+#   shift $(($OPTIND - 1))
+
+#   sqlQuery=$(cat <<-EOF
+# select
+#        a.name acc,
+#        la.staffId,
+# #        la.userId, #user_auth id
+#        apps.appName,
+#        # apps.appId,
+#        # apps.id,
+#        la.ipAddress,
+#        la.deviceId,
+#        # la.api,
+#        la.app,
+#        la.status,
+#        # la.reason,
+#        # la.method,
+#        la.photo,
+#        # la.regPhoto,
+#        la.similarity,
+#        # la.createdAt,
+#        ADDTIME(la.createdAt, "8:0") signInTime # add 8 hours to UTC to get SG time days h:m:s
+# from login_attempts la
+#          inner join accounts a on la.accountId = a.id
+#          inner join apps on la.appId = apps.Id
+# where $filter
+# # where staffId = '$staffId'
+# order by signInTime desc
+# limit $rows
+
+# EOF
+# )
+
+# echo query is $query
+
+# local result=$(mysqlsh --sql -u $_ARGUS_RDS_DB_AUTH_USER -h 127.0.0.1 -P $_ARGUS_RDS_DB_AUTH_LOCAL_PORT -D $_ARGUS_RDS_DB_AUTH_NAME --result-format=table <<< $sqlQuery)
+# echo $result
+
+# }
+
 function _dbalogin_attempts() {
   # EXAMPLES:
-  # _dbalogin_attempts -n 20 -u SG123456 - get last 20 attempts for user SG123456
-  # _dbalogin_attempts -u SG123456 - get last 5 rows for user SG123456
+  #   BASIC USE:
+  #     _dbalogin_attempts -u SG123456 - get the user's sign in attempts for the past 7 days
+  #   FILTERING:
+  #     _dbalogin_attempts -u SG123456 -d 14 - get for the past 14 days
+  #     _dbalogin_attempts -u SG123456 -d 14 -n 10 - get for the past 14 days, get latest 10 rows
+  #   FORMAT:
+  #     _dbalogin_attempts -u SG123456 -j - get json output
+  #     _dbalogin_attempts -u SG123456 -c - get csv output
 
-  local rows=5
-  local staffId
-  while getopts 'n:u:' opt; do
+  local userIds
+  if [ -z "$_ARGUS_RDS_DB_AUTH_USER" ]; then
+    echo $fg[red]err:$reset_color please set up the env first
+    return 1
+  fi
+
+  if [[ -p /dev/stdin ]]
+  then
+    userIds=$(cat - | joinc)
+    # echo "PIPE=$PIPE"
+  fi
+
+  local rows=99999 daysInPast=7 outputFormat=table jqQuery sqlQuery csv
+
+  while getopts 'n:d:u:jc' opt; do
     case "$opt" in
       n) rows=$OPTARG ;;
-      u) staffId=$OPTARG ;;
+      d) daysInPast=$OPTARG;;
+      u) userIds=$(joinc <<< $OPTARG);;
+      j) outputFormat='json/array';; # print json output
+      c)
+        # export to csv
+        csv="true"
+        outputFormat='json/array' # this is the intermediat sql output which jq will convert to csv
+        jqQuery=$(cat <<-EOF
+      (.[0] | keys_unsorted) as \$keys
+      | 
+        \$keys, 
+        # object dereferencing in jq accepts an array
+        # eg  obj | jq .["key1", "key2
+        map( [ .[ \$keys[] ] ] )[]  
+      | @csv
+EOF
+)
+        ;; # wrap results in a array
     esac
   done
   shift $(($OPTIND - 1))
-  mysqlsh --sql -u $_ARGUS_RDS_DB_AUTH_USER -h 127.0.0.1 -P $_ARGUS_RDS_DB_AUTH_LOCAL_PORT -D $_ARGUS_RDS_DB_AUTH_NAME --result-format=table << EOF
+
+  if [[ -z $userIds ]]; then
+    echo $fg[red]err:$reset_color please pass user ids via stdin or the -u option
+    return 1
+  fi
+
+  sqlQuery=$(cat <<-EOF
 select
-       a.name,
+       a.name acc,
        la.staffId,
 #        la.userId, #user_auth id
        apps.appName,
-       apps.appId,
-       apps.id,
+       # apps.appId,
+       # apps.id,
        la.ipAddress,
        la.deviceId,
-       la.api,
+       # la.api,
        la.app,
        la.status,
-       la.reason,
-       la.method,
+       # la.reason,
+       # la.method,
        la.photo,
-       la.regPhoto,
+       # la.regPhoto,
        la.similarity,
-       la.createdAt
+       # la.createdAt,
+       ADDTIME(la.createdAt, "8:0") SGsignInTime # add 8 hours to UTC to get SG time days h:m:s
 from login_attempts la
          inner join accounts a on la.accountId = a.id
          inner join apps on la.appId = apps.Id
-where staffId = '$staffId'
-order by createdAt desc
+         where la.staffId IN ($userIds)
+         # CURRENT_TIMESTAMP and la.createdAt are both in UTC
+         and la.createdAt > (select ADDTIME(CURRENT_TIMESTAMP, '-$daysInPast 0:0'))
+order by SGsignInTime desc
 limit $rows
 EOF
+)
+
+local result=$(mysqlsh --sql -u $_ARGUS_RDS_DB_AUTH_USER -h 127.0.0.1 -P $_ARGUS_RDS_DB_AUTH_LOCAL_PORT -D $_ARGUS_RDS_DB_AUTH_NAME --result-format=$outputFormat <<< $sqlQuery)
+
+
+  if [[ -n $csv ]]; then
+    # echo jq is:
+    jq --raw-output $jqQuery <<< $result
+  else
+    # echo result is:
+    echo $result
+  fi
+
 }
 
 

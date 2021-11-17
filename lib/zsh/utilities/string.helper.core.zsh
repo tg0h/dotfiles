@@ -1,0 +1,20 @@
+function joinc(){
+  # join Comma: piped input to create comma separated string to use in sql
+  # eg provide 
+  #   abc
+  #   def
+  #
+  #   becomes 'abc','def'
+local item result
+
+while read item
+do
+  # (q) - quote result with backslashes
+  result=$result$(echo -n "'${(q)item}',")
+done
+  # remove the trailing comma from the string
+  result=${result%,}
+
+  echo $result
+}
+
