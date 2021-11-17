@@ -3,11 +3,18 @@
 #tmp GLOBAL ALIASES ==========================================================
 alias -g F='| fzf --preview-window hidden'
 alias -g T='| tail -n 10'
+alias -g CT='cat /tmp/t'
+alias -g ET='nvim /tmp/t'
+alias -g TT='> /tmp/t'
+alias -g CTT='cat /tmp/tt'
+alias -g TTT='> /tmp/tt'
 alias -g G='| gron --colorize'
 alias -g W='| wc -l'
 alias -g J='| jq .'
 alias -g R='| rg'
 alias -g S='| sort'
+alias -g U='| sort | uniq'
+alias -g X='| fx'
 # history
 alias 11="!!" # repeat last command
 alias 111="!-2" # repeat second last command
