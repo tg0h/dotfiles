@@ -23,7 +23,7 @@ def gName:
 def gitlabStatus:
 {
   "To Do": __("00td "), # grey
-  "Tested With Issues": _r("0fail"), # red
+  "Tested with Issues": _r("0fail"), # red
   "Pending (Migrated)": "pend ",
   "In Progress": "0ip  ",
   "Pending Epic Completion": "pec  ",
