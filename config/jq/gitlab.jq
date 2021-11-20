@@ -31,12 +31,12 @@ def gitlabStatus:
   "Feature Testing": _y("1ut  "), # yellow
   "To Merge To Develop": _g("1ut  "), # green
 
-  "Integration Test": _y("2dv  "),
-  "To Merge to Master or Release": _g("2dv  "),
+  "Integration Test": _y(" 2dv "),
+  "To Merge to Master or Release": _g(" 2dv "),
 
-  "Regression Test": _y("3st  "),
+  "Regression Test": _y("  3st"),
   "User Acceptance Test": _y("3uat "),
-  "Pending Production Deployment": _g("3st  "),
+  "Pending Production Deployment": _g("  3st"),
 
   "Done": _b("4done"), # blue
 
