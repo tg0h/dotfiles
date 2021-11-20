@@ -1,17 +1,25 @@
 # TODO: how to cache nvim files if accessed via alias
 # TODO: alias fzf manager - with comments
 #tmp GLOBAL ALIASES ==========================================================
+# regex for argus ticket key
+alias -g A="'ARG-\d*'"
+alias -g B='| bat'
+alias -g BR='| bat -r'
 alias -g F='| fzf --preview-window hidden'
 alias -g T='| tail -n 10'
 alias -g CT='cat /tmp/t'
 alias -g ET='nvim /tmp/t'
-alias -g TT='> /tmp/t'
+alias -g T='> /tmp/t'
+alias -g FT='/tmp/t'
 alias -g CTT='cat /tmp/tt'
-alias -g TTT='> /tmp/tt'
+alias -g TT='> /tmp/tt'
+alias -g ETT='nvim /tmp/tt'
+alias -g FTT='/tmp/tt'
 alias -g G='| gron --colorize'
 alias -g W='| wc -l'
 alias -g J='| jq .'
 alias -g R='| rg'
+alias -g RO='| rg -o'
 alias -g S='| sort'
 alias -g U='| sort | uniq'
 alias -g X='| fx'
@@ -21,6 +29,8 @@ alias 111="!-2" # repeat second last command
 # =========================================================================
 alias udcl='ud configure list' #show ud configuration
 alias udce='ud configure edit' #edit ud configuration
+alias aes='nvim ~/certis/docs/wiki/scratch.md'
+alias aesb='bat ~/certis/docs/wiki/scratch.md'
 # edit config file shortcuts
 alias dos='nvim ~/.dotfiles/install.conf.yaml' # dotbot sourcefile
 alias doi='dotbot --verbose -c ~/.dotfiles/install.conf.yaml'
