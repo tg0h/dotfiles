@@ -1,3 +1,4 @@
+# TODO: open parts of a file - eg open the officer section of the release notes
 function _rnOpen() {
   # open release notes in release notes dir
   local filter releaseNotes open edit
