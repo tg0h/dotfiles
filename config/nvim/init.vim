@@ -6,6 +6,8 @@ set wildignore+=**/node_modules/*
 " Manage plugins with vim-plug.
 " => Plugins ======================================================================================================
 call plug#begin("$XDG_DATA_HOME/nvim/plugged")
+
+
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/completion-nvim'
 " Plug 'hrsh7th/cmp-nvim-lsp'
@@ -77,6 +79,7 @@ Plug 'mbbill/undotree' "July 16 2021 Friday
 
 " Misc
 Plug 'vimwiki/vimwiki' "20190628
+Plug 'michal-h21/vim-zettel' "20211127
 
 " ICEBOX
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
