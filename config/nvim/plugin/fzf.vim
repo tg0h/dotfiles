@@ -11,7 +11,7 @@ let g:fzf_action = {
   \}
 
 nnoremap <C-H> :History<cr>
-nnoremap <C-T> :Files<cr>
+" nnoremap <C-T> :Files<cr>
 nnoremap <C-B> :Buffers<cr>
 nmap <C-L> :Lines<cr>
 nmap <LEADER>sbl :BLines<cr>
@@ -25,6 +25,7 @@ nmap <leader>ss :History/<cr>
 nmap <leader>sc :Commands<cr>
 nmap <leader>sm :Maps<cr>
 nmap <leader>sk :Marks<cr>
+nnoremap <leader>st :Files<cr>
 
 " Git ---------------------------------
 nmap <leader>sgc :Commits<cr>
