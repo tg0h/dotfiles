@@ -5,7 +5,9 @@
 alias -g A="'ARG-\d*'"
 alias -g B='| bat'
 alias -g BR='| bat -r'
+alias -g C='| choose'
 alias -g F='| fzf --preview-window hidden'
+alias -g H='| head -n 10'
 alias -g T='| tail -n 10'
 alias -g CT='cat /tmp/t'
 alias -g ET='nvim /tmp/t'
@@ -19,13 +21,17 @@ alias -g G='| gron --colorize'
 alias -g W='| wc -l'
 alias -g J='| jq .'
 alias -g R='| rg'
+alias -g RV='| rg -v'
 alias -g RO='| rg -o'
 alias -g S='| sort'
+alias -g SV='| sort -V'
+alias -g SVK='| sort -V -k'
 alias -g U='| sort | uniq'
 alias -g X='| fx'
 # history
 alias 11="!!" # repeat last command
 alias 111="!-2" # repeat second last command
+alias pc='/Applications/Pritunl.app/Contents/Resources/pritunl-client'
 # =========================================================================
 alias udcl='ud configure list' #show ud configuration
 alias udce='ud configure edit' #edit ud configuration
@@ -94,7 +100,7 @@ alias sg="set | grep"
 alias fork="open . -a /Applications/Fork.app"
 alias norg="gron --ungron"
 # alias update="source ~/.zshrc" #doesn't work - complains about some fd error
-alias vpn="networksetup -connectpppoeservice 'edo vpn'"
+# alias vpn="networksetup -connectpppoeservice 'edo vpn'"
 alias dvpn="networksetup -disconnectpppoeservice 'edo vpn'"
 # slack
 alias sl=slackcat
