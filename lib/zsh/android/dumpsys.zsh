@@ -30,6 +30,12 @@ function ads(){
           fs) appId="com.certisgroup.argus.apps.officer.staging";; #flutter staging
           fp) appId="com.certisgroup.argus.apps.officer$";; #flutter prod
           cd) appId="com.certisgroup.cathy.debug";; #certify dev
+          od) appId="tech.augment.optimax.officer.dev";;
+          os) appId="tech.augment.optimax.officer.staging";;
+          op) appId="tech.augment.optimax.officer";;
+          *) echo 'app not found'
+             return 1
+            ;;
         esac
         ;;
     esac
@@ -58,11 +64,14 @@ function ads(){
     echo "neither usbMode or ip was given, will leave it to the gods"
   fi
 
+  # if cannot find appName via adb shell ps, then use the appId specified in -a option
+  appName=${appName:-appId}
+
   echo dumping package $appName
   echo "flutter app name -- com.certisgroup.argus.apps.officer.[env]"
   echo "sg app name      -- com.certis.argus.apps.officer[env]"
   echo -------
-  echo with pid: $pid
+  # echo with pid: $pid
   echo usbMode: $usbMode
   echo ip: $ip
   adb $usbMode $sOPT $ip shell dumpsys package $appName
