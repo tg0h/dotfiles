@@ -12,19 +12,19 @@ keymaps:
   - bindkey: c #udc opens fzf and lists its directory contents
     dir: $XDG_CONFIG_HOME
     options: 5
-  - bindkey: a
-    dir: $XDG_CACHE_HOME
-  - bindkey: t
-    dir: $XDG_DATA_HOME
-    options: 4
-  - bindkey: s
-    dir: $XDG_STATE_HOME
-    options: 2
-  - bindkey: b
-    dir: $HOME/.local/bin
   - bindkey: l
     dir: $HOME/.local/lib
     options: 3 # specify how deep the directory preview should be
+  - bindkey: xd
+    dir: $XDG_DATA_HOME
+    options: 4
+  - bindkey: xs
+    dir: $XDG_STATE_HOME
+    options: 2
+  - bindkey: xc
+    dir: $XDG_CACHE_HOME
+  - bindkey: xb
+    dir: $HOME/.local/bin
 
   - bindkey: k
     dir: $HOME/certis/docs/wiki
@@ -36,34 +36,38 @@ keymaps:
     options: 4
 
   # other folders
-  - bindkey: d
+  - bindkey: l
     dir: $HOME/Downloads
 
+  # docs
+  - bindkey: d
+    dir: $HOME/docs
+
   # tmp folders
-  - bindkey: p # tmP
+  - bindkey: t # tmP
     dir: /tmp
     options: 3
-  - bindkey: pc
+  - bindkey: tc
     dir: /tmp/certify-verifysync
-  - bindkey: pcr
+  - bindkey: tcr
     dir: /tmp/certify-verifysync/report
 
   - bindkey: scu # State Certify Users - sap s3 uploads
     dir: $_CERTIFY_S3_BUCKET_SAP_SYNC_LOCAL_FOLDER
 
   # read the src
-  - bindkey: oc
+  - bindkey: sc
     dir: $HOME/src/certis
     options: 3 # specify how deep the directory preview should be
-  - bindkey: om
+  - bindkey: sm
     dir: $HOME/src/me
     options: 3
-  - bindkey: ob
+  - bindkey: sb
     dir: $HOME/src/books
-  - bindkey: oo
+  - bindkey: so
     options: 3
     dir: $HOME/src/open
-  - bindkey: og
+  - bindkey: sg
     dir: $HOME/src/garden
 
   # my projects
