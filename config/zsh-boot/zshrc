@@ -48,6 +48,9 @@ export PATH="/usr/local/opt/sqlite/bin:$PATH" # add homebrew sqlite3 to path (do
 export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$XDG_DATA_HOME/fvm/default/bin"
 
+# add openvpn
+export PATH="$PATH:/usr/local/Cellar/openvpn/2.5.4/sbin"
+
 if command -v pyenv 1>/dev/null 2>&1; then #load pyenv automatically
   eval "$(pyenv init -)"
 fi
