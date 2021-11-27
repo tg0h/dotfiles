@@ -1,18 +1,12 @@
 function ads(){
   # adb shell dumpsys packageName
-
   # list installed packages on phone
-  #
-  # gets the ip of the phone connected via usb
-  # ls screenshots, etc from phone
-  # Camera
-  # Screenshots
-  # Videocaptures
-  # adb -d shell ls /sdcard/DCIM/screenshots
+  # ads -d -a <app> - get the package info of <app> for the phone connected via usb
 
   local sOPT
   local usbMode
-  local appId=argus # default - look for any argus app if no app specified in -a
+  local appId
+  local appSearchId appSearchString="argus"
   while getopts 'bryda:' opt; do
     case "$opt" in
       b) ip=$HP_BLUE_IP;;
@@ -55,25 +49,24 @@ function ads(){
   # detect package name if no app specified by -a 
   # default get the first argus app found
   if [[ -n $usbMode ]]; then
-    pid=$(adb -d shell ps | rg $appId | gawk 'NR==1{print $2}')
-    appName=$(adb -d shell ps | rg $appId | gawk 'NR==1{print $9}')
+    appSearchId=$(adb -d shell ps | rg $appSearchString | gawk 'NR==1{print $9}')
   elif [[ -n $ip ]]; then
-    pid=$(adb -s $ip shell ps | rg $appId | gawk 'NR==1{print $2}')
-    appName=$(adb -s $ip shell ps | rg $appId | gawk 'NR==1{print $9}')
+    appSearchId=$(adb -s $ip shell ps | rg $appSearchString | gawk 'NR==1{print $9}')
   else;
     echo "neither usbMode or ip was given, will leave it to the gods"
   fi
 
-  # if cannot find appName via adb shell ps, then use the appId specified in -a option
-  appName=${appName:-appId}
+  # if no appId was provided with the -a option, then search for any running argus app
+  appId=${appId:-appSearchId}
 
-  echo dumping package $appName
+  echo dumping package $appId
   echo "flutter app name -- com.certisgroup.argus.apps.officer.[env]"
   echo "sg app name      -- com.certis.argus.apps.officer[env]"
   echo -------
   # echo with pid: $pid
   echo usbMode: $usbMode
   echo ip: $ip
-  adb $usbMode $sOPT $ip shell dumpsys package $appName
+  echo appId: $appId
+  adb $usbMode $sOPT $ip shell dumpsys package $appId
 }
 
