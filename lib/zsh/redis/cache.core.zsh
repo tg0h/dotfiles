@@ -1,6 +1,7 @@
 function rcache(){
   # rcache gets the api results from the cache or calls the api for you
   # rcache <cache key[.expiry]> <function> <option 1> <option 2> ...
+  # rcache key.604800 funcToCall funcArg1 funcArg2
   # the -r reload option ignores the cache, fetches the function result and stores it in cache
   # rcache -r ...
   # eg rcache jira/ras.60 ras
@@ -62,7 +63,7 @@ function rcache(){
     # echo $fg[green] 'calling function' $func $reset_color
     # TODO: if there are spaces in $@, then each space results in separate args to $func
     # this is a difficult problem to solve
-    # echo rcache: calling funcResult with $@ >> timtest
+    # echo rcache: calling funcResult with $@ >> rcache.log
     funcResult=$(eval $func "$@")
     #rcs sets the cache, ignores expiry if none provided
     rcs "$cacheKey" "$funcResult" "$cacheExpiry"
