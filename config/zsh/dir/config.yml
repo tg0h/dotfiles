@@ -36,12 +36,13 @@ keymaps:
     options: 4
 
   # other folders
-  - bindkey: l
+  - bindkey: tl 
     dir: $HOME/Downloads
 
   # docs
   - bindkey: d
     dir: $HOME/docs
+    options: 3
 
   # tmp folders
   - bindkey: t # tmP
@@ -56,6 +57,8 @@ keymaps:
     dir: $_CERTIFY_S3_BUCKET_SAP_SYNC_LOCAL_FOLDER
 
   # read the src
+  - bindkey: s
+    dir: $HOME/src
   - bindkey: sc
     dir: $HOME/src/certis
     options: 3 # specify how deep the directory preview should be
