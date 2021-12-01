@@ -1,5 +1,5 @@
 function rait(){
-  # jira issue transition
+  # jira issue transition - change ticket status
   
   # Examples
   # rait 11 3106 3129 - move ticket ARG-3106 and ARG-3129 with transition 11
