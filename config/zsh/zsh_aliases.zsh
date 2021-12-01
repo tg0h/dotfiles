@@ -110,3 +110,12 @@ alias sln="slackcat --channel nashtech-dev"
 alias sll="slackcat --list"
 #ide
 alias ws=webstorm
+
+# jira
+alias rapvs="rapv -s" #get current and recently released project versions
+alias rapva="rapv -a" #get current and recently released project versions
+alias rapvo="rapv -o" #get current and recently released project versions
+
+alias rapval="rapv -al" #get current and recently released project versions
+alias rapvsl="rapv -sl" #get current and recently released project versions
+alias rapvol="rapv -ol" #get current and recently released project versions
