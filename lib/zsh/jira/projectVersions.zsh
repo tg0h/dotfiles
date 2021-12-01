@@ -5,11 +5,11 @@ function rapv(){
   # rapv - gets unreleased versions by default
   # rapv -n 100 - get 100 versions
   local filter result
-  while getopts 'n:a' opt; do
+  while getopts 'n:al' opt; do
     case "$opt" in
-      # n) number=$OPTARG;;
       n) filter="| .[0:$OPTARG]";; # jq - get the first n elements of array
       a) filter="| .";; # jq - get all elements in array (no op)
+      l) filter="| map(select(.archived != true))";; # get current and recently released versions
     esac
   done
   shift $(($OPTIND - 1))
@@ -28,7 +28,8 @@ function rapv(){
                 # add a column header row
                 [ "name","id",  __("R"), __("A"), __("start"), __("rel"), "description" ] ,
                 ( 
-                  sort_by(-(.id|tonumber), .name)
+                  # sort_by(-(.id|tonumber), .name)
+                  sort_by(.name)
                   # | reverse
                   # | map(select(.released != true))
                   $filter
