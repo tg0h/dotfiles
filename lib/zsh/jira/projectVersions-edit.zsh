@@ -1,14 +1,14 @@
 function rapve(){
   local name description startDate releaseDate archived released versionId
 
-  while getopts 'aln:d:s:r:' opt; do
+  while getopts 'n:d:s:e:ar' opt; do
     case "$opt" in
       n) name="$OPTARG";;
       d) description="$OPTARG";;
       s) startDate=$OPTARG;;
-      r) releaseDate=$OPTARG;;
+      e) releaseDate=$OPTARG;;
       a) archived="true";;
-      l) released="true";;
+      r) released="true";;
     esac
   done
   shift $(($OPTIND - 1))
