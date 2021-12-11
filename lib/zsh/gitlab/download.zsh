@@ -60,10 +60,10 @@ function _gitlab_dlJobArtifact() {
   #   > $filename && unzip -jo $filename ) &
 
   # fd .apk <folder> - find apk files in this folder
-  # rg -v app-debug - v means invert match - exclude  app-debug.apk
+  # rg -v app-debug - v means invert match - exclude  app-debug.apk use -e to provide multiple search expressions with -v
   # finally, cp the good apk file to the current folder
   (https -b $GITLAB_URL/projects/$GITLAB_PROJECT_ID/jobs/$1/artifacts "PRIVATE-TOKEN: $GITLAB_PRIVATE_TOKEN" \
-    > $filename && unzip -q $filename -d $outputDir && fd .apk $outputDir | rg -v app-debug | xargs -I{} cp {} . \
+    > $filename && unzip -q $filename -d $outputDir && fd .apk $outputDir | rg -v -e app-debug -e app-staging | xargs -I{} cp {} . \
     && echo pipeline $1 downloaded
       ) &
       # echo $filename unzipped
