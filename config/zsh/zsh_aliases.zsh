@@ -20,9 +20,13 @@ alias -g FTT='/tmp/tt'
 alias -g G='| gron --colorize'
 alias -g W='| wc -l'
 alias -g J='| jq .'
+
 alias -g R='| rg'
-alias -g RV='| rg -v'
-alias -g RO='| rg -o'
+alias -g RA='| rg -A' # after
+alias -g RB='| rg -B' # before
+alias -g RV='| rg -v' # invert search
+alias -g RO='| rg -o' # only matching
+
 alias -g S='| sort'
 alias -g SV='| sort -V'
 alias -g SVK='| sort -V -k'
@@ -100,7 +104,7 @@ alias sg="set | grep"
 alias fork="open . -a /Applications/Fork.app"
 alias norg="gron --ungron"
 # alias update="source ~/.zshrc" #doesn't work - complains about some fd error
-# alias vpn="networksetup -connectpppoeservice 'edo vpn'"
+alias vpn="networksetup -connectpppoeservice 'edo vpn'"
 alias dvpn="networksetup -disconnectpppoeservice 'edo vpn'"
 # slack
 alias sl=slackcat
@@ -112,10 +116,17 @@ alias sll="slackcat --list"
 alias ws=webstorm
 
 # jira
-alias rapvs="rapv -s" #get current and recently released project versions
-alias rapva="rapv -a" #get current and recently released project versions
-alias rapvo="rapv -o" #get current and recently released project versions
+alias rapven="rapve -n"
+alias rapved="rapve -d"
+alias rapvea="rapve -a"
+alias rapver="rapve -r"
+alias rapves="rapve -s"
+alias rapvee="rapve -e"
 
-alias rapval="rapv -al" #get current and recently released project versions
-alias rapvsl="rapv -sl" #get current and recently released project versions
-alias rapvol="rapv -ol" #get current and recently released project versions
+alias rapvl="rapv -l"
+alias rapvs="rapv -s"
+alias rapva="rapv -a"
+alias rapvo="rapv -o"
+alias rapval="rapv -al"
+alias rapvsl="rapv -sl"
+alias rapvol="rapv -ol"
