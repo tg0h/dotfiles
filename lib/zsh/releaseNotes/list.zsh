@@ -22,32 +22,32 @@ function _rnOpen() {
   eval "$open '$releaseNotes'"
 }
 
-function aa() {
+function ms() {
   # view argus sg release notes
   _rnOpen -a
 }
 
-function aae() {
+function mse() {
   # view argus sg release notes
   _rnOpen -a -e
 }
 
-function ao() {
+function mo() {
   # view argus optimax release notes
   _rnOpen -o
 }
 
-function aoe() {
+function moe() {
   # view argus optimax release notes
   _rnOpen -o -e
 }
 
-function at() {
+function ma() {
   # view argus au release notes
   _rnOpen -u
 }
 
-function ate() {
+function mae() {
   # view argus au release notes
   _rnOpen -u -e
 }
