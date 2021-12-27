@@ -10,4 +10,8 @@
 
 # Key bindings
 # ------------
-source "/usr/local/opt/fzf/shell/key-bindings.zsh"
+
+# source "/usr/local/opt/fzf/shell/key-bindings.zsh"
+
+# m1 mini homebrew location
+source /opt/homebrew/opt/fzf/shell/key-bindings.zsh
