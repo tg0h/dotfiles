@@ -46,7 +46,8 @@ complete -C '/usr/local/bin/aws_completer' aws
 
 # path - add folders to path, not the executable!
 export PATH="/usr/local/opt/sqlite/bin:$PATH" # add homebrew sqlite3 to path (do not use macos sqlite which is an older version)
-export PATH="/opt/homebrew/bin:$PATH"
+# place the homebrew binaries at the end of path, if not nvm will always point to the homebrew system node (if you install anything in homebrew that needs node as a depedency)
+export PATH="$PATH:/opt/homebrew/bin"
 export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$XDG_DATA_HOME/fvm/default/bin"
 
