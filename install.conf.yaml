@@ -26,6 +26,7 @@
   - $XDG_CONFIG_HOME/sqlite3
   - $XDG_CONFIG_HOME/zsh
   - $XDG_CACHE_HOME/tealdeer
+  - ~/.local/bin # binaries for any ad hoc binaries, eg authy
 
 # <target>:<source (original file)>
 # if linking directories, do not include a trailing slash
@@ -33,6 +34,8 @@
     # do not symlink the config folder directly.
     # eg, if we do this for nvim, nvim will create other files in the nvim config
     # folder which will then appear in my dotfiles repo :|
+    ~/.dotfiles: ~/dotfiles
+
     ~/.config/: 
       path: config/*/**
       exclude: 
