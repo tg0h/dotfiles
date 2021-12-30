@@ -56,7 +56,6 @@
     # Unlike the config folder, I just symlink the child folders because I am  
     # confident that the directories here won't have other files added
     ~/.local/lib/: lib/*
-    ~/.local/lib/abs: ~/src/me/abs/abs
     ~/.local/lib/zsh_functions: lib/zsh_functions/ #autoload function directory
 
     ~/Library/Application Support/com.clickontyler.TextBuddy/scripts: share/textBuddy/

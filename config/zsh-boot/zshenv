@@ -18,16 +18,13 @@ export DOTFILES="$HOME/.dotfiles"
 export EDITOR=nvim
 
 # source every file (include subdirs) in .zsh
-source $XDG_CONFIG_HOME/abs/abs.env
 # if my libs refer to aliases, they will fail, since they are not defined?
 # sequence -
 # if my libs refer to functions that have not yet been defined, they will fail ?
-for f in ~/.local/lib/abs/***/*.zsh; do [[ -f $f ]] && . $f; done
 
 # the join-lines function in git.zsh is used by my widgets and must be sourced here
 source ~/.local/lib/zsh/fzf/git.zsh #the join-lines function is used by my widget
 # the display function for my abs and home function widgets must be sourced here
-source ~/.local/lib/zsh/fzf/abs.zsh #the display function is used by my widget
 source ~/.local/lib/zsh/fzf/home_fns.zsh
 
 # SECRETS - do not store secrets in git
