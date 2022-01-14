@@ -36,8 +36,14 @@ function fsync(){
   # --stats - show a summary of changes
 
   # Risk: what if i rysync wrongly and delete my home folder?
-  rsync -aP --stats --delete --exclude node_modules --exclude tmp ~/certis ~/dotfiles ~/dev ~/src ~/docs /Volumes/joopyo/tim
-  rsync -aP --stats --delete ~/Dropbox /Volumes/joopyo
+  rsync -aP --stats --delete --exclude node_modules --exclude tmp ~/certis ~/dotfiles ~/dev ~/src ~/docs /Volumes/penwhel/tim
+  rsync -aP --stats --delete ~/Dropbox /Volumes/penwhel
+}
+
+function bsync(){
+  rsync -aP --stats --delete /Volumes/penwhel/timline /Volumes/Lydia
+  rsync -aP --stats --delete /Volumes/penwhel/timline /Volumes/Moop
+  rsync -aP --stats --delete /Volumes/penwhel/timline /Volumes/Joop
 }
 
 function nsync(){
