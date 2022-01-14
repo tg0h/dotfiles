@@ -51,3 +51,6 @@ set diffopt+=vertical
 " add - as a keyword, so that when you asterisk search "upper-case", it
 " selects the whole word
 set isk+=-
+
+" turn off intro message
+set shortmess=I
