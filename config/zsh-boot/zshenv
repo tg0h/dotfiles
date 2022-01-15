@@ -30,15 +30,13 @@ source ~/.local/lib/zsh/fzf/home_fns.zsh
 # SECRETS - do not store secrets in git
 source ~/.dotfiles/.env
 
-export MOBILE_CENTER_CURRENT_APP=***REMOVED***
-
 #XDG - store your config and data somewhere tidy
 _Z_DATA=$XDG_DATA_HOME/z/z # z stores its dir frecency list here
 export PARALLEL_HOME=$XDG_CONFIG_HOME/parallel
 export NVM_DIR=$XDG_DATA_HOME/nvm
 export REDISCLI_HISTFILE=$XDG_DATA_HOME/redis/rediscli_history
 export REDISCLI_RCFILE=$XDG_CONFIG_HOME/redis/redisclirc
-export GRADLE_USER_HOME="$XDG_DATA_HOME"/gradle
+# export GRADLE_USER_HOME="$XDG_DATA_HOME"/gradle
 export NODE_REPL_HISTORY=$XDG_DATA_HOME/node_repl_history
 export GEM_HOME="$XDG_DATA_HOME"/gem
 export GEM_SPEC_CACHE="$XDG_CACHE_HOME"/gem
@@ -48,13 +46,7 @@ export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
 export SQLITE_HISTORY=$XDG_DATA_HOME/sqlite_history
 export AWS_SHARED_CREDENTIALS_FILE="$XDG_CONFIG_HOME"/aws/credentials # vs AWS_CREDENTIALS?
 export AWS_CONFIG_FILE="$XDG_CONFIG_HOME"/aws/config
-# if enabled, web identity token breaks aws sb profile?
-# export AWS_WEB_IDENTITY_TOKEN_FILE="$XDG_DATA_HOME/aws/token" 
 export GNUPGHOME="$XDG_DATA_HOME"/gnupg
-export TEALDEER_CONFIG_DIR=~/.config/tealdeer # https://dbrgn.github.io/tealdeer/config.html
-export TEALDEER_CACHE_DIR=~/.cache/tealdeer
+# export TEALDEER_CONFIG_DIR=~/.config/tealdeer # https://dbrgn.github.io/tealdeer/config.html
+# export TEALDEER_CACHE_DIR=~/.cache/tealdeer
 export PYENV_ROOT=$XDG_DATA_HOME/pyenv
-export FVM_HOME=$XDG_DATA_HOME/fvm
-export PUB_CACHE=$XDG_CACHE_HOME/pub-cache # for flutter/dart
-# export ANDROID_SDK_HOME=$XDG_DATA_HOME/android/.android # adb key
-# export ANDROID_PREFS_ROOT=$XDG_DATA_HOME/android/.android # adb key

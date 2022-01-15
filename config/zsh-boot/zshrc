@@ -10,16 +10,15 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 export NVM_AUTO_USE=true # zsh-nvm plugin autoloads .nvmrc, set before the plugins array
 plugins=(
   zsh-nvm #add at the top so other plugins that use node/npm can work ###lukechilds/zsh-nvm
-  aliases adb aws colored-man-pages docker docker-compose dotenv
-  fasd git git-auto-fetch gitignore jira last-working-dir
-  npm macos ports ###github: github.com/caarlos0-graveyard/ports
+  aws colored-man-pages docker docker-compose dotenv
+  git git-auto-fetch gitignore last-working-dir
+  ports ###github: github.com/caarlos0-graveyard/ports
   timer zsh-autosuggestions ###zsh-users/zsh-autosuggestions
   zsh-autocomplete ###marlonrichert/zsh-autocomplete
   z fast-syntax-highlighting ###zdharma/fast-syntax-highlighting
 )
 
 #source my aliases and plugin settings
-source $XDG_DATA_HOME/iterm2/iterm2_shell_integration.zsh
 source $ZSH/oh-my-zsh.sh
 source $XDG_CONFIG_HOME/zsh/p10k/p10k.zsh # p10k configuration
 
@@ -44,15 +43,9 @@ export KEYTIMEOUT=1 # Make Vi mode transitions faster (KEYTIMEOUT is in hundredt
 # enable aws completion - https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-completion.html
 complete -C '/usr/local/bin/aws_completer' aws 
 
-# path - add folders to path, not the executable!
-export PATH="/usr/local/opt/sqlite/bin:$PATH" # add homebrew sqlite3 to path (do not use macos sqlite which is an older version)
 # place the homebrew binaries at the end of path, if not nvm will always point to the homebrew system node (if you install anything in homebrew that needs node as a depedency)
 export PATH="$PATH:/opt/homebrew/bin"
 export PATH="$PATH:$HOME/.local/bin"
-export PATH="$PATH:$XDG_DATA_HOME/fvm/default/bin"
-
-# add openvpn
-export PATH="$PATH:/usr/local/Cellar/openvpn/2.5.4/sbin"
 
 if command -v pyenv 1>/dev/null 2>&1; then #load pyenv automatically
   eval "$(pyenv init -)"
@@ -61,12 +54,5 @@ fi
 eval $(thefuck --alias)
 
 unalias gg #god knows where the gg alias is coming from
-
-export HP_RED_IP=192.168.1.19:5555
-export HP_BLUE_IP=192.168.1.110:5555 # xcover 5
-export HP_YELLOW_IP=
-export HP_CALLTREE_IP=192.168.1.170:5555
-
-export ARGUS_LOGCAT_FILTER_KOTLIN="$XDG_CONFIG_HOME/argus/adb/argus.logcatFilter.kotlin.txt"
 
 autoload zmv # so i can use zmv immediately
