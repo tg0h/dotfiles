@@ -12,6 +12,9 @@ keymaps:
   - bindkey: c #udc opens fzf and lists its directory contents
     dir: $XDG_CONFIG_HOME
     options: 5
+  - bindkey: cn 
+    dir: $XDG_CONFIG_HOME/nvim
+    options: 5
   - bindkey: l
     dir: $HOME/.local/lib
     options: 3 # specify how deep the directory preview should be
