@@ -64,10 +64,12 @@ function ud(){
 
   # change to directory if it is not null, needed if fzf does not return a dir, eg
   # if fzf cancels via ctrl c
+
   if [[ -n "$changeToTarget" ]]; then
+    [[ -d $changeToTarget ]] && cd $changeToTarget && return
     # if target is a file (check with -f), change to its dir instead
-    [[ -f $changeToTarget ]] && changeToTarget=${changeToTarget%/*} # zsh variable expansion - min match pattern /* and remove from tail
-    cd $changeToTarget
+    # [[ -f $changeToTarget ]] && changeToTarget=${changeToTarget%/*} # zsh variable expansion - min match pattern /* and remove from tail
+    [[ -f $changeToTarget ]] && nvim $changeToTarget
   fi
 }
 
