@@ -3,9 +3,12 @@
 require('lualine').setup {
   options = {
     icons_enabled = true,
-    theme = 'molokai',
-    component_separators = { left = '', right = ''},
-    section_separators = { left = '', right = ''},
+    theme = 'powerline_dark',
+    -- component_separators = { left = '', right = ''},
+    component_separators = '',
+    -- section_separators = { left = '', right = ''},
+    -- section_separators = { left = '', right = ''},
+    section_separators = '',
     disabled_filetypes = {},
     always_divide_middle = true,
   },
