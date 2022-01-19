@@ -21,11 +21,9 @@
 
 - create:
   - $XDG_DATA_HOME/z # for z to store its frecency dir list
-  - $XDG_DATA_HOME/android
   - $XDG_CONFIG_HOME/parallel
-  - $XDG_CONFIG_HOME/sqlite3
   - $XDG_CONFIG_HOME/zsh
-  - $XDG_CACHE_HOME/tealdeer
+  - $XDG_STATE_HOME
   - ~/.local/bin # binaries for any ad hoc binaries, eg authy
 
 # <target>:<source (original file)>
@@ -57,8 +55,6 @@
     # confident that the directories here won't have other files added
     ~/.local/lib/: lib/*
     ~/.local/lib/zsh_functions: lib/zsh_functions/ #autoload function directory
-
-    ~/Library/Application Support/com.clickontyler.TextBuddy/scripts: share/textBuddy/
 
     # certis
     # ~/src/certis/edo/abc-cli/config/environment/: config/abc-cli/env/*
