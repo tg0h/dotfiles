@@ -21,6 +21,7 @@ plugins=(
 #source my aliases and plugin settings
 source $ZSH/oh-my-zsh.sh
 source $XDG_CONFIG_HOME/zsh/p10k/p10k.zsh # p10k configuration
+source $XDG_CONFIG_HOME/lf/icons
 
 bindkey -v #use vim keymap for zsh, set first to allow other plugins to override
 # source my zsh libs after the oh-my-zsh plugin aliases 

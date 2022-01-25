@@ -1,0 +1,62 @@
+# Basic Settings
+set hidden true
+set ignorecase true
+set icons true
+
+# Custom Functions
+cmd mkdir ${{
+  printf "Directory Name: "
+  read ans
+  mkdir $ans
+}}
+
+cmd mkfile ${{
+  printf "File Name: "
+  read ans
+  $EDITOR $ans
+}}
+
+cmd trash ${{
+  for file in "$fx"
+  do
+    trash $file
+  done
+}}
+
+cmd open ${{
+  case $(file --mime-type "$f" -bL) in
+    text/*|application/json) $EDITOR "$f" ;;
+    video/*|image/*/application/pdf) open "$f" & disown ;;
+    *) open "$f" ;;
+  esac
+}}
+
+# Archive bindings
+cmd unarchive ${{
+  case "$f" in
+      *.zip) unzip "$f" ;;
+      *.tar.gz) tar -xzvf "$f" ;;
+      *.tar.bz2) tar -xjvf "$f" ;;
+      *.tar) tar -xvf "$f" ;;
+      *) echo "Unsupported format" ;;
+  esac
+}}
+
+
+# Bindings
+# Remove some defaults
+map d
+map f
+
+# Basic Functions
+map x cut
+
+map <enter> open
+map D trash
+map mf mkfile
+map md mkdir
+
+# Movement
+map gd cd ~/Downloads
+map gp cd ~/dev/playground
+map gc cd ~/.config

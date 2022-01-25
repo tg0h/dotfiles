@@ -110,7 +110,7 @@ wk.register({
             "Find File"
         },
         l = {"<cmd>Lf<cr>", "Open LF"},
-        p = {"<cmd>NvimTreeToggle<cr>", "Toogle Tree"},
+        p = {"<cmd>NvimTreeToggle<cr>", "Toggle Tree"},
         r = {"<cmd>Telescope oldfiles<cr>", "Open Recent File"},
         s = {"<cmd>w<cr>", "Save Buffer"},
         T = {"<cmd>NvimTreeFindFile<CR>", "Find in Tree"},

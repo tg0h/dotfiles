@@ -28,6 +28,11 @@ return require("packer").startup({
     })
     use {"nvim-telescope/telescope-file-browser.nvim"}  
 
+    use {
+        "ptzz/lf.vim",
+        requires = "voldikss/vim-floaterm",
+        config = get_setup("lf")
+    }
 
     use {
       "folke/which-key.nvim",
