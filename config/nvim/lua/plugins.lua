@@ -37,6 +37,13 @@ return require("packer").startup({
     }
 
     use {
+        "lewis6991/gitsigns.nvim",
+        requires = {"nvim-lua/plenary.nvim"},
+        event = "BufReadPre",
+        config = get_setup("gitsigns")
+    }
+
+    use {
         "ptzz/lf.vim",
         requires = "voldikss/vim-floaterm",
         config = get_setup("lf")
