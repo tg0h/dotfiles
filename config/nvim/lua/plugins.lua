@@ -29,6 +29,14 @@ return require("packer").startup({
     use {"nvim-telescope/telescope-file-browser.nvim"}  
 
     use {
+      "kyazdani42/nvim-tree.lua", 
+      requires = {
+      'kyazdani42/nvim-web-devicons', -- optional, for file icon
+    },
+      config = get_setup("nvim-tree")
+    }
+
+    use {
         "ptzz/lf.vim",
         requires = "voldikss/vim-floaterm",
         config = get_setup("lf")
