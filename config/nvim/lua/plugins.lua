@@ -43,6 +43,8 @@ return require("packer").startup({
         config = get_setup("gitsigns")
     }
 
+    use {"f-person/git-blame.nvim", config = get_setup("git-blame")}
+
     use {
         "ptzz/lf.vim",
         requires = "voldikss/vim-floaterm",
