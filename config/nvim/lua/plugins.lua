@@ -26,6 +26,8 @@ return require("packer").startup({
       },
       config = get_setup('telescope')
     })
+    use {"nvim-telescope/telescope-file-browser.nvim"}  
+
 
     use {
       "folke/which-key.nvim",
