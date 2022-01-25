@@ -43,6 +43,12 @@ return require("packer").startup({
         config = get_setup("gitsigns")
     }
 
+    use {
+        "akinsho/nvim-toggleterm.lua",
+        keys = {"<C-y>", "<leader>fl", "<leader>gt"},
+        config = get_setup("toggleterm")
+    }
+
     use {"f-person/git-blame.nvim", config = get_setup("git-blame")}
 
     use {

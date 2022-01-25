@@ -74,34 +74,36 @@ wk.register({ga = {"<Plug>(EasyAlign)", "Align", mode = "x"}})
 -- Register all leader based mappings
 wk.register({
     ["<Tab>"] = {"<cmd>e#<cr>", "Switch to previously opened buffer"},
-    -- b = {
-    --     name = "Buffers",
-    --     b = {
-    --         "<cmd>lua require'telescope.builtin'.buffers({ sort_mru = true, ignore_current_buffer = true })<cr>",
-    --         "Find buffer"
-    --     },
-    --     a = {
-    --         "<cmd>BufferLineCloseLeft<cr><cmd>BufferLineCloseRight<cr>",
-    --         "Close all but the current buffer"
-    --     },
-    --     d = {"<cmd>Bdelete!<CR>", "Close Buffer"},
-    --     f = {"<cmd>BufferLinePick<cr>", "Pick buffer"},
-    --     l = {"<cmd>BufferLineCloseLeft<cr>", "Close all buffers to the left"},
-    --     p = {"<cmd>BufferLineMovePrev<cr>", "Move buffer prev"},
-    --     n = {"<cmd>BufferLineMoveNext<cr>", "Move buffer next"},
-    --     r = {
-    --         "<cmd>BufferLineCloseRight<cr>",
-    --         "Close all BufferLines to the right"
-    --     },
-    --     x = {
-    --         "<cmd>BufferLineSortByDirectory<cr>",
-    --         "Sort BufferLines automatically by directory"
-    --     },
-    --     L = {
-    --         "<cmd>BufferLineSortByExtension<cr>",
-    --         "Sort BufferLines automatically by extension"
-    --     }
-    -- },
+
+    b = {
+        name = "Buffers",
+        b = {
+            "<cmd>lua require'telescope.builtin'.buffers({ sort_mru = true, ignore_current_buffer = true })<cr>",
+            "Find buffer"
+        },
+        a = {
+            "<cmd>BufferLineCloseLeft<cr><cmd>BufferLineCloseRight<cr>",
+            "Close all but the current buffer"
+        },
+        d = {"<cmd>Bdelete!<CR>", "Close Buffer"},
+        f = {"<cmd>BufferLinePick<cr>", "Pick buffer"},
+        l = {"<cmd>BufferLineCloseLeft<cr>", "Close all buffers to the left"},
+        p = {"<cmd>BufferLineMovePrev<cr>", "Move buffer prev"},
+        n = {"<cmd>BufferLineMoveNext<cr>", "Move buffer next"},
+        r = {
+            "<cmd>BufferLineCloseRight<cr>",
+            "Close all BufferLines to the right"
+        },
+        x = {
+            "<cmd>BufferLineSortByDirectory<cr>",
+            "Sort BufferLines automatically by directory"
+        },
+        L = {
+            "<cmd>BufferLineSortByExtension<cr>",
+            "Sort BufferLines automatically by extension"
+        }
+    },
+
     f = {
         name = "Files",
         b = {"<cmd>Telescope file_browser<cr>", "File browser"},
@@ -125,7 +127,7 @@ wk.register({
         r = {"<cmd>lua require 'gitsigns'.reset_hunk()<cr>", "Reset Hunk"},
         R = {"<cmd>lua require 'gitsigns'.reset_buffer()<cr>", "Reset Buffer"},
         s = {"<cmd>lua require 'gitsigns'.stage_hunk()<cr>", "Stage Hunk"},
-        t = "Open Gitui", -- comand in toggleterm.lua
+        t = "Open lazygit", -- comand in toggleterm.lua
         n = {"<cmd>Neogit<cr>", "Open Neogit"},
         u = {
             "<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>",
@@ -133,7 +135,7 @@ wk.register({
         },
         g = {"<cmd>Telescope git_status<cr>", "Open changed file"},
         b = {"<cmd>Telescope git_branches<cr>", "Checkout branch"},
-        B = {"<cmd>GitBlameToggle<cr>", "Toogle Blame"},
+        B = {"<cmd>GitBlameToggle<cr>", "Toggle Blame"},
         c = {"<cmd>Telescope git_commits<cr>", "Checkout commit"},
         C = {
             "<cmd>Telescope git_bcommits<cr>",
