@@ -69,7 +69,10 @@ local wk = require("which-key")
 default_options = {noremap = true, silent = true}
 
 -- register non leader based mappings
-wk.register({ga = {"<Plug>(EasyAlign)", "Align", mode = "x"}})
+wk.register({
+  -- x is visual mode
+  ga = {"<Plug>(EasyAlign)", "Align", mode = "x"},
+})
 
 -- Register all leader based mappings
 wk.register({
@@ -145,23 +148,20 @@ wk.register({
 
     h = {
         name = "Harpoon",
-        a = {"<cmd>lua require('harpoon.mark').add_file()<cr>", "Add file"},
+        s = {"<cmd>lua require('harpoon.mark').add_file()<CR>", "Add file"},
+
+        t = {"<cmd>lua require('harpoon.term').gotoTerminal(1)<CR>", "Go to Terminal 1"},
+        n = {"<cmd>lua require('harpoon.term').gotoTerminal(2)<CR>", "Go to Terminal 2"},
+        c = {"<cmd>lua require('harpoon.term').sendCommand(1, 1)<CR>", "Send Command to 1"},
+        r = {"<cmd>lua require('harpoon.term').sendCommand(1, 2)<CR>", "Send Command to 2"},
+
+        v = {"<cmd>lua require('harpoon.ui').nav_next()<CR>", "Next mark"},
+        w = {"<cmd>lua require('harpoon.ui').nav_previous()<CR>", "Previous mark"},
+
         u = {
-            "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>",
+            "<cmd>lua require('harpoon.cmd-ui').toggle_quick_menu()<cr>",
             "Open Menu"
         },
-        ["1"] = {
-            "<cmd>lua require('harpoon.ui').nav_file(1)<cr>", "Open File 1"
-        },
-        ["2"] = {
-            "<cmd>lua require('harpoon.ui').nav_file(1)<cr>", "Open File 2"
-        },
-        ["3"] = {
-            "<cmd>lua require('harpoon.ui').nav_file(1)<cr>", "Open File 3"
-        },
-        ["4"] = {
-            "<cmd>lua require('harpoon.ui').nav_file(1)<cr>", "Open File 4"
-        }
     },
 
     l = {

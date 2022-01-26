@@ -50,6 +50,16 @@ return require("packer").startup({
     config = get_setup("bufferline")
     }
 
+    use {
+      "ThePrimeagen/harpoon",
+      -- keybindings which will lazyload this plugin
+      -- keys = {
+      --     "<leader>ha", "<leader>hu", "<leader>h1", "<leader>h1", "<leader>h3",
+      --     "<leader>h4"
+      -- },
+      requires = {"nvim-lua/plenary.nvim"},
+      config = get_setup("harpoon")
+    }
 
     use {
         "akinsho/nvim-toggleterm.lua",
