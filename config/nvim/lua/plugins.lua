@@ -44,6 +44,14 @@ return require("packer").startup({
     }
 
     use {
+    "akinsho/nvim-bufferline.lua",
+    requires = "kyazdani42/nvim-web-devicons",
+    event = "BufReadPre",
+    config = get_setup("bufferline")
+    }
+
+
+    use {
         "akinsho/nvim-toggleterm.lua",
         keys = {"<C-y>", "<leader>fl", "<leader>gt"},
         config = get_setup("toggleterm")
