@@ -18,6 +18,8 @@ return require("packer").startup({
     use("wbthomason/packer.nvim")
     use("phanviet/vim-monokai-pro")
 
+    use {"neovim/nvim-lspconfig", config = get_setup("lsp")}
+
     use({
       'nvim-telescope/telescope.nvim',
       requires = { 
