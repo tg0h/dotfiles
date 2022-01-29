@@ -3,7 +3,6 @@ local wo = vim.wo
 local fn = vim.fn
 
 -- vim.cmd "filetype indent plugin on"
-vim.cmd "colorscheme monokai_pro"
 
 o.swapfile = false -- enable/disable swap file creation
 o.termguicolors = true -- set term gui colors (most terminals support this)

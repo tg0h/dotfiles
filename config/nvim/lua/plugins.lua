@@ -16,7 +16,7 @@ return require("packer").startup({
   function(use)
     -- Packer can manage itself
     use("wbthomason/packer.nvim")
-    use("phanviet/vim-monokai-pro")
+    use { 'sainnhe/sonokai', config = get_setup("sonokai")}
 
     use {"neovim/nvim-lspconfig", config = get_setup("lsp")}
 
