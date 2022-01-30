@@ -109,7 +109,7 @@ return require("packer").startup({
       config = get_setup('which-key')
     }
 
-    -- use {"windwp/nvim-autopairs", config = get_setup("autopairs")}
+    use {"windwp/nvim-autopairs", config = get_setup("autopairs")}
     use('tpope/vim-commentary')
 
   end,
