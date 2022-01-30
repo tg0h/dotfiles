@@ -18,6 +18,12 @@ return require("packer").startup({
     use("wbthomason/packer.nvim")
     use { 'sainnhe/sonokai', config = get_setup("sonokai")}
 
+    use {
+      'nvim-lualine/lualine.nvim',
+      requires = { 'kyazdani42/nvim-web-devicons', opt = true },
+      config = get_setup("lualine")
+    }
+
     use {"neovim/nvim-lspconfig", config = get_setup("lsp")}
 
     use {
