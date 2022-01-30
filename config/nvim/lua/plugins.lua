@@ -27,6 +27,13 @@ return require("packer").startup({
     use {"neovim/nvim-lspconfig", config = get_setup("lsp")}
 
     use {
+    "nvim-treesitter/nvim-treesitter",
+    config = get_setup("treesitter"),
+    run = ":TSUpdate"
+    }
+    use "nvim-treesitter/nvim-treesitter-textobjects"
+
+    use {
         "hrsh7th/nvim-cmp",
         requires = {
             {"hrsh7th/cmp-nvim-lsp"}, {"hrsh7th/cmp-buffer"}, {"hrsh7th/cmp-path"},
@@ -102,6 +109,7 @@ return require("packer").startup({
       config = get_setup('which-key')
     }
 
+    -- use {"windwp/nvim-autopairs", config = get_setup("autopairs")}
     use('tpope/vim-commentary')
 
   end,
