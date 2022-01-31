@@ -110,6 +110,7 @@ return require("packer").startup({
     }
 
     use {"windwp/nvim-autopairs", config = get_setup("autopairs")}
+    use "p00f/nvim-ts-rainbow"
     use('tpope/vim-commentary')
 
   end,

@@ -14,8 +14,10 @@ require"nvim-treesitter.configs".setup {
             node_decremental = "<S-TAB>"
         }
     },
-    indent = {enable = true},
-    autopairs = {{enable = true}},
+    indent = {enable = true}, -- Indentation based on treesitter for the = operator
+
+    -- Custom Modules
+    -- autopairs = {{enable = true}},
     textobjects = { -- for git nvim-treesitter/nvim-treesitter-textobjects
         select = {
             enable = true,
@@ -56,7 +58,7 @@ require"nvim-treesitter.configs".setup {
               },
             },
     },
-    rainbow = {
+    rainbow = { -- git nvim-ts-rainbow
         enable = true,
         extended_mode = true, -- Highlight also non-parentheses delimiters, boolean or table: lang -> boolean
         max_file_lines = 2000 -- Do not enable for files with more than specified lines
