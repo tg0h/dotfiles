@@ -80,6 +80,12 @@ return require("packer").startup({
     }
 
     use {
+        "simrat39/symbols-outline.nvim",
+        cmd = {"SymbolsOutline"},
+        -- config = get_setup("symbols"), -- TODO: how to async load config
+    }
+
+    use {
         "folke/todo-comments.nvim",
         requires = "nvim-lua/plenary.nvim",
         cmd = {"TodoTrouble", "TodoTelescope"},
