@@ -87,6 +87,8 @@ return require("packer").startup({
         config = get_setup("todo")
     }
 
+    use "junegunn/vim-easy-align" -- no lua alternative
+
     use {
     "akinsho/nvim-bufferline.lua",
     requires = "kyazdani42/nvim-web-devicons",
