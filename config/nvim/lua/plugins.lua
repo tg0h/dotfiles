@@ -80,6 +80,14 @@ return require("packer").startup({
     }
 
     use {
+        "folke/todo-comments.nvim",
+        requires = "nvim-lua/plenary.nvim",
+        cmd = {"TodoTrouble", "TodoTelescope"},
+        event = "BufReadPost",
+        config = get_setup("todo")
+    }
+
+    use {
     "akinsho/nvim-bufferline.lua",
     requires = "kyazdani42/nvim-web-devicons",
     event = "BufReadPre",
