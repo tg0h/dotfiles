@@ -236,12 +236,20 @@ wk.register({
 
     t = {
         name = "Trouble",
-        w = {"<cmd>Trouble workspace_diagnostics<cr>", "Workspace Diagnostics"},
-        d = {"<cmd>Trouble document_diagnostics<cr>", "Document Diagnostic"},
-        l = {"<cmd>Trouble loclist<cr>", "Loclist"},
-        q = {"<cmd>Trouble quickfix<cr>", "Quickfix"},
-        t = {"<cmd>TodoTrouble<cr>", "Todos"},
-        r = {"<cmd>Trouble lsp_references<cr>", "LSP References"}
+        w = {"<cmd>Trouble workspace_diagnostics<CR>", "Workspace Diagnostics"},
+        d = {"<cmd>Trouble document_diagnostics<CR>", "Document Diagnostic"},
+        l = {"<cmd>Trouble loclist<CR>", "Loclist"},
+        q = {"<cmd>Trouble quickfix<CR>", "Quickfix"},
+        t = {"<cmd>TodoTrouble<CR>", "Todos"},
+
+        -- use LSP keymaps instead
+        -- r = {"<cmd>Trouble lsp_references<CR>", "LSP References"},
+        -- e = {"<cmd>Trouble lsp_definitions<CR>", "LSP Definitions"},
+        -- o = {"<cmd>Trouble lsp_type_definitions<CR>", "LSP Type Definitions"},
+
+        R = {"<cmd>TroubleRefresh<CR>", "Refresh"},
+        s = {"<cmd>TroubleClose<CR>", "Close"},
+        h = {"<cmd>TroubleToggle<CR>", "Toggle"},
     },
 
     w = {

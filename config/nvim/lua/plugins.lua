@@ -73,6 +73,13 @@ return require("packer").startup({
     }
 
     use {
+        "folke/trouble.nvim",
+        requires = "kyazdani42/nvim-web-devicons",
+        cmd = {"TroubleToggle", "Trouble"},
+        config = get_setup("trouble")
+    }
+
+    use {
     "akinsho/nvim-bufferline.lua",
     requires = "kyazdani42/nvim-web-devicons",
     event = "BufReadPre",
