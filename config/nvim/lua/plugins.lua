@@ -56,6 +56,8 @@ return require("packer").startup({
       config = get_setup('telescope')
     })
     use {"nvim-telescope/telescope-file-browser.nvim"}  
+    use {"crispgm/telescope-heading.nvim"} -- markdown headings
+    use {"nvim-telescope/telescope-symbols.nvim"} -- add emojis
 
     use {
       "kyazdani42/nvim-tree.lua", 

@@ -6,7 +6,11 @@
 local actions = require("telescope.actions")
 local telescope = require("telescope")
 
-require("telescope").setup({
+telescope.load_extension 'fzy_native'
+telescope.load_extension 'file_browser'
+telescope.load_extension 'heading' -- markdown headings
+
+telescope.setup({
     defaults = {
         file_sorter = require("telescope.sorters").get_fzy_sorter,
         prompt_prefix = " >",
@@ -29,8 +33,6 @@ require("telescope").setup({
     },
 })
 
-telescope.load_extension 'fzy_native'
-telescope.load_extension 'file_browser'
 
 -- local M = {}
 -- M.search_dotfiles = function()
