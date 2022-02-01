@@ -134,6 +134,11 @@ return require("packer").startup({
       config = get_setup('which-key')
     }
 
+    use {
+        "karb94/neoscroll.nvim",
+        keys = {"<C-u>", "<C-d>", "<C-b>", "<C-f>", "<C-e>", "zt", "zz", "zb"},
+        config = get_setup("neoscroll")
+    }
     use {"ggandor/lightspeed.nvim", event = "BufReadPre"}
     use {"ahmedkhalf/project.nvim", config = get_setup("project")}
     use {"folke/zen-mode.nvim", cmd = "ZenMode", config = get_setup("zen-mode")}
