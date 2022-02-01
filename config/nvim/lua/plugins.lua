@@ -134,6 +134,7 @@ return require("packer").startup({
       config = get_setup('which-key')
     }
 
+    use {"ggandor/lightspeed.nvim", event = "BufReadPre"}
     use {"ahmedkhalf/project.nvim", config = get_setup("project")}
     use {"folke/zen-mode.nvim", cmd = "ZenMode", config = get_setup("zen-mode")}
     use {"sidebar-nvim/sidebar.nvim", config = get_setup("sidebar")}
