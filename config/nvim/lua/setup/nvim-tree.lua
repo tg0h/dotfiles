@@ -47,7 +47,7 @@ require'nvim-tree'.setup {
   -- hijack the cursor in the tree to put it at the start of the filename
   hijack_cursor       = false,
   -- updates the root directory of the tree on `DirChanged` (when your run `:cd` usually)
-  update_cwd          = false,
+  update_cwd          = true,
   update_to_buf_dir   = {
     enable = true,
     auto_open = true,
@@ -62,8 +62,8 @@ require'nvim-tree'.setup {
   },
 
   update_focused_file = {
-    enable      = false,
-    update_cwd  = false,
+    enable      = true,
+    update_cwd  = true,
     ignore_list = {}
   },
 
