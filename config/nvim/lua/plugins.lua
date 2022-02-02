@@ -25,12 +25,6 @@ return require("packer").startup({
         }
 
         use {
-            "neovim/nvim-lspconfig",
-            config = get_setup("lsp"),
-            requires = {"b0o/schemastore"}
-        }
-
-        use {
             "nvim-treesitter/nvim-treesitter",
             config = get_setup("treesitter"),
             run = ":TSUpdate"
@@ -47,6 +41,13 @@ return require("packer").startup({
             },
             config = get_setup("cmp")
         }
+
+        use {
+            "neovim/nvim-lspconfig",
+            requires = {{"b0o/schemastore.nvim"}, {"hrsh7th/nvim-cmp"}},
+            config = get_setup("lsp")
+        }
+
         use {"onsails/lspkind-nvim"}
 
         use {"hrsh7th/vim-vsnip", config = get_setup("vsnip")}
