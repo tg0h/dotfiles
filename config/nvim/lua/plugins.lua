@@ -162,7 +162,12 @@ return require("packer").startup({
         use {"sidebar-nvim/sidebar.nvim", config = get_setup("sidebar")}
         use {"windwp/nvim-autopairs", config = get_setup("autopairs")}
         use "p00f/nvim-ts-rainbow"
-        use("tpope/vim-commentary")
+        use {
+            "numToStr/Comment.nvim",
+            opt = true,
+            keys = {"gc", "gcc"},
+            config = get_setup("comment")
+        }
 
     end,
     config = {
