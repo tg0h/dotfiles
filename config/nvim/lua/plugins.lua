@@ -168,6 +168,11 @@ return require("packer").startup({
             keys = {"gc", "gcc"},
             config = get_setup("comment")
         }
+        use {
+            "norcalli/nvim-colorizer.lua",
+            event = "BufReadPre",
+            config = get_setup("colorizer")
+        }
 
     end,
     config = {
