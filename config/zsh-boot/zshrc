@@ -8,6 +8,7 @@ export EDITOR='nvim'
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
 export NVM_AUTO_USE=true # zsh-nvm plugin autoloads .nvmrc, set before the plugins array
+export NVM_LAZY_LOAD=true  # zsh-nvm lazy load
 plugins=(
   zsh-nvm #add at the top so other plugins that use node/npm can work ###lukechilds/zsh-nvm
   aws colored-man-pages docker docker-compose dotenv
