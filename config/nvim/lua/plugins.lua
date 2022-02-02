@@ -143,6 +143,7 @@ return require("packer").startup({
             config = get_setup("formatter")
         }
 
+        use {"tweekmonster/startuptime.vim"}
         use {"ray-x/lsp_signature.nvim", requires = {{"neovim/nvim-lspconfig"}}}
         use {
             "karb94/neoscroll.nvim",
