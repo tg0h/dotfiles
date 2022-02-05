@@ -1,0 +1,10 @@
+#!bin/zsh
+
+function gta (){
+  # add an annotated git tag with git tag -a
+  # optionally support a message with -m
+  # gta <tagName>
+  # gta <tagName> <tag annotation>
+  git tag -a $1 -m $2
+}
+

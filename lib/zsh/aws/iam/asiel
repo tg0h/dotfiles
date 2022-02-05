@@ -1,0 +1,6 @@
+#!bin/zsh
+
+function asiel(){
+  # list aws env vars
+  env | rg AWS_
+}

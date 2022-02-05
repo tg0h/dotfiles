@@ -1,5 +1,4 @@
-
-
+#!bin/zsh
 
 function fzf-search-dotfiles-widget() {
   # ^N^H to search my dotfiles
@@ -28,7 +27,3 @@ function fzf-search-dotfiles-widget() {
   # your existing buffer
   LBUFFER+=$result
 }
-
-zle     -N   fzf-search-dotfiles-widget
-bindkey '^N^H' fzf-search-dotfiles-widget
-

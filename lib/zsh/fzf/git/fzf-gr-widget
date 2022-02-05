@@ -1,0 +1,19 @@
+#!bin/zsh
+
+# search for remotes
+_gr() {
+  is_in_git_repo || return
+  git remote -v | awk '{print $1 "\t" $2}' | uniq |
+    fzf-down --tac \
+    --preview 'git log --oneline --graph --date=short --pretty="format:%C(auto)%cd %h%d %s" {1}' |
+    cut -d$'\t' -f1
+}
+
+fzf-gr-widget(){
+ local result=$(_gr | join-lines)
+ zle reset-prompt
+ LBUFFER+=$result
+}
+
+# after the function has been autoloaded, call the function to run it
+fzf-gr-widget

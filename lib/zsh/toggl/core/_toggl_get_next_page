@@ -1,0 +1,8 @@
+#!bin/zsh
+
+function _toggl_get_next_page(){
+  # https -b -a $JIRA_SECRET $JIRA_API_URL/$1'?'startAt=$2
+  # $1 contains the toggl url and request params
+  eval "https -b -a $TOGGL_API_KEY $1 $TOGGL_UA page==$2"
+  # eval "https -b -a $TOGGL_API_KEY "$@""
+}

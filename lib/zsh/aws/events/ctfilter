@@ -1,0 +1,5 @@
+#!bin/zsh
+
+function ctfilter(){
+  aws events list-rules | jq -r '.Rules[] | .Name' | rg $1
+}

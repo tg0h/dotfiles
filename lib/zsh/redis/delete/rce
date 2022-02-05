@@ -1,0 +1,8 @@
+#!bin/zsh
+
+function rce(){
+  # redis-cli expire
+  # rce <key> <expiry in seconds>
+  redis-cli expire $1 $2
+}
+

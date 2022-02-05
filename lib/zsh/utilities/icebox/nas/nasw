@@ -1,0 +1,11 @@
+#!bin/zsh
+
+function nasw(){
+  # nas wakeup
+  # dependencies:
+  #   brew install wakeonlan
+  #   find the mac address of your nas
+  #   of course, you need to enable wake on lan in your nas
+
+  wakeonlan 00:11:32:6F:07:B6
+}

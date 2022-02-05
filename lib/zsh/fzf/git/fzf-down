@@ -1,0 +1,5 @@
+#!bin/zsh
+
+fzf-down() {
+  fzf --height 100% "$@" --border
+}

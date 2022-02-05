@@ -1,0 +1,8 @@
+#!bin/zsh
+
+function ssml(){
+  # list available parameters
+  # local array=$(aws ssm describe-parameters | jq -r '.Parameters[].Name' | tr '\n' ' ')
+  aws ssm describe-parameters | jq -r '.Parameters[].Name'
+  # echo ${=array} #split into multiple words
+}

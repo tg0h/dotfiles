@@ -1,0 +1,16 @@
+function aws-toggle() {
+  if (( ${+POWERLEVEL9K_AWS_SHOW_ON_COMMAND} )); then
+    # by removing this var, we always show the aws prompt
+    unset POWERLEVEL9K_AWS_SHOW_ON_COMMAND
+  else
+    POWERLEVEL9K_AWS_SHOW_ON_COMMAND='aws|as'
+  fi
+  p10k reload
+  if zle; then
+    zle push-input
+    zle accept-line
+  fi
+}
+
+zle -N aws-toggle
+bindkey '^A' aws-toggle

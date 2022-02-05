@@ -1,0 +1,17 @@
+#!bin/zsh
+
+# search for stashes
+_gs() {
+  is_in_git_repo || return
+  git stash list | fzf-down --reverse -d: --preview 'git show --color=always {1}' |
+    cut -d: -f1
+}
+
+fzf-gs-widget(){
+ local result=$(_gs | join-lines)
+ zle reset-prompt
+ LBUFFER+=$result
+}
+
+# after the function has been autoloaded, call the function to run it
+fzf-gs-widget

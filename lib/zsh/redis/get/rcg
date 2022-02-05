@@ -1,0 +1,8 @@
+#!bin/zsh
+
+function rcg(){
+  # redis cli get
+  redis-cli get $1
+}
+
+

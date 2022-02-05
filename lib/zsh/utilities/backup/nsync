@@ -1,0 +1,9 @@
+#!bin/zsh
+
+function nsync(){
+  # nas sync
+  # delete - remove files in target that do not belong in source
+  # -v - verbose
+  # -P - progress bar
+  rsync -avP --delete /Volumes/joopyo/passport-archive thoreau@tardis:~/backup
+}

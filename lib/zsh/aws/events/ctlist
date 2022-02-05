@@ -1,0 +1,53 @@
+#!bin/zsh
+
+function ctlist(){
+# for more on how to read aws cron expressions, see https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html
+# see https://github.com/stedolan/jq/wiki/Docs-for-Oniguruma-Regular-Expressions-(RE.txt) for how to use jq regex
+# jq coalesce - see https://stedolan.github.io/jq/manual/#Alternativeoperator:// for how to use a fallback value if value does not exist
+
+# the cloudwatch rule name for calltree contains the time when the email was sent. 
+# as expected, the time is the same for both the generate and run rul
+  local default=true
+  local raw
+  local getName
+  while getopts 'rn' opt; do
+    default=
+    case "$opt" in
+      r) raw=true ;;
+      n) getName=true;;
+    esac
+  done
+  shift $(($OPTIND - 1))
+
+  # $# refers to number of args
+  # -z tests if length of string is zero
+  # use -eq 0 instead
+  if [[ -n $default ]]; then
+    ## string | capture("(?<minutes>[0-9,*-?]* ...)
+    # in jq, use capture to define a named capturing group
+    # jq creates an object with the name of the capture group as a key
+    # note the character class which contains many special characters, which do 
+    # not need to be escaped
+    # the special chars are because aws cron expressions include special chars 
+    # such as , - * ? and /
+    # aws events list-rules | jq -r '.Rules[] | .ScheduleExpression | capture("(?<minutes>[0-9,*-/?]*)") | .minutes '
+    #
+    # note the jq // operator which acts like a sql coalesce, if .ScheduleExpression is null, fallback to an empty string
+    # this avoids the capture throwing an error when it tries to operator on null
+    # this is the error: if you try to capture on null - null (null) cannot be matched, as it is not a string
+    #
+    # jq - define a function
+    # see https://github.com/stedolan/jq/issues/2033 for the lpad function
+    # https://stackoverflow.com/questions/64957982/how-to-pad-numbers-with-jq
+    # (When a string is multiplied by a number it is repeated that many time e.g. "foo" * 3 -> "foofoofoo")
+    
+    aws events list-rules | jq -r 'def lpad($len; $fill): tostring | ($len - length) as $l | ($fill * $l)[:$l] + .;  def lpad($len; $fill): tostring | ($len - length) as $l | ($fill * $l)[:$l] + .; .Rules[] | ((.ScheduleExpression // "" | capture("(?<minutes>[0-9,*-/?]*) (?<hours>[0-9,*-/?]*) (?<days>[0-9,*-/?]*) (?<month>[0-9,*-/?]*) (?<dow>[0-9,*-/?]*) (?<year>[0-9,*-/?]*)") | .year + "-" + (.month | lpad(2;"0")) +"-" + (.days | lpad(2;"0")) + "T" + (.hours | lpad(2;"0"))  + ":" + (.minutes | lpad(2;"0")) + "Z" + " dow:" + .dow) // "") + " - " + .Name + " - " + .State' | sort
+  elif [[ -n $raw ]]; then
+    # get json
+    aws events list-rules 
+  elif [[ -n $getName ]]; then 
+    # get name of rule, used for housekeeping together with the ctdel command
+    aws events list-rules | jq -r '.Rules[] | .Name'
+  fi
+}
+

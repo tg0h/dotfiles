@@ -1,0 +1,28 @@
+#!bin/zsh
+
+function gtdd (){
+  # delete remote tags with git push --delete origin
+  # accepts a wildcard that must match exactly the start of the tag
+  # eg gtdd v1 deletes all tags that begin with v1
+  # gtdd <tagName|wildcard>
+  # gtdd -n <tagName|wildcard> dry run delete
+
+  local dryRun
+  while getopts 'n' opt; do
+    case "$opt" in
+      n) dryRun="--dry-run"
+      echo $fg[yellow]dry run delete '...' $reset_color
+        ;;
+    esac
+  done
+  shift $(($OPTIND - 1))
+
+  if [[ -z "$1" ]]; then
+    echo $fg[red]err:$reset_color please provide a search string 
+    return 1
+  fi 
+
+  # TODO: depends on gtl alias defined in zsh git plugin?
+  gtl $1 | choose 0 | xargs -I{} git push --delete $dryRun origin {} 
+}
+

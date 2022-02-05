@@ -1,0 +1,9 @@
+#!bin/zsh
+
+function gtr(){
+  # prune tags
+  # delete local tags that don't belong in remote
+  # https://git-scm.com/docs/git-fetch
+  git fetch origin --prune --prune-tags
+}
+

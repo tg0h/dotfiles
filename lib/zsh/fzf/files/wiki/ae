@@ -1,0 +1,9 @@
+#!bin/zsh
+
+function ae() {
+  # search wiki
+  
+  fd --color always . '/Users/tim/certis/docs/wiki' | fzf --ansi \
+    --bind 'enter:execute(echo {} > /tmp/_nvim_cache && nvim {} < /dev/tty > /dev/tty 2>&1)'
+
+}

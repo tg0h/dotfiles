@@ -1,0 +1,37 @@
+#!bin/zsh
+
+#TODO: refactor gbmrd and gbnmrd, dd
+function gbmrd(){
+  #dry run delete git remote branches with a search string
+  #NOTE: git branch -r --merged is with reference to the branch you are currently on!
+  #example: gbmrd -n sprint-18 - dry run delete with search term sprint-18
+  #example: gbmrd sprint-18
+  #might need to run git fetch --prune to clean up remote before running this command
+  local dryRun=""
+  while getopts 'n' opt; do
+    case "$opt" in
+      n) dryRun="--dry-run";;
+    esac
+  done
+  shift $(($OPTIND - 1))
+
+
+  if [[ -z $1 ]]; then
+    echo please provide a search string, eg gbmrd sprint-18
+    exit
+  fi
+  # cut
+  #   f2- - cut from the second field to the end of line
+  #   -d/ - use a field separator of /
+  # xargs
+  #   -P - number of processes to run
+  #   -n - how many arguments from stdin to pass to each xargs command
+  # gbmr | rg $1 | gcut -f2- -d/| xargs -P 12 -n 1 -I{} git push --dry-run -d origin {}
+
+  #if dryRun, print dry run
+  [[ -n $dryRun ]] && echo dry run:
+  git branch -r --merged | rg $1 | gcut -f2- -d/| xargs -P 12 -n 1 -I{} git push $dryRun -d origin {}
+}
+
+# =============================================================================
+

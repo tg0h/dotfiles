@@ -1,0 +1,7 @@
+#!bin/zsh
+
+function gtd (){
+  # delete local tags with git tag -d <tagName>
+  # gtd <tagName>
+  git tag -d $1
+}

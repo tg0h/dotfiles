@@ -1,0 +1,7 @@
+#!bin/zsh
+
+function hist(){
+  # list commands with timestamp with seconds
+  # fc -lf
+  history -t '%F %T'
+}

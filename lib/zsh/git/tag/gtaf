@@ -1,0 +1,8 @@
+#!bin/zsh
+
+function gtaf(){
+  # overwrite a tag
+  # gtaf <tagName> <tag annotation>
+  
+  git tag -f -a $1 -m $2
+}

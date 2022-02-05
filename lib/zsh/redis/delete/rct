@@ -1,0 +1,9 @@
+#!bin/zsh
+
+function rct(){
+  # redis time to live
+  # redis-cli ttl
+  # rct <key>
+  redis-cli ttl $1
+}
+

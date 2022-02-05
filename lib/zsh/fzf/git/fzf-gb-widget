@@ -1,0 +1,21 @@
+#!bin/zsh
+
+# search for branches
+_gb() {
+  is_in_git_repo || return
+  git branch -a --color=always | grep -v '/HEAD\s' | sort |
+    # use <<< to pass a string to sed
+    fzf-down --ansi --multi --tac --preview-window right:70% \
+    --preview 'git log --oneline --graph --date=short --color=always --pretty="format:%C(green bold)%cd %C(auto)%h%d %s %C(magenta)(%an)%Creset %C(cyan)%ar%Creset" $(sed s/^..// <<< {} | cut -d" " -f1)' |
+    sed 's/^..//' | cut -d' ' -f1 |
+    sed 's#^remotes/##'
+}
+
+fzf-gb-widget(){
+ local result=$(_gb | join-lines)
+ zle reset-prompt
+ LBUFFER+=$result
+}
+
+# after the function has been autoloaded, call the function to run it
+fzf-gb-widget

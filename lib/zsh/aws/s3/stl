@@ -1,0 +1,6 @@
+#!bin/zsh
+
+function stl(){
+  # aws s3 ls
+  aws s3 ls
+}

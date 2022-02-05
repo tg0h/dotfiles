@@ -1,0 +1,6 @@
+#!bin/zsh
+
+function rcdj(){
+  # redis cli delete jira keys
+  redis-cli keys '/rest*' | xargs redis-cli DEL
+}

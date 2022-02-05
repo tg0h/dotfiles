@@ -1,0 +1,11 @@
+#!bin/zsh
+
+function gtp(){
+  # push tags
+  # By default, git push will not push tags.
+  # Tags have to be explicitly passed to git push.
+  # To push multiple tags simultaneously pass the --tags option to git push
+  # command.
+  
+  git push --tags
+}

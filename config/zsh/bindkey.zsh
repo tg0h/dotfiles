@@ -1,0 +1,27 @@
+# file searchers
+zle     -N   fzf-search-dotfiles-widget
+bindkey '^N^H' fzf-search-dotfiles-widget
+zle     -N   fzf-search-wiki-widget
+bindkey '^N^W' fzf-search-wiki-widget
+zle     -N   fzf-search-bookmarks-widget
+bindkey '^N^M' fzf-search-bookmarks-widget
+zle -N _fzf-redraw-prompt # used by fzf bookmarks widget to redraw prompt
+
+# npm
+zle     -N   fzf-npm-search-widget
+bindkey '^N^N' fzf-npm-search-widget
+
+# fzf git widgets
+zle -N fzf-gh-widget # commits
+bindkey '^g^h' fzf-gh-widget
+zle -N fzf-gb-widget # branches
+bindkey '^g^b' fzf-gb-widget
+zle -N fzf-gt-widget # tags
+bindkey '^g^t' fzf-gt-widget
+zle -N fzf-gf-widget # files
+bindkey '^g^f' fzf-gf-widget
+zle -N fzf-gr-widget # remotes
+bindkey '^g^r' fzf-gr-widget
+zle -N fzf-gs-widget # stashes
+bindkey '^g^s' fzf-gs-widget
+

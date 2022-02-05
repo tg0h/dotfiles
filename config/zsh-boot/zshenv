@@ -17,15 +17,8 @@ export DOTFILES="$HOME/.dotfiles"
 
 export EDITOR=nvim
 
-# source every file (include subdirs) in .zsh
-# if my libs refer to aliases, they will fail, since they are not defined?
-# sequence -
-# if my libs refer to functions that have not yet been defined, they will fail ?
-
-# the join-lines function in git.zsh is used by my widgets and must be sourced here
-source ~/.local/lib/zsh/fzf/git.zsh #the join-lines function is used by my widget
-# the display function for my abs and home function widgets must be sourced here
-source ~/.local/lib/zsh/fzf/home_fns.zsh
+# if my libs refer to undefined aliases or funcs, they will fail. This seems to
+# have been solved by function autoloading.
 
 # SECRETS - do not store secrets in git
 source ~/.dotfiles/.env

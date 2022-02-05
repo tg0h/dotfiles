@@ -1,0 +1,24 @@
+#!bin/zsh
+
+function fsync(){
+  # --archive, -a            archive mode is -rlptgoD (no -A,-X,-U,-N,-H)
+  # --recursive, -r          recurse into directories
+  # --links, -l              copy symlinks as symlinks
+  # --perms, -p              preserve permissions
+  # --times, -t              preserve modification times
+  # --group, -g              preserve group
+  # --owner, -o              preserve owner (super-user only)
+  # -D                       same as --devices --specials
+  # --devices                preserve device files (super-user only)
+  # --specials               preserve special files
+
+  # delete - remove files in target that do not belong in source
+  # -v - verbose
+  # -P - progress bar
+  # --quiet - don't show non-error messages
+  # --stats - show a summary of changes
+
+  # Risk: what if i rysync wrongly and delete my home folder?
+  rsync -aP --stats --delete --exclude node_modules --exclude tmp ~/certis ~/dotfiles ~/dev ~/src ~/docs /Volumes/penwhel/tim
+  rsync -aP --stats --delete ~/Dropbox /Volumes/penwhel
+}

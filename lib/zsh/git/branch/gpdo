@@ -1,0 +1,11 @@
+#!bin/zsh
+
+# alias gpdo="git push -d origin" #delete a remote branch
+function gpdo(){
+  # gpdo expects origin/featureBranch to be passed
+  # gpdo will cut away the first field and delete the "featureBranch" branch
+
+  # pass first parameter to stdin of gcut command
+  local branch=$(gcut -f2- -d/ <<< "$1")
+  git push -d origin $branch
+}

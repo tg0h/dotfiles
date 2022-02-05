@@ -1,0 +1,7 @@
+#!bin/zsh
+
+function bsync(){
+  rsync -aP --stats --delete /Volumes/penwhel/timline /Volumes/Lydia
+  rsync -aP --stats --delete /Volumes/penwhel/timline /Volumes/Moop
+  rsync -aP --stats --delete /Volumes/penwhel/timline /Volumes/Joop
+}

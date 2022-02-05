@@ -1,0 +1,9 @@
+#!bin/zsh
+
+function imm(){
+  # image magick mogrify - resize a file
+  # mogrify -resize 1242x2208 <fileName>
+  # imm <resize Dimensions> <fileName>
+  
+  mogrify -resize $1 $2
+}

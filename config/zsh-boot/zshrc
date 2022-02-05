@@ -12,8 +12,9 @@ export NVM_LAZY_LOAD=true  # zsh-nvm lazy load
 plugins=(
   zsh-nvm #add at the top so other plugins that use node/npm can work ###lukechilds/zsh-nvm
   aws colored-man-pages docker docker-compose dotenv
-  git git-auto-fetch gitignore last-working-dir
-  ports ###github: github.com/caarlos0-graveyard/ports
+  git git-auto-fetch gitignore
+  last-working-dir
+  # ports ###github: github.com/caarlos0-graveyard/ports
   timer zsh-autosuggestions ###zsh-users/zsh-autosuggestions
   zsh-autocomplete ###marlonrichert/zsh-autocomplete
   z fast-syntax-highlighting ###zdharma/fast-syntax-highlighting
@@ -29,13 +30,37 @@ bindkey -v #use vim keymap for zsh, set first to allow other plugins to override
 bindkey -r "^G" #remove ctrl g so that junegunn's fzf_git functions work
 bindkey -r "^H"
 bindkey -r "^N"
-#
+
 # load core files first, eg, they may contain pagination helpers
 # the core files allow me to set up depedencies that the zsh function may need
-for f in ~/.local/lib/zsh/***/*.core.zsh; do [[ -f $f ]] && . $f; done
-for f in ~/.local/lib/zsh/***/*; do [[ -f $f ]] && . $f; done
+# for f in ~/.local/lib/zsh/***/*.core.zsh; do [[ -f $f ]] && . $f; done
+# for f in ~/.local/lib/zsh/***/*; do [[ -f $f ]] && . $f; done
 # also run the config files in config!
-for f in $XDG_CONFIG_HOME/zsh/***/*.zsh; do [[ -f $f ]] && . $f; done 
+
+# GLOBS:
+# ~ */archive* - exclude any archive directory
+# (/)          - only show directories
+setopt EXTENDED_GLOB
+# source anything in a start folder
+for f in $HOME/.local/lib/zsh/***/start/*(.); do
+  # source $f
+done
+# add the lib/zsh/*** folders to fpath excluding any archive folders
+fpath=($HOME/.local/lib/zsh/***/*~*/archive*(/) $fpath)
+fpath=(. $fpath)
+# ~           - exclude
+# */archive/* - exclude any archive directory
+# |           - or
+# *.zsh       - any file with a zsh extension
+# (.)         - only show plain files
+for func in $HOME/.local/lib/zsh/***/*~(*/archive/*|*.zsh)(.); do
+  # echo loading $func
+  autoload $func
+done
+unsetopt EXTENDED_GLOB
+
+# if adding new files to dotfiles, remember to run dotbot install to copy files over to $XDG_CONFIG_HOME
+for f in $XDG_CONFIG_HOME/zsh/***/*.zsh; do [[ -f $f ]] && . $f; done
 
 # the fzf key bindings and shell completions are here
 source $XDG_CONFIG_HOME/fzf/fzf.zsh # source fzf after the vim keymap so fzf shortcuts take precedence
@@ -49,12 +74,12 @@ complete -C '/usr/local/bin/aws_completer' aws
 export PATH="$PATH:/opt/homebrew/bin"
 export PATH="$PATH:$HOME/.local/bin"
 
-if command -v pyenv 1>/dev/null 2>&1; then #load pyenv automatically
-  eval "$(pyenv init -)"
-fi
-. `which env_parallel.zsh` # load env parallel
-eval $(thefuck --alias)
+# if command -v pyenv 1>/dev/null 2>&1; then #load pyenv automatically
+#   eval "$(pyenv init -)"
+# fi
+# . `which env_parallel.zsh` # load env parallel
+# eval $(thefuck --alias)
 
-unalias gg #god knows where the gg alias is coming from
+# unalias gg #god knows where the gg alias is coming from
 
 autoload zmv # so i can use zmv immediately

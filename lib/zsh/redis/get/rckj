@@ -1,0 +1,7 @@
+#!bin/zsh
+
+function rckj(){
+  # get all jira keys
+  redis-cli keys '/rest*'
+}
+

@@ -1,0 +1,25 @@
+#!bin/zsh
+
+function _tod(){
+  # passThrough args are passed to toggl get next page
+  local httpArgs="$TOGGL_API_REPORTS/details $TOGGL_UA $@"
+
+  local outdir=$(mktemp -d '/tmp/toggl.detailedReport.XXX')
+  local page=1
+  local isLast="false"
+  local resp=""
+
+  local projectId=10759
+
+  while true; do
+    resp=$(_toggl_get_next_page "$httpArgs" $page)
+    _toggl_download_page "$resp" $outdir $page
+    $(_toggl_isLastPage $resp)
+    # if the return status of _toggl_isLastPage is 1, exit the while loop
+    [ $? -eq 1 ] && break;
+    (( page++ ))
+  done
+
+  local data=$(jq --null-input '[inputs| .data[]]' $outdir/*.json)
+  jq <<< $data
+}

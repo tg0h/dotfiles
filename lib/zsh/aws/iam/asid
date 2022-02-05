@@ -1,0 +1,7 @@
+#!bin/zsh
+
+function asid(){
+  # userName is case sensitive zzz
+  aws iam list-mfa-devices --user-name $1 | bat
+}
+

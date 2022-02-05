@@ -1,0 +1,8 @@
+#!bin/zsh
+
+function gtlr(){
+  # show remote tags
+  # note that git ls-remote --tags origin has messier output
+  
+  git show-ref --tags
+}

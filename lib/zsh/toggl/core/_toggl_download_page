@@ -1,0 +1,11 @@
+#!bin/zsh
+
+function _toggl_download_page(){
+  # download api results to json file in outDir
+  local resp=$1
+  local outdir=$2
+  local page=$3
+
+  echo $resp > $outdir/page${page}.json
+}
+

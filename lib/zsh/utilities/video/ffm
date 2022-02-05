@@ -1,0 +1,6 @@
+#!bin/zsh
+
+function ffm() {
+  # reduce video size
+  ffmpeg -i $1 -vcodec libx265 -crf 28 "$1"-out.mp4
+}

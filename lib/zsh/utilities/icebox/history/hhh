@@ -1,0 +1,9 @@
+#!bin/zsh
+
+function hhh(){
+  # repeat the second last command
+  # oops, it's much easier in zsh to just use vi mode, ESC-k
+  # (go to command mode and press k for up)
+  fc -e - -2
+}
+

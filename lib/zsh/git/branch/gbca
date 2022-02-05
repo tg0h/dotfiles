@@ -1,0 +1,16 @@
+#!bin/zsh
+
+function gbca (){
+  # accept a single branch or a space delimited branch
+  # gbca <branch1>
+  # gbca <branch1> <branch2>
+  # branch example: origin/sprint-21/feature/ARG-2723/develop
+
+  for branch in "$@"
+  do
+    echo checking $fg[yellow]$branch
+    git branch -a --contains $branch
+  done
+
+}
+

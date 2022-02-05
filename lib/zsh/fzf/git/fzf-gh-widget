@@ -1,0 +1,26 @@
+#!bin/zsh
+
+# https://gist.github.com/junegunn/8b572b8d4b5eddd8b85e5f4d40f17236
+# zsh keymap docs: http://zsh.sourceforge.net/Doc/Release/Zsh-Line-Editor.html#Zle-Widgets
+# https://junegunn.kr/2016/07/fzf-git/
+
+# search for commits
+_gh() {
+  is_in_git_repo || return
+  # git log --date=short --format="%C(green)%C(bold)%cd %C(auto)%h%d %s (%an)" --graph --color=always |
+  git log --date=short --format="%C(green)%C(bold)%cd %C(auto)%h%d %s %C(magenta)(%an)%Creset %C(cyan)%ar%Creset" --graph --color=always |
+    fzf-down --ansi --no-sort --reverse --multi \
+    --bind 'ctrl-s:toggle-sort' \
+    --header 'Press CTRL-S to toggle sort' \
+    --preview 'grep -o "[a-f0-9]\{7,\}" <<< {} | xargs git show --color=always' |
+    grep -o "[a-f0-9]\{7,\}"
+  }
+
+fzf-gh-widget(){
+ local result=$(_gh | join-lines)
+ zle reset-prompt
+ LBUFFER+=$result
+}
+
+# after the function has been autoloaded, call the function to run it
+fzf-gh-widget
