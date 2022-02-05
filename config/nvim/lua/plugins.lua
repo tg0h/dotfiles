@@ -103,6 +103,8 @@ return require("packer").startup({
 
         use "junegunn/vim-easy-align" -- no lua alternative
 
+        use {"famiu/bufdelete.nvim", event = "BufReadPre"}
+
         use {
             "akinsho/nvim-bufferline.lua",
             requires = "kyazdani42/nvim-web-devicons",
@@ -145,13 +147,6 @@ return require("packer").startup({
 
         use {"tweekmonster/startuptime.vim"}
         use {"ray-x/lsp_signature.nvim", requires = {{"neovim/nvim-lspconfig"}}}
-        use {
-            "karb94/neoscroll.nvim",
-            keys = {
-                "<C-u>", "<C-d>", "<C-b>", "<C-f>", "<C-e>", "zt", "zz", "zb"
-            },
-            config = get_setup("neoscroll")
-        }
         use {"ggandor/lightspeed.nvim", event = "BufReadPre"}
         use {"ahmedkhalf/project.nvim", config = get_setup("project")}
         use {
