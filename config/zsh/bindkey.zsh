@@ -1,3 +1,7 @@
+bindkey -r "^G" #remove ctrl g so that junegunn's fzf_git functions work
+bindkey -r "^H"
+bindkey -r "^N"
+
 # file searchers
 zle     -N   fzf-search-dotfiles-widget
 bindkey '^N^H' fzf-search-dotfiles-widget

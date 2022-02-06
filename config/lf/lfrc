@@ -53,10 +53,11 @@ map x cut
 
 map <enter> open
 map D trash
-map mf mkfile
-map md mkdir
+map af mkfile
+map ad mkdir
 
 # Movement
+map gc cd ~/dotfiles/config/zsh
+map gl cd ~/dotfiles/lib/zsh
 map gd cd ~/Downloads
 map gp cd ~/dev/playground
-map gc cd ~/.config

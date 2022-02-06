@@ -1,85 +1,47 @@
+# place the homebrew binaries at the end of path, if not nvm will always point to the homebrew system node (if you install anything in homebrew that needs node as a depedency)
+export PATH="$PATH:/opt/homebrew/bin"
+export PATH="$PATH:$HOME/.local/bin"
+
+# zmodload zsh/zprof - turn this on to profile zshrc, run zprof at end as well
+# zprof - turn this on at the end of zshrc to profile zshrc
+
 export ZSH="$XDG_DATA_HOME/oh-my-zsh"
 # set up p10k prompt
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-export EDITOR='nvim'
 ZSH_THEME="powerlevel10k/powerlevel10k"
-
+export KEYTIMEOUT=1 # Make Vi mode transitions faster (KEYTIMEOUT is in hundredths of a second)
+export EDITOR='nvim'
 export NVM_AUTO_USE=true # zsh-nvm plugin autoloads .nvmrc, set before the plugins array
 export NVM_LAZY_LOAD=true  # zsh-nvm lazy load
+ZSH_EVALCACHE_DIR=$XDG_CACHE_HOME/zsh-evalcache
+
 plugins=(
-  zsh-nvm #add at the top so other plugins that use node/npm can work ###lukechilds/zsh-nvm
+  zsh-nvm # add at the top so other plugins that use node/npm can work
+  evalcache
   aws colored-man-pages docker docker-compose dotenv
-  git git-auto-fetch gitignore
-  last-working-dir
-  # ports ###github: github.com/caarlos0-graveyard/ports
-  timer zsh-autosuggestions ###zsh-users/zsh-autosuggestions
-  zsh-autocomplete ###marlonrichert/zsh-autocomplete
-  z fast-syntax-highlighting ###zdharma/fast-syntax-highlighting
+  git git-auto-fetch gitignore last-working-dir timer 
+  zsh-autosuggestions zsh-autocomplete z fast-syntax-highlighting 
 )
 
-#source my aliases and plugin settings
-source $ZSH/oh-my-zsh.sh
-source $XDG_CONFIG_HOME/zsh/p10k/p10k.zsh # p10k configuration
-source $XDG_CONFIG_HOME/lf/icons
+bindkey -v # use vim keymap for zsh
 
-bindkey -v #use vim keymap for zsh, set first to allow other plugins to override
-# source my zsh libs after the oh-my-zsh plugin aliases 
-bindkey -r "^G" #remove ctrl g so that junegunn's fzf_git functions work
-bindkey -r "^H"
-bindkey -r "^N"
-
-# load core files first, eg, they may contain pagination helpers
-# the core files allow me to set up depedencies that the zsh function may need
-# for f in ~/.local/lib/zsh/***/*.core.zsh; do [[ -f $f ]] && . $f; done
-# for f in ~/.local/lib/zsh/***/*; do [[ -f $f ]] && . $f; done
-# also run the config files in config!
-
-# GLOBS:
-# ~ */archive* - exclude any archive directory
-# (/)          - only show directories
-setopt EXTENDED_GLOB
-# source anything in a start folder
-for f in $HOME/.local/lib/zsh/***/start/*(.); do
-  # source $f
-done
-# add the lib/zsh/*** folders to fpath excluding any archive folders
-fpath=($HOME/.local/lib/zsh/***/*~*/archive*(/) $fpath)
-fpath=(. $fpath)
-# ~           - exclude
-# */archive/* - exclude any archive directory
-# |           - or
-# *.zsh       - any file with a zsh extension
-# (.)         - only show plain files
-for func in $HOME/.local/lib/zsh/***/*~(*/archive/*|*.zsh)(.); do
-  # echo loading $func
-  autoload $func
-done
+# CONFIG
+source $XDG_CONFIG_HOME/zsh/start/SOURCEME.zsh # source oh-my-zsh and other custom plugins
+setopt EXTENDED_GLOB # use ~ to exclude patterns in file globbing
+for f in $XDG_CONFIG_HOME/zsh/***/*.zsh~*/start/*; do {source $f} done # exclude start/
+fpath=($HOME/.local/lib/zsh/***/*~*/archive*(/) $fpath) # / matches directories, exclude archive/
+# FUNCTIONS
+# for f in $HOME/.local/lib/zsh/***/start/*(.); do {source $f} done # exclude start/
+for func in $HOME/.local/lib/zsh/***/*~(*/archive/*|*.zsh)(.); do {autoload $func} done
 unsetopt EXTENDED_GLOB
 
-# if adding new files to dotfiles, remember to run dotbot install to copy files over to $XDG_CONFIG_HOME
-for f in $XDG_CONFIG_HOME/zsh/***/*.zsh; do [[ -f $f ]] && . $f; done
-
-# the fzf key bindings and shell completions are here
-source $XDG_CONFIG_HOME/fzf/fzf.zsh # source fzf after the vim keymap so fzf shortcuts take precedence
-export KEYTIMEOUT=1 # Make Vi mode transitions faster (KEYTIMEOUT is in hundredths of a second)
-
-# config
 # enable aws completion - https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-completion.html
-complete -C '/usr/local/bin/aws_completer' aws 
-
-# place the homebrew binaries at the end of path, if not nvm will always point to the homebrew system node (if you install anything in homebrew that needs node as a depedency)
-export PATH="$PATH:/opt/homebrew/bin"
-export PATH="$PATH:$HOME/.local/bin"
-
-# if command -v pyenv 1>/dev/null 2>&1; then #load pyenv automatically
-#   eval "$(pyenv init -)"
-# fi
+# complete -C '/usr/local/bin/aws_completer' aws 
+_evalcache pyenv init - # instead of eval $(pyenv init -)
+_evalcache thefuck --alias # instead of eval $(thefuck --alias)
 # . `which env_parallel.zsh` # load env parallel
-# eval $(thefuck --alias)
-
-# unalias gg #god knows where the gg alias is coming from
 
 autoload zmv # so i can use zmv immediately

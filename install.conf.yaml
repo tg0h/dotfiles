@@ -54,7 +54,6 @@
     # Unlike the config folder, I just symlink the child folders because I am  
     # confident that the directories here won't have other files added
     ~/.local/lib/: lib/*
-    ~/.local/lib/zsh_functions: lib/zsh_functions/ #autoload function directory
 
     # certis
     # ~/src/certis/edo/abc-cli/config/environment/: config/abc-cli/env/*

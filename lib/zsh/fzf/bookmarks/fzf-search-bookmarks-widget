@@ -6,7 +6,7 @@ _fzf-sb-getDirs(){
 }
 
 function _fzf-sb-showDirs(){
-    local bookmarks="$HOME/.config/bookmarks/bookmarks.config"
+    local bookmarks="$XDG_CONFIG_HOME/zsh/fzf/bookmarks/bookmarks.config"
 
     local dirlist=$(_fzf-sb-getDirs $bookmarks)
 
