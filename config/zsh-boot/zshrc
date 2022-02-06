@@ -1,47 +1,78 @@
-# place the homebrew binaries at the end of path, if not nvm will always point to the homebrew system node (if you install anything in homebrew that needs node as a depedency)
-export PATH="$PATH:/opt/homebrew/bin"
-export PATH="$PATH:$HOME/.local/bin"
-
-# zmodload zsh/zprof - turn this on to profile zshrc, run zprof at end as well
-# zprof - turn this on at the end of zshrc to profile zshrc
-
-export ZSH="$XDG_DATA_HOME/oh-my-zsh"
-# set up p10k prompt
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
-ZSH_THEME="powerlevel10k/powerlevel10k"
+# zmodload zsh/zprof # turn this on to profile zshrc (with zprof below)
+#
 export KEYTIMEOUT=1 # Make Vi mode transitions faster (KEYTIMEOUT is in hundredths of a second)
 export EDITOR='nvim'
+
 export NVM_AUTO_USE=true # zsh-nvm plugin autoloads .nvmrc, set before the plugins array
 export NVM_LAZY_LOAD=true  # zsh-nvm lazy load
-ZSH_EVALCACHE_DIR=$XDG_CACHE_HOME/zsh-evalcache
-
-plugins=(
-  zsh-nvm # add at the top so other plugins that use node/npm can work
-  evalcache
-  aws colored-man-pages docker docker-compose dotenv
-  git git-auto-fetch gitignore last-working-dir timer 
-  zsh-autosuggestions zsh-autocomplete z fast-syntax-highlighting 
-)
-
-bindkey -v # use vim keymap for zsh
-
-# CONFIG
-source $XDG_CONFIG_HOME/zsh/start/SOURCEME.zsh # source oh-my-zsh and other custom plugins
-setopt EXTENDED_GLOB # use ~ to exclude patterns in file globbing
-for f in $XDG_CONFIG_HOME/zsh/***/*.zsh~*/start/*; do {source $f} done # exclude start/
-fpath=($HOME/.local/lib/zsh/***/*~*/archive*(/) $fpath) # / matches directories, exclude archive/
-# FUNCTIONS
-# for f in $HOME/.local/lib/zsh/***/start/*(.); do {source $f} done # exclude start/
-for func in $HOME/.local/lib/zsh/***/*~(*/archive/*|*.zsh)(.); do {autoload $func} done
-unsetopt EXTENDED_GLOB
+# ZSH_EVALCACHE_DIR=$XDG_CACHE_HOME/zsh-evalcache
 
 # enable aws completion - https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-completion.html
 # complete -C '/usr/local/bin/aws_completer' aws 
-_evalcache pyenv init - # instead of eval $(pyenv init -)
-_evalcache thefuck --alias # instead of eval $(thefuck --alias)
+# _evalcache pyenv init - # instead of eval $(pyenv init -)
+# _evalcache thefuck --alias # instead of eval $(thefuck --alias)
 # . `which env_parallel.zsh` # load env parallel
 
+bindkey -v # use vim keymap for zsh
+
+setopt autocd # type dir name to cd directly
 autoload zmv # so i can use zmv immediately
+
+# place the homebrew binaries at the end of path, if not nvm will always point to the homebrew system node
+export PATH="$PATH:/opt/homebrew/bin"
+export PATH="$PATH:$HOME/.local/bin"
+
+# source zinit
+source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+
+# NOTE: zinit install
+zinit ice depth=1; zinit light romkatv/powerlevel10k
+
+zinit for \
+  marlonrichert/zsh-autocomplete \
+  zdharma-continuum/fast-syntax-highlighting \
+  OMZP::last-working-dir \
+  # OMZP::docker-compose \
+  # mroth/evalcache \
+
+zinit ice as"completion" ; zinit snippet https://github.com/docker/cli/blob/master/contrib/completion/zsh/_docker
+
+zinit lucid wait for \
+  lukechilds/zsh-nvm \
+  OMZP::gitignore \
+  OMZP::colored-man-pages \
+  OMZP::git \
+  rupa/z \
+  OMZP::aws/aws.plugin.zsh \
+  OMZP::timer \
+  atload"_zsh_autosuggest_start" \
+      zsh-users/zsh-autosuggestions \
+  # atinit"zicompinit; zicdreplay" \ #TODO: lazy loading this does not work with zsh-autocomplete
+  #     zdharma-continuum/fast-syntax-highlighting \
+
+# zinit snippet OMZ::plugins/dotenv/dotenv.plugin.zsh
+# zinit snippet OMZ::plugins/git-auto-fetch/git-auto-fetch.plugin.zsh
+
+### NOTE: Source my config and functions
+setopt EXTENDED_GLOB # use ~ to exclude patterns in file globbing
+source $XDG_CONFIG_HOME/zsh/start/SOURCEME.zsh # source oh-my-zsh and other custom plugins
+
+for f in $XDG_CONFIG_HOME/zsh/***/*.zsh~*/start/*; do # exclude start folders
+  source $f 
+done 
+
+# for f in $HOME/.local/lib/zsh/***/start/*(.); do {source $f} done # exclude start/
+for func in $HOME/.local/lib/zsh/***/*~(*/archive/*|*.zsh)(.); do 
+  autoload $func
+done
+
+fpath=($HOME/.local/lib/zsh/***/*~*/archive*(/) $fpath) # / matches directories, exclude archive/
+unsetopt EXTENDED_GLOB
+
+# set up p10k instant prompt
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+# zprof # turn this on to profile zsh (with zmodload zsh/zprof above)
