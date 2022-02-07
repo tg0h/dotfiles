@@ -1,4 +1,4 @@
-out* # ignore output folders eg any generated code
+out
 # archive
 # ignore scratch file
 # git update-index --assume-unchanged path/to/file
