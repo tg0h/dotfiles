@@ -1,5 +1,4 @@
 # zmodload zsh/zprof # turn this on to profile zshrc (with zprof below)
-#
 export KEYTIMEOUT=1 # Make Vi mode transitions faster (KEYTIMEOUT is in hundredths of a second)
 export EDITOR='nvim'
 
@@ -39,6 +38,7 @@ zinit for \
 
 zinit ice as"completion" ; zinit snippet https://github.com/docker/cli/blob/master/contrib/completion/zsh/_docker
 
+# lazy load plugins
 zinit lucid wait for \
   lukechilds/zsh-nvm \
   OMZP::gitignore \
@@ -57,18 +57,18 @@ zinit lucid wait for \
 
 ### NOTE: Source my config and functions
 setopt EXTENDED_GLOB # use ~ to exclude patterns in file globbing
-source $XDG_CONFIG_HOME/zsh/start/SOURCEME.zsh # source oh-my-zsh and other custom plugins
 
+source $XDG_CONFIG_HOME/zsh/start/SOURCEME.zsh # source oh-my-zsh and other custom plugins
 for f in $XDG_CONFIG_HOME/zsh/***/*.zsh~*/start/*; do # exclude start folders
   source $f 
 done 
 
+fpath=($HOME/.local/lib/zsh/***/*~*/archive*(/) $fpath) # / matches directories, exclude archive/
 # for f in $HOME/.local/lib/zsh/***/start/*(.); do {source $f} done # exclude start/
 for func in $HOME/.local/lib/zsh/***/*~(*/archive/*|*.zsh)(.); do 
   autoload $func
 done
 
-fpath=($HOME/.local/lib/zsh/***/*~*/archive*(/) $fpath) # / matches directories, exclude archive/
 unsetopt EXTENDED_GLOB
 
 # set up p10k instant prompt
