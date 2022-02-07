@@ -9,7 +9,7 @@ function ud(){
   # eg ud ~/.local/bin 2
   # TODO: how to implement priority with most frequently used first?
 
-  local configFile=$XDG_CONFIG_HOME/zsh/dir/config.yml
+  local configFile=$XDG_CONFIG_HOME/zsh/dir-switcher/config.yml
 
   if [[ $1 == "configure" ]] && [[ $2 == "list" ]]; then
     udConfigureList $configFile
@@ -43,7 +43,7 @@ function ud(){
 _udInitialize(){
   # read from the config.yml file and dynamically define the ud<key> functions
   # to fzf dir switch to the configured directories
-  local configFile=$XDG_CONFIG_HOME/zsh/dir/config.yml
+  local configFile=$XDG_CONFIG_HOME/zsh/dir-switcher/config.yml
   local config=$(yq eval '.keymaps' $configFile --output-format json | jq --compact-output '.[]')
   # for row in $config; do
   # while read loop splits only on newlines, unlike for do read which splits on any whitespace
@@ -60,6 +60,6 @@ _udInitialize(){
   done <<< $config
 }
 
-_udInitialize
-unset -f _udInitialize #remove the function
+# _udInitialize
+# unset -f _udInitialize #remove the function
 
