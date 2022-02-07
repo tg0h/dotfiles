@@ -114,7 +114,13 @@ alias sln="slackcat --channel nashtech-dev"
 alias sll="slackcat --list"
 #ide
 alias ws=webstorm
-
+# directories
+alias -g ...='../..'
+alias -g ....='../../..'
+alias -g .....='../../../..'
+alias -g ......='../../../../..'
+alias -- -='cd -'
+alias la='ls -lAh'
 # jira
 alias rapven="rapve -n"
 alias rapved="rapve -d"
