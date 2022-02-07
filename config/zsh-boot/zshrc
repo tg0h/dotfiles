@@ -30,8 +30,6 @@ autoload -Uz _zinit
 zinit ice depth=1; zinit light romkatv/powerlevel10k
 
 zinit for \
-  marlonrichert/zsh-autocomplete \
-  zdharma-continuum/fast-syntax-highlighting \
   OMZP::last-working-dir \
   # OMZP::docker-compose \
   # mroth/evalcache \
@@ -47,10 +45,11 @@ zinit lucid wait for \
   rupa/z \
   OMZP::aws/aws.plugin.zsh \
   OMZP::timer \
+  marlonrichert/zsh-autocomplete \
   atload"_zsh_autosuggest_start" \
       zsh-users/zsh-autosuggestions \
-  # atinit"zicompinit; zicdreplay" \ #TODO: lazy loading this does not work with zsh-autocomplete
-  #     zdharma-continuum/fast-syntax-highlighting \
+  atinit"zicompinit; zicdreplay" \
+      zdharma-continuum/fast-syntax-highlighting \
 
 # zinit snippet OMZ::plugins/dotenv/dotenv.plugin.zsh
 # zinit snippet OMZ::plugins/git-auto-fetch/git-auto-fetch.plugin.zsh
