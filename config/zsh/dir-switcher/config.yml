@@ -9,23 +9,32 @@
 
 keymaps:
   # XDG folders
+  # config
   - bindkey: c #udc opens fzf and lists its directory contents
     dir: $XDG_CONFIG_HOME
     options: 5
   - bindkey: cn 
     dir: $XDG_CONFIG_HOME/nvim
     options: 5
+  - bindkey: ca
+    dir: $XDG_CONFIG_HOME/zsh/aliases
+    options: 5
+  # lib
   - bindkey: l
     dir: $HOME/.local/lib
     options: 3 # specify how deep the directory preview should be
+  # data
   - bindkey: xd
     dir: $XDG_DATA_HOME
     options: 4
+  # state
   - bindkey: xs
     dir: $XDG_STATE_HOME
     options: 2
+  # cache
   - bindkey: xc
     dir: $XDG_CACHE_HOME
+  # bin
   - bindkey: xb
     dir: $HOME/.local/bin
 
