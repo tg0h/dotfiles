@@ -34,13 +34,11 @@ zinit for \
   # OMZP::docker-compose \
   # mroth/evalcache \
 
-zinit ice as"completion" ; zinit snippet https://github.com/docker/cli/blob/master/contrib/completion/zsh/_docker
 
 # lazy load plugins
 zinit lucid wait for \
   lukechilds/zsh-nvm \
   OMZP::gitignore \
-  OMZP::colored-man-pages \
   OMZP::git \
   rupa/z \
   OMZP::aws/aws.plugin.zsh \
@@ -48,7 +46,6 @@ zinit lucid wait for \
   marlonrichert/zsh-autocomplete \
   atload"_zsh_autosuggest_start" \
       zsh-users/zsh-autosuggestions \
-  atinit"zicompinit; zicdreplay" \
       zdharma-continuum/fast-syntax-highlighting \
 
 # zinit snippet OMZ::plugins/dotenv/dotenv.plugin.zsh
@@ -71,4 +68,10 @@ unsetopt EXTENDED_GLOB
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
+
+# enter tmux on start up (depends on tat script in bin folder)
+if [[ -z "$TMUX" ]]; then
+  tat
+fi
+
 # zprof # turn this on to profile zsh (with zmodload zsh/zprof above)

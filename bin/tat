@@ -1,0 +1,37 @@
+#!/bin/sh
+#
+# Attach or create tmux session named the same as current directory.
+
+path_name="$(basename "$PWD" | tr . -)"
+session_name=${1-$path_name}
+
+not_in_tmux() {
+  [ -z "$TMUX" ]
+}
+
+session_exists() {
+  tmux has-session -t "=$session_name"
+}
+
+create_detached_session() {
+  # tmux complains if you try to create a nested tmux session
+  # unset the tmux variable to create a detached session
+  # allow creating a tmux session even within tmux
+  # -d - detach other clients attached to the session
+  (TMUX='' tmux new-session -Ad -s "$session_name")
+}
+
+create_if_needed_and_attach() {
+  # -A - attach to existing session if it exists, create a new one if it does not
+  # -s - provide a session name
+  if not_in_tmux; then
+    tmux new-session -As "$session_name"
+  else
+    if ! session_exists; then
+      create_detached_session
+    fi
+    tmux switch-client -t "$session_name"
+  fi
+}
+
+create_if_needed_and_attach

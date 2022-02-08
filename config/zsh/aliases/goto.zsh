@@ -13,6 +13,7 @@ alias aesb='bat ~/certis/docs/wiki/scratch.md'
 
 alias zaa='nvim $XDG_CONFIG_HOME/zsh/aliases/goto.zsh'
 # config
+alias zt='nvim ~/.config/tmux/tmux.conf'
 alias zk='nvim ~/.config/kitty/kitty.conf'
 alias zgit='nvim ~/.config/zsh/git.zsh'
 alias dos='nvim ~/.dotfiles/install.conf.yaml' # dotbot sourcefile

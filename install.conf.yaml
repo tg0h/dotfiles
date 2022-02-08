@@ -48,6 +48,8 @@
     ~/.config/zsh/.zshrc: config/zsh-boot/zshrc
     ~/.config/zsh/p10k: config/zsh-boot/p10k
 
+    ~/.local/bin/: bin/*
+
     ~/.ssh/: 
       path: config/ssh/*
 
