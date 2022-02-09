@@ -34,6 +34,7 @@ zinit for \
   # OMZP::docker-compose \
   # mroth/evalcache \
 
+# zinit ice as"completion" ; zinit snippet https://github.com/docker/cli/blob/master/contrib/completion/zsh/_docker
 
 # lazy load plugins
 zinit lucid wait for \
@@ -46,7 +47,9 @@ zinit lucid wait for \
   marlonrichert/zsh-autocomplete \
   atload"_zsh_autosuggest_start" \
       zsh-users/zsh-autosuggestions \
+  atinit"zicompinit; zicdreplay; nvm use default --silent" \
       zdharma-continuum/fast-syntax-highlighting \
+# start nvm lazily after starting zsh to load node from nvm instead of using the system node
 
 # zinit snippet OMZ::plugins/dotenv/dotenv.plugin.zsh
 # zinit snippet OMZ::plugins/git-auto-fetch/git-auto-fetch.plugin.zsh
