@@ -12,7 +12,7 @@ export NVM_LAZY_LOAD=true  # zsh-nvm lazy load
 # _evalcache thefuck --alias # instead of eval $(thefuck --alias)
 # . `which env_parallel.zsh` # load env parallel
 
-bindkey -v # use vim keymap for zsh
+bindkey -e # use emacs keymap for zsh
 
 setopt autocd # type dir name to cd directly
 autoload zmv # so i can use zmv immediately
