@@ -15,6 +15,7 @@ o.expandtab = true -- convert tabs to spaces
 o.shiftwidth = 2 -- the number of spaces inserted for each indentation
 o.tabstop = 2 -- how many columns a tab counts for
 
+o.foldenable = false -- do not fold by default
 o.foldmethod = "expr"
 o.foldexpr = "nvim_treesitter#foldexpr()"
 o.list = true
