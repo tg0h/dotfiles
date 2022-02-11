@@ -1,0 +1,49 @@
+set folder = imaps://imap.gmail.com # use imap instead of a local folder
+set imap_user = ***REMOVED***
+set imap_pass = "$GMAIL_ANAFORE_APP_PASSWORD"
+set smtp_url = "smtps://***REMOVED***@smtp.gmail.com"
+set smtp_pass = "$GMAIL_ANAFORE_APP_PASSWORD"
+
+set spoolfile = +INBOX
+set record = "+[Gmail]/Sent"
+set postponed = "+[Gmail]/Drafts"
+# set trash = "+[GmailTrash"
+
+mailboxes =Inbox =[Gmail]/Sent\ Mail =[Gmail]/Drafts =[Gmail]/Trash =[Gmail]/Spam
+
+set mailcap_path = $XDG_CONFIG_HOME/mutt/mailcap:$mailcap_path
+
+set realname = "timothy goh"
+set from = "***REMOVED***"
+
+# set date_format="%y/%m/%d %I:%M%p"
+
+# set ssl_force_tls = yes
+# set header_cache = "$XDG_CACHE_HOME/mutt" # ~/.cache/mutt
+
+# Use vim with 70 character width and put cursor in first blank line
+# set editor="nvim -c 'set tw=80 et' '+/^$' " 
+# set edit_headers=yes                # See the headers when editing
+
+auto_view text/html		# automatically show html (mailcap uses lynx)
+# auto_view application/pgp-encrypted
+
+set wait_key = no		# mutt won't ask "press key to continue"
+set fast_reply			# skip to compose when replying
+set include			# include message in replies
+
+set query_command = "abook --mutt-query '%s'"
+
+set sidebar_visible
+set sidebar_format = "%B%?F? [%F]?%* %?N?%N/?%S"
+set mail_check_stats
+
+source $XDG_CONFIG_HOME/mutt/themes/neonwolf.muttrc
+
+# Sidebar binds
+bind index,pager \CP sidebar-prev                 # Ctrl-n to select next folder
+bind index,pager \CN sidebar-next                 # Ctrl-p to select previous folder
+bind index,pager \CI sidebar-open                 # Ctrl-o to open selected folder
+bind index,pager \CB sidebar-toggle-visible       # Ctrl-b to toggle visibility of the sidebar
+
+set smtp_authenticators = 'gssapi:login' #fix no authenticators available error
