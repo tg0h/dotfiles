@@ -6,7 +6,7 @@
     link:
       # create directories to create symlink if needed
       create: true
-      # removes the old target if it's a symlink 
+      # removes the old target if it's a symlink
       relink: true
       # TODO: is default glob to true a good idea?
       glob: true
@@ -20,11 +20,12 @@
       recursive: true
 
 - create:
-  - $XDG_DATA_HOME/z # for z to store its frecency dir list
-  - $XDG_CONFIG_HOME/parallel
-  - $XDG_CONFIG_HOME/zsh
-  - $XDG_STATE_HOME
-  - ~/.local/bin # binaries for any ad hoc binaries, eg authy
+    - $XDG_DATA_HOME/z # for z to store its frecency dir list
+    - $XDG_DATA_HOME/gnupg # gpg --full-generate-key fails if dir does not exist
+    - $XDG_CONFIG_HOME/parallel
+    - $XDG_CONFIG_HOME/zsh
+    - $XDG_STATE_HOME
+    - ~/.local/bin # binaries for any ad hoc binaries, eg authy
 
 # <target>:<source (original file)>
 # if linking directories, do not include a trailing slash
@@ -34,9 +35,9 @@
     # folder which will then appear in my dotfiles repo :|
     ~/.dotfiles: ~/dotfiles
 
-    ~/.config/: 
+    ~/.config/:
       path: config/*/**
-      exclude: 
+      exclude:
         - config/cheat/cheatsheets
         - config/ssh/*
         - config/zsh-boot/**
@@ -50,10 +51,10 @@
 
     ~/.local/bin/: bin/*
 
-    ~/.ssh/: 
+    ~/.ssh/:
       path: config/ssh/*
 
-    # Unlike the config folder, I just symlink the child folders because I am  
+    # Unlike the config folder, I just symlink the child folders because I am
     # confident that the directories here won't have other files added
     ~/.local/lib/: lib/*
 
