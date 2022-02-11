@@ -1,3 +1,6 @@
+alias ag="alias | grep"
+alias sg="set | grep"
+
 alias udcl='ud configure list' #show ud configuration
 alias udce='ud configure edit' #edit ud configuration
 
@@ -15,16 +18,14 @@ alias sss="source $HOME/.config/zsh/.zshrc"
 # edit
 alias ee="nvim $HOME/.local/lib/scratch.zsh"
 
+
+# utils ====================================================================
 # bat
 alias bats="bat *.csv"
 alias bata="bat *(.)" # glob qualifier to only search for files, not dirs
 
-# utils ====================================================================
-
-alias ag="alias | grep"
-alias sg="set | grep"
-
 alias fork="open . -a /Applications/Fork.app"
+alias nm="neomutt"
 
 alias norg="gron --ungron"
 

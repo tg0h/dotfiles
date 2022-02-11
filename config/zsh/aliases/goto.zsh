@@ -3,8 +3,8 @@ alias dd='cd $HOME/dotfiles'
 
 # zsh boot
 alias zr='nvim ~/.dotfiles/config/zsh-boot/zshrc'
-alias ze='nvim ~/.dotfiles/.env'
 alias zz='nvim ~/.config/zsh/.zshenv'
+alias ze='nvim ~/.dotfiles/config/secret/env'
 
 # scratch
 alias aes='nvim ~/certis/docs/wiki/scratch.md'
@@ -12,6 +12,7 @@ alias aesb='bat ~/certis/docs/wiki/scratch.md'
 
 
 alias zaa='nvim $XDG_CONFIG_HOME/zsh/aliases/goto.zsh'
+alias zam='nvim $XDG_CONFIG_HOME/zsh/aliases/misc.zsh'
 # config
 alias zt='nvim ~/.config/tmux/tmux.conf'
 alias zk='nvim ~/.config/kitty/kitty.conf'
@@ -26,6 +27,6 @@ alias -g ....='../../..'
 alias -g .....='../../../..'
 alias -g ......='../../../../..'
 alias -- -='cd -'
-alias la='ls -lAh'
+
 alias md='mkdir -p'
 alias rd=rmdir
