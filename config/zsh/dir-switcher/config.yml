@@ -1,4 +1,4 @@
-# set up the fzf directory switcher 
+# set up the fzf directory switcher
 # specify the bindkey for the ud function
 # ud is a fzf directory switcher
 # the fzf preview window previews the directory/file contents
@@ -13,7 +13,7 @@ keymaps:
   - bindkey: c #udc opens fzf and lists its directory contents
     dir: $XDG_CONFIG_HOME
     options: 5
-  - bindkey: cn 
+  - bindkey: cn
     dir: $XDG_CONFIG_HOME/nvim
     options: 5
   - bindkey: ca
@@ -22,7 +22,7 @@ keymaps:
   # lib
   - bindkey: l
     dir: $HOME/.local/lib
-    options: 3 # specify how deep the directory preview should be
+    options: 5
   # data
   - bindkey: xd
     dir: $XDG_DATA_HOME
@@ -48,7 +48,7 @@ keymaps:
     options: 4
 
   # other folders
-  - bindkey: tl 
+  - bindkey: tl
     dir: $HOME/Downloads
 
   # docs
