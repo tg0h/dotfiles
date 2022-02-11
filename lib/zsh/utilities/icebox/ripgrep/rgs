@@ -1,4 +1,6 @@
 #!bin/zsh
 
 # rg shortcuts
-function rgs(){ rg $1 --sortr created }
+function rgs(){ 
+  rg $1 --sortr created 
+}

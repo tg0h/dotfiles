@@ -1,6 +1,6 @@
 #!bin/zsh
 
-function displaytime {
+function displaytime() {
   # get seconds, convert to days, hours and minutes
   local T=$1
   local D=$((T/60/60/24))
@@ -13,4 +13,3 @@ function displaytime {
   (( $D > 0 || $H > 0 || $M > 0 )) && printf 'and '
   printf '%d seconds\n' $S
 }
-

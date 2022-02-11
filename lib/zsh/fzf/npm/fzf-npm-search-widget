@@ -1,3 +1,5 @@
+#!/bin/zsh
+
 # TODO: preview node script
 function fzf-npm-search-widget() {
   # search for npm commands in package.json

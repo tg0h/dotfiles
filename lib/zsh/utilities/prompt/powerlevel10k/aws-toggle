@@ -1,3 +1,5 @@
+#!/bin/zsh
+
 function aws-toggle() {
   if (( ${+POWERLEVEL9K_AWS_SHOW_ON_COMMAND} )); then
     # by removing this var, we always show the aws prompt

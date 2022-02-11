@@ -1,0 +1,77 @@
+#!/bin/zsh
+
+# this function does not pollute the calling env as scripts are run in a subshell
+join-lines() {
+  local item
+  while read item; do
+    echo -n "${(q)item} "
+  done
+}
+
+# _fzf_home_displayFunction(){
+  # given inputFile and inputFunc, use bat to display function body
+  #
+  # read file and func
+  # output file funcStartLineNumber funcEndLineNumber
+
+  local inputFile=$1
+  local inputFunc=$2
+
+  # local temp=$(  rg --only-matching \
+  #    --field-match-separator ' ' \
+  #    --multiline \
+  #    -nH \
+  #    -e '^function\s+'$inputFunc'\s*\(''(?s:.)*?(^\s*}$)' $inputFile \
+  #  )
+  # echo this is temp: $temp
+
+  # gsed -e '1b;$!d'
+  # - print 1st and last line
+  #
+  # '<command> ; <second command>'
+  # b - branch - usually works with a label, if no label specified, jus skip this line
+  # 1b means for the first line, skip the rest of the script
+  # $ is a line address it means the last line of the file
+  # ! is command negation !d means don't delete (and therefore print for the rest of the lines)
+
+  # search for function <functionName> 
+  # head -n 2 - get the start of the function and the end of the function }
+  # ignore the remaining }'s because they belong to other functions
+  # rg
+  # -n - show line numbers
+  # -H - show filename
+  # -e means expression aka --regexp
+  # -e 'function[^(]*'$inputFunc'\W' -e "\s*}$" $inputFile \
+  
+     # --field-match-separator ' ' \
+     # | choose 0 1 5 | read -r outFile funcStart funcEnd
+
+  # ?s is rust regex syntax to specify that the dot also captures a \n
+  # *? is non greedy
+  # (?s:.)*?
+  # (?:) - non capturing group
+  # (?::) - match :
+
+  local file=$_fzf_homeFn_dir$inputFile
+
+  rg --only-matching \
+     --multiline \
+     -nH \
+     -e '\s*function\s+'$inputFunc'\s*\(''(?s:.)*?(^\s*}$)' $file \
+     | gsed '1b;$!d' | gsed 'N;s/\n/ /' \
+     | rg '(?::)(\d+)(?::)' -or '$1' | join-lines | read -r funcStart funcEnd _
+    # what is read -r
+    # read -normally allows long lines to be broken using a trailing backslash 
+    # character, and normally reconstructs such lines. This slightly surprising 
+    # behavior can be deactivated using -r
+    
+    # : delimiter - problematic if function has : as well?
+    # | choose 0 1 5 
+
+  # echo file: $file
+  # echo func: $inputFunc
+  # echo fstart: $funcStart
+  # echo fend: $funcEnd
+  bat --color=always $_fzf_homeFn_dir$inputFile -r $funcStart:$funcEnd
+# }
+
