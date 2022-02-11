@@ -55,12 +55,13 @@ zinit lucid wait for \
 # zinit snippet OMZ::plugins/git-auto-fetch/git-auto-fetch.plugin.zsh
 
 ### NOTE: Source my config and functions
+source $DOTFILES/config/secret/env
+
 setopt EXTENDED_GLOB # use ~ to exclude patterns in file globbing
 source $XDG_CONFIG_HOME/zsh/start/SOURCEME.zsh # source oh-my-zsh and other custom plugins
 for f in $XDG_CONFIG_HOME/zsh/***/*.zsh~*/start/*; do # exclude start folders
   source $f 
 done 
-
 fpath=($HOME/.local/lib/zsh/***/*~*/archive*(/) $fpath) # / matches directories, exclude archive/
 for func in $HOME/.local/lib/zsh/***/*~(*/archive/*|*.zsh)(.); do 
   autoload $func
@@ -76,5 +77,4 @@ fi
 if [[ -z "$TMUX" ]]; then
   tat
 fi
-
 # zprof # turn this on to profile zsh (with zmodload zsh/zprof above)
