@@ -24,6 +24,8 @@ alias ee="nvim $HOME/.local/lib/scratch.zsh"
 alias bats="bat *.csv"
 alias bata="bat *(.)" # glob qualifier to only search for files, not dirs
 
+alias fu=funky
+
 alias fork="open . -a /Applications/Fork.app"
 alias nm="neomutt"
 

@@ -4,11 +4,10 @@ export EDITOR='nvim'
 
 export NVM_AUTO_USE=true # zsh-nvm plugin autoloads .nvmrc, set before the plugins array
 export NVM_LAZY_LOAD=true  # zsh-nvm lazy load
-# ZSH_EVALCACHE_DIR=$XDG_CACHE_HOME/zsh-evalcache
+ZSH_EVALCACHE_DIR=$XDG_CACHE_HOME/zsh-evalcache
 
 # enable aws completion - https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-completion.html
 # complete -C '/usr/local/bin/aws_completer' aws 
-# _evalcache pyenv init - # instead of eval $(pyenv init -)
 # _evalcache thefuck --alias # instead of eval $(thefuck --alias)
 # . `which env_parallel.zsh` # load env parallel
 
@@ -31,8 +30,8 @@ zinit ice depth=1; zinit light romkatv/powerlevel10k
 
 zinit for \
   OMZP::last-working-dir \
+  mroth/evalcache \
   # OMZP::docker-compose \
-  # mroth/evalcache \
 
 # zinit ice as"completion" ; zinit snippet https://github.com/docker/cli/blob/master/contrib/completion/zsh/_docker
 
@@ -47,7 +46,7 @@ zinit lucid wait for \
   marlonrichert/zsh-autocomplete \
   atload"_zsh_autosuggest_start" \
       zsh-users/zsh-autosuggestions \
-  atinit"zicompinit; zicdreplay; nvm use default --silent" \
+  atinit"zicompinit; zicdreplay; nvm use default --silent; _evalcache pyenv init; _evalcache funky --init zsh" \
       zdharma-continuum/fast-syntax-highlighting \
 # start nvm lazily after starting zsh to load node from nvm instead of using the system node
 
