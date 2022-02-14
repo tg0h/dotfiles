@@ -1,5 +1,5 @@
 require"nvim-treesitter.configs".setup {
-    ensure_installed = 'maintained', -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+    ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
     ignore_install = {}, -- List of parsers to ignore installing
     highlight = {
         enable = true, -- false will disable the whole extension
@@ -31,32 +31,32 @@ require"nvim-treesitter.configs".setup {
                 ["ic"] = "@class.inner",
                 ["al"] = "@loop.outer",
                 ["il"] = "@loop.inner",
-                ["ib"] = "@block.inner",
-                ["ab"] = "@block.outer",
+                ["ik"] = "@block.inner",
+                ["ak"] = "@block.outer",
                 ["ir"] = "@parameter.inner",
                 ["ar"] = "@parameter.outer"
             }
         },
         move = {
-              enable = true,
-              set_jumps = true, -- whether to set jumps in the jumplist
-              goto_next_start = {
+            enable = true,
+            set_jumps = true, -- whether to set jumps in the jumplist
+            goto_next_start = {
                 ["]m"] = "@function.outer",
-                ["]]"] = "@class.outer",
-              },
-              goto_next_end = {
-                ["]M"] = "@function.outer",
-                ["]["] = "@class.outer",
-              },
-              goto_previous_start = {
-                ["[m"] = "@function.outer",
-                ["[["] = "@class.outer",
-              },
-              goto_previous_end = {
-                ["[M"] = "@function.outer",
-                ["[]"] = "@class.outer",
-              },
+                ["]]"] = "@class.outer"
             },
+            goto_next_end = {
+                ["]M"] = "@function.outer",
+                ["]["] = "@class.outer"
+            },
+            goto_previous_start = {
+                ["[m"] = "@function.outer",
+                ["[["] = "@class.outer"
+            },
+            goto_previous_end = {
+                ["[M"] = "@function.outer",
+                ["[]"] = "@class.outer"
+            }
+        }
     },
     rainbow = { -- git nvim-ts-rainbow
         enable = true,
