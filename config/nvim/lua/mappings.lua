@@ -8,7 +8,8 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = ","
 
 -- Nvim Tree
-map("n", "<A-u>", ":NvimTreeToggle<CR>", default_options) -- Toggle Nvim Tree
+map("n", "<A-u>", ":NvimTreeFocus<CR>", default_options) -- Focus is better than Toggle
+map("n", "<A-e>", ":NvimTreeToggle<CR>", default_options)
 
 -- window movement
 map("n", "<A-Up>", ":wincmd k<CR>", default_options)
@@ -16,6 +17,7 @@ map("n", "<A-Down>", ":wincmd j<CR>", default_options)
 map("n", "<A-Left>", ":wincmd h<CR>", default_options)
 map("n", "<A-Right>", ":wincmd l<CR>", default_options)
 map("n", "<A-->", ":wincmd w<CR>", default_options) -- previous window
+map("n", "<A-d>", ":wincmd q<CR>", default_options) -- close window
 
 -- Resizing panes
 map("n", "<Left>", ":vertical resize +1<CR>", default_options)
