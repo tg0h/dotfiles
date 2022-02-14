@@ -1,7 +1,7 @@
 vim.api.nvim_exec([[
 augroup FormatAutogroup
   autocmd!
-  autocmd BufWritePost *.md,*.lua,*.yaml,*.yml,*.json FormatWrite
+  autocmd BufWritePost *.md,*.lua,*.yaml,*.yml,*.json,*.js,*.mjs FormatWrite
 augroup END
 ]], true)
 
@@ -25,6 +25,22 @@ require("formatter").setup({
                         "--no-break-after-functioncall-lp"
                     },
                     stdin = true
+                }
+            end
+        },
+
+        javascript = {
+            -- prettier
+            function()
+                return {
+                    exe = "standard",
+                    args = {
+                        "--stdin",
+                        vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)),
+                        "--fix"
+                    },
+                    stdin = true,
+                    ignore_exitcode = true
                 }
             end
         },
