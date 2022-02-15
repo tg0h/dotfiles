@@ -72,7 +72,7 @@ keymaps:
   - bindkey: s
     dir: $HOME/src
   - bindkey: sc
-    dir: $HOME/src/certis
+    dir: $HOME/src/candy
     options: 3 # specify how deep the directory preview should be
   - bindkey: sm
     dir: $HOME/src/me
