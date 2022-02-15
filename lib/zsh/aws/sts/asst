@@ -1,0 +1,43 @@
+#!/bin/zsh
+
+function asst(){
+  # aws sts get-session-token and update the mfa section in the credentials file
+
+  local token=$(authy fuzz anafore | rg --only-matching '\d{6}')
+  echo -e $fg[green] got authy token: $fg[cyan]$token
+
+  local data=$(aws sts get-session-token --serial-number ***REMOVED*** --token-code $token)
+  local accessKey=$(jq --raw-output '.Credentials.AccessKeyId' <<< $data)
+  local secret=$(jq --raw-output '.Credentials.SecretAccessKey' <<< $data)
+  local token=$(jq --raw-output '.Credentials.SessionToken' <<< $data)
+
+  echo -e $fg[green] updating mfa profile in aws credentials file'...'
+  
+  local credentials=$XDG_CONFIG_HOME/aws/credentials
+
+  local mfaStart mfaEnd
+  # get the line numbers of the first 3 lines after the [mfa] section in the credentials file
+  # | gsed -e '1b;$!d' - prints first and last line
+  rg '\[mfa\]' -A 3 --field-context-separator ' ' --line-number --no-filename $credentials \
+    | rg aws \
+    | gawk '{print $1}' \
+    | gsed -e '1b;$!d' \
+    | join-lines \
+    | read -r mfaStart mfaEnd _
+
+  # echo $mfaStart
+  # echo $mfaEnd
+
+  # --follow-symlinks is needed or gsed will destroy my symlink
+  # echo credentials is $credentials
+  # echo accessKey is $accessKey
+  # echo secret is $secret
+  # echo token is $token
+  gsed -Ei --follow-symlinks "$mfaStart,$mfaEnd"'s/(aws_access_key_id=).*/\1'${accessKey}'/' $credentials
+  gsed -Ei --follow-symlinks "$mfaStart,$mfaEnd"'s#(aws_secret_access_key=).*#\1'${secret}'#' $credentials
+  gsed -Ei --follow-symlinks "$mfaStart,$mfaEnd"'s#(aws_security_token=).*#\1'${token}'#' $credentials
+
+  # export AWS_ACCESS_KEY_ID=$accessKey
+  # export AWS_SECRET_ACCESS_KEY=$secret
+  # export AWS_SESSION_TOKEN=$token
+}
