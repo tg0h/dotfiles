@@ -1,8 +1,8 @@
 set folder = imaps://imap.gmail.com # use imap instead of a local folder
-set imap_user = timslgoh@gmail.com
-set imap_pass = "$GMAIL_ME_APP_PASSWORD"
-set smtp_url = "smtps://timslgoh@smtp.gmail.com"
-set smtp_pass = "$GMAIL_ME_APP_PASSWORD"
+set imap_user = ***REMOVED***
+set imap_pass = "$GMAIL_ANAFORE_APP_PASSWORD"
+set smtp_url = "smtps://***REMOVED***@smtp.gmail.com"
+set smtp_pass = "$GMAIL_ANAFORE_APP_PASSWORD"
 
 set spoolfile = +INBOX
 set record = "+[Gmail]/Sent"
