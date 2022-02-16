@@ -6,4 +6,6 @@
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # https://github.com/pyenv/pyenv
-eval "$(pyenv init --path)"
+# eval "$(pyenv init --path)"
+
+# . "/Users/tim/.local/share/cargo/env"
