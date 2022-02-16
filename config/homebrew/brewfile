@@ -1,2 +1,4 @@
 # run brew bundle to run this file
 cask "1password-cli"
+
+brew "rustup" # version manager for rust
