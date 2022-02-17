@@ -1,4 +1,7 @@
-alias dt='cd /tmp'
+function dt(){
+  mkdir -p /tmp/tim
+  cd /tmp/tim
+}
 alias dd='cd $HOME/dotfiles'
 
 # zsh boot
