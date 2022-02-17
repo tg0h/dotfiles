@@ -40,7 +40,6 @@ zinit for \
 zinit lucid wait for \
   lukechilds/zsh-nvm \
   OMZP::gitignore \
-  OMZP::git \
   rupa/z \
   OMZP::aws/aws.plugin.zsh \
   OMZP::timer \
@@ -49,6 +48,7 @@ zinit lucid wait for \
       zsh-users/zsh-autosuggestions \
   atinit"zicompinit; zicdreplay; nvm use default --silent; _evalcache pyenv init -; _evalcache funky --init zsh; _evalcache rbenv init -" \
       zdharma-continuum/fast-syntax-highlighting \
+  # OMZP::git \
 # start nvm lazily after starting zsh to load node from nvm instead of using the system node
 
 # zinit snippet OMZ::plugins/dotenv/dotenv.plugin.zsh
