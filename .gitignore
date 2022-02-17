@@ -1,28 +1,20 @@
+# my dir-switcher compiled functions directory
+out
+
+# secrets
+env
+*.env
+id_ed25519
+
+secret*
+credentials
+
+# brew bundle outputs Brewfile.lock.json files for debugging non-reproducibility.
 brewfile.lock.json
 
-out
-# archive
 # ignore scratch file
 # git update-index --assume-unchanged path/to/file
 # git update-index --no-assume-unchanged path/to/file
 lib/scratch
 
-
-# Secrets
-# ignore env secrets
-env
-*.env
-# ssh secret
-id_ed25519
-# ignore files or folders with name secret*
-secret*
-*.secret
-# ignore aws, git credentials
-credentials
-
-# Apple
 .DS_STORE
-
-# Intellij
-.idea
-
