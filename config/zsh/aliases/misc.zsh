@@ -25,6 +25,9 @@ alias bats="bat *.csv"
 alias bata="bat *(.)" # glob qualifier to only search for files, not dirs
 
 alias fu=funky
+alias fua='funky -a'
+alias fue='funky -e'
+alias fur='funky -r'
 
 alias fork="open . -a /Applications/Fork.app"
 alias nm="neomutt"
