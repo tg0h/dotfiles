@@ -46,4 +46,8 @@ bind index,pager \CN sidebar-next                 # Ctrl-p to select previous fo
 bind index,pager \CI sidebar-open                 # Ctrl-o to open selected folder
 bind index,pager \CB sidebar-toggle-visible       # Ctrl-b to toggle visibility of the sidebar
 
+macro index,pager \cb "<pipe-message> urlscan<Enter>" "call urlscan to extract URLs out of a message"
+macro attach,compose \cb "<pipe-entry> urlscan<Enter>" "call urlscan to extract URLs out of a message"
+
 set smtp_authenticators = 'gssapi:login' #fix no authenticators available error
+
