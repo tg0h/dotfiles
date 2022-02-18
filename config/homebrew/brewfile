@@ -73,6 +73,7 @@ brew 'zsh'
 brew 'neovim'
 brew 'tmux'
 
+brew 'openssh'
 brew 'awscli'
 brew 'coreutils'
 brew 'gnu-sed'
@@ -102,6 +103,8 @@ brew 'redis', restart_service: true
 brew 'tealdeer'
 brew 'mutt'
 brew 'neomutt'
+brew 'lynx' # used by mutt to view html?
+brew 'notmuch' # index email
 brew 'abook'
 brew 'mpv' # used by neomutt config to view videos
 brew 'parallel'
