@@ -1,0 +1,1 @@
+{"copy": "# copy <key name> to <ssh-user@ssh-host>\n# do not specify xxx.pub as the key name\n# the -i identity file refers to the name 'xxx' not 'xxx.pub'\n\nssh-copy-id -i \"$1\" \"$2\""}
