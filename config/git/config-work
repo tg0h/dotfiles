@@ -5,6 +5,7 @@
 	helper = store
 [core]
 	pager = delta
+  sshCommand = ssh -i ~/.ssh/id_ed25519_candy
 [interactive]
     diffFilter = delta --color-only
 [delta]
