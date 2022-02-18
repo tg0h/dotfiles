@@ -4,7 +4,7 @@ out
 # secrets
 env
 *.env
-id_ed25519
+id_ed25519*
 
 secret*
 credentials
