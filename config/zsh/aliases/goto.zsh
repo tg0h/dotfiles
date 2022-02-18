@@ -23,6 +23,7 @@ alias zgit='nvim ~/.config/zsh/git.zsh'
 alias dos='nvim ~/.dotfiles/install.conf.yaml' # dotbot sourcefile
 alias doi='dotbot --verbose -c ~/.dotfiles/install.conf.yaml'
 alias bb='brew bundle --file ~/dotfiles/config/homebrew/brewfile'
+alias bbs='nvim ~/dotfiles/config/homebrew/brewfile'
 
 # directories
 alias d='dirs -v | head -n 10'
