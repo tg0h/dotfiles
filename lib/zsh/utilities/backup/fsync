@@ -18,9 +18,14 @@ function fsync(){
   # --quiet - don't show non-error messages
   # --stats - show a summary of changes
 
+  mkdir -p /Volumes/penwhel/tim/local/share/data
+
   # Risk: what if i rysync wrongly and delete my home folder?
-  rsync -aP --stats --delete --exclude node_modules --exclude tmp ~/certis ~/dotfiles ~/dev ~/src ~/docs /Volumes/penwhel/tim
-  rsync -aP --stats --delete ~/Dropbox /Volumes/penwhel
+  rsync -aP --stats --delete --exclude node_modules --exclude tmp ~/dotfiles ~/dev ~/src ~/docs ~/Dropbox /Volumes/penwhel/tim
+
+  rsync -aP --stats --delete ~/local/bin /Volumes/penwhel/tim/local
+  # backup passwordstore and gpg
+  rsync -aP --stats --delete ~/.local/share/pass ~/.local/share/gnupg /Volumes/penwhel/tim/local/share/data
 
   # store in thumbdrive instead
   # rsync -aP --stats --delete ~/.local/share/gnupg/pubring.kbx /Volumes/penwhel/secrets/
