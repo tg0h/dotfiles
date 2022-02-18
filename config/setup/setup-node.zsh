@@ -13,3 +13,4 @@ npm i -g typescript
 npm i -g vscode-langservers-extracted
 npm i -g yaml-language-server
 npm i -g typescript
+npm i -g yarn
