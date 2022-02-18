@@ -1,4 +1,107 @@
 # run brew bundle to run this file
-cask "1password-cli"
+cask 'alfred'
+cask '1password'
+cask '1password-cli'
+cask 'kitty'
+cask 'dropbox'
+cask 'nvalt'
+cask 'authy'
+cask 'lastpass'
+cask 'ithoughtsx'
+cask 'time-out'
+cask 'istat-menus'
+cask 'bartender'
+cask 'cleanshot'
+cask 'toggl-track'
+# cask 'snagit' # doesn't work for old versions of snagit
+# cask 'sip'
+# cask 'balsamiq-wireframes'
 
-brew "rustup" # version manager for rust
+cask 'microsoft-excel'
+cask 'foxitreader'
+cask 'google-chrome'
+cask 'brave-browser'
+cask 'firefox'
+cask 'microsoft-edge'
+cask 'karabiner-elements'
+cask 'postman'
+cask 'forklift'
+cask 'houdahspot'
+cask 'proxyman'
+cask 'hook'
+cask 'pixelsnap'
+cask 'keyboard-maestro'
+cask 'cold-turkey-blocker'
+cask 'logitech-options'
+cask 'glyphfinder'
+cask 'mission-control-plus'
+cask 'marked'
+cask 'vlc'
+cask 'transmit'
+cask 'devutils'
+cask 'affinity-photo'
+cask 'affinity-designer'
+cask 'affinity-publisher'
+cask 'slack'
+cask 'zoom'
+cask 'notion'
+cask 'hazel'
+
+tap 'homebrew/cask-drivers'
+cask 'zsa-wally'
+
+mas 'Magnet', id: 441258766
+mas 'Things', id: 904280696
+mas 'Blackmagic Disk Speed Test', id: 425264550
+mas 'Aquarelo', id: 1263012549
+mas 'Goldie', id: 1375037046
+mas 'Smart Countdown Timer', id: 1410709951
+
+brew 'rbenv'
+brew "pyenv"
+brew 'dotbot'
+brew 'zinit'
+brew 'mas' # brew installer for the mac app store
+
+brew 'lua'
+brew 'lua-language-server'
+brew 'luarocks'
+brew 'rustup-init' # aka rustup
+brew 'bash'
+brew 'zsh'
+
+brew 'neovim'
+brew 'tmux'
+
+brew 'awscli'
+brew 'coreutils'
+brew 'gnu-sed'
+brew 'gawk'
+brew 'git'
+brew 'gh'
+brew 'git-delta'
+tap 'jesseduffield/lazygit' # use tap to get frequent updates
+brew 'jesseduffield/lazygit/lazygit'
+brew 'rsync'
+brew 'fzf'
+brew 'ripgrep'
+brew 'bat'
+brew 'fd'
+brew 'lsd'
+brew 'exa'
+brew 'jq'
+brew 'yq'
+brew 'shfmt'
+brew 'lf'
+brew 'gnupg'
+brew 'pass' # password store
+brew 'imagemagick'
+brew 'httpie'
+brew 'hyperfine'
+brew 'redis', restart_service: true
+brew 'tealdeer'
+brew 'mutt'
+brew 'neomutt'
+brew 'abook'
+brew 'mpv' # used by neomutt config to view videos
+brew 'parallel'
