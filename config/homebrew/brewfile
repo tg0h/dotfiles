@@ -55,3 +55,10 @@ brew 'notmuch' # index email
 brew 'abook'
 brew 'mpv' # used by neomutt config to view videos
 brew 'parallel'
+brew 'htop'
+brew 'glances'
+brew 'dust'
+brew 'sd'
+brew 'ytop'
+brew 'tokei'
+brew 'bandwhich'
