@@ -1,4 +1,11 @@
+# copy dotfiles from ssd to local
+cp /Volumes/penwhel/dotfiles ~
+
+# get brew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+# install core brew packages
+/opt/homebrew/bin/brew bundle --file ~/dotfiles/config/homebrew/brewfile
 
 git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 git clone https://github.com/tmux-plugins/tpm ~/.local/share/tmux/plugins/tpm
@@ -8,12 +15,8 @@ ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 mkdir -p "$(dirname $ZINIT_HOME)"
 git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 
-pyenv install 3.8.12
-pyenv global 3.8.12
+# install python
+source ~/dotfiles/config/setup/setup-py.zsh
 
-python3 -m pip install --user pipx
-python3 -m pipx ensurepath
-pipx install pyfunky
-
-nvm install 16
-nvm default 16
+# install dotfiles
+/opt/homebrew/bin/dotbot -c ~/dotfiles/install.conf.yaml
