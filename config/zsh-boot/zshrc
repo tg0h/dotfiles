@@ -18,8 +18,8 @@ setopt autopushd
 autoload zmv # so i can use zmv immediately
 
 # place the homebrew binaries at the end of path, if not nvm will always point to the homebrew system node
-export PATH="$PATH:/Users/tim/Library/Python/3.9/bin"
-export PATH="$PATH:/opt/homebrew/bin"
+# export PATH="/Users/tim/Library/Python/3.9/bin:$PATH"
+# export PATH="$PATH:/opt/homebrew/bin"
 export PATH="$PATH:$HOME/.local/bin"
 export PATH="$XDG_DATA_HOME/cargo/bin:$PATH"
 
