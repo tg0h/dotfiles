@@ -6,6 +6,7 @@
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # https://github.com/pyenv/pyenv
-# eval "$(pyenv init --path)"
+# eval "$(pyenv init --path)" -- this expands to the below export PATH
+export PATH="/Users/tim/.local/share/pyenv/shims:${PATH}" 
 
 # . "/Users/tim/.local/share/cargo/env"
