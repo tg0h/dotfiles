@@ -18,12 +18,21 @@ function fsync(){
   # --quiet - don't show non-error messages
   # --stats - show a summary of changes
 
-  mkdir -p /Volumes/penwhel/tim/local/share/data
+  local destination=/Volumes/penwhel/tim
+
+  while getopts 'n' opt; do
+    case "$opt" in
+      n) destination='tim@tardis:~/nsync';;
+    esac
+  done
+  shift $(($OPTIND - 1))
+
+  mkdir -p $destination/local/share/data
 
   # Risk: what if i rysync wrongly and delete my home folder?
-  rsync -aP --stats --delete --exclude node_modules --exclude tmp ~/dotfiles ~/dev ~/src ~/docs ~/Dropbox ~/Desktop /Volumes/penwhel/tim
+  rsync -aP --stats --delete --exclude node_modules --exclude tmp ~/dotfiles ~/dev ~/src ~/docs ~/Dropbox ~/Desktop $destination
 
-  rsync -aP --stats --delete ~/local/bin /Volumes/penwhel/tim/local
+  rsync -aP --stats --delete ~/local/bin $destination/local
   # backup passwordstore and gpg
-  rsync -aP --stats --delete ~/.local/share/pass ~/.local/share/gnupg /Volumes/penwhel/tim/local/share
+  rsync -aP --stats --delete ~/.local/share/pass ~/.local/share/gnupg $destination/local/share
 }
