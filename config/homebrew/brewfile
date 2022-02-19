@@ -8,7 +8,7 @@ cask 'logitech-options'
 brew 'rbenv'
 brew "pyenv"
 brew 'dotbot'
-brew 'zinit'
+# brew 'zinit' # do not brew, instead, manually git clone to data folder in setup.zsh
 brew 'mas' # brew installer for the mac app store
 
 brew 'lua'
