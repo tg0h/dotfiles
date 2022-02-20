@@ -1,0 +1,25 @@
+{
+  "title": "Right Cmd Meh",
+  "rules": [
+    {
+      "description": "Right Cmd to Meh",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "right_command",
+            "modifiers": {
+              "optional": ["any"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "left_shift",
+              "modifiers": ["left_control", "left_option"]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

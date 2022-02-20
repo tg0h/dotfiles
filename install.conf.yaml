@@ -42,6 +42,7 @@
         - config/cheat/cheatsheets
         - config/ssh/*
         - config/zsh-boot/**
+        - config/karabiner/**
 
     ~/.zshenv: config/zsh-boot/boot.zshenv
     # zsh reads the dot files in the $ZDOTDIR dir
@@ -49,6 +50,7 @@
     ~/.config/zsh/.zprofile: config/zsh-boot/zprofile
     ~/.config/zsh/.zshrc: config/zsh-boot/zshrc
     ~/.config/zsh/p10k: config/zsh-boot/p10k
+    ~/.config/karabiner/assets/complex_modifications: config/karabiner/assets/complex_modifications/*
 
     ~/.local/bin/: bin/*
 
