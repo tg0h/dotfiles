@@ -1,9 +1,16 @@
 # run this first - this contains essential cli apps for use on any computer
 # the second brewfile contains other gui apps for use on my main computer
+tap 'homebrew/cask'
+# brew 'homebrew-services'
+# tap 'homebrew/bundle'
+
 cask 'kitty'
 cask 'dropbox'
 tap 'homebrew/cask-drivers'
 cask 'logitech-options'
+
+tap 'homebrew/cask-fonts'
+cask 'font-jetbrains-mono-nerd-font'
 
 brew 'rbenv'
 brew "pyenv"
@@ -60,6 +67,62 @@ brew 'htop'
 brew 'glances'
 brew 'dust'
 brew 'sd'
-brew 'ytop'
+brew 'bottom'
 brew 'tokei'
 brew 'bandwhich'
+
+# run brew bundle to run this file
+cask 'alfred'
+cask '1password'
+cask '1password-cli'
+cask 'nvalt'
+cask 'authy'
+cask 'lastpass'
+cask 'ithoughtsx'
+cask 'time-out'
+cask 'istat-menus'
+cask 'bartender'
+cask 'cleanshot'
+cask 'toggl-track'
+# cask 'snagit' # doesn't work for old versions of snagit
+# cask 'sip'
+# cask 'balsamiq-wireframes'
+
+cask 'microsoft-excel'
+cask 'foxitreader'
+cask 'google-chrome'
+cask 'brave-browser'
+cask 'firefox'
+cask 'microsoft-edge'
+cask 'karabiner-elements'
+cask 'postman'
+cask 'forklift'
+cask 'houdahspot'
+cask 'proxyman'
+cask 'hook'
+cask 'pixelsnap'
+cask 'keyboard-maestro'
+cask 'cold-turkey-blocker'
+cask 'glyphfinder'
+cask 'mission-control-plus'
+cask 'marked'
+cask 'vlc'
+cask 'transmit'
+cask 'devutils'
+cask 'affinity-photo'
+cask 'affinity-designer'
+cask 'affinity-publisher'
+cask 'slack'
+cask 'zoom'
+cask 'notion'
+cask 'hazel'
+
+tap 'homebrew/cask-drivers'
+cask 'zsa-wally'
+
+mas 'Magnet', id: 441258766
+mas 'Things', id: 904280696
+mas 'Blackmagic Disk Speed Test', id: 425264550
+mas 'Aquarelo', id: 1263012549
+mas 'Goldie', id: 1375037046
+mas 'Smart Countdown Timer', id: 1410709951

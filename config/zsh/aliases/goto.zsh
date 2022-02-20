@@ -24,6 +24,7 @@ alias dos='nvim ~/.dotfiles/install.conf.yaml' # dotbot sourcefile
 alias doi='dotbot --verbose -c ~/.dotfiles/install.conf.yaml'
 alias bb='brew bundle --file ~/dotfiles/config/homebrew/brewfile'
 alias bbs='nvim ~/dotfiles/config/homebrew/brewfile'
+alias bbc='brew bundle --force cleanup'
 
 # directories
 alias d='dirs -v | head -n 10'
