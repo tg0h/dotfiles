@@ -18,4 +18,6 @@ brewfile.lock.json
 # git update-index --no-assume-unchanged path/to/file
 lib/scratch
 
+packer_compiled.lua
+
 .DS_STORE
