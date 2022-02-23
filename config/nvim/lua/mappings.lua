@@ -18,6 +18,8 @@ map("n", "<A-Left>", ":wincmd h<CR>", default_options)
 map("n", "<A-Right>", ":wincmd l<CR>", default_options)
 map("n", "<A-->", ":wincmd w<CR>", default_options) -- previous window
 map("n", "<A-d>", ":wincmd q<CR>", default_options) -- close window
+map("n", "<A-v>", ":wincmd v<CR>", default_options) -- vertical split
+-- map("n", "<A-s>", ":wincmd s<CR>", default_options) -- horizontal split
 
 -- Resizing panes
 map("n", "<Left>", ":vertical resize +1<CR>", default_options)
@@ -32,7 +34,7 @@ map("n", "<localleader>w", ":w<CR>", default_options)
 map("n", "<A-a>", ":e#<CR>", default_options) -- edit previously opened buffer
 map("n", "<A-g>", ":BufferLineCyclePrev<CR>", default_options) -- Go to left buffer 'tab'
 map("n", "<A-r>", ":BufferLineCycleNext<CR>", default_options) -- Go to right buffer 'tab'
-map("n", "<A-c>", ":Bdelete!<CR>", default_options) -- Close buffer
+map("n", "<A-c>", ":Bdelete!<CR>", default_options) -- close buffer
 
 map("n", "<leader>ev", ":e $XDG_CONFIG_HOME/nvim/lua/plugins.lua<CR>",
     default_options)
