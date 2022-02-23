@@ -13,9 +13,11 @@ alias ze='nvim ~/.dotfiles/config/secret/env'
 alias aes='nvim ~/certis/docs/wiki/scratch.md'
 alias aesb='bat ~/certis/docs/wiki/scratch.md'
 
-
+# aliases
 alias zaa='nvim $XDG_CONFIG_HOME/zsh/aliases/goto.zsh'
 alias zam='nvim $XDG_CONFIG_HOME/zsh/aliases/misc.zsh'
+alias zad='nvim $XDG_CONFIG_HOME/zsh/aliases/docker.zsh'
+
 # config
 alias zt='nvim ~/.config/tmux/tmux.conf'
 alias zk='nvim ~/.config/kitty/kitty.conf'
@@ -24,7 +26,8 @@ alias dos='nvim ~/.dotfiles/install.conf.yaml' # dotbot sourcefile
 alias doi='dotbot --verbose -c ~/.dotfiles/install.conf.yaml'
 alias bb='brew bundle --file ~/dotfiles/config/homebrew/brewfile'
 alias bbs='nvim ~/dotfiles/config/homebrew/brewfile'
-alias bbc='brew bundle --force cleanup'
+alias bb='brew bundle --file ~/dotfiles/config/homebrew/brewfile'
+alias bbc='brew bundle --file ~/dotfiles/config/homebrew/brewfile --force cleanup'
 
 # directories
 alias d='dirs -v | head -n 10'

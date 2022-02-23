@@ -50,3 +50,9 @@ alias dil='docker image ls'
 
 ################################################### Network
 alias dn='docker network'
+
+################################################### Volume
+alias dv='docker volume'
+alias dvl='docker volume ls'
+alias dvi='docker volume inspect'
+alias dvr='docker volume rm'
