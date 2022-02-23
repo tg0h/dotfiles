@@ -47,8 +47,8 @@ require"nvim-tree".setup {
     -- hijack the cursor in the tree to put it at the start of the filename
     hijack_cursor = false,
     -- updates the root directory of the tree on `DirChanged` (when your run `:cd` usually)
-    update_cwd = true,
-    update_to_buf_dir = {enable = true, auto_open = true},
+    update_cwd = false,
+    -- update_to_buf_dir = {enable = true, auto_open = true},
 
     -- show lsp diagnostics in the signcolumn
     diagnostics = {
@@ -120,7 +120,9 @@ require"nvim-tree".setup {
                 {key = "-", cb = tree_cb("dir_up")},
                 {key = "t", cb = tree_cb("system_open")}, -- avoid clash with lightspeed
                 {key = "q", cb = tree_cb("close")},
-                {key = "g?", cb = tree_cb("toggle_help")}
+                {key = "g?", cb = tree_cb("toggle_help")},
+                {key = "W", cb = tree_cb("collapse_all")},
+                {key = "T", cb = tree_cb("search_node")}
             }
         }
     }
