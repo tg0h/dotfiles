@@ -5,6 +5,7 @@ out
 env
 *.env
 id_ed25519*
+npmrc
 
 secret*
 credentials
