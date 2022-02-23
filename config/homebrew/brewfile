@@ -1,7 +1,7 @@
 # run this first - this contains essential cli apps for use on any computer
 # the second brewfile contains other gui apps for use on my main computer
 tap 'homebrew/cask'
-# brew 'homebrew-services'
+tap 'homebrew/services'
 # tap 'homebrew/bundle'
 
 cask 'kitty'
@@ -28,6 +28,7 @@ brew 'zsh'
 brew 'neovim'
 brew 'tmux'
 
+brew 'mysql'
 brew 'openssh'
 brew 'awscli'
 brew 'coreutils'
@@ -38,6 +39,9 @@ brew 'gh'
 brew 'git-delta'
 tap 'jesseduffield/lazygit' # use tap to get frequent updates
 brew 'jesseduffield/lazygit/lazygit'
+# tap does not support m1 mac https://github.com/jesseduffield/lazydocker/issues/279
+# brew 'jesseduffield/lazydocker/lazydocker'
+brew 'lazydocker'
 brew 'rsync'
 brew 'fzf'
 brew 'ripgrep'
@@ -72,6 +76,7 @@ brew 'tokei'
 brew 'bandwhich'
 
 # run brew bundle to run this file
+cask 'docker'
 cask 'alfred'
 cask '1password'
 cask '1password-cli'
@@ -116,6 +121,7 @@ cask 'slack'
 cask 'zoom'
 cask 'notion'
 cask 'hazel'
+cask 'sequel-pro'
 
 tap 'homebrew/cask-drivers'
 cask 'zsa-wally'
