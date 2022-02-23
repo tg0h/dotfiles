@@ -35,6 +35,25 @@ alias tsd="timt -w c -t s -d"
 alias tsdt="timt -w c -t s -d -s today"
 alias tsdm="timt -w c -t s -d -r 0m"
 
+## hack
+alias td="timt -w h -t d"
+alias tdd="timt -w h -t d --dd" #detailed report
+alias tdt="timt -w h -t d -s today"
+
+alias tw="timt -w h -t w"
+alias tww="timt -w h -t d --ww -s 0cw" #detailed report starting this week
+
+alias tm="timt -w h -t d --ww -s 1" #wide report starting from the 1st
+
+alias ts="timt -w h -t s"
+alias tst="timt -w h -t s -s today"
+alias tsw="timt -w h -t s -s 0cw" #since start of this week
+alias tsm="timt -w h -t s -s 1" #since start of this month
+
+alias tsd="timt -w h -t s -d"
+alias tsdt="timt -w h -t s -d -s today"
+alias tsdm="timt -w h -t s -d -r 0m"
+
 ## study
 alias ttd="timt -w s -t d"
 alias ttd="timt -w s -t d -s today" #today
