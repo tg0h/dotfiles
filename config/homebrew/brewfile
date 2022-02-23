@@ -74,6 +74,7 @@ brew 'sd'
 brew 'bottom'
 brew 'tokei'
 brew 'bandwhich'
+brew 'git-filter-repo'
 
 # run brew bundle to run this file
 cask 'docker'
