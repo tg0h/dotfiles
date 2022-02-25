@@ -77,13 +77,9 @@ keymaps:
   - bindkey: sm
     dir: $HOME/src/me
     options: 3
-  - bindkey: sb
-    dir: $HOME/src/books
   - bindkey: so
-    options: 3
+    options: 2
     dir: $HOME/src/open
-  - bindkey: sg
-    dir: $HOME/src/garden
 
   # my projects
   - bindkey: w # my website
