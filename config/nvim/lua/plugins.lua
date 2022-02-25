@@ -139,6 +139,8 @@ return require("packer").startup({
 
         use {"folke/which-key.nvim", config = get_setup("which-key")}
 
+        use {"mbbill/undotree"}
+
         use {
             "mhartington/formatter.nvim",
             event = "BufWritePre",

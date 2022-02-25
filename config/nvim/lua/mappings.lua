@@ -36,5 +36,4 @@ map("n", "<A-g>", ":BufferLineCyclePrev<CR>", default_options) -- Go to left buf
 map("n", "<A-r>", ":BufferLineCycleNext<CR>", default_options) -- Go to right buffer 'tab'
 map("n", "<A-c>", ":Bdelete!<CR>", default_options) -- close buffer
 
-map("n", "<leader>ev", ":e $XDG_CONFIG_HOME/nvim/lua/plugins.lua<CR>",
-    default_options)
+map("n", "<F5>", ":UndotreeToggle<CR>", default_options) -- undotree
