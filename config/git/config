@@ -1,12 +1,28 @@
+[user]
+	email = ***REMOVED***
+	name = tim goh
+[credential]
+	helper = store
+[core]
+	pager = delta
+[interactive]
+    diffFilter = delta --color-only
+[delta]
+    features = side-by-side line-numbers decorations
+    whitespace-error-style = 22 reverse
+[delta "decorations"]
+    commit-decoration-style = bold yellow box ul
+    file-style = bold yellow ul
+    file-decoration-style = none
+[diff]
+	tool = vimdiff
+[merge]
+	tool = vimdiff
+	conflictstyle = diff3
+[pull]
+	rebase = false
+[difftool]
+	prompt = false
+
 [includeIf "gitdir:~/src/candy/"]
   path = config-work
-
-[includeIf "gitdir:~/dotfiles/"]
-  path = config-personal
-
-[includeIf "gitdir:~/src/me/"]
-  path = config-personal
-
-[includeIf "gitdir:~/src/open/"]
-  path = config-personal
-
