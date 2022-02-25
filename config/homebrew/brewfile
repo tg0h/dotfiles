@@ -28,6 +28,7 @@ brew 'zsh'
 brew 'neovim'
 brew 'tmux'
 
+brew 'less'
 brew 'mysql'
 brew 'openssh'
 brew 'awscli'
