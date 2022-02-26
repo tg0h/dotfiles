@@ -14,7 +14,6 @@ ZSH_EVALCACHE_DIR=$XDG_CACHE_HOME/zsh-evalcache
 bindkey -e # use emacs keymap for zsh
 
 setopt autocd # type dir name to cd directly
-setopt autopushd
 autoload zmv # so i can use zmv immediately
 autoload -U colors && colors # enable $fg[red] etc
 

@@ -28,14 +28,3 @@ alias bb='brew bundle --file ~/dotfiles/config/homebrew/brewfile'
 alias bbs='nvim ~/dotfiles/config/homebrew/brewfile'
 alias bb='brew bundle --file ~/dotfiles/config/homebrew/brewfile'
 alias bbc='brew bundle --file ~/dotfiles/config/homebrew/brewfile --force cleanup'
-
-# directories
-alias d='dirs -v | head -n 10'
-alias -g ...='../..'
-alias -g ....='../../..'
-alias -g .....='../../../..'
-alias -g ......='../../../../..'
-alias -- -='cd -'
-
-alias md='mkdir -p'
-alias rd=rmdir
