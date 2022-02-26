@@ -15,9 +15,13 @@ _udc(){
     # https://github.com/stedolan/jq/issues/354#issuecomment-43147898
     # // is the jq alternative operator
     # empty is a jq builtin
-    local options=$(jq '.options // empty' <<< $row)
+    local depth=$(jq '.depth // empty' <<< $row)
+    local glob=$(jq '.glob // empty' <<< $row)
+    local showHidden=$(jq '.["show-hidden"] // empty' <<< $row)
+    local showIgnore=$(jq '.["show-ignore"] // empty' <<< $row)
+    local xargs=$(jq '.xargs // empty' <<< $row)
     # NOTE: running eval adds 1s to zsh startup 
     # instead, generate and autoload the functions
-    echo "ud$bindkey() {ud $dir $options}" > $outputFolder/ud$bindkey
+    echo "ud$bindkey() {ud $dir $depth $glob $showHidden $showIgnore $xargs}" > $outputFolder/ud$bindkey
   done <<< $config
 }

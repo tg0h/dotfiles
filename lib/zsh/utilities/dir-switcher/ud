@@ -8,7 +8,6 @@ function ud(){
   # ud <searchDir> <searchDepth)
   # eg ud ~/.local/bin 2
   # TODO: how to implement priority with most frequently used first?
-
   local configFile=$XDG_CONFIG_HOME/zsh/dir-switcher/config.yml
 
   if [[ $1 == "configure" ]] && [[ $2 == "list" ]]; then
@@ -21,12 +20,29 @@ function ud(){
 
   local changeToDir
   local searchDir=${1:-$XDG_CONFIG_HOME} # var expansion with default - get the $1 arg, if not found, default to $XDG_CONFIG_HOME
-  local searchDepth=${2:-1} # var expansion with default - get the $1 arg, if not found, default to $XDG_CONFIG_HOME
+  local searchDepth=${2:-1}
+  local glob=${3:-.} # default to . if not provided
+  local showHidden=${4:+"--hidden"}
+  local showIgnore=${5:+"--no-ignore"} # default to . if not provided
+  local xargs=${6}
   # fd --follow - follow symlink
   # TODO: exa does not show the contents for the symlink if you do not specify a trailing /
+  local xargsCmd
+  if [[ -n "$xargs" ]]; then
+    xargsCmd="| xargs $xargs"
+  fi
 
-  # fd show --hidden ?
-  local changeToTarget=$(fd . $searchDir --follow --color always --max-depth $searchDepth | fzf +m --preview='[[ $(file --mime {}) =~ inode/directory ]] &&
+  # one shot filter, not used again when reloading command with ctrl-r or crtl-h
+  # note the difficulty of passing a glob of \.git$ to fd
+  # the string \\.git$ is stored in yml
+  # it is converted to json
+  # from json we pass it as a string to the $glob option
+  # we eval $glob
+  # if we eval \.git$ directly, the \. is interpreted as a shell escape
+  # therefore, we must surround the glob with single quotes to prevent shell escaping
+  local searchCmd="fd '$glob' $searchDir $showHidden $showIgnore --follow --color always --max-depth $searchDepth $xargsCmd"
+  
+  local changeToTarget=$(eval $searchCmd | fzf +m --preview='[[ $(file --mime {}) =~ inode/directory ]] &&
     exa --tree --long --icons --git --color always --sort modified --reverse --level '$searchDepth' --no-permissions --no-user --changed --git {}/ || (bat --style=numbers --color=always {} || cat {}) 2> /dev/null | head -300' \
     --bind 'ctrl-r:reload(fd . '$searchDir' --type d --follow --color always --max-depth '$searchDepth')' \
     --bind 'ctrl-h:reload(fd . '$searchDir' --follow --color always --max-depth '$searchDepth')' \

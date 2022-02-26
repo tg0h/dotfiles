@@ -2,9 +2,8 @@
 # specify the bindkey for the ud function
 # ud is a fzf directory switcher
 # the fzf preview window previews the directory/file contents
-# the depth of the directory preview can be configured with the options key
+# the depth of the directory preview can be configured with the depth key
 # TODO: add namespaces, don't restrict to just ud
-# TODO: add ignore glob options (use exa -i)
 # TODO: cache edited files with nvim
 
 keymaps:
@@ -12,25 +11,25 @@ keymaps:
   # config
   - bindkey: c #udc opens fzf and lists its directory contents
     dir: $XDG_CONFIG_HOME
-    options: 5
+    depth: 5
   - bindkey: cn
     dir: $XDG_CONFIG_HOME/nvim
-    options: 5
+    depth: 5
   - bindkey: ca
     dir: $XDG_CONFIG_HOME/zsh/aliases
-    options: 5
+    depth: 5
   # lib
   - bindkey: l
     dir: $HOME/.local/lib
-    options: 5
+    depth: 5
   # data
   - bindkey: xd
     dir: $XDG_DATA_HOME
-    options: 4
+    depth: 4
   # state
   - bindkey: xs
     dir: $XDG_STATE_HOME
-    options: 2
+    depth: 2
   # cache
   - bindkey: xc
     dir: $XDG_CACHE_HOME
@@ -40,12 +39,12 @@ keymaps:
 
   - bindkey: k
     dir: $HOME/certis/docs/wiki
-    options: 4
+    depth: 4
 
   # my dotfiles
   - bindkey: z
     dir: $HOME/.dotfiles
-    options: 4
+    depth: 4
 
   # other folders
   - bindkey: tl
@@ -54,35 +53,48 @@ keymaps:
   # docs
   - bindkey: d
     dir: $HOME/docs
-    options: 3
+    depth: 3
 
   # tmp folders
   - bindkey: t # tmP
     dir: /tmp
-    options: 3
+    depth: 3
 
-  # read the src
+  # ⊙▽⊙ read the src
   - bindkey: s
     dir: $HOME/src
   - bindkey: sc
     dir: $HOME/src/candy
-    options: 1 # specify how deep the directory preview should be
+    depth: 1 # specify how deep the directory preview should be
   - bindkey: sm
     dir: $HOME/src/me
-    options: 3
+    depth: 3
   - bindkey: so
-    options: 2
+    depth: 3
     dir: $HOME/src/open
+    glob: \\.git$ # this yml file is converted to json. a backslash is an escape character in json. we need to escape the backslash. we want to pass \.git$ as the regex filter to fd
+    show-hidden: true
+    show-ignore: true
+    xargs: dirname # use xargs to further filter ouput
 
-  # my projects
+  # ＼（＾ ＾）／ my projects
   - bindkey: w # my website
     dir: $HOME/src/me/website/docs
-    options: 5 # specify how deep the directory preview should be
+    depth: 5 # specify how deep the directory preview should be
 
   # (ノ ゜Д゜)ノ ︵ ┻━┻ flipping playground
-  - bindkey: dp # my website
+  - bindkey: dp
+    depth: 5
     dir: $HOME/dev/playground
-    options:
+    glob: \\.git$
+    show-hidden: true
+    show-ignore: true
+    xargs: dirname
+
   - bindkey: du # udemy
     dir: $HOME/dev/udemy
-    options: 2
+    depth: 3
+    glob: \\.git$
+    show-hidden: true
+    show-ignore: true
+    xargs: dirname
