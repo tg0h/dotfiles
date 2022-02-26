@@ -42,3 +42,9 @@ function take() {
   mkdir -p $@ && cd ${@:$#}
 }
 
+
+# help
+function manz(){
+  # manz cd to read man for cd
+  man zshbuiltins | less -p "^       $1 "
+}
