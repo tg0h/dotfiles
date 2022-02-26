@@ -179,6 +179,7 @@ alias ggpull='git pull origin $(current_branch)'
 alias ggpur='git pull --rebase origin $(current_branch)'
 alias ggpush='git push origin $(current_branch)'
 alias ggpnp='git pull origin $(current_branch) && git push origin $(current_branch)'
+alias gpsup='git push --set-upstream origin $(current_branch)'
 
 # Pretty log messages
 function _git_log_prettily(){
