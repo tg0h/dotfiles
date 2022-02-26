@@ -158,6 +158,7 @@ return require("packer").startup({
         }
         use {"sidebar-nvim/sidebar.nvim", config = get_setup("sidebar")}
         use {"windwp/nvim-autopairs", config = get_setup("autopairs")}
+        use {"windwp/nvim-ts-autotag"}
         use "p00f/nvim-ts-rainbow"
         use {
             "numToStr/Comment.nvim",

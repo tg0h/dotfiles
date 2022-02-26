@@ -18,6 +18,10 @@ require"nvim-treesitter.configs".setup {
 
     -- Custom Modules
     -- autopairs = {{enable = true}},
+    autotag = {
+      enable = true,
+    },
+
     textobjects = { -- for git nvim-treesitter/nvim-treesitter-textobjects
         select = {
             enable = true,
