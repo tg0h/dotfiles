@@ -60,13 +60,6 @@ keymaps:
   - bindkey: t # tmP
     dir: /tmp
     options: 3
-  - bindkey: tc
-    dir: /tmp/certify-verifysync
-  - bindkey: tcr
-    dir: /tmp/certify-verifysync/report
-
-  - bindkey: scu # State Certify Users - sap s3 uploads
-    dir: $_CERTIFY_S3_BUCKET_SAP_SYNC_LOCAL_FOLDER
 
   # read the src
   - bindkey: s
@@ -89,4 +82,7 @@ keymaps:
   # (ノ ゜Д゜)ノ ︵ ┻━┻ flipping playground
   - bindkey: dp # my website
     dir: $HOME/dev/playground
-    options: 3 # specify how deep the directory preview should be
+    options:
+  - bindkey: du # udemy
+    dir: $HOME/dev/udemy
+    options: 2
