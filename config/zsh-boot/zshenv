@@ -47,6 +47,11 @@ export REDISCLI_RCFILE=$XDG_CONFIG_HOME/redis/redisclirc
 export SQLITE_HISTORY=$XDG_DATA_HOME/sqlite_history
 export TEALDEER_CONFIG_DIR=~/.config/tealdeer # https://dbrgn.github.io/tealdeer/config.html
 export TEALDEER_CACHE_DIR=~/.cache/tealdeer
+# ruby bundler
+export BUNDLE_USER_CONFIG=$XDG_CONFIG_HOME/bundle
+export BUNDLE_USER_CACHE=$XDG_CACHE_HOME/bundle
+export BUNDLE_USER_PLUGIN="$XDG_DATA_HOME"/bundle
+
 # alias yarn='yarn --use-yarnrc "$XDG_CONFIG_HOME/yarn/config"'
 
 _Z_DATA=$XDG_DATA_HOME/z/z # z stores its dir frecency list here
