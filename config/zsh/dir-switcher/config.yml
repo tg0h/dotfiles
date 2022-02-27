@@ -68,32 +68,33 @@ keymaps:
     depth: 1 # specify how deep the directory preview should be
   - bindkey: sm
     dir: $HOME/src/me
-    depth: 3
-  - bindkey: so
-    depth: 3
-    dir: $HOME/src/open
+    depth: 4
     glob: \\.git$ # this yml file is converted to json. a backslash is an escape character in json. we need to escape the backslash. we want to pass \.git$ as the regex filter to fd
     show-hidden: true
     show-ignore: true
     xargs: dirname # use xargs to further filter ouput
-
-  # ＼（＾ ＾）／ my projects
-  - bindkey: w # my website
-    dir: $HOME/src/me/website/docs
-    depth: 5 # specify how deep the directory preview should be
-
-  # (ノ ゜Д゜)ノ ︵ ┻━┻ flipping playground
-  - bindkey: dp
-    depth: 5
-    dir: $HOME/dev/playground
+  - bindkey: so
+    depth: 3
+    dir: $HOME/src/clones
     glob: \\.git$
     show-hidden: true
     show-ignore: true
     xargs: dirname
-
-  - bindkey: du # udemy
-    dir: $HOME/dev/udemy
-    depth: 3
+  # ＼（＾ ＾）／ my projects
+  - bindkey: w # my website
+    dir: $HOME/src/me/website/docs
+    depth: 5 # specify how deep the directory preview should be
+  # (ノ ゜Д゜)ノ ︵ ┻━┻ flipping playground
+  - bindkey: sp
+    depth: 5
+    dir: $HOME/src/playground
+    glob: \\.git$
+    show-hidden: true
+    show-ignore: true
+    xargs: dirname
+  - bindkey: su # udemy
+    dir: $HOME/src/udemy
+    depth: 4
     glob: \\.git$
     show-hidden: true
     show-ignore: true

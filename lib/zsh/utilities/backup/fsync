@@ -28,11 +28,17 @@ function fsync(){
   shift $(($OPTIND - 1))
 
   mkdir -p $destination/local/share/data
+  mkdir -p $destination/Documents
 
-  # Risk: what if i rysync wrongly and delete my home folder?
-  rsync -aP --stats --delete --exclude node_modules --exclude tmp ~/dotfiles ~/dev ~/src ~/docs ~/Dropbox ~/Desktop $destination
+  # dotfiles, src
+  rsync -aP --stats --delete --exclude node_modules --exclude tmp ~/dotfiles ~/src ~/Desktop $destination
 
+  # Documents
+    rsync -aP --stats --delete ~/Documents/candy ~/Documents/dropbox ~/Documents/garden ~/Documents/notes ~/Documents/secrets $destination/Documents
+
+  # binaries
   rsync -aP --stats --delete ~/local/bin $destination/local
+
   # backup passwordstore and gpg
   rsync -aP --stats --delete ~/.local/share/pass ~/.local/share/gnupg $destination/local/share
 }
