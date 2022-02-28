@@ -10,6 +10,7 @@ vim.g.maplocalleader = ","
 -- Nvim Tree
 map("n", "<A-u>", ":NvimTreeFocus<CR>", default_options) -- Focus is better than Toggle
 map("n", "<A-e>", ":NvimTreeToggle<CR>", default_options)
+map("n", "<A-b>", ":NvimTreeFindFile<CR>", default_options)
 
 -- window movement
 map("n", "<A-Up>", ":wincmd k<CR>", default_options)
