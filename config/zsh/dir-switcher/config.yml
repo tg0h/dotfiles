@@ -81,8 +81,8 @@ keymaps:
     show-ignore: true
     xargs: dirname
   # ＼（＾ ＾）／ my projects
-  - bindkey: k # my website
-    dir: $HOME/src/me/knowledge
+  - bindkey: w # my website
+    dir: $HOME/src/me/wiki
     depth: 5 # specify how deep the directory preview should be
   # (ノ ゜Д゜)ノ ︵ ┻━┻ flipping playground
   - bindkey: sp
