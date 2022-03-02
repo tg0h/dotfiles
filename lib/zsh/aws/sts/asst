@@ -7,7 +7,9 @@ function asst(){
   unset AWS_SESSION_TOKEN
   unset AWS_REGION
 
-  local token=$(authy fuzz anafore | rg --only-matching '\d{6}')
+  local AUTHY_FUZZ_STRING="aws" # search string for the aws anafore key
+
+  local token=$(authy fuzz $AUTHY_FUZZ_STRING | rg --only-matching '\d{6}')
   echo -e $fg[green] got authy token: $fg[cyan]$token
 
   local data=$(aws sts get-session-token --serial-number ***REMOVED*** --token-code $token)
