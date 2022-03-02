@@ -17,6 +17,7 @@ alias aesb='bat ~/certis/docs/wiki/scratch.md'
 alias zaa='nvim $XDG_CONFIG_HOME/zsh/aliases/goto.zsh'
 alias zam='nvim $XDG_CONFIG_HOME/zsh/aliases/misc.zsh'
 alias zad='nvim $XDG_CONFIG_HOME/zsh/aliases/docker.zsh'
+alias zac='nvim $XDG_CONFIG_HOME/zsh/aliases/candy.zsh'
 
 # config
 alias zt='nvim ~/.config/tmux/tmux.conf'
