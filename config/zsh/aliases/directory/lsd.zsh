@@ -1,5 +1,7 @@
 alias l='lsd -l'
+alias lo='exad' # with octal
 alias ll='lsd -la' # show hidden files
-alias lll='exatd' # use lsd to supercharge ls output
+alias llo='exad --all' # with octal
+alias lll='exatd' # tree view
 alias lt="lsd -lt" # exclude hidden files to exclude . and ..
 alias lr="lsd -lar" #reverse the sort
