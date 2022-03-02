@@ -4,6 +4,7 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME=$HOME/.cache # analogous to /var/cache
 export XDG_DATA_HOME=$HOME/.local/share # data that doesn't need to be modified, eg font files. write once.
 export XDG_STATE_HOME=$HOME/.local/state #eg logs, history. data persists btw restarts
+export XDG_RUNTIME_DIR=/tmp
 # user
 export XDG_DESKTOP_DIR="$HOME/Desktop"
 export XDG_DOWNLOAD_DIR="$HOME/Downloads"
