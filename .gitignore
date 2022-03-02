@@ -1,3 +1,4 @@
+config/ssh/config
 # my dir-switcher compiled functions directory
 out
 
