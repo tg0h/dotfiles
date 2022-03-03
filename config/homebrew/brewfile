@@ -5,6 +5,7 @@ tap 'homebrew/services'
 # tap 'homebrew/bundle'
 
 cask 'kitty'
+cask 'iterm2'
 cask 'dropbox'
 tap 'homebrew/cask-drivers'
 cask 'logitech-options'
