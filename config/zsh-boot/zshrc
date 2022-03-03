@@ -77,8 +77,8 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# enter tmux on start up (depends on tat script in bin folder)
-if [[ -z "$TMUX" ]]; then
+# enter tmux on start up if using kitty (depends on tat script in bin folder)
+if [[ $TERM = "xterm-kitty" ]] && [[ -z "$TMUX" ]]; then
   tat
 fi
 # zprof # turn this on to profile zsh (with zmodload zsh/zprof above)
