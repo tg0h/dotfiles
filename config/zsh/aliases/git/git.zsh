@@ -1,6 +1,6 @@
 alias lg="lazygit"
 # the zsh git plugin defines git aliases in ~/.oh-my-zsh/plugins/git/git.plugin.zsh
-unalias gg # remove alias set by omz git plugin
+# unalias gg # remove alias set by omz git plugin
 function gg(){
   #lazy git commiting when prototyping
   git add .
