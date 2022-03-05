@@ -2,47 +2,55 @@
 
 function asst(){
   # aws sts get-session-token and update the mfa section in the credentials file
+  # store results in cache
   unset AWS_ACCESS_KEY_ID
   unset AWS_SECRET_ACCESS_KEY
   unset AWS_SESSION_TOKEN
   unset AWS_REGION
 
-  local AUTHY_FUZZ_STRING="aws" # search string for the aws anafore key
+  md -p /tmp/aws
+  local cache=/tmp/aws
+  if [[ -f $cache/secret ]]; then
+    echo -e $fg[yellow] setting aws env variables from cache
+    export AWS_ACCESS_KEY_ID=$(cat $cache/accessKey)
+    export AWS_SECRET_ACCESS_KEY=$(cat $cache/secret)
+    export AWS_SESSION_TOKEN=$(cat $cache/token)
+  else
+    echo -e $fg[yellow] cache not found, getting credentials frow aws ...
+    local AUTHY_FUZZ_STRING="aws" # search string for the aws anafore key
+    local token=$(authy fuzz $AUTHY_FUZZ_STRING | rg --only-matching '\d{6}')
+    echo -e $fg[green] got authy token: $fg[cyan]$token
 
-  local token=$(authy fuzz $AUTHY_FUZZ_STRING | rg --only-matching '\d{6}')
-  echo -e $fg[green] got authy token: $fg[cyan]$token
+    local data=$(aws sts get-session-token --serial-number ***REMOVED*** --token-code $token)
+    if [[ -n "$data" ]]
+    then
+      local accessKey=$(jq --raw-output '.Credentials.AccessKeyId' <<< $data)
+      local secret=$(jq --raw-output '.Credentials.SecretAccessKey' <<< $data)
+      local token=$(jq --raw-output '.Credentials.SessionToken' <<< $data)
 
-  local data=$(aws sts get-session-token --serial-number ***REMOVED*** --token-code $token)
+      # update credentials file
+      # local credentials=$XDG_CONFIG_HOME/aws/credentials
+      # local mfaStart mfaEnd
+      # # get the line numbers of the first 3 lines after the [mfa] section in the credentials file
+      # # | gsed -e '1b;$!d' - prints first and last line
+      # rg '\[mfa\]' -A 3 --field-context-separator ' ' --line-number --no-filename $credentials \
+      #   | rg aws \
+      #   | gawk '{print $1}' \
+      #   | gsed -e '1b;$!d' \
+      #   | join-lines \
+      #   | read -r mfaStart mfaEnd _
+      # # --follow-symlinks is needed or gsed will destroy my symlink
+      # echo -e $fg[green] updating mfa profile in aws credentials file'...'
+      # gsed -Ei --follow-symlinks "$mfaStart,$mfaEnd"'s/(aws_access_key_id=).*/\1'${accessKey}'/' $credentials
+      # gsed -Ei --follow-symlinks "$mfaStart,$mfaEnd"'s#(aws_secret_access_key=).*#\1'${secret}'#' $credentials
+      # gsed -Ei --follow-symlinks "$mfaStart,$mfaEnd"'s#(aws_security_token=).*#\1'${token}'#' $credentials
 
-  # parse data only if data is non-null
-  # if data is null, an error occurred
-  if [[ -n "$data" ]]
-  then
-    local accessKey=$(jq --raw-output '.Credentials.AccessKeyId' <<< $data)
-    local secret=$(jq --raw-output '.Credentials.SecretAccessKey' <<< $data)
-    local token=$(jq --raw-output '.Credentials.SessionToken' <<< $data)
-
-    local credentials=$XDG_CONFIG_HOME/aws/credentials
-    local mfaStart mfaEnd
-    # get the line numbers of the first 3 lines after the [mfa] section in the credentials file
-    # | gsed -e '1b;$!d' - prints first and last line
-    rg '\[mfa\]' -A 3 --field-context-separator ' ' --line-number --no-filename $credentials \
-      | rg aws \
-      | gawk '{print $1}' \
-      | gsed -e '1b;$!d' \
-      | join-lines \
-      | read -r mfaStart mfaEnd _
-
-    # --follow-symlinks is needed or gsed will destroy my symlink
-    echo -e $fg[green] updating mfa profile in aws credentials file'...'
-    gsed -Ei --follow-symlinks "$mfaStart,$mfaEnd"'s/(aws_access_key_id=).*/\1'${accessKey}'/' $credentials
-    gsed -Ei --follow-symlinks "$mfaStart,$mfaEnd"'s#(aws_secret_access_key=).*#\1'${secret}'#' $credentials
-    gsed -Ei --follow-symlinks "$mfaStart,$mfaEnd"'s#(aws_security_token=).*#\1'${token}'#' $credentials
-
-    echo -e $fg[yellow] updating env variables
-    export AWS_ACCESS_KEY_ID=$accessKey
-    export AWS_SECRET_ACCESS_KEY=$secret
-    export AWS_SESSION_TOKEN=$token
-    export AWS_REGION='ap-southeast-1'
+      echo -e $fg[yellow] updating aws env variables
+      # store secret in cache
+      # printf handles special chars better than echo
+      printf $accessKey > $cache/accessKey
+      printf $secret > $cache/secret
+      printf $token > $cache/token
+    fi
   fi
 }
