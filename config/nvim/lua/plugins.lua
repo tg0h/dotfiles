@@ -57,7 +57,8 @@ return require("packer").startup({
             "nvim-telescope/telescope.nvim",
             requires = {
                 {"nvim-lua/plenary.nvim"},
-                {"nvim-telescope/telescope-fzy-native.nvim"}
+                {"nvim-telescope/telescope-fzy-native.nvim"},
+                {'nvim-telescope/telescope-dap.nvim'}
             },
             config = get_setup("telescope")
         })
@@ -171,6 +172,10 @@ return require("packer").startup({
             event = "BufReadPre",
             config = get_setup("colorizer")
         }
+        use {'mfussenegger/nvim-dap', config = get_setup("dap")}
+        use {'Pocco81/DAPInstall.nvim', config = get_setup("dap-install"), after = "nvim-dap"}
+        use {'rcarriga/nvim-dap-ui', after ='nvim-dap', config = get_setup("dap-ui")}
+        use {'theHamsta/nvim-dap-virtual-text', after='nvim-dap', config=get_setup("dap-virtual-text")}
 
     end,
     config = {

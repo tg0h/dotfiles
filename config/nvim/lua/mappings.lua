@@ -7,6 +7,19 @@ map("n", "<Space>", "<NOP>", default_options)
 vim.g.mapleader = " "
 vim.g.maplocalleader = ","
 
+map("n", "<F1>", ":WhichKey<CR>", default_options) -- show all mappings
+
+-- Dap
+map("n", "<F12>", ":lua require'dapui'.toggle()<CR>", default_options)
+map("n", "<F2>", ":lua require'dap'.toggle_breakpoint()<CR>", default_options)
+map("n", "<F7>", ":lua require'dap'.continue()<CR>", default_options)
+map("n", "<F6>", ":lua require'dap'.step_into()<CR>", default_options)
+map("n", "<F5>", ":lua require'dap'.step_out()<CR>", default_options)
+map("n", "<F9>", ":lua require'dap'.step_over()<CR>", default_options)
+map("n", "<F8>", ":lua require'dap'.run_to_cursor()<CR>", default_options)
+map("n", "<F10>", ":lua require'dap'.up()<CR>", default_options)
+map("n", "<F4>", ":lua require'dap'.down()<CR>", default_options)
+
 -- Nvim Tree
 map("n", "<A-u>", ":NvimTreeFocus<CR>", default_options) -- Focus is better than Toggle
 map("n", "<A-e>", ":NvimTreeToggle<CR>", default_options)
@@ -37,4 +50,4 @@ map("n", "<A-g>", ":BufferLineCyclePrev<CR>", default_options) -- Go to left buf
 map("n", "<A-r>", ":BufferLineCycleNext<CR>", default_options) -- Go to right buffer 'tab'
 map("n", "<A-c>", ":Bdelete!<CR>", default_options) -- close buffer
 
-map("n", "<F5>", ":UndotreeToggle<CR>", default_options) -- undotree
+map("n", "<F11>", ":UndotreeToggle<CR>", default_options) -- undotree
