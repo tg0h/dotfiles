@@ -3,7 +3,7 @@
 # Wait this many seconds for typing to stop, before showing completions.
 # zstyle ':autocomplete:*' min-delay 0.1  # float
 
-zstyle ':autocomplete:*' min-input 3  # number of characters (integer)
+zstyle ':autocomplete:*' min-input 2  # number of characters (integer)
 
 #space does history expansion, does not do spelling correction
 # zstyle ':autocomplete:space:*' magic expand-history
