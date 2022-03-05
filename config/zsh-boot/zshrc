@@ -6,20 +6,19 @@ export NVM_AUTO_USE=true # zsh-nvm plugin autoloads .nvmrc, set before the plugi
 export NVM_LAZY_LOAD=true  # zsh-nvm lazy load
 ZSH_EVALCACHE_DIR=$XDG_CACHE_HOME/zsh-evalcache
 
-# enable aws completion - https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-completion.html
-# complete -C '/usr/local/bin/aws_completer' aws 
-# _evalcache thefuck --alias # instead of eval $(thefuck --alias)
-# . `which env_parallel.zsh` # load env parallel
-
 bindkey -e # use emacs keymap for zsh
 
 setopt autocd # type dir name to cd directly
 autoload zmv # so i can use zmv immediately
 autoload -U colors && colors # enable $fg[red] etc
 
+# TODO: how are completions here loaded?
+fpath=(/opt/homebrew/share/zsh/site-functions $fpath) # add homebrew completions to fpath
+
 # place the homebrew binaries at the end of path, if not nvm will always point to the homebrew system node
 # export PATH="/Users/tim/Library/Python/3.9/bin:$PATH"
-# export PATH="$PATH:/opt/homebrew/bin"
+
+export PATH="$PATH:/opt/homebrew/bin" # access aws_completer, etc
 export PATH="$PATH:$HOME/.local/bin"
 export PATH="$XDG_DATA_HOME/cargo/bin:$PATH"
 
@@ -34,12 +33,6 @@ zinit ice depth=1; zinit light romkatv/powerlevel10k
 zinit for \
   OMZP::last-working-dir \
   mroth/evalcache \
-  OMZP::git \
-  # OMZP::docker-compose \
-# TODO: how to unalias a lazy loaded alias?
-# workaround - do not lazy load git plugin so that i can unalias it later in my git alias config file
-
-# zinit ice as"completion" ; zinit snippet https://github.com/docker/cli/blob/master/contrib/completion/zsh/_docker
 
 # lazy load plugins
 zinit lucid wait for \
@@ -53,13 +46,9 @@ zinit lucid wait for \
       zsh-users/zsh-autosuggestions \
   atinit"zicompinit; zicdreplay; nvm use default --silent; _evalcache pyenv init -; _evalcache funky --init zsh; _evalcache rbenv init -" \
       zdharma-continuum/fast-syntax-highlighting \
-# start nvm lazily after starting zsh to load node from nvm instead of using the system node
 
-# zinit snippet OMZ::plugins/dotenv/dotenv.plugin.zsh
-# zinit snippet OMZ::plugins/git-auto-fetch/git-auto-fetch.plugin.zsh
 # zicompinint runs autoload compinit; compinit
 # zicdreplay replays the captured compdefs
-# autoload compinit; compinit
 
 ### NOTE: Source my config and functions
 source $DOTFILES/config/secret/env
