@@ -57,6 +57,9 @@ zinit lucid wait for \
 
 # zinit snippet OMZ::plugins/dotenv/dotenv.plugin.zsh
 # zinit snippet OMZ::plugins/git-auto-fetch/git-auto-fetch.plugin.zsh
+# zicompinint runs autoload compinit; compinit
+# zicdreplay replays the captured compdefs
+# autoload compinit; compinit
 
 ### NOTE: Source my config and functions
 source $DOTFILES/config/secret/env
