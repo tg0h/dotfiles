@@ -176,6 +176,7 @@ return require("packer").startup({
         use {'Pocco81/DAPInstall.nvim', config = get_setup("dap-install"), after = "nvim-dap"}
         use {'rcarriga/nvim-dap-ui', after ='nvim-dap', config = get_setup("dap-ui")}
         use {'theHamsta/nvim-dap-virtual-text', after='nvim-dap', config=get_setup("dap-virtual-text")}
+        use { "alexghergh/nvim-tmux-navigation"}
 
     end,
     config = {

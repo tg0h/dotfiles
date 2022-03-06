@@ -1,7 +1,3 @@
--- -- automatically rebalance windows on vim resize (when tmux panes are added/removed)
--- vim.api.nvim_exec([[
--- autocmd VimResized * wincmd =
--- ]], true)
 vim.api.nvim_exec([[
 augroup numbertoggle
 " turn off relative number when entering insert mode or buffer loses focus
@@ -30,4 +26,10 @@ vim.api.nvim_exec([[
 " https://stackoverflow.com/questions/7894330/preserve-last-editing-position-in-vim
 " Return to last edit position when opening files (You want this!)
 autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+]], true)
+
+vim.api.nvim_exec([[
+" automatically rebalance windows on vim resize
+" helps when creating tmux panes
+autocmd VimResized * :wincmd =
 ]], true)

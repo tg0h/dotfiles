@@ -2,11 +2,12 @@ local map = vim.api.nvim_set_keymap
 default_options = {noremap = true, silent = true}
 expr_options = {noremap = true, expr = true, silent = true}
 
--- map the leader key
+-- Map the leader key
 map("n", "<Space>", "<NOP>", default_options)
 vim.g.mapleader = " "
 vim.g.maplocalleader = ","
 
+-- Help
 map("n", "<F1>", ":WhichKey<CR>", default_options) -- show all mappings
 
 -- Dap
@@ -26,28 +27,33 @@ map("n", "<A-e>", ":NvimTreeToggle<CR>", default_options)
 map("n", "<A-b>", ":NvimTreeFindFile<CR>", default_options)
 
 -- window movement
-map("n", "<A-Up>", ":wincmd k<CR>", default_options)
-map("n", "<A-Down>", ":wincmd j<CR>", default_options)
-map("n", "<A-Left>", ":wincmd h<CR>", default_options)
-map("n", "<A-Right>", ":wincmd l<CR>", default_options)
-map("n", "<A-->", ":wincmd w<CR>", default_options) -- previous window
 map("n", "<A-d>", ":wincmd q<CR>", default_options) -- close window
 map("n", "<A-v>", ":wincmd v<CR>", default_options) -- vertical split
 -- map("n", "<A-s>", ":wincmd s<CR>", default_options) -- horizontal split
+map("n", "<A-h>", ":lua require'nvim-tmux-navigation'.NvimTmuxNavigateLeft()<CR>", default_options)
+map("n", "<A-t>", ":lua require'nvim-tmux-navigation'.NvimTmuxNavigateDown()<CR>", default_options)
+map("n", "<A-n>", ":lua require'nvim-tmux-navigation'.NvimTmuxNavigateUp()<CR>", default_options)
+map("n", "<A-s>", ":lua require'nvim-tmux-navigation'.NvimTmuxNavigateRight()<CR>", default_options)
+map("n", "<A-->", ":lua require'nvim-tmux-navigation'.NvimTmuxNavigateLastActive()<CR>", default_options)
+map("n", "<A-Enter>", ":lua require'nvim-tmux-navigation'.NvimTmuxNavigateNext()<CR>", default_options)
 
 -- Resizing panes
 map("n", "<Left>", ":vertical resize +1<CR>", default_options)
 map("n", "<Right>", ":vertical resize -1<CR>", default_options)
-map("n", "<Up>", ":resize -1<CR>", default_options)
-map("n", "<Down>", ":resize +1<CR>", default_options)
+map("n", "<A-Up>", ":resize -1<CR>", default_options)
+map("n", "<A-Down>", ":resize +1<CR>", default_options)
 
--- save file
-map("n", "<localleader>w", ":w<CR>", default_options)
-
--- buffers
+-- Buffers
 map("n", "<A-a>", ":e#<CR>", default_options) -- edit previously opened buffer
 map("n", "<A-g>", ":BufferLineCyclePrev<CR>", default_options) -- Go to left buffer 'tab'
 map("n", "<A-r>", ":BufferLineCycleNext<CR>", default_options) -- Go to right buffer 'tab'
 map("n", "<A-c>", ":Bdelete!<CR>", default_options) -- close buffer
+map("n", "<A-+>", ":BufferLineCloseLeft<CR>:BufferLineCloseRight<CR>", default_options) -- close all but selected buffer
+map("n", "<A-)>", ":BufferLineCloseLeft<CR>", default_options) -- close all buffers to the left
+map("n", "<A-]>", ":BufferLineCloseRight<CR>", default_options) -- close all buffers to the right
 
+-- Save file
+map("n", "<localleader>w", ":w<CR>", default_options)
+
+-- Undo
 map("n", "<F11>", ":UndotreeToggle<CR>", default_options) -- undotree
