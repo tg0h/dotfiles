@@ -52,11 +52,11 @@ keymaps:
 
   # docs
   - bindkey: d
-    dir: $HOME/docs
-    depth: 3
+    dir: $HOME/Documents
+    depth: 1
 
   # tmp folders
-  - bindkey: t # tmP
+  - bindkey: t # tmp
     dir: /tmp
     depth: 3
 
