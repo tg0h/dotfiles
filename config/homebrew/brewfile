@@ -82,6 +82,8 @@ brew 'fx'
 tap 'khanhas/tap'
 brew 'khanhas/tap/spicetify-cli'
 brew 'zbar'
+brew 'gzip'
+brew 'gnu-tar'
 
 # run brew bundle to run this file
 cask 'docker'
