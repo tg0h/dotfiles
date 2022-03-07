@@ -17,9 +17,8 @@ function asst(){
     export AWS_SESSION_TOKEN=$(cat $cache/token)
   else
     echo -e $fg[yellow] cache not found, getting credentials frow aws ...
-    local AUTHY_FUZZ_STRING="aws" # search string for the aws anafore key
-    local token=$(authy fuzz $AUTHY_FUZZ_STRING | rg --only-matching '\d{6}')
-    echo -e $fg[green] got authy token: $fg[cyan]$token
+    local token=$(pass otp aws)
+    echo -e $fg[green] got token from password store: $fg[cyan]$token
 
     local data=$(aws sts get-session-token --serial-number ***REMOVED*** --token-code $token)
     if [[ -n "$data" ]]
