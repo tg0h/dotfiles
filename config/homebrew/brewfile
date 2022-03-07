@@ -81,6 +81,7 @@ brew 'git-filter-repo'
 brew 'fx'
 tap 'khanhas/tap'
 brew 'khanhas/tap/spicetify-cli'
+brew 'zbar'
 
 # run brew bundle to run this file
 cask 'docker'
