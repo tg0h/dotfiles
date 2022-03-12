@@ -1,3 +1,4 @@
+require("disable-plugins")
 require("plugins")
 require("mappings")
 require("options")
