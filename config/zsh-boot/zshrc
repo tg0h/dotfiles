@@ -70,7 +70,8 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # set aws credential env vars
-asst > /dev/null
+# asst > /dev/null
+asst
 
 # enter tmux on start up if using kitty (depends on tat script in bin folder)
 if [[ $TERM = "xterm-kitty" ]] && [[ -z "$TMUX" ]]; then

@@ -10,12 +10,7 @@ function asst(){
 
   md -p /tmp/aws
   local cache=/tmp/aws
-  if [[ -f $cache/secret ]]; then
-    echo -e $fg[yellow] setting aws env variables from cache
-    export AWS_ACCESS_KEY_ID=$(cat $cache/accessKey)
-    export AWS_SECRET_ACCESS_KEY=$(cat $cache/secret)
-    export AWS_SESSION_TOKEN=$(cat $cache/token)
-  else
+  if ! [[ -f $cache/secret ]]; then
     echo -e $fg[yellow] cache not found, getting credentials frow aws ...
     local token=$(pass otp aws)
     echo -e $fg[green] got token from password store: $fg[cyan]$token
@@ -51,5 +46,12 @@ function asst(){
       printf $secret > $cache/secret
       printf $token > $cache/token
     fi
+  fi
+
+  if [[ -f $cache/secret ]]; then
+    echo -e $fg[yellow] setting aws env variables from cache
+    export AWS_ACCESS_KEY_ID=$(cat $cache/accessKey)
+    export AWS_SECRET_ACCESS_KEY=$(cat $cache/secret)
+    export AWS_SESSION_TOKEN=$(cat $cache/token)
   fi
 }
