@@ -30,3 +30,4 @@ o.listchars = {
 o.shortmess = "I" -- turn off splashscreen message
 o.undofile = true -- enable undofile creation
 o.undodir = fn.stdpath('cache') .. "/undodir"
+o.cursorline = true
