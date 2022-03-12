@@ -171,9 +171,13 @@ wk.register({
             "<cmd>lua require('harpoon.term').gotoTerminal(1)<CR>",
             "Go to Terminal 1"
         },
-        n = {
+        r = {
             "<cmd>lua require('harpoon.term').gotoTerminal(2)<CR>",
             "Go to Terminal 2"
+        },
+        n = {
+            "<cmd>Telescope harpoon marks<CR>",
+            "Telescope harpoon marks"
         },
         c = {
             "<cmd>lua require('harpoon.term').sendCommand(1, 1)<CR>",
