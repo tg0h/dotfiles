@@ -61,7 +61,8 @@ brew 'pass-otp' # password store
 brew 'imagemagick'
 brew 'httpie'
 brew 'hyperfine'
-brew 'redis', restart_service: true
+# brew 'redis', restart_service: true
+brew 'redis'
 brew 'tealdeer'
 brew 'mutt'
 brew 'neomutt'
@@ -84,6 +85,7 @@ brew 'khanhas/tap/spicetify-cli'
 brew 'zbar'
 brew 'gzip'
 brew 'gnu-tar'
+brew 'ledger'
 
 # run brew bundle to run this file
 cask 'docker'
