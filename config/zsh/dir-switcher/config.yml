@@ -74,7 +74,7 @@ keymaps:
     show-ignore: true
     xargs: dirname # use xargs to further filter ouput
   - bindkey: so
-    depth: 3
+    depth: 4
     dir: $HOME/src/clones
     glob: \\.git$
     show-hidden: true
