@@ -60,7 +60,8 @@ return require("packer").startup({
                 {"nvim-telescope/telescope-fzy-native.nvim"},
                 {'nvim-telescope/telescope-dap.nvim'}
             },
-            config = get_setup("telescope")
+            config = get_setup("telescope"),
+            event= 'BufWinEnter'
         })
         use {"nvim-telescope/telescope-file-browser.nvim"}
         use {"crispgm/telescope-heading.nvim"} -- markdown headings
