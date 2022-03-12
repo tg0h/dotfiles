@@ -2,6 +2,12 @@
 export KEYTIMEOUT=1 # Make Vi mode transitions faster (KEYTIMEOUT is in hundredths of a second)
 export EDITOR='nvim'
 
+export HISTFILE="$XDG_STATE_HOME"/zsh/history # overrid HISTFILE setting in /etc/zshenv
+export HISTFILESIZE=1000000000
+export HISTSIZE=1000000000
+setopt share_history # share history between terminals running at the same time, adds the strange numbers to the beginning of each line in the history file
+# setopt extended_history       # record timestamp of command in HISTFLE
+
 export NVM_AUTO_USE=true # zsh-nvm plugin autoloads .nvmrc, set before the plugins array
 export NVM_LAZY_LOAD=true  # zsh-nvm lazy load
 ZSH_EVALCACHE_DIR=$XDG_CACHE_HOME/zsh-evalcache
