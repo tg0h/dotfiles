@@ -56,7 +56,7 @@ require"nvim-tree".setup {
         icons = {hint = "", info = "", warning = "", error = ""}
     },
 
-    update_focused_file = {enable = true, update_cwd = true, ignore_list = {}},
+    update_focused_file = {enable = true, update_cwd = false, ignore_list = {}},
 
     -- configuration options for the system open command (`s` in the tree by default)
     system_open = {
