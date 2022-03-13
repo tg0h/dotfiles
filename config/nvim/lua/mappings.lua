@@ -48,9 +48,13 @@ map("n", "<A-a>", ":e#<CR>", default_options) -- edit previously opened buffer
 map("n", "<A-g>", ":BufferLineCyclePrev<CR>", default_options) -- Go to left buffer 'tab'
 map("n", "<A-r>", ":BufferLineCycleNext<CR>", default_options) -- Go to right buffer 'tab'
 map("n", "<A-c>", ":Bdelete!<CR>", default_options) -- close buffer
-map("n", "<A-+>", ":BufferLineCloseLeft<CR>:BufferLineCloseRight<CR>", default_options) -- close all but selected buffer
-map("n", "<A-)>", ":BufferLineCloseLeft<CR>", default_options) -- close all buffers to the left
-map("n", "<A-]>", ":BufferLineCloseRight<CR>", default_options) -- close all buffers to the right
+
+map("n", "<A-)>", ":BufferLineMovePrev<CR>", default_options)
+map("n", "<A-]>", ":BufferLineMoveNext<CR>", default_options)
+
+map("n", "<A-*>", ":BufferLineCloseLeft<CR>", default_options) -- close all buffers to the left
+map("n", "<A-!>", ":BufferLineCloseLeft<CR>:BufferLineCloseRight<CR>", default_options) -- close all but selected buffer
+map("n", "<A-(>", ":BufferLineCloseRight<CR>", default_options) -- close all buffers to the right
 
 -- Save file
 map("n", "<localleader>w", ":w<CR>", default_options)
