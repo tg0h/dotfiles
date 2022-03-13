@@ -230,8 +230,8 @@ wk.register({
         i = {"<cmd>LspInfo<cr>", "Connected Language Servers"},
         k = {"<cmd>lua vim.lsp.buf.signature_help()<cr>", "Signature Help"},
         l = {
-            "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>",
-            "Line diagnostics"
+            "<cmd>lua vim.diagnostic.open_float()<CR>",
+            "Show diagnostics"
         },
         n = {"<cmd>lua vim.diagnostic.goto_next()<cr>", "Next Diagnostic"},
         p = {"<cmd>lua vim.diagnostic.goto_prev()<cr>", "Prev Diagnostic"},
