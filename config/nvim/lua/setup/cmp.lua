@@ -74,7 +74,7 @@ cmp.setup({
         ["<C-e>"] = cmp.mapping.close(),
         ["<CR>"] = cmp.mapping.confirm {
             behavior = cmp.ConfirmBehavior.Replace,
-            select = false
+            select = true -- auto select first entry on enter
         },
         ["<Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
