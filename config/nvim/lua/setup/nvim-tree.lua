@@ -7,6 +7,55 @@ local g = vim.g
 -- vim.api.nvim_set_keymap('n', '<C-n>', ':NvimTreeToggle<CR>', {noremap = true})
 -- vim.api.nvim_set_keymap('n', '<localleader>s', ':NvimTreeFindFile<CR>', {noremap = true})
 
+local lib = require("nvim-tree.lib")
+local view = require("nvim-tree.view")
+
+
+local function collapse_all()
+    require("nvim-tree.actions.collapse-all").fn()
+end
+
+local function edit_or_open()
+    -- open as vsplit on current node
+    local action = "edit"
+    local node = lib.get_node_at_cursor()
+
+    -- Just copy what's done normally with vsplit
+    if node.link_to and not node.nodes then
+        require('nvim-tree.actions.open-file').fn(action, node.link_to)
+        view.close() -- Close the tree if file was opened
+
+    elseif node.nodes ~= nil then
+        lib.expand_or_collapse(node)
+
+    else
+        require('nvim-tree.actions.open-file').fn(action, node.absolute_path)
+        view.close() -- Close the tree if file was opened
+    end
+
+end
+
+local function vsplit_preview()
+    -- open as vsplit on current node
+    local action = "vsplit"
+    local node = lib.get_node_at_cursor()
+
+    -- Just copy what's done normally with vsplit
+    if node.link_to and not node.nodes then
+        require('nvim-tree.actions.open-file').fn(action, node.link_to)
+
+    elseif node.nodes ~= nil then
+        lib.expand_or_collapse(node)
+
+    else
+        require('nvim-tree.actions.open-file').fn(action, node.absolute_path)
+
+    end
+
+    -- Finally refocus on tree if it was lost
+    view.focus()
+end
+
 g.nvim_tree_show_icons = {git = 1, folders = 1, files = 1, folder_arrows = 1}
 g.nvim_tree_icons = {
     default = "",
@@ -73,14 +122,13 @@ require"nvim-tree".setup {
     git = {enable = true, ignore = true, timeout = 500},
 
     view = {
-        -- show line numbers in tree disabled
-        number = false,
-        relativenumber = false,
+        number = true,
+        relativenumber = true,
         width = 30,
         height = 30,
         hide_root_folder = false,
         side = "left",
-        auto_resize = false,
+        auto_resize = true,
         signcolumn = "yes",
 
         mappings = {
@@ -90,20 +138,34 @@ require"nvim-tree".setup {
             -- list of mappings to set on the tree manually
             list = {
                 {key = {"<CR>", "o", "<2-LeftMouse>"}, cb = tree_cb("edit")},
-                {key = {"<2-RightMouse>", "<C-]>"}, cb = tree_cb("cd")},
+
                 {key = "<C-v>", cb = tree_cb("vsplit")},
                 {key = "<C-x>", cb = tree_cb("split")},
                 {key = "<C-t>", cb = tree_cb("tabnew")},
-                {key = "<", cb = tree_cb("prev_sibling")},
-                {key = ">", cb = tree_cb("next_sibling")},
-                {key = "P", cb = tree_cb("parent_node")},
-                {key = "<BS>", cb = tree_cb("close_node")},
-                {key = "<S-CR>", cb = tree_cb("close_node")},
                 {key = "<Tab>", cb = tree_cb("preview")},
-                {key = "K", cb = tree_cb("first_sibling")},
-                {key = "J", cb = tree_cb("last_sibling")},
-                {key = "I", cb = tree_cb("toggle_ignored")},
-                {key = "H", cb = tree_cb("toggle_dotfiles")},
+
+                -- useful home row mappings
+                {key = "D", cb = tree_cb("parent_node")},
+                {key = "h", cb = tree_cb("close_node")},
+                {key = "H", cb = tree_cb("collapse_all")},
+                {key = "t", cb = tree_cb("next_sibling")},
+                {key = "T", cb = tree_cb("last_sibling")},
+                {key = "n", cb = tree_cb("prev_sibling")},
+                {key = "N", cb = tree_cb("first_sibling")},
+                { key = "l", action = "edit", action_cb = edit_or_open },
+                { key = "L", action = "vsplit_preview", action_cb = vsplit_preview },
+
+                {key = "-", cb = tree_cb("dir_up")},
+                {key = {"<2-RightMouse>", "<C-]>", "_"}, cb = tree_cb("cd")},
+
+                {key = "<A-g>", cb = tree_cb("prev_git_item")},
+                {key = "<A-r>", cb = tree_cb("next_git_item")},
+
+                {key = ",", cb = tree_cb("toggle_ignored")},
+                {key = ".", cb = tree_cb("toggle_dotfiles")},
+
+                {key = "A", cb = tree_cb("search_node")},
+
                 {key = "R", cb = tree_cb("refresh")},
                 {key = "a", cb = tree_cb("create")},
                 {key = "d", cb = tree_cb("remove")},
@@ -115,14 +177,13 @@ require"nvim-tree".setup {
                 {key = "y", cb = tree_cb("copy_name")},
                 {key = "Y", cb = tree_cb("copy_path")},
                 {key = "gy", cb = tree_cb("copy_absolute_path")},
-                {key = "[c", cb = tree_cb("prev_git_item")},
-                {key = "]c", cb = tree_cb("next_git_item")},
-                {key = "-", cb = tree_cb("dir_up")},
-                {key = "t", cb = tree_cb("system_open")}, -- avoid clash with lightspeed
+
+                {key = "'", cb = tree_cb("system_open")}, -- avoid clash with lightspeed
+
                 {key = "q", cb = tree_cb("close")},
+                {key = "i", action = "toggle_file_info" },
                 {key = "g?", cb = tree_cb("toggle_help")},
-                {key = "W", cb = tree_cb("collapse_all")},
-                {key = "T", cb = tree_cb("search_node")}
+                -- { key = ".", action = "run_file_command" }
             }
         }
     },
