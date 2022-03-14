@@ -49,7 +49,7 @@ function asst(){
   fi
 
   if [[ -f $cache/secret ]]; then
-    echo -e $fg[yellow] setting aws env variables from cache
+    echo -e $fg[yellow] setting aws env variables from cache $reset_color
     export AWS_ACCESS_KEY_ID=$(cat $cache/accessKey)
     export AWS_SECRET_ACCESS_KEY=$(cat $cache/secret)
     export AWS_SESSION_TOKEN=$(cat $cache/token)
