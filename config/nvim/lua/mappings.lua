@@ -59,5 +59,9 @@ map("n", "<A-(>", ":BufferLineCloseRight<CR>", default_options) -- close all buf
 -- Save file
 map("n", "<localleader>w", ":w<CR>", default_options)
 
+-- Edit file
+map("n", "<localleader>em", ":e $XDG_CONFIG_HOME/nvim/lua/mappings.lua<CR>", default_options)
+map("n", "<localleader>ep", ":e $XDG_CONFIG_HOME/nvim/lua/plugins.lua<CR>", default_options)
+
 -- Undo
 map("n", "<F11>", ":UndotreeToggle<CR>", default_options) -- undotree
