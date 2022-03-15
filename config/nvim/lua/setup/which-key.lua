@@ -76,6 +76,8 @@ wk.register({
 -- Register all leader based mappings
 wk.register({
     -- ["<Tab>"] = {"<cmd>e#<cr>", "Switch to previously opened buffer"},
+    j = {"<cmd>lnext<CR>", "Location List next"},
+    k = {"<cmd>lprev<CR>", "Location List prev"},
     b = {
         name = "Buffers",
         b = {
@@ -235,7 +237,7 @@ wk.register({
         },
         n = {"<cmd>lua vim.diagnostic.goto_next()<CR>", "Next Diagnostic"},
         p = {"<cmd>lua vim.diagnostic.goto_prev()<CR>", "Prev Diagnostic"},
-        q = {"<cmd>lua vim.diagnostic.set_loclist()<CR>", "Quickfix"},
+        q = {"<cmd>lua vim.diagnostic.setloclist()<CR>", "Location List"},
         r = {"<cmd>lua vim.lsp.buf.references()<CR>", "References"},
         s = {"<cmd>Telescope lsp_document_symbols<CR>", "Document Symbols"},
         t = {"<cmd>lua vim.lsp.buf.type_definition()<CR>", "Type Definition"},

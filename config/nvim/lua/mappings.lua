@@ -13,6 +13,11 @@ map("n", "<localleader>ep", ":e $XDG_CONFIG_HOME/nvim/lua/plugins.lua<CR>", defa
 map("n", "<localleader>et", ":e $XDG_CONFIG_HOME/tmux/tmux.conf<CR>", default_options)
 map("n", "<localleader>ew", ":e $XDG_CONFIG_HOME/nvim/lua/setup/which-key.lua<CR>", default_options)
 
+-- Quick Fix
+map("n", "<C-q>", ":copen<CR>", default_options)
+map("n", "<C-j>", ":cnext<CR>", default_options)
+map("n", "<C-k>", ":cprev<CR>", default_options)
+
 -- Help
 map("n", "<F1>", ":WhichKey<CR>", default_options) -- show all mappings
 
@@ -42,9 +47,6 @@ map("n", "<A-u>", ":NvimTreeFocus<CR>", default_options) -- Focus is better than
 map("n", "<A-d>", ":NvimTreeToggle<CR>", default_options)
 map("n", "<A-b>", ":NvimTreeFindFile<CR>", default_options)
 
--- quick fix
-map("n", "<S-A-p>", ":cn<CR>", default_options)
-map("n", "<S-A-n>", ":cp<CR>", default_options)
 
 -- window movement
 map("n", "<A-w>", ":wincmd q<CR>", default_options) -- close window
