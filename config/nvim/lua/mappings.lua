@@ -7,6 +7,11 @@ map("n", "<Space>", "<NOP>", default_options)
 vim.g.mapleader = " "
 vim.g.maplocalleader = ","
 
+-- Edit file
+map("n", "<localleader>em", ":e $XDG_CONFIG_HOME/nvim/lua/mappings.lua<CR>", default_options)
+map("n", "<localleader>ep", ":e $XDG_CONFIG_HOME/nvim/lua/plugins.lua<CR>", default_options)
+map("n", "<localleader>et", ":e $XDG_CONFIG_HOME/tmux/tmux.conf<CR>", default_options)
+
 -- Help
 map("n", "<F1>", ":WhichKey<CR>", default_options) -- show all mappings
 
@@ -23,13 +28,14 @@ map("n", "<F4>", ":lua require'dap'.down()<CR>", default_options)
 
 -- Nvim Tree
 map("n", "<A-u>", ":NvimTreeFocus<CR>", default_options) -- Focus is better than Toggle
-map("n", "<A-e>", ":NvimTreeToggle<CR>", default_options)
+map("n", "<A-d>", ":NvimTreeToggle<CR>", default_options)
 map("n", "<A-b>", ":NvimTreeFindFile<CR>", default_options)
 
 -- window movement
-map("n", "<A-d>", ":wincmd q<CR>", default_options) -- close window
-map("n", "<A-v>", ":wincmd v<CR>", default_options) -- vertical split
--- map("n", "<A-s>", ":wincmd s<CR>", default_options) -- horizontal split
+map("n", "<A-w>", ":wincmd q<CR>", default_options) -- close window
+map("n", "<S-A-d>", ":wincmd o<CR>", default_options) -- close all other splits
+map("n", "<S-A-h>", ":wincmd s<CR>", default_options) -- horizontal split
+map("n", "<S-A-t>", ":wincmd v<CR>", default_options) -- vertical split
 map("n", "<A-h>", ":lua require'nvim-tmux-navigation'.NvimTmuxNavigateLeft()<CR>", default_options)
 map("n", "<A-t>", ":lua require'nvim-tmux-navigation'.NvimTmuxNavigateDown()<CR>", default_options)
 map("n", "<A-n>", ":lua require'nvim-tmux-navigation'.NvimTmuxNavigateUp()<CR>", default_options)
@@ -58,10 +64,6 @@ map("n", "<A-(>", ":BufferLineCloseRight<CR>", default_options) -- close all buf
 
 -- Save file
 map("n", "<localleader>w", ":w<CR>", default_options)
-
--- Edit file
-map("n", "<localleader>em", ":e $XDG_CONFIG_HOME/nvim/lua/mappings.lua<CR>", default_options)
-map("n", "<localleader>ep", ":e $XDG_CONFIG_HOME/nvim/lua/plugins.lua<CR>", default_options)
 
 -- Undo
 map("n", "<F11>", ":UndotreeToggle<CR>", default_options) -- undotree
