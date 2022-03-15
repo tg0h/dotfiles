@@ -141,13 +141,13 @@ wk.register({
 
     g = {
         name = "Git",
-        j = {"<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Next Hunk"},
-        k = {"<cmd>lua require 'gitsigns'.prev_hunk()<cr>", "Prev Hunk"},
+        c = {"<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Next Hunk"},
+        r = {"<cmd>lua require 'gitsigns'.prev_hunk()<cr>", "Prev Hunk"},
         p = {"<cmd>lua require 'gitsigns'.preview_hunk()<cr>", "Preview Hunk"},
-        r = {"<cmd>lua require 'gitsigns'.reset_hunk()<cr>", "Reset Hunk"},
+        f = {"<cmd>lua require 'gitsigns'.reset_hunk()<cr>", "Reset Hunk"},
         R = {"<cmd>lua require 'gitsigns'.reset_buffer()<cr>", "Reset Buffer"},
         s = {"<cmd>lua require 'gitsigns'.stage_hunk()<cr>", "Stage Hunk"},
-        t = "Open lazygit", -- comand in toggleterm.lua
+        l = "Open lazygit", -- comand in toggleterm.lua
         -- n = {"<cmd>Neogit<cr>", "Open Neogit"},
         u = {
             "<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>",
@@ -156,7 +156,7 @@ wk.register({
         g = {"<cmd>Telescope git_status<cr>", "Open changed file"},
         b = {"<cmd>Telescope git_branches<cr>", "Checkout branch"},
         B = {"<cmd>GitBlameToggle<cr>", "Toggle Blame"},
-        c = {"<cmd>Telescope git_commits<cr>", "Checkout commit"},
+        t = {"<cmd>Telescope git_commits<cr>", "Checkout commit"},
         C = {
             "<cmd>Telescope git_bcommits<cr>",
             "Checkout commit(for current file)"
@@ -233,13 +233,13 @@ wk.register({
             "<cmd>lua vim.diagnostic.open_float()<CR>",
             "Show diagnostics"
         },
-        n = {"<cmd>lua vim.diagnostic.goto_next()<cr>", "Next Diagnostic"},
-        p = {"<cmd>lua vim.diagnostic.goto_prev()<cr>", "Prev Diagnostic"},
-        q = {"<cmd>lua vim.diagnostic.set_loclist()<cr>", "Quickfix"},
-        r = {"<cmd>lua vim.lsp.buf.references()<cr>", "References"},
-        s = {"<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols"},
-        t = {"<cmd>lua vim.lsp.buf.type_definition()<cr>", "Type Definition"},
-        w = {"<cmd>Telescope diagnostics<cr>", "Workspace Diagnostics"}
+        n = {"<cmd>lua vim.diagnostic.goto_next()<CR>", "Next Diagnostic"},
+        p = {"<cmd>lua vim.diagnostic.goto_prev()<CR>", "Prev Diagnostic"},
+        q = {"<cmd>lua vim.diagnostic.set_loclist()<CR>", "Quickfix"},
+        r = {"<cmd>lua vim.lsp.buf.references()<CR>", "References"},
+        s = {"<cmd>Telescope lsp_document_symbols<CR>", "Document Symbols"},
+        t = {"<cmd>lua vim.lsp.buf.type_definition()<CR>", "Type Definition"},
+        w = {"<cmd>Telescope diagnostics<CR>", "Workspace Diagnostics"}
     },
 
     m = {
@@ -248,6 +248,12 @@ wk.register({
         s = {"<cmd>SymbolsOutline<cr>", "Toggle SymbolsOutline"},
         S = {"<cmd>SidebarNvimToggle<cr>", "Toggle Sidebar"},
         z = {"<cmd>ZenMode<cr>", "Toggle ZenMode"}
+    },
+
+    q = {
+        name = "Quickfix",
+        c = {"<cmd>cclose<CR>", "Close Quickfix List"},
+        q = {"<cmd>copen<CR>", "Open Quickfix List"},
     },
 
     s = {
@@ -278,9 +284,9 @@ wk.register({
         t = {"<cmd>TodoTrouble<CR>", "Todos"},
 
         -- use LSP keymaps instead
-        -- r = {"<cmd>Trouble lsp_references<CR>", "LSP References"},
-        -- e = {"<cmd>Trouble lsp_definitions<CR>", "LSP Definitions"},
-        -- o = {"<cmd>Trouble lsp_type_definitions<CR>", "LSP Type Definitions"},
+        r = {"<cmd>Trouble lsp_references<CR>", "LSP References"},
+        e = {"<cmd>Trouble lsp_definitions<CR>", "LSP Definitions"},
+        o = {"<cmd>Trouble lsp_type_definitions<CR>", "LSP Type Definitions"},
 
         R = {"<cmd>TroubleRefresh<CR>", "Refresh"},
         s = {"<cmd>TroubleClose<CR>", "Close"},

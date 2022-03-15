@@ -39,6 +39,6 @@ local lazygit = Terminal:new({ cmd = "lazygit", direction = "float", hidden = tr
 function _lazygit_toggle()
   lazygit:toggle()
 end
-vim.api.nvim_set_keymap("n", "<leader>gt", "<cmd>lua _lazygit_toggle()<CR>i", {noremap = true, silent = true}) -- start lazygit
+vim.api.nvim_set_keymap("n", "<leader>gl", "<cmd>lua _lazygit_toggle()<CR>", {noremap = true, silent = true}) -- start lazygit
 vim.api.nvim_set_keymap("t", "<ESC>", '<C-\\><C-n>', {noremap = true, silent = true}) -- back to normal mode in Terminal
  
