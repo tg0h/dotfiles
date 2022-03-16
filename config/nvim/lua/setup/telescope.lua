@@ -22,7 +22,7 @@ telescope.setup({
             i = {
                 ["<C-x>"] = false,
                 ["<C-q>"] = actions.send_to_qflist,
-                ["<esc>"] = actions.close
+                -- ["<esc>"] = actions.close
             },
         },
     },
@@ -36,13 +36,20 @@ telescope.setup({
 })
 
 
--- local M = {}
--- M.search_dotfiles = function()
---     require("telescope.builtin").find_files({
---         prompt_title = "< VimRC >",
---         cwd = vim.env.DOTFILES,
---         hidden = true,
---     })
--- end
+local M = {}
+M.search_dotfiles = function()
+    require("telescope.builtin").find_files({
+        -- prompt_title = "< Dotfiles >",
+        cwd = vim.env.DOTFILES,
+        hidden = true,
+    })
+end
 
--- return M
+M.search_neovim_dotfiles = function()
+    require("telescope.builtin").find_files({
+        cwd = vim.env.DOTFILES .. "/config/nvim",
+        hidden = true,
+    })
+end
+
+return M

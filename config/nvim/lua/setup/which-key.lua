@@ -261,6 +261,8 @@ wk.register({
     s = {
         name = "Search",
         C = {"<cmd>Telescope colorscheme<cr>", "Colorscheme"},
+        o = {"<cmd>lua require('setup/telescope').search_dotfiles()<CR>", "Search dotfiles"},
+        e = {"<cmd>lua require('setup/telescope').search_neovim_dotfiles()<CR>", "Search Neovim dotfiles"},
         h = {"<cmd>Telescope help_tags<cr>", "Find Help"},
         H = {"<cmd>Telescope heading<cr>", "Find Header"},
         M = {"<cmd>Telescope man_pages<cr>", "Man Pages"},
