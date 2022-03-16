@@ -3,17 +3,19 @@ local nvim_lsp = require("lspconfig")
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
-local servers = {"tsserver", "jsonls", "bashls", "dockerls", "yamlls"}
+local servers = {"tsserver", "jsonls", "bashls", "dockerls", "yamlls", "sumneko_lua"}
 -- Use a loop to conveniently call 'setup' on multiple servers
 for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup {
         capabilities = capabilities,
         flags = {debounce_text_changes = 150},
         settings = {
+
             json = {
                 -- format = {enabled = false}, -- format defaults to true
                 schemas = require("schemastore").json.schemas()
             },
+
             yaml = {
                 schemaStore = {
                     enable = true,
@@ -33,7 +35,33 @@ for _, lsp in ipairs(servers) do
                 validate = true,
                 completion = true,
                 hover = true
-            }
+            },
+
+            Lua = {
+                cmd = {"lua-language-server"},
+                filetypes = {"lua"},
+                runtime = {
+                    version = "LuaJIT",
+                    path = vim.split(package.path, ";")
+                },
+                completion = {enable = true, callSnippet = "Both"},
+                diagnostics = {
+                    enable = true,
+                    globals = {"vim", "describe"},
+                    disable = {"lowercase-global"}
+                },
+                workspace = {
+                    library = {
+                        vim.api.nvim_get_runtime_file("", true),
+                        [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+                        [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
+                    },
+                    -- adjust these two values if your performance is not optimal
+                    maxPreload = 2000,
+                    preloadFileSize = 1000
+                },
+                telemetry = {enable = false}
+            },
         }
     }
     require"lsp_signature".setup({
