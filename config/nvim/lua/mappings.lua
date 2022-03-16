@@ -73,7 +73,7 @@ map("n", "<A-Down>", ":resize +1<CR>", default_options)
 -- Buffers
 map("n", "<A-Esc>", ":e#<CR>", default_options) -- edit previously opened buffer
 map("n", "<A-g>", ":BufferLineCyclePrev<CR>", default_options) -- Go to left buffer 'tab'
--- map("n", "<A-r>", ":BufferLineCycleNext<CR>", default_options) -- Go to right buffer 'tab'
+map("n", "<A-r>", ":BufferLineCycleNext<CR>", default_options) -- Go to right buffer 'tab'
 map("n", "<A-c>", ":Bdelete!<CR>", default_options) -- close buffer
 
 map("n", "<A-)>", ":BufferLineMovePrev<CR>", default_options)
