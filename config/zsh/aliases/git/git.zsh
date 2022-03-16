@@ -50,3 +50,4 @@ alias gbc='git branch --contains'
 # alias gbca='git branch -a --contains'
 
 alias gs='git show'
+alias gsno='git show --name-only'
