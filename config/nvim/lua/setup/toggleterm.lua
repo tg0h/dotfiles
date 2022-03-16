@@ -12,7 +12,7 @@ require("toggleterm").setup{
   shade_filetypes = {},
   shade_terminals = true,
   shading_factor = '1', -- the degree by which to darken to terminal colour, default: 1 for dark backgrounds, 3 for light
-  start_in_insert = false,
+  start_in_insert = true,
   insert_mappings = true, -- whether or not the open mapping applies in insert mode
   persist_size = true,
   direction = "vertical", -- 'vertical' | 'horizontal' | 'window' | 'float',
