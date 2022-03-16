@@ -22,7 +22,7 @@ alias zac='nvim $XDG_CONFIG_HOME/zsh/aliases/candy.zsh'
 # config
 alias zt='nvim ~/.config/tmux/tmux.conf'
 alias zk='nvim ~/.config/kitty/kitty.conf'
-alias zgit='nvim ~/.config/zsh/git.zsh'
+alias zg='nvim ~/.config/zsh/aliases/git/git.zsh'
 alias dos='nvim ~/.dotfiles/install.conf.yaml' # dotbot sourcefile
 alias doi='dotbot --verbose -c ~/.dotfiles/install.conf.yaml'
 alias bb='brew bundle --file ~/dotfiles/config/homebrew/brewfile'
