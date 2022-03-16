@@ -9,6 +9,7 @@ vim.g.maplocalleader = ","
 
 -- Edit file
 map("n", "<localleader>em", ":e $XDG_CONFIG_HOME/nvim/lua/mappings.lua<CR>", default_options)
+map("n", "<localleader>eo", ":e $XDG_CONFIG_HOME/nvim/lua/options.lua<CR>", default_options)
 map("n", "<localleader>ep", ":e $XDG_CONFIG_HOME/nvim/lua/plugins.lua<CR>", default_options)
 map("n", "<localleader>et", ":e $XDG_CONFIG_HOME/tmux/tmux.conf<CR>", default_options)
 map("n", "<localleader>ew", ":e $XDG_CONFIG_HOME/nvim/lua/setup/which-key.lua<CR>", default_options)
@@ -26,10 +27,10 @@ map("n", "<S-A-c>", ":lua require'trouble'.next({skip_groups = true, jump = true
 map("n", "<S-A-r>", ":lua require'trouble'.previous({skip_groups = true, jump = true})<CR>", default_options) -- previous
 
 -- LSP
-map("n", "<S-A-g>", ":lua vim.lsp.buf.definition()<CR>", default_options)
+map("n", "<A-a>", ":lua vim.lsp.buf.definition()<CR>", default_options)
 -- map("n", "<S-A-c>", ":lua vim.diagnostic.goto_next()<CR>", default_options) -- next diagnostic
 -- map("n", "<S-A-r>", ":lua vim.diagnostic.goto_prev()<CR>", default_options) -- prev diagnostic
-map("n", "<S-A-l>", ":lua vim.lsp.buf.references()<CR>", default_options) -- prev diagnostic
+map("n", "<A-i>", ":lua vim.lsp.buf.references()<CR>", default_options) -- prev diagnostic
 
 -- Dap
 map("n", "<F12>", ":lua require'dapui'.toggle()<CR>", default_options)
@@ -70,7 +71,7 @@ map("n", "<A-Up>", ":resize -1<CR>", default_options)
 map("n", "<A-Down>", ":resize +1<CR>", default_options)
 
 -- Buffers
-map("n", "<A-a>", ":e#<CR>", default_options) -- edit previously opened buffer
+map("n", "<A-Esc>", ":e#<CR>", default_options) -- edit previously opened buffer
 map("n", "<A-g>", ":BufferLineCyclePrev<CR>", default_options) -- Go to left buffer 'tab'
 -- map("n", "<A-r>", ":BufferLineCycleNext<CR>", default_options) -- Go to right buffer 'tab'
 map("n", "<A-c>", ":Bdelete!<CR>", default_options) -- close buffer
