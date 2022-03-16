@@ -3,12 +3,14 @@ alias lg="lazygit"
 # unalias gg # remove alias set by omz git plugin
 function gg(){
   #lazy git commiting when prototyping
+  local message="$@"
   git add .
-  if [ -z "$1" ]; then
-    git commit -m 'gg'
-  else
-    git commit -m "$1"
+  if [ -z "$message" ]; then
+    # just get the filename from the first line and use that as the commit message
+    # copy from the 4th char onwards
+    message=$(git status --porcelain | head -n 1  | cut -c 4-)
   fi
+  git commit -m "$message"
 }
 
 # if you don't specify a branch, it compares against the current HEAD you're on, ie which branch you're currently on
@@ -50,4 +52,5 @@ alias gbc='git branch --contains'
 # alias gbca='git branch -a --contains'
 
 alias gs='git show'
+alias gsp='git status --porcelain'
 alias gsno='git show --name-only'
