@@ -52,4 +52,20 @@ M.search_neovim_dotfiles = function()
     })
 end
 
+M.search_wiki = function()
+    require("telescope.builtin").find_files({
+        cwd = vim.env.HOME .. "/src/me/wiki",
+        hidden = false,
+    })
+end
+
+M.search_wiki_candy = function()
+    require("telescope.builtin").find_files({
+        cwd = vim.env.XDG_DOCUMENTS_DIR .. "/candy/wiki",
+        hidden = false,
+        layout_strategy="vertical",
+        layout_config={height=0.99, anchor="E", width=0.5, prompt_position="top", preview_height=0.85, mirror=true}
+    })
+end
+
 return M

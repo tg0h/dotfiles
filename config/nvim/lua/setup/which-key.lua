@@ -252,6 +252,12 @@ wk.register({
         z = {"<cmd>ZenMode<cr>", "Toggle ZenMode"}
     },
 
+    n = {
+        name = "Notes",
+        h = {"<cmd>lua require('setup/telescope').search_wiki_candy()<CR>", "Search wiki candy"},
+        t = {"<cmd>lua require('setup/telescope').search_wiki()<CR>", "Search wiki"},
+    },
+
     q = {
         name = "Quickfix",
         c = {"<cmd>cclose<CR>", "Close Quickfix List"},

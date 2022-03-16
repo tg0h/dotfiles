@@ -54,6 +54,9 @@ keymaps:
   - bindkey: d
     dir: $HOME/Documents
     depth: 1
+  - bindkey: n # candy wiki
+    dir: $HOME/Documents/candy/wiki
+    depth: 5 # specify how deep the directory preview should be
 
   # tmp folders
   - bindkey: t # tmp
