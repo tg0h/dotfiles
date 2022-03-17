@@ -108,22 +108,47 @@ wk.register({
     },
 
     d = {
-      name = "DAP",
-      d = { "<Cmd>lua require'dapui'.toggle()<CR>", "Toggle UI" },
-      r = { "<Cmd>lua require'dapui'.eval()<CR>", "View dapui cursor expression" },
-      R = { "<Cmd>lua require'dap.ui.widgets'.hover()<CR>", "View cursor expression" },
-      s = { "<Cmd>lua local widgets=require'dap.ui.widgets';widgets.centered_float(widgets.scopes)<CR>", "View Scopes" },
+        name = "DAP",
+        d = {"<Cmd>lua require'dapui'.toggle()<CR>", "Toggle UI"},
+        r = {
+            "<Cmd>lua require'dapui'.eval()<CR>", "View dapui cursor expression"
+        },
+        R = {
+            "<Cmd>lua require'dap.ui.widgets'.hover()<CR>",
+            "View cursor expression"
+        },
+        s = {
+            "<Cmd>lua local widgets=require'dap.ui.widgets';widgets.centered_float(widgets.scopes)<CR>",
+            "View Scopes"
+        },
 
-      C = { "<Cmd>lua require'dap'.clear_breakpoints()<CR>", "Clear breakpoints" },
+        C = {
+            "<Cmd>lua require'dap'.clear_breakpoints()<CR>", "Clear breakpoints"
+        },
 
-      p = { "<Cmd>lua require'dap'.repl.toggle()<CR>", "REPL toggle" },
-      l = { "<Cmd>lua require'dap'.run_last()<CR>", "Run Last" },
+        p = {"<Cmd>lua require'dap'.repl.toggle()<CR>", "REPL toggle"},
+        l = {"<Cmd>lua require'dap'.run_last()<CR>", "Run Last"},
 
-      o = { '<Cmd>lua require"telescope".extensions.dap.commands{}<CR>', "Commands" },
-      c = { '<Cmd>lua require"telescope".extensions.dap.configurations{}<CR>', "Configurations" },
-      b = { '<Cmd>lua require"telescope".extensions.dap.list_breakpoints{}<CR>', "List breakpoints" },
-      v = { '<Cmd>lua require"telescope".extensions.dap.variables{}<CR>', "Variables" },
-      f = { '<Cmd>lua require"telescope".extensions.dap.frames{}<CR>', "Frames" },
+        o = {
+            "<Cmd>lua require\"telescope\".extensions.dap.commands{}<CR>",
+            "Commands"
+        },
+        c = {
+            "<Cmd>lua require\"telescope\".extensions.dap.configurations{}<CR>",
+            "Configurations"
+        },
+        b = {
+            "<Cmd>lua require\"telescope\".extensions.dap.list_breakpoints{}<CR>",
+            "List breakpoints"
+        },
+        v = {
+            "<Cmd>lua require\"telescope\".extensions.dap.variables{}<CR>",
+            "Variables"
+        },
+        f = {
+            "<Cmd>lua require\"telescope\".extensions.dap.frames{}<CR>",
+            "Frames"
+        }
     },
 
     f = {
@@ -169,29 +194,46 @@ wk.register({
         name = "Harpoon",
         s = {"<cmd>lua require('harpoon.mark').add_file()<CR>", "Add file"},
 
+        o = {
+            "<cmd>lua require('harpoon.tmux').gotoTerminal(2)<CR>",
+            "go to Tmux Window 2"
+        },
+
+        e = {
+            "<cmd>lua require('harpoon.tmux').gotoTerminal(3)<CR>",
+            "go to Tmux Window 3"
+        },
+
+        [","] = {
+            "<cmd>lua require('harpoon.tmux').sendCommand(2, 1)<CR>",
+            "Send Command to Tmux Window 2"
+        },
+
+        ["."] = {
+            "<cmd>lua require('harpoon.tmux').sendCommand(3, 1)<CR>",
+            "Send Command to Tmux Window 3"
+        },
+
         t = {
             "<cmd>lua require('harpoon.term').gotoTerminal(1)<CR>",
             "Go to Terminal 1"
         },
-        r = {
+        n = {
             "<cmd>lua require('harpoon.term').gotoTerminal(2)<CR>",
             "Go to Terminal 2"
         },
-        n = {
-            "<cmd>Telescope harpoon marks<CR>",
-            "Telescope harpoon marks"
-        },
         c = {
             "<cmd>lua require('harpoon.term').sendCommand(1, 1)<CR>",
-            "Send Command to 1"
+            "Send Command 1 to Terminal 1"
         },
         r = {
-            "<cmd>lua require('harpoon.term').sendCommand(1, 2)<CR>",
-            "Send Command to 2"
+            "<cmd>lua require('harpoon.term').sendCommand(2, 1)<CR>",
+            "Send Command 1 to Terminal 2"
         },
+        h = {"<cmd>Telescope harpoon marks<CR>", "Telescope harpoon marks"},
 
-        v = {"<cmd>lua require('harpoon.ui').nav_next()<CR>", "Next mark"},
-        w = {
+        j = {"<cmd>lua require('harpoon.ui').nav_next()<CR>", "Next mark"},
+        k = {
             "<cmd>lua require('harpoon.ui').nav_previous()<CR>", "Previous mark"
         },
 
@@ -231,10 +273,7 @@ wk.register({
         f = {"<cmd>lua vim.lsp.buf.formatting()<cr>", "Format"}, -- use lsp server to format
         i = {"<cmd>LspInfo<cr>", "Connected Language Servers"},
         k = {"<cmd>lua vim.lsp.buf.signature_help()<cr>", "Signature Help"},
-        l = {
-            "<cmd>lua vim.diagnostic.open_float()<CR>",
-            "Show diagnostics"
-        },
+        l = {"<cmd>lua vim.diagnostic.open_float()<CR>", "Show diagnostics"},
         n = {"<cmd>lua vim.diagnostic.goto_next()<CR>", "Next Diagnostic"},
         p = {"<cmd>lua vim.diagnostic.goto_prev()<CR>", "Prev Diagnostic"},
         q = {"<cmd>lua vim.diagnostic.setloclist()<CR>", "Location List"},
@@ -254,21 +293,33 @@ wk.register({
 
     n = {
         name = "Notes",
-        h = {"<cmd>lua require('setup/telescope').search_wiki_candy()<CR>", "Search wiki candy"},
-        t = {"<cmd>lua require('setup/telescope').search_wiki()<CR>", "Search wiki"},
+        h = {
+            "<cmd>lua require('setup/telescope').search_wiki_candy()<CR>",
+            "Search wiki candy"
+        },
+        t = {
+            "<cmd>lua require('setup/telescope').search_wiki()<CR>",
+            "Search wiki"
+        }
     },
 
     q = {
         name = "Quickfix",
         c = {"<cmd>cclose<CR>", "Close Quickfix List"},
-        q = {"<cmd>copen<CR>", "Open Quickfix List"},
+        q = {"<cmd>copen<CR>", "Open Quickfix List"}
     },
 
     s = {
         name = "Search",
         C = {"<cmd>Telescope colorscheme<cr>", "Colorscheme"},
-        o = {"<cmd>lua require('setup/telescope').search_dotfiles()<CR>", "Search dotfiles"},
-        e = {"<cmd>lua require('setup/telescope').search_neovim_dotfiles()<CR>", "Search Neovim dotfiles"},
+        o = {
+            "<cmd>lua require('setup/telescope').search_dotfiles()<CR>",
+            "Search dotfiles"
+        },
+        e = {
+            "<cmd>lua require('setup/telescope').search_neovim_dotfiles()<CR>",
+            "Search Neovim dotfiles"
+        },
         h = {"<cmd>Telescope help_tags<cr>", "Find Help"},
         H = {"<cmd>Telescope heading<cr>", "Find Header"},
         M = {"<cmd>Telescope man_pages<cr>", "Man Pages"},
