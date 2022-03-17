@@ -1,7 +1,7 @@
 gui:
   theme:
     activeBorderColor:
-      - '#ff00ff'
+      - "#ff00ff"
       - bold
     inactiveBorderColor:
       - green
@@ -9,16 +9,20 @@ gui:
       - reverse
     selectedRangeBgColor:
       - reverse
-# keybinding:
-#   universal:
-#     prevItem-alt: 't' # go one line up (vim k)
-#     nextItem-alt: 'h' # go one line down (vim j)
-#     scrollUpMain-alt1: 'T' # main panel scroll up
-#     scrollDownMain-alt1: 'H' # main panel scroll down
-#     scrollLeft: 'D' # scroll left within list view
-#     scrollRight: 'n' # scroll right within list view
-#     prevBlock-alt: 'd' # goto the previous block / panel
-#     nextBlock-alt: 'n' # goto the next block / panel
+keybinding:
+  universal:
+    #     prevItem-alt: 't' # go one line up (vim k)
+    #     nextItem-alt: 'h' # go one line down (vim j)
+    #     scrollUpMain-alt1: 'T' # main panel scroll up
+    #     scrollDownMain-alt1: 'H' # main panel scroll down
+    #     scrollLeft: 'D' # scroll left within list view
+    #     scrollRight: 'n' # scroll right within list view
+    # prevBlock-alt: 'd' # goto the previous block / panel
+    nextBlock-alt: "s" # goto the next block / panel
+  files:
+    stashAllChanges: "l"
+  commits:
+    squashDown: "l"
 #   commits:
 #     moveUpCommit: '<c-t>' # move commit up one
 #     moveDownCommit: '<c-h>' # move commit down one
