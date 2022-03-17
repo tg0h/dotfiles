@@ -25,6 +25,7 @@ brew 'luarocks'
 brew 'rustup-init' # aka rustup
 brew 'bash'
 brew 'zsh'
+brew 'cmake' # needed for luaformatter installed via luarocks
 
 brew 'neovim'
 brew 'tmux'
