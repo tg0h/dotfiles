@@ -1,6 +1,8 @@
 alias ag="alias | grep"
 alias sg="set | grep"
 
+alias pa='pbpaste'
+
 alias udcl='ud configure list' #show ud configuration
 alias udce='ud configure edit' #edit ud configuration
 
