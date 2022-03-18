@@ -3,7 +3,10 @@ local nvim_lsp = require("lspconfig")
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
-local servers = {"tsserver", "jsonls", "bashls", "dockerls", "yamlls", "sumneko_lua"}
+local servers = {
+    "tsserver", "jsonls", "bashls", "dockerls", "yamlls", "sumneko_lua",
+    "solargraph"
+}
 -- Use a loop to conveniently call 'setup' on multiple servers
 for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup {
@@ -54,14 +57,14 @@ for _, lsp in ipairs(servers) do
                     library = {
                         vim.api.nvim_get_runtime_file("", true),
                         [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-                        [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
+                        [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true
                     },
                     -- adjust these two values if your performance is not optimal
                     maxPreload = 2000,
                     preloadFileSize = 1000
                 },
                 telemetry = {enable = false}
-            },
+            }
         }
     }
     require"lsp_signature".setup({
