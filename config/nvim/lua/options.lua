@@ -29,5 +29,9 @@ o.listchars = {
 
 o.shortmess = "I" -- turn off splashscreen message
 o.undofile = true -- enable undofile creation
-o.undodir = fn.stdpath('cache') .. "/undodir"
+o.undodir = fn.stdpath("cache") .. "/undodir"
 o.cursorline = true
+o.smartcase = true -- smart case
+o.ignorecase = true -- ignore case in search patterns
+o.cmdheight = 1 -- space for displaying messages/commands
+o.grepprg = "rg --hidden --vimgrep --smart-case --" -- use rg instead of grep
