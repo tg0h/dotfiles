@@ -13,6 +13,9 @@ function gg(){
   git commit -m "$message"
 }
 
+alias g.="gloz -10"
+alias g,.="glodm"
+
 # if you don't specify a branch, it compares against the current HEAD you're on, ie which branch you're currently on
 alias gbm="git branch --merged"
 # if you don't specify a branch, it compares against the current HEAD you're on, ie which branch you're currently on
@@ -23,7 +26,6 @@ alias gbnmr="git branch -r --no-merged | rg -v 'release'"
 
 alias gloz="git log --graph --date=format:'%I:%M %p' --pretty='%>|(10,trunc)%Cred%h%Creset %C(bold blue)%cs %Cgreen%ad%Creset %<(50,trunc)%s %<(6,trunc)%C(yellow)%ar %<(8,trunc)%C(cyan)%an%Creset%<(40,trunc)%C(auto)%d'"
 alias glozm="gloz -10"
-alias g.="gloz -10"
 alias glod="git log --date=human --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset %C(yellow)%ar%Creset'"
 alias glodm='glod -10'
 alias glodmm='glod -20'
