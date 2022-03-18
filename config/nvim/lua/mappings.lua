@@ -55,7 +55,7 @@ map("n", "<F4>", ":lua require'dap'.down()<CR>", default_options)
 
 -- Nvim Tree
 map("n", "<A-u>", ":NvimTreeFocus<CR>", default_options) -- Focus is better than Toggle
-map("n", "<A-d>", ":NvimTreeToggle<CR>", default_options)
+map("n", "<A-m>", ":NvimTreeToggle<CR>", default_options)
 map("n", "<A-b>", ":NvimTreeFindFile<CR>", default_options)
 
 -- window movement
