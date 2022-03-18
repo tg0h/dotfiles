@@ -8,14 +8,20 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = ","
 
 -- Edit file
-map("n", "<localleader>em", ":e $XDG_CONFIG_HOME/nvim/lua/mappings.lua<CR>", default_options)
-map("n", "<localleader>eo", ":e $XDG_CONFIG_HOME/nvim/lua/options.lua<CR>", default_options)
-map("n", "<localleader>ep", ":e $XDG_CONFIG_HOME/nvim/lua/plugins.lua<CR>", default_options)
-map("n", "<localleader>et", ":e $XDG_CONFIG_HOME/tmux/tmux.conf<CR>", default_options)
-map("n", "<localleader>ew", ":e $XDG_CONFIG_HOME/nvim/lua/setup/which-key.lua<CR>", default_options)
+map("n", "<localleader>em", ":e $XDG_CONFIG_HOME/nvim/lua/mappings.lua<CR>",
+    default_options)
+map("n", "<localleader>eo", ":e $XDG_CONFIG_HOME/nvim/lua/options.lua<CR>",
+    default_options)
+map("n", "<localleader>ep", ":e $XDG_CONFIG_HOME/nvim/lua/plugins.lua<CR>",
+    default_options)
+map("n", "<localleader>et", ":e $XDG_CONFIG_HOME/tmux/tmux.conf<CR>",
+    default_options)
+map("n", "<localleader>ew",
+    ":e $XDG_CONFIG_HOME/nvim/lua/setup/which-key.lua<CR>", default_options)
 
 -- Quick Fix
-map("n", "<C-q>", ":copen<CR>", default_options)
+map("n", "<C-q>", ":lua require('tg.quickfix').ToggleQFList(1)<CR>",
+    default_options)
 map("n", "<C-j>", ":cnext<CR>", default_options)
 map("n", "<C-k>", ":cprev<CR>", default_options)
 
@@ -23,8 +29,12 @@ map("n", "<C-k>", ":cprev<CR>", default_options)
 map("n", "<F1>", ":WhichKey<CR>", default_options) -- show all mappings
 
 -- Trouble
-map("n", "<S-A-c>", ":lua require'trouble'.next({skip_groups = true, jump = true})<CR>", default_options) -- next
-map("n", "<S-A-r>", ":lua require'trouble'.previous({skip_groups = true, jump = true})<CR>", default_options) -- previous
+map("n", "<S-A-c>",
+    ":lua require'trouble'.next({skip_groups = true, jump = true})<CR>",
+    default_options) -- next
+map("n", "<S-A-r>",
+    ":lua require'trouble'.previous({skip_groups = true, jump = true})<CR>",
+    default_options) -- previous
 
 -- LSP
 map("n", "<A-a>", ":lua vim.lsp.buf.definition()<CR>", default_options)
@@ -48,7 +58,6 @@ map("n", "<A-u>", ":NvimTreeFocus<CR>", default_options) -- Focus is better than
 map("n", "<A-d>", ":NvimTreeToggle<CR>", default_options)
 map("n", "<A-b>", ":NvimTreeFindFile<CR>", default_options)
 
-
 -- window movement
 map("n", "<A-w>", ":wincmd q<CR>", default_options) -- close window
 map("n", "<S-A-d>", ":wincmd o<CR>", default_options) -- close all other splits
@@ -57,12 +66,23 @@ map("n", "<S-A-t>", ":wincmd v<CR>", default_options) -- vertical split
 map("n", "<S-A-z>", ":wincmd _<CR>:wincmd |<CR>", default_options) -- zoom
 map("n", "<S-A-e>", ":wincmd =<CR>", default_options) -- equal splits
 
-map("n", "<A-h>", ":lua require'nvim-tmux-navigation'.NvimTmuxNavigateLeft()<CR>", default_options)
-map("n", "<A-t>", ":lua require'nvim-tmux-navigation'.NvimTmuxNavigateDown()<CR>", default_options)
-map("n", "<A-n>", ":lua require'nvim-tmux-navigation'.NvimTmuxNavigateUp()<CR>", default_options)
-map("n", "<A-s>", ":lua require'nvim-tmux-navigation'.NvimTmuxNavigateRight()<CR>", default_options)
-map("n", "<A-->", ":lua require'nvim-tmux-navigation'.NvimTmuxNavigateLastActive()<CR>", default_options)
-map("n", "<A-Enter>", ":lua require'nvim-tmux-navigation'.NvimTmuxNavigateNext()<CR>", default_options)
+map("n", "<A-h>",
+    ":lua require'nvim-tmux-navigation'.NvimTmuxNavigateLeft()<CR>",
+    default_options)
+map("n", "<A-t>",
+    ":lua require'nvim-tmux-navigation'.NvimTmuxNavigateDown()<CR>",
+    default_options)
+map("n", "<A-n>", ":lua require'nvim-tmux-navigation'.NvimTmuxNavigateUp()<CR>",
+    default_options)
+map("n", "<A-s>",
+    ":lua require'nvim-tmux-navigation'.NvimTmuxNavigateRight()<CR>",
+    default_options)
+map("n", "<A-->",
+    ":lua require'nvim-tmux-navigation'.NvimTmuxNavigateLastActive()<CR>",
+    default_options)
+map("n", "<A-Enter>",
+    ":lua require'nvim-tmux-navigation'.NvimTmuxNavigateNext()<CR>",
+    default_options)
 
 -- Resizing panes
 map("n", "<Left>", ":vertical resize +5<CR>", default_options)
@@ -80,7 +100,8 @@ map("n", "<A-)>", ":BufferLineMovePrev<CR>", default_options)
 map("n", "<A-]>", ":BufferLineMoveNext<CR>", default_options)
 
 map("n", "<A-*>", ":BufferLineCloseLeft<CR>", default_options) -- close all buffers to the left
-map("n", "<A-+>", ":BufferLineCloseLeft<CR>:BufferLineCloseRight<CR>", default_options) -- close all but selected buffer
+map("n", "<A-+>", ":BufferLineCloseLeft<CR>:BufferLineCloseRight<CR>",
+    default_options) -- close all but selected buffer
 map("n", "<A-!>", ":BufferLineCloseRight<CR>", default_options) -- close all buffers to the right
 
 -- Save file

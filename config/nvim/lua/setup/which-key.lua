@@ -76,6 +76,10 @@ wk.register({
 -- Register all leader based mappings
 wk.register({
     -- ["<Tab>"] = {"<cmd>e#<cr>", "Switch to previously opened buffer"},
+    q = {
+        "<cmd>lua require'tg.quickfix'.ToggleQFList(0)<CR>",
+        "Toggle Location List"
+    },
     j = {"<cmd>lnext<CR>", "Location List next"},
     k = {"<cmd>lprev<CR>", "Location List prev"},
     b = {
@@ -301,12 +305,6 @@ wk.register({
             "<cmd>lua require('setup/telescope').search_wiki()<CR>",
             "Search wiki"
         }
-    },
-
-    q = {
-        name = "Quickfix",
-        c = {"<cmd>cclose<CR>", "Close Quickfix List"},
-        q = {"<cmd>copen<CR>", "Open Quickfix List"}
     },
 
     s = {
