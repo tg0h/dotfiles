@@ -25,7 +25,3 @@ alias zk='nvim ~/.config/kitty/kitty.conf'
 alias zg='nvim ~/.config/zsh/aliases/git/git.zsh'
 alias dos='nvim ~/.dotfiles/install.conf.yaml' # dotbot sourcefile
 alias doi='dotbot --verbose -c ~/.dotfiles/install.conf.yaml'
-alias bb='brew bundle --file ~/dotfiles/config/homebrew/brewfile'
-alias bbs='nvim ~/dotfiles/config/homebrew/brewfile'
-alias bb='brew bundle --file ~/dotfiles/config/homebrew/brewfile'
-alias bbc='brew bundle --file ~/dotfiles/config/homebrew/brewfile --force cleanup'
