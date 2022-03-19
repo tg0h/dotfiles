@@ -1,5 +1,5 @@
-# run this first - this contains essential cli apps for use on any computer
-# the second brewfile contains other gui apps for use on my main computer
+# see https://github.com/Homebrew/homebrew-bundle for example brewfile
+
 tap 'homebrew/cask'
 tap 'homebrew/services'
 # tap 'homebrew/bundle'
@@ -12,6 +12,7 @@ cask 'logitech-options'
 
 tap 'homebrew/cask-fonts'
 cask 'font-jetbrains-mono-nerd-font'
+# cask 'font-fontawesome'
 
 brew 'rbenv'
 brew "pyenv"
@@ -30,6 +31,12 @@ brew 'solargraph' # ruby lang server
 
 brew 'neovim'
 brew 'tmux'
+tap 'koekeishiya/formulae'
+brew 'koekeishiya/formulae/yabai', args: ['HEAD'], restart_service: true
+brew 'koekeishiya/formulae/skhd', restart_service: true
+tap 'cmacrae/formulae'
+# brew 'cmacrae/formulae/spacebar', restart_service: true
+cask 'spaceman'
 
 brew 'less'
 brew 'mysql'
@@ -145,4 +152,4 @@ mas 'Things', id: 904280696
 mas 'Blackmagic Disk Speed Test', id: 425264550
 mas 'Aquarelo', id: 1263012549
 mas 'Goldie', id: 1375037046
-mas 'Smart Countdown Timer', id: 1410709951
+# mas 'Smart Countdown Timer', id: 1410709951
