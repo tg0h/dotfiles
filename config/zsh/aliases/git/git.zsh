@@ -15,6 +15,7 @@ function gg(){
 
 alias g.="gloz -10"
 alias g,.="glodm"
+alias gc='git status'
 
 # if you don't specify a branch, it compares against the current HEAD you're on, ie which branch you're currently on
 alias gbm="git branch --merged"
