@@ -7,4 +7,5 @@ alias bbc='brew bundle --file ~/dotfiles/config/homebrew/brewfile --force cleanu
 alias bs='brew services'
 alias bsl='brew services list'
 alias bsr='brew services restart'
+alias bsra='brew services restart --all'
 alias bss='brew services stop'
