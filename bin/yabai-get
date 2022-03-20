@@ -1,0 +1,14 @@
+#!/bin/zsh
+
+local searchString=$1
+
+result=$(yabai -m query --windows)
+
+local jqQuery=$(cat <<-EOF
+                    map(select(.app | contains("$1") ))
+                    | .[]
+                    # | .id
+EOF
+)
+
+jq --raw-output $jqQuery <<< $result

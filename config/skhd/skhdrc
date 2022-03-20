@@ -2,6 +2,8 @@
 # hyper (shift + alt + ctrl + cmd)
 # meh (shift + alt + ctrl)
 
+meh -x : toggle-hide-window "Toggl Track"
+
 # Space
 # space create/destroy
 hyper - c : yabai -m space --destroy

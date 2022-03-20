@@ -1,0 +1,10 @@
+#!/bin/zsh
+
+local appName="$1"
+
+osascript ~/dotfiles/lib/apple/toggle-hide.applescript "$appName"
+
+local isHidden=$(yabai-get $appName | jq '."is-hidden"')
+local id=$(yabai-get $appName | jq '.id')
+
+[[ "$isHidden" == "false" ]] && yabai -m window --focus $id
