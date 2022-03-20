@@ -7,6 +7,9 @@ map("n", "<Space>", "<NOP>", default_options)
 vim.g.mapleader = " "
 vim.g.maplocalleader = ","
 
+map("v", "J", ":m '>+1<CR>gv=gv", default_options)
+map("v", "K", ":m '<-2<CR>gv=gv", default_options)
+
 -- Edit file
 map("n", "<localleader>em", ":e $XDG_CONFIG_HOME/nvim/lua/mappings.lua<CR>",
     default_options)
