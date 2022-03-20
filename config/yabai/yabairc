@@ -54,11 +54,11 @@ yabai -m rule --add app='^System Preferences$' manage=off
 yabai -m rule --add title='Preferences$' manage=off
 yabai -m rule --add app='Toggl Track' manage=off sticky=on
 yabai -m rule --add app='Spotify' manage=off sticky=on # appear in all spaces
-yabai -m rule --add app='DevUtils' manage=off # appear in all spaces
-yabai -m rule --add app=1Password\ 7 manage=off
-yabai -m rule --add app="Alfred Preferences" manage=off
-yabai -m rule --add app="iStat Menus" manage=off
-yabai -m rule --add app="AVG AntiVirus" manage=off
+# yabai -m rule --add app='DevUtils' manage=off # appear in all spaces
+# yabai -m rule --add app=1Password\ 7 manage=off
+# yabai -m rule --add app="Alfred Preferences" manage=off
+# yabai -m rule --add app="iStat Menus" manage=off
+# yabai -m rule --add app="AVG AntiVirus" manage=off
 
 # float settings windows
 yabai -m rule --add title='Settings$' manage=off
