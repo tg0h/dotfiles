@@ -1,0 +1,19 @@
+#!bin/zsh
+
+function yabai-get-id(){
+
+  local searchString=$1
+
+  result=$(yabai -m query --windows)
+
+  local jqQuery=$(cat <<-EOF
+                      map(select(.app | contains("$1") ))
+                      | .[]
+                      # | .id
+EOF
+)
+
+  # jq --raw-output -L "~/.config/jq" $jqQuery <<< $result
+  jq --raw-output $jqQuery <<< $result
+
+}

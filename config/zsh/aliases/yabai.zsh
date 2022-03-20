@@ -12,5 +12,8 @@ alias ydd='tail /opt/homebrew/var/log/yabai/yabai.out.log'
 alias yc='yabai -m space --create'
 # Delete focused space and focus first space on display
 alias yd='yabai -m space --destroy'
-alias yqw='yabai -m query --windows'
+alias yqww='yabai -m query --windows'
 alias yr='launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"'
+
+alias ywf='yabai -m window --focus'
+

@@ -1,0 +1,5 @@
+#!bin/zsh
+
+function yqw(){
+  yabai -m query --windows | jq '.[] | {id, app, title, space, level, "split-type", "stack-index", role, subrole, "has-focus", "is-visible",  "is-minimized", "is-hidden", "is-floating", "is-sticky", "can-move", "can-resize", "is-grabbed"}'
+}
