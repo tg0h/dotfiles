@@ -49,11 +49,11 @@ yabai -m config right_padding                0
 yabai -m config window_gap                   0
 
 # float system preferences
-yabai -m rule --add app='^System Information$' manage=off
+yabai -m rule --add app='^System Information$' manage=off 
 yabai -m rule --add app='^System Preferences$' manage=off
 yabai -m rule --add title='Preferences$' manage=off
-yabai -m rule --add app='Toggl Track' manage=off sticky=on
-yabai -m rule --add app='Spotify' manage=off sticky=on # appear in all spaces
+yabai -m rule --add app='Toggl Track' sticky=on --grid 1:5:2:0:1:1
+# yabai -m rule --add app='Spotify' manage=off sticky=on # appear in all spaces
 # yabai -m rule --add app='DevUtils' manage=off # appear in all spaces
 # yabai -m rule --add app=1Password\ 7 manage=off
 # yabai -m rule --add app="Alfred Preferences" manage=off
