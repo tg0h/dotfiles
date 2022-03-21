@@ -3,6 +3,9 @@ function dt(){
   cd /tmp/tim
 }
 alias dd='cd $HOME/dotfiles'
+alias od='cd $HOME/Documents/'
+alias odd='cd $HOME/Documents/dev/'
+alias odz='cd $HOME/Documents/dev/candy/invite-customers/'
 
 # zsh boot
 alias zr='nvim ~/.dotfiles/config/zsh-boot/zshrc'
