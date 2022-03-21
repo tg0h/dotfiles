@@ -18,6 +18,7 @@ hyper - 0x1D : yabai -m space --focus 2 # )
 hyper - 0x18 : yabai -m space --focus 3 # +
 hyper - 0x1E  : yabai -m space --focus 4 # ]
 hyper - 0x12 : yabai -m space --focus 5 # !
+hyper - 0x14 : yabai -m space --focus 6 # #
 # hyper - 1 : yabai -m space --focus 1 # conflicts with hyper - ! (0x12)
 hyper - 0x32 : yabai -m space --focus 1 # ` use backtick instead of 1
 hyper - 2 : yabai -m space --focus 2
