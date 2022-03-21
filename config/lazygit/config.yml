@@ -26,3 +26,7 @@ keybinding:
 #   commits:
 #     moveUpCommit: '<c-t>' # move commit up one
 #     moveDownCommit: '<c-h>' # move commit down one
+git:
+  paging:
+    colorArg: always
+    pager: delta --dark --paging=never
