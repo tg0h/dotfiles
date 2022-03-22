@@ -95,6 +95,7 @@ brew 'zbar'
 brew 'gzip'
 brew 'gnu-tar'
 brew 'ledger'
+brew 'saulpw/vd/visidata'
 
 # run brew bundle to run this file
 cask 'docker'
@@ -143,6 +144,7 @@ cask 'zoom'
 cask 'hazel'
 # cask 'sequel-pro'
 cask 'alt-tab'
+cask 'spotmenu'
 
 tap 'homebrew/cask-drivers'
 cask 'zsa-wally'
