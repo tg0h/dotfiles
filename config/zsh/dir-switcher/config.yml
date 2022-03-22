@@ -68,7 +68,11 @@ keymaps:
     dir: $HOME/src
   - bindkey: sc
     dir: $HOME/src/candy
-    depth: 1 # specify how deep the directory preview should be
+    depth: 5 # specify how deep the directory preview should be
+    glob: \\.git$
+    show-hidden: true
+    show-ignore: true
+    xargs: dirname
   - bindkey: sm
     dir: $HOME/src/me
     depth: 4
