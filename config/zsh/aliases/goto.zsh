@@ -7,6 +7,8 @@ alias od='cd $HOME/Documents/'
 alias odd='cd $HOME/Documents/dev/'
 alias odz='cd $HOME/Documents/dev/candy/invite-customers/'
 
+alias udscm='cd $HOME/src/candy/referralcandy-main/'
+
 # zsh boot
 alias zr='nvim ~/.dotfiles/config/zsh-boot/zshrc'
 alias zz='nvim ~/.config/zsh/.zshenv'
