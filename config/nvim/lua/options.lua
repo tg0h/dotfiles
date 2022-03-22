@@ -1,5 +1,7 @@
-local o = vim.opt
-local wo = vim.wo
+local o = vim.opt -- set
+local wo = vim.wo -- setlocal for window-local options
+local bo = vim.bo -- setlocal for buffer-local options
+local go = vim.go -- setglobal
 local fn = vim.fn
 
 -- vim.cmd "filetype indent plugin on"
