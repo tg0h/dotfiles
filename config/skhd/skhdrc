@@ -10,6 +10,8 @@ hyper - c : yabai -m space --destroy
 hyper - l : yabai -m space --create
 # go to space shortcuts
 hyper - space : yabai -m space --focus recent # focus previous workspace
+hyper - b : yabai -m space --focus recent # focus previous workspace
+# hyper - b: yabai -m space --balance # balance size of windows
 hyper - g : yabai -m space --focus prev || yabai -m space --focus last # previous
 hyper - r : yabai -m space --focus next || yabai -m space --focus first # next
 # go to space
@@ -36,7 +38,6 @@ hyper - f : yabai -m window --toggle float # toggle whether the focused window s
 hyper - d : yabai -m window --space recent; yabai -m space --focus recent # move focused window to previous workspace
 # misc size
 hyper - return : yabai -m window --toggle zoom-fullscreen # enter fullscreen mode for the focused container
-hyper - b: yabai -m space --balance # balance size of windows
 
 # move floating windows left and right
 hyper - left : yabai -m window --toggle float; yabai -m window --grid 1:2:0:0:1:1
@@ -72,7 +73,7 @@ alt + cmd - 6 : yabai -m window --space 6 && yabai -m space --focus 6
 # # toggle whether the focused window should have a border
 # yabai -m window --toggle border
 # # toggle whether the focused window should be shown on all spaces
-meh - f : yabai -m window --toggle sticky
+meh - h : yabai -m window --toggle sticky
 
 # set insertion point in focused container
 # alt + ctrl - h : yabai -m window --insert west
@@ -106,4 +107,4 @@ meh - v : yabai -m window --focus "$(yabai -m query --windows | jq -re "sort_by(
 # alt - w : yabai -m window --close
 
 # toggle window native fullscreen
-# alt + shift - f : yabai -m window --toggle native-fullscreen
+alt + shift - f : yabai -m window --toggle native-fullscreen
