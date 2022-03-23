@@ -73,7 +73,8 @@ alt + cmd - 6 : yabai -m window --space 6 && yabai -m space --focus 6
 # # toggle whether the focused window should have a border
 # yabai -m window --toggle border
 # # toggle whether the focused window should be shown on all spaces
-meh - h : yabai -m window --toggle sticky
+meh - h : yabai -m window --toggle sticky # show on all spaces?
+meh - l : yabai -m window --toggle float # should be tiled?
 
 # set insertion point in focused container
 # alt + ctrl - h : yabai -m window --insert west
