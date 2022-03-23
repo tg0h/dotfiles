@@ -172,12 +172,20 @@ wk.register({
 
     g = {
         name = "Git",
-        c = {"<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Next Hunk"},
-        r = {"<cmd>lua require 'gitsigns'.prev_hunk()<cr>", "Prev Hunk"},
-        p = {"<cmd>lua require 'gitsigns'.preview_hunk()<cr>", "Preview Hunk"},
-        f = {"<cmd>lua require 'gitsigns'.reset_hunk()<cr>", "Reset Hunk"},
-        R = {"<cmd>lua require 'gitsigns'.reset_buffer()<cr>", "Reset Buffer"},
-        s = {"<cmd>lua require 'gitsigns'.stage_hunk()<cr>", "Stage Hunk"},
+        c = {"<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Signs Next Hunk"},
+        r = {"<cmd>lua require 'gitsigns'.prev_hunk()<cr>", "Signs Prev Hunk"},
+        p = {
+            "<cmd>lua require 'gitsigns'.preview_hunk()<cr>",
+            "Signs Preview Hunk"
+        },
+        f = {"<cmd>lua require 'gitsigns'.reset_hunk()<cr>", "Signs Reset Hunk"},
+        R = {
+            "<cmd>lua require 'gitsigns'.reset_buffer()<cr>",
+            "Signs Reset Buffer"
+        },
+        s = {"<cmd>lua require 'gitsigns'.stage_hunk()<cr>", "Signs Stage Hunk"},
+        ["."] = {"<cmd>Gitsigns toggle_linehl<CR>", "Signs Line Highlight"},
+
         l = "Open lazygit", -- comand in toggleterm.lua
         -- n = {"<cmd>Neogit<cr>", "Open Neogit"},
         u = {
