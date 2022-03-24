@@ -191,6 +191,7 @@ return require("packer").startup({
             config = get_setup("dap-virtual-text")
         }
         use {"alexghergh/nvim-tmux-navigation"}
+        use {"danilamihailov/beacon.nvim"}
 
     end,
     config = {
