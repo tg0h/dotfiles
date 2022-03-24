@@ -1,22 +1,22 @@
 # https://en.wikipedia.org/wiki/Control_character#In_ASCII
 # the terminal interprets certain key codes by default - eg ^M is the carriage return
 bindkey -r "^G" #remove ctrl g so that junegunn's fzf_git functions work
-bindkey -r "^H"
-bindkey -r "^N"
+# bindkey -r "^H"
+# bindkey -r "^N"
 bindkey -r "^K"
 
 # file searchers
 zle     -N   fzf-search-dotfiles-widget
-bindkey '^N^H' fzf-search-dotfiles-widget
+# bindkey '^N^H' fzf-search-dotfiles-widget
 zle     -N   fzf-search-wiki-widget
-bindkey '^N^W' fzf-search-wiki-widget
+# bindkey '^N^W' fzf-search-wiki-widget
 zle     -N   fzf-search-bookmarks-widget
-bindkey '^N^M' fzf-search-bookmarks-widget
+# bindkey '^N^M' fzf-search-bookmarks-widget
 zle -N _fzf-redraw-prompt # used by fzf bookmarks widget to redraw prompt
 
 # npm
 zle     -N   fzf-npm-search-widget
-bindkey '^N^N' fzf-npm-search-widget
+# bindkey '^N^N' fzf-npm-search-widget
 
 # fzf git widgets
 zle -N fzf-gh-widget # commits
