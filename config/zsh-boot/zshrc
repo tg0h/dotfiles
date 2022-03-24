@@ -45,6 +45,7 @@ zinit lucid wait for \
   lukechilds/zsh-nvm \
   OMZP::gitignore \
   rupa/z \
+  hlissner/zsh-autopair \
   OMZP::aws/aws.plugin.zsh \
   OMZP::timer \
   marlonrichert/zsh-autocomplete \
