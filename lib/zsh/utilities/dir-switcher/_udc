@@ -8,7 +8,7 @@ function _udc(){
   echo $fg[red] removing files in "$outputFolder" "..."
   [[ -n "$outputFolder" ]] && trash "$outputFolder/*"
 
-  local configFile=$XDG_CONFIG_HOME/zsh/dir-switcher/config.yml
+  local configFile=$XDG_CONFIG_HOME/tg/dir-switcher/config.yml
   local config=$(yq eval '.keymaps' $configFile --output-format json | jq --compact-output '.[]')
   # for row in $config; do
   # while read loop splits only on newlines, unlike for do read which splits on any whitespace

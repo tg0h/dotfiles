@@ -8,7 +8,7 @@ function ud(){
   # ud <searchDir> <searchDepth)
   # eg ud ~/.local/bin 2
   # TODO: how to implement priority with most frequently used first?
-  local configFile=$XDG_CONFIG_HOME/zsh/dir-switcher/config.yml
+  local configFile=$XDG_CONFIG_HOME/tg/dir-switcher/config.yml
 
   if [[ $1 == "configure" ]] && [[ $2 == "list" ]]; then
     udConfigureList $configFile
