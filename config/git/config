@@ -28,3 +28,14 @@
   path = config-work
 [init]
 	defaultBranch = main
+[color "status"]
+	added = green
+	updated = cyan
+	changed = yellow
+	untracked = red
+	branch = cyan
+	nobranch = normal
+	unmerged = red
+	; header = black normal bold
+; [color]
+; 	ui = auto
