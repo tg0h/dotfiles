@@ -170,6 +170,13 @@ wk.register({
         -- z = {"<cmd>Telescope zoxide list<CR>", "Zoxide"}
     },
 
+    c = {
+        name = "Git Worktree",
+        g = {
+            "<cmd>lua require 'telescope'.load_extension'git_worktree'<CR>",
+            "List Worktrees"
+        }
+    },
     g = {
         name = "Git",
         c = {"<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Signs Next Hunk"},

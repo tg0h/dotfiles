@@ -192,6 +192,7 @@ return require("packer").startup({
         }
         use {"alexghergh/nvim-tmux-navigation"}
         use {"danilamihailov/beacon.nvim"}
+        use {"ThePrimeagen/git-worktree.nvim"}
 
     end,
     config = {
