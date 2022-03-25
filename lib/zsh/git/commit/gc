@@ -1,0 +1,40 @@
+#!/bin/zsh
+
+function gc(){
+  # eg gc -n -f config/zsh/aliases/git/git.zsh -m <message>
+  # eg gc -n -f config/zsh/aliases/git/git.zsh
+  # eg gc -f config/zsh/aliases/git/git.zsh
+
+  local message typ filepath
+
+  while getopts 'm:t:f:n' opt; do
+    case "$opt" in
+      m) message=$OPTARG;;
+      t) typ=$OPTARG;;
+      f) filepath=$OPTARG;;
+      n) dryRun="true";;
+    esac
+  done
+  shift $(($OPTIND - 1))
+
+  git add .
+  if [ -z "$filepath" ]; then
+    # just get the filename from the first line and use that as the commit message
+    # copy from the 4th char onwards
+    # filepath=$(git status --porcelain | head -n 1  | cut -c 4-)
+    filepath=$(git diff --cached --name-only | head -n 1)
+  fi
+  typ=${typ:-"feat"}
+  message=${message:-" "}
+
+  message=$(git-conventional-commit-msg -f $filepath -t $typ -m $message)
+
+  if [[ -n "$dryRun" ]]; then
+    git status --short
+    echo
+    echo filepath is $filepath
+    echo message is $message
+  else
+    git commit -m $message
+  fi
+}

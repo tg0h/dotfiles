@@ -1,0 +1,35 @@
+#!/bin/zsh
+# read commit filepath and return scope of commit using the yml config file
+
+local file=$1
+
+if [[ ! -f ./conventional-commit.yml ]]
+  then return 2
+fi
+
+local configFile=./conventional-commit.yml
+
+local config=$(yq eval '.scope' $configFile --output-format json)
+local globs=$(yq eval '.scope' $configFile --output-format json | jq --raw-output 'keys_unsorted[]')
+
+while read glob; do
+  if rg -q $glob <<< $file; then
+    # echo glob is ... $glob
+    # remove $glob and '/' from the start of the $file string
+    local remainderPath=${file#"$glob/"}
+    # search for the %% leftmost '/' from the tail and remove * everything till the tail
+    # then search for a . and remove everything till the tail
+    local scope=${${remainderPath%%/*}%.*}
+    local jqQuery=$(cat <<-EOF
+    .["$glob"] // ""
+EOF
+)
+  local scopePrefix=$(jq --raw-output $jqQuery <<< $config)
+  scopePrefix=${scopePrefix:+$scopePrefix/} # add / to scopePrefix if it is non-null
+
+  echo $scopePrefix$scope
+  break
+  fi
+done <<< $globs
+
+return 1

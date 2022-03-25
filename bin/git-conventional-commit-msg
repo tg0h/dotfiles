@@ -1,0 +1,25 @@
+#!/bin/zsh
+# generates a conventional commit message
+# provide a filepath via -f
+# assumes that a coventional-commit.yml config file exists in the current dir
+
+# type is a keyword so use typ instead
+local message t scope typescope
+
+while getopts 'm:t:f:' opt; do
+  case "$opt" in
+    m) message=$OPTARG;;
+    t) t=$OPTARG;;
+    f) filepath=$OPTARG
+  esac
+done
+shift $(($OPTIND - 1))
+
+scope=$(git-get-scope $filepath)
+
+[[ -n "$scope" ]] && scope="($scope)"
+
+typescope=$t$scope
+[[ -n "$typescope" ]] && typescope=$t$scope:
+ 
+echo "$typescope$message"

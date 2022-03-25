@@ -1,21 +1,10 @@
 alias lg="lazygit"
 # the zsh git plugin defines git aliases in ~/.oh-my-zsh/plugins/git/git.plugin.zsh
 # unalias gg # remove alias set by omz git plugin
-function gg(){
-  #lazy git commiting when prototyping
-  local message="$@"
-  git add .
-  if [ -z "$message" ]; then
-    # just get the filename from the first line and use that as the commit message
-    # copy from the 4th char onwards
-    message=$(git status --porcelain | head -n 1  | cut -c 4-)
-  fi
-  git commit -m "$message"
-}
-
 alias g.="gloz -10"
 alias g,.="glodm"
-alias gc='git status'
+alias gdcn='git diff --cached --name-only'
+
 
 # if you don't specify a branch, it compares against the current HEAD you're on, ie which branch you're currently on
 alias gbm="git branch --merged"

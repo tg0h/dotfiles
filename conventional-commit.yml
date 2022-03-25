@@ -1,0 +1,49 @@
+# convention:
+# wildcard : scope
+# if wildcard matches path of file, use scope
+# eg
+# if files are:
+# config/zsh/aliases/directory/exa.zsh has a scope of alias/directory (terminate early)
+# config/zsh/aliases/git/config.yml has a scope of alias/git
+# config/zsh/aliases/brew.zsh has a scope of alias/brew
+
+# terminate early
+# the scope is the last entry of the key plus 1 more entry from the path whether it is a directory or filename
+# strip file extension
+# scope is dir name by default
+
+# path/to/deep/file
+# path/to:
+
+# default: get first segment after glob as scope
+# any string in key specifies prefix
+
+scope:
+  config/zsh/aliases: alias # alias/dotbot, alias/brew
+  config/zsh/fzf: "fzf" # fzf/bookmarks, fzf/cloudwatch
+  config/zsh: "zsh"
+  config/nvim/lua/setup: vim
+  config/nvim/lua/tg: "vim/tg"
+  config/nvim/lua: "vim"
+  config/nvim: "vim"
+  config:
+  lib/zsh/archive:
+  lib/zsh/aws: "aws"
+  lib/zsh/candy: "candy"
+  lib/zsh/git: "git"
+  lib/zsh/fzf: "fzf"
+  lib/zsh/utilities:
+  bin:
+
+type:
+  - revert # Reverts a previous commit
+  - feat # A new feature
+  - fix # A bug fix
+  - docs # Documentation only changes
+  - style # Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
+  - refactor # A code change that neither fixes a bug nor adds a feature
+  - perf # A code change that improves performance
+  - test # Adding missing tests or correcting existing tests
+  - build # Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)
+  - ci #  Changes to our CI configuration files and scripts (example scopes: Travis, Circle, BrowserStack, SauceLabs)
+  - chore # Other changes that don't modify src or test files
