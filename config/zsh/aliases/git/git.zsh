@@ -5,6 +5,10 @@ alias g.="gloz -10"
 alias g,.="glodm"
 alias gdcn='git diff --cached --name-only'
 
+alias g,="git status --short"
+alias gcn="gc -n"
+
+alias gdc="git diff --cached"
 
 # if you don't specify a branch, it compares against the current HEAD you're on, ie which branch you're currently on
 alias gbm="git branch --merged"
