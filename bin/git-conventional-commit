@@ -20,7 +20,7 @@ scope=$(git-get-scope $filepath)
 [[ -n "$scope" ]] && scope="($scope)"
 
 typescope=$t$scope
-[[ -n "$typescope" ]] && typescope=$t$scope:
+[[ -n "$typescope" ]] && typescope="$t$scope: "
  
 # echo "$typescope$message"
 git commit -m "$typescope$message"

@@ -27,3 +27,34 @@ git:
   paging:
     colorArg: always
     pager: delta --dark --paging=never
+customCommands:
+  - key: "t"
+    context: "files"
+    prompts:
+      - type: "menu"
+        options:
+          - name: "feat"
+            description: "A new feature"
+            value: "feat"
+          - name: "fix"
+            description: "A bug fix"
+            value: "fix"
+          - name: "docs"
+            description: "Documentation only changes"
+            value: "docs"
+          - name: "style"
+            description: "Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)"
+            value: "style"
+          - name: "refactor"
+            description: "A code change that neither fixes a bug nor adds a feature"
+            value: "refactor"
+          - name: "test"
+            description: "Adding missing tests or correcting existing tests"
+            value: "test"
+          - name: "chore"
+            description: "Other changes that don't modify src or test files"
+            value: "chore"
+      - type: "input"
+        title: "message:"
+        initialValue: ""
+    command: 'git-conventional-commit -f {{.SelectedFile.Name}} -t {{index .PromptResponses 0}} -m "{{index .PromptResponses 1}}"'
