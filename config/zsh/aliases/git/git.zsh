@@ -8,7 +8,18 @@ alias gdcn='git diff --cached --name-only'
 alias g,="git status --short"
 alias gcn="gc -n"
 
+alias gwl="git worktree list"
+alias gwa="git worktree add"
+
+alias gbv="git branch -v"
+alias gbvv="git branch -vv"
+
+alias gfos="git fetch origin '+*:*' --prune" # from a bare repo, get everything
+
 alias gdc="git diff --cached"
+
+alias gcl="git config --list"
+alias gcls="git config --list --show-origin"
 
 # if you don't specify a branch, it compares against the current HEAD you're on, ie which branch you're currently on
 alias gbm="git branch --merged"
