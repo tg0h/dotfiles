@@ -21,6 +21,7 @@
 scope:
   config/zsh/aliases: alias # alias/dotbot, alias/brew
   config/zsh/fzf: "fzf" # fzf/bookmarks, fzf/cloudwatch
+  config/zsh-boot: "zsh-boot"
   config/zsh: "zsh"
   config/nvim/lua/setup: vim
   config/nvim/lua/tg: "vim/tg"
@@ -34,6 +35,7 @@ scope:
   lib/zsh/fzf: "fzf"
   lib/zsh/utilities:
   bin:
+  conventional-commit.yml:
 
 type:
   - revert # Reverts a previous commit
