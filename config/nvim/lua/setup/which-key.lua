@@ -324,6 +324,7 @@ wk.register({
 
     s = {
         name = "Search",
+        b = {"<cmd>Telescope builtin<CR>", "Telescope builtin"},
         C = {"<cmd>Telescope colorscheme<cr>", "Colorscheme"},
         o = {
             "<cmd>lua require('setup/telescope').search_dotfiles()<CR>",
