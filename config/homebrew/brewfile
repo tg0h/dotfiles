@@ -96,6 +96,7 @@ brew 'gzip'
 brew 'gnu-tar'
 brew 'ledger'
 brew 'saulpw/vd/visidata'
+brew 'tokei'
 
 # run brew bundle to run this file
 cask 'docker'
