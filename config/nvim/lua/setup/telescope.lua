@@ -1,8 +1,8 @@
--- local pickers = require("telescope.pickers")
--- local finders = require("telescope.finders")
+local pickers = require("telescope.pickers")
+local finders = require("telescope.finders")
 -- local previewers = require("telescope.previewers")
--- local action_state = require("telescope.actions.state")
--- local conf = require("telescope.config").values
+local action_state = require("telescope.actions.state")
+local conf = require("telescope.config").values
 local actions = require("telescope.actions")
 local telescope = require("telescope")
 
@@ -76,6 +76,41 @@ M.search_wiki_candy = function()
             mirror = true
         }
     })
+end
+
+local bookmarks = {}
+
+-- get .bookmarks file if it exists in the current directory
+local test = vim.fn.glob(".bookmarks")
+if test ~= "" then
+    local cwd = vim.fn.getcwd()
+    print(vim.inspect(cwd))
+    for line in io.lines(".bookmarks") do
+        -- add the absolute path as the second entry
+        table.insert(bookmarks, {line, cwd .. "/" .. line})
+    end
+    -- print(vim.inspect(bookmarks))
+end
+
+M.bookmarks = function(opts)
+    -- list bookmarks in .bookmarks
+    opts = opts or {}
+    pickers.new(opts, {
+        -- prompt_title = string.format("bookmarks(%s)", vim.loop.cwd()),
+        prompt_title = "bookmarks",
+        finder = finders.new_table {
+            results = bookmarks,
+            entry_maker = function(entry)
+                return {
+                    value = entry,
+                    display = entry[1],
+                    ordinal = entry[1],
+                    path = entry[2] -- provide the absolute path here
+                }
+            end
+        },
+        sorter = conf.generic_sorter(opts)
+    }):find()
 end
 
 return M
