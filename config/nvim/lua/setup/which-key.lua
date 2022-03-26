@@ -172,8 +172,12 @@ wk.register({
 
     c = {
         name = "Git Worktree",
+        h = {
+            "<CMD>lua require('telescope').extensions.git_worktree.create_git_worktree()<CR>",
+            "Create Worktrees"
+        },
         g = {
-            "<cmd>lua require 'telescope'.load_extension'git_worktree'<CR>",
+            "<CMD>lua require 'telescope'.extensions.git_worktree.git_worktrees()<CR>",
             "List Worktrees"
         }
     },
@@ -324,6 +328,11 @@ wk.register({
 
     s = {
         name = "Search",
+        ["."] = {
+            "<CMD>lua require('setup/telescope').bookmarks(require('telescope.themes').get_dropdown {})<CR>",
+            "My Bookmarks"
+        },
+
         b = {"<cmd>Telescope builtin<CR>", "Telescope builtin"},
         C = {"<cmd>Telescope colorscheme<cr>", "Colorscheme"},
         o = {
@@ -339,6 +348,10 @@ wk.register({
         M = {"<cmd>Telescope man_pages<cr>", "Man Pages"},
         R = {"<cmd>Telescope registers<cr>", "Registers"},
         t = {"<cmd>Telescope live_grep<cr>", "Text"},
+        T = {
+            "<CMD>Telescope current_buffer_fuzzy_find<CR>",
+            "Text - Current Buffer"
+        },
         s = {"<cmd>Telescope grep_string<cr>", "Text under cursor"},
         S = {"<cmd>Telescope symbols<cr>", "Search symbols"},
         k = {"<cmd>Telescope keymaps<cr>", "Keymaps"},
