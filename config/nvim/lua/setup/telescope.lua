@@ -96,8 +96,8 @@ M.bookmarks = function(opts)
     -- list bookmarks in .bookmarks
     opts = opts or {}
     pickers.new(opts, {
-        -- prompt_title = string.format("bookmarks(%s)", vim.loop.cwd()),
-        prompt_title = "bookmarks",
+        prompt_title = string.format("bookmarks(%s)", vim.loop.cwd()),
+        -- prompt_title = "bookmarks",
         finder = finders.new_table {
             results = bookmarks,
             entry_maker = function(entry)
