@@ -150,7 +150,7 @@ cask 'spotmenu'
 tap 'homebrew/cask-drivers'
 cask 'zsa-wally'
 
-mas 'Things', id: 904280696
+# mas 'Things', id: 904280696
 mas 'Blackmagic Disk Speed Test', id: 425264550
 mas 'Aquarelo', id: 1263012549
 mas 'Goldie', id: 1375037046
