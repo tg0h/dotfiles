@@ -191,7 +191,7 @@ return require("packer").startup({
             config = get_setup("dap-virtual-text")
         }
         use {"alexghergh/nvim-tmux-navigation"}
-        use {"danilamihailov/beacon.nvim"}
+        use {"danilamihailov/beacon.nvim", config = get_setup("beacon")}
         use {"ThePrimeagen/git-worktree.nvim"}
 
     end,
