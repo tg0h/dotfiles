@@ -181,33 +181,39 @@ wk.register({
             "List Worktrees"
         }
     },
+
     g = {
         name = "Git",
-        c = {"<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Signs Next Hunk"},
-        r = {"<cmd>lua require 'gitsigns'.prev_hunk()<cr>", "Signs Prev Hunk"},
+        -- hunk navigation
+        t = {"<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Signs Next Hunk"},
+        n = {"<cmd>lua require 'gitsigns'.prev_hunk()<cr>", "Signs Prev Hunk"},
+
+        -- hunk preview
+        ["."] = {"<cmd>Gitsigns toggle_linehl<CR>", "Signs Line Highlight"},
         p = {
             "<cmd>lua require 'gitsigns'.preview_hunk()<cr>",
             "Signs Preview Hunk"
         },
-        f = {"<cmd>lua require 'gitsigns'.reset_hunk()<cr>", "Signs Reset Hunk"},
-        R = {
-            "<cmd>lua require 'gitsigns'.reset_buffer()<cr>",
-            "Signs Reset Buffer"
-        },
+        -- hunk managemenent
         s = {"<cmd>lua require 'gitsigns'.stage_hunk()<cr>", "Signs Stage Hunk"},
-        ["."] = {"<cmd>Gitsigns toggle_linehl<CR>", "Signs Line Highlight"},
-
-        l = "Open lazygit", -- comand in toggleterm.lua
-        -- n = {"<cmd>Neogit<cr>", "Open Neogit"},
+        r = {"<cmd>lua require 'gitsigns'.reset_hunk()<cr>", "Signs Reset Hunk"},
         u = {
             "<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>",
             "Undo Stage Hunk"
         },
+        R = {
+            "<cmd>lua require 'gitsigns'.reset_buffer()<cr>",
+            "Signs Reset Buffer"
+        },
+
+        l = "Open lazygit", -- comand in toggleterm.lua
+        -- n = {"<cmd>Neogit<cr>", "Open Neogit"},
+
         g = {"<cmd>Telescope git_status<cr>", "Open changed file"},
         b = {"<cmd>Telescope git_branches<cr>", "Checkout branch"},
         B = {"<cmd>GitBlameToggle<cr>", "Toggle Blame"},
-        t = {"<cmd>Telescope git_commits<cr>", "Checkout commit"},
-        C = {
+        c = {"<cmd>Telescope git_commits<cr>", "Checkout commit"},
+        f = {
             "<cmd>Telescope git_bcommits<cr>",
             "Checkout commit(for current file)"
         }
