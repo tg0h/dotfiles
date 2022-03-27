@@ -52,6 +52,7 @@ export TEALDEER_CACHE_DIR=~/.cache/tealdeer
 export BUNDLE_USER_CONFIG=$XDG_CONFIG_HOME/bundle
 export BUNDLE_USER_CACHE=$XDG_CACHE_HOME/bundle
 export BUNDLE_USER_PLUGIN="$XDG_DATA_HOME"/bundle
+export SOLARGRAPH_CACHE=$XDG_CACHE_HOME/solargraph
 
 # alias yarn='yarn --use-yarnrc "$XDG_CONFIG_HOME/yarn/config"'
 
