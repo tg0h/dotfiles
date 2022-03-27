@@ -9,6 +9,14 @@ gui:
       - reverse
     selectedRangeBgColor:
       - reverse
+    optionsTextColor:
+      - blue
+    cherryPickedCommitBgColor:
+      - blue
+    cherryPickedCommitFgColor:
+      - cyan
+    unstagedChangesColor:
+      - red
 keybinding:
   universal:
     #     prevItem-alt: 't' # go one line up (vim k)
