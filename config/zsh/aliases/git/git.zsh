@@ -3,21 +3,30 @@ alias lg="lazygit"
 # unalias gg # remove alias set by omz git plugin
 alias g.="gloz -10"
 alias g,.="glodm"
-alias gdcn='git diff --cached --name-only'
 
+# diff
+alias gdcn='git diff --cached --name-only'
+alias gdn="git diff --name-only"
+alias gdnm="git diff --name-only main..." # git merge base with main
+alias gdc="git diff --cached"
+
+# status
 alias g,="git status --short"
+
+# commit
 alias gcn="gc -n"
 
+# worktree
 alias gwl="git worktree list"
 alias gwa="git worktree add"
+# fetch - worktrees
+alias gfos="git fetch origin '+*:*' --prune" # from a bare repo, get everything
 
+# branch status
 alias gbv="git branch -v"
 alias gbvv="git branch -vv"
 
-alias gfos="git fetch origin '+*:*' --prune" # from a bare repo, get everything
-
-alias gdc="git diff --cached"
-
+# config
 alias gcl="git config --list"
 alias gcls="git config --list --show-origin"
 
