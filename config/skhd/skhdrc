@@ -21,6 +21,10 @@ hyper - 0x18 : yabai -m space --focus 3 # +
 hyper - 0x1E  : yabai -m space --focus 4 # ]
 hyper - 0x12 : yabai -m space --focus 5 # !
 hyper - 0x14 : yabai -m space --focus 6 # #
+hyper - e : yabai -m space --focus 7 # /
+hyper - u : yabai -m space --focus 8 # /
+hyper - p : yabai -m space --focus 9 # /
+
 # hyper - 1 : yabai -m space --focus 1 # conflicts with hyper - ! (0x12)
 hyper - 0x32 : yabai -m space --focus 1 # ` use backtick instead of 1
 hyper - 2 : yabai -m space --focus 2
@@ -69,6 +73,9 @@ alt + cmd - 3 : yabai -m window --space 3 && yabai -m space --focus 3
 alt + cmd - 4 : yabai -m window --space 4 && yabai -m space --focus 4
 alt + cmd - 5 : yabai -m window --space 5 && yabai -m space --focus 5
 alt + cmd - 6 : yabai -m window --space 6 && yabai -m space --focus 6
+alt + cmd - 7 : yabai -m window --space 7 && yabai -m space --focus 7
+alt + cmd - 8 : yabai -m window --space 8 && yabai -m space --focus 8
+alt + cmd - 9 : yabai -m window --space 9 && yabai -m space --focus 9
 
 # # toggle whether the focused window should have a border
 # yabai -m window --toggle border
