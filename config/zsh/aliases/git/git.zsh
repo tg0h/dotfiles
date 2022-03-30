@@ -19,6 +19,7 @@ alias gcn="gc -n"
 # worktree
 alias gwl="git worktree list"
 alias gwa="git worktree add"
+alias gwr="git worktree remove"
 # fetch - worktrees
 alias gfos="git fetch origin '+*:*' --prune" # from a bare repo, get everything
 
