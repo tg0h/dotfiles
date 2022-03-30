@@ -2,7 +2,6 @@
 
 tap 'homebrew/cask'
 tap 'homebrew/services'
-# tap 'homebrew/bundle'
 
 cask 'kitty'
 cask 'iterm2'
@@ -12,7 +11,6 @@ cask 'logitech-options'
 
 tap 'homebrew/cask-fonts'
 cask 'font-jetbrains-mono-nerd-font'
-# cask 'font-fontawesome'
 
 brew 'rbenv'
 brew "pyenv"
@@ -35,7 +33,6 @@ tap 'koekeishiya/formulae'
 brew 'koekeishiya/formulae/skhd', restart_service: true
 brew 'koekeishiya/formulae/yabai', args: ['HEAD'], restart_service: true
 tap 'cmacrae/formulae'
-# brew 'cmacrae/formulae/spacebar', restart_service: true
 cask 'spaceman'
 
 brew 'less'
@@ -95,14 +92,11 @@ brew 'zbar'
 brew 'gzip'
 brew 'gnu-tar'
 brew 'ledger'
-brew 'saulpw/vd/visidata'
 brew 'tokei'
 
-# run brew bundle to run this file
 cask 'docker'
 cask 'alfred'
 cask '1password'
-# cask '1password-cli'
 cask 'nvalt'
 cask 'authy'
 cask 'lastpass'
@@ -112,28 +106,20 @@ cask 'istat-menus'
 cask 'bartender'
 cask 'cleanshot'
 cask 'toggl-track'
-# cask 'snagit' # doesn't work for old versions of snagit
 # cask 'sip'
-# cask 'balsamiq-wireframes'
 
-# cask 'microsoft-excel'
 cask 'foxitreader'
 cask 'google-chrome'
 cask 'brave-browser'
 cask 'firefox'
-# cask 'microsoft-edge'
 cask 'karabiner-elements'
 cask 'postman'
-# cask 'forklift'
 cask 'houdahspot'
-# cask 'proxyman'
 cask 'hook'
 cask 'pixelsnap'
 cask 'keyboard-maestro'
 cask 'cold-turkey-blocker'
 cask 'glyphfinder'
-# cask 'marked'
-# cask 'vlc'
 cask 'transmit'
 cask 'devutils'
 cask 'affinity-photo'
@@ -141,17 +127,13 @@ cask 'affinity-designer'
 cask 'affinity-publisher'
 cask 'slack'
 cask 'zoom'
-# cask 'notion'
 cask 'hazel'
-# cask 'sequel-pro'
 cask 'alt-tab'
-cask 'spotmenu'
+cask 'another-redis-desktop-manager'
 
 tap 'homebrew/cask-drivers'
 cask 'zsa-wally'
 
-# mas 'Things', id: 904280696
 mas 'Blackmagic Disk Speed Test', id: 425264550
 mas 'Aquarelo', id: 1263012549
 mas 'Goldie', id: 1375037046
-# mas 'Smart Countdown Timer', id: 1410709951
