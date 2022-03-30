@@ -6,6 +6,7 @@ local M = {
     j = {"<cmd>lnext<CR>", "Location List next"},
     k = {"<cmd>lprev<CR>", "Location List prev"},
 
+    l = require("setup.which-key.keys.lsp"),
     b = require("setup.which-key.keys.buffers"),
     f = require("setup.which-key.keys.files"),
     c = require("setup.which-key.keys.git-worktree"),
