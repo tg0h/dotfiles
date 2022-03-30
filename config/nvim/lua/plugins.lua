@@ -66,6 +66,11 @@ return require("packer").startup({
         use {"nvim-telescope/telescope-file-browser.nvim"}
         use {"crispgm/telescope-heading.nvim"} -- markdown headings
         use {"nvim-telescope/telescope-symbols.nvim"} -- add emojis
+        use {"ThePrimeagen/git-worktree.nvim"}
+        use {
+            "nvim-telescope/telescope-frecency.nvim",
+            requires = {"tami5/sqlite.lua"}
+        }
 
         use {
             "kyazdani42/nvim-tree.lua",
@@ -192,7 +197,6 @@ return require("packer").startup({
         }
         use {"alexghergh/nvim-tmux-navigation"}
         use {"danilamihailov/beacon.nvim", config = get_setup("beacon")}
-        use {"ThePrimeagen/git-worktree.nvim"}
 
     end,
     config = {

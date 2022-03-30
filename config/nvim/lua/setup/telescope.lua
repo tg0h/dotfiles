@@ -35,6 +35,17 @@ telescope.setup({
         fzy_native = {
             override_generic_sorter = false,
             override_file_sorter = true
+        },
+        frecency = {
+            default_workspace = "CWD",
+            show_scores = true,
+            show_unindexed = false,
+            ignore_patterns = {"*.git/*", "*/tmp/*"},
+            disable_devicons = false,
+            workspaces = {
+                ["conf"] = vim.fn.expand("~/.config"),
+                ["candy"] = vim.fn.expand("~/src/candy/referralcandy-main")
+            }
         }
     }
 })
@@ -112,5 +123,14 @@ M.bookmarks = function(opts)
         sorter = conf.generic_sorter(opts)
     }):find()
 end
+
+M.big_window = function()
+    return {
+        layout_strategy = "vertical",
+        layout_config = {mirror = true, width = 0.9, height = 0.9}
+    }
+end
+
+telescope.load_extension "frecency"
 
 return M
