@@ -9,6 +9,9 @@ alias odz='cd $HOME/Documents/dev/candy/invite-customers/'
 
 alias udscm='cd $HOME/src/candy/referralcandy-main/'
 
+# candy wiki - old
+alias nh='nvim ~/Documents/candy/wiki/old/readme.md'
+
 # zsh boot
 alias zr='nvim ~/.dotfiles/config/zsh-boot/zshrc'
 alias zz='nvim ~/.config/zsh/.zshenv'
