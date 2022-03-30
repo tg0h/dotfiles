@@ -48,19 +48,26 @@ yabai -m config left_padding                 0
 yabai -m config right_padding                0
 yabai -m config window_gap                   0
 
+# yabai -m config window_border on 
+# yabai -m config window_border_width          6
+# yabai -m config active_window_border_color   0xffff3050
+# yabai -m config normal_window_border_color   0xffaaaaaa
+# yabai -m window --toggle border
+# yabai -m rule --add app=Terminal border=off
+
 # floating
 yabai -m rule --add app='^System Information$' manage=off 
 yabai -m rule --add app='^System Preferences$' manage=off
 yabai -m rule --add title='Preferences$' manage=off
 yabai -m rule --add title='Settings$' manage=off
 yabai -m rule --add app='Wally' manage=off sticky=on layer=above # keep it topmost
-yabai -m rule --add app='Snagit' manage=off
+# yabai -m rule --add app='Snagit' manage=off
 
 # floating and sticky
 yabai -m rule --add app='Toggl Track' manage=off sticky=on
 yabai -m rule --add app='iThoughtsX' manage=off sticky=on
 yabai -m rule --add app='Spotify' manage=off sticky=on
-yabai -m rule --add app='DataGrip' manage=off sticky=on
+# yabai -m rule --add app='DataGrip' manage=off sticky=on
 yabai -m rule --add app='CleanShot X' manage=off
 # yabai -m rule --add app=1Password\ 7 manage=off
 # yabai -m rule --add app="Alfred Preferences" manage=off
