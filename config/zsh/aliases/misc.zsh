@@ -20,6 +20,8 @@ alias sss="source $HOME/.config/zsh/.zshrc"
 # edit
 alias ee="nvim $HOME/.local/lib/scratch.zsh"
 
+alias db="dbxcli"
+alias dbl="dbxcli ls"
 
 # utils ====================================================================
 # bat
