@@ -34,6 +34,7 @@ scope:
   lib/zsh/git: "git"
   lib/zsh/fzf: "fzf"
   lib/zsh/utilities:
+  lib/zsh: "lib"
   bin:
   conventional-commit.yml:
 
