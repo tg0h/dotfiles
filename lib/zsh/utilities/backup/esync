@@ -1,0 +1,5 @@
+#!bin/zsh
+
+function esync(){
+  dbxcli put ~/Documents/dropbox/exp.xlsb 
+}
