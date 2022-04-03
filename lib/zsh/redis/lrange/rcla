@@ -1,0 +1,10 @@
+#!bin/zsh
+
+function rcla(){
+  # redis lrange get all 
+  # example:
+  #   rcla <key>
+
+  redis-cli lrange $1 0 -1 | jq 
+}
+
