@@ -3,6 +3,8 @@ function dt(){
   cd /tmp/tim
 }
 alias dd='cd $HOME/dotfiles'
+alias dp='cd /tmp'
+
 alias od='cd $HOME/Documents/'
 alias odd='cd $HOME/Documents/dev/'
 alias odz='cd $HOME/Documents/dev/candy/invite-customers/'
