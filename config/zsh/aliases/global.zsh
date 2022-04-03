@@ -11,6 +11,8 @@ alias -g F='| fzf --preview-window hidden'
 alias -g H='| head -n 10'
 alias -g T='| tail -n 10'
 
+alias -g P="| tr -d '\n' | pbcopy" # remove newlines before putting in pbcopy
+
 # T registers
 alias -g CT='cat /tmp/t'
 alias -g ET='nvim /tmp/t'
