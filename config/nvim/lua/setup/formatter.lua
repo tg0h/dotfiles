@@ -1,7 +1,7 @@
 vim.api.nvim_exec([[
 augroup FormatAutogroup
   autocmd!
-  autocmd BufWritePost *.md,*.lua,*.yaml,*.yml,*.json,*.js,*.mjs,*.tsx,*.ts FormatWrite
+  autocmd BufWritePost *.md,*.lua,*.yaml,*.yml,*.json,*.js,*.mjs,*.tsx,*.ts,*.html FormatWrite
 augroup END
 ]], true)
 
@@ -45,6 +45,20 @@ require("formatter").setup({
         --     end
         -- },
 
+        html = {
+            -- prettier
+            function()
+                return {
+                    exe = "prettier",
+                    args = {
+                        "--stdin-filepath",
+                        vim.fn.fnameescape(vim.api.nvim_buf_get_name(0))
+                    },
+                    stdin = true
+                }
+            end
+        },
+
         typescriptreact = {
             -- prettier
             function()
@@ -52,9 +66,9 @@ require("formatter").setup({
                     exe = "prettier",
                     args = {
                         "--stdin-filepath",
-                        vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)),
+                        vim.fn.fnameescape(vim.api.nvim_buf_get_name(0))
                     },
-                    stdin = true,
+                    stdin = true
                 }
             end
         },
@@ -66,9 +80,9 @@ require("formatter").setup({
                     exe = "prettier",
                     args = {
                         "--stdin-filepath",
-                        vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)),
+                        vim.fn.fnameescape(vim.api.nvim_buf_get_name(0))
                     },
-                    stdin = true,
+                    stdin = true
                 }
             end
         },
@@ -80,9 +94,9 @@ require("formatter").setup({
                     exe = "prettier",
                     args = {
                         "--stdin-filepath",
-                        vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)),
+                        vim.fn.fnameescape(vim.api.nvim_buf_get_name(0))
                     },
-                    stdin = true,
+                    stdin = true
                 }
             end
         },
