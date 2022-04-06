@@ -1,8 +1,0 @@
-#!bin/zsh
-
-function hi(){
-  # list previous commands
-  # note - running aoeu itself adds a command to the command history :|
-  fc -l
-}
-
