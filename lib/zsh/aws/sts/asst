@@ -3,6 +3,21 @@
 function asst(){
   # aws sts get-session-token and update the mfa section in the credentials file
   # store results in cache
+  # asst - get a token from aws
+  # asst -c - clear the token cache, get a fresh token from aws
+
+  local clear
+  while getopts 'c' opt; do
+    case "$opt" in
+      c) clear=true;;
+    esac
+  done
+
+  if [[ -n "$clear" ]]; then 
+    trash /tmp/aws
+  fi
+
+  shift $(($OPTIND - 1))
   unset AWS_ACCESS_KEY_ID
   unset AWS_SECRET_ACCESS_KEY
   unset AWS_SESSION_TOKEN
