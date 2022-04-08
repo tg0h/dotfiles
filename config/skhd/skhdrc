@@ -12,8 +12,15 @@ hyper - l : yabai -m space --create
 hyper - space : yabai -m space --focus recent # focus previous workspace
 hyper - b : yabai -m space --focus recent # focus previous workspace
 # hyper - b: yabai -m space --balance # balance size of windows
-hyper - g : yabai -m space --focus prev || yabai -m space --focus last # previous
-hyper - r : yabai -m space --focus next || yabai -m space --focus first # next
+# hyper - g : yabai -m space --focus prev || yabai -m space --focus last # previous
+# hyper - r : yabai -m space --focus next || yabai -m space --focus first # next
+
+# Focus previous display by arrangement index
+hyper - g : yabai -m display --focus prev || yabai -m display --focus last
+# Focus next display by arrangement index
+# NOTE: can also refer to monitors by arrangement index, eg 1, 2 or 3
+hyper - r : yabai -m display --focus next || yabai -m display --focus first
+
 # go to space
 hyper - 0x1C : yabai -m space --focus 1 # *
 hyper - 0x1D : yabai -m space --focus 2 # )
@@ -104,8 +111,8 @@ meh - s : yabai -m space --layout stack
 
 # cycle through stack windows - use meh - escape?
 # position stack movement keys in an easier to reach row, since cycle has other similar keymaps
-meh - r: yabai -m window --focus stack.next || yabai -m window --focus south
-meh - c : yabai -m window --focus stack.prev || yabai -m window --focus north
+meh - r: yabai -m window --focus stack.next || yabai -m window --focus south || yabai -m window --focus stack.first
+meh - c : yabai -m window --focus stack.prev || yabai -m window --focus north || yabai -m window --focus stack.last
 # cycle through all windows sorted by: coordinates -> space index -> display index
 meh - w : yabai -m window --focus "$(yabai -m query --windows | jq -re "sort_by(.display, .space, .frame.x, .frame.y, .id) | map(select(.\"is-visible\" == true and .role != \"AXUnknown\")) | reverse | nth(index(map(select(.\"has-focus\" == true))) - 1).id")"
 # cycle through all visible windows sorted by: coordinates -> display index
