@@ -4,6 +4,8 @@ function dt(){
 }
 alias dd='cd $HOME/dotfiles'
 alias dp='cd /tmp'
+alias dc='cd ~/src/clones'
+alias dxd='cd $XDG_DATA_HOME'
 
 alias od='cd $HOME/Documents/'
 alias odd='cd $HOME/Documents/dev/'
