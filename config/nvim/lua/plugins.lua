@@ -15,6 +15,12 @@ end
 return require("packer").startup({
     function(use)
         -- Packer can manage itself
+        use("~/src/playground/vim/plugin")
+        use("rafcamlet/nvim-luapad")
+
+        -- TODO: luadev requires lspconfig ??
+        use {"folke/lua-dev.nvim", config = get_setup("luadev")}
+
         use("wbthomason/packer.nvim")
         use {"sainnhe/sonokai", config = get_setup("sonokai")}
 
@@ -44,7 +50,10 @@ return require("packer").startup({
 
         use {
             "neovim/nvim-lspconfig",
-            requires = {{"b0o/schemastore.nvim"}, {"hrsh7th/nvim-cmp"}},
+            requires = {
+                {"b0o/schemastore.nvim"}, {"hrsh7th/nvim-cmp"},
+                {"folke/lua-dev.nvim"}
+            },
             config = get_setup("lsp")
         }
 
