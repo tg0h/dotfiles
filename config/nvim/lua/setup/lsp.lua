@@ -1,12 +1,21 @@
 local nvim_lsp = require("lspconfig")
+-- local util = require("lspconfig/util")
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
+
+-- nvim_lsp.tsserver.setup({
+--     capabilities = capabilities,
+--     flags = {debounce_text_changes = 150},
+--     -- root_dir = util.root_pattern(".git","tsconfig.json", "jsconfig.json", "package.json")
+--     root_dir = util.root_pattern(".git", "tsconfig.json")
+-- })
 
 local servers = {
     "tsserver", "jsonls", "bashls", "dockerls", "yamlls", "sumneko_lua",
     "solargraph"
 }
+
 -- Use a loop to conveniently call 'setup' on multiple servers
 for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup {
