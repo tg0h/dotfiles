@@ -111,6 +111,7 @@ cmp.setup({
 cmp.setup.cmdline("/", {sources = {{name = "buffer"}}})
 
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+-- TODO: doesn't play well with nvimtree, causes eg :args to show filename instead of output?
 cmp.setup.cmdline(":", {
     sources = cmp.config.sources({{name = "path"}}, {{name = "cmdline"}})
 })
