@@ -47,6 +47,8 @@ alias glod="git log --date=human --graph --pretty='%Cred%h%Creset -%C(auto)%d%Cr
 alias glodm='glod -10'
 alias glodmm='glod -20'
 
+alias gin="git init"
+
 # GIT PLUMBING
 alias gcf="git cat-file"
 alias gcfp="git cat-file -p"
