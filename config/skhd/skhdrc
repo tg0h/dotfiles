@@ -17,6 +17,8 @@ hyper - b : yabai -m space --focus recent # focus previous workspace
 
 # Focus previous display by arrangement index
 hyper - g : yabai -m display --focus prev || yabai -m display --focus last
+# rcmd + rshift + ralt + rctrl + lshift - g : yabai -m space --focus 1
+
 # Focus next display by arrangement index
 # NOTE: can also refer to monitors by arrangement index, eg 1, 2 or 3
 hyper - r : yabai -m display --focus next || yabai -m display --focus first
