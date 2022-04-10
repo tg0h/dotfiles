@@ -26,6 +26,7 @@
     - $XDG_CONFIG_HOME/parallel
     - $XDG_CONFIG_HOME/zsh
     - $XDG_STATE_HOME
+    - $XDG_STATE_HOME/mycli
     - $XDG_STATE_HOME/zsh # create folder to store zsh history
     - ~/.local/bin # binaries for any ad hoc binaries, eg authy
 
