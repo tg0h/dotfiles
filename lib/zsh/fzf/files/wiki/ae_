@@ -1,6 +1,6 @@
 #!bin/zsh
 
-function ae() {
+function ae_() {
   # search wiki
   
   fd --color always . '/Users/tim/certis/docs/wiki' | fzf --ansi \

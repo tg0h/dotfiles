@@ -1,0 +1,23 @@
+#!/bin/zsh
+
+# fzf_home_alias_preview <inputFile> <inputAlias>
+# search for <inputAlias> in <inputFile>, find line number of inputAlias and provide to fzf-bat-preview
+# needs to match
+# alias test='test alias'
+# alias test="test alias"
+# alias -g test="test alias"
+# alias -g test="test alias" # comments
+
+local inputFile=$1
+local inputAlias=$2
+
+local aliasLineNumber
+local file=$_fzf_home_alias_dir$inputFile
+
+rg --only-matching --multiline --line-number --with-filename \
+   -e "^alias(\s*)(-g)?(\s*)$inputAlias" $file \
+   | rg '(?::)(\d+)(?::)' --only-matching --replace '$1' \
+   | read -r aliasLineNumber _
+
+fzf-bat-preview $_fzf_home_alias_dir$inputFile $aliasLineNumber
+

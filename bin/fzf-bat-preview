@@ -1,0 +1,23 @@
+#!/bin/zsh
+# fzf-bat-preview <file> <highlightLineNumber>
+# centres the preview with the specified win height
+
+# number of lines to show
+local WIN_HEIGHT=40
+
+local file=$1
+local highlightLine=$2
+local winHeight=$WIN_HEIGHT
+
+# subtract 3 for the header
+local centreLine=$(( (winHeight - 3) / 2 ))
+
+# if the highlight line is too small, start at 0 and not a negative number
+local start=$(( highlightLine - centreLine ))
+if [ $start -lt 0 ]; then
+  start=0
+fi
+
+local end=$(( start + winHeight ))
+
+bat --color always --highlight-line $highlightLine --line-range $start:$end --paging never "$file"

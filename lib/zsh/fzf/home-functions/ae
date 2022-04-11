@@ -1,0 +1,38 @@
+#!bin/zsh
+
+export _fzf_home_alias_dir="$XDG_CONFIG_HOME/zsh/aliases"
+# TODO: pressing enter should leave the function name, not the entire line
+# TODO: show optional comments
+
+_fzf_home_getAliases(){
+  # match alias aliasName='blah'
+  # match alias -g aliasName='blah'
+  # match alias -g aliasName="blah"
+
+  # \x1b is an escape code
+
+  rg \
+    --follow \
+    --color always \
+    --field-context-separator '' \
+    --no-context-separator \
+    -e "(^alias)(\s*)(-g)?(\s*)(?P<aliasName>(.*))(=)" -r '$aliasName ' \
+    --field-match-separator ' ' \
+    $_fzf_home_alias_dir \
+    -g '!**/archive/*' \
+    | gsed "s!$_fzf_home_alias_dir!!" \
+    | gsed -E 's!(#)(\s*)!\1 !' \
+    | gsed -E "s/#.*/"$'\x1b[38;2;82;96;255m'"&"$'\e[m'"/"
+}
+
+function ae(){
+  # search home functions
+
+  local result=$(
+  _fzf_home_getAliases | fzf --ansi \
+    --preview="fzf_home_alias_preview {1} {2}" \
+    --bind "enter:execute(fzf_home_alias_edit {1} {2} < /dev/tty > /dev/tty 2>&1)"
+)
+}
+
+ae
