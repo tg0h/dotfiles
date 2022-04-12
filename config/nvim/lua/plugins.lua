@@ -167,6 +167,10 @@ return require("packer").startup({
         use {"tweekmonster/startuptime.vim"}
         use {"ray-x/lsp_signature.nvim", requires = {{"neovim/nvim-lspconfig"}}}
         use {"ggandor/lightspeed.nvim", event = "BufReadPre"}
+
+        -- to enable dot repeat for lightspeed
+        use {"tpope/vim-repeat"}
+
         use {"ahmedkhalf/project.nvim", config = get_setup("project")}
         use {
             "folke/zen-mode.nvim",
