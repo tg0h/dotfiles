@@ -26,5 +26,7 @@ function _udc(){
     # NOTE: running eval adds 1s to zsh startup 
     # instead, generate and autoload the functions
     echo "ud$bindkey() {ud $dir $depth $glob $showHidden $showIgnore $xargs}" > $outputFolder/ud$bindkey
+    echo "et$bindkey() {et $dir }" > $outputFolder/et$bindkey
+    echo "dd$bindkey() {cd $dir }" > $outputFolder/dd$bindkey
   done <<< $config
 }
