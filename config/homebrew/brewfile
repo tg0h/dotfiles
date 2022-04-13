@@ -95,6 +95,7 @@ brew 'ledger'
 brew 'tokei'
 brew 'ffmpeg'
 brew 'mycli'
+brew 'fish'
 
 cask 'docker'
 cask 'alfred'
