@@ -1,0 +1,20 @@
+#!bin/zsh
+# search for filename and file contents
+# edits the file after picking the fzf entry
+
+function et(){
+  # et <dir> searches for the filename and its contents in <dir>
+  # <dir> defaults to cwd if none provided
+
+  local dir=$1
+
+  local fzfEntry=$(rg --follow --line-number --with-filename . $dir --color=always --field-match-separator ' '\
+    | fzf --preview "bat --color=always {1} --highlight-line {2}" \
+    --preview-window ~8,+{2}-5)
+
+  if [ -n "$fzfEntry" ]; then
+    local file lineNumber
+    read -r file lineNumber _ <<< $fzfEntry
+    nvim $file +$lineNumber -c 'normal! zz'
+  fi
+}

@@ -1,0 +1,6 @@
+#!bin/zsh
+
+function fzf-search-filenameAndContent-widget() {
+  et
+  zle reset-prompt
+}

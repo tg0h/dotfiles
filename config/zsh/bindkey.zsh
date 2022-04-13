@@ -18,6 +18,9 @@ zle -N _fzf-redraw-prompt # used by fzf bookmarks widget to redraw prompt
 zle     -N   fzf-npm-search-widget
 # bindkey '^N^N' fzf-npm-search-widget
 
+zle -N fzf-search-filenameAndContent-widget 
+bindkey '^[d' fzf-search-filenameAndContent-widget
+
 # fzf git widgets
 zle -N fzf-gh-widget # commits
 bindkey '^g^h' fzf-gh-widget
