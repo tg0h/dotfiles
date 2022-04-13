@@ -6,6 +6,7 @@ alias dd='cd $HOME/dotfiles'
 alias dl='cd $HOME/downloads'
 alias dp='cd /tmp'
 alias dc='cd ~/src/clones'
+alias dw='cd ~/src/me/wiki'
 alias dxd='cd $XDG_DATA_HOME'
 
 alias od='cd $HOME/Documents/'
