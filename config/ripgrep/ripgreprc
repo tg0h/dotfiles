@@ -1,0 +1,24 @@
+# Set the colors.
+
+# aureolin
+--colors=path:fg:0xf8,0xef,0x00
+# --colors=path:fg:0xfa,0xf7,0xa7
+# --colors=path:style:underline
+--colors=path:style:intense
+# --colors=path:style:nointense
+
+# --colors=path:style:intense
+# --colors=path:style:bold
+
+--colors=line:fg:cyan
+--colors=line:style:bold
+
+# column numbers can be shown if the --column option is provided
+--colors=column:fg:0x03,0xff,0x13
+
+# free speech green
+--colors=match:fg:0xff,0x00,0x82
+--colors=match:style:bold
+
+
+# {value} is determined by the value of {attribute}. If {attribute} is style, then {value} should be one of nobold, bold, nointense, intense, nounderline or underline. If {attribute} is fg or bg, then {value} should be a color.
