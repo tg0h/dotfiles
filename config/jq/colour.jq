@@ -19,7 +19,10 @@ def colours:
   "blue": "[34m",
   "darkgray": "[90m",
   "disabled": "[30;100m", # Black on darkgray
-  "reset": "[0m"
+  "reset": "[0m",
+  "neonBlue": "[38;2;82;96;255m",
+  "brightTurquoise": "[38;2;5;217;243m",
+  "electricCrimson": "[38;2;255;0;60m"
 };
 
 # Colors text with the given color
@@ -38,6 +41,15 @@ def _g(text):
 
 def _b(text):
   escape + colours["blue"] + text + escape + colours.reset;
+
+def _nb(text):
+  escape + colours["neonBlue"] + text + escape + colours.reset;
+
+def _bt(text):
+  escape + colours["brightTurquoise"] + text + escape + colours.reset;
+
+def _ec(text):
+  escape + colours["electricCrimson"] + text + escape + colours.reset;
 
 def _y(text):
   escape + colours["yellow"] + text + escape + colours.reset;
