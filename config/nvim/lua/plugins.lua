@@ -211,6 +211,8 @@ return require("packer").startup({
         use {"alexghergh/nvim-tmux-navigation"}
         use {"danilamihailov/beacon.nvim", config = get_setup("beacon")}
         use {"ur4ltz/surround.nvim", config = get_setup("surround")}
+        use {"tversteeg/registers.nvim", config = get_setup("registers")}
+
         use {
             "AckslD/nvim-neoclip.lua",
             requires = {
