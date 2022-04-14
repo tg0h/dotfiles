@@ -8,10 +8,11 @@ local M = {
 
     l = require("setup.which-key.keys.lsp"),
     b = require("setup.which-key.keys.buffers"),
+    c = require("setup.which-key.keys.neoclip"),
     f = require("setup.which-key.keys.files"),
-    c = require("setup.which-key.keys.git-worktree"),
     d = require("setup.which-key.keys.dap"),
     g = require("setup.which-key.keys.git"),
+    r = require("setup.which-key.keys.git-worktree"),
     h = require("setup.which-key.keys.harpoon"),
     m = require("setup.which-key.keys.misc"),
     n = require("setup.which-key.keys.notes"),

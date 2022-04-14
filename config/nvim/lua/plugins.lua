@@ -211,6 +211,14 @@ return require("packer").startup({
         use {"alexghergh/nvim-tmux-navigation"}
         use {"danilamihailov/beacon.nvim", config = get_setup("beacon")}
         use {"ur4ltz/surround.nvim", config = get_setup("surround")}
+        use {
+            "AckslD/nvim-neoclip.lua",
+            requires = {
+                {"tami5/sqlite.lua", module = "sqlite"},
+                {"nvim-telescope/telescope.nvim"}
+            },
+            config = get_setup("neoclip")
+        }
 
     end,
     config = {
