@@ -1,0 +1,15 @@
+#!bin/zsh
+
+function udCheat(){
+  local dirSwitcherConfigFile=$XDG_CONFIG_HOME/tg/dir-switcher/config.yml
+
+    local jqQuery=$(cat <<-EOF
+                               include "pad";
+                               include "colour";
+                               .keymaps
+                               | map( "\(.bindkey | _ec(lpad(3;" "))) \(_bt(.dir))")
+                               | .[]
+EOF
+)
+  yq $dirSwitcherConfigFile --output-format=json | jq --raw-output -L "~/.config/jq" "$jqQuery" | fzf
+}
