@@ -210,6 +210,7 @@ return require("packer").startup({
         }
         use {"alexghergh/nvim-tmux-navigation"}
         use {"danilamihailov/beacon.nvim", config = get_setup("beacon")}
+        use {"ur4ltz/surround.nvim", config = get_setup("surround")}
 
     end,
     config = {
