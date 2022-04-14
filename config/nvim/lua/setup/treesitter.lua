@@ -1,5 +1,8 @@
 require"nvim-treesitter.configs".setup {
-    ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+    ensure_installed = {
+        "bash", "cmake", "dockerfile", "go", "html", "javascript", "typescript",
+        "json", "ledger", "lua", "python", "toml", "yaml", "markdown", "ruby"
+    },
     ignore_install = {}, -- List of parsers to ignore installing
     highlight = {
         enable = true, -- false will disable the whole extension
@@ -18,9 +21,7 @@ require"nvim-treesitter.configs".setup {
 
     -- Custom Modules
     -- autopairs = {{enable = true}},
-    autotag = {
-      enable = true,
-    },
+    autotag = {enable = true},
 
     textobjects = { -- for git nvim-treesitter/nvim-treesitter-textobjects
         select = {
