@@ -4,7 +4,7 @@ gui:
       - "#ff00ff"
       - bold
     inactiveBorderColor:
-      - green
+      - yellow
     selectedLineBgColor:
       - reverse
     selectedRangeBgColor:
