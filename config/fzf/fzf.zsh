@@ -51,6 +51,7 @@ export FZF_DEFAULT_OPTS="
 --bind='ctrl-y:execute-silent(echo {+} | pbcopy)'
 --bind='ctrl-s:execute(echo {} > /tmp/_so_cache)'
 --bind 'ctrl-e:execute(echo {} > /tmp/_nvim_cache && nvim {} < /dev/tty > /dev/tty 2>&1)'
+--bind 'ctrl-/:change-preview-window(right,70%|down,70%,border-top|hidden|)'
 "
 # the _nvim_cache should only contain 1 file
 
