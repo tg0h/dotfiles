@@ -33,14 +33,19 @@ source /opt/homebrew/opt/fzf/shell/key-bindings.zsh
 
 # --preview='[[ \$(file --mime {}) =~ inode/directory ]] && exa --tree --long --icons --git --color always --octal-permissions --sort created --reverse {} || (bat --style=numbers --color=always {} || cat {}) 2> /dev/null | head -300'
 # --preview-window hidden
+
+# --color='hl:-1:underline,hl+:-1:underline:reverse'
+# hl - colour of matching substrings. -1 means accept the original colour
+# hl+ - colour of matching substrings on current line
 export FZF_DEFAULT_OPTS="
 --ansi
 --no-mouse
 --height 70%
 -1
+--info=inline
 --reverse
 --multi
---inline-info
+--color='hl:-1:underline:#03ff13,hl+:-1:underline:reverse'
 --bind='f3:execute(bat --style=numbers {} || less -f {})'
 --bind='f2:toggle-preview'
 --bind='ctrl-d:half-page-down'
@@ -50,7 +55,7 @@ export FZF_DEFAULT_OPTS="
 --bind='ctrl-a:select-all+accept'
 --bind='ctrl-y:execute-silent(echo {+} | pbcopy)'
 --bind='ctrl-s:execute(echo {} > /tmp/_so_cache)'
---bind 'ctrl-e:execute(echo {} > /tmp/_nvim_cache && nvim {} < /dev/tty > /dev/tty 2>&1)'
+--bind 'ctrl-e:execute(echo {} > /tmp/_nvim_cache && nvim {} > /dev/tty 2>&1)+abort'
 --bind 'ctrl-/:change-preview-window(right,70%|down,70%,border-top|hidden|)'
 "
 # the _nvim_cache should only contain 1 file
