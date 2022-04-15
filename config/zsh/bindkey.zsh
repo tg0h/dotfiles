@@ -1,6 +1,6 @@
 # https://en.wikipedia.org/wiki/Control_character#In_ASCII
 # the terminal interprets certain key codes by default - eg ^M is the carriage return
-bindkey -r "^G" #remove ctrl g so that junegunn's fzf_git functions work
+bindkey -r "^G" # remove ctrl g so that junegunn's fzf_git functions work
 # bindkey -r "^H"
 # bindkey -r "^N"
 bindkey -r "^K"
