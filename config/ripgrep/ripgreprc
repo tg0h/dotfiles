@@ -1,5 +1,7 @@
 # Set the colors.
 
+--smart-case
+
 # aureolin
 --colors=path:fg:0xf8,0xef,0x00
 # --colors=path:fg:0xfa,0xf7,0xa7
