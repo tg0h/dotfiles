@@ -46,7 +46,8 @@ function ud(){
   
   local out=$(eval $searchCmd | fzf +m --preview='[[ $(file --mime {}) =~ inode/directory ]] &&
     exa '$previewGitIgnore' --tree --long --icons --git --color always --sort modified --reverse --level '$searchDepth' --no-permissions --no-user --changed {}/ || (bat --style=numbers --color=always {} || cat {}) 2> /dev/null | head -300' \
-    --bind 'ctrl-r:reload(fd . '$searchDir' --type d --follow --color always --max-depth '$searchDepth')+change-prompt(dir>)' \
+    --bind 'ctrl-t:reload(fd . '$searchDir' --type d --follow --color always --max-depth '$searchDepth')+change-prompt(dir>)' \
+    --bind 'ctrl-s:reload(fd . '$searchDir' --type f --follow --color always --max-depth '$searchDepth')+change-prompt(file>)' \
     --bind 'ctrl-h:reload(fd . '$searchDir' --follow --color always --max-depth '$searchDepth')+change-prompt(>)' \
     --multi \
     --expect=alt-d
@@ -58,7 +59,10 @@ function ud(){
   local target1=$(head -1 <<< "$targets")
 
   if [ "$key" = alt-d ]; then
-    # switch to directory of file
+    # if dir, switch
+    [[ -d $target1 ]] && cd $target1 && return
+
+    # if file, switch to directory of file
     [[ -f $target1 ]] && target=${target1%/*} # zsh variable expansion - min match pattern /* and remove from tail
     cd $target && return
   fi
@@ -70,6 +74,7 @@ function ud(){
     # if target is a file (check with -f), change to its dir instead
     # [[ -f $target ]] && target=${target%/*} # zsh variable expansion - min match pattern /* and remove from tail
     if [[ -f "$target1" ]]; then
+      # TODO: does not work if path has spaces
       targets=$(join-lines <<< "$targets")
       nvim ${=targets}
     fi
