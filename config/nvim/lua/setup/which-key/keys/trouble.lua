@@ -4,7 +4,7 @@ local M = {
     d = {"<cmd>Trouble document_diagnostics<CR>", "Document Diagnostic"},
     l = {"<cmd>Trouble loclist<CR>", "Loclist"},
     q = {"<cmd>Trouble quickfix<CR>", "Quickfix"},
-    t = {"<cmd>TodoTrouble<CR>", "Todos"},
+    u = {"<cmd>TodoTrouble<CR>", "Todos"},
 
     -- use LSP keymaps instead
     r = {"<cmd>Trouble lsp_references<CR>", "LSP References"},
