@@ -7,6 +7,10 @@ map("n", "<Space>", "<NOP>", default_options)
 vim.g.mapleader = " "
 vim.g.maplocalleader = ","
 
+map("n", "<localleader>z", ":q!<CR>", default_options)
+
+map("n", "<F5>", ":luafile %<CR>", default_options)
+
 map("v", "J", ":m '>+1<CR>gv=gv", default_options)
 map("v", "K", ":m '<-2<CR>gv=gv", default_options)
 -- keep it centred
@@ -63,7 +67,7 @@ map("n", "<F12>", ":lua require'dapui'.toggle()<CR>", default_options)
 map("n", "<F2>", ":lua require'dap'.toggle_breakpoint()<CR>", default_options)
 map("n", "<F7>", ":lua require'dap'.continue()<CR>", default_options)
 map("n", "<F6>", ":lua require'dap'.step_into()<CR>", default_options)
-map("n", "<F5>", ":lua require'dap'.step_out()<CR>", default_options)
+-- map("n", "<F5>", ":lua require'dap'.step_out()<CR>", default_options)
 map("n", "<F9>", ":lua require'dap'.step_over()<CR>", default_options)
 map("n", "<F8>", ":lua require'dap'.run_to_cursor()<CR>", default_options)
 map("n", "<F10>", ":lua require'dap'.up()<CR>", default_options)
