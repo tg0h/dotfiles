@@ -27,6 +27,7 @@ scope:
   config/nvim/lua/tg: "vim/tg"
   config/nvim/lua: "vim"
   config/nvim: "vim"
+  config/tg:
   config:
   lib/zsh/archive:
   lib/zsh/aws: "aws"
