@@ -4,6 +4,8 @@ alias lg="lazygit"
 alias g.="gloz -10"
 alias g,.="glodm"
 
+alias ge="git clone"
+
 # diff
 alias gdcn='git diff --cached --name-only'
 alias gdn="git diff --name-only"
