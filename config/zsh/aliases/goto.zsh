@@ -24,8 +24,8 @@ alias zz='nvim ~/.config/zsh/.zshenv'
 alias ze='nvim ~/.dotfiles/config/secret/env'
 
 # scratch
-alias aes='nvim ~/certis/docs/wiki/scratch.md'
-alias aesb='bat ~/certis/docs/wiki/scratch.md'
+# alias aes='nvim ~/certis/docs/wiki/scratch.md'
+# alias aesb='bat ~/certis/docs/wiki/scratch.md'
 
 # aliases
 alias zag='nvim $XDG_CONFIG_HOME/zsh/aliases/goto.zsh'
