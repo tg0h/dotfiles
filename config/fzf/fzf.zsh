@@ -81,6 +81,7 @@ export FZF_CTRL_T_COMMAND="fd $FD_OPTIONS"
 export FZF_CTRL_T_OPTS="
 --preview='[[ \$(file --mime {}) =~ inode/directory ]] && exa --tree --long --icons --git --color always --octal-permissions --sort created --reverse {} || (bat --style=numbers --color=always {} || cat {}) 2> /dev/null | head -300'
 --preview-window='right:wrap'
+--bind 'enter:execute(echo {} > /tmp/_nvim_cache && nvim {} > /dev/tty 2>&1)+abort'
 "
 #The following example uses tree command to show the entries of the directory.
 #show directories, include hidden dirs, include ignored files/folders from .gitignore
