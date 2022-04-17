@@ -33,6 +33,7 @@ keymaps:
   # cache
   - bindkey: xc
     dir: $XDG_CACHE_HOME
+    depth: 3
   # bin
   - bindkey: xb
     dir: $HOME/.local/bin
