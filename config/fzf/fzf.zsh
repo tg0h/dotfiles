@@ -64,7 +64,10 @@ export FZF_DEFAULT_OPTS="
 
 #--preview-window='right:hidden:wrap'
 
-FD_OPTIONS="--color always --follow --hidden --exclude .git --exclude node_modules"
+FD_OPTIONS="--color always --follow --hidden --no-ignore --exclude .git \
+--exclude node_modules \
+--exclude .DS_Store \
+"
 export FZF_DEFAULT_COMMAND="fd . --type f --hidden --follow --exclude .git $FD_OPTIONS"
 # export FZF_DEFAULT_COMMAND="git ls-files --cached --others --exclude-standard | fd --type f --type l $FD_OPIONS"
 # --hidden -include hidden files
@@ -81,14 +84,15 @@ export FZF_CTRL_T_COMMAND="fd $FD_OPTIONS"
 export FZF_CTRL_T_OPTS="
 --preview='[[ \$(file --mime {}) =~ inode/directory ]] && exa --tree --long --icons --git --color always --octal-permissions --sort created --reverse {} || (bat --style=numbers --color=always {} || cat {}) 2> /dev/null | head -300'
 --preview-window='right:wrap'
+--bind 'ctrl-t:reload(fd . --type f --follow --color always )+change-prompt(file>)'
+--bind 'ctrl-s:reload(fd . --type d --follow --color always )+change-prompt(dir>)'
+--bind 'ctrl-h:reload(fd . --follow --color always )+change-prompt(>)'
 "
 # --bind 'enter:execute(echo {} > /tmp/_nvim_cache && nvim {} > /dev/tty 2>&1)+abort'
 #The following example uses tree command to show the entries of the directory.
 #show directories, include hidden dirs, include ignored files/folders from .gitignore
 export FZF_ALT_C_COMMAND="fd --type d --hidden --no-ignore $FD_OPTIONS"
 export FZF_ALT_C_OPTS="--preview 'lsd {} --tree --color always --icon always'"
-
-
 
 #use ~~ instead of **
 export FZF_COMPLETION_TRIGGER='##'
