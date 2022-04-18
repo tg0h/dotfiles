@@ -4,6 +4,7 @@ bindkey -r "^G" # remove ctrl g so that junegunn's fzf_git functions work
 # bindkey -r "^H"
 # bindkey -r "^N"
 bindkey -r "^K"
+bindkey -r "^H"
 
 # file searchers
 zle     -N   fzf-search-dotfiles-widget
@@ -19,7 +20,7 @@ zle     -N   fzf-npm-search-widget
 # bindkey '^N^N' fzf-npm-search-widget
 
 zle -N fzf-search-filenameAndContent-widget 
-bindkey '^[d' fzf-search-filenameAndContent-widget
+bindkey '^h' fzf-search-filenameAndContent-widget
 
 # fzf git widgets
 zle -N fzf-gh-widget # commits
