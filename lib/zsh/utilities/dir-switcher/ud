@@ -50,7 +50,7 @@ function ud(){
     --bind 'ctrl-s:reload(fd . '$searchDir' --type f --follow --color always --max-depth '$searchDepth')+change-prompt(file>)' \
     --bind 'ctrl-h:reload(fd . '$searchDir' --follow --color always --max-depth '$searchDepth')+change-prompt(>)' \
     --multi \
-    --expect=alt-d
+    --expect=alt-d,alt-y
   )
 
   local target
@@ -58,6 +58,11 @@ function ud(){
   local targets=$(tail -n +2 <<< "$out") # get all lines after the first line
   local target1=$(head -1 <<< "$targets")
 
+  if [ "$key" = alt-y ]; then
+     targets=$(join-lines <<< "$targets" )
+     echo -n $targets | pbcopy
+     return
+  fi
   if [ "$key" = alt-d ]; then
     # if dir, switch
     [[ -d $target1 ]] && cd $target1 && return
@@ -76,6 +81,7 @@ function ud(){
     if [[ -f "$target1" ]]; then
       # TODO: does not work if path has spaces
       targets=$(join-lines <<< "$targets")
+      # echo -n ${=targets}
       nvim ${=targets}
     fi
   fi
