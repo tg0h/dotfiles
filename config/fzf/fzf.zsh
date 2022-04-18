@@ -53,7 +53,7 @@ export FZF_DEFAULT_OPTS="
 --bind 'shift-up:preview-half-page-up'
 --bind 'shift-down:preview-half-page-down'
 --bind='ctrl-a:select-all+accept'
---bind='ctrl-y:execute-silent(echo {+} | pbcopy)'
+--bind='ctrl-y:execute-silent(echo {+} | join-lines-fzf | pbcopy)+abort'
 --bind='ctrl-s:execute(echo {} > /tmp/_so_cache)'
 --bind 'ctrl-e:execute(echo {} > /tmp/_nvim_cache && nvim {} > /dev/tty 2>&1)+abort'
 --bind 'ctrl-/:change-preview-window(right,80%|down,90%,border-top|hidden|)'
@@ -81,8 +81,8 @@ export FZF_CTRL_T_COMMAND="fd $FD_OPTIONS"
 export FZF_CTRL_T_OPTS="
 --preview='[[ \$(file --mime {}) =~ inode/directory ]] && exa --tree --long --icons --git --color always --octal-permissions --sort created --reverse {} || (bat --style=numbers --color=always {} || cat {}) 2> /dev/null | head -300'
 --preview-window='right:wrap'
---bind 'enter:execute(echo {} > /tmp/_nvim_cache && nvim {} > /dev/tty 2>&1)+abort'
 "
+# --bind 'enter:execute(echo {} > /tmp/_nvim_cache && nvim {} > /dev/tty 2>&1)+abort'
 #The following example uses tree command to show the entries of the directory.
 #show directories, include hidden dirs, include ignored files/folders from .gitignore
 export FZF_ALT_C_COMMAND="fd --type d --hidden --no-ignore $FD_OPTIONS"
