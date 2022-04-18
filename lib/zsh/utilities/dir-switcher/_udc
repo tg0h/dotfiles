@@ -27,13 +27,24 @@ function _udc(){
     glob=${glob:+"-g $glob"}
     xargs=${xargs:+"-x $xargs"}
     depth=${depth:+"-l $depth"}
+    showHidden=${showHidden:+"-h"}
+    showIgnore=${showHidden:+"-i"}
 
     # NOTE: running eval adds 1s to zsh startup 
     # instead, generate and autoload the functions
-    echo xargs is $xargs
-    echo "ud$bindkey() {ud -d $dir $depth "$glob" -h -i $xargs}"
-    echo "ud$bindkey() {ud -d $dir $depth "$glob" -h -i $xargs}" > $outputFolder/ud$bindkey
+    # search both directories and files
+    echo "ud$bindkey() {ud -d $dir $depth "$glob" $showHidden $showIgnore $xargs}" > $outputFolder/ud$bindkey
+    
+    # search files only
+    echo "ed$bindkey() {ud -d $dir $depth "$glob" $showHidden $showIgnore $xargs -t f}" > $outputFolder/ed$bindkey
+    
+    # search directories only
+    echo "od$bindkey() {ud -d $dir $depth "$glob" $showHidden $showIgnore $xargs -t d}" > $outputFolder/od$bindkey
+
+    # search filename and content
     echo "et$bindkey() {et $dir }" > $outputFolder/et$bindkey
+    
+    # go to base directory
     echo "dd$bindkey() {cd $dir }" > $outputFolder/dd$bindkey
   done <<< $config
 }

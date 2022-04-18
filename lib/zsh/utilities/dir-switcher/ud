@@ -16,15 +16,27 @@ function ud(){
   fi
   [[ $1 == "configure" ]] && [[ $2 == "edit" ]] && nvim $configFile && return
 
-  local previewGitIgnore="--git-ignore"
-  while getopts 'd:l:g:hix:' opt; do
+  local searchDir glob showHidden showIgnore xargs fileType 
+  local fzfPrompt="> "
+  local glob="."
+  local previewGitIgnore="--git-ignore" # default ignore git 
+  local searchDepth="3" # default depth to 3
+  while getopts 'd:l:g:hix:t:' opt; do
     case "$opt" in
       d) searchDir=${OPTARG:-$XDG_CONFIG_HOME};;
-      l) searchDepth=${OPTARG:-1};;
+      l) searchDepth=$OPTARG;;
       g) glob="$OPTARG";;
       h) showHidden="--hidden";;
       i) showIgnore="--no-ignore";;
       x) xargs="$OPTARG";;
+      t) case "$OPTARG" in
+          f) 
+            fileType="--type f"
+            fzfPrompt="file>";;
+          d) 
+            fileType="--type d"
+            fzfPrompt="dir>";;
+        esac
     esac
   done
   shift $(($OPTIND - 1))
@@ -51,13 +63,12 @@ function ud(){
   # we eval $glob
   # if we eval \.git$ directly, the \. is interpreted as a shell escape
   # therefore, we must surround the glob with single quotes to prevent shell escaping
-  local searchCmd="fd '$glob' $searchDir $showHidden $showIgnore --follow --color always --max-depth $searchDepth $xargsCmd"
-
+  local searchCmd="fd '$glob' $searchDir $showHidden $showIgnore $fileType --follow --color always --max-depth $searchDepth $xargsCmd"
   
-  local out=$(eval $searchCmd | fzf +m --preview='[[ $(file --mime {}) =~ inode/directory ]] &&
+  local out=$(eval $searchCmd | fzf +m --prompt=$fzfPrompt --preview='[[ $(file --mime {}) =~ inode/directory ]] &&
     exa '$previewGitIgnore' --tree --long --icons --git --color always --sort modified --reverse --level '$searchDepth' --no-permissions --no-user --changed {}/ || (bat --style=numbers --color=always {} || cat {}) 2> /dev/null | head -300' \
-    --bind 'ctrl-t:reload(fd . '$searchDir' --type d --follow --color always --max-depth '$searchDepth')+change-prompt(dir>)' \
-    --bind 'ctrl-s:reload(fd . '$searchDir' --type f --follow --color always --max-depth '$searchDepth')+change-prompt(file>)' \
+    --bind 'ctrl-t:reload(fd . '$searchDir' --type f --follow --color always --max-depth '$searchDepth')+change-prompt(file>)' \
+    --bind 'ctrl-s:reload(fd . '$searchDir' --type d --follow --color always --max-depth '$searchDepth')+change-prompt(dir>)' \
     --bind 'ctrl-h:reload(fd . '$searchDir' --follow --color always --max-depth '$searchDepth')+change-prompt(>)' \
     --multi \
     --expect=alt-d,alt-y
