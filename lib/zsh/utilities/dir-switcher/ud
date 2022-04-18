@@ -8,24 +8,34 @@ function ud(){
   # ud <searchDir> <searchDepth)
   # eg ud ~/.local/bin 2
   # TODO: how to implement priority with most frequently used first?
-  local configFile=$XDG_CONFIG_HOME/tg/dir-switcher/config.yml
 
+  local configFile=$XDG_CONFIG_HOME/tg/dir-switcher/config.yml
   if [[ $1 == "configure" ]] && [[ $2 == "list" ]]; then
     udConfigureList $configFile
     return
   fi
-
-  # prefer nvim over eu for clarity and unneeded dependency on eu alias
   [[ $1 == "configure" ]] && [[ $2 == "edit" ]] && nvim $configFile && return
 
-  local changeToDir
-  local searchDir=${1:-$XDG_CONFIG_HOME} # var expansion with default - get the $1 arg, if not found, default to $XDG_CONFIG_HOME
-  local searchDepth=${2:-1}
-  local glob=${3:-.} # default to . if not provided
-  local showHidden=${4:+"--hidden"} # if non-null, change to --hidden
-  local showIgnore=${5:+"--no-ignore"}
-  local xargs=${6}
-  local previewGitIgnore=${7:-"--git-ignore"}
+  local previewGitIgnore="--git-ignore"
+  while getopts 'd:l:g:hix:' opt; do
+    case "$opt" in
+      d) searchDir=${OPTARG:-$XDG_CONFIG_HOME};;
+      l) searchDepth=${OPTARG:-1};;
+      g) glob="$OPTARG";;
+      h) showHidden="--hidden";;
+      i) showIgnore="--no-ignore";;
+      x) xargs="$OPTARG";;
+    esac
+  done
+  shift $(($OPTIND - 1))
+
+  # local searchDir=${1:-$XDG_CONFIG_HOME} # var expansion with default - get the $1 arg, if not found, default to $XDG_CONFIG_HOME
+  # local searchDepth=${2:-1}
+  # local glob=${3:-.} # default to . if not provided
+  # local showHidden=${4:+"--hidden"} # if non-null, change to --hidden
+  # local showIgnore=${5:+"--no-ignore"}
+  # local xargs=${6}
+  # local previewGitIgnore=${7:-"--git-ignore"}
   # fd --follow - follow symlink
   # TODO: exa does not show the contents for the symlink if you do not specify a trailing /
   local xargsCmd

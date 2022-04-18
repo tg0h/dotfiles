@@ -23,9 +23,16 @@ function _udc(){
     local showHidden=$(jq '.["show-hidden"] // empty' <<< $row)
     local showIgnore=$(jq '.["show-ignore"] // empty' <<< $row)
     local xargs=$(jq '.xargs // empty' <<< $row)
+
+    glob=${glob:+"-g $glob"}
+    xargs=${xargs:+"-x $xargs"}
+    depth=${depth:+"-l $depth"}
+
     # NOTE: running eval adds 1s to zsh startup 
     # instead, generate and autoload the functions
-    echo "ud$bindkey() {ud $dir $depth $glob $showHidden $showIgnore $xargs}" > $outputFolder/ud$bindkey
+    echo xargs is $xargs
+    echo "ud$bindkey() {ud -d $dir $depth "$glob" -h -i $xargs}"
+    echo "ud$bindkey() {ud -d $dir $depth "$glob" -h -i $xargs}" > $outputFolder/ud$bindkey
     echo "et$bindkey() {et $dir }" > $outputFolder/et$bindkey
     echo "dd$bindkey() {cd $dir }" > $outputFolder/dd$bindkey
   done <<< $config
