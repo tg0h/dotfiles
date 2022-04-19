@@ -1,8 +1,8 @@
 {
-  "title": "Capslock Hyper",
+  "title": "Capslock RMeh",
   "rules": [
     {
-      "description": "CapsLock to Hyper/Escape",
+      "description": "CapsLock to Right Meh/Escape",
       "manipulators": [
         {
           "type": "basic",
@@ -14,8 +14,8 @@
           },
           "to": [
             {
-              "key_code": "left_shift",
-              "modifiers": ["left_command", "left_control", "left_option"]
+              "key_code": "right_shift",
+              "modifiers": ["right_control", "right_option"]
             }
           ],
           "to_if_alone": [

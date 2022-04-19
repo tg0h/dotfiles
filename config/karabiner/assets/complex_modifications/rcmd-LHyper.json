@@ -1,8 +1,8 @@
 {
-  "title": "Right Cmd Meh",
+  "title": "Right Cmd to LHyper",
   "rules": [
     {
-      "description": "Right Cmd to Meh",
+      "description": "Right Cmd to Left Hyper",
       "manipulators": [
         {
           "type": "basic",
@@ -15,7 +15,7 @@
           "to": [
             {
               "key_code": "left_shift",
-              "modifiers": ["left_control", "left_option"]
+              "modifiers": ["left_control", "left_option", "left_command"]
             }
           ]
         }
