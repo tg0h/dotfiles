@@ -7,7 +7,7 @@ function udCheat(){
                                include "pad";
                                include "colour";
                                .keymaps
-                               | map( "\(.bindkey | _ec(lpad(3;" "))) \(_bt(.dir))")
+                               | map( "\(.bindkey | _ec(rpad(3;" "))) \(_bt(.dir))")
                                | .[]
 EOF
 )
