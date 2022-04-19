@@ -54,5 +54,6 @@ function _udc(){
     
     # go to base directory
     echo "dd$bindkey() {cd $dir }" > $outputFolder/dd$bindkey
+    echo "alias :$bindkey=dd$bindkey" >> $aliasFile
   done <<< $config
 }
