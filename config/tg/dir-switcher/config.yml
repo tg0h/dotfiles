@@ -3,6 +3,11 @@
 # ud is a fzf directory switcher
 # the fzf preview window previews the directory/file contents
 # the depth of the directory preview can be configured with the depth key
+
+# NOTE:
+# . alias - search files
+# : alias - go to dir immediately
+
 # TODO: add namespaces, don't restrict to just ud
 # TODO: cache edited files with nvim
 
@@ -67,6 +72,9 @@ keymaps:
   # ⊙▽⊙ read the src
   - bindkey: s
     dir: $HOME/src
+  - bindkey: s.
+    dir: $HOME/src/candy/referralcandy-main
+    depth: 5 # specify how deep the directory preview should be
   - bindkey: sc
     dir: $HOME/src/candy
     depth: 5 # specify how deep the directory preview should be
