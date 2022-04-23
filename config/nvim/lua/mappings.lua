@@ -7,7 +7,7 @@ map("n", "<Space>", "<NOP>", default_options)
 vim.g.mapleader = " "
 vim.g.maplocalleader = ","
 
-map("n", "<localleader>z", ":q!<CR>", default_options)
+map("n", "<localleader>z", ":qa!<CR>", default_options) -- quit all buffers, splits and tabs
 
 map("n", "<F5>", ":luafile %<CR>", default_options)
 
