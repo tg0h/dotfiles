@@ -4,16 +4,12 @@ function dt(){
 }
 alias dd='cd $HOME/dotfiles'
 alias dl='cd $HOME/downloads'
-alias dp='cd /tmp'
-alias dc='cd ~/src/clones'
-alias dw='cd ~/src/me/wiki'
-alias dxd='cd $XDG_DATA_HOME'
+# alias dp='cd /tmp' - use :t instead
+# alias dc='cd ~/src/clones'
+# alias dw='cd ~/src/me/wiki' - use :w
+# alias dxd='cd $XDG_DATA_HOME'
 
-alias od='cd $HOME/Documents/'
-alias odd='cd $HOME/Documents/dev/'
-alias odz='cd $HOME/Documents/dev/candy/invite-customers/'
-
-alias udscm='cd $HOME/src/candy/referralcandy-main/'
+# alias udscm='cd $HOME/src/candy/referralcandy-main/'
 
 # candy wiki - old
 alias nh='nvim ~/Documents/candy/wiki/old/readme.md'
