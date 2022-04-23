@@ -66,3 +66,4 @@ customCommands:
         title: "message:"
         initialValue: ""
     command: 'git-conventional-commit -f {{.SelectedFile.Name}} -t {{index .PromptResponses 0}} -m "{{index .PromptResponses 1}}"'
+notARepository: "skip" # one of: 'prompt' | 'create' | 'skip' - prevent prompt from showing when opening lazygit via opening a new tmux window
