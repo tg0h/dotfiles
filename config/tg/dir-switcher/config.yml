@@ -28,7 +28,7 @@ keymaps:
     dir: $HOME/.local/lib
     depth: 5
   # data
-  - bindkey: xd
+  - bindkey: g
     dir: $XDG_DATA_HOME
     depth: 4
   # state
@@ -36,11 +36,11 @@ keymaps:
     dir: $XDG_STATE_HOME
     depth: 2
   # cache
-  - bindkey: xc
+  - bindkey: r
     dir: $XDG_CACHE_HOME
     depth: 3
   # bin
-  - bindkey: xb
+  - bindkey: f
     dir: $HOME/.local/bin
 
   - bindkey: k
@@ -59,7 +59,7 @@ keymaps:
   # docs
   - bindkey: d
     dir: $HOME/Documents
-    depth: 1
+    depth: 2
   - bindkey: n # candy wiki
     dir: $HOME/Documents/candy/wiki
     depth: 5 # specify how deep the directory preview should be
