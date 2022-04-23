@@ -1,6 +1,8 @@
 alias ag="alias | grep"
 alias sg="set | grep"
 
+alias th='trash'
+
 alias pa='pbpaste'
 
 alias udcc='udCheat' # show ud cheatsheet
