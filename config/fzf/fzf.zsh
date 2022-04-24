@@ -58,7 +58,9 @@ export FZF_DEFAULT_OPTS="
 --bind 'ctrl-e:execute(echo {} > /tmp/_nvim_cache && nvim {} > /dev/tty 2>&1)+abort'
 --bind 'ctrl-/:change-preview-window(right,80%|down,90%,border-top|hidden|)'
 --bind='alt-c:execute(rm {})+abort'
+--bind='alt-C:execute(trash {})+abort'
 "
+# NOTE: trash is slower than rm -rf but is safer
 # the _nvim_cache should only contain 1 file
 
 # --bind 'ctrl-s:toggle-sort'
