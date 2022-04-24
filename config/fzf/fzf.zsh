@@ -57,6 +57,7 @@ export FZF_DEFAULT_OPTS="
 --bind='ctrl-s:execute(echo {} > /tmp/_so_cache)'
 --bind 'ctrl-e:execute(echo {} > /tmp/_nvim_cache && nvim {} > /dev/tty 2>&1)+abort'
 --bind 'ctrl-/:change-preview-window(right,80%|down,90%,border-top|hidden|)'
+--bind='alt-c:execute(rm {})+abort'
 "
 # the _nvim_cache should only contain 1 file
 
