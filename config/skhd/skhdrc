@@ -2,15 +2,16 @@
 # hyper (shift + alt + ctrl + cmd)
 # meh (shift + alt + ctrl)
 
-meh - x : toggle-hide-window "Toggl Track"
+# meh - x : toggle-hide-window "Toggl Track"
 
 # Space
 # space create/destroy
 hyper - c : yabai -m space --destroy
 hyper - l : yabai -m space --create
 # go to space shortcuts
-hyper - space : yabai -m space --focus recent # focus previous workspace
-hyper - b : yabai -m space --focus recent # focus previous workspace
+# hyper - space : yabai -m space --focus recent # focus previous workspace
+rshift + ralt + rctrl - space : yabai -m space --focus recent # focus previous workspace
+# hyper - b : yabai -m space --focus recent # focus previous workspace
 # hyper - b: yabai -m space --balance # balance size of windows
 rshift + ralt + rctrl + lshift - g : yabai -m space --focus prev || yabai -m space --focus last # previous
 rshift + ralt + rctrl + lshift - r : yabai -m space --focus next || yabai -m space --focus first # next
@@ -40,6 +41,8 @@ rshift + ralt + rctrl - 6 : yabai -m space --focus 6
 rshift + ralt + rctrl - 7 : yabai -m space --focus 7
 rshift + ralt + rctrl - 8 : yabai -m space --focus 8
 rshift + ralt + rctrl - 9 : yabai -m space --focus 9
+
+rshift + ralt + rctrl + lshift + lctrl - s : yabai -m space --display 2 # *
 
 # Windows
 # misc
