@@ -6,7 +6,7 @@ local M = {
     },
 
     b = {"<cmd>Telescope builtin<CR>", "Telescope builtin"},
-    C = {"<cmd>Telescope colorscheme<cr>", "Colorscheme"},
+    C = {"<cmd>Telescope colorscheme<CR>", "Colorscheme"},
     o = {
         "<cmd>lua require('setup/telescope').search_dotfiles()<CR>",
         "Search dotfiles"
@@ -15,21 +15,22 @@ local M = {
         "<cmd>lua require('setup/telescope').search_neovim_dotfiles()<CR>",
         "Search Neovim dotfiles"
     },
-    h = {"<cmd>Telescope help_tags<cr>", "Find Help"},
-    H = {"<cmd>Telescope heading<cr>", "Find Header"},
-    M = {"<cmd>Telescope man_pages<cr>", "Man Pages"},
-    R = {"<cmd>Telescope registers<cr>", "Registers"},
-    t = {"<cmd>Telescope live_grep<cr>", "Text"},
+    h = {"<cmd>Telescope git_files<CR>", "Git files"},
+    u = {"<cmd>Telescope help_tags<CR>", "Find Help"},
+    H = {"<cmd>Telescope heading<CR>", "Find Header"},
+    M = {"<cmd>Telescope man_pages<CR>", "Man Pages"},
+    R = {"<cmd>Telescope registers<CR>", "Registers"},
+    t = {"<cmd>Telescope live_grep<CR>", "Text"},
     T = {
         "<CMD>Telescope current_buffer_fuzzy_find<CR>", "Text - Current Buffer"
     },
-    s = {"<cmd>Telescope grep_string<cr>", "Text under cursor"},
-    S = {"<cmd>Telescope symbols<cr>", "Search symbols"},
-    k = {"<cmd>Telescope keymaps<cr>", "Keymaps"},
-    c = {"<cmd>Telescope commands<cr>", "Commands"},
-    p = {"<cmd>Telescope projects<cr>", "Projects"},
+    s = {"<cmd>Telescope grep_string<CR>", "Text under cursor"},
+    S = {"<cmd>Telescope symbols<CR>", "Search symbols"},
+    k = {"<cmd>Telescope keymaps<CR>", "Keymaps"},
+    c = {"<cmd>Telescope commands<CR>", "Commands"},
+    p = {"<cmd>Telescope projects<CR>", "Projects"},
     P = {
-        "<cmd>lua require('telescope.builtin.internal').colorscheme({enable_preview = true})<cr>",
+        "<cmd>lua require('telescope.builtin.internal').colorscheme({enable_preview = true})<CR>",
         "Colorscheme with Preview"
     }
 }
