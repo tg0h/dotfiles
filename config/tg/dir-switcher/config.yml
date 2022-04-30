@@ -73,7 +73,7 @@ keymaps:
   - bindkey: s
     dir: $HOME/src
   - bindkey: s.
-    dir: $HOME/src/candy/referralcandy-main
+    dir: $HOME/src/candy/main/referralcandy-main
     depth: 5 # specify how deep the directory preview should be
   - bindkey: sc
     dir: $HOME/src/candy
