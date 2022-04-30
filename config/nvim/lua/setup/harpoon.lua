@@ -1,11 +1,30 @@
 local map = vim.api.nvim_set_keymap
 default_options = {noremap = true, silent = true}
 
+-- vim.g.harpoon_log_level = "debug"
+
 require("harpoon").setup({
+    menu = {
+        width = 80,
+    },
     global_settings = {
-        save_on_toggle = false,
+        -- sets the marks upon calling `toggle` on the ui, instead of require `:w`.
+        save_on_toggle = true,
+        -- saves the harpoon file upon every change. disabling is unrecommended.
         save_on_change = true,
-        enter_on_sendcmd = true
+        -- sets harpoon to run the command immediately as it's passed to the terminal when calling `sendCommand`.
+        enter_on_sendcmd = true,
+        -- closes any tmux windows that harpoon creates when you close Neovim.
+        tmux_autoclose_windows = false,
+        -- filetypes that you want to prevent from adding to the harpoon list menu.
+        excluded_filetypes = {"harpoon"},
+        -- set marks specific to each git branch inside git repository
+        mark_branch = false,
+
+        base_dirs = {
+            "/Users/tim/src/playground/harpoon/monoRepoDeep",
+            "/Users/tim/src/candy/main/referralcandy-main"
+        }
     }
 })
 
