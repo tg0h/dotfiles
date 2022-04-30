@@ -16,6 +16,8 @@ return require("packer").startup({
     function(use)
         -- Packer can manage itself
         use("~/src/playground/vim/plugin")
+        -- keys = {"<C-e>"}
+
         use("rafcamlet/nvim-luapad")
 
         -- TODO: luadev requires lspconfig ??
@@ -75,7 +77,7 @@ return require("packer").startup({
         use {"nvim-telescope/telescope-file-browser.nvim"}
         use {"crispgm/telescope-heading.nvim"} -- markdown headings
         use {"nvim-telescope/telescope-symbols.nvim"} -- add emojis
-        use {"ThePrimeagen/git-worktree.nvim"}
+        -- use {"ThePrimeagen/git-worktree.nvim"}
         use {
             "nvim-telescope/telescope-frecency.nvim",
             requires = {"tami5/sqlite.lua"}
@@ -128,16 +130,16 @@ return require("packer").startup({
             config = get_setup("bufferline")
         }
 
-        use {
-            "ThePrimeagen/harpoon",
-            -- keybindings which will lazyload this plugin
-            -- keys = {
-            --     "<leader>ha", "<leader>hu", "<leader>h1", "<leader>h1", "<leader>h3",
-            --     "<leader>h4"
-            -- },
-            requires = {"nvim-lua/plenary.nvim"},
-            config = get_setup("harpoon")
-        }
+        -- use {
+        --     "ThePrimeagen/harpoon",
+        --     -- keybindings which will lazyload this plugin
+        --     -- keys = {
+        --     --     "<leader>ha", "<leader>hu", "<leader>h1", "<leader>h1", "<leader>h3",
+        --     --     "<leader>h4"
+        --     -- },
+        --     requires = {"nvim-lua/plenary.nvim"},
+        --     config = get_setup("harpoon")
+        -- }
 
         use {
             "akinsho/nvim-toggleterm.lua",
@@ -193,11 +195,13 @@ return require("packer").startup({
             config = get_setup("colorizer")
         }
         use {"mfussenegger/nvim-dap", config = get_setup("dap")}
-        use {
-            "Pocco81/DAPInstall.nvim",
-            config = get_setup("dap-install"),
-            after = "nvim-dap"
-        }
+
+        -- use {
+        --     "Pocco81/DAPInstall.nvim",
+        --     config = get_setup("dap-install"),
+        --     after = "nvim-dap"
+        -- }
+
         use {
             "rcarriga/nvim-dap-ui",
             after = "nvim-dap",
@@ -211,7 +215,8 @@ return require("packer").startup({
         use {"alexghergh/nvim-tmux-navigation"}
         use {"danilamihailov/beacon.nvim", config = get_setup("beacon")}
         use {"ur4ltz/surround.nvim", config = get_setup("surround")}
-        use {"tversteeg/registers.nvim", config = get_setup("registers")}
+        -- use {"tversteeg/registers.nvim", config = get_setup("registers")}
+        use {"gennaro-tedesco/nvim-peekup"}
 
         use {
             "AckslD/nvim-neoclip.lua",
@@ -221,6 +226,15 @@ return require("packer").startup({
             },
             config = get_setup("neoclip")
         }
+        -- use {"tpope/vim-fugitive"}
+
+        use {
+            "~/src/me/harpoon",
+            requires = {"nvim-lua/plenary.nvim"},
+            config = get_setup("harpoon")
+        }
+
+        use {"~/src/me/git-worktree.nvim"}
 
     end,
     config = {
