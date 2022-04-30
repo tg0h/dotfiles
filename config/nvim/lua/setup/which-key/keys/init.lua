@@ -6,18 +6,19 @@ local M = {
     j = {"<cmd>lnext<CR>", "Location List next"},
     k = {"<cmd>lprev<CR>", "Location List prev"},
 
-    l = require("setup.which-key.keys.lsp"),
-    b = require("setup.which-key.keys.buffers"),
-    c = require("setup.which-key.keys.neoclip"),
-    f = require("setup.which-key.keys.files"),
-    d = require("setup.which-key.keys.dap"),
-    g = require("setup.which-key.keys.git"),
-    r = require("setup.which-key.keys.git-worktree"),
     h = require("setup.which-key.keys.harpoon"),
-    m = require("setup.which-key.keys.misc"),
+    t = require("setup.which-key.keys.trouble"),
     n = require("setup.which-key.keys.notes"),
     s = require("setup.which-key.keys.search"),
-    t = require("setup.which-key.keys.trouble"),
+
+    b = require("setup.which-key.keys.buffers"),
+    c = require("setup.which-key.keys.neoclip"),
+    d = require("setup.which-key.keys.dap"),
+    f = require("setup.which-key.keys.files"),
+    g = require("setup.which-key.keys.git"),
+    l = require("setup.which-key.keys.lsp"),
+    m = require("setup.which-key.keys.misc"),
+    r = require("setup.which-key.keys.git-worktree"),
     w = require("setup.which-key.keys.window")
 }
 return M
