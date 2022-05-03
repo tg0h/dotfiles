@@ -15,7 +15,7 @@ end
 return require("packer").startup({
     function(use)
         -- Packer can manage itself
-        use("~/src/playground/vim/plugin")
+        -- use("~/src/playground/vim/plugin")
         -- keys = {"<C-e>"}
 
         use("rafcamlet/nvim-luapad")
@@ -229,12 +229,13 @@ return require("packer").startup({
         -- use {"tpope/vim-fugitive"}
 
         use {
-            "~/src/me/harpoon",
+            "~/src/me/nvim/harpoon",
             requires = {"nvim-lua/plenary.nvim"},
             config = get_setup("harpoon")
         }
 
-        use {"~/src/me/git-worktree.nvim"}
+        use {"~/src/me/nvim/git-worktree.nvim"}
+        use {"~/src/me/nvim/gitdiffer"}
 
     end,
     config = {
