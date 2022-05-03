@@ -1,21 +1,21 @@
-alias u="tat" # tmux attach script
-alias uu="tmux ls"
-alias uk="tmux kill-session"
-alias ux="tmux kill-server"
-alias ut="tmux list-commands"
+alias t="tat" # tmux attach script
+alias tu="tmux ls"
+alias tk="tmux kill-session"
+alias tx="tmux kill-server"
+alias tt="tmux list-commands"
 
-alias us="tmux list-sessions"
-alias uw="tmux list-windows"
-alias up="tmux list-panes"
-alias udp="tmux display -p" # show format variables eg tmux display -p "{#pid}"
+alias ts="tmux list-sessions"
+alias tw="tmux list-windows"
+alias tp="tmux list-panes"
+alias tdp="tmux display -p" # show format variables eg tmux display -p "{#pid}"
 
-alias udpp="tmux display -p #{pane_id}" # show format variables eg tmux display -p "{#pid}"
-alias udps="tmux display -p #{session_id}"
-alias udpw="tmux display -p #{window_id}"
+alias tdpp="tmux display -p #{pane_id}" # show format variables eg tmux display -p "{#pid}"
+alias tdps="tmux display -p #{session_id}"
+alias tdpw="tmux display -p #{window_id}"
 
-alias uk="tmux list-keys"
+alias tk="tmux list-keys"
 
 # show config
-alias ucs="tmux show -s" # show server options
-alias ucg="tmux show -g" # show global session options
-alias ucgw="tmux show -gw" # show global window options
+alias tcs="tmux show -s" # show server options
+alias tcg="tmux show -g" # show global session options
+alias tcgw="tmux show -gw" # show global window options
