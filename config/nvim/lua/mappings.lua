@@ -10,7 +10,8 @@ vim.g.maplocalleader = ","
 map("n", "<localleader>z", ":qa!<CR>", default_options) -- quit all buffers, splits and tabs
 map("n", "<localleader>f", ":Format<CR>", default_options)
 map("n", "<localleader>h", ":Telescope harpoon marks<CR>", default_options)
-map("n", "<localleader>t", ":Telescope gitdiffer diff<CR>", default_options)
+map("n", "<localleader>t", ":lua require('harpoon.tmux').sendCommand(2,1)<CR>:lua require('harpoon.tmux').gotoTerminal(2)<CR>", default_options)
+map("n", "<localleader>g", ":Telescope gitdiffer diff<CR>", default_options)
 
 map("n", "<F5>", ":luafile %<CR>", default_options)
 
