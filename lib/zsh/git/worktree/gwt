@@ -1,0 +1,15 @@
+#!bin/zsh
+
+function gwt(){
+  # get git worktree related info for debugging
+
+  echo absolute git dir: $fg[yellow]$(grpa)$reset_color
+  local isBare=$(grpb)
+  [[ "$isBare" == "true" ]] && echo bare is: $fg[green]true$reset_color || echo bare is: $fg[red]false$reset_color
+  # echo is bare repo $fg[yellow]$(grpb)$reset_color
+  # echo is inside worktree $fg[yellow]$(grpi)$reset_color
+
+  local isInsideWorkTree=$(grpi)
+  [[ "$isInsideWorkTree" == "true" ]] && echo is inside worktree: $fg[green]true$reset_color || echo is inside worktree: $fg[red]false$reset_color
+  echo top level is: $fg[yellow]$(grpt)$reset_color
+}
