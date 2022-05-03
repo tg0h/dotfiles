@@ -1,0 +1,6 @@
+#!bin/zsh
+
+function gu (){
+  # go up to the nearest .git directory
+  cd $(git rev-parse --show-toplevel)
+}
