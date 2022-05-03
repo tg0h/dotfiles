@@ -32,7 +32,8 @@ function so (){
     echo $fullpath > $cache
     echo "$fg[cyan] stored $file in so cache ... $reset_color"
   elif [[ -n $nvimCacheOpt ]]; then
-    local nvimfile=$(cat /tmp/_nvim_cache | head -n 1 | choose 0)
+    # local nvimfile=$(cat /tmp/_nvim_cache | head -n 1 | choose 0)
+    local nvimfile=$(cat /tmp/_nvim_cache | head -n 1)
     echo "$fg[green] sourcing from nvim cache ... $reset_color"
     source $nvimfile
     echo "$fg[green] sourced $nvimfile $reset_color"
