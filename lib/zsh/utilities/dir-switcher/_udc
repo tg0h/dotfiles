@@ -48,9 +48,11 @@ function _udc(){
     
     # search directories only
     echo "od$bindkey() {ud -d $dir $depth "$glob" $showHidden $showIgnore $xargs -t d}" > $outputFolder/od$bindkey
+    echo "alias ,$bindkey=od$bindkey" >> $aliasFile
 
     # search filename and content
     echo "et$bindkey() {et $dir }" > $outputFolder/et$bindkey
+    echo "alias }$bindkey=et$bindkey" >> $aliasFile
     
     # go to base directory
     echo "dd$bindkey() {cd $dir }" > $outputFolder/dd$bindkey
