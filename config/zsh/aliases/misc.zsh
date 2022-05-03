@@ -5,9 +5,9 @@ alias th='trash'
 
 alias pa='pbpaste'
 
-alias udcc='udCheat' # show ud cheatsheet
-alias udcl='ud configure list' # show ud configuration
-alias udce='ud configure edit' # edit ud configuration
+alias f/='fsCheat' # show ud cheatsheet
+alias fscl='fswitch configure list' # show ud configuration
+alias fsce='fswitch configure edit' # edit ud configuration
 
 # quick print eval loop ====================================================
 # nvim

@@ -1,17 +1,17 @@
 #!bin/zsh
 
-function ud(){
+function fswitch(){
   # fzf preview and switch to folder
-  # ud configure - show configuration
-  # ud configure edit - edit configuration
+  # fswitch configure - show configuration
+  # fswitch configure edit - edit configuration
   # examples:
-  # ud <searchDir> <searchDepth)
-  # eg ud ~/.local/bin 2
+  # fswitch <searchDir> <searchDepth)
+  # eg fswitch ~/.local/bin 2
   # TODO: how to implement priority with most frequently used first?
 
   local configFile=$XDG_CONFIG_HOME/tg/dir-switcher/config.yml
   if [[ $1 == "configure" ]] && [[ $2 == "list" ]]; then
-    udConfigureList $configFile
+    fsConfigure $configFile
     return
   fi
   [[ $1 == "configure" ]] && [[ $2 == "edit" ]] && nvim $configFile && return

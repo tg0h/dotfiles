@@ -1,6 +1,6 @@
 #!bin/zsh
 
-function udConfigureList(){
+function fsConfigure(){
   local configFile=$1
 
   # --highlight-line

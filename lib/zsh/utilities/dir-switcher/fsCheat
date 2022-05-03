@@ -1,6 +1,6 @@
 #!bin/zsh
 
-function udCheat(){
+function fsCheat(){
   local dirSwitcherConfigFile=$XDG_CONFIG_HOME/tg/dir-switcher/config.yml
 
     local jqQuery=$(cat <<-EOF

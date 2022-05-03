@@ -1,10 +1,11 @@
 #!bin/zsh
 
 # generate the function files for autoloading
-function _udc(){
-  # read from the config.yml file and dynamically define the ud<key> functions
+function _fsc(){
+  # fuzzy switch compile
+  # read from the config.yml file and dynamically define the fswitch<key> functions
   # to fzf dir switch to the configured directories
-  # generate aliases for ud functions
+  # generate aliases for fswitch functions
   local outputFolder=$HOME/.local/lib/zsh/utilities/dir-switcher/out
   echo $fg[red] removing files in "$outputFolder" "..."
   [[ -n "$outputFolder" ]] && trash "$outputFolder/*"
@@ -40,20 +41,20 @@ function _udc(){
     # NOTE: running eval adds 1s to zsh startup 
     # instead, generate and autoload the functions
     # search both directories and files
-    echo "ud$bindkey() {ud -d $dir $depth "$glob" $showHidden $showIgnore $xargs}" > $outputFolder/ud$bindkey
-    echo "alias ,$bindkey=ud$bindkey" >> $aliasFile
+    echo "fs$bindkey() {fswitch -d $dir $depth "$glob" $showHidden $showIgnore $xargs}" > $outputFolder/fs$bindkey
+    echo "alias o$bindkey=fs$bindkey" >> $aliasFile
     
     # search files only
-    echo "ed$bindkey() {ud -d $dir $depth "$glob" $showHidden $showIgnore $xargs -t f}" > $outputFolder/ed$bindkey
-    echo "alias e$bindkey=ed$bindkey" >> $aliasFile
+    echo "fsf$bindkey() {fswitch -d $dir $depth "$glob" $showHidden $showIgnore $xargs -t f}" > $outputFolder/fsf$bindkey
+    echo "alias u$bindkey=fsf$bindkey" >> $aliasFile
     
     # search directories only
-    echo "od$bindkey() {ud -d $dir $depth "$glob" $showHidden $showIgnore $xargs -t d}" > $outputFolder/od$bindkey
-    echo "alias o$bindkey=od$bindkey" >> $aliasFile
+    echo "fsd$bindkey() {fswitch -d $dir $depth "$glob" $showHidden $showIgnore $xargs -t d}" > $outputFolder/fsd$bindkey
+    echo "alias e$bindkey=fsd$bindkey" >> $aliasFile
 
     # search filename and content
-    echo "et$bindkey() {fzf-filename-and-content $dir }" > $outputFolder/et$bindkey
-    echo "alias .$bindkey=et$bindkey" >> $aliasFile
+    echo "fsc$bindkey() {fzf-filename-and-content $dir }" > $outputFolder/fsc$bindkey
+    echo "alias .$bindkey=fsc$bindkey" >> $aliasFile
     
     # go to base directory
     echo "dd$bindkey() {cd $dir }" > $outputFolder/dd$bindkey
