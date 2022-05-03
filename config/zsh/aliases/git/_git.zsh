@@ -158,33 +158,33 @@ function ggfl() {
 }
 # compdef _git ggfl=git-checkout
 
-function ggl() {
-  if [[ "$#" != 0 ]] && [[ "$#" != 1 ]]; then
-    git pull origin "${*}"
-  else
-    [[ "$#" == 0 ]] && local b="$(git_current_branch)"
-    git pull origin "${b:=$1}"
-  fi
-}
+# function ggl() {
+#   if [[ "$#" != 0 ]] && [[ "$#" != 1 ]]; then
+#     git pull origin "${*}"
+#   else
+#     [[ "$#" == 0 ]] && local b="$(git_current_branch)"
+#     git pull origin "${b:=$1}"
+#   fi
+# }
 # compdef _git ggl=git-checkout
 
-function ggp() {
-  if [[ "$#" != 0 ]] && [[ "$#" != 1 ]]; then
-    git push origin "${*}"
-  else
-    [[ "$#" == 0 ]] && local b="$(git_current_branch)"
-    git push origin "${b:=$1}"
-  fi
-}
+# function ggp() {
+#   if [[ "$#" != 0 ]] && [[ "$#" != 1 ]]; then
+#     git push origin "${*}"
+#   else
+#     [[ "$#" == 0 ]] && local b="$(git_current_branch)"
+#     git push origin "${b:=$1}"
+#   fi
+# }
 # compdef _git ggp=git-checkout
 
-function ggpnp() {
-  if [[ "$#" == 0 ]]; then
-    ggl && ggp
-  else
-    ggl "${*}" && ggp "${*}"
-  fi
-}
+# function ggpnp() {
+#   if [[ "$#" == 0 ]]; then
+#     ggl && ggp
+#   else
+#     ggl "${*}" && ggp "${*}"
+#   fi
+# }
 # compdef _git ggpnp=git-checkout
 
 function ggu() {

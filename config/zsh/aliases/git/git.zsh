@@ -4,12 +4,30 @@ alias lg="lazygit"
 alias g.="gloz -10"
 alias g,.="glodm"
 
+alias ggp="gg && gp"
+
 alias ge="git clone"
 
+alias grpi="git rev-parse --is-inside-work-tree"
+alias grpa="git rev-parse --absolute-git-dir"
+alias grpt="git rev-parse --show-toplevel"
+alias grpb="git rev-parse --is-bare-repository"
+
 # diff
+alias gdst='git diff --stat'
+alias gdms='git diff main --stat'
+
+# diff-filter=d
+# https://git-scm.com/docs/git-diff
+alias gdnm="git diff --name-only main..." # git merge base with main, add --diff-filter=... option to filter
+alias gdnsm='git diff --name-status main..'
+
+alias gdnmm="git diff --name-only" # git merge base with main
+alias gdns='git diff --name-status main..'
+alias gdnss='git diff --name-status'
+
 alias gdcn='git diff --cached --name-only'
 alias gdn="git diff --name-only"
-alias gdnm="git diff --name-only main..." # git merge base with main
 alias gdc="git diff --cached"
 
 # status
@@ -65,7 +83,7 @@ alias gui='git update-index'
 alias guia='git update-index --add'
 alias guiac='git update-index --add --cacheinfo'
 alias gur='git update-ref'
-alias gwt='git write-tree'
+# alias gwt='git write-tree'
 alias grt='git read-tree'
 alias gsr='git symbolic-ref'
 alias gct='git commit-tree'
