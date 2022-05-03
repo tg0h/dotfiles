@@ -41,18 +41,19 @@ function _udc(){
     # instead, generate and autoload the functions
     # search both directories and files
     echo "ud$bindkey() {ud -d $dir $depth "$glob" $showHidden $showIgnore $xargs}" > $outputFolder/ud$bindkey
+    echo "alias ,$bindkey=ud$bindkey" >> $aliasFile
     
     # search files only
     echo "ed$bindkey() {ud -d $dir $depth "$glob" $showHidden $showIgnore $xargs -t f}" > $outputFolder/ed$bindkey
-    echo "alias .$bindkey=ed$bindkey" >> $aliasFile
+    echo "alias e$bindkey=ed$bindkey" >> $aliasFile
     
     # search directories only
     echo "od$bindkey() {ud -d $dir $depth "$glob" $showHidden $showIgnore $xargs -t d}" > $outputFolder/od$bindkey
-    echo "alias ,$bindkey=od$bindkey" >> $aliasFile
+    echo "alias o$bindkey=od$bindkey" >> $aliasFile
 
     # search filename and content
-    echo "et$bindkey() {et $dir }" > $outputFolder/et$bindkey
-    echo "alias }$bindkey=et$bindkey" >> $aliasFile
+    echo "et$bindkey() {fzf-filename-and-content $dir }" > $outputFolder/et$bindkey
+    echo "alias .$bindkey=et$bindkey" >> $aliasFile
     
     # go to base directory
     echo "dd$bindkey() {cd $dir }" > $outputFolder/dd$bindkey

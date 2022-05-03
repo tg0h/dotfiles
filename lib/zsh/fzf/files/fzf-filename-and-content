@@ -2,7 +2,7 @@
 # search for filename and file contents
 # edits the file after picking the fzf entry
 
-function et(){
+function fzf-filename-and-content(){
   # et <dir> searches for the filename and its contents in <dir>
   # <dir> defaults to cwd if none provided
 
