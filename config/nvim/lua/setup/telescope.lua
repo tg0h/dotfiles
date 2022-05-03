@@ -13,6 +13,7 @@ telescope.load_extension "projects" -- recent projects
 telescope.load_extension "harpoon"
 telescope.load_extension "git_worktree"
 telescope.load_extension "neoclip"
+telescope.load_extension "gitdiffer"
 
 telescope.setup({
     defaults = {
