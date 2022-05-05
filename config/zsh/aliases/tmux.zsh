@@ -2,7 +2,7 @@ alias t="tat" # tmux attach script
 alias tu="tmux ls"
 alias tk="tmux kill-session"
 alias tx="tmux kill-server"
-alias tt="tmux list-commands"
+alias ttl="tmux list-commands"
 
 alias ts="tmux list-sessions"
 alias tw="tmux list-windows"
