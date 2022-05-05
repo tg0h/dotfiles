@@ -66,7 +66,7 @@ yabai -m rule --add app='Wally' manage=off sticky=on layer=above # keep it topmo
 # floating and sticky
 yabai -m rule --add app='Toggl Track' manage=off sticky=on
 yabai -m rule --add app='nvALT' manage=off sticky=on
-yabai -m rule --add app='iThoughtsX' manage=off sticky=on
+# yabai -m rule --add app='iThoughtsX' manage=off sticky=on
 # yabai -m rule --add app='Spotify' manage=off sticky=on
 # yabai -m rule --add app='DataGrip' manage=off sticky=on
 yabai -m rule --add app='CleanShot X' manage=off
