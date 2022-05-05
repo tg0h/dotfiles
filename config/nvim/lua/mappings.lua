@@ -10,7 +10,9 @@ vim.g.maplocalleader = ","
 map("n", "<localleader>z", ":qa!<CR>", default_options) -- quit all buffers, splits and tabs
 map("n", "<localleader>f", ":Format<CR>", default_options)
 map("n", "<localleader>h", ":Telescope harpoon marks<CR>", default_options)
-map("n", "<localleader>t", ":lua require('harpoon.tmux').sendCommand(2,1)<CR>:lua require('harpoon.tmux').gotoTerminal(2)<CR>", default_options)
+map("n", "<localleader>t",
+    ":lua require('harpoon.tmux').sendCommand(2,1)<CR>:lua require('harpoon.tmux').gotoTerminal(2)<CR>",
+    default_options)
 map("n", "<localleader>g", ":Telescope gitdiffer diff<CR>", default_options)
 
 map("n", "<F5>", ":luafile %<CR>", default_options)
@@ -53,12 +55,17 @@ map("n", "<C-k>", ":cprev<CR>", default_options)
 map("n", "<F1>", ":WhichKey<CR>", default_options) -- show all mappings
 
 -- Trouble
-map("n", "<S-A-c>",
-    ":lua require'trouble'.next({skip_groups = true, jump = true})<CR>",
-    default_options) -- next
-map("n", "<S-A-r>",
-    ":lua require'trouble'.previous({skip_groups = true, jump = true})<CR>",
-    default_options) -- previous
+-- map("n", "<S-A-c>",
+--     ":lua require'trouble'.next({skip_groups = true, jump = true})<CR>",
+--     default_options) -- next
+-- map("n", "<S-A-r>",
+--     ":lua require'trouble'.previous({skip_groups = true, jump = true})<CR>",
+--     default_options) -- previous
+
+map("n", "<S-A-c>", ":lua require('gitsigns').next_hunk()<CR>", default_options) -- next git hunk
+map("n", "<S-A-r>", ":lua require('gitsigns').prev_hunk()<CR>", default_options) -- prev git hunk
+
+map("n", "<C-m>", ":echo 'test m'<CR>", default_options)
 
 -- LSP
 map("n", "<A-a>", ":lua vim.lsp.buf.definition()<CR>", default_options)
