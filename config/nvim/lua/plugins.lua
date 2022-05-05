@@ -236,6 +236,9 @@ return require("packer").startup({
 
         use {"~/src/me/nvim/git-worktree.nvim"}
         use {"~/src/me/nvim/gitdiffer"}
+        -- use {"kana/vim-textobj-user"}
+        -- iv and av text objects for snake_case and camelCase
+        use {"Julian/vim-textobj-variable-segment", requires={"kana/vim-textobj-user"}}
 
     end,
     config = {
