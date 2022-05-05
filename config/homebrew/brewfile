@@ -27,7 +27,8 @@ brew 'zsh'
 brew 'cmake' # needed for luaformatter installed via luarocks
 brew 'solargraph' # ruby lang server
 
-brew 'neovim'
+brew 'neovim', args: ['HEAD']
+# brew 'neovim'
 brew 'tmux'
 tap 'koekeishiya/formulae'
 brew 'koekeishiya/formulae/skhd', restart_service: true
