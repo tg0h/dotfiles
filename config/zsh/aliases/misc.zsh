@@ -1,6 +1,7 @@
 alias ag="alias | grep"
 alias sg="set | grep"
 
+alias rl=reload-function
 alias th='trash'
 
 alias pa='pbpaste'

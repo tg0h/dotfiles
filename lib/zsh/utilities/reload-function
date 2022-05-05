@@ -1,0 +1,5 @@
+#!bin/zsh
+
+function reload-function(){
+  unfunction $1 && autoload $1
+}
