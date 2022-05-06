@@ -73,10 +73,11 @@ rshift + ralt + rctrl - t : yabai -m window --focus south
 rshift + ralt + rctrl - n : yabai -m window --focus north
 rshift + ralt + rctrl - s : yabai -m window --focus east
 # shift window in current workspace
-rshift + ralt + rctrl - m : yabai -m window --swap west || $(yabai -m window --display west; yabai -m display --focus west)
-rshift + ralt + rctrl - w : yabai -m window --swap south || $(yabai -m window --display south; yabai -m display --focus south)
-rshift + ralt + rctrl - v : yabai -m window --swap north || $(yabai -m window --display north; yabai -m display --focus north)
-rshift + ralt + rctrl - z : yabai -m window --swap east || $(yabai -m window --display east; yabai -m display --focus east)
+# Rmeh + Lshift
+rshift + ralt + rctrl + lshift - h : yabai -m window --swap west || $(yabai -m window --display west; yabai -m display --focus west)
+rshift + ralt + rctrl + lshift - t : yabai -m window --swap south || $(yabai -m window --display south; yabai -m display --focus south)
+rshift + ralt + rctrl + lshift - n : yabai -m window --swap north || $(yabai -m window --display north; yabai -m display --focus north)
+rshift + ralt + rctrl + lshift - s : yabai -m window --swap east || $(yabai -m window --display east; yabai -m display --focus east)
 # move focused window to next/prev workspace
 alt + cmd - 1 : yabai -m window --space 1 && yabai -m space --focus 1
 alt + cmd - 2 : yabai -m window --space 2 && yabai -m space --focus 2
