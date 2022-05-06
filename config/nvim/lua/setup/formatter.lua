@@ -1,13 +1,22 @@
 vim.api.nvim_exec([[
 augroup FormatAutogroup
   autocmd!
-  autocmd BufWritePost *.md,*.yaml,*.yml,*.json,*.js,*.mjs,*.tsx,*.ts,*.html FormatWrite
+  autocmd BufWritePost *.md,*.yaml,*.yml,*.json,*.js,*.mjs,*.jsx,*.tsx,*.ts,*.html FormatWrite
 augroup END
 ]], true)
 
+local function prettierFormat()
+    return {
+        exe = "prettier",
+        args = {
+            "--stdin-filepath", vim.fn.fnameescape(vim.api.nvim_buf_get_name(0))
+        },
+        stdin = true
+    }
+end
+
 require("formatter").setup({
     filetype = {
-
         -- install luarocks with brew
         -- https://github.com/Koihik/LuaFormatter
         lua = {
@@ -29,121 +38,13 @@ require("formatter").setup({
             end
         },
 
-        -- javascript = {
-        --     -- prettier
-        --     function()
-        --         return {
-        --             exe = "standard",
-        --             args = {
-        --                 "--stdin",
-        --                 vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)),
-        --                 "--fix"
-        --             },
-        --             stdin = true,
-        --             ignore_exitcode = true
-        --         }
-        --     end
-        -- },
-
-        html = {
-            -- prettier
-            function()
-                return {
-                    exe = "prettier",
-                    args = {
-                        "--stdin-filepath",
-                        vim.fn.fnameescape(vim.api.nvim_buf_get_name(0))
-                    },
-                    stdin = true
-                }
-            end
-        },
-
-        typescriptreact = {
-            -- prettier
-            function()
-                return {
-                    exe = "prettier",
-                    args = {
-                        "--stdin-filepath",
-                        vim.fn.fnameescape(vim.api.nvim_buf_get_name(0))
-                    },
-                    stdin = true
-                }
-            end
-        },
-
-        typescript = {
-            -- prettier
-            function()
-                return {
-                    exe = "prettier",
-                    args = {
-                        "--stdin-filepath",
-                        vim.fn.fnameescape(vim.api.nvim_buf_get_name(0))
-                    },
-                    stdin = true
-                }
-            end
-        },
-
-        javascript = {
-            -- prettier
-            function()
-                return {
-                    exe = "prettier",
-                    args = {
-                        "--stdin-filepath",
-                        vim.fn.fnameescape(vim.api.nvim_buf_get_name(0))
-                    },
-                    stdin = true
-                }
-            end
-        },
-
-        -- go = {
-        --     function()
-        --         return {
-        --             exe = "gofmt",
-        --             args = {
-        --                 "-w", vim.fn.fnameescape(vim.api.nvim_buf_get_name(0))
-        --             },
-        --             stdin = false
-        --         }
-        --     end
-        -- },
-
-        json = {
-            function()
-                return {
-                    exe = "prettier",
-                    args = {
-                        "--stdin-filepath",
-                        vim.fn.fnameescape(vim.api.nvim_buf_get_name(0))
-                    },
-                    stdin = true
-                }
-            end
-        },
-
-        markdown = {
-            function()
-                return {
-                    exe = "prettier",
-                    args = {
-                        "--stdin-filepath",
-                        vim.fn.fnameescape(vim.api.nvim_buf_get_name(0))
-                    },
-                    stdin = true
-                }
-            end
-        },
-
-        -- python = {
-        --     function()
-        --         return {exe = "black", args = {"-"}, stdin = true}
-        --     end
-        -- },
+        html = {prettierFormat},
+        typescript = {prettierFormat},
+        typescriptreact = {prettierFormat},
+        javascript = {prettierFormat},
+        javascriptreact = {prettierFormat},
+        json = {prettierFormat},
+        markdown = {prettierFormat},
 
         yaml = {
             function()
