@@ -59,5 +59,3 @@ def __(text):
 
 def ___(text):
   escape + colours["disabled"] + text + escape + colours.reset;
-
-
