@@ -14,6 +14,7 @@ map("n", "<localleader>t",
     ":lua require('harpoon.tmux').sendCommand(2,1)<CR>:lua require('harpoon.tmux').gotoTerminal(2)<CR>",
     default_options)
 map("n", "<localleader>g", ":Telescope gitdiffer diff<CR>", default_options)
+map("n", "<localleader>s", ":Telescope git_status<CR>", default_options)
 
 map("n", "<F5>", ":luafile %<CR>", default_options)
 
