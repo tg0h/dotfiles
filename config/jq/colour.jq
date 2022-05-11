@@ -22,7 +22,10 @@ def colours:
   "reset": "[0m",
   "neonBlue": "[38;2;82;96;255m",
   "brightTurquoise": "[38;2;5;217;243m",
-  "electricCrimson": "[38;2;255;0;60m"
+  "electricCrimson": "[38;2;255;0;60m",
+  "tacha": "[38;2;217;186;94m", # #d9ba5e
+  "jazzberry": "[38;2;167;23;92m", # #a7175c
+  "brinkPink": "[38;2;252;93;124m", # #fc5d7c
 };
 
 # Colors text with the given color
@@ -50,6 +53,15 @@ def _bt(text):
 
 def _ec(text):
   escape + colours["electricCrimson"] + text + escape + colours.reset;
+
+def _tacha(text):
+  escape + colours["tacha"] + text + escape + colours.reset;
+
+def _jazzberry(text):
+  escape + colours["jazzberry"] + text + escape + colours.reset;
+
+def _brinkPink(text):
+  escape + colours["brinkPink"] + text + escape + colours.reset;
 
 def _y(text):
   escape + colours["yellow"] + text + escape + colours.reset;
