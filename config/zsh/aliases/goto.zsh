@@ -12,7 +12,7 @@ alias dl='cd $HOME/downloads'
 # alias udscm='cd $HOME/src/candy/referralcandy-main/'
 
 # candy wiki - old
-alias nh='nvim ~/Documents/candy/wiki/old/readme.md'
+alias vh='nvim ~/Documents/candy/wiki/old/readme.md'
 
 # zsh boot
 alias zr='nvim ~/.dotfiles/config/zsh-boot/zshrc'
