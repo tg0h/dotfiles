@@ -60,7 +60,7 @@ keymaps:
   - bindkey: d
     dir: $HOME/Documents
     depth: 2
-  - bindkey: n # candy wiki
+  - bindkey: v # candy wiki
     dir: $HOME/Documents/candy/wiki
     depth: 5 # specify how deep the directory preview should be
 
