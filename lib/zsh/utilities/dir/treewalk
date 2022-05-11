@@ -1,0 +1,16 @@
+#!bin/zsh
+
+function treewalk(){
+  # treewalk <filename>
+  # search for <filename>, return a list of directories with <filename>
+  # start search from cwd upwards to $HOME
+  # https://stackoverflow.com/questions/9376904/find-file-by-name-up-the-directory-tree-using-bash
+
+  local filename=$1
+  local directory=$(pwd)
+
+  while [ "$directory" != "$HOME" ] ; do
+      find "$directory" -maxdepth 1 -name "$filename"
+      directory=$(dirname "$directory")
+  done
+}
