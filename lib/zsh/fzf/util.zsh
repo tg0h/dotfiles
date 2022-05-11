@@ -1,6 +1,3 @@
-
-
-
 function fzf-search-dotfiles-widget() {
   # ^N^H to search my dotfiles
   
