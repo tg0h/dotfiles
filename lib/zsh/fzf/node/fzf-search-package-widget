@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!bin/zsh
 
 function nh() {
   # search for npm commands in package.json
@@ -35,3 +35,10 @@ EOF
     (cd $targetFileDir && npm run $(echo "$cmd"))
   fi
 }
+
+function fzf-search-package-widget() {
+  nh
+  zle reset-prompt
+}
+
+fzf-search-package-widget

@@ -28,3 +28,10 @@ EOF
     (cd $dir && npm run $(echo "$cmd"))
   fi
 }
+
+function fzf-search-package-downwards-widget() {
+  no
+  zle reset-prompt
+}
+
+fzf-search-package-downwards-widget
