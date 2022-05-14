@@ -1,6 +1,6 @@
 require("disable-plugins")
 require("plugins")
-require("mappings")
+require("maps")
 require("options")
 require("colours")
 require("autocmd")
