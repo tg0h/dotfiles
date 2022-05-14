@@ -159,7 +159,7 @@ require"nvim-tree".setup {
                 {key = "<A-g>", cb = tree_cb("prev_git_item")},
                 {key = "<A-r>", cb = tree_cb("next_git_item")},
 
-                {key = ",", cb = tree_cb("toggle_ignored")},
+                {key = "i", cb = tree_cb("toggle_ignored")},
                 {key = ".", cb = tree_cb("toggle_dotfiles")},
 
                 {key = "A", cb = tree_cb("search_node")},
@@ -179,7 +179,7 @@ require"nvim-tree".setup {
                 {key = "'", cb = tree_cb("system_open")}, -- avoid clash with lightspeed
 
                 {key = "q", cb = tree_cb("close")},
-                {key = "i", action = "toggle_file_info" },
+                {key = "u", action = "toggle_file_info" },
                 {key = "g?", cb = tree_cb("toggle_help")},
                 -- { key = ".", action = "run_file_command" }
             }
