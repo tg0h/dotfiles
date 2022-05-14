@@ -1,0 +1,9 @@
+#!bin/zsh
+
+function imj() {
+  # reduce image size
+  # https://stackoverflow.com/questions/7261855/recommendation-for-compressing-jpg-files-with-imagemagick
+
+  convert $1 -sampling-factor 4:2:0 -strip -quality 85 -interlace JPEG -colorspace RGB "$1"-out.jpg
+}
+
