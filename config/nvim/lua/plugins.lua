@@ -239,6 +239,7 @@ return require("packer").startup({
         -- use {"kana/vim-textobj-user"}
         -- iv and av text objects for snake_case and camelCase
         use {"Julian/vim-textobj-variable-segment", requires={"kana/vim-textobj-user"}}
+    use {"jxnblk/vim-mdx-js"}
 
     end,
     config = {
