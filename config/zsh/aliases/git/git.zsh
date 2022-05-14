@@ -6,6 +6,7 @@ alias g..="gloz -20"
 alias g,.="glodm"
 
 alias ggp="gg && gp"
+alias gge="gg -e"
 
 alias ge="git clone"
 

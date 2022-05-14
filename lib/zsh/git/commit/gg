@@ -1,6 +1,15 @@
 #!/bin/zsh
 
 function gg(){
+  local allowEmpty=false
+  local checkpointDefaultMessage="🚧🚧🚧 checkpoint 🚂🚂🚂"
+
+  while getopts 'e' opt; do
+    case "$opt" in
+      e) allowEmpty=true;;
+    esac
+  done
+  shift $(($OPTIND - 1))
 
   #lazy git commiting when prototyping
   local message="$@"
@@ -9,10 +18,16 @@ function gg(){
     # just get the filename from the first line and use that as the commit message
     # copy from the 4th char onwards
     filepath=$(git status --porcelain | head -n 1  | cut -c 4-)
-    echo filepath is $filepath
     # message=$(git-conventional-commit-msg -f $filepath -t "feat" )
   fi
-  message=${message:-$filepath}
-  git commit -m $message
-}
 
+  message=${message:-$filepath}
+
+  # $allowEmpty expands to the true command which returns 0
+  if $allowEmpty; then
+    message=${message:-$checkpointDefaultMessage}
+    git commit --allow-empty -m $message
+  else
+    git commit -m $message
+  fi
+}
