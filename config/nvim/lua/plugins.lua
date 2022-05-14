@@ -125,6 +125,7 @@ return require("packer").startup({
 
         use {
             "akinsho/nvim-bufferline.lua",
+            branch = "main",
             requires = "kyazdani42/nvim-web-devicons",
             event = "BufReadPre",
             config = get_setup("bufferline")
@@ -143,6 +144,7 @@ return require("packer").startup({
 
         use {
             "akinsho/nvim-toggleterm.lua",
+      branch='main',
             keys = {"<C-y>", "<leader>fl", "<leader>gl"},
             config = get_setup("toggleterm")
         }
@@ -238,8 +240,11 @@ return require("packer").startup({
         use {"~/src/me/nvim/gitdiffer"}
         -- use {"kana/vim-textobj-user"}
         -- iv and av text objects for snake_case and camelCase
-        use {"Julian/vim-textobj-variable-segment", requires={"kana/vim-textobj-user"}}
-    use {"jxnblk/vim-mdx-js"}
+        use {
+            "Julian/vim-textobj-variable-segment",
+            requires = {"kana/vim-textobj-user"}
+        }
+        use {"jxnblk/vim-mdx-js"}
 
     end,
     config = {
