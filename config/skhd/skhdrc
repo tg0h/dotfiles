@@ -1,3 +1,7 @@
+# TODO:
+# - send window to its 'home screen', eg slack goes to screen 5
+# - focus the screen where a particular app is in, eg slack. use Rmeh+Lshift
+
 # https://github.com/koekeishiya/skhd/issues/1
 # hyper (shift + alt + ctrl + cmd)
 # meh (shift + alt + ctrl)
