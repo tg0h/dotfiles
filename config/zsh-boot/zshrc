@@ -6,6 +6,8 @@ export HISTFILE="$XDG_STATE_HOME"/zsh/history # overrid HISTFILE setting in /etc
 export HISTFILESIZE=1000000000
 export HISTSIZE=1000000000 # Number of commands that are loaded into memory from the history file
 export SAVEHIST=1000000000 # Refers to the number of commands that are stored in the zsh history file
+# Show the timestamp for each entry of the history file
+export HISTTIMEFORMAT="%Y-%m-%dT%H:%M:%S "
 setopt share_history # share history between terminals running at the same time, adds the strange numbers to the beginning of each line in the history file
 setopt extended_history       # record timestamp of command in HISTFLE
 
