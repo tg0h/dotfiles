@@ -27,8 +27,8 @@ brew 'zsh'
 brew 'cmake' # needed for luaformatter installed via luarocks
 brew 'solargraph' # ruby lang server
 
-brew 'neovim', args: ['HEAD']
-# brew 'neovim'
+# brew 'neovim', args: ['HEAD']
+brew 'neovim'
 brew 'tmux'
 tap 'koekeishiya/formulae'
 brew 'koekeishiya/formulae/skhd', restart_service: true
@@ -99,6 +99,7 @@ brew 'mycli'
 brew 'fish'
 brew 'glow'
 brew 'emacs'
+brew 'asciinema'
 
 cask 'docker'
 cask 'alfred'
@@ -127,7 +128,7 @@ cask 'keyboard-maestro'
 cask 'cold-turkey-blocker'
 cask 'glyphfinder'
 cask 'transmit'
-cask 'devutils'
+# cask 'devutils' - need  to use 1.13 because license expired
 cask 'affinity-photo'
 cask 'affinity-designer'
 cask 'affinity-publisher'
