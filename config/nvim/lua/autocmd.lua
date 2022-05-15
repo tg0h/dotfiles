@@ -52,3 +52,10 @@ augroup END
 vim.cmd [[
 autocmd Filetype harpoon setlocal cursorline
 ]]
+
+-- https://github.com/neovim/neovim/issues/17867#issuecomment-1079934289
+-- doesn't work with tmux :|
+if vim.env.TERM == 'xterm-kitty' then
+  vim.cmd([[autocmd UIEnter * if v:event.chan ==# 0 | call chansend(v:stderr, "\x1b[>1u") | endif]])
+  vim.cmd([[autocmd UILeave * if v:event.chan ==# 0 | call chansend(v:stderr, "\x1b[<1u") | endif]])
+end
