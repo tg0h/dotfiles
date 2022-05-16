@@ -56,11 +56,11 @@ rshift + ralt + rctrl - d : yabai -m window --space recent; yabai -m space --foc
 rshift + ralt + rctrl - return : yabai -m window --toggle zoom-fullscreen # enter fullscreen mode for the focused container
 
 # move floating windows left and right
-rshift + ralt + rctrl - left : yabai -m window --toggle float; yabai -m window --grid 1:2:0:0:1:1
-rshift + ralt + rctrl - right : yabai -m window --toggle float; yabai -m window --grid 1:2:1:0:1:1
+# rshift + ralt + rctrl - left : yabai -m window --toggle float; yabai -m window --grid 1:2:0:0:1:1
+# rshift + ralt + rctrl - right : yabai -m window --toggle float; yabai -m window --grid 1:2:1:0:1:1
 # grid notation - rows/colums: start-x/start-y (0 based): width/height 
 # rshift + ralt + rctrl - down: yabai -m window --toggle float; yabai -m window --grid 1:6:1:1:4:1 # centre (wide format for browsers)
-rshift + ralt + rctrl - down: yabai -m window --toggle float; yabai -m window --grid 20:5:2:1:1:18 # toggl centre
+# rshift + ralt + rctrl - down: yabai -m window --toggle float; yabai -m window --grid 20:5:2:1:1:18 # toggl centre
 
 # move windows around
 alt + cmd - h : yabai -m window --warp west
@@ -115,7 +115,7 @@ hyper - l : yabai -m window --toggle float # should be tiled?
 
 # change layout of desktop
 hyper - t : yabai -m space --layout bsp
-hyper - n : yabai -m space --layout float
+hyper - n : yabai -m space --layout float # left alone by yabai
 hyper - s : yabai -m space --layout stack
 
 # cycle through stack windows - use meh - escape?
