@@ -3,19 +3,26 @@
 function gg(){
   # gg - quickly add and commit files, use the filename as the commit message
   # gg -e - allow an empty commit
+  # gg -e <message> - allow an empty commit, specify message
+  # gg -c - commit, specify checkpoint message 
 
   local allowEmpty=false
-  local checkpointDefaultMessage="🚧🚧🚧 checkpoint 🚂🚂🚂"
+  local isCheckpoint=false
+  local checkpointMessage="🚧🚧🚧 checkpoint 🚧🚧🚧"
+  local message
 
-  while getopts 'e' opt; do
+  while getopts 'ec' opt; do
     case "$opt" in
       e) allowEmpty=true;;
+      c) isCheckpoint=true;;
     esac
   done
   shift $(($OPTIND - 1))
 
-  #lazy git commiting when prototyping
   local message="$@"
+
+  $isCheckpoint && message=$checkpointMessage
+
   git add --all # git add . only works if at root of worktree
   if [ -z "$message" ]; then
     # just get the filename from the first line and use that as the commit message
@@ -28,7 +35,7 @@ function gg(){
 
   # $allowEmpty expands to the true command which returns 0
   if $allowEmpty; then
-    message=${message:-$checkpointDefaultMessage}
+    message=${message:-$checkpointMessage}
     git commit --allow-empty -m $message
   else
     git commit -m $message

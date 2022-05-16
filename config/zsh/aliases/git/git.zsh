@@ -6,7 +6,8 @@ alias g..="gloz -20"
 alias g,.="glodm"
 
 alias ggp="gg && gp"
-alias gge="gg -e"
+alias gge="gg -e" # allow empty commit
+alias ggc="gg -c" # specify a checkpoint message
 alias gga="git add --all && gcan!" # add and amend previous commit
 
 alias ge="git clone"
