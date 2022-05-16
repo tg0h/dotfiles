@@ -9,7 +9,7 @@ function yabai-get-id(){
   local jqQuery=$(cat <<-EOF
                       map(select(.app | contains("$1") ))
                       | .[]
-                      # | .id
+                      | .id
 EOF
 )
 
