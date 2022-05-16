@@ -1,0 +1,41 @@
+#!bin/zsh
+
+function yqs(){
+  local long verbose result id
+
+  while getopts 'lv' opt; do
+    case "$opt" in
+      v) verbose=true;;
+      l) long=true;;
+    esac
+  done
+  shift $(($OPTIND - 1))
+
+  local id=$1
+
+  result=$(yabai -m query --spaces)
+
+      # "\("id" | rp(5))\("app" | rp(15)) \("spc") \("lvl") \("split-type stack-index focus",
+  local jqQuery=$(cat <<-EOF
+   include "pad";
+   include "colour";
+   include "boolean";
+    "# id  type disp fcs vis",
+      (
+     sort_by(.space) |
+     .[] | 
+      "\(.index) \(.id | rp(3)) \(.type|rp(5))\(.display|rp(4))  \(.["has-focus"]|bool(.))   \(.["is-visible"]|(bool(.))) \(.windows)"
+      )
+EOF
+)
+
+  if [ -n "$long" ]; then
+    yabai -m query --spaces | jq '.[] | {id, app, title, space, level, "split-type", "stack-index", role, subrole, "has-focus", "is-visible",  "is-minimized", "is-hidden", "is-floating", "is-sticky", "can-move", "can-resize", "is-grabbed"}'
+  elif [ -n "$verbose" ]; then
+    yabai -m query --spaces | jq '.[]'
+  elif [ -n "$id" ]; then
+    yabai -m query --spaces | ".[] | select(.id=="$id")"
+  else
+    jq -L "~/.config/jq" --raw-output "$jqQuery" <<< $result
+  fi
+}

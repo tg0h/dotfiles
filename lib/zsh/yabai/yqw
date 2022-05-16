@@ -1,5 +1,41 @@
 #!bin/zsh
 
 function yqw(){
-  yabai -m query --windows | jq '.[] | {id, app, title, space, level, "split-type", "stack-index", role, subrole, "has-focus", "is-visible",  "is-minimized", "is-hidden", "is-floating", "is-sticky", "can-move", "can-resize", "is-grabbed"}'
+  local long verbose result id
+
+  while getopts 'lv' opt; do
+    case "$opt" in
+      v) verbose=true;;
+      l) long=true;;
+    esac
+  done
+  shift $(($OPTIND - 1))
+
+  local id=$1
+
+  result=$(yabai -m query --windows)
+
+      # "\("id" | rp(5))\("app" | rp(15)) \("spc") \("lvl") \("split-type stack-index focus",
+  local jqQuery=$(cat <<-EOF
+   include "pad";
+   include "colour";
+   include "boolean";
+    "id   app             spc lvl split-type stk fcs vis flt stky",
+      (
+     sort_by(.space) |
+     .[] | 
+      "\(.id|rp(4)) \(.app | rp(15)) \(.space|rp(3)) \(.level|rp(3)) \(.["split-type"]|rp(10)) \(.["stack-index"]|rp(3))  \(.["has-focus"] | bool(.))   \(.["is-visible"] | bool(.))   \(.["is-floating"]|bool(.))    \(.["is-sticky"]|bool(.)|rp(3)) "
+      )
+EOF
+)
+
+  if [ -n "$long" ]; then
+    yabai -m query --windows | jq '.[] | {id, app, title, space, level, "split-type", "stack-index", role, subrole, "has-focus", "is-visible",  "is-minimized", "is-hidden", "is-floating", "is-sticky", "can-move", "can-resize", "is-grabbed"}'
+  elif [ -n "$verbose" ]; then
+    yabai -m query --windows
+  elif [ -n "$id" ]; then
+    yabai -m query --windows | ".[] | select(.id=="$id")"
+  else
+    jq -L "~/.config/jq" --raw-output "$jqQuery" <<< $result
+  fi
 }
