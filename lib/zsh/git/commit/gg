@@ -1,6 +1,9 @@
 #!/bin/zsh
 
 function gg(){
+  # gg - quickly add and commit files, use the filename as the commit message
+  # gg -e - allow an empty commit
+
   local allowEmpty=false
   local checkpointDefaultMessage="🚧🚧🚧 checkpoint 🚂🚂🚂"
 
