@@ -24,6 +24,9 @@ rshift + ralt + rctrl + lshift - r : yabai -m space --focus next || yabai -m spa
 rshift + ralt + rctrl - g : yabai -m display --focus prev || yabai -m display --focus last
 rshift + ralt + rctrl - r : yabai -m display --focus next || yabai -m display --focus first
 
+# Apps
+rshift + ralt + rctrl + lshift + lctrl - c: yabai -m space --focus $(yabai-get-space Chrome) 
+
 # go to space
 # hyper - 0x1C : yabai -m space --focus 1 # *
 rshift + ralt + rctrl + lshift - 0x1C : yabai -m space --focus 1 # *
