@@ -7,6 +7,7 @@ alias g,.="glodm"
 
 alias ggp="gg && gp"
 alias gge="gg -e"
+alias gga="git add --all && gcan!" # add and amend previous commit
 
 alias ge="git clone"
 
