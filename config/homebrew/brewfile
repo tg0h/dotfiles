@@ -138,6 +138,7 @@ cask 'hazel'
 cask 'alt-tab'
 cask 'another-redis-desktop-manager'
 cask 'vlc'
+cask 'hammerspoon'
 
 tap 'homebrew/cask-drivers'
 cask 'zsa-wally'
