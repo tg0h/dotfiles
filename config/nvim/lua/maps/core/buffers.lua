@@ -3,7 +3,8 @@ default_options = {noremap = true, silent = true}
 expr_options = {noremap = true, expr = true, silent = true}
 
 -- Buffers
-map("n", "<A-Esc>", ":e#<CR>", default_options) -- edit previously opened buffer (or C-^)
+-- map("n", "<A-Esc>", ":e#<CR>", default_options) -- edit previously opened buffer (or C-^)
+map("n", "<A-Space>", ":e#<CR>", default_options) -- edit previously opened buffer (or C-^)
 
 map("n", "<A-[>", ":BufferLineGoToBuffer 1<CR>", default_options) -- Go to Buffer 1
 map("n", "<A-{>", ":BufferLineGoToBuffer 2<CR>", default_options)
