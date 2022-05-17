@@ -29,7 +29,7 @@ o.listchars = {
     extends = ">"
 } -- tab needs to be specified as 2 chars!
 
-o.shortmess = "I" -- turn off splashscreen message
+o.shortmess = "Iat" -- turn off intro message, abbreviate, truncate
 o.undofile = true -- enable undofile creation
 o.undodir = fn.stdpath("cache") .. "/undodir"
 -- o.cursorline = true
