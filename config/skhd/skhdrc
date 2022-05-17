@@ -15,6 +15,9 @@ hyper - l : yabai -m space --create
 # go to space shortcuts
 # hyper - space : yabai -m space --focus recent # focus previous workspace
 rshift + ralt + rctrl - space : yabai -m space --focus recent # focus previous workspace
+# NOTE: good trick add shift key to shift behaviour.
+rshift + ralt + rctrl + lshift - space : yabai -m window --space recent; yabai -m space --focus recent # move focused window to previous workspace
+
 # hyper - b : yabai -m space --focus recent # focus previous workspace
 # hyper - b: yabai -m space --balance # balance size of windows
 rshift + ralt + rctrl + lshift - g : yabai -m space --focus prev || yabai -m space --focus last # previous
@@ -54,7 +57,6 @@ rshift + ralt + rctrl + lshift + lctrl - s : yabai -m space --display 2 # *
 # Windows
 # misc
 # hyper - f : yabai -m window --toggle float # toggle whether the focused window should be tiled (only on bsp spaces)
-rshift + ralt + rctrl - d : yabai -m window --space recent; yabai -m space --focus recent # move focused window to previous workspace
 # misc size
 rshift + ralt + rctrl - return : yabai -m window --toggle zoom-fullscreen # enter fullscreen mode for the focused container
 
