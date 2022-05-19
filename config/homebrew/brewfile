@@ -139,6 +139,7 @@ cask 'alt-tab'
 cask 'another-redis-desktop-manager'
 cask 'vlc'
 cask 'hammerspoon'
+cask 'gimp'
 
 tap 'homebrew/cask-drivers'
 cask 'zsa-wally'
