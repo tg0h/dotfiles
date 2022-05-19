@@ -58,7 +58,7 @@ rshift + ralt + rctrl + lshift + lctrl - s : yabai -m space --display 2 # *
 # misc
 # hyper - f : yabai -m window --toggle float # toggle whether the focused window should be tiled (only on bsp spaces)
 # misc size
-rshift + ralt + rctrl - return : yabai -m window --toggle zoom-fullscreen # enter fullscreen mode for the focused container
+rshift + ralt + rctrl + lshift - return : yabai -m window --toggle zoom-fullscreen # enter fullscreen mode for the focused container
 
 # move floating windows left and right
 # rshift + ralt + rctrl - left : yabai -m window --toggle float; yabai -m window --grid 1:2:0:0:1:1
@@ -77,10 +77,13 @@ alt + cmd - s : yabai -m window --warp east
 # hyper - 0x1B : yabai -m window --focus stack.next || yabai -m window --focus next || yabai -m window --focus stack.first || yabai -m window --focus first # only works for bsp windows, not floating windows
 rshift + ralt + rctrl - 0x2C : yabai -m window --focus stack.next || yabai -m window --focus next || yabai -m window --focus stack.first || yabai -m window --focus first # only works for bsp windows, not floating windows
 
+# cycle through all visible windows sorted by: coordinates -> display index
+rshift + ralt + rctrl - return: yabai -m window --focus "$(yabai -m query --windows | jq -re "sort_by(.display, .frame.x, .frame.y, .id) | map(select(.\"is-visible\" == true and .role != \"AXUnknown\")) | reverse | nth(index(map(select(.\"has-focus\" == true))) - 1).id")"
+
 rshift + ralt + rctrl - h : yabai -m window --focus west
 rshift + ralt + rctrl - t : yabai -m window --focus south
 rshift + ralt + rctrl - n : yabai -m window --focus north
-rshift + ralt + rctrl - s : yabai -m window --focus east
+rshift + ralt + rctrl - s : yabai -m window --focus east || yabai -m window --focus first
 # shift window in current workspace
 # Rmeh + Lshift
 rshift + ralt + rctrl + lshift - h : yabai -m window --swap west || $(yabai -m window --display west; yabai -m display --focus west)
@@ -127,10 +130,9 @@ hyper - s : yabai -m space --layout stack
 # position stack movement keys in an easier to reach row, since cycle has other similar keymaps
 hyper - r: yabai -m window --focus stack.next || yabai -m window --focus south || yabai -m window --focus stack.first
 hyper - c : yabai -m window --focus stack.prev || yabai -m window --focus north || yabai -m window --focus stack.last
+
 # cycle through all windows sorted by: coordinates -> space index -> display index
 hyper - w : yabai -m window --focus "$(yabai -m query --windows | jq -re "sort_by(.display, .space, .frame.x, .frame.y, .id) | map(select(.\"is-visible\" == true and .role != \"AXUnknown\")) | reverse | nth(index(map(select(.\"has-focus\" == true))) - 1).id")"
-# cycle through all visible windows sorted by: coordinates -> display index
-hyper - v : yabai -m window --focus "$(yabai -m query --windows | jq -re "sort_by(.display, .frame.x, .frame.y, .id) | map(select(.\"is-visible\" == true and .role != \"AXUnknown\")) | reverse | nth(index(map(select(.\"has-focus\" == true))) - 1).id")"
 
 # close focused window
 # alt - w : yabai -m window --close
