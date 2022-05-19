@@ -29,7 +29,8 @@ fpath=(/opt/homebrew/share/zsh/site-functions $fpath) # add homebrew completions
 
 export PATH="$PATH:/opt/homebrew/bin" # access aws_completer, etc
 export PATH="$PATH:$HOME/.local/bin"
-export PATH="$XDG_DATA_HOME/cargo/bin:$PATH"
+export PATH="$PATH:$CARGO_HOME/bin"
+export PATH="$PATH:$GOPATH/bin"
 
 # source zinit
 source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
