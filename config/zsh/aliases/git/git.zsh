@@ -17,6 +17,9 @@ alias grpa="git rev-parse --absolute-git-dir"
 alias grpt="git rev-parse --show-toplevel"
 alias grpb="git rev-parse --is-bare-repository"
 
+# review
+alias gr.='gr main..' # review with previous commit
+
 # diff
 alias gdst='git diff --stat'
 alias gdms='git diff main --stat'

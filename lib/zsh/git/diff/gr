@@ -1,0 +1,17 @@
+#!bin/zsh
+
+function gr (){
+  # fuzzy git review with delta use to review git diffs
+  # gr <commit hash to compare with>
+  # supply list of files to fzf
+  # fzf preview with git delta
+
+  local preview="git diff $@ --color=always -- {-1} | delta --side-by-side -w ${FZF_PREVIEW_COLUMNS:-$COLUMNS}"
+  git diff $@ --name-only | fzf --cycle --height '100%' --ansi --preview-window 'bottom,92%' --preview $preview \
+    --bind 'h:up' \
+    --bind 't:preview-half-page-down' \
+    --bind 'n:preview-half-page-up' \
+    --bind 's:down' \
+    --bind 'j:preview-down' \
+    --bind 'k:preview-up' \
+}
