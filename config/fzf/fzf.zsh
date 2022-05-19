@@ -40,7 +40,7 @@ source /opt/homebrew/opt/fzf/shell/key-bindings.zsh
 export FZF_DEFAULT_OPTS="
 --ansi
 --no-mouse
---height 70%
+--height 80%
 -1
 --info=inline
 --reverse
@@ -50,8 +50,8 @@ export FZF_DEFAULT_OPTS="
 --bind='f2:toggle-preview'
 --bind='ctrl-d:half-page-down'
 --bind='ctrl-u:half-page-up'
---bind 'shift-up:preview-half-page-up'
---bind 'shift-down:preview-half-page-down'
+--bind 'alt-up:preview-half-page-up'
+--bind 'alt-down:preview-half-page-down'
 --bind='ctrl-a:select-all+accept'
 --bind='ctrl-y:execute-silent(echo {+} | join-lines-fzf | pbcopy)+abort'
 --bind='ctrl-s:execute(echo {} > /tmp/_so_cache)'
