@@ -22,3 +22,6 @@ lib/scratch
 packer_compiled.lua
 
 .DS_STORE
+
+# clean asd smudge filters for git secrets
+templates/git
