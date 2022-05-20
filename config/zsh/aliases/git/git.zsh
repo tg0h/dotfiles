@@ -21,6 +21,7 @@ alias grpb="git rev-parse --is-bare-repository"
 alias gr.='gr main..' # review with previous commit
 
 # diff
+alias gy='gd'
 alias gdst='git diff --stat'
 alias gdms='git diff main --stat'
 
