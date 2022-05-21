@@ -1,0 +1,36 @@
+#!/bin/zsh
+# clean and smudge secrets
+
+while getopts 'f:t:' opt; do
+  case "$opt" in
+    f) file=$OPTARG;;
+    t) action=$OPTARG;;
+  esac
+done
+shift $(($OPTIND - 1))
+
+local isClean=false
+if [ $action = 'clean' ]; then
+  isClean=true
+fi
+
+local config_file=$XDG_CONFIG_HOME/secret/git-clean-secrets.yml
+local project_dir=$(git rev-parse --show-toplevel)
+local relative_file=${file#${project_dir}/} # remove $dir prefix from $file
+
+local config=$(yq '.projects.["'$project_dir'"] | .[] | .["'$relative_file'"]' $config_file --output-format json | jq --compact-output '.[]')
+
+local sedcmd="gsed"
+
+while read row; do
+  local plain_text=$(jq --raw-output '.[0]' <<< $row)
+  local redact_text=$(jq --raw-output '.[1]' <<< $row)
+
+  if $isClean; then
+    sedcmd+=" -e \"s/${plain_text}/${redact_text}/g\""
+  else # smudge
+    sedcmd+=" -e \"s/${redact_text}/${plain_text}/g\""
+  fi
+done <<< $config
+
+eval $sedcmd
