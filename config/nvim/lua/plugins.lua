@@ -18,10 +18,10 @@ return require("packer").startup({
         -- use("~/src/playground/vim/plugin")
         -- keys = {"<C-e>"}
 
-        use("rafcamlet/nvim-luapad")
+        -- use("rafcamlet/nvim-luapad")
 
         -- TODO: luadev requires lspconfig ??
-        use {"folke/lua-dev.nvim", config = get_setup("luadev")}
+        -- use {"folke/lua-dev.nvim", config = get_setup("luadev")}
 
         use("wbthomason/packer.nvim")
         use {"sainnhe/sonokai", config = get_setup("sonokai")}
@@ -75,7 +75,7 @@ return require("packer").startup({
             event = "BufWinEnter"
         })
         use {"nvim-telescope/telescope-file-browser.nvim"}
-        use {"crispgm/telescope-heading.nvim"} -- markdown headings
+        -- use {"crispgm/telescope-heading.nvim"} -- markdown headings
         use {"nvim-telescope/telescope-symbols.nvim"} -- add emojis
         -- use {"ThePrimeagen/git-worktree.nvim"}
         use {
@@ -152,11 +152,11 @@ return require("packer").startup({
         -- gitsigns also provides a git blame
         use {"f-person/git-blame.nvim", config = get_setup("git-blame")}
 
-        use {
-            "ptzz/lf.vim",
-            requires = "voldikss/vim-floaterm",
-            config = get_setup("lf")
-        }
+        -- use {
+        --     "ptzz/lf.vim",
+        --     requires = "voldikss/vim-floaterm",
+        --     config = get_setup("lf")
+        -- }
 
         use {"folke/which-key.nvim", config = get_setup("which-key")}
 
@@ -170,18 +170,18 @@ return require("packer").startup({
 
         use {"tweekmonster/startuptime.vim"}
         use {"ray-x/lsp_signature.nvim", requires = {{"neovim/nvim-lspconfig"}}}
-        use {"ggandor/lightspeed.nvim", event = "BufReadPre"}
+        -- use {"ggandor/lightspeed.nvim", event = "BufReadPre"}
 
         -- to enable dot repeat for lightspeed
         use {"tpope/vim-repeat"}
 
-        use {"ahmedkhalf/project.nvim", config = get_setup("project")}
-        use {
-            "folke/zen-mode.nvim",
-            cmd = "ZenMode",
-            config = get_setup("zen-mode")
-        }
-        use {"sidebar-nvim/sidebar.nvim", config = get_setup("sidebar")}
+        -- use {"ahmedkhalf/project.nvim", config = get_setup("project")}
+        -- use {
+        --     "folke/zen-mode.nvim",
+        --     cmd = "ZenMode",
+        --     config = get_setup("zen-mode")
+        -- }
+        -- use {"sidebar-nvim/sidebar.nvim", config = get_setup("sidebar")}
         use {"windwp/nvim-autopairs", config = get_setup("autopairs")}
         use {"windwp/nvim-ts-autotag"}
         use "p00f/nvim-ts-rainbow"
