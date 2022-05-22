@@ -31,7 +31,8 @@ alias zac='nvim $XDG_CONFIG_HOME/zsh/aliases/candy.zsh'
 
 # config
 alias zg='nvim ~/.config/zsh/aliases/git/git.zsh'
-alias zt='nvim ~/.config/tmux/tmux.conf'
+# alias zt='nvim ~/.config/tmux/tmux.conf'
+alias zt='nvim ~/.config/kitty/kitty.conf'
 alias zk='nvim ~/.config/skhd/skhdrc'
 alias zy='nvim ~/.config/yabai/yabairc'
 alias dos='nvim ~/.dotfiles/install.conf.yaml' # dotbot sourcefile
