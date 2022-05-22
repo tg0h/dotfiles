@@ -245,6 +245,8 @@ return require("packer").startup({
             requires = {"kana/vim-textobj-user"}
         }
         use {"jxnblk/vim-mdx-js"}
+        use "fladson/vim-kitty" -- syntax highlighting for kitty
+        use {"knubie/vim-kitty-navigator", run='cp ./*.py ~/.config/kitty/'}
 
     end,
     config = {
