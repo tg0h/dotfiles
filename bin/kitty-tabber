@@ -1,0 +1,3 @@
+#!/bin/zsh
+
+kitty @ focus-tab --match index:1

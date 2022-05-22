@@ -85,7 +85,7 @@ fi
 asst
 
 # enter tmux on start up if using kitty (depends on tat script in bin folder)
-if [[ $TERM = "xterm-kitty" ]] && [[ -z "$TMUX" ]]; then
-  tat
-fi
+# if [[ $TERM = "xterm-kitty" ]] && [[ -z "$TMUX" ]]; then
+#   tat
+# fi
 # zprof # turn this on to profile zsh (with zmodload zsh/zprof above)
