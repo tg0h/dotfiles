@@ -44,12 +44,12 @@ zinit for \
   mroth/evalcache \
 
 # lazy load plugins
+# OMZP::timer \
 zinit lucid wait for \
   lukechilds/zsh-nvm \
   OMZP::gitignore \
   rupa/z \
   OMZP::aws/aws.plugin.zsh \
-  OMZP::timer \
   marlonrichert/zsh-autocomplete \
   atload"_zsh_autosuggest_start" \
       zsh-users/zsh-autosuggestions \
