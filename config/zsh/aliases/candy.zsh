@@ -1,6 +1,6 @@
 # cred stash
-alias clc="~/src/candy/candymold/tools/list-credentials.js"
-alias cgc="~/src/candy/candymold/tools/get-credential.js"
+alias clc="~/src/candy/old/candymold/tools/list-credentials.js"
+alias cgc="~/src/candy/old/candymold/tools/get-credential.js"
 
 # cognito
 alias cclud="cclu dev | fzf -q 'timothyg'" # list users
