@@ -68,10 +68,12 @@ rshift + ralt + rctrl + lshift - return : yabai -m window --toggle zoom-fullscre
 # rshift + ralt + rctrl - down: yabai -m window --toggle float; yabai -m window --grid 20:5:2:1:1:18 # toggl centre
 
 # move windows around
-alt + cmd - h : yabai -m window --warp west
-alt + cmd - t : yabai -m window --warp south
-alt + cmd - n : yabai -m window --warp north
-alt + cmd - s : yabai -m window --warp east
+
+# alt + cmd - h : yabai -m window --warp west
+# alt + cmd - t : yabai -m window --warp south
+# alt + cmd - n : yabai -m window --warp north
+# alt + cmd - s : yabai -m window --warp east
+
 # change focus
 # meh - tab : yabai -m window --focus stack.next || yabai -m window --focus next || yabai -m window --focus stack.first || yabai -m window --focus first # only works for bsp windows, not floating windows
 # hyper - 0x1B : yabai -m window --focus stack.next || yabai -m window --focus next || yabai -m window --focus stack.first || yabai -m window --focus first # only works for bsp windows, not floating windows
