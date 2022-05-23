@@ -1,0 +1,35 @@
+#!/bin/zsh
+
+function ktl(){
+  local verbose result
+
+  while getopts 'v' opt; do
+    case "$opt" in
+      v) verbose=true;;
+    esac
+  done
+  shift $(($OPTIND - 1))
+
+  local result=$(kitty @ ls)
+
+    local jqQuery=$(cat <<-EOF
+   include "pad";
+   include "colour";
+   include "boolean";
+    "id title              is_focused",
+      (
+        .[] |
+        select(.is_focused == true) |
+        .tabs[] |
+        "\(.id|rp(2)) \(.title|rp(18)) \(.is_focused|bool(.))"
+        # {title, id, is_focused, windows}
+      )
+EOF
+)
+
+  if [ -n "$verbose" ]; then
+    jq . <<< $result
+  else
+    jq --raw-output -L "~/.config/jq" "$jqQuery" <<< $result
+  fi
+}
