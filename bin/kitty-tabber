@@ -1,3 +1,28 @@
 #!/bin/zsh
 
-kitty @ focus-tab --match index:1
+local title=$1
+echo title is $title
+local result=$(kitty @ ls)
+
+    local jqQuery=$(cat <<-EOF
+        .[] |
+        select(.is_focused == true) |
+        .tabs[] |
+        # do not select the current tab, especially if you are running this script
+        # eg kitty-tabber <title>
+        select(.is_focused == false) |
+        select(.title|contains("$title")) |
+        .id
+EOF
+)
+
+# jq --raw-output "$jqQuery" <<< $result
+echo getting tab id
+local tab_id=$(jq --raw-output "$jqQuery" <<< $result)
+echo tab id is $tab_id
+
+if [ -n "$tab_id" ]; then
+  kitty @ focus-tab --match id:$tab_id
+else
+  kitty @ launch --type=tab --tab-title "$title"
+fi
