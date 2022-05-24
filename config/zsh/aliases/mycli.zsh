@@ -1,3 +1,3 @@
-alias d.='mycli -d local'
-alias d,='mycli -d stg'
+alias d.='mycli -d local' # connect to candy db local
+alias d,='mycli -d stg' # connect to candy db staging
 # alias dx='mycli -d pentel_dsn -e'
