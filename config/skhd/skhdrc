@@ -58,7 +58,7 @@ rshift + ralt + rctrl + lshift + lctrl - s : yabai -m space --display 2 # *
 # misc
 # hyper - f : yabai -m window --toggle float # toggle whether the focused window should be tiled (only on bsp spaces)
 # misc size
-rshift + ralt + rctrl + lshift - return : yabai -m window --toggle zoom-fullscreen # enter fullscreen mode for the focused container
+rshift + ralt + rctrl - z : yabai -m window --toggle zoom-fullscreen # enter fullscreen mode for the focused container
 
 # move floating windows left and right
 # rshift + ralt + rctrl - left : yabai -m window --toggle float; yabai -m window --grid 1:2:0:0:1:1
