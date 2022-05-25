@@ -52,7 +52,7 @@ rshift + ralt + rctrl - 7 : yabai -m space --focus 7
 rshift + ralt + rctrl - 8 : yabai -m space --focus 8
 rshift + ralt + rctrl - 9 : yabai -m space --focus 9
 
-rshift + ralt + rctrl + lshift + lctrl - s : yabai -m space --display 2 # *
+# rshift + ralt + rctrl + lshift + lctrl - s : yabai -m space --display 2 # *
 
 # Windows
 # misc
@@ -126,6 +126,8 @@ hyper - l : yabai -m window --toggle float # should be tiled?
 # change layout of desktop
 hyper - t : yabai -m space --layout bsp
 hyper - n : yabai -m space --layout float # left alone by yabai
+rshift + ralt + rctrl + lshift + lctrl - h : yabai -m space --layout bsp
+rshift + ralt + rctrl + lshift + lctrl - s : yabai -m space --layout stack
 hyper - s : yabai -m space --layout stack
 
 # cycle through stack windows - use meh - escape?
