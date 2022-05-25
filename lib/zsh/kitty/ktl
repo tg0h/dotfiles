@@ -16,12 +16,12 @@ function ktl(){
    include "pad";
    include "colour";
    include "boolean";
-    "id title              is_focused",
+    "id title              layout   is_focused",
       (
         .[] |
         select(.is_focused == true) |
         .tabs[] |
-        "\(.id|rp(2)) \(.title|rp(18)) \(.is_focused|bool(.))"
+        "\(.id|rp(2)) \(.title|rp(18)) \(.layout|rp(12)) \(.is_focused|bool(.))"
         # {title, id, is_focused, windows}
       )
 EOF
