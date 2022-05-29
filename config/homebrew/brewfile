@@ -100,6 +100,7 @@ brew 'fish'
 brew 'glow'
 brew 'emacs'
 brew 'asciinema'
+brew 'tig'
 
 cask 'docker'
 cask 'alfred'
