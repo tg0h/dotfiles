@@ -57,6 +57,7 @@ yabai -m config window_gap                   0
 
 # floating
 yabai -m rule --add app='^System Information$' manage=off 
+yabai -m rule --add app='^Smart Countdown Timer' manage=off sticky=on layer=above
 # yabai -m rule --add app='^System Preferences$' manage=off
 # yabai -m rule --add title='Preferences$' manage=off
 # yabai -m rule --add title='Settings$' manage=off
