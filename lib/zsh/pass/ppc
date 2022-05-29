@@ -2,6 +2,8 @@
 
 function ppc(){
   # search password store and copy totp to clipboard
+  # pass otp uri <key> - shows you your otpauth:// secret key
+  # pass otp insert <key> - create a new key, be ready to provide an otpauth://
   dir=$XDG_DATA_HOME/pass
   # get keys from the password store directory filenames, remove the gpg extension, then fzf search
   local key=$(basename $(fd . $dir --extension .gpg) | cut -f 1 -d'.' | fzf --preview-window hidden)
