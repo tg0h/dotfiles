@@ -1,6 +1,0 @@
-#!bin/zsh
-
-function cwl(){
-  aws logs describe-log-groups  | jq '.logGroups[].logGroupName' F
-}
-
