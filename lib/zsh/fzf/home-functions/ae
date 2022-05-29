@@ -31,7 +31,7 @@ function ae(){
   local result=$(
   _fzf_home_getAliases | fzf --ansi \
     --preview="fzf_home_alias_preview {1} {2}" \
-    --bind "enter:execute(fzf_home_alias_edit {1} {2} < /dev/tty > /dev/tty 2>&1)"
+    --bind "enter:execute(fzf_home_alias_edit {1} {2} < /dev/tty > /dev/tty 2>&1)+abort"
 )
 }
 
