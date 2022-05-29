@@ -25,6 +25,8 @@ bindkey '^s^f' fzf-search-package-downwards-widget
 zle -N fzf-search-filenameAndContent-widget
 bindkey '^h' fzf-search-filenameAndContent-widget
 
+zle -N fzf-search-cloudwatch-logs-widget
+bindkey '^s^t' fzf-search-cloudwatch-logs-widget
 
 # fzf git widgets
 zle -N fzf-gh-widget # commits
