@@ -34,7 +34,7 @@ keymaps:
   # state
   - bindkey: xs
     dir: $XDG_STATE_HOME
-    depth: 2
+    depth: 5
   # cache
   - bindkey: r
     dir: $XDG_CACHE_HOME

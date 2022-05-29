@@ -9,6 +9,9 @@ alias dl='cd $HOME/downloads'
 # alias dw='cd ~/src/me/wiki' - use :w
 # alias dxd='cd $XDG_DATA_HOME'
 
+alias u/='uxs'
+alias :/=':xs'
+
 # alias udscm='cd $HOME/src/candy/referralcandy-main/'
 
 # candy wiki - old
