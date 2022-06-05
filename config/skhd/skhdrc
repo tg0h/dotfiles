@@ -93,15 +93,15 @@ rshift + ralt + rctrl + lshift - t : yabai -m window --swap south || $(yabai -m 
 rshift + ralt + rctrl + lshift - n : yabai -m window --swap north || $(yabai -m window --display north; yabai -m display --focus north)
 rshift + ralt + rctrl + lshift - s : yabai -m window --swap east || $(yabai -m window --display east; yabai -m display --focus east)
 # move focused window to next/prev workspace
-alt + cmd - 1 : yabai -m window --space 1 && yabai -m space --focus 1
-alt + cmd - 2 : yabai -m window --space 2 && yabai -m space --focus 2
-alt + cmd - 3 : yabai -m window --space 3 && yabai -m space --focus 3
-alt + cmd - 4 : yabai -m window --space 4 && yabai -m space --focus 4
-alt + cmd - 5 : yabai -m window --space 5 && yabai -m space --focus 5
-alt + cmd - 6 : yabai -m window --space 6 && yabai -m space --focus 6
-alt + cmd - 7 : yabai -m window --space 7 && yabai -m space --focus 7
-alt + cmd - 8 : yabai -m window --space 8 && yabai -m space --focus 8
-alt + cmd - 9 : yabai -m window --space 9 && yabai -m space --focus 9
+rshift + ralt + rctrl + lshift + lctrl - m : yabai -m window --space 1 && yabai -m space --focus 1
+rshift + ralt + rctrl + lshift + lctrl - w : yabai -m window --space 2 && yabai -m space --focus 2
+rshift + ralt + rctrl + lshift + lctrl - v : yabai -m window --space 3 && yabai -m space --focus 3
+rshift + ralt + rctrl + lshift + lctrl - h : yabai -m window --space 4 && yabai -m space --focus 4
+rshift + ralt + rctrl + lshift + lctrl - t : yabai -m window --space 5 && yabai -m space --focus 5
+rshift + ralt + rctrl + lshift + lctrl - n : yabai -m window --space 6 && yabai -m space --focus 6
+rshift + ralt + rctrl + lshift + lctrl - g : yabai -m window --space 7 && yabai -m space --focus 7
+rshift + ralt + rctrl + lshift + lctrl - c : yabai -m window --space 8 && yabai -m space --focus 8
+rshift + ralt + rctrl + lshift + lctrl - r : yabai -m window --space 9 && yabai -m space --focus 9
 
 # # toggle whether the focused window should have a border
 # yabai -m window --toggle border
@@ -126,9 +126,9 @@ hyper - l : yabai -m window --toggle float # should be tiled?
 # change layout of desktop
 hyper - t : yabai -m space --layout bsp
 hyper - n : yabai -m space --layout float # left alone by yabai
+hyper - s : yabai -m space --layout stack
 rshift + ralt + rctrl + lshift + lctrl - h : yabai -m space --layout bsp
 rshift + ralt + rctrl + lshift + lctrl - s : yabai -m space --layout stack
-hyper - s : yabai -m space --layout stack
 
 # cycle through stack windows - use meh - escape?
 # position stack movement keys in an easier to reach row, since cycle has other similar keymaps
