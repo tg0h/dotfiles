@@ -1,0 +1,31 @@
+#!bin/zsh
+
+function dlc(){
+  # copy latest download to current folder
+  # if zip file, unzip and copy to current folder
+  # if file, just copy to current folder
+
+  local dir=~/Downloads/
+
+  # -t sort by latest first
+  # -p add trailing / to directories
+  # ls -tp $dir | rg -v / | head -n1
+  local latestFile=$dir$(ls -tp $dir | rg -v / | head -n1)
+
+  # if zip file, unzip and copy to current folder
+  if [[ $(file --mime $latestFile) =~ application/zip ]]; then
+    local zipTmpFolder=$(mktemp -d /tmp/zip.XXX)
+    unzip -q $latestFile -d $zipTmpFolder
+    local base=$(basename $latestFile)
+    # remove .zip extension from basename
+    local dirName=${base%.*}
+    # cp -r $zipTmpFolder/$dirName .
+    mkdir $dirName
+    # add trailing / to copy folder contents, not the folder
+    cp -r $zipTmpFolder/ $dirName
+    echo unzipped $fg[green]$base$reset_color here
+  else
+    cp $latestFile .
+    echo copied $fg[green]$latestFile$reset_color here
+  fi
+}
