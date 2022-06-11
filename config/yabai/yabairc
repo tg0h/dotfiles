@@ -65,7 +65,8 @@ yabai -m rule --add app='Wally' manage=off sticky=on layer=above # keep it topmo
 # yabai -m rule --add app='Snagit' manage=off
 
 # floating and sticky
-yabai -m rule --add app='Toggl Track' manage=off sticky=on
+# do not set sticky so that toggle does not appear in every space and does not appear when cycling through windows
+yabai -m rule --add app='Toggl Track' manage=off
 yabai -m rule --add app='nvALT' manage=off sticky=on
 # yabai -m rule --add app='iThoughtsX' manage=off sticky=on
 # yabai -m rule --add app='Spotify' manage=off sticky=on
