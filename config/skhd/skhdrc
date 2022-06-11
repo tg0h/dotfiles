@@ -10,6 +10,7 @@ lshift + lctrl + lalt + lcmd - g : yabai -m space --create
 
 # go to space shortcuts
 rshift + ralt + rctrl - space : yabai -m space --focus recent # focus previous workspace
+lshift + lctrl - space : yabai -m space --focus recent # focus previous workspace
 # NOTE: good trick add shift key to shift behaviour.
 rshift + ralt + rctrl + lshift - space : yabai -m window --space recent; yabai -m space --focus recent # move focused window to previous workspace
 
@@ -88,8 +89,12 @@ rshift + ralt + rctrl + lshift - z : yabai -m window --insert east
 
 # Rmeh + Lshift + Lalt <home> change layout of desktop
 rshift + ralt + rctrl + lshift + lalt - h : yabai -m space --layout bsp
-rshift + ralt + rctrl + lshift + lalt - t : yabai -m space --layout float # left alone by yabai
-rshift + ralt + rctrl + lshift + lalt - n : yabai -m space --layout stack
+rshift + ralt + rctrl + lshift + lalt - t : yabai -m space --layout stack
+# rshift + ralt + rctrl + lshift + lalt - t : yabai -m space --layout float # left alone by yabai
+lshift + lctrl - h : yabai -m space --layout bsp
+lshift + lctrl - t : yabai -m space --layout stack
+# lshift + lctrl - n : yabai -m window --focus stack.next || yabai -m window --focus next || yabai -m window --focus stack.first || yabai -m window --focus first # only works for bsp windows, not floating windows
+lshift + lctrl - n : yabai -m window --focus "$(yabai -m query --windows | jq -re "sort_by(.display, .frame.x, .frame.y, .id) | map(select(.\"is-visible\" == true and .role != \"AXUnknown\")) | reverse | nth(index(map(select(.\"has-focus\" == true))) - 1).id")"
 
 # # mirror
 # alt + shift - y : yabai -m space --mirror y-axis
