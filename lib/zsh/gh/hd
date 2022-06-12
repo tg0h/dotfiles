@@ -1,0 +1,7 @@
+#!bin/zsh
+
+function hd(){
+  # delete repo without confirmation
+  # hd <repo>
+  gh repo delete $1 --confirm
+}
