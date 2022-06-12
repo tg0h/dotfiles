@@ -1,5 +1,5 @@
 set folder = imaps://imap.gmail.com # use imap instead of a local folder
-set imap_user = timslgoh@gmail.com
+set imap_user = "$PERSONAL_GMAIL"
 set imap_pass = "$GMAIL_ME_APP_PASSWORD"
 set smtp_url = "smtps://timslgoh@smtp.gmail.com"
 set smtp_pass = "$GMAIL_ME_APP_PASSWORD"
@@ -14,7 +14,7 @@ mailboxes =Inbox =[Gmail]/Sent\ Mail =[Gmail]/Drafts =[Gmail]/Trash =[Gmail]/Spa
 set mailcap_path = $XDG_CONFIG_HOME/mutt/mailcap:$mailcap_path
 
 set realname = "timothy goh"
-set from = "***REMOVED***"
+set from = "$WORK_EMAIL"
 
 # set date_format="%y/%m/%d %I:%M%p"
 

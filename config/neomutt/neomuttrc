@@ -1,7 +1,7 @@
 set folder = imaps://imap.gmail.com # use imap instead of a local folder
-set imap_user = ***REMOVED***
+set imap_user = $WORK_EMAIL
 set imap_pass = "$GMAIL_ANAFORE_APP_PASSWORD"
-set smtp_url = "smtps://***REMOVED***@smtp.gmail.com"
+set smtp_url = "smtps://$WORK_EMAIL@smtp.gmail.com"
 set smtp_pass = "$GMAIL_ANAFORE_APP_PASSWORD"
 
 set spoolfile = +INBOX
@@ -14,7 +14,7 @@ mailboxes =Inbox =[Gmail]/Sent\ Mail =[Gmail]/Drafts =[Gmail]/Trash =[Gmail]/Spa
 set mailcap_path = $XDG_CONFIG_HOME/mutt/mailcap:$mailcap_path
 
 set realname = "timothy goh"
-set from = "***REMOVED***"
+set from = $WORK_EMAIL
 
 # set date_format="%y/%m/%d %I:%M%p"
 
