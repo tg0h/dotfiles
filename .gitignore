@@ -1,4 +1,5 @@
 config/ssh/config
+config/aws/config
 # my dir-switcher compiled functions directory
 out
 
