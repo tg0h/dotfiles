@@ -65,6 +65,8 @@
     # confident that the directories here won't have other files added
     ~/.local/lib/: lib/*
 
+    ~/.local/lib/zsh/candy: ~/src/me/zsh/candy
+
     # certis
     # ~/src/certis/edo/abc-cli/config/environment/: config/abc-cli/env/*
     # ~/Library/LaunchAgents/certify-verifysync.plist: lib/certify/certify-verifysync.plist #certify sync job

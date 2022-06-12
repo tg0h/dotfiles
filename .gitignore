@@ -19,6 +19,9 @@ brewfile.lock.json
 # git update-index --no-assume-unchanged path/to/file
 lib/scratch
 
+# ignore candy zsh functions symlink
+lib/zsh/candy
+
 packer_compiled.lua
 
 .DS_STORE
