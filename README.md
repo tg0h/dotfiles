@@ -2,22 +2,27 @@
 
 ## Motivation
 
-## Structure
+- prefer to use the command line and vim
+- keep my functions and aliases accessible
+- design keymaps that are consistent across apps. Eg, <modifier> g goes to previous tab/window in kitty/vim/yabai
+- prefer shortcuts on the home row
 
-- xdg
+## Folder Structure
+
+- use the xdg folder system
   - config, cache, data, state
     - store configuration for packages
   - ~/.local/lib
-    - store functions
+    - store my zsh functions
   - ~/.local/bin
-    - store scripts
+    - store my scripts
 
 ## Shell
 
 - zsh
   - plugin management
     - zinit
-  - startup
+  - faster startup
     - autoload functions for faster startup
 
 ## Workflow
@@ -31,7 +36,8 @@
 
 ## Features
 
-- fuzzy dir switcher
+- dir switcher [here](/config/tg/dir-switcher/README.md) - define keymaps to switch to directories
+- command palette - search for my functions and aliases with fzf [here](/lib/zsh/fzf/home-functions)
 - dotfile management via dotbot
 - macos package management via brewfile
 
