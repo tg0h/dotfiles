@@ -30,7 +30,7 @@ function asst(){
     local token=$(pass otp aws)
     echo -e $fg[green] got token from password store: $fg[cyan]$token
 
-    local data=$(aws sts get-session-token --serial-number ***REMOVED*** --token-code $token)
+    local data=$(aws sts get-session-token --serial-number arn:aws:iam::$AWS_MFA_SERIAL_NUMBER --token-code $token)
     if [[ -n "$data" ]]
     then
       local accessKey=$(jq --raw-output '.Credentials.AccessKeyId' <<< $data)
