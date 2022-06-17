@@ -75,6 +75,8 @@ keymaps:
   - bindkey: s.
     dir: $HOME/src/candy/main/referralcandy-main
     depth: 5 # specify how deep the directory preview should be
+  - bindkey: sp
+    dir: $HOME/src/candy/old/pentel
   - bindkey: sc
     dir: $HOME/src/candy
     depth: 5 # specify how deep the directory preview should be
@@ -89,6 +91,10 @@ keymaps:
     show-hidden: true
     show-ignore: true
     xargs: dirname # use xargs to further filter ouput
+  - bindkey: hc
+    dir: $HOME/src/me/zsh/candy
+  - bindkey: ht
+    dir: $HOME/src/me/zsh/candy/klaviyo/
   - bindkey: n
     depth: 4
     dir: $HOME/src/clones
