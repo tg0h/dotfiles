@@ -95,6 +95,8 @@ keymaps:
     dir: $HOME/src/me/zsh/candy
   - bindkey: ht
     dir: $HOME/src/me/zsh/candy/klaviyo/
+  - bindkey: hn
+    dir: $HOME/src/me/zsh/candy/shopify/
   - bindkey: n
     depth: 4
     dir: $HOME/src/clones
