@@ -69,6 +69,10 @@
 
 ## Inspiration
 
+- allaman - https://github.com/Allaman/dotfiles
+- elijah manor - https://elijahmanor.com/blog/neovim-tmux
+- primeagen
+
 ## todo
 
 - fuzzy finding
