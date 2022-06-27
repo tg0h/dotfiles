@@ -12,6 +12,8 @@
 - use the xdg folder system
   - config, cache, data, state
     - store configuration for packages
+    - config/zsh
+      - store aliases, global aliases
   - ~/.local/lib
     - store my zsh functions
   - ~/.local/bin
@@ -21,7 +23,7 @@
 
 - zsh
   - plugin management
-    - zinit
+    - zinit to lazy load plugins
   - faster startup
     - autoload functions for faster startup
 
@@ -50,6 +52,8 @@
 
 - zshenv, env
 - git clean and smudge
+- password store to generate otps
+- gpg key for public key and encryption
 
 ## Backup
 
@@ -64,3 +68,14 @@
 - [lazygit]
 
 ## Inspiration
+
+## todo
+
+- fuzzy finding
+  - add frecency to fuzzy finding
+  - make function finding more granular
+  - add display order
+  - reload function or config from fuzzy finder
+- add archive function
+- how to manage sym links to eg work function repo
+- how to manage env variables and display state on cli - similar to an aws global profile but for any of my functions
