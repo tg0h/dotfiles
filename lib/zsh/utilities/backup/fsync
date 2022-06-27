@@ -34,7 +34,10 @@ function fsync(){
   rsync -aP --stats --delete --exclude node_modules --exclude tmp ~/dotfiles ~/src ~/Desktop $destination
 
   # Documents
-    rsync -aP --stats --delete ~/Documents/candy ~/Documents/dropbox ~/Documents/garden ~/Documents/notes ~/Documents/secrets $destination/Documents
+  rsync -aP --stats --delete ~/Documents/candy ~/Documents/dropbox ~/Documents/garden ~/Documents/notes ~/Documents/secrets $destination/Documents
+
+  # Pictures
+  rsync -aP --stats --delete /Pictures/Snagit $destination/Pictures
 
   # binaries
   rsync -aP --stats --delete ~/local/bin $destination/local
