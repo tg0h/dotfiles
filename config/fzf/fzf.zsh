@@ -37,6 +37,7 @@ source /opt/homebrew/opt/fzf/shell/key-bindings.zsh
 # --color='hl:-1:underline,hl+:-1:underline:reverse'
 # hl - colour of matching substrings. -1 means accept the original colour
 # hl+ - colour of matching substrings on current line
+# --bind='ctrl-d:half-page-down'
 export FZF_DEFAULT_OPTS="
 --ansi
 --no-mouse
@@ -50,8 +51,10 @@ export FZF_DEFAULT_OPTS="
 --bind='f2:toggle-preview'
 --bind='ctrl-d:half-page-down'
 --bind='ctrl-u:half-page-up'
---bind 'alt-t:preview-half-page-up'
---bind 'alt-h:preview-half-page-down'
+--bind 'shift-down:preview-half-page-down'
+--bind 'shift-up:preview-half-page-up'
+--bind 'shift-left:preview-up'
+--bind 'shift-right:preview-down'
 --bind='ctrl-a:select-all+accept'
 --bind='ctrl-y:execute-silent(echo {+} | join-lines-fzf | pbcopy)+abort'
 --bind='ctrl-r:execute(echo {} > /tmp/_so_cache)+abort'
