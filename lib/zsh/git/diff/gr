@@ -5,9 +5,18 @@ function gr (){
   # gr <commit hash to compare with>
   # supply list of files to fzf
   # fzf preview with git delta
+  local commitRange
 
-  local preview="git diff $@ --color=always -- {-1} | delta --side-by-side -w ${FZF_PREVIEW_COLUMNS:-$COLUMNS}"
-  git diff $@ --name-only | fzf --cycle --height '100%' --ansi --preview-window 'bottom,92%' --preview $preview \
+  # if no args provided, compare with commone ancestor with main
+  # the git diff command looks for changes from merg base to the SECOND commit
+  # in <commit>...<commit>
+  # if either commit is left out, head is used
+  # refer to the git diff help page
+
+  commitRange=${@:-"main..."}
+
+  local preview="git diff $commitRange --color=always -- {-1} | delta --side-by-side -w ${FZF_PREVIEW_COLUMNS:-$COLUMNS}"
+  git diff $commitRange --name-only | fzf --cycle --height '100%' --ansi --preview-window 'bottom,92%' --preview $preview \
     --bind 'h:up' \
     --bind 't:preview-half-page-down' \
     --bind 'n:preview-half-page-up' \
