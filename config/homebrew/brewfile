@@ -108,6 +108,7 @@ brew 'task'
 brew 'timewarrior'
 brew 'entr'
 brew 'lnav'
+brew 'btop'
 
 tap 'shopify/shopify'
 brew 'shopify-cli'
