@@ -95,6 +95,7 @@ lshift + lctrl - h : yabai -m space --layout bsp
 lshift + lctrl - t : yabai -m space --layout stack
 # lshift + lctrl - n : yabai -m window --focus stack.next || yabai -m window --focus next || yabai -m window --focus stack.first || yabai -m window --focus first # only works for bsp windows, not floating windows
 lshift + lctrl - n : yabai -m window --focus "$(yabai -m query --windows | jq -re "sort_by(.display, .frame.x, .frame.y, .id) | map(select(.\"is-visible\" == true and .role != \"AXUnknown\")) | reverse | nth(index(map(select(.\"has-focus\" == true))) - 1).id")"
+lshift + lctrl - s : yabai -m window --focus stack.next || yabai -m window --focus next || yabai -m window --focus stack.first || yabai -m window --focus first # only works for bsp windows, not floating windows
 
 # # mirror
 # alt + shift - y : yabai -m space --mirror y-axis
