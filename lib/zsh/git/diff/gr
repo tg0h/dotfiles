@@ -2,6 +2,11 @@
 
 function gr (){
   # fuzzy git review with delta use to review git diffs
+  # j - preview down
+  # k - preview up
+  # t - preview half page down
+  # n - preview half page up
+
   # gr <commit hash to compare with>
   # supply list of files to fzf
   # fzf preview with git delta
@@ -16,11 +21,10 @@ function gr (){
   commitRange=${@:-"main..."}
 
   local preview="git diff $commitRange --color=always -- {-1} | delta --side-by-side -w ${FZF_PREVIEW_COLUMNS:-$COLUMNS}"
-  git diff $commitRange --name-only | fzf --cycle --height '100%' --ansi --preview-window 'bottom,92%' --preview $preview \
-    --bind 'h:up' \
-    --bind 't:preview-half-page-down' \
-    --bind 'n:preview-half-page-up' \
-    --bind 's:down' \
-    --bind 'j:preview-down' \
-    --bind 'k:preview-up' \
+  git diff $commitRange --name-only | fzf --cycle --height '100%' --ansi --preview-window 'bottom,80%' --preview $preview \
+    --bind 'h:preview-half-page-down' \
+    --bind 't:preview-half-page-up' \
+    --bind 'j:down' \
+    --bind 'k:up' \
+    # --bind 'h:up' \
 }
