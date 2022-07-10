@@ -1,0 +1,14 @@
+[general]
+shell = "zsh"
+shell_options = ""
+
+[keymap]
+timemachine_go_to_past = "j"
+timemachine_go_to_more_past = "h"
+timemachine_go_to_future = "k"
+timemachine_go_to_more_future = "t"
+timemachine_go_to_now = "b"
+timemachine_go_to_oldest = "d"
+
+[color]
+# background = "white" # Default value is inherit from terminal color.

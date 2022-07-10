@@ -47,6 +47,7 @@
         - config/karabiner/**
         - config/npm/**
 
+    ~/.config/viddy.toml: config/viddy.toml
     ~/.zshenv: config/zsh-boot/boot.zshenv
     # zsh reads the dot files in the $ZDOTDIR dir
     ~/.config/zsh/.zshenv: config/zsh-boot/zshenv
