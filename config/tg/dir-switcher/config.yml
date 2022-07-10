@@ -75,6 +75,10 @@ keymaps:
   - bindkey: s.
     dir: $HOME/src/candy/main/referralcandy-main
     depth: 5 # specify how deep the directory preview should be
+  - bindkey: sh
+    dir: $HOME/src/candy/main/referralcandy-main/packages/daemons
+  - bindkey: sd
+    dir: $HOME/src/candy/main/referralcandy-main/packages/infra
   - bindkey: sp
     dir: $HOME/src/candy/old/pentel
   - bindkey: sc
@@ -84,6 +88,8 @@ keymaps:
     show-hidden: true
     show-ignore: true
     xargs: dirname
+  - bindkey: so
+    dir: $HOME/src/candy/old
   - bindkey: h
     dir: $HOME/src/me
     depth: 4
@@ -108,6 +114,8 @@ keymaps:
   - bindkey: w # my website
     dir: $HOME/src/me/wiki
     depth: 5 # specify how deep the directory preview should be
+  - bindkey: m
+    dir: $HOME/src/me/wiki/projects/ou
   # (ノ ゜Д゜)ノ ︵ ┻━┻ flipping playground
   - bindkey: t
     depth: 5
