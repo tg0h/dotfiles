@@ -1,0 +1,6 @@
+#!bin/zsh
+
+function rcs(){
+  # redis cli set
+  redis-cli set $@
+}
