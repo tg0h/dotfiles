@@ -1,0 +1,12 @@
+#!bin/zsh
+
+function ql(){
+  # fuzzy list sqs queues and copy selection to clipboard
+  local url=$(aws sqs list-queues | jq --raw-output ".QueueUrls[]" | fzf)
+
+  # use this function to get the queue url in other functions
+  if [ -n "$url" ]; then
+    echo -n $url | pbcopy
+    echo -n $url
+  fi
+}

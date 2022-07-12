@@ -1,0 +1,53 @@
+#!bin/zsh
+
+function qg(){
+  # get queue attributes
+  # qg - to fuzzy get the queue attributes
+  # qg <queueUrl>
+  # qg -t - use the default queue defined in env
+  # qg -v - verbose
+
+  local verbose queueUrl defaultQueue
+  while getopts 'vt' opt; do
+    case "$opt" in
+      v) verbose=true;;
+      t) defaultQueue=true;;
+    esac
+  done
+  shift $(($OPTIND - 1))
+
+  # use provided queueUrl, else fuzzy get queueUrl
+  if [ -n "$1" ]; then
+    queueUrl=$1
+  elif [ -n "$defaultQueue" ]; then
+    queueUrl=$AWS_QUEUE_URL
+  else
+    queueUrl=$(ql)
+  fi
+
+  if [ -n "$queueUrl" ]; then
+    local result=$(aws sqs get-queue-attributes --queue-url $queueUrl --attribute-names All)
+  fi
+
+  # MessageRetentionPeriod
+  # MaximumMessageSize
+  # DelaySeconds
+  # ReceiveMessageWaitTimeSeconds - 0 means short polling (but can also be set at the message level)
+local jqQuery=$(cat <<-EOF
+   include "pad";
+   include "colour";
+     .Attributes |
+     "Number:        \(.ApproximateNumberOfMessages|_g(.))
+Not Visible:   \(.ApproximateNumberOfMessagesNotVisible |  _brinkPink(.))
+Delayed:       \(.ApproximateNumberOfMessagesDelayed|__(.))"
+EOF
+)
+     # "(.VisibilityTimeout)"
+     # "\(.ApproximateNumberOfMessages)"
+
+     if [ -z "$verbose" ]; then
+        jq -L "~/.config/jq" -r "$jqQuery" <<< $result
+     else
+       jq '.Attributes' <<< $result
+     fi
+}

@@ -1,0 +1,9 @@
+#!bin/zsh
+
+function qu(){
+  # get queue url
+  # qu <queueName>
+  
+  local url=$(aws sqs get-queue-url --queue-name $1 | jq --raw-output '.QueueUrl')
+  echo -n $url
+}

@@ -1,0 +1,10 @@
+#!bin/zsh
+
+function qd(){
+  # delete sqs message
+  # qd <receipt-handle>
+  # get queue url from env
+  local queueUrl=$AWS_QUEUE_URL
+
+  aws sqs delete-message --queue-url $queueUrl --receipt-handle $1
+}
