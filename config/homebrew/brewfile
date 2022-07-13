@@ -112,6 +112,7 @@ brew 'btop'
 brew 'localstack'
 brew 'viddy'
 brew 'spark'
+brew 'jo'
 
 tap 'shopify/shopify'
 brew 'shopify-cli'
