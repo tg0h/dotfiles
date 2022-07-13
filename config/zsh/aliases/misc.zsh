@@ -1,3 +1,5 @@
+alias h='which'
+
 alias ag="alias | grep"
 alias sg="set | grep"
 
@@ -18,10 +20,13 @@ alias eu="nvim"
 alias son="so -n"
 
 # source
-alias ss="source $HOME/.local/lib/scratch.zsh"
+alias ss="source $HOME/.local/bin/scratch"
 
 # edit
-alias ee="nvim $HOME/.local/lib/scratch.zsh"
+alias ee="nvim $HOME/.local/bin/scratch"
+# watch for changes to scratch, then clear screen and run scratch
+alias ent="echo $HOME/.local/bin/scratch | entr -c scratch"
+alias vs="viddy scratch"
 alias oe="nvim $HOME/.local/lib/scratch.lua"
 alias ou="lua $HOME/.local/lib/scratch.lua"
 
