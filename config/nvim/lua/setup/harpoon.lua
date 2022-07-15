@@ -5,7 +5,7 @@ default_options = {noremap = true, silent = true}
 
 require("harpoon").setup({
     menu = {
-        width = 80,
+        width = 100,
     },
     global_settings = {
         -- sets the marks upon calling `toggle` on the ui, instead of require `:w`.
