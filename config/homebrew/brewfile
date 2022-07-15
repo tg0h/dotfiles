@@ -113,6 +113,12 @@ brew 'localstack'
 brew 'viddy'
 brew 'spark'
 brew 'jo'
+brew 'angle-grinder'
+brew 'rga'
+brew 'poppler'
+
+tap 'saulpw/vd'
+brew 'saulpw/vd/visidata'
 
 tap 'shopify/shopify'
 brew 'shopify-cli'
