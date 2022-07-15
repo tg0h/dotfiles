@@ -1,0 +1,18 @@
+#!bin/zsh
+
+function sml(){
+  # list secrets
+local result=$(aws secretsmanager list-secrets)
+
+  local jqQuery=$(cat <<-EOF
+   include "pad";
+   include "colour";
+     .SecretList | sort_by(.Name) | .[] |
+     "\(.Name) \(.Description // "" | _brinkPink(.)) \(.ARN | _y(.))"
+EOF
+)
+     # "\(.Name) \(.Description // "")
+# echo $jqQuery
+
+jq --raw-output -L "~/.config/jq" "$jqQuery" <<< $result
+}

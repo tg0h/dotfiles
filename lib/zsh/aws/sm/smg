@@ -1,0 +1,14 @@
+#!bin/zsh
+
+function smg(){
+  # get secret from secretsmanager
+
+  jq --raw-output -L "~/.config/jq" "$jqQuery" <<< $result
+
+  local arn=$(sml | fzf | choose -1)
+
+  if [ -n "$arn" ]; then 
+    local secret=$(aws secretsmanager get-secret-value --secret-id $arn)
+    jq '.SecretString | fromjson' <<< $secret
+  fi
+}
