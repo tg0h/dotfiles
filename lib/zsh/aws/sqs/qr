@@ -5,5 +5,5 @@ function qr(){
   local queueUrl=${1:-$AWS_QUEUE_URL}
 
   echo $queueUrl
-  aws sqs receive-message --queue-url $queueUrl
+  aws sqs receive-message --queue-url $queueUrl --attribute-names All --message-attribute-names All
 }
