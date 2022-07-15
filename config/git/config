@@ -26,6 +26,8 @@
 
 [includeIf "gitdir:~/src/candy/"]
   path = config-work
+[includeIf "gitdir:~/src/candy-main/"]
+  path = config-work
 [init]
 	defaultBranch = main
 [color "status"]
