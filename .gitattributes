@@ -1,1 +1,2 @@
 **/myclirc filter=cleanSecrets
+**/git/config-work filter=cleanSecrets
