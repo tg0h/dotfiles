@@ -1,2 +1,3 @@
 **/myclirc filter=cleanSecrets
 **/git/config-work filter=cleanSecrets
+config/zsh/toggl/config.zsh filter=cleanSecrets
