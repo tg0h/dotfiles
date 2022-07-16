@@ -1,5 +1,5 @@
 #!/bin/zsh
-# clean and smudge secrets
+# clean (redact) and smudge secrets
 
 while getopts 'f:t:' opt; do
   case "$opt" in
@@ -18,7 +18,12 @@ local config_file=$XDG_CONFIG_HOME/secret/git-clean-secrets.yml
 local project_dir=$(git rev-parse --show-toplevel)
 local relative_file=${file#${project_dir}/} # remove $dir prefix from $file
 
-local config=$(yq '.projects.["'$project_dir'"] | .[] | .["'$relative_file'"]' $config_file --output-format json | jq --compact-output '.[]')
+# echo project dir is $project_dir
+# echo relative file is $relative_file
+# echo config file is $config_file
+# echo yq is $(yq '.projects.["'$project_dir'"]["'$relative_file'"]' $config_file --output-format json)
+
+local config=$(yq '.projects.["'$project_dir'"]["'$relative_file'"]' $config_file --output-format json | jq --compact-output '.[]')
 
 local sedcmd="gsed"
 
