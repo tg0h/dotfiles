@@ -29,6 +29,8 @@
 
 ## Workflow
 
+- keyboard
+  - ergodox
 - text editor
   - neovim
 - terminal
@@ -39,9 +41,11 @@
 ## Features
 
 - dir switcher [here](/config/tg/dir-switcher/README.md) - define keymaps to switch to directories
-- command palette - search for my functions and aliases with fzf [here](/lib/zsh/fzf/home-functions)
+- command runner - search for my functions and aliases with fzf [here](/lib/zsh/fzf/home-functions)
 - dotfile management via dotbot
 - macos package management via brewfile
+- scratch pad
+  - use entr to view results after saving
 
 ## Commits
 
@@ -64,10 +68,20 @@
 
 ## Tools
 
-- [fzf](https://github.com/junegunn/fzf)
-- [fd](https://github.com/sharkdp/fd)
-- [ripgrep](https://github.com/BurntSushi/ripgrep)
-- [lazygit]
+- fuzzy searching
+  - [fzf](https://github.com/junegunn/fzf)
+- searching - replace find and grep
+  - [fd](https://github.com/sharkdp/fd)
+  - [ripgrep](https://github.com/BurntSushi/ripgrep)
+- git
+  - [lazygit]
+- view log files
+  - [lnav]
+- slice, dice, get stats
+  - [angle grinder]
+- json
+  - jq
+- entr
 
 ## Inspiration
 
@@ -85,3 +99,6 @@
 - add archive function
 - how to manage sym links to eg work function repo
 - how to manage env variables and display state on cli - similar to an aws global profile but for any of my functions
+- better kitty tab bar
+- better kitty tooling
+  - scrollback buffer
