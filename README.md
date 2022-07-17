@@ -51,7 +51,9 @@
 ## Secrets
 
 - zshenv, env
-- git clean and smudge
+- git clean and smudge [here](bin/git-clean-smudge-filter)
+  - .gitattributes
+  - config file in yml with <secret> to <redactText> mapping
 - password store to generate otps
 - gpg key for public key and encryption
 
