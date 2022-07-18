@@ -16,8 +16,12 @@ rshift + ralt + rctrl + lshift - space : yabai -m window --space recent; yabai -
 
 # Focus previous/next display by arrangement index
 # R g/r to move across monitors
-rshift + ralt + rctrl - g : yabai -m display --focus prev || yabai -m display --focus last
-rshift + ralt + rctrl - r : yabai -m display --focus next || yabai -m display --focus first
+# rshift + ralt + rctrl - g : yabai -m display --focus prev || yabai -m display --focus last
+# rshift + ralt + rctrl - r : yabai -m display --focus next || yabai -m display --focus first
+# 90 rotation, rotates to the left by 90
+# 270 rotation, rotates to the left by 270 === rotate to the right by 90
+rshift + ralt + rctrl - r : yabai -m space --rotate 270
+
 # R Shift g/r to move spaces
 rshift + ralt + rctrl + lshift - g : yabai -m space --focus prev || yabai -m space --focus last # previous
 rshift + ralt + rctrl + lshift - r : yabai -m space --focus next || yabai -m space --focus first # next
