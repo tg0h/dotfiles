@@ -1,0 +1,23 @@
+#!bin/zsh
+
+function ape(){
+  # list pipeline executions
+  # ape [number of executions to show] - defaults to 5
+
+  local n=${1:-5}
+  local result=$(aws codepipeline list-pipeline-executions --pipeline-name $CANDY_PIPELINE --max-items $n)
+
+    local jqQuery=$(cat <<-EOF
+   include "pad";
+   include "colour";
+   include "aws-pipeline";
+     .pipelineExecutionSummaries[] |
+     "\(.startTime[5:19] | _nb(.)) \(.sourceRevisions[0].revisionId[0:5] | _g(.)) \(.status | aplStatus) \(.pipelineExecutionId[0:5] | ___(.)) " +
+     "\(.sourceRevisions[0].revisionSummary | fromjson | .CommitMessage | (gsub("\\n";" "))) \n" +
+     "    \(.sourceRevisions[0].revisionUrl | __(.))"
+EOF
+)
+     # "\(.sourceRevisions[0].revisionSummary | fromjson | .CommitMessage | (sub("\\n";" ")))"
+
+jq --raw-output -L "~/.config/jq" "$jqQuery" <<< $result
+}

@@ -1,0 +1,6 @@
+#!bin/zsh
+
+function apl(){
+  # list pipelines
+   aws codepipeline list-pipelines
+}
