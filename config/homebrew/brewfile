@@ -116,6 +116,8 @@ brew 'jo'
 brew 'angle-grinder'
 brew 'rga'
 brew 'poppler'
+brew 'dasel' # from clig.dev https://ilya-sher.org/2018/04/10/list-of-json-tools-for-command-line/
+brew 'jc'
 
 tap 'saulpw/vd'
 brew 'saulpw/vd/visidata'
