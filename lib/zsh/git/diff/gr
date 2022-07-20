@@ -21,7 +21,11 @@ function gr (){
   # if either commit is left out, head is used
   # refer to the git diff help page
 
-  commitRange=${@:-"main..."}
+  # .. 
+  # ... is gmb
+
+  local commitStart=${1:-"main"}
+  local commitRange="$commitStart..."
 
   local preview="git diff $commitRange --color=always -- {-1} | delta --side-by-side -w ${FZF_PREVIEW_COLUMNS:-$COLUMNS}"
   git diff $commitRange --name-only | fzf --cycle --height '100%' --ansi --preview-window 'bottom,80%' --preview $preview \
