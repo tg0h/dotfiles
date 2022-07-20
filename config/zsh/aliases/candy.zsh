@@ -11,7 +11,7 @@ alias cccus="cccu -s staging -c"
 alias ccdud="ccdu -s dev" # delete users
 alias ccsud="ccdu -s staging"
 
-# mock
-alias mo="bat ./packages/frontend/.env.development* ./packages/api/api/.env.development*"
-alias mof="echo 'NEXT_PUBLIC_API_MOCKING=false' > ./packages/frontend/.env.development.local"
-alias moe="echo 'NEXT_PUBLIC_API_MOCKING=enabled' > ./packages/frontend/.env.development.local"
+# rc main environment
+alias cedl="ced -l" # point to local db
+alias ceds="ced -s" # point to staging db
+alias cefl="cef -l" # turn off mocking

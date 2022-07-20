@@ -36,3 +36,4 @@ packer_compiled.lua
 
 # clean asd smudge filters for git secrets
 templates/git
+templates/candy
