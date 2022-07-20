@@ -75,6 +75,8 @@ keymaps:
   - bindkey: s.
     dir: $HOME/src/candy/main/referralcandy-main
     depth: 5 # specify how deep the directory preview should be
+  - bindkey: s,
+    dir: $HOME/src/candy-main/referralcandy-main
   - bindkey: sh
     dir: $HOME/src/candy/main/referralcandy-main/packages/daemons
   - bindkey: sd
