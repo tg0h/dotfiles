@@ -84,6 +84,7 @@ fi
 # asst > /dev/null
 asst
 
+md -p /tmp/tim
 # enter tmux on start up if using kitty (depends on tat script in bin folder)
 # if [[ $TERM = "xterm-kitty" ]] && [[ -z "$TMUX" ]]; then
 #   tat
