@@ -15,3 +15,4 @@ alias ccsud="ccdu -s staging"
 alias cedl="ced -l" # point to local db
 alias ceds="ced -s" # point to staging db
 alias cefl="cef -l" # turn off mocking
+alias cefm="cef -m" # turn on mocking
