@@ -13,7 +13,7 @@ function ape(){
    include "aws-pipeline";
      .pipelineExecutionSummaries[] |
      "\(.startTime[8:10] | _bt(.))\(.startTime[5:7] | __(.)) \(.startTime[11:13] | _bt(.))\(.startTime[13:16] | __(.)) \(.sourceRevisions[0].revisionId[0:5] | _g(.)) \(.status | aplStatus) \(.pipelineExecutionId[0:5] | ___(.)) " +
-     "\(.sourceRevisions[0].revisionSummary | fromjson | .CommitMessage | (gsub("\\n";" "))) \n" +
+     "\(.sourceRevisions[0].revisionSummary | fromjson | .CommitMessage | gsub("\\r\\n";" ") | gsub("\\n";" ") ) \n" +
      "    \(.sourceRevisions[0].revisionUrl | __(.))"
 EOF
 )
