@@ -80,7 +80,7 @@ keymaps:
   - bindkey: sh
     dir: $HOME/src/candy/main/referralcandy-main/packages/daemons
   - bindkey: sd
-    dir: $HOME/src/candy/main/referralcandy-main/packages/infra
+    dir: $HOME/src/candy/datagrip/candy
   - bindkey: sp
     dir: $HOME/src/candy/old/pentel
   - bindkey: sc
