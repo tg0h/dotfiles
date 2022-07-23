@@ -18,10 +18,16 @@ alias dci='docker container inspect'
 ## PORT
 alias dco='docker container port'
 
+## TOP
+alias dct='docker container top'
+## STATS
+alias dcst='docker container stats'
 
 ## LIST
-alias dcl='docker container ls'
-alias dcla='docker container ls -a'
+# alias dcl='docker container ls'
+alias dcll="docker container ls | rg -v 'dkr.ecr.ap-southeast-1.amazonaws.com' | rg -v 'composer'"
+alias dcla='dcl -a -f' # exclude candy containers
+alias dclaa="docker container ls -a | rg -v 'dkr.ecr.ap-southeast-1.amazonaws.com' | rg -v 'composer'"
 
 ## REMOVE
 alias dcm='docker container rm '
@@ -47,6 +53,7 @@ alias di='docker image'
 alias dir='docker image rm'
 
 alias dil='docker image ls'
+alias dill="docker image ls | rg -v '^2.*'"
 
 ################################################### Network
 alias dn='docker network'

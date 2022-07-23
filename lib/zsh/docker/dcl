@@ -1,0 +1,48 @@
+#!bin/zsh
+
+function dcl(){
+  # docker container ls
+  # dcl -a 
+  # dcl -t - show original docker container ls command
+  # dcl -f - exclude candy containers
+
+  local all format="prettyTable" formatArg filter excludeCandy
+  while getopts 'atf' opt; do
+    case "$opt" in
+      a) all="-a";;
+      t) format="table";;
+      f) filter=true;;
+    esac
+  done
+  shift $(($OPTIND - 1))
+
+  if [ "$format" = "table" ]; then
+    formatArg="."
+  else
+    formatArg='--format="{{json .}}"'
+  fi
+
+  # local result=$(docker container ls $all --format="{{json .}}")
+if [ "$format" = "prettyTable" ]; then
+  local result=$(eval docker container ls $all $formatArg)
+
+  if [ -n "$filter" ]; then
+    excludeCandy='select(.Names | contains("composer") | not) '
+  else
+    excludeCandy="."
+  fi
+
+    local jqQuery=$(cat <<-EOF
+   include "pad";
+   include "colour";
+   include "docker";
+   . |
+   $excludeCandy |
+ "\(.ID) \(.Names | rp(35)) \(.Image[0:10] | rp(10)) \(.Command | rp(25)) \(.CreatedAt|pCreatedAt) \(.Status | prettyStatus  )"
+EOF
+)
+  jq --raw-output -L "~/.config/jq" "$jqQuery" <<< $result
+else
+  docker container ls $all
+fi
+}
