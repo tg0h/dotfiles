@@ -28,6 +28,7 @@ alias ze='nvim ~/.dotfiles/config/secret/env'
 
 # aliases
 alias zag='nvim $XDG_CONFIG_HOME/zsh/aliases/goto.zsh'
+alias zaG='nvim $XDG_CONFIG_HOME/zsh/aliases/global.zsh'
 alias zam='nvim $XDG_CONFIG_HOME/zsh/aliases/misc.zsh'
 alias zad='nvim $XDG_CONFIG_HOME/zsh/aliases/docker.zsh'
 alias zac='nvim $XDG_CONFIG_HOME/zsh/aliases/candy.zsh'
