@@ -13,6 +13,9 @@ alias -g T='| tail -n 10'
 
 alias -g P="| tr -d '\n' | pbcopy" # remove newlines before putting in pbcopy
 
+# docker
+alias -g DJ="--format='{{json .}}'" # show fields in output for use in format table go template
+
 # T registers
 alias -g CT='cat /tmp/t'
 alias -g ET='nvim /tmp/t'
