@@ -1,3 +1,4 @@
+config/mycli/myclirc
 config/ssh/config
 config/aws/config
 config/zsh/toggl/config.zsh
