@@ -14,7 +14,7 @@ def captureTimeAgoAfterExitCode:
   capture("\\) (?<timeAgo>.*)") | .timeAgo;
 
 def captureTimeAfterUp:
-  capture("Up (?<timeUp>((\\w) (\\w)*))") | .timeUp;
+  capture("Up (?<timeUp>((\\d)+ (\\w)*))") | .timeUp;
 
 def pCreatedAt:
   .[0:4] as $year |
