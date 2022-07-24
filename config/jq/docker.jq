@@ -23,7 +23,7 @@ def pCreatedAt:
   .[11:13] as $hour |
   .[14:16] as $min |
   .[17:19] as $sec |
-  "\($day)\("/"+($month) | __(.)) \($hour)\((":")+($min) | __(.))";
+  "\(($day) | _bt(.))\("/"+($month) | __(.)) \($hour)\((":")+($min) | __(.))";
 
 # toggl hours minutes
 def prettyStatus:

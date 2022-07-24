@@ -6,12 +6,13 @@ function dcl(){
   # dcl -t - show original docker container ls command
   # dcl -f - exclude candy containers
 
-  local all format="prettyTable" formatArg filter excludeCandy
-  while getopts 'atf' opt; do
+  local all format="prettyTable" formatArg filter excludeCandy debug
+  while getopts 'atfd' opt; do
     case "$opt" in
       a) all="-a";;
       t) format="table";;
       f) filter=true;;
+      d) debug=true;;
     esac
   done
   shift $(($OPTIND - 1))
@@ -38,9 +39,12 @@ if [ "$format" = "prettyTable" ]; then
    include "docker";
    . |
    $excludeCandy |
- "\(.ID) \(.Names | rp(35)) \(.Image[0:10] | rp(10)) \(.Command | rp(25)) \(.CreatedAt|pCreatedAt) \(.Status | prettyStatus  )"
+   "\(.ID[0:5] | __(.)) \(.Names[0:20] | rp(20)) \(.Status | prettyStatus) \(.Ports | rp(35) | _brinkPink(.)) \(.Image[0:15] | rp(15) | _tacha(.)) \(.Command[1:11] | rp(10) | __(.)) \(.CreatedAt|pCreatedAt)"
 EOF
 )
+
+  [ -n "$debug" ] && echo jqQuery:"\n"$jqQuery
+
   jq --raw-output -L "~/.config/jq" "$jqQuery" <<< $result
 else
   docker container ls $all
