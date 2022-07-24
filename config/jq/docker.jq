@@ -13,18 +13,24 @@ def captureExitCode:
 def captureTimeAgoAfterExitCode:
   capture("\\) (?<timeAgo>.*)") | .timeAgo[0:6];
 
+# Up About a minute
+# Up About an hour
+def captureAboutTimeAfterUp:
+  capture("Up About (a|an) (?<timeUp>((\\w)*))") | .timeUp;
+
 # Up 4 minutes
 # Up 5 seconds
-# Up about a minute :|
+# Up About a minute :|
+# Up About an hour
 # if capturing group does not capture, pass through input
 # .timeUp? - optionally index object
 # if null, pass through with //
-
 # capture returns an object with the capture group, HOWEVER if the regex does not match
 # the input is EATEN
 # this means you lose data if you use capture carelessly :|
 def captureTimeAfterUp:
-  (capture("Up (?<timeUp>((\\d)+ (\\w)*))") // .) | .timeUp?[0:6] // .;
+  (capture("Up (?<timeUp>((\\d)+ (\\w)*))") // .) | .timeUp?[0:6] // (. | captureAboutTimeAfterUp | "~1 "+.[0:3]) ;
+
 
 def pCreatedAt:
   .[0:4] as $year |
