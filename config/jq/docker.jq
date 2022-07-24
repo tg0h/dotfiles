@@ -11,10 +11,20 @@ def captureExitCode:
   capture("(?<exitCode>([0-9]{1,3}))") | .exitCode ;
 
 def captureTimeAgoAfterExitCode:
-  capture("\\) (?<timeAgo>.*)") | .timeAgo;
+  capture("\\) (?<timeAgo>.*)") | .timeAgo[0:6];
 
+# Up 4 minutes
+# Up 5 seconds
+# Up about a minute :|
+# if capturing group does not capture, pass through input
+# .timeUp? - optionally index object
+# if null, pass through with //
+
+# capture returns an object with the capture group, HOWEVER if the regex does not match
+# the input is EATEN
+# this means you lose data if you use capture carelessly :|
 def captureTimeAfterUp:
-  capture("Up (?<timeUp>((\\d)+ (\\w)*))") | .timeUp;
+  (capture("Up (?<timeUp>((\\d)+ (\\w)*))") // .) | .timeUp?[0:6] // .;
 
 def pCreatedAt:
   .[0:4] as $year |
