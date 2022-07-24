@@ -1,0 +1,22 @@
+#!bin/zsh
+
+function dcin(){
+  # docker container ls
+  # dcl -a 
+  # dcl -t - show original docker container ls command
+  # dcl -f - exclude candy containers
+
+  local result=$(docker container inspect $@)
+
+    local jqQuery=$(cat <<-EOF
+   include "pad";
+   include "colour";
+     .[] | 
+     .Name as \$name | 
+     .NetworkSettings | "\(\$name) \(.IPAddress)", .Networks
+EOF
+)
+
+jq --raw-output -L "~/.config/jq" "$jqQuery" <<< $result
+
+}
