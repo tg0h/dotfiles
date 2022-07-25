@@ -1,0 +1,41 @@
+#!/bin/zsh
+
+function acil(){
+  # aws ecr images list
+  # acil <repository name>
+  # acil -r <repository name>
+  # (aws ecr describe-images)
+
+  # if you provide max items, it won't get the latest image!!!
+
+  local verbose repository maxItems
+  while getopts 'vr:n:' opt; do
+    case "$opt" in
+      v) verbose=true;;
+      r) repository=$OPTARG;;
+      n) maxItems=$OPTARG;;
+    esac
+  done
+  shift $(($OPTIND - 1))
+
+  repository=${repository:-$1}
+
+    local jqQuery=$(cat <<-EOF
+   include "pad";
+   include "colour";
+     .imageDetails | 
+     sort_by(.imagePushedAt) | reverse | 
+     .[0:20] |
+     .[] |
+     "\(.imagePushedAt) \(.imageTags )"
+EOF
+)
+
+  local result=$(aws ecr describe-images --repository-name $repository )
+
+  if [ -n "$verbose" ]; then
+    jq --raw-output -L "~/.config/jq" "." <<< $result
+  else
+    jq --raw-output -L "~/.config/jq" "$jqQuery" <<< $result
+  fi
+}
