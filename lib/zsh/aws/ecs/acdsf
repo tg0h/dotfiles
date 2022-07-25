@@ -1,0 +1,22 @@
+#!/bin/zsh
+
+function acdsf(){
+  # aws ecs describe services fuzzy
+  # acdsf -n <eventsToShow>
+  # acdsf -c <cluster= d|s|p>
+  local number clusterOpt
+
+  while getopts 'n:' opt; do
+    case "$opt" in
+      n) number=$OPTARG;;
+      c) clusterOpt=$OPTARG;;
+    esac
+  done
+  shift $(($OPTIND - 1))
+
+  number=${number:-2}
+  clusterOpt=${clusterOpt:-s}
+
+  local results=$(acls | fzf | join-lines)
+  acds -n $number -c $clusterOpt $results
+} 

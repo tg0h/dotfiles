@@ -1,0 +1,30 @@
+#!/bin/zsh
+
+function acrr(){
+  # aws ecr list repositories
+
+  local verbose
+  while getopts 'v' opt; do
+    case "$opt" in
+      v) verbose=true;;
+    esac
+  done
+  shift $(($OPTIND - 1))
+
+    local jqQuery=$(cat <<-EOF
+   include "pad";
+   include "colour";
+     .repositories |
+     sort_by(.repositoryName) |
+     .[] |
+     "\(.repositoryName | rp(80)) \(.createdAt)"
+EOF
+)
+  local result=$(aws ecr describe-repositories)
+
+  if [ -n "$verbose" ]; then
+    jq --raw-output -L "~/.config/jq" "." <<< $result
+  else
+    jq --raw-output -L "~/.config/jq" "$jqQuery" <<< $result
+  fi
+}

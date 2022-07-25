@@ -1,0 +1,38 @@
+#!/bin/zsh
+
+function acls(){
+  # aws ecs list-services 
+  # acls <clusterName>
+
+  local verbose cluster clusterOpt
+  while getopts 'vc:' opt; do
+    case "$opt" in
+      v) verbose=true;;
+      c) clusterOpt=$OPTARG
+        case "$clusterOpt" in
+          d) cluster="DeveloperCluster";;
+          s) cluster="StagingCluster";;
+          p) cluster="ProductionCluster";;
+        esac
+        ;;
+    esac
+  done
+  shift $(($OPTIND - 1))
+
+  cluster=${cluster:-StagingCluster}
+    local jqQuery=$(cat <<-EOF
+   include "pad";
+   include "colour";
+   .serviceArns[] |
+   gsub(".*$cluster/(?<service>.*)";(.service))
+EOF
+)
+
+  local result=$(aws ecs list-services --cluster $cluster)
+
+  if [ -n "$verbose" ]; then
+    jq --raw-output -L "~/.config/jq" "." <<< $result
+  else
+    jq --raw-output -L "~/.config/jq" "$jqQuery" <<< $result
+  fi
+}
