@@ -1,0 +1,67 @@
+#!/bin/zsh
+
+function acds(){
+  # aws ecs 
+
+  local verbose cluster clusterOpt service number
+  while getopts 'vc:n:' opt; do
+    case "$opt" in
+      v) verbose=true;;
+      n) number=$OPTARG;;
+      c) clusterOpt=$OPTARG
+        case "$clusterOpt" in
+          d) cluster="DeveloperCluster";;
+          s) cluster="StagingCluster";;
+          p) cluster="ProductionCluster";;
+        esac
+        ;;
+    esac
+  done
+  shift $(($OPTIND - 1))
+
+  number=${number:-20}
+  cluster=${cluster:-StagingCluster}
+  service=${@:-DaemonV2Service}
+
+    local jqQuery=$(cat <<-EOF
+   include "pad";
+   include "colour";
+   include "aws-time";
+   def service:
+     "\(.serviceName| _bt(.)) \(.launchType)"+"\n"+
+     "🎯\(.desiredCount) 🟢\(.runningCount) 🟡\(.pendingCount) \(.status) \(.taskDefinition)"
+   ;
+   def deployment:
+     "\(.taskDefinition | __(.))"+"\n"+
+     "\(.status) 🚂 \(.createdAt | pTime) 🚀 \(.updatedAt | pTime) \(.rolloutState) \(.rolloutStateReason)"+"\n"+
+     "🎯\(.desiredCount) 🟢\(.runningCount) 🟡\(.pendingCount) 🔴\(.failedTasks)"
+   ;
+   def _completed:
+     sub("(?<dc>deployment completed)"; _nb((.dc)));
+   def _brackets:
+     gsub("(?<openb>\\\\()(?<br>.*?)(?<closeb>(\\\\)))"; __(.openb)+__((.br))+__(.closeb) );
+   def _stopped:
+     gsub("(?<x>stopped)"; _r((.x)));
+   def _started:
+     gsub("(?<x>started)"; _y((.x)));
+   def _reached:
+     gsub("(?<x>reached a steady state)"; _g((.x)));
+   def event:
+     "  \(.createdAt | pTime) \(.message | _completed | _started | _stopped | _reached | _brackets)";
+
+   .services[] | 
+   service, 
+   "\(.deployments | map(deployment)[])",
+   "\(.events[0:$number] | map(event)[])"
+EOF
+)
+
+  # ${=var} - tell zsh to word split var
+  local result=$(aws ecs describe-services --cluster $cluster --service ${=service})
+
+  if [ -n "$verbose" ]; then
+    jq --raw-output -L "~/.config/jq" "." <<< $result
+  else
+    jq --raw-output -L "~/.config/jq" "$jqQuery" <<< $result
+  fi
+}

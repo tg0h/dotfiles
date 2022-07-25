@@ -1,0 +1,6 @@
+#!/bin/zsh
+
+function aclc(){
+  # aws ecs list clusters
+  aws ecs list-clusters
+}

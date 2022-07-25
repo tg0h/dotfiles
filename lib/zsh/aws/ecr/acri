@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-function acil(){
+function acri(){
   # aws ecr images list
   # acil <repository name>
   # acil -r <repository name>
@@ -23,11 +23,12 @@ function acil(){
     local jqQuery=$(cat <<-EOF
    include "pad";
    include "colour";
+   include "aws-time";
      .imageDetails | 
      sort_by(.imagePushedAt) | reverse | 
      .[0:20] |
      .[] |
-     "\(.imagePushedAt) \(.imageTags )"
+     "\(.imagePushedAt | pTime) \(.imageTags )"
 EOF
 )
 

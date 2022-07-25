@@ -1,9 +1,10 @@
 #!/bin/zsh
 
-function acrl(){
-  # aws ecr list repositories
+function acdc(){
+  # aws ecs describe-clusters
+  # accd <clusterName>
 
-  local verbose
+  local verbose cluster
   while getopts 'v' opt; do
     case "$opt" in
       v) verbose=true;;
@@ -11,16 +12,16 @@ function acrl(){
   done
   shift $(($OPTIND - 1))
 
+  cluster=${cluster:-StagingCluster}
+
     local jqQuery=$(cat <<-EOF
    include "pad";
    include "colour";
-     .repositories |
-     sort_by(.repositoryName) |
-     .[] |
-     "\(.repositoryName | rp(80)) \(.createdAt)"
+   .
 EOF
 )
-  local result=$(aws ecr describe-repositories)
+
+  local result=$(aws ecs describe-clusters --clusters $cluster)
 
   if [ -n "$verbose" ]; then
     jq --raw-output -L "~/.config/jq" "." <<< $result
