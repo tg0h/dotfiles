@@ -1,0 +1,6 @@
+#!/bin/zsh
+
+function jt(){
+  # jq test show jq colours 
+  jq -n --raw-output -L "~/.config/jq" 'include "colour"; colourTest'
+}
