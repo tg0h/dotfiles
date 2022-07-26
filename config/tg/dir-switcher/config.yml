@@ -83,6 +83,8 @@ keymaps:
     dir: $HOME/src/candy/datagrip/candy
   - bindkey: sp
     dir: $HOME/src/candy/old/pentel
+  - bindkey: soc
+    dir: $HOME/src/candy/old/composer
   - bindkey: sc
     dir: $HOME/src/candy
     depth: 5 # specify how deep the directory preview should be
