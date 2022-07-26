@@ -1,0 +1,56 @@
+{
+  "x": "[38;2;",
+  "y": {
+    "x": {
+      "x": {
+        "x": {
+          "x": "[red]",
+          "function": "mul",
+          "y": 255
+        },
+        "function": "round",
+        "y": 0
+      },
+      "function": "concat",
+      "y": {
+        "x": ";",
+        "function": "concat",
+        "y": {
+          "x": {
+            "x": {
+              "x": "[green]",
+              "function": "mul",
+              "y": 255
+            },
+            "function": "round",
+            "y": 0
+          },
+          "function": "concat",
+          "y": {
+            "x": ";",
+            "function": "concat",
+            "y": {
+              "x": {
+                "x": {
+                  "x": "[blue]",
+                  "function": "mul",
+                  "y": 255
+                },
+                "function": "round",
+                "y": 0
+              },
+              "function": "concat",
+              "y": "m"
+            }
+          }
+        }
+      }
+    },
+    "y": {
+      "x": "#hex[red]hex[green]hex[blue]",
+      "function": "lower"
+    },
+    "function": "concat"
+  },
+  "function": "concat"
+}
