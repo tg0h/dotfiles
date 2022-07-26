@@ -7,6 +7,7 @@ alias -g BR='| bat -r'
 alias -g C='| choose'
 
 alias -g F='| fzf --preview-window hidden'
+alias -g f.='| fzf --preview-window hidden'
 
 alias -g H='| head -n 10'
 alias -g T='| tail -n 10'
