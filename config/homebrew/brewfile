@@ -138,7 +138,7 @@ cask 'bartender'
 cask 'cleanshot'
 cask 'toggl-track'
 cask 'ngrok'
-# cask 'sip'
+# cask 'sip' # DO NOT INSTALL SIP, i do not have a subscription for
 
 cask 'foxitreader'
 cask 'google-chrome'
