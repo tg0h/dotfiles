@@ -27,12 +27,14 @@ function acds(){
    include "pad";
    include "colour";
    include "aws-time";
+   def pTaskDefinition:
+     gsub(".*/(?<x>.*)";_orange((.x)));
    def service:
-     "\(.serviceName| _bt(.)) \(.launchType)"+"\n"+
-     "🎯\(.desiredCount) 🟢\(.runningCount) 🟡\(.pendingCount) \(.status) \(.taskDefinition)"
-   ;
+     "\(.serviceName| _brinkPink(.)) \(.taskDefinition | pTaskDefinition)"+"\n"+
+     "🎯\(.desiredCount) 🟢\(.runningCount) 🟡\(.pendingCount) \(.status) "
+  ;
    def deployment:
-     "\(.taskDefinition | __(.))"+"\n"+
+     # "\(.taskDefinition | __(.))"+"\n"+
      "\(.status) 🚂 \(.createdAt | pTime) 🚀 \(.updatedAt | pTime) \(.rolloutState) \(.rolloutStateReason)"+"\n"+
      "🎯\(.desiredCount) 🟢\(.runningCount) 🟡\(.pendingCount) 🔴\(.failedTasks)"
    ;
@@ -46,8 +48,12 @@ function acds(){
      gsub("(?<x>started)"; _y((.x)));
    def _reached:
      gsub("(?<x>reached a steady state)"; _g((.x)));
+   def _filler:
+     gsub("(?<x>(has|\\\\.|:))"; __((.x)));
+   def _colourFilter:
+     _completed | _filler | _started | _stopped | _reached | _brackets;
    def event:
-     "  \(.createdAt | pTime) \(.message | _completed | _started | _stopped | _reached | _brackets)";
+     "  \(.createdAt | pTime) \(.message | _colourFilter)";
 
    .services[] | 
    service, 

@@ -1,0 +1,51 @@
+#!/bin/zsh
+
+function acdtd(){
+  # aws ecs describe task definition
+  # acdtd <taskDefinition>
+
+  local verbose taskDefinition
+  while getopts 'v' opt; do
+    case "$opt" in
+      v) verbose=true;;
+    esac
+  done
+  shift $(($OPTIND - 1))
+
+  taskDefinition=$1
+
+    local jqQuery=$(cat <<-EOF
+   include "pad";
+   include "colour";
+   include "aws-time";
+   def regBy:
+     gsub(".*/(?<x>.*)";_brinkPink((.x)));
+   def taskDefinition:
+     # "\(.taskDefinitionArn | __(.)) "+"\n"+
+     "\(.family | _orange(.)) \(.revision|tostring|_purple(.)) \(.status)"+"\n"+
+     "💻️\(.cpu) 🐏\(.memory)"+"\n"+
+     "\(.registeredAt | pTime) \(.registeredBy | regBy)";
+   def image:
+     gsub(".*/(?<image>.*):(?<tag>.*)";_orange((.image))+":"+_g((.tag)));
+   def containerDefinition:
+     "\(.name) \(.image | image)";
+   def containerDefinitionEnv:
+     sort_by(.name) | map("\(.name | lp(30) | _y(.)): \(.value)")[];
+   .taskDefinition |
+     taskDefinition,
+     (.containerDefinitions | map(  
+       containerDefinition,
+       (.environment | containerDefinitionEnv)
+       )[]
+     )
+EOF
+)
+
+  local result=$(aws ecs describe-task-definition --task-definition $taskDefinition)
+
+  if [ -n "$verbose" ]; then
+    jq --raw-output -L "~/.config/jq" "." <<< $result
+  else
+    jq --raw-output -L "~/.config/jq" "$jqQuery" <<< $result
+  fi
+}
