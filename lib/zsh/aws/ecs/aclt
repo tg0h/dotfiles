@@ -1,0 +1,38 @@
+#!/bin/zsh
+
+function aclt(){
+  # aws ecs list tasks
+
+  local verbose cluster clusterOpt service number
+  while getopts 'vc:' opt; do
+    case "$opt" in
+      v) verbose=true;;
+      c) clusterOpt=$OPTARG
+        case "$clusterOpt" in
+          d) cluster="DeveloperCluster";;
+          s) cluster="StagingCluster";;
+          p) cluster="ProductionCluster";;
+        esac
+        ;;
+    esac
+  done
+  shift $(($OPTIND - 1))
+
+  cluster=${cluster:-StagingCluster}
+  service=${@:-DaemonV2Service}
+
+    local jqQuery=$(cat <<-EOF
+   include "pad";
+   include "colour";
+   .taskArns[]
+EOF
+)
+
+  local result=$(aws ecs list-tasks --cluster $cluster --service-name $service)
+
+  if [ -n "$verbose" ]; then
+    jq --raw-output -L "~/.config/jq" "." <<< $result
+  else
+    jq --raw-output -L "~/.config/jq" "$jqQuery" <<< $result
+  fi
+}

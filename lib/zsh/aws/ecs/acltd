@@ -1,0 +1,30 @@
+#!/bin/zsh
+
+function acltd(){
+  # aws ecs list task definitions
+
+  local verbose 
+  while getopts 'v' opt; do
+    case "$opt" in
+      v) verbose=true;;
+    esac
+  done
+  shift $(($OPTIND - 1))
+
+    local jqQuery=$(cat <<-EOF
+   include "pad";
+   include "colour";
+   .taskDefinitionArns[] |
+   gsub(".*/(?<x>.*)";(.x)) 
+EOF
+)
+
+  local result=$(aws ecs list-task-definitions)
+
+  if [ -n "$verbose" ]; then
+    jq --raw-output -L "~/.config/jq" "." <<< $result
+  else
+    jq --raw-output -L "~/.config/jq" "$jqQuery" <<< $result | sort
+  fi
+}
+
