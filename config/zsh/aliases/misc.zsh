@@ -25,7 +25,7 @@ alias ss="source $HOME/.local/bin/scratch"
 # edit
 alias ee="nvim $HOME/.local/bin/scratch"
 alias uu="nvim $HOME/.local/bin/scratch.js"
-alias un="node $HOME/.local/bin/scratch.js"
+alias unt="echo $HOME/.local/bin/scratch.js | entr -c node scratch.js"
 # watch for changes to scratch, then clear screen and run scratch
 alias ent="echo $HOME/.local/bin/scratch | entr -c scratch"
 alias vs="viddy scratch"
