@@ -20,6 +20,8 @@ def colours:
   "darkgray": "[90m",
   "disabled": "[30;100m", # Black on darkgray
   "reset": "[0m",
+  "orange": "[38;2;255;135;0m",
+  "purple": "[38;2;135;135;255m",
   "neonBlue": "[38;2;82;96;255m",
   "brightTurquoise": "[38;2;5;217;243m",
   "electricCrimson": "[38;2;255;0;60m",
@@ -62,6 +64,12 @@ def _jazzberry(text):
 
 def _brinkPink(text):
   escape + colours["brinkPink"] + text + escape + colours.reset;
+
+def _orange(text):
+  escape + colours["orange"] + text + escape + colours.reset;
+
+def _purple(text):
+  escape + colours["purple"] + text + escape + colours.reset;
 
 def _y(text):
   escape + colours["yellow"] + text + escape + colours.reset;
