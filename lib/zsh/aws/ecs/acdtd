@@ -28,7 +28,8 @@ function acdtd(){
    def image:
      gsub(".*/(?<image>.*):(?<tag>.*)";_orange((.image))+":"+_g((.tag)));
    def containerDefinition:
-     "\(.name) \(.image | image)";
+     "\(.name) \(.image | image) 🏥\(.hostname)"+"\n"+
+     "🌴\(.logConfiguration.options["awslogs-region"]) \(.logConfiguration.options["awslogs-group"])";
    def containerDefinitionEnv:
      sort_by(.name) | map("\(.name | lp(30) | _y(.)): \(.value)")[];
    .taskDefinition |
