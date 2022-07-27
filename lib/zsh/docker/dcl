@@ -37,15 +37,20 @@ if [ "$format" = "prettyTable" ]; then
    include "pad";
    include "colour";
    include "docker";
-   . |
+   def image:
+     # remove aws ecr prefix
+     gsub(".*amazonaws.*/(?<x>.*)";((.x)));
+   # sort by status descending (show up first then exit). ignore the exit code (whether exit 0 or exit 127 etc) by just getting the first 2 chars of exit. 
+   # then sort by name ascending
+   sort_by((.Status[0:2] | explode | map(-.)), .Names)[] |
    $excludeCandy |
-   "\(.ID[0:5] | __(.)) \(.Names[0:20] | rp(20)) \(.Status | prettyStatus) \(.Ports | rp(35) | _brinkPink(.)) \(.Image[0:15] | rp(15) | _tacha(.)) \(.Command[1:11] | rp(10) | __(.)) \(.CreatedAt|pCreatedAt)"
+   "\(.ID[0:5] | __(.)) \(.Names[0:45] | rp(45)) \(.Status | prettyStatus) \(.Ports | rp(35) | _brinkPink(.)) \(.Image | image | rp(15) | _tacha(.)) \(.Command[1:11] | rp(10) | __(.)) \(.CreatedAt|pCreatedAt)"
 EOF
 )
 
   [ -n "$debug" ] && echo jqQuery:"\n"$jqQuery
 
-  jq --raw-output -L "~/.config/jq" "$jqQuery" <<< $result
+  jq --raw-output --slurp -L "~/.config/jq" "$jqQuery" <<< $result
 else
   docker container ls $all
 fi
