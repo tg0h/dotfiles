@@ -3,6 +3,8 @@ config/ssh/config
 config/aws/config
 config/zsh/toggl/config.zsh
 
+config/jq/aws-sml.data.jq
+
 # config/git/config
 config/git/config-work
 # my dir-switcher compiled functions directory
