@@ -7,12 +7,16 @@ local result=$(aws secretsmanager list-secrets)
   local jqQuery=$(cat <<-EOF
    include "pad";
    include "colour";
-     .SecretList | sort_by(.Name) | .[] |
-     "\(.Name) \(.Description // "" | _brinkPink(.)) \(.ARN | _y(.))"
+   # def _sub:
+   #   gsub("(?<x>rc/dev/keys)";"⭐️"+(.x));
+     .SecretList | 
+     sort_by(.Name) | .[] |
+     "\(.Name | lp(50)) \(.Description // "" | _purple(.)) \(.ARN | _orange(.))"
+
 EOF
 )
-     # "\(.Name) \(.Description // "")
-# echo $jqQuery
 
+     # sort_by(.Name) | .[] |
+     # "\(.Name | lp(50)) \(.Description // "" | _purple(.)) \(.ARN | _orange(.))"
 jq --raw-output -L "~/.config/jq" "$jqQuery" <<< $result
 }
