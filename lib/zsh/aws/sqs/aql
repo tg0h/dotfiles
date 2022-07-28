@@ -1,6 +1,6 @@
 #!bin/zsh
 
-function ql(){
+function aql(){
   # fuzzy list sqs queues and copy selection to clipboard
   local url=$(aws sqs list-queues | jq --raw-output ".QueueUrls[]" | fzf)
 

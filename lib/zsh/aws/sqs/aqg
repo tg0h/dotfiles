@@ -1,6 +1,6 @@
 #!bin/zsh
 
-function qg(){
+function aqg(){
   # get queue attributes
   # qg - to fuzzy get the queue attributes
   # qg <queueUrl>

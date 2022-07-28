@@ -26,7 +26,7 @@ lib/scratch
 bin/scratch
 bin/scratch.*
 
-lib/zsh/aws/sqs/qs
+lib/zsh/aws/sqs/aqs
 
 # ignore candy zsh functions symlink
 lib/zsh/candy

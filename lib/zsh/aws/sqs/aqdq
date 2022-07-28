@@ -1,6 +1,6 @@
 #!bin/zsh
 
-function qdq(){
+function aqdq(){
   # delete queue
   local url=$(aws sqs list-queues | jq --raw-output ".QueueUrls[]" | fzf --prompt='delete queue>' --color 'prompt:bright-cyan')
   # use this function to get the queue url in other functions

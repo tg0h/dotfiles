@@ -1,6 +1,6 @@
 #!bin/zsh
 
-function qp(){
+function aqp(){
   # purge sqs queue
   local queueUrl=${1:-$AWS_QUEUE_URL}
 

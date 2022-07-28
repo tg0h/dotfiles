@@ -1,6 +1,6 @@
 #!bin/zsh
 
-function qu(){
+function aqu(){
   # get queue url
   # qu <queueName>
   
