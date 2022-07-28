@@ -2,21 +2,17 @@
 
 function sml(){
   # list secrets
-local result=$(aws secretsmanager list-secrets)
+  local result=$(aws secretsmanager list-secrets)
 
   local jqQuery=$(cat <<-EOF
    include "pad";
    include "colour";
-   # def _sub:
-   #   gsub("(?<x>rc/dev/keys)";"⭐️"+(.x));
-     .SecretList | 
-     sort_by(.Name) | .[] |
+   include "aws-sml.data";
+   include "sort";
+     .SecretList |
+     addSortKey("Name";_sortKeys) | sort_by(.sortKey,.Name)[] |
      "\(.Name | lp(50)) \(.Description // "" | _purple(.)) \(.ARN | _orange(.))"
-
 EOF
 )
-
-     # sort_by(.Name) | .[] |
-     # "\(.Name | lp(50)) \(.Description // "" | _purple(.)) \(.ARN | _orange(.))"
-jq --raw-output -L "~/.config/jq" "$jqQuery" <<< $result
+  jq --raw-output -L "~/.config/jq" "$jqQuery" <<< $result
 }
