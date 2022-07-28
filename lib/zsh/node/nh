@@ -1,0 +1,37 @@
+#!/bin/zsh
+#
+function nh() {
+  # search for npm commands in package.json
+  # look for package.json from cwd and search upwards to $HOME
+  local TARGET_FILE=package.json
+  local cmd out targetFilePath
+  local jqQuery=$(cat <<-EOF
+  include "colour";
+  include "pad";
+  .scripts
+    | to_entries[]
+    | "\(.key | rp(15)) \(.value | _g(.))"
+EOF
+)
+  # out=$(cat package.json | jq -r $jqQuery | sed '1d;$d' | sort | fzf)
+  # http://mywiki.wooledge.org/BashFAQ/001
+  # read reads the first line by default
+  treewalk $TARGET_FILE | read targetFilePath
+  local targetFileDir=$([ -n "$targetFilePath" ] && dirname "$targetFilePath")
+
+  if [ -z "$targetFileDir" ]; then
+    echo $fg[red]$TARGET_FILE ${reset_color}not found
+    return 1
+  fi
+
+  if [ "$targetFileDir" != "$(pwd)" ]; then
+    echo reading $fg[yellow]$targetFileDir/$reset_color$fg[magenta]$TARGET_FILE$reset_color
+  fi
+
+  out=$(cat $targetFilePath | jq -L "~/.config/jq" -r $jqQuery | fzf)
+
+  if [ -n "$out" ]; then
+    cmd=$(echo $out | gawk '{print $1}')
+    (cd $targetFileDir && npm run $(echo "$cmd"))
+  fi
+}

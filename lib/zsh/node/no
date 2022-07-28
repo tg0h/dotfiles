@@ -1,0 +1,30 @@
+#!/bin/zsh
+#
+function no(){
+  # search downwards for all package.json npm commands
+  # TODO: colour files with alternate random colours
+
+  local out file cmd dir
+  local files=$(fd package.json | join-lines)
+
+  local jqQuery=$(cat <<-EOF
+  include "colour";
+  include "pad";
+  .scripts
+    | try to_entries[] # add try to ignore empty objects (no .script key)
+    | "\(input_filename|_tacha(.)):\(.key) \(.value | _brinkPink(.))"
+EOF
+)
+
+  if [ -n "$files" ]; then 
+    out=$(jq -L "~/.config/jq" -r $jqQuery $(echo $files) | fzf)
+
+    echo $out | gawk '{print $1}' | gsed 's/:/ /' | read file cmd
+  fi
+
+  if [ -n "$file" ]; then 
+    dir=$(dirname $file)
+    echo $fg[green]running$reset_color $file $fg[yellow]$cmd$reset_color in $dir
+    (cd $dir && npm run $(echo "$cmd"))
+  fi
+}
