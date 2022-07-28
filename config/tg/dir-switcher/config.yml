@@ -49,7 +49,7 @@ keymaps:
 
   # my dotfiles
   - bindkey: z
-    dir: $HOME/.dotfiles
+    dir: $HOME/dotfiles
     depth: 4
 
   # other folders
