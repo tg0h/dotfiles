@@ -1,11 +1,18 @@
 #!bin/zsh
 
-# generate the function files for autoloading
 function _fsc(){
   # fuzzy switch compile
+  # generate the function files for autoloading
   # read from the config.yml file and dynamically define the fswitch<key> functions
   # to fzf dir switch to the configured directories
   # generate aliases for fswitch functions
+  # 🔑
+  # o<bindkey> - search dirs and files
+  # u<bindkey> - search files
+  # e<bindkey> - search dirs
+  # .<bindkey> - search filename and content
+  # :<bindkey> - goto dir
+  # q<bindkey> - open dir in nvim
   local outputFolder=$HOME/.local/lib/zsh/utilities/dir-switcher/out
   echo $fg[red] removing files in "$outputFolder" "..."
   [[ -n "$outputFolder" ]] && trash "$outputFolder/*"
