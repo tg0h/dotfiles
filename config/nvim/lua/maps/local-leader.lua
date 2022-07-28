@@ -18,3 +18,6 @@ map("n", "<localleader>t",
 -- git
 map("n", "<localleader>g", ":Telescope gitdiffer diff<CR>", default_options)
 map("n", "<localleader>s", ":Telescope git_status<CR>", default_options)
+
+-- buffers
+map("n", "<localleader>b", ":lua require'telescope.builtin'.buffers({ sort_mru = true, ignore_current_buffer = true })<CR>", default_options)
