@@ -20,6 +20,8 @@ keymaps:
   - bindkey: cn
     dir: $XDG_CONFIG_HOME/nvim
     depth: 5
+  - bindkey: ck
+    dir: $XDG_CONFIG_HOME/kitty
   - bindkey: ca
     dir: $XDG_CONFIG_HOME/zsh/aliases
     depth: 5
