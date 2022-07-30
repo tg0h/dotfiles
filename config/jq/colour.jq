@@ -90,7 +90,11 @@ def colours:
   "tacha": "[38;2;217;186;94m", # #d9ba5e
   "jazzberry": "[38;2;167;23;92m", # #a7175c
   "brinkPink": "[38;2;252;93;124m", # #fc5d7c
+  "fsg": "[38;2;3;255;19m", # #03ff13
 };
+
+def _(colour):
+  escape + colours[colour] + . + escape + colours.reset;
 
 def colourTest:
   colours | to_entries | map("\(escape)\(.value)\(.key)\(escape)\(colours.reset) \(.value)")[];
