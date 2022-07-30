@@ -1,0 +1,35 @@
+#!/bin/zsh
+
+# https://github.com/kovidgoyal/kitty/issues/719#issuecomment-952039731
+
+# dunon what this does
+if [ "$#" -eq 3 ]; then
+    INPUT_LINE_NUMBER=${1:-0}
+    CURSOR_LINE=${2:-1}
+    CURSOR_COLUMN=${3:-1}
+    AUTOCMD_TERMCLOSE_CMD="call cursor(max([0,${INPUT_LINE_NUMBER}-1])+${CURSOR_LINE}, ${CURSOR_COLUMN})"
+else
+    AUTOCMD_TERMCLOSE_CMD="normal G"
+fi
+
+# nvim option 
+# --noplugin      Skip loading plugins.  Resets the 'loadplugins' option.
+#                 Note that the -u argument may also disable loading plugins:
+#                         argument        load vimrc files        load plugins
+#                         (nothing)               yes                 yes
+#                         -u NONE                 no                  no
+#                         -u NORC                 no                  yes
+#                         --noplugin              yes                 no
+exec nvim \
+    -u NONE \
+    -c "autocmd VimEnter * ${AUTOCMD_TERMCLOSE_CMD}" \
+    -c "map <silent> q :qa!<CR>" \
+    -c "set shell=zsh scrollback=100000 termguicolors laststatus=0 clipboard+=unnamedplus" \
+    -c "silent! write! /tmp/kitty_scrollback_buffer | terminal cat /tmp/kitty_scrollback_buffer - " \
+    -c "autocmd TermEnter * stopinsert" \
+    -c "autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank({timeout = 40})"
+    # --noplugin \
+    # -u ~/.config/kitty/kitty-pager.init.vim \
+    # -c "autocmd TermClose * ${AUTOCMD_TERMCLOSE_CMD}" \
+    # -c "autocmd VimEnter * ${AUTOCMD_TERMCLOSE_CMD}"
+    # -c 'terminal sed </dev/fd/63 -e "s/'$'\x1b'']8;;file:[^\]*[\]//g" && sleep 0.01 && printf "'$'\x1b'']2;"'
