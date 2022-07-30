@@ -3,7 +3,7 @@
 
 bindkey -r "^G" # remove ctrl g so that junegunn's fzf_git functions work
 # bindkey -r "^N"
-bindkey -r "^K"
+# bindkey -r "^K"
 bindkey -r "^H"
 bindkey -r "^S"
 
