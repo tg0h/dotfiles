@@ -33,5 +33,5 @@ function gr (){
     --bind 't:preview-half-page-up' \
     --bind 'j:down' \
     --bind 'k:up' \
-    # --bind 'h:up' \
+    --bind 'enter:execute(echo {} > /tmp/_nvim_cache && nvim {} > /dev/tty 2>&1)'
 }
