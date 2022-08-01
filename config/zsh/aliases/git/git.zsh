@@ -1,4 +1,4 @@
-alias lg="lazygit"
+alias a="lazygit"
 # the zsh git plugin defines git aliases in ~/.oh-my-zsh/plugins/git/git.plugin.zsh
 # unalias gg # remove alias set by omz git plugin
 alias g.="gloz -10"
