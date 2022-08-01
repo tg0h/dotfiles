@@ -38,8 +38,8 @@ if [ "$format" = "prettyTable" ]; then
    include "colour";
    include "docker";
    def image:
-     # remove aws ecr prefix
-     gsub(".*amazonaws.*/(?<x>.*)";((.x)));
+     # truncate and highlight aws ecr prefix
+     gsub("(?<dkr>.*amazonaws.*)/(?<x>.*)";((.dkr[0:3]+"...")|_("bblue"))+(.x | _tacha(.)));
    # sort by status descending (show up first then exit). ignore the exit code (whether exit 0 or exit 127 etc) by just getting the first 2 chars of exit. 
    # then sort by name ascending
    sort_by((.Status[0:2] | explode | map(-.)), .Names)[] |
