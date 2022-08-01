@@ -30,8 +30,10 @@ alias ze='nvim ~/.dotfiles/config/secret/env'
 alias zag='nvim $XDG_CONFIG_HOME/zsh/aliases/goto.zsh'
 alias zaG='nvim $XDG_CONFIG_HOME/zsh/aliases/global.zsh'
 alias zam='nvim $XDG_CONFIG_HOME/zsh/aliases/misc.zsh'
+alias zas='nvim $XDG_CONFIG_HOME/zsh/aliases/scratch.zsh'
+alias sas='source $XDG_CONFIG_HOME/zsh/aliases/scratch.zsh && echo sourced aliases/scratch.zsh'
 alias zad='nvim $XDG_CONFIG_HOME/zsh/aliases/docker.zsh'
-alias sad='source $XDG_CONFIG_HOME/zsh/aliases/docker.zsh && echo sourced docker.zsh'
+alias sad='source $XDG_CONFIG_HOME/zsh/aliases/docker.zsh && echo sourced aliases/docker.zsh'
 alias zac='nvim $XDG_CONFIG_HOME/zsh/aliases/candy.zsh'
 
 # config
