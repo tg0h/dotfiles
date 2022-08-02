@@ -1,0 +1,53 @@
+#!/bin/zsh
+# cache files
+
+while getopts 'd' opt; do
+  case "$opt" in
+    d) debug=true;;
+    # k) key=$OPTARG;;
+    # v) value=$OPTARG;;
+    # f) file=$OPTARG;;
+  esac
+done
+shift $(($OPTIND - 1))
+
+local cache=$1
+local key=$2
+local value=$3
+
+[ ! -f $cache ] && touch $cache
+
+[ -n "$debug" ] && echo $# args found >&2
+[ -n "$debug" ] && echo cache is $cache >&2
+[ -n "$debug" ] && echo key is $key >&2
+[ -n "$debug" ] && echo value is $value >&2
+
+if [ $# -eq 2 ]; then # get key
+  # NOTE: do not put local value below, it changes the exit code
+  value=$(rg --only-matching "^$key"',(?P<value>.*)' --replace '$value' $cache)
+  exitCode=$?
+
+  if [ $exitCode -eq 1 ]; then # key not found
+    return 1
+  fi
+
+  [ -n "$debug" ] && echo getting value $value >&2
+  echo $value
+  return 0
+
+elif [ $# -eq 3 ]; then # set key
+  rg --quiet "^$key," $cache
+  exitCode=$?
+
+  if [ $exitCode -eq 1 ]; then # not found
+    [ -n "$debug" ] && echo key $key not found, inserting key and value $key,$value >&2
+    echo $key,$value >> $cache
+  else
+    [ -n "$debug" ] && echo key found, updating to value $value >&2
+    gsed -Ei 's#('$key'),(.*)#\1,'$value'#' $cache
+  fi
+  return 0
+else
+  return 1
+fi
+
