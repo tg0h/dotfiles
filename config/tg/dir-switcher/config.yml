@@ -27,7 +27,7 @@ keymaps:
     depth: 5
   # lib
   - bindkey: l
-    dir: $HOME/.local/lib
+    dir: $HOME/dotfiles/lib
     depth: 5
   # data
   - bindkey: g
@@ -43,7 +43,7 @@ keymaps:
     depth: 3
   # bin
   - bindkey: f
-    dir: $HOME/.local/bin
+    dir: $HOME/dotfiles/bin
 
   - bindkey: k
     dir: $HOME/certis/docs/wiki
