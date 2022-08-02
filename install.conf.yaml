@@ -20,6 +20,7 @@
       recursive: true
 
 - create:
+    - ~/.local/bin # binaries for any ad hoc binaries, eg authy
     - $XDG_DATA_HOME/z # for z to store its frecency dir list
     - $XDG_DATA_HOME/gnupg # gpg --full-generate-key fails if dir does not exist
     - $XDG_DATA_HOME/nvim/snippets # vsnip directory
@@ -28,7 +29,7 @@
     - $XDG_STATE_HOME
     - $XDG_STATE_HOME/mycli
     - $XDG_STATE_HOME/zsh # create folder to store zsh history
-    - ~/.local/bin # binaries for any ad hoc binaries, eg authy
+    - $XDG_STATE_HOME/dir-switcher # create folder to store dir switcher MRU file cache
 
 # <target>:<source (original file)>
 # if linking directories, do not include a trailing slash

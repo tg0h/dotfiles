@@ -1,0 +1,14 @@
+#!/bin/zsh
+
+function cache-open(){
+  # cache-open <cache> <key>
+  # get file from cache and open in nvim
+
+  local cache=$1
+  local key=$2
+
+  local file=$(cache $cache $key)
+  if [ -n "$file" ]; then
+    nvim $file
+  fi
+}

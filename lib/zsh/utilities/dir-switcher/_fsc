@@ -14,6 +14,7 @@ function _fsc(){
   # :<bindkey> - goto dir
   # q<bindkey> - open dir in nvim
   local outputFolder=$HOME/.local/lib/zsh/utilities/dir-switcher/out
+  local cache=$XDG_STATE_HOME/dir-switcher/cache
   echo $fg[red] removing files in "$outputFolder" "..."
   [[ -n "$outputFolder" ]] && trash "$outputFolder/*"
 
@@ -67,5 +68,9 @@ function _fsc(){
     echo "dd$bindkey() {cd $dir }" > $outputFolder/dd$bindkey
     echo "alias :$bindkey=dd$bindkey" >> $aliasFile
     echo "alias q$bindkey='nvim $dir'" >> $aliasFile
+
+    # open mru file
+    echo "fs-mru-open-$bindkey() {cache-open $cache $dir}" > $outputFolder/fs-mru-open-$bindkey
+    echo "alias ,$bindkey=fs-mru-open-$bindkey" >> $aliasFile
   done <<< $config
 }

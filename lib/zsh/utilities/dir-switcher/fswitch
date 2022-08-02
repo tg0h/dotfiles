@@ -10,6 +10,7 @@ function fswitch(){
   # TODO: how to implement priority with most frequently used first?
 
   local configFile=$XDG_CONFIG_HOME/tg/dir-switcher/config.yml
+  local cache=$XDG_STATE_HOME/dir-switcher/cache # store MRU files for each directory here
   if [[ $1 == "configure" ]] && [[ $2 == "list" ]]; then
     fsConfigure $configFile
     return
@@ -100,6 +101,7 @@ function fswitch(){
     # if target is a file (check with -f), change to its dir instead
     # [[ -f $target ]] && target=${target%/*} # zsh variable expansion - min match pattern /* and remove from tail
     if [[ -f "$target1" ]]; then
+      cache "$cache" "$searchDir" "$target1"
       # TODO: does not work if path has spaces
       targets=$(join-lines <<< "$targets")
       # echo -n ${=targets}
