@@ -17,6 +17,7 @@ gui:
       - cyan
     unstagedChangesColor:
       - red
+promptToReturnFromSubprocess: false
 keybinding:
   universal:
     #     prevItem-alt: 't' # go one line up (vim k)
