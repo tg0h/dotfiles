@@ -1,7 +1,10 @@
 #!/bin/zsh
 
 function acds(){
-  # aws ecs 
+  # aws ecs describe services
+  # default to staging cluster
+  # -c d|s|p # to get dev, staging or prod cluster
+  # -n # number of events to display for the service
 
   local verbose cluster clusterOpt service number
   while getopts 'vc:n:' opt; do
