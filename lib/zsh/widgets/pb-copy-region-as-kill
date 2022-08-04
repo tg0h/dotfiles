@@ -1,0 +1,6 @@
+#!/bin/zsh
+
+function pb-copy-region-as-kill() {
+  zle copy-region-as-kill
+  print -rn $CUTBUFFER | pbcopy
+}

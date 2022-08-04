@@ -7,6 +7,16 @@ bindkey -r "^G" # remove ctrl g so that junegunn's fzf_git functions work
 bindkey -r "^H"
 bindkey -r "^S"
 
+
+# https://unix.stackexchange.com/questions/51933/zsh-copy-and-paste-like-emacs
+# alt-w
+zle -N pb-copy-region-as-kill
+bindkey -e '\ew' pb-copy-region-as-kill
+zle -N pb-backward-kill-line
+bindkey -e '^u' pb-backward-kill-line
+zle -N pb-kill-line
+bindkey -e '^k' pb-kill-line
+
 # file searchers
 zle     -N   fzf-search-dotfiles-widget
 # bindkey '^N^H' fzf-search-dotfiles-widget

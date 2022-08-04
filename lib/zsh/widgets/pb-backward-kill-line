@@ -1,0 +1,6 @@
+#!/bin/zsh
+
+function pb-backward-kill-line () {
+  zle backward-kill-line
+  print -rn $CUTBUFFER | pbcopy
+}
