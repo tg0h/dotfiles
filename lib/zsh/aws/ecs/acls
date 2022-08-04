@@ -3,6 +3,8 @@
 function acls(){
   # aws ecs list-services 
   # acls <clusterName>
+  # -c # clusterName
+  # acls -cp # list services from production
 
   local verbose cluster clusterOpt
   while getopts 'vc:' opt; do
@@ -20,11 +22,21 @@ function acls(){
   shift $(($OPTIND - 1))
 
   cluster=${cluster:-StagingCluster}
+
+  local clusterRegex
+  if [ $cluster = "ProductionCluster" ] || [ $cluster = "DeveloperCluster" ]; then
+    clusterRegex=""
+  elif [ $cluster = "StagingCluster" ]; then
+    clusterRegex=$cluster
+  fi
+
     local jqQuery=$(cat <<-EOF
    include "pad";
    include "colour";
-   .serviceArns[] |
-   gsub(".*$cluster/(?<service>.*)";(.service))
+   .serviceArns | 
+   sort | 
+   .[] |
+   gsub(".*$clusterRegex/(?<service>.*)";(.service))
 EOF
 )
 
