@@ -6,7 +6,20 @@ function fsCheat(){
     local jqQuery=$(cat <<-EOF
                                include "pad";
                                include "colour";
-                               .keymaps
+                               def configKeys:
+                                 ["bindkey", "dir", "depth", "glob", "show-hidden", "show-ignore", "xargs"];
+                               def convertToConfigHash:
+                                 to_entries | map(.key = configKeys[.key]) | from_entries;
+                               def convertArraysToConfigHash:
+                                 if type == "object" then
+                                    .
+                                 else
+                                   convertToConfigHash
+                                   # .
+                                 end;
+
+                               .keymaps 
+                               | map(convertArraysToConfigHash)
                                | map( "\(.bindkey | _ec(rpad(3;" "))) \(_bt(.dir))")
                                | .[]
 EOF
