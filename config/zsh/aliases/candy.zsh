@@ -1,6 +1,6 @@
 # cred stash
-alias clc="~/src/candy/old/candymold/tools/list-credentials.js"
-alias cgc="~/src/candy/old/candymold/tools/get-credential.js"
+alias clc="~/src/candy/old/candymold/tools/list-credentials.js" # credstash
+alias cgc="~/src/candy/old/candymold/tools/get-credential.js" # credstash
 
 # cognito
 # CC
