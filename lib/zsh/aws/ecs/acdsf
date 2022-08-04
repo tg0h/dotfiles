@@ -6,7 +6,7 @@ function acdsf(){
   # acdsf -c <cluster= d|s|p>
   local number clusterOpt
 
-  while getopts 'n:' opt; do
+  while getopts 'n:c:' opt; do
     case "$opt" in
       n) number=$OPTARG;;
       c) clusterOpt=$OPTARG;;
@@ -17,6 +17,6 @@ function acdsf(){
   number=${number:-2}
   clusterOpt=${clusterOpt:-s}
 
-  local results=$(acls | fzf | join-lines)
+  local results=$(acls -c $clusterOpt | fzf | join-lines)
   acds -n $number -c $clusterOpt $results
 } 
