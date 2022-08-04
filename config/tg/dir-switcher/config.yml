@@ -62,6 +62,10 @@ keymaps:
   - bindkey: d
     dir: $HOME/Documents
     depth: 2
+  - bindkey: ","
+    dir: $HOME/Documents/notes
+  - bindkey: b
+    dir: $HOME/Documents/notes
   - bindkey: v # candy wiki
     dir: $HOME/Documents/candy/wiki
     depth: 5 # specify how deep the directory preview should be
@@ -87,6 +91,8 @@ keymaps:
     dir: $HOME/src/candy/old/pentel
   - bindkey: soc
     dir: $HOME/src/candy/old/composer
+  - bindkey: st
+    dir: $HOME/src/candy/old/candymold/tools
   - bindkey: sc
     dir: $HOME/src/candy
     depth: 5 # specify how deep the directory preview should be
@@ -117,9 +123,12 @@ keymaps:
     show-ignore: true
     xargs: dirname
   # ＼（＾ ＾）／ my projects
-  - bindkey: w # my website
+  - bindkey: w #
     dir: $HOME/src/me/wiki
     depth: 5 # specify how deep the directory preview should be
+  # - bindkey: . #
+  #   dir: $HOME/src/me/wiki
+  #   depth: 5 # specify how deep the directory preview should be
   - bindkey: m
     dir: $HOME/src/me/wiki/projects/ou
   # (ノ ゜Д゜)ノ ︵ ┻━┻ flipping playground
