@@ -5,12 +5,14 @@ function acds(){
   # default to staging cluster
   # -c d|s|p # to get dev, staging or prod cluster
   # -n # number of events to display for the service
+  # -p # show 1 piece of data per line
 
-  local verbose cluster clusterOpt service number
-  while getopts 'vc:n:' opt; do
+  local verbose cluster clusterOpt service number plain
+  while getopts 'vc:n:p' opt; do
     case "$opt" in
       v) verbose=true;;
       n) number=$OPTARG;;
+      p) plain=true;;
       c) clusterOpt=$OPTARG
         case "$clusterOpt" in
           d) cluster="DeveloperCluster";;
@@ -65,11 +67,28 @@ function acds(){
 EOF
 )
 
+    local jqQueryPlain=$(cat <<-EOF
+   include "pad";
+   include "colour";
+   include "aws-time";
+   def pTaskDefinition:
+     gsub(".*/(?<x>.*)";_orange((.x)));
+   def deployment:
+     "🎯\(.desiredCount|lp(3))🟢\(.runningCount|lp(3))🟡\(.pendingCount)🔴\(.failedTasks) \(.status) 🚂\(.createdAt | pTime) 🚀\(.updatedAt | pTime) \(.rolloutState) ";
+   def service:
+     "\(.serviceName| rp(40) | _brinkPink(.)) 🎯\(.desiredCount|lp(3))🟢\(.runningCount|lp(3))🟡\(.pendingCount|lp(3)) \(.status) \(.deployments | map(deployment)[])";
+   .services[] | service
+EOF
+)
+
+
   # ${=var} - tell zsh to word split var
   local result=$(aws ecs describe-services --cluster $cluster --service ${=service})
 
   if [ -n "$verbose" ]; then
     jq --raw-output -L "~/.config/jq" "." <<< $result
+  elif [ -n "$plain" ]; then
+    jq --raw-output -L "~/.config/jq" "$jqQueryPlain" <<< $result
   else
     jq --raw-output -L "~/.config/jq" "$jqQuery" <<< $result
   fi
