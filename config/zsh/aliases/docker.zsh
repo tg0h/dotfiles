@@ -62,6 +62,7 @@ alias dcp='docker container stop'
 
 
 ################################################### Images
+alias dp='docker pull'
 alias di='docker image'
 alias dih='docker image history'
 alias dii='docker image inspect'
