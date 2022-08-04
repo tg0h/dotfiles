@@ -24,7 +24,26 @@ function _fsc(){
   echo $fg[cyan] removing aliases in $aliasFile "..."
   rm -f $aliasFile
 
-  local config=$(yq eval '.keymaps' $configFile --output-format json | jq --compact-output '.[]')
+    local jqQuery=$(cat <<-EOF
+   # include "pad";
+   # include "colour";
+   def configKeys:
+     ["bindkey", "dir", "depth", "glob", "show-hidden", "show-ignore", "xargs"];
+   def convertToConfigHash:
+     to_entries | map(.key = configKeys[.key]) | from_entries;
+   def convertArraysToConfigHash:
+     if type == "object" then
+        .
+     else
+       convertToConfigHash
+       # .
+     end;
+  map(convertArraysToConfigHash) | .[]
+EOF
+)
+  # local config=$(yq eval '.keymaps' $configFile --output-format json | jq --compact-output '.[]')
+  local config=$(yq eval '.keymaps' $configFile --output-format json | jq --compact-output "$jqQuery")
+
   # for row in $config; do
   # while read loop splits only on newlines, unlike for do read which splits on any whitespace
 

@@ -1,148 +1,47 @@
 # set up the fzf directory switcher
-# specify the bindkey for the ud function
-# ud is a fzf directory switcher
 # the fzf preview window previews the directory/file contents
 # the depth of the directory preview can be configured with the depth key
-
-# NOTE:
-# . alias - search files
-# : alias - go to dir immediately
-
 # TODO: add namespaces, don't restrict to just ud
-# TODO: cache edited files with nvim
-
 keymaps:
-  # XDG folders
-  # config
-  - bindkey: c #udc opens fzf and lists its directory contents
-    dir: $XDG_CONFIG_HOME
-    depth: 5
-  - bindkey: cn
-    dir: $XDG_CONFIG_HOME/nvim
-    depth: 5
-  - bindkey: ck
-    dir: $XDG_CONFIG_HOME/kitty
-  - bindkey: ca
-    dir: $XDG_CONFIG_HOME/zsh/aliases
-    depth: 5
-  # lib
-  - bindkey: l
-    dir: $HOME/dotfiles/lib
-    depth: 5
-  # data
-  - bindkey: g
-    dir: $XDG_DATA_HOME
-    depth: 4
-  # state
-  - bindkey: xs
-    dir: $XDG_STATE_HOME
-    depth: 5
-  # cache
-  - bindkey: r
-    dir: $XDG_CACHE_HOME
-    depth: 3
-  # bin
-  - bindkey: f
-    dir: $HOME/dotfiles/bin
+  # XDG_CONFIG DIRS - Top Row
+  - [f, $HOME/dotfiles/bin]
+  - [g, $XDG_DATA_HOME, 4]
+  - [c, $XDG_CONFIG_HOME, 5]
+  - [r, $XDG_CACHE_HOME]
+  - [l, $HOME/dotfiles/lib, 5]
+  - [xs, $XDG_STATE_HOME, 5]
+  # Home Row
+  - [d, $HOME/Documents, 2]
+  - [h, $HOME/src/me, 4, \\.git$, true, true, dirname] # this yml file is converted to json. a backslash is an escape character in json. we need to escape the backslash. we want to pass \.git$ as the regex filter to fd
+  - [t, $HOME/src/playground, 5, \\.git$, true, true, dirname]
+  - [n, $HOME/src/clones, 4, \\.git$, true, true, dirname]
+  - [s, $HOME/src]
+  # Bottom row
+  - [b, $HOME/Documents/notes]
+  - [m, $HOME/src/me/wiki/projects/ou]
+  - [w, $HOME/src/me/wiki, 5]
+  - [v, $HOME/Documents/candy/wiki, 5]
+  - [z, $HOME/dotfiles, 4]
 
-  - bindkey: k
-    dir: $HOME/certis/docs/wiki
-    depth: 4
+  - [p, /tmp]
+  - [tl, $HOME/Downloads]
 
-  # my dotfiles
-  - bindkey: z
-    dir: $HOME/dotfiles
-    depth: 4
+  - [cn, $XDG_CONFIG_HOME/nvim, 5]
+  - [ck, $XDG_CONFIG_HOME/kitty]
+  - [ca, $XDG_CONFIG_HOME/zsh/aliases, 5]
 
-  # other folders
-  - bindkey: tl
-    dir: $HOME/Downloads
+  # SRC
+  - [s., $HOME/src/candy/main/referralcandy-main, 5]
+  - ["s,", $HOME/src/candy-main/referralcandy-main]
+  - [sh, $HOME/src/candy/main/referralcandy-main/packages/daemons]
+  - [sd, $HOME/src/candy/datagrip/candy]
+  - [so, $HOME/src/candy/old]
+  - [sp, $HOME/src/candy/old/pentel]
+  - [soc, $HOME/src/candy/old/composer]
+  - [st, $HOME/src/candy/old/candymold/tools]
+  - [sc, $HOME/src/candy, 5, \\.git$, true, true, dirname]
+  - [su, $HOME/src/udemy, 4, \\.git$, true, true, dirname]
 
-  # docs
-  - bindkey: d
-    dir: $HOME/Documents
-    depth: 2
-  - bindkey: ","
-    dir: $HOME/Documents/notes
-  - bindkey: b
-    dir: $HOME/Documents/notes
-  - bindkey: v # candy wiki
-    dir: $HOME/Documents/candy/wiki
-    depth: 5 # specify how deep the directory preview should be
-
-  # tmp folders
-  - bindkey: p # tmp
-    dir: /tmp
-    depth: 3
-
-  # ⊙▽⊙ read the src
-  - bindkey: s
-    dir: $HOME/src
-  - bindkey: s.
-    dir: $HOME/src/candy/main/referralcandy-main
-    depth: 5 # specify how deep the directory preview should be
-  - bindkey: s,
-    dir: $HOME/src/candy-main/referralcandy-main
-  - bindkey: sh
-    dir: $HOME/src/candy/main/referralcandy-main/packages/daemons
-  - bindkey: sd
-    dir: $HOME/src/candy/datagrip/candy
-  - bindkey: sp
-    dir: $HOME/src/candy/old/pentel
-  - bindkey: soc
-    dir: $HOME/src/candy/old/composer
-  - bindkey: st
-    dir: $HOME/src/candy/old/candymold/tools
-  - bindkey: sc
-    dir: $HOME/src/candy
-    depth: 5 # specify how deep the directory preview should be
-    glob: \\.git$
-    show-hidden: true
-    show-ignore: true
-    xargs: dirname
-  - bindkey: so
-    dir: $HOME/src/candy/old
-  - bindkey: h
-    dir: $HOME/src/me
-    depth: 4
-    glob: \\.git$ # this yml file is converted to json. a backslash is an escape character in json. we need to escape the backslash. we want to pass \.git$ as the regex filter to fd
-    show-hidden: true
-    show-ignore: true
-    xargs: dirname # use xargs to further filter ouput
-  - bindkey: hc
-    dir: $HOME/src/me/zsh/candy
-  - bindkey: ht
-    dir: $HOME/src/me/zsh/candy/klaviyo/
-  - bindkey: hn
-    dir: $HOME/src/me/zsh/candy/shopify/
-  - bindkey: n
-    depth: 4
-    dir: $HOME/src/clones
-    glob: \\.git$
-    show-hidden: true
-    show-ignore: true
-    xargs: dirname
-  # ＼（＾ ＾）／ my projects
-  - bindkey: w #
-    dir: $HOME/src/me/wiki
-    depth: 5 # specify how deep the directory preview should be
-  # - bindkey: . #
-  #   dir: $HOME/src/me/wiki
-  #   depth: 5 # specify how deep the directory preview should be
-  - bindkey: m
-    dir: $HOME/src/me/wiki/projects/ou
-  # (ノ ゜Д゜)ノ ︵ ┻━┻ flipping playground
-  - bindkey: t
-    depth: 5
-    dir: $HOME/src/playground
-    glob: \\.git$
-    show-hidden: true
-    show-ignore: true
-    xargs: dirname
-  - bindkey: su # udemy
-    dir: $HOME/src/udemy
-    depth: 4
-    glob: \\.git$
-    show-hidden: true
-    show-ignore: true
-    xargs: dirname
+  - [hc, $HOME/src/me/zsh/candy]
+  - [ht, $HOME/src/me/zsh/candy/klaviyo]
+  - [hn, $HOME/src/me/zsh/candy/shopify]
