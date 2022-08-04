@@ -102,10 +102,10 @@ function fswitch(){
     # [[ -f $target ]] && target=${target%/*} # zsh variable expansion - min match pattern /* and remove from tail
     if [[ -f "$target1" ]]; then
       cache "$cache" "$searchDir" "$target1"
+      nvim "$target1"
       # TODO: does not work if path has spaces
-      targets=$(join-lines <<< "$targets")
-      # echo -n ${=targets}
-      nvim ${=targets}
+      # targets=$(join-lines <<< "$targets")
+      # nvim ${=targets}
     fi
   fi
 }
