@@ -65,7 +65,7 @@ function fswitch(){
   # if we eval \.git$ directly, the \. is interpreted as a shell escape
   # therefore, we must surround the glob with single quotes to prevent shell escaping
   local searchCmd="fd '$glob' $searchDir $showHidden $showIgnore $fileType --follow --color always --max-depth $searchDepth $xargsCmd"
-  
+
   local out=$(eval $searchCmd | fzf +m --prompt=$fzfPrompt --preview='[[ $(file --mime {}) =~ inode/directory ]] &&
     exa '$previewGitIgnore' --tree --long --icons --git --color always --sort modified --reverse --level '$searchDepth' --no-permissions --no-user --changed {}/ || (bat --style=numbers --color=always {} || cat {}) 2> /dev/null | head -300' \
     --bind 'ctrl-t:reload(fd . '$searchDir' --type f --follow --color always --max-depth '$searchDepth')+change-prompt(file>)' \
