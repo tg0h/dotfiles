@@ -8,9 +8,10 @@ function acds(){
   # -p # show 1 piece of data per line
 
   local verbose cluster clusterOpt service number plain
-  while getopts 'vc:n:p' opt; do
+  while getopts 'vc:n:pd' opt; do
     case "$opt" in
       v) verbose=true;;
+      d) debug=true;;
       n) number=$OPTARG;;
       p) plain=true;;
       c) clusterOpt=$OPTARG
@@ -27,6 +28,7 @@ function acds(){
   number=${number:-20}
   cluster=${cluster:-StagingCluster}
   service=${@:-DaemonV2Service}
+  [ -n "$debug" ] && echo number is $number >&2
 
     local jqQuery=$(cat <<-EOF
    include "pad";
@@ -84,6 +86,8 @@ EOF
 
   # ${=var} - tell zsh to word split var
   local result=$(aws ecs describe-services --cluster $cluster --service ${=service})
+
+  [ -n "$debug" ] && echo jqQuery is $jqQuery >&2
 
   if [ -n "$verbose" ]; then
     jq --raw-output -L "~/.config/jq" "." <<< $result
