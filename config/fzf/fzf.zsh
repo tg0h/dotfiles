@@ -38,11 +38,11 @@ source /opt/homebrew/opt/fzf/shell/key-bindings.zsh
 # hl - colour of matching substrings. -1 means accept the original colour
 # hl+ - colour of matching substrings on current line
 # --bind='ctrl-d:half-page-down'
+# -1
 export FZF_DEFAULT_OPTS="
 --ansi
 --no-mouse
 --height 80%
--1
 --info=inline
 --reverse
 --multi
