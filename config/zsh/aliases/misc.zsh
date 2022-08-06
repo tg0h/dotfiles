@@ -1,5 +1,7 @@
 alias h='which'
 
+alias which-command='which'
+
 alias ag="alias | grep"
 alias sg="set | grep"
 
