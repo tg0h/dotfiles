@@ -27,6 +27,7 @@ brewfile.lock.json
 lib/scratch
 bin/scratch
 bin/scratch.*
+config/zsh/aliases/scratch.zsh
 
 lib/zsh/aws/sqs/aqs
 
