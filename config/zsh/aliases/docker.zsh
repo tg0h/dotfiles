@@ -91,3 +91,10 @@ alias dv='docker volume'
 alias dvl='docker volume ls'
 alias dvi='docker volume inspect'
 alias dvr='docker volume rm'
+
+################################################### Swarm
+alias ds='docker service'
+alias dsl='docker service ls'
+alias dsp='docker service ps'
+alias dsu='docker service update'
+alias dsr='docker service rm'
