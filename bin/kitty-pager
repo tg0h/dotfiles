@@ -24,7 +24,7 @@ exec nvim \
     -u NONE \
     -c "autocmd VimEnter * ${AUTOCMD_TERMCLOSE_CMD}" \
     -c "map <silent> q :qa!<CR>" \
-    -c "set shell=zsh scrollback=100000 termguicolors laststatus=0 clipboard+=unnamedplus" \
+    -c "set ignorecase smartcase shell=zsh scrollback=100000 termguicolors laststatus=0 clipboard+=unnamedplus" \
     -c "silent! write! /tmp/kitty_scrollback_buffer | terminal cat /tmp/kitty_scrollback_buffer - " \
     -c "autocmd TermEnter * stopinsert" \
     -c "autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank({timeout = 40})"
