@@ -118,6 +118,11 @@ brew 'rga'
 brew 'poppler'
 brew 'dasel' # from clig.dev https://ilya-sher.org/2018/04/10/list-of-json-tools-for-command-line/
 brew 'jc'
+# brew 'gnu-time'
+brew 'gnuplot'
+tap 'lindell/multi-gitter'
+brew 'lindell/multi-gitter/multi-gitter'
+brew 'nushell'
 
 tap 'saulpw/vd'
 brew 'saulpw/vd/visidata'
