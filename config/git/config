@@ -24,6 +24,8 @@
 [difftool]
 	prompt = false
 
+; https://git-scm.com/docs/git-config
+; If the pattern ends with /, ** will be automatically added.
 [includeIf "gitdir:~/src/candy/"]
   path = config-work
 [includeIf "gitdir:~/src/candy-main/"]
