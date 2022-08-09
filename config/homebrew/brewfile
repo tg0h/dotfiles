@@ -144,6 +144,7 @@ cask 'cleanshot'
 cask 'toggl-track'
 cask 'ngrok'
 # cask 'sip' # DO NOT INSTALL SIP, i do not have a subscription for
+cask 'multipass'
 
 cask 'foxitreader'
 cask 'google-chrome'
@@ -174,6 +175,6 @@ cask 'gimp'
 tap 'homebrew/cask-drivers'
 cask 'zsa-wally'
 
-mas 'Blackmagic Disk Speed Test', id: 425264550
+# mas 'Blackmagic Disk Speed Test', id: 425264550
 mas 'Aquarelo', id: 1263012549
 mas 'Goldie', id: 1375037046
