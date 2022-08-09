@@ -36,9 +36,11 @@ zle     -N   fzf-search-bookmarks-widget
 # bindkey '^N^M' fzf-search-bookmarks-widget
 zle -N _fzf-redraw-prompt # used by fzf bookmarks widget to redraw prompt
 
-zle -N fzf-docker-widget
+zle -N fzf-docker-container-widget
 # replaces the quoted-insert widget
-bindkey '^V' fzf-docker-widget
+bindkey '^V' fzf-docker-container-widget
+zle -N fzf-docker-image-widget
+bindkey '^[^V' fzf-docker-image-widget
 
 # npm
 # zle -N fzf-search-package-widget

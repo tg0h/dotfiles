@@ -1,7 +1,7 @@
 #!bin/zsh
 
 # Select a docker container to remove
-function fzf-docker-widget() {
+function fzf-docker-container-widget() {
   local container_ids
   container_ids=$(dcla | fzf | awk '{print $2}' | join-lines)
   zle reset-prompt

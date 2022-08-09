@@ -1,0 +1,10 @@
+#!bin/zsh
+
+# Select a docker container to remove
+function fzf-docker-image-widget() {
+  local container_ids
+  container_ids=$(dil | fzf | awk '{print $3}' | join-lines)
+  zle reset-prompt
+  LBUFFER+=$container_ids
+}
+
