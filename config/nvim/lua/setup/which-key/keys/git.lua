@@ -23,7 +23,10 @@ local M = {
     b = {"<CMD>Telescope git_branches<CR>", "Checkout branch"},
     B = {"<CMD>GitBlameToggle<CR>", "Toggle Blame"},
     c = {"<CMD>Telescope git_commits<CR>", "Checkout commit"},
-    f = {"<CMD>Telescope git_bcommits<CR>", "Checkout commit(for current file)"}
+    -- f = {"<CMD>Telescope git_bcommits<CR>", "Checkout commit(for current file)"}
+
+    -- use tabclose to exit diffview file history
+    f = {"<CMD>DiffviewFileHistory %<CR>", "Diffview File History"}
 }
 
 return M
