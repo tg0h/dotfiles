@@ -58,7 +58,8 @@ alias dcsa='docker container start --attach --interactive'
 
 
 ## STOP
-alias dcp='docker container stop'
+alias dcp='docker container stop' # sigint
+alias dck='docker container kill' # sigkill
 
 
 ################################################### Images
@@ -98,3 +99,4 @@ alias dsl='docker service ls'
 alias dsp='docker service ps'
 alias dsu='docker service update'
 alias dsr='docker service rm'
+alias dss='docker service scale'

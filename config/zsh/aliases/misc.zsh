@@ -1,4 +1,4 @@
-alias h='which'
+alias n='which'
 
 alias which-command='which'
 
@@ -28,10 +28,12 @@ alias ss="source $HOME/.local/bin/scratch"
 
 # edit
 alias ee="nvim $HOME/.local/bin/scratch"
+alias eo="nvim $HOME/.local/bin/scratchh"
 alias uu="nvim $HOME/.local/bin/scratch.js"
 alias unt="echo $HOME/.local/bin/scratch.js | entr -c node $HOME/.local/bin/scratch.js"
 # watch for changes to scratch, then clear screen and run scratch
 alias ent="echo $HOME/.local/bin/scratch | entr -c scratch"
+alias eot="echo $HOME/.local/bin/scratchh | entr -c scratchh"
 alias vs="viddy scratch"
 alias oe="nvim $HOME/.local/lib/scratch.lua"
 alias ou="lua $HOME/.local/lib/scratch.lua"

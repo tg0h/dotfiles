@@ -1,6 +1,8 @@
 # regex for argus ticket key
 alias -g A="'ARG-\d*'"
 
+# alias -g h="--help"
+
 alias -g B='| bat'
 alias -g BR='| bat -r'
 

@@ -33,7 +33,9 @@ alias zam='nvim $XDG_CONFIG_HOME/zsh/aliases/misc.zsh'
 alias zas='nvim $XDG_CONFIG_HOME/zsh/aliases/scratch.zsh'
 alias sas='source $XDG_CONFIG_HOME/zsh/aliases/scratch.zsh && echo sourced aliases/scratch.zsh'
 alias zad='nvim $XDG_CONFIG_HOME/zsh/aliases/docker.zsh'
-alias sad='source $XDG_CONFIG_HOME/zsh/aliases/docker.zsh && echo sourced aliases/docker.zsh'
+alias sad='source $XDG_CONFIG_HOME/zsh/aliases/docker.zsh && echo sourced aliases/kubernetes.zsh'
+alias zak='nvim $XDG_CONFIG_HOME/zsh/aliases/kubernetes.zsh'
+alias sak='source $XDG_CONFIG_HOME/zsh/aliases/kubernetes.zsh && echo sourced aliases/kubernetes.zsh'
 alias zac='nvim $XDG_CONFIG_HOME/zsh/aliases/candy.zsh'
 
 # config
