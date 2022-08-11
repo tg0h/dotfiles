@@ -1,6 +1,6 @@
 #!bin/zsh
 
-function qd(){
+function aqd(){
   # delete sqs message
   # qd <receipt-handle>
   # get queue url from env

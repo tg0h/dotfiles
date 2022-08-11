@@ -1,6 +1,6 @@
 #!bin/zsh
 
-function qc(){
+function aqc(){
   # create queue
   aws sqs create-queue --queue-name $1
 }

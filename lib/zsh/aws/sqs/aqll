@@ -1,6 +1,6 @@
 #!bin/zsh
 
-function qll(){
+function aqll(){
   # list sqs queues
   aws sqs list-queues | jq --raw-output ".QueueUrls[]"
 }
