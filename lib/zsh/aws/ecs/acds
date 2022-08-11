@@ -30,19 +30,32 @@ function acds(){
   service=${@:-DaemonV2Service}
   [ -n "$debug" ] && echo number is $number >&2
 
+  # service.status can be
+  #   ACTIVE
+  #   DRAINING
+  #   INACTIVE
+  # deployment.status can be 
+  #   PRIMARY  - most recent deployment
+  #   ACTIVE   - still has running tasks, being replaced by PRIMARY
+  #   INACTIVE - deployment has been completely replaced
+  # deployment.rolloutState can be 
+  #   IN_PROGRESS
+  #   COMPLETED
+
     local jqQuery=$(cat <<-EOF
    include "pad";
    include "colour";
    include "aws-time";
+   include "aws-ecs";
    def pTaskDefinition:
      gsub(".*/(?<x>.*)";_orange((.x)));
    def service:
      "\(.serviceName| _brinkPink(.)) \(.taskDefinition | pTaskDefinition)"+"\n"+
-     "🎯\(.desiredCount) 🟢\(.runningCount) 🟡\(.pendingCount) \(.status) "
+     "🎯\(.desiredCount) 🟢\(.runningCount) 🟡\(.pendingCount) \(.status | _serviceStatus) "
   ;
    def deployment:
      # "\(.taskDefinition | __(.))"+"\n"+
-     "\(.status) 🚂 \(.createdAt | pTime) 🚀 \(.updatedAt | pTime) \(.rolloutState) \(.rolloutStateReason)"+"\n"+
+     "\(.status | _deploymentStatus) 🚂 \(.createdAt | pTime) 🚀 \(.updatedAt | pTime) \(.rolloutState | _rolloutState) \(.rolloutStateReason)"+"\n"+
      "🎯\(.desiredCount) 🟢\(.runningCount) 🟡\(.pendingCount) 🔴\(.failedTasks)"
    ;
    def _completed:
@@ -57,8 +70,14 @@ function acds(){
      gsub("(?<x>reached a steady state)"; _g((.x)));
    def _filler:
      gsub("(?<x>(has|\\\\.|:))"; __((.x)));
+   def _unable_to_place_a_task:
+     gsub("(?<x>unable to place a task)"; _brinkPink((.x)));
+   def _unhealthy:
+     gsub("(?<x>unhealthy)"; _brinkPink((.x)));
+   def registered:
+     gsub("(?<x> registered)"; _by((.x)));
    def _colourFilter:
-     _completed | _filler | _started | _stopped | _reached | _brackets;
+     _completed | _filler | _started | _stopped | _reached | _brackets | _unable_to_place_a_task | _unhealthy ;
    def event:
      "  \(.createdAt | pTime) \(.message | _colourFilter)";
 

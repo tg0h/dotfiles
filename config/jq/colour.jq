@@ -113,6 +113,9 @@ def _r(text):
 def _by(text):
   escape + colours["byellow"] + text + escape + colours.reset;
 
+def _bgr(text):
+  escape + colours["bgred"] + text + escape + colours.reset;
+
 def _g(text):
   escape + colours["green"] + text + escape + colours.reset;
 
