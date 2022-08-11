@@ -1,6 +1,8 @@
 [general]
 shell = "zsh"
-shell_options = ""
+# do not use a login shell, source functions in zshenv so they are available to
+# viddy when viddy runs zsh non-interactively
+# shell_options = "--login"
 
 [keymap]
 timemachine_go_to_past = "j"
