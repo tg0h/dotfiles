@@ -1,4 +1,5 @@
 # zprofile is sourced at login
+# does not affect scripts eg in ~/.local/bin
 # use this file for commands and variables that don't need to be updated frequently
 # run exec zsh --login to apply any configuration updates by running a login shell
 
