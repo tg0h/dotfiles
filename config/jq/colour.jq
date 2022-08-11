@@ -110,6 +110,9 @@ def colour(text; colour):
 def _r(text):
   escape + colours["red"] + text + escape + colours.reset;
 
+def _by(text):
+  escape + colours["byellow"] + text + escape + colours.reset;
+
 def _g(text):
   escape + colours["green"] + text + escape + colours.reset;
 
