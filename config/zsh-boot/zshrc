@@ -71,10 +71,10 @@ source $XDG_CONFIG_HOME/zsh/start/SOURCEME.zsh # source oh-my-zsh and other cust
 for f in $XDG_CONFIG_HOME/zsh/***/*.zsh~*/start/*; do # exclude start folders
   source $f 
 done 
-fpath=($HOME/.local/lib/zsh/***/*~*/archive*(/) $fpath) # / matches directories, exclude archive/
-for func in $HOME/.local/lib/zsh/***/*~(*/archive/*|*.zsh)(.); do 
-  autoload $func
-done
+# fpath=($HOME/.local/lib/zsh/***/*~*/archive*(/) $fpath) # / matches directories, exclude archive/
+# for func in $HOME/.local/lib/zsh/***/*~(*/archive/*|*.zsh)(.); do 
+#   autoload $func
+# done
 unsetopt EXTENDED_GLOB
 
 # set up p10k instant prompt

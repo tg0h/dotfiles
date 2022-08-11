@@ -67,3 +67,11 @@ export PATH="$PATH:/opt/homebrew/bin" # access aws_completer, etc
 # alias yarn='yarn --use-yarnrc "$XDG_CONFIG_HOME/yarn/config"'
 
 _Z_DATA=$XDG_DATA_HOME/z/z # z stores its dir frecency list here
+
+# expose functions to all scripts
+setopt EXTENDED_GLOB # use ~ to exclude patterns in file globbing
+fpath=($HOME/.local/lib/zsh/***/*~*/archive*(/) $fpath) # / matches directories, exclude archive/
+for func in $HOME/.local/lib/zsh/***/*~(*/archive/*|*.zsh)(.); do
+  autoload $func
+done
+unsetopt EXTENDED_GLOB
