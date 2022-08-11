@@ -7,24 +7,20 @@ function aqg(){
   # qg -t - use the default queue defined in env
   # qg -v - verbose
 
-  local verbose queueUrl defaultQueue
-  while getopts 'vt' opt; do
+  local verbose queueUrl debug
+  while getopts 'vd' opt; do
     case "$opt" in
       v) verbose=true;;
-      t) defaultQueue=true;;
+      d) debug=true;;
     esac
   done
   shift $(($OPTIND - 1))
 
-  # use provided queueUrl, else fuzzy get queueUrl
-  if [ -n "$1" ]; then
-    queueUrl=$1
-  elif [ -n "$defaultQueue" ]; then
-    queueUrl=$AWS_QUEUE_URL
-  else
-    queueUrl=$(ql)
-  fi
+  queueUrl=${1:-$AWS_QUEUE_URL}
 
+  [ $debug ] && echo "queueUrl is" $queueUrl >&2
+  [ $debug ] && echo "running command" >&2
+  [ $debug ] && echo "aws sqs get-queue-attributes --queue-url $queueUrl --attribute-names All" >&2
   if [ -n "$queueUrl" ]; then
     local result=$(aws sqs get-queue-attributes --queue-url $queueUrl --attribute-names All)
   fi
