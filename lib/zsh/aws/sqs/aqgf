@@ -1,0 +1,21 @@
+#!bin/zsh
+
+function aqgf(){
+
+  local queue verbose debug
+  while getopts 'vd' opt; do
+    case "$opt" in
+      v) verbose=true;;
+      d) debug=true;;
+    esac
+  done
+  shift $(($OPTIND - 1))
+
+  # if debug is something return "-d", else return nothing
+  local debugOption=${debug:+"-d"}
+  local verboseOption=${verbose:+"-v"}
+
+  local queue=$(aql)
+
+  aqg $debugOption $queue
+}
