@@ -20,6 +20,7 @@ bindkey -e # use emacs keymap for zsh
 setopt autocd # type dir name to cd directly
 autoload zmv # so i can use zmv immediately
 autoload -U colors && colors # enable $fg[red] etc
+autoload zargs # parallel fun
 
 # TODO: how are completions here loaded?
 fpath=(/opt/homebrew/share/zsh/site-functions $fpath) # add homebrew completions to fpath

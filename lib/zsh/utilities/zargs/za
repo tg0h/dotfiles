@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+function za(){
+  local fun=$1
+  local num=$2
+  zargs -P 10 -t -i{} -- $(seq -w $num) -- $fun
+}
