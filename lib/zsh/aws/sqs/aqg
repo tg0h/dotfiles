@@ -6,12 +6,14 @@ function aqg(){
   # qg <queueUrl>
   # qg -t - use the default queue defined in env
   # qg -v - verbose
+  # aqg -l - local
 
-  local verbose queueUrl debug
-  while getopts 'vd' opt; do
+  local verbose queueUrl debug localOpt result
+  while getopts 'vdl' opt; do
     case "$opt" in
       v) verbose=true;;
       d) debug=true;;
+      l) localOpt=true;;
     esac
   done
   shift $(($OPTIND - 1))
@@ -21,7 +23,9 @@ function aqg(){
   [ $debug ] && echo "queueUrl is" $queueUrl >&2
   [ $debug ] && echo "running command" >&2
   [ $debug ] && echo "aws sqs get-queue-attributes --queue-url $queueUrl --attribute-names All" >&2
-  if [ -n "$queueUrl" ]; then
+  if [ $localOpt ]; then
+    local result=$(aws --endpoint-url $AWS_LOCAL_QUEUE_ENDPOINT sqs get-queue-attributes --queue-url $AWS_LOCAL_QUEUE --attribute-names All)
+  elif [ -n "$queueUrl" ]; then
     local result=$(aws sqs get-queue-attributes --queue-url $queueUrl --attribute-names All)
   fi
 
@@ -33,13 +37,19 @@ local jqQuery=$(cat <<-EOF
    include "pad";
    include "colour";
      .Attributes |
-     "Number:        \(.ApproximateNumberOfMessages|_g(.))
-Not Visible:   \(.ApproximateNumberOfMessagesNotVisible |  _brinkPink(.))
-Delayed:       \(.ApproximateNumberOfMessagesDelayed|__(.))"
+"\(.QueueArn | __(.) )
+
+Number        (visible):   \(.ApproximateNumberOfMessages|_g(.))
+Not Visible (in flight):   \(.ApproximateNumberOfMessagesNotVisible |  _brinkPink(.))
+
+\(__("Long Polling:" | lp(24))) \(.ReceiveMessageWaitTimeSeconds | lp(3) | __(.))
+\(__("VisibilityTimeout:" | lp(24))) \(.VisibilityTimeout | lp(3) | __(.))
+\(__("Delayed:" | lp(24))) \(.ApproximateNumberOfMessagesDelayed | lp(3) | __(.))"
 EOF
 )
      # "(.VisibilityTimeout)"
      # "\(.ApproximateNumberOfMessages)"
+
 
      if [ -z "$verbose" ]; then
         jq -L "~/.config/jq" -r "$jqQuery" <<< $result
