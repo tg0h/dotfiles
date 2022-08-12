@@ -1,4 +1,5 @@
 alias n='which'
+alias al='autoload'
 
 alias which-command='which'
 
@@ -30,7 +31,9 @@ alias ss="source $HOME/.local/bin/scratch"
 alias ee="nvim $HOME/.local/bin/scratch"
 alias eo="nvim $HOME/.local/bin/scratchh"
 alias uu="nvim $HOME/.local/bin/scratch.js"
+alias ui="nvim $HOME/.local/bin/scratch2.js"
 alias unt="echo $HOME/.local/bin/scratch.js | entr -c node $HOME/.local/bin/scratch.js"
+alias int="echo $HOME/.local/bin/scratch2.js | entr -c node $HOME/.local/bin/scratch2.js"
 # watch for changes to scratch, then clear screen and run scratch
 alias ent="echo $HOME/.local/bin/scratch | entr -c scratch"
 alias eot="echo $HOME/.local/bin/scratchh | entr -c scratchh"
