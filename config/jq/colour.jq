@@ -94,7 +94,7 @@ def colours:
 };
 
 def _(colour):
-  escape + colours[colour] + . + escape + colours.reset;
+  tostring | escape + colours[colour] + . + escape + colours.reset;
 
 def colourTest:
   colours | to_entries | map("\(escape)\(.value)\(.key)\(escape)\(colours.reset) \(.value)")[];
@@ -105,7 +105,7 @@ def colourTest:
 # \u001b[31msome text\u001b[0m
 # WARNING parameters are separated by ; not ,
 def colour(text; colour):
-  escape + colours[colour] + text + escape + colours.reset;
+  tostring | escape + colours[colour] + text + escape + colours.reset;
 
 def _r(text):
   escape + colours["red"] + text + escape + colours.reset;
@@ -141,7 +141,7 @@ def _brinkPink(text):
   escape + colours["brinkPink"] + text + escape + colours.reset;
 
 def _orange(text):
-  escape + colours["orange"] + text + escape + colours.reset;
+  escape + colours["orange"] + (text|tostring) + escape + colours.reset;
 
 def _purple(text):
   escape + colours["purple"] + text + escape + colours.reset;
