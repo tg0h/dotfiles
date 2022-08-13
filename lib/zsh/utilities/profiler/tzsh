@@ -1,11 +1,7 @@
 #!bin/zsh
 
 function tzsh(){
-  export Z_PROFILING_STARTUP=true;
   for i in $(seq 1 10); 
-    # does not work properly if zsh starts up into tmux
-    # therefore, zshrc turns off startup into tmux if Z_PROFILING_STARTUP is set
     do /usr/bin/time zsh -i -c exit; 
   done
-  unset Z_PROFILING_STARTUP
 }
