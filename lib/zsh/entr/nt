@@ -1,0 +1,19 @@
+#!/bin/zsh
+
+function nt(){
+  # nt [dir] <cmd>
+  # use entr to run <cmd> when files in <dir> change
+  # if dir not supplied, default to ~/dotfiles
+
+  local rootDir cmd
+
+  if [ $# -eq 1 ]; then
+    rootDir=~/dotfiles
+    cmd=$1
+  else
+    rootDir=$1
+    cmd=$2
+  fi
+
+  fd . $rootDir | entr -ccs $cmd
+}
