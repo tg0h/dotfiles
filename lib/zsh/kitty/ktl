@@ -17,18 +17,26 @@ function ktl(){
    include "pad";
    include "colour";
    include "boolean";
-   def _tab:
-     "\(.id|rp(4)|_g(.)) \(.title|rp(21)|_purple(.)) 🔍️\(.is_focused|bool(.))     \(.layout|rp(12)|_orange(.))";
-   def _window:
-     "\(.id | lp(2) | _y(.)) \(.title|rp(21)) 🔍️\(.is_focused|bool(.))   \(.is_self|bool(.)) \(.cwd|trunc(20)|rp(20)|__(.)) 🏡\(.env) \(.cmdline | join(" ") | _tacha(.))";
-   def _fgProcess:
-     "\(.cmdline | join(" ") | trunc(30) | lp(30)| _tacha(.)) \(.cwd|__(.))";
+   def __cmd:
+    .[0] as \$cmd | .[1:] | join (" ") as \$rest |
+    _brinkPink(\$cmd | trunc(50) | lp(50)) +" "+ _tacha(\$rest | trunc(50) | rp(50));
+   def __env:
+     if (length > 0) then (. | tostring | .[1:] | trunc(30) | __(.)) else __("-") end; 
 
+   def _tab:
+     "\(.id|lp(2)|_g(.)) 🔍️\(.is_focused|bool(.))  \(.title|rp(10)|_purple(.)) \(.layout|_orange(.)) \(.active_window_history|join(" "))";
+
+   def _window:
+   "\(.id | lp(2) | _y(.)) 🔍️\(.is_focused|bool(.))\(.is_self|bool(.)) \(.title|rp(21))  \(.cmdline | join(" ") | trunc(10) | lp(19) | _brinkPink(.)) 🏡\(.env | __env) \(.cwd|trunc(20)|lp(66)|__(.))";
+
+   def _fgProcess:
+     "\(.cmdline |__cmd) \(.cwd|__(.)) \(.pid)";
+     # "\(.cmdline | __cmd | trunc(70) | lp(70)| _tacha(.)) \(.cwd|__(.))";
       (
         .[] |
         .tabs[] | _tab,
-          ( .windows[] | "  "+_window,
-              (.foreground_processes[] | "    "+_fgProcess  )
+          ( .windows[] | _window,
+              (.foreground_processes[] | _fgProcess  )
           )
       )
 EOF
