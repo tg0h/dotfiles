@@ -15,5 +15,8 @@ function nt(){
     cmd=$2
   fi
 
-  fd . $rootDir | entr -ccs $cmd
+  # -cc clears the screen and scrollback as well
+  # prefer entr zsh -c to entr -s
+  # entr -s prints the exit code which is noisy
+  fd . $rootDir | entr -cc zsh -c $cmd
 }
