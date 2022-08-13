@@ -21,6 +21,7 @@
 
 - create:
     - ~/.local/bin # binaries for any ad hoc binaries, eg authy
+    - ~/.local/lib/zsh-functions # binaries for any ad hoc binaries, eg authy
     - $XDG_DATA_HOME/z # for z to store its frecency dir list
     - $XDG_DATA_HOME/gnupg # gpg --full-generate-key fails if dir does not exist
     - $XDG_DATA_HOME/nvim/snippets # vsnip directory
@@ -65,7 +66,7 @@
 
     # Unlike the config folder, I just symlink the child folders because I am
     # confident that the directories here won't have other files added
-    ~/.local/lib/: lib/*
+    # ~/.local/lib/: lib/*
 
     ~/.local/lib/zsh/candy: ~/src/me/zsh/candy
 

@@ -1,0 +1,27 @@
+#!/bin/zsh
+# symlink all zsh functions into 1 $ZSH_FUNCTIONS_PATH folder
+# this folder is added to fpath in the startup files
+# -v - verbose - show linking output
+# NOTE: if you run this after deleting all functions in $ZSH_FUNCTIONS_PATH
+# a warning is shown because there are no functions to autoload when 
+# zshenv tries to autoload from ZSH_FUNCTIONS_PATH before running this script
+
+while getopts 'v' opt; do
+  case "$opt" in
+    v) verbose="-v";;
+  esac
+done
+shift $(($OPTIND - 1))
+
+setopt EXTENDED_GLOB # use ~ to exclude patterns in file globbing
+
+if [ -z $ZSH_FUNCTIONS_PATH ]; then
+  echo ZSH_FUNCTIONS_PATH not found
+  exit 1
+fi
+
+# TODO: exclude files with extensions eg README.md
+for func in $DOTFILES/lib/zsh/***/*~(*/archive/*|*.zsh)(.); do
+  # if link already exists, overwrite it
+  ln $verbose -Fs $func $ZSH_FUNCTIONS_PATH
+done

@@ -1,6 +1,6 @@
 #!bin/zsh
 
-export _fzf_homeFn_dir="$HOME/.local/lib/zsh"
+export _fzf_homeFn_dir="$ZSH_FUNCTIONS_PATH"
 # TODO: pressing enter should leave the function name, not the entire line
 
 _fzf_home_getFunctions(){
