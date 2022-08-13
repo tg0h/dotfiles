@@ -70,7 +70,7 @@ source $DOTFILES/config/secret/env
 setopt EXTENDED_GLOB # use ~ to exclude patterns in file globbing
 source $XDG_CONFIG_HOME/zsh/start/SOURCEME.zsh # source oh-my-zsh and other custom plugins
 for f in $XDG_CONFIG_HOME/zsh/***/*.zsh~*/start/*; do # exclude start folders
-  source $f 
+  source $f
 done 
 # fpath=($HOME/.local/lib/zsh/***/*~*/archive*(/) $fpath) # / matches directories, exclude archive/
 # for func in $HOME/.local/lib/zsh/***/*~(*/archive/*|*.zsh)(.); do 
@@ -87,7 +87,7 @@ fi
 # asst > /dev/null
 # asst
 
-md -p /tmp/tim
+mkdir -p /tmp/tim
 # enter tmux on start up if using kitty (depends on tat script in bin folder)
 # if [[ $TERM = "xterm-kitty" ]] && [[ -z "$TMUX" ]]; then
 #   tat
