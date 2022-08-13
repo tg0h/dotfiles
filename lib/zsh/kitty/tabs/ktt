@@ -1,0 +1,8 @@
+#!/bin/zsh
+
+function ktt(){
+  kitty @ focus-tab --match title:^wiki
+  if [ $? -ne 0 ]; then
+    kitty @ launch --type=tab --tab-title "wiki" --keep-focus
+  fi;
+}
