@@ -41,6 +41,7 @@ alias vs="viddy scratch"
 alias oe="nvim $HOME/.local/lib/scratch.lua"
 alias ou="lua $HOME/.local/lib/scratch.lua"
 
+alias vd="viddy"
 alias db="dbxcli"
 alias dbl="dbxcli ls"
 
