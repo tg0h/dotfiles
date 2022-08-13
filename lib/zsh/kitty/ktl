@@ -1,6 +1,7 @@
 #!/bin/zsh
 
 function ktl(){
+  # kitty ls
   local verbose result
 
   while getopts 'v' opt; do
@@ -16,16 +17,26 @@ function ktl(){
    include "pad";
    include "colour";
    include "boolean";
-    "id title              layout   is_focused",
+   def _tab:
+     "\(.id|rp(4)|_g(.)) \(.title|rp(21)|_purple(.)) 🔍️\(.is_focused|bool(.))     \(.layout|rp(12)|_orange(.))";
+   def _window:
+     "\(.id | lp(2) | _y(.)) \(.title|rp(21)) 🔍️\(.is_focused|bool(.))   \(.is_self|bool(.)) \(.cwd|trunc(20)|rp(20)|__(.)) 🏡\(.env) \(.cmdline | join(" ") | _tacha(.))";
+   def _fgProcess:
+     "\(.cmdline | join(" ") | trunc(30) | lp(30)| _tacha(.)) \(.cwd|__(.))";
+
       (
         .[] |
-        select(.is_focused == true) |
-        .tabs[] |
-        "\(.id|rp(2)) \(.title|rp(18)) \(.layout|rp(12)) \(.is_focused|bool(.))"
-        # {title, id, is_focused, windows}
+        .tabs[] | _tab,
+          ( .windows[] | "  "+_window,
+              (.foreground_processes[] | "    "+_fgProcess  )
+          )
       )
 EOF
 )
+        # select(.is_focused == true) |
+        # .tabs[] |
+        # "\(.id|rp(2)) \(.title|rp(18)) \(.layout|rp(12)) \(.is_focused|bool(.)) \n"+
+        #   "\(.windows | map(_window)[])"
 
   if [ -n "$verbose" ]; then
     jq . <<< $result
