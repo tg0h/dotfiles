@@ -23,7 +23,7 @@ function asst(){
   unset AWS_SESSION_TOKEN
   unset AWS_REGION
 
-  md -p /tmp/aws
+  mkdir -p /tmp/aws
   local cache=/tmp/aws
   if ! [[ -f $cache/secret ]]; then
     echo -e $fg[yellow] cache not found, getting credentials frow aws ...
