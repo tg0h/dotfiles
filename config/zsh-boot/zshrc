@@ -85,7 +85,7 @@ fi
 
 # set aws credential env vars
 # asst > /dev/null
-asst
+# asst
 
 md -p /tmp/tim
 # enter tmux on start up if using kitty (depends on tat script in bin folder)

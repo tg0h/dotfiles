@@ -75,3 +75,5 @@ for func in $HOME/.local/lib/zsh/***/*~(*/archive/*|*.zsh)(.); do
   autoload $func
 done
 unsetopt EXTENDED_GLOB
+
+asst > /dev/null
