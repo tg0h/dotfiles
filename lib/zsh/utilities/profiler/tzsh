@@ -1,6 +1,8 @@
 #!bin/zsh
 
 function tzsh(){
+  # not a useful metric
+  # https://github.com/romkatv/zsh-bench#how-not-to-benchmark
   for i in $(seq 1 10); 
     do /usr/bin/time zsh -i -c exit; 
   done
