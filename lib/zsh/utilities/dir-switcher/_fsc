@@ -13,14 +13,14 @@ function _fsc(){
   # .<bindkey> - search filename and content
   # :<bindkey> - goto dir
   # q<bindkey> - open dir in nvim
-  local outputFolder=$DOTFILES/lib/zsh/utilities/dir-switcher/out
   local cache=$XDG_STATE_HOME/dir-switcher/cache
+  local configFile=$XDG_CONFIG_HOME/tg/dir-switcher/config.yml
+
+  local outputFolder=$DOTFILES/lib/zsh/utilities/dir-switcher/out
   echo $fg[red] removing files in "$outputFolder" "..."
   [[ -n "$outputFolder" ]] && trash "$outputFolder/*"
 
-  local configFile=$XDG_CONFIG_HOME/tg/dir-switcher/config.yml
   local aliasFile=$XDG_CONFIG_HOME/zsh/aliases/out/dir-switcher.zsh
-
   echo $fg[cyan] removing aliases in $aliasFile "..."
   rm -f $aliasFile
 
