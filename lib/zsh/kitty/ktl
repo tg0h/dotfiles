@@ -24,19 +24,26 @@ function ktl(){
      if (length > 0) then (. | tostring | .[1:] | trunc(30) | __(.)) else __("-") end; 
 
    def _tab:
-     "\(.id|lp(2)|_g(.)) 🔍️\(.is_focused|bool(.))  \(.title|rp(10)|_purple(.)) \(.layout|_orange(.)) \(.active_window_history|join(" "))";
+     "\(.id|lp(2)|_g(.))  🔍️\(.is_focused|bool(.))  \(.title|rp(10)|_purple(.)) \(.layout|_orange(.)) \(.active_window_history|join(" "))";
 
    def _window:
-   "\(.id | lp(2) | _y(.)) 🔍️\(.is_focused|bool(.))\(.is_self|bool(.)) \(.title|rp(21))  \(.cmdline | join(" ") | trunc(10) | lp(19) | _brinkPink(.)) 🏡\(.env | __env) \(.cwd|trunc(20)|lp(66)|__(.))";
+   "\(.id | lp(3) | _y(.)) 🔍️\(.is_focused|bool(.))\(.is_self|bool(.)) \(.title|rp(20))  \(.cmdline | join(" ") | trunc(10) | lp(19) | _brinkPink(.)) 🏡\(.env | __env) \(.cwd|trunc(20)|lp(52)|__(.))";
+
+   def _os_window:
+   "\(.id | rp(2))  🔍️\(.is_focused|bool(.))  \(.platform_window_id)";
 
    def _fgProcess:
      "\(.cmdline |__cmd) \(.cwd|__(.)) \(.pid)";
      # "\(.cmdline | __cmd | trunc(70) | lp(70)| _tacha(.)) \(.cwd|__(.))";
       (
         .[] |
-        .tabs[] | _tab,
-          ( .windows[] | _window,
+        _os_window,
+          (.tabs[] | 
+            _tab,
+            ( 
+              .windows[] | _window,
               (.foreground_processes[] | _fgProcess  )
+            )
           )
       )
 EOF
