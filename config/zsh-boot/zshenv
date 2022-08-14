@@ -65,13 +65,15 @@ export RIPGREP_CONFIG_PATH=$XDG_CONFIG_HOME/ripgrep/ripgreprc
 export PATH="$PATH:/opt/homebrew/bin" # access aws_completer, etc
 
 export ZSH_FUNCTIONS_PATH="$HOME/.local/lib/zsh-functions"
+export ZSH_FUNCTIONS_COMPILED_PATH="$HOME/.local/lib/zsh-functions-compiled"
 
 # alias yarn='yarn --use-yarnrc "$XDG_CONFIG_HOME/yarn/config"'
 
 _Z_DATA=$XDG_DATA_HOME/z/z # z stores its dir frecency list here
 
 # autoload zsh functions - loading from a single directory provides a speedup of up to 0.05
-fpath=($ZSH_FUNCTIONS_PATH $fpath)
+fpath=($ZSH_FUNCTIONS_PATH $ZSH_FUNCTIONS_COMPILED_PATH $fpath)
 autoload $ZSH_FUNCTIONS_PATH/*
+autoload $ZSH_FUNCTIONS_COMPILED_PATH/*
 
 asst > /dev/null

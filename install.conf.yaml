@@ -22,6 +22,8 @@
 - create:
     - ~/.local/bin # binaries for any ad hoc binaries, eg authy
     - ~/.local/lib/zsh-functions # binaries for any ad hoc binaries, eg authy
+    - $HOME/.local/lib/zsh/utilities/dir-switcher/out # compile output folder for dir-switcher funcs
+
     - $XDG_DATA_HOME/z # for z to store its frecency dir list
     - $XDG_DATA_HOME/gnupg # gpg --full-generate-key fails if dir does not exist
     - $XDG_DATA_HOME/nvim/snippets # vsnip directory

@@ -13,7 +13,7 @@ function _fsc(){
   # .<bindkey> - search filename and content
   # :<bindkey> - goto dir
   # q<bindkey> - open dir in nvim
-  local outputFolder=$HOME/.local/lib/zsh/utilities/dir-switcher/out
+  local outputFolder=$DOTFILES/lib/zsh/utilities/dir-switcher/out
   local cache=$XDG_STATE_HOME/dir-switcher/cache
   echo $fg[red] removing files in "$outputFolder" "..."
   [[ -n "$outputFolder" ]] && trash "$outputFolder/*"
