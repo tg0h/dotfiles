@@ -1,5 +1,5 @@
 # zmodload zsh/zprof # turn this on to profile zshrc (with zprof below)
-export KEYTIMEOUT=1 # Make Vi mode transitions faster (KEYTIMEOUT is in hundredths of a second)
+# export KEYTIMEOUT=1 # Make Vi mode transitions faster (KEYTIMEOUT is in hundredths of a second)
 export EDITOR='nvim'
 
 export HISTFILE="$XDG_STATE_HOME"/zsh/history # overrid HISTFILE setting in /etc/zshenv
