@@ -31,4 +31,10 @@ def __padColour($text):
   _padEscape + _padDarkGray + $text + _padEscape + _padReset;
 
 def trunc($len):
-  tostring | if (. | length) > $len then .[0:($len-3)] + __padColour("...") else . end; 
+  tostring | if (. | length) > $len then .[0:($len-1)] + __padColour("…") else . end; 
+
+# truncate the string starting from the left so that the resulting string is 
+# $len long, including ...
+# eg ltrunc(5) turns "123456789" to "89..."
+def ltrunc($truncLength):
+  tostring | length as $inputLength | if $inputLength > $truncLength then "…" + .[$inputLength-$truncLength+1:] else . end; 
