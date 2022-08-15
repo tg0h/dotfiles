@@ -33,6 +33,9 @@ keymaps:
   # LIB
   - [lf, $HOME/.local/lib/zsh-functions]
 
+  # CLONES
+  - [nk, $HOME/src/clones/python/kitty]
+
   # SRC
   - [s., $HOME/src/candy/main/referralcandy-main, 5]
   - ["s,", $HOME/src/candy-main/referralcandy-main]
