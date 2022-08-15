@@ -45,6 +45,9 @@ alias vd="viddy"
 alias db="dbxcli"
 alias dbl="dbxcli ls"
 
+alias ggw="gg -p $HOME/src/me/wiki" # commit changes to wiki
+alias gpw="git -C $HOME/src/me/wiki push" # push changes to wiki
+
 # utils ====================================================================
 # bat
 alias bats="bat *.csv"
