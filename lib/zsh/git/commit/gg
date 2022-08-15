@@ -9,12 +9,13 @@ function gg(){
   local allowEmpty=false
   local isCheckpoint=false
   local checkpointMessage="🚧🚧🚧 checkpoint 🚧🚧🚧"
-  local message
+  local gitPath
 
-  while getopts 'ec' opt; do
+  while getopts 'ecp:' opt; do
     case "$opt" in
       e) allowEmpty=true;;
       c) isCheckpoint=true;;
+      p) gitPath="-C ""$OPTARG";;
     esac
   done
   shift $(($OPTIND - 1))
@@ -23,11 +24,11 @@ function gg(){
 
   $isCheckpoint && message=$checkpointMessage
 
-  git add --all # git add . only works if at root of worktree
+  git ${=gitPath} add --all # git add . only works if at root of worktree
   if [ -z "$message" ]; then
     # just get the filename from the first line and use that as the commit message
     # copy from the 4th char onwards
-    filepath=$(git status --porcelain | head -n 1  | cut -c 4-)
+    filepath=$(git ${=gitPath} status --porcelain | head -n 1  | cut -c 4-)
     # message=$(git-conventional-commit-msg -f $filepath -t "feat" )
   fi
 
@@ -36,8 +37,8 @@ function gg(){
   # $allowEmpty expands to the true command which returns 0
   if $allowEmpty; then
     message=${message:-$checkpointMessage}
-    git commit --allow-empty -m $message
+    git ${=gitPath} commit --allow-empty -m $message
   else
-    git commit -m $message
+    git ${=gitPath} commit -m $message
   fi
 }
