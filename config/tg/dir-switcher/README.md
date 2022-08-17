@@ -27,5 +27,12 @@ it uses fzf and fd
     - e\<bindkey\> - search directories only
     - .\<bindkey\> - search filename and content
     - :\<bindkey\> - cd to directory
+  - the zsh-compile-functions script grabs all my functions and 
+    - places them into 2 folders
+      - normal functions
+      - generated functions
+    - grabs aliases?
+    - this reduces my startup time by 0.05s (as measured by `time zsh -c exit`)
+      - reduces fpath entries
 
 After editing the config file, compile the shortcuts with `_fsc` (fuzzy switcher compile) and restart the terminal
