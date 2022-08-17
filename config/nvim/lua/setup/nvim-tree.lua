@@ -192,7 +192,7 @@ require"nvim-tree".setup {
     },
 
     hijack_directories = {enable = true, auto_open = true},
-    update_focused_file = {enable = true, update_root = false, ignore_list = {}},
+    update_focused_file = {enable = true, update_root = true, ignore_list = {}},
     ignore_ft_on_setup = {}, -- will not open on setup if the filetype is in this list
     system_open = {cmd = "", args = {}},
     diagnostics = { -- show lsp diagnostics in the signcolumn
