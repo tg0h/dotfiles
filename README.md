@@ -41,6 +41,7 @@
 ## Features
 
 - dir switcher [here](/config/tg/dir-switcher/README.md) - define keymaps to switch to directories
+  - use simple key value cache [here](/bin/cache) to store most recently accessed file for each directory - this is a text file with the key and value separated by a comma
 - command runner - search for my functions and aliases with fzf [here](/lib/zsh/fzf/home-functions)
 - dotfile management via dotbot
 - macos package management via brewfile
