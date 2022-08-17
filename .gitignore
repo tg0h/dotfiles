@@ -2,6 +2,7 @@ config/mycli/myclirc
 config/ssh/config
 config/aws/config
 config/zsh/toggl/config.zsh
+config/zsh/aliases/cloudwatch.zsh
 
 config/jq/aws-sml.data.jq
 
