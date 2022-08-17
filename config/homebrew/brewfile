@@ -124,6 +124,9 @@ tap 'lindell/multi-gitter'
 brew 'lindell/multi-gitter/multi-gitter'
 brew 'nushell'
 
+tap 'romkatv/gitstatus'
+brew 'romkatv/gitstatus/gitstatus'
+
 tap 'saulpw/vd'
 brew 'saulpw/vd/visidata'
 
