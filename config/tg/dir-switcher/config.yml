@@ -33,8 +33,14 @@ keymaps:
   # LIB
   - [lf, $HOME/.local/lib/zsh-functions]
 
+  # PLAYGROUND
+  - [tp, $HOME/src/playground/python/]
+
   # CLONES
   - [nk, $HOME/src/clones/python/kitty]
+
+  # UDEMY
+  - [k, /Users/tim/src/udemy/portilla/Complete-Python-3-Bootcamp]
 
   # SRC
   - [s., $HOME/src/candy/main/referralcandy-main, 5]
