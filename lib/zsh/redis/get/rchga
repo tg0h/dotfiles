@@ -1,0 +1,6 @@
+#!bin/zsh
+
+function rchga(){
+  # redis cli hash get all
+  redis-cli HGETALL $1
+}

@@ -1,0 +1,6 @@
+#!bin/zsh
+
+function rchg(){
+  # redis cli hash get
+  redis-cli HGET $1 $2
+}
