@@ -13,7 +13,7 @@ capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
 local servers = {
     "tsserver", "jsonls", "bashls", "dockerls", "yamlls", "sumneko_lua",
-    "solargraph"
+    "solargraph", "pyright"
 }
 
 -- Use a loop to conveniently call 'setup' on multiple servers
