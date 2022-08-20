@@ -89,6 +89,7 @@
 
 ## Inspiration
 
+- nvim setup - ben frain - https://www.youtube.com/watch?v=NkfMBI1tVwY - his neovim setup led me to allaman, whose dotfiles I used to set up my neovim
 - allaman - https://github.com/Allaman/dotfiles
 - elijah manor - https://elijahmanor.com/blog/neovim-tmux
 - primeagen
