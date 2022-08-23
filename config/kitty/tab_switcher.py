@@ -11,6 +11,33 @@ def redraw_tab_bar(boss):
     tm = boss.active_tab_manager
     if tm is not None:
         tm.mark_tab_bar_dirty()   
+
+def get_wiki_tab_position(tabs):
+    i=1
+    for tab in tabs:
+        if getattr(tab,"title",None) == 'wiki':
+            return i
+        i+=1
+    return None
+
+def move_wiki_tab_to_end(tabs, boss):
+    # assumes that wikiTab is currently focussed
+    tabLength = len(tabs)
+    wikiTabPosition = get_wiki_tab_position(tabs)
+    if wikiTabPosition == tabLength: # wiki tab is already at the rightmost tab
+        return
+    print('')
+    print('MOVING TAB --')
+    print(f'wikiTabPosition is {wikiTabPosition}')
+    print(f'tab length is {tabLength}')
+    if (wikiTabPosition and tabLength > wikiTabPosition):
+            current_position=wikiTabPosition
+            print(f'current position is {current_position}')
+            while (current_position < tabLength):
+                print(f'moving tab forward')
+                boss.move_tab_forward() # this moves the currently focussed tab (which may not be wiki )
+                current_position+=1
+
     
 @result_handler(no_ui=True)
 def handle_result(args: List[str], answer: str, target_window_id: int, boss: Boss) -> None:
@@ -21,6 +48,13 @@ def handle_result(args: List[str], answer: str, target_window_id: int, boss: Bos
 
     # print(f'active tab is {boss.active_tab}')
     tm = boss.active_tab_manager
+    print(f'there are {len(tm.tabs)} tabs')
+    for tab in tm.tabs:
+        print(f'tab id is {getattr(tab,"id","oops")}')
+
+    wikiTabPosition= get_wiki_tab_position(tm.tabs)
+
+        
 
     colourOrange = int(to_color('orange', validate=True))
     colourBlack = int(to_color('black', validate=True))
@@ -32,17 +66,22 @@ def handle_result(args: List[str], answer: str, target_window_id: int, boss: Bos
 
     tabs = boss.match_tabs('title:^wiki')
     tab = next(tabs, None) # default value for generator to None instead of throwing StopIteration error
+    print(f'tab is {tab}')
+    print(f'tab id is {getattr(tab,"id","oops")}')
 
     if tab:
-        tab.inactive_bg = colourOrange
-        tab.inactive_fg = colourBlack
+        # tab.inactive_bg = colourOrange
+        tab.inactive_fg = colourOrange
         tab.active_fg = colourBlack
         tab.active_bg = colourOrange
         redraw_tab_bar(boss)
         if not is_wiki_focussed:
             boss.set_active_tab(tab)
         else:
+            # assumes that tab is wiki tab and is currently focussed
+            move_wiki_tab_to_end(tm.tabs, boss)
             print('going to prev active tab')
+            # boss._move_tab_to(tab, target_window_id)
             # to go to previous active tab
             # unlike goto_tab -1, boss.goto_tab uses 0 instead
             boss.goto_tab(0) # go to previous active tab
