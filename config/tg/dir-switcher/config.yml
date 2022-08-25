@@ -52,8 +52,9 @@ keymaps:
   - [so, $HOME/src/candy/old]
   - [soc, $HOME/src/candy/old/composer]
   - [sp, $HOME/src/candy/old/pentel]
-  - [sw, $HOME/src/candy/old/webapp/]
+  - [sr, $HOME/src/candy/old/referral_corner]
   - [st, $HOME/src/candy/old/candymold/tools]
+  - [sw, $HOME/src/candy/old/webapp/]
 
   - [su, $HOME/src/udemy, 4, \\.git$, true, true, dirname | xargs dirname]
 
