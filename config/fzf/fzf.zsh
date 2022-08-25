@@ -93,7 +93,7 @@ export FZF_CTRL_T_OPTS="
 --bind 'ctrl-t:reload(fd . --type f --follow --color always )+change-prompt(file>)'
 --bind 'ctrl-s:reload(fd . --type d --follow --color always )+change-prompt(dir>)'
 --bind 'ctrl-h:reload(fd . --follow --color always )+change-prompt(>)'
---bind 'enter:execute(echo {} > /tmp/_nvim_cache && nvim {} > /dev/tty 2>&1)+abort'
+--bind 'ctrl-space:execute(echo {} > /tmp/_nvim_cache && nvim {} > /dev/tty 2>&1)+abort'
 "
 #The following example uses tree command to show the entries of the directory.
 #show directories, include hidden dirs, include ignored files/folders from .gitignore
