@@ -26,15 +26,9 @@ def move_wiki_tab_to_end(tabs, boss):
     wikiTabPosition = get_wiki_tab_position(tabs)
     if wikiTabPosition == tabLength: # wiki tab is already at the rightmost tab
         return
-    print('')
-    print('MOVING TAB --')
-    print(f'wikiTabPosition is {wikiTabPosition}')
-    print(f'tab length is {tabLength}')
     if (wikiTabPosition and tabLength > wikiTabPosition):
             current_position=wikiTabPosition
-            print(f'current position is {current_position}')
             while (current_position < tabLength):
-                print(f'moving tab forward')
                 boss.move_tab_forward() # this moves the currently focussed tab (which may not be wiki )
                 current_position+=1
 
@@ -48,17 +42,12 @@ def handle_result(args: List[str], answer: str, target_window_id: int, boss: Bos
 
     # print(f'active tab is {boss.active_tab}')
     tm = boss.active_tab_manager
-    print(f'there are {len(tm.tabs)} tabs')
-    for tab in tm.tabs:
-        print(f'tab id is {getattr(tab,"id","oops")}')
-
-    wikiTabPosition= get_wiki_tab_position(tm.tabs)
-
-        
+    # print(f'there are {len(tm.tabs)} tabs')
+    # for tab in tm.tabs:
+    #     print(f'tab id is {getattr(tab,"id","oops")}')
 
     colourOrange = int(to_color('orange', validate=True))
     colourBlack = int(to_color('black', validate=True))
-
 
     is_wiki_focussed=False
     if boss.active_tab.title == 'wiki':
@@ -66,8 +55,6 @@ def handle_result(args: List[str], answer: str, target_window_id: int, boss: Bos
 
     tabs = boss.match_tabs('title:^wiki')
     tab = next(tabs, None) # default value for generator to None instead of throwing StopIteration error
-    print(f'tab is {tab}')
-    print(f'tab id is {getattr(tab,"id","oops")}')
 
     if tab:
         # tab.inactive_bg = colourOrange
