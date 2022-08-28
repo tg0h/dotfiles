@@ -29,7 +29,8 @@ alias -g TT='> /tmp/tt'
 alias -g ETT='nvim /tmp/tt'
 alias -g FTT='/tmp/tt'
 
-alias -g G='| gron --colorize'
+# alias -g G='| gron --colorize' # do not colorize if sending to a pipe, causes ungron to fail eg
+alias -g G='| gron'
 alias -g W='| wc -l'
 alias -g J='| jq .'
 
