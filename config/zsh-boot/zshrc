@@ -49,6 +49,7 @@ zinit for \
 zinit lucid wait for \
   lukechilds/zsh-nvm \
   OMZP::gitignore \
+  agkozak/zhooks \
   rupa/z \
   OMZP::aws/aws.plugin.zsh \
   atload"_zsh_autosuggest_start" \
