@@ -104,4 +104,7 @@
 - add archive function
 - how to manage sym links to eg work function repo
 - how to manage env variables and display state on cli - similar to an aws global profile but for any of my functions
-- better kitty tab bar
+
+## done
+
+- better kitty tab bar - done 25 aug 22
