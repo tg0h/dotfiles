@@ -2,6 +2,8 @@
 # the fzf preview window previews the directory/file contents
 # the depth of the directory preview can be configured with the depth key
 # TODO: add namespaces, don't restrict to just ud
+
+# run _fsc and zsh-compile-functions to compile changes
 keymaps:
   # XDG_CONFIG DIRS - Top Row
   - [f, $HOME/dotfiles/bin]
@@ -35,6 +37,7 @@ keymaps:
 
   # PLAYGROUND
   - [tp, $HOME/src/playground/python/]
+  - [th, $HOME/src/playground/candy/candyStore]
 
   # CLONES
   - [nk, $HOME/src/clones/python/kitty]
