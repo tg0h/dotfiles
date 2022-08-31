@@ -201,7 +201,7 @@ require"nvim-tree".setup {
         icons = {hint = "", info = "", warning = "", error = ""}
     },
     filters = {dotfiles = false, custom = {}, exclude = {}},
-    filesystem_watchers = {enable = false, interval = 100, debounce_delay = 50},
+    filesystem_watchers = {enable = true, debounce_delay = 50},
     git = {enable = true, ignore = true, show_on_dirs = true, timeout = 400},
     actions = {
         use_system_clipboard = true,
