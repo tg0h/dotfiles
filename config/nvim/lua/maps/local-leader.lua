@@ -11,13 +11,18 @@ map("n", "<localleader>f", ":Format<CR>", default_options)
 
 -- harpoon
 map("n", "<localleader>h", ":Telescope harpoon marks<CR>", default_options)
-map("n", "<localleader>t",
-    ":lua require('harpoon.tmux').sendCommand(2,1)<CR>:lua require('harpoon.tmux').gotoTerminal(2)<CR>",
-    default_options)
+map("n", "<localleader>t", ":Telescope live_grep<CR>", default_options)
+map("n", "<localleader>n", ":Telescope git_files<CR>", default_options)
+map("n", "<localleader>s", ":Telescope current_buffer_fuzzy_find<CR>", default_options)
+map("n", "<localleader>-", ":Telescope grep_string<CR>", default_options) -- search text under cursor
+
+-- map("n", "<localleader>t",
+--     ":lua require('harpoon.tmux').sendCommand(2,1)<CR>:lua require('harpoon.tmux').gotoTerminal(2)<CR>",
+--     default_options)
 
 -- git
 map("n", "<localleader>g", ":Telescope gitdiffer diff<CR>", default_options)
-map("n", "<localleader>s", ":Telescope git_status<CR>", default_options)
+map("n", "<localleader>c", ":Telescope git_status<CR>", default_options)
 
 -- buffers
 map("n", "<localleader>b", ":lua require'telescope.builtin'.buffers({ sort_mru = true, ignore_current_buffer = true })<CR>", default_options)
