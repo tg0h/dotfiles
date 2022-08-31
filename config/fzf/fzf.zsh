@@ -39,6 +39,9 @@ source /opt/homebrew/opt/fzf/shell/key-bindings.zsh
 # hl+ - colour of matching substrings on current line
 # --bind='ctrl-d:half-page-down'
 # -1
+
+# --bind 'ctrl-c:preview-down'
+# --bind 'ctrl-r:preview-up'
 export FZF_DEFAULT_OPTS="
 --ansi
 --no-mouse
@@ -51,18 +54,20 @@ export FZF_DEFAULT_OPTS="
 --bind='f2:toggle-preview'
 --bind='ctrl-d:half-page-down'
 --bind='ctrl-u:half-page-up'
---bind 'shift-down:preview-half-page-down'
---bind 'shift-up:preview-half-page-up'
---bind 'shift-left:preview-up'
---bind 'shift-right:preview-down'
+
+--bind 'ctrl-h:preview-half-page-down'
+--bind 'ctrl-t:preview-half-page-up'
+
 --bind='ctrl-a:select-all+accept'
 --bind='ctrl-y:execute-silent(echo {+} | join-lines-fzf | pbcopy)+abort'
---bind='ctrl-r:execute(echo {} > /tmp/_so_cache)+abort'
 --bind 'ctrl-e:execute(echo {} > /tmp/_nvim_cache && nvim {} > /dev/tty 2>&1)+abort'
 --bind 'ctrl-/:change-preview-window(right,80%|down,90%,border-top|hidden|)'
 --bind='alt-c:execute(rm {})+abort'
 --bind='alt-C:execute(trash {})+abort'
 "
+
+# --bind='ctrl-r:execute(echo {} > /tmp/_so_cache)+abort'
+
 # NOTE: trash is slower than rm -rf but is safer
 # the _nvim_cache should only contain 1 file
 
@@ -90,9 +95,9 @@ export FZF_CTRL_T_COMMAND="fd $FD_OPTIONS"
 export FZF_CTRL_T_OPTS="
 --preview='[[ \$(file --mime {}) =~ inode/directory ]] && exa --tree --long --icons --git --color always --octal-permissions --sort created --reverse {} || (bat --style=numbers --color=always {} || cat {}) 2> /dev/null | head -300'
 --preview-window='right:wrap'
---bind 'ctrl-t:reload(fd . --type f --follow --color always )+change-prompt(file>)'
---bind 'ctrl-s:reload(fd . --type d --follow --color always )+change-prompt(dir>)'
---bind 'ctrl-h:reload(fd . --follow --color always )+change-prompt(>)'
+--bind 'ctrl-r:reload(fd . --type f --follow --color always )+change-prompt(file>)'
+--bind 'ctrl-l:reload(fd . --type d --follow --color always )+change-prompt(dir>)'
+--bind 'ctrl-g:reload(fd . --follow --color always )+change-prompt(>)'
 --bind 'ctrl-space:execute(echo {} > /tmp/_nvim_cache && nvim {} > /dev/tty 2>&1)+abort'
 "
 #The following example uses tree command to show the entries of the directory.
