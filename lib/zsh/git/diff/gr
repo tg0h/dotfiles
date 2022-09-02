@@ -3,7 +3,7 @@
 function gr (){
   # fuzzy git review with delta use to review git diffs
   # gr - defaults to comparing main...
-  # gr <commitRange> - eg gr <before commit hash>..<after commit hash>, eg gr abc~..abc
+  # gr <commitRange> - eg gr <before commit hash>...<after commit hash>, eg gr abc~..abc
 
   # j - preview down
   # k - preview up
