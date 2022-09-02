@@ -23,13 +23,12 @@ function acdtd(){
      gsub(".*/(?<x>.*)";_brinkPink((.x)));
    def taskDefinition:
      # "\(.taskDefinitionArn | __(.)) "+"\n"+
-     "\(.family | _orange(.)) \(.revision|tostring|_purple(.)) \(.status)"+"\n"+
-     "💻️\(.cpu) 🐏\(.memory)"+"\n"+
+     "\(.family | _orange(.)) \(.revision|tostring|_purple(.)) \(.status) 💻️\(.cpu) 🐏\(.memory)"+"\n"+
      "\(.registeredAt | pTime) \(.registeredBy | regBy)";
    def image:
      gsub(".*/(?<image>.*):(?<tag>.*)";_orange((.image))+":"+_g((.tag)));
    def containerDefinition:
-     "\(.name) \(.image | image) 🏥\(.hostname)"+"\n"+
+     "\(.name) \(.image | image) 🏥\(.hostname) 💻️\(.cpu) 🐏\(.memory) \(.memoryReservation)"+"\n"+
      "🌴\(.logConfiguration.options["awslogs-region"]) \(.logConfiguration.options["awslogs-group"])";
    def containerDefinitionEnv:
      sort_by(.name) | map("\(.name | lp(30) | _y(.)): \(.value)")[];
