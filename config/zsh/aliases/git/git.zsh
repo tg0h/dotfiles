@@ -19,6 +19,7 @@ alias grpb="git rev-parse --is-bare-repository"
 
 # review
 alias gr.='gr main..' # review with previous commit
+alias gr,='gr master' # review comparing to master
 
 # diff
 alias gy='gd'
