@@ -47,16 +47,17 @@ function acds(){
    include "colour";
    include "aws-time";
    include "aws-ecs";
+   def placementStrategy:
+     map("\(.type | lp(10) | _y(.)):\(.field)")[];
    def pTaskDefinition:
      gsub(".*/(?<x>.*)";_orange((.x)));
    def service:
-     "\(.serviceName| _brinkPink(.)) \(.taskDefinition | pTaskDefinition)"+"\n"+
-     "🎯\(.desiredCount) 🟢\(.runningCount) 🟡\(.pendingCount) \(.status | _serviceStatus) "
+     "\(.serviceName| _brinkPink(.)) \(.taskDefinition | pTaskDefinition) 🎯\(.desiredCount) \(.runningCount|tostring|_g(.)) \(.pendingCount|tostring|_y(.)) \(.status | _serviceStatus) \(.deploymentConfiguration.minimumHealthyPercent)% \(.deploymentConfiguration.maximumPercent)%",
+     "\(.placementStrategy|placementStrategy)"
   ;
    def deployment:
      # "\(.taskDefinition | __(.))"+"\n"+
-     "\(.status | _deploymentStatus) 🚂 \(.createdAt | pTime) 🚀 \(.updatedAt | pTime) \(.rolloutState | _rolloutState) \(.rolloutStateReason)"+"\n"+
-     "🎯\(.desiredCount) 🟢\(.runningCount) 🟡\(.pendingCount) 🔴\(.failedTasks)"
+     "\(.status | _deploymentStatus) 🎯\(.desiredCount) \(.runningCount|tostring|_g(.)) \(.pendingCount|tostring|_y(.)) \(.failedTasks|tostring|_r(.)) 🚂 \(.createdAt | pTime) 🚀 \(.updatedAt | pTime) \(.rolloutState | _rolloutState) \(.rolloutStateReason)"
    ;
    def _completed:
      sub("(?<dc>deployment completed)"; _nb((.dc)));
