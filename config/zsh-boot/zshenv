@@ -1,6 +1,7 @@
 #XDG setup
 
 # https://wiki.debian.org/XDGBaseDirectorySpecification
+# https://unix.stackexchange.com/questions/390922/whats-the-difference-between-a-binary-file-and-a-library
 # if it needs git, it may not be data
 
 # base
