@@ -69,23 +69,27 @@ EOF
     # instead, generate and autoload the functions
     # search both directories and files
     echo "fs$bindkey() {fswitch -d $dir $depth "$glob" $showHidden $showIgnore $xargs}" > $outputFolder/fs$bindkey
-    echo "alias o$bindkey=fs$bindkey" >> $aliasFile
-    
+    # echo "alias o$bindkey=fs$bindkey" >> $aliasFile
+
     # search files only
     echo "fsf$bindkey() {fswitch -d $dir $depth "$glob" $showHidden $showIgnore $xargs -t f}" > $outputFolder/fsf$bindkey
     echo "alias u$bindkey=fsf$bindkey" >> $aliasFile
-    
+
     # search directories only
+    # note - also possible to reload in fzf to search for files and dirs etc
     echo "fsd$bindkey() {fswitch -d $dir $depth "$glob" $showHidden $showIgnore $xargs -t d}" > $outputFolder/fsd$bindkey
-    echo "alias e$bindkey=fsd$bindkey" >> $aliasFile
+    # do not do the below - much faster to use the ctrl-s reload to search dirs only
+    # echo "alias u,$bindkey=fsd$bindkey" >> $aliasFile
 
     # search filename and content
     echo "fsc$bindkey() {fzf-filename-and-content $dir }" > $outputFolder/fsc$bindkey
     echo "alias .$bindkey=fsc$bindkey" >> $aliasFile
-    
+
     # go to base directory
     echo "dd$bindkey() {cd $dir }" > $outputFolder/dd$bindkey
     echo "alias :$bindkey=dd$bindkey" >> $aliasFile
+
+    # open directory in nvim
     echo "alias q$bindkey='nvim $dir'" >> $aliasFile
 
     # open mru file
