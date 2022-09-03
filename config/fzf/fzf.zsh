@@ -49,6 +49,7 @@ export FZF_DEFAULT_OPTS="
 --info=inline
 --reverse
 --multi
+--cycle
 --color='gutter:-1,hl:-1:underline:#03ff13,hl+:-1:underline:reverse'
 --bind='f3:execute(bat --style=numbers {} || less -f {})'
 --bind='f2:toggle-preview'
