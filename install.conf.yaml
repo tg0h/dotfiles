@@ -21,7 +21,9 @@
 
 - create:
     - ~/.local/bin # binaries for any ad hoc binaries, eg authy
-    - ~/.local/lib/zsh-functions # binaries for any ad hoc binaries, eg authy
+    - ~/.local/bin/scratch
+    - ~/.local/lib/zsh-functions # store all zsh functions here (non generated)
+    - ~/.local/lib/compiled # store compiled output here - do not pollute zsh functions
     - $HOME/.local/lib/zsh/utilities/dir-switcher/out # compile output folder for dir-switcher funcs
     - $XDG_DATA_HOME/z # for z to store its frecency dir list
     - $XDG_DATA_HOME/gnupg # gpg --full-generate-key fails if dir does not exist
