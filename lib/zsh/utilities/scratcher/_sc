@@ -1,0 +1,81 @@
+#!bin/zsh
+
+function _sc(){
+  # scratch compile
+  # o<key> - execute
+  # oa<key> - run entr
+  # e<key> - open in nvim
+
+  local configFile=$XDG_CONFIG_HOME/tg/scratcher/config.yml
+  local binScratchFolder=$HOME/.local/bin/scratch
+
+  local aliasFile=$XDG_CONFIG_HOME/zsh/aliases/out/scratcher.zsh
+  echo $fg[cyan] removing aliases in $aliasFile "..."
+  rm -f $aliasFile
+
+    local jqQuery=$(cat <<-EOF
+   def configKeys:
+     ["key", "language"];
+   def convertToConfigHash:
+     to_entries | map(.key = configKeys[.key]) | from_entries;
+   def convertArraysToConfigHash:
+     if type == "object" then
+        .
+     else
+       convertToConfigHash
+     end;
+  map(convertArraysToConfigHash) | .[]
+EOF
+)
+  local config=$(yq eval '.keymaps' $configFile --output-format json | jq --compact-output "$jqQuery")
+
+    local langQuery=$(cat <<-EOF
+   def configKeys:
+     ["language", "extension", "shebang"];
+   def convertToConfigHash:
+     to_entries | map(.key = configKeys[.key]) | from_entries;
+   def convertArraysToConfigHash:
+     if type == "object" then
+        .
+     else
+       convertToConfigHash
+     end;
+  map(convertArraysToConfigHash) | .[]
+EOF
+)
+
+  # contains
+  # laungage, extension, shebang
+  local languages=$(yq eval '.languages' $configFile --output-format json | jq --compact-output "$langQuery")
+
+  while read row; do
+    # get language scratch file configuration
+    local key=$(jq --raw-output '.key' <<< $row)
+    local language=$(jq --raw-output '.language' <<< $row)
+
+    # read from languages section config in config.yml
+    local extension=$(jq --raw-output 'select(.language=="'$language'").extension'<<<$languages)
+    local shebang=$(jq --raw-output 'select(.language=="'$language'").shebang'<<<$languages)
+
+    local scratchFile=$binScratchFolder/$language.$extension
+    local executable=$(basename $scratchFile)
+
+    # if scratch file doesn't exist
+    if [ ! -f $scratchFile ]; then
+      touch $scratchFile
+      echo "#!/usr/bin/env $shebang" >> $scratchFile
+      chmod u+x $scratchFile
+      # echo $scratchFile generated
+    fi
+
+    # add shebang if not found
+    # doesn't work if file is empty as there is no content to work on
+    # [ $(head -n 1 $scratchFile | grep -q $shebang) ] || gsed -i '1 i\#!/usr/bin/env '$shebang $scratchFile
+
+    echo "alias o$key='$executable'" >> $aliasFile
+    echo "alias e$key='nvim $scratchFile'" >> $aliasFile
+    echo "alias ea$key='echo $scratchFile | entr -c $scratchFile'" >> $aliasFile
+
+    echo $aliasFile generated
+  done <<< $config
+}

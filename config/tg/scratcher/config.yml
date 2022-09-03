@@ -1,0 +1,14 @@
+keymaps:
+  - [z, zsh]
+  - [j, javascript]
+  - [t, typescript]
+  - [l, lua]
+  - [p, python]
+
+languages:
+  # - [language, extension, shebang]
+  - [zsh, zsh, zsh]
+  - [javascript, js, node]
+  - [typescript, ts, node]
+  - [lua, lua, lua]
+  - [python, py, python]
