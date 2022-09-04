@@ -55,23 +55,21 @@ EOF
 
     # read from languages section config in config.yml
     local extension=$(jq --raw-output 'select(.language=="'$language'").extension'<<<$languages)
-    local shebang=$(jq --raw-output 'select(.language=="'$language'").shebang'<<<$languages)
 
-    local scratchFile=$binScratchFolder/$language.$extension
-    local executable=$(basename $scratchFile)
+    local scratchFile=$binScratchFolder/$language.$key.$extension
 
-    # if scratch file doesn't exist
     if [ ! -f $scratchFile ]; then
+      local shebang=$(jq --raw-output 'select(.language=="'$language'").shebang'<<<$languages)
       touch $scratchFile
       echo "#!/usr/bin/env $shebang" >> $scratchFile
       chmod u+x $scratchFile
-      # echo $scratchFile generated
     fi
 
     # add shebang if not found
     # doesn't work if file is empty as there is no content to work on
     # [ $(head -n 1 $scratchFile | grep -q $shebang) ] || gsed -i '1 i\#!/usr/bin/env '$shebang $scratchFile
 
+    local executable=$(basename $scratchFile)
     echo "alias o$key='$executable'" >> $aliasFile
     echo "alias e$key='nvim $scratchFile'" >> $aliasFile
     echo "alias ea$key='echo $scratchFile | entr -c $scratchFile'" >> $aliasFile
