@@ -1,0 +1,28 @@
+#!bin/zsh
+
+function scratcher-cheat(){
+  local config=$XDG_CONFIG_HOME/tg/scratcher/config.yml
+
+  local jqQuery=$(cat <<-EOF
+     include "pad";
+     include "colour";
+     def configKeys:
+       ["key", "language"];
+     def convertToConfigHash:
+       to_entries | map(.key = configKeys[.key]) | from_entries;
+     def convertArraysToConfigHash:
+       if type == "object" then
+          .
+       else
+         convertToConfigHash
+         # .
+       end;
+
+     .keymaps 
+     | map(convertArraysToConfigHash)
+     | map( "\(.key | _ec(rpad(3;" "))) \(_bt(.language))")
+     | .[]
+EOF
+)
+  yq $config --output-format=json | jq --raw-output -L "~/.config/jq" "$jqQuery" | fzf
+}
