@@ -7,10 +7,12 @@
 keymaps:
   # XDG_CONFIG DIRS - Top Row
   - [f, $HOME/dotfiles/bin]
+  - ["f,", $HOME/.local/bin]
   - [g, $XDG_DATA_HOME, 2]
   - [c, $XDG_CONFIG_HOME, 5]
   - [r, $XDG_CACHE_HOME, 2]
   - [l, $HOME/dotfiles/lib, 5]
+  - ["l,", $HOME/.local/lib, 5]
   - [xs, $XDG_STATE_HOME, 5]
   # Home Row
   - [d, $HOME/Documents, 2]
