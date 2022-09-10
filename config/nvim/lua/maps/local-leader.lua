@@ -24,5 +24,8 @@ map("n", "<localleader>-", ":Telescope grep_string<CR>", default_options) -- sea
 map("n", "<localleader>g", ":Telescope gitdiffer diff<CR>", default_options)
 map("n", "<localleader>c", ":Telescope git_status<CR>", default_options)
 
+-- recent
+map("n", "<localleader>r", ":lua require('telescope').extensions.frecency.frecency(require('setup.telescope').big_window())<CR>", default_options)
+
 -- buffers
 map("n", "<localleader>b", ":lua require'telescope.builtin'.buffers({ sort_mru = true, ignore_current_buffer = true })<CR>", default_options)
