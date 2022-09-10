@@ -1,0 +1,8 @@
+#!bin/zsh
+
+function rclp(){
+  # redis lpush
+
+  redis-cli lpush $1 $2
+}
+

@@ -1,0 +1,7 @@
+#!bin/zsh
+
+function rclo(){
+  # redis lpop - gets the first element in the list
+
+  redis-cli lpop $1
+}
