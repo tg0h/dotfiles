@@ -65,6 +65,8 @@ export FZF_DEFAULT_OPTS="
 --bind 'ctrl-/:change-preview-window(right,80%|down,90%,border-top|hidden|)'
 --bind='alt-c:execute(rm {})+abort'
 --bind='alt-C:execute(trash {})+abort'
+
+--bind backward-eof:abort
 "
 
 # --bind='ctrl-r:execute(echo {} > /tmp/_so_cache)+abort'
