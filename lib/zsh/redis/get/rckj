@@ -2,6 +2,6 @@
 
 function rckj(){
   # get all jira keys
-  redis-cli keys '/rest*'
+  rci keys '/rest*'
 }
 

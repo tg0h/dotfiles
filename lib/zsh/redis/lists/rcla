@@ -5,6 +5,6 @@ function rcla(){
   # example:
   #   rcla <key>
 
-  redis-cli lrange $1 0 -1 | jq 
+  rci lrange $1 0 -1 | jq 
 }
 

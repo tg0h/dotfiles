@@ -2,6 +2,6 @@
 
 function rcka(){
   # get all keys
-  redis-cli keys '*'
+  rci keys '*'
 }
 

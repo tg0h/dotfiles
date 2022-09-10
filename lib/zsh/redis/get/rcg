@@ -2,7 +2,5 @@
 
 function rcg(){
   # redis cli get
-  redis-cli get $1
+  rci get $1
 }
-
-

@@ -1,0 +1,8 @@
+#!bin/zsh
+
+function rci(){
+  # redis cli entrypoint - get port from REDIS_PORT env var
+  # defaults to 6379
+  local port=${REDIS_PORT:-6379}
+  redis-cli -p $port $@
+}

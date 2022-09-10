@@ -1,6 +1,6 @@
 #!bin/zsh
 
 function rcjg(){
-  redis-cli json.get $1
+  rci json.get $1
 }
 
