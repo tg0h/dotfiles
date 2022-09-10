@@ -1,0 +1,12 @@
+#!/bin/zsh
+
+function backward-kill-dir () {
+    local WORDCHARS=${WORDCHARS/\/}
+    zle backward-kill-word
+    zle -f kill  # Ensures that after repeated backward-kill-dir, Ctrl+Y will restore all of them.
+}
+
+# related info
+# remove / from wordchars so that I can remove dir segments with ctrl-w
+# https://unix.stackexchange.com/questions/48577/modifying-the-zsh-shell-word-split
+# export WORDCHARS=$WORDCHARS:s:/:
