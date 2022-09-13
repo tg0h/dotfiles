@@ -18,6 +18,7 @@ keymaps:
   - [d, $HOME/Documents, 2]
   - [h, $HOME/src/me, 4, \\.git$, true, true, dirname | xargs dirname] # this yml file is converted to json. a backslash is an escape character in json. we need to escape the backslash. we want to pass \.git$ as the regex filter to fd
   - [t, $HOME/src/playground, 5, \\.git$, true, true, dirname | xargs dirname]
+  - ["t,", $HOME/src/playground/langs/ts/scratch]
   - [n, $HOME/src/clones, 4, \\.git$, true, true, dirname | xargs dirname]
   - [s, $HOME/src]
   # Bottom row
