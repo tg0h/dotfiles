@@ -17,6 +17,9 @@
       # sdt
       # sdm
 
+alias t,=ttsdt
+alias t.=ttsd
+
 ## candy
 alias td="timt -w c -t d" # client, project, tag
 alias tdt="timt -w c -t d -s today"
