@@ -3,53 +3,42 @@
 # focus the screen where a particular app is in, eg slack. use Rmeh+Lshift
 # https://github.com/koekeishiya/skhd/issues/1
 
-# Space
-# space create/destroy
-lshift + lctrl + lalt + lcmd - c : yabai -m space --destroy
-lshift + lctrl + lalt + lcmd - g : yabai -m space --create
-
-# go to space shortcuts
-rshift + ralt + rctrl - space : yabai -m space --focus recent # focus previous workspace
-lshift + lctrl - space : yabai -m space --focus recent # focus previous workspace
-# NOTE: good trick add shift key to shift behaviour.
-rshift + ralt + rctrl + lshift - space : yabai -m window --space recent; yabai -m space --focus recent # move focused window to previous workspace
-
-# Focus previous/next display by arrangement index
-# R g/r to move across monitors
-rshift + ralt + rctrl - g : yabai -m display --focus prev || yabai -m display --focus last
-rshift + ralt + rctrl - r : yabai -m display --focus next || yabai -m display --focus first
-# 90 rotation, rotates to the left by 90
-# 270 rotation, rotates to the left by 270 === rotate to the right by 90
-rshift + ralt + rctrl - l : yabai -m space --rotate 270
-
-# R Shift g/r to move spaces
-rshift + ralt + rctrl + lshift - g : yabai -m space --focus prev || yabai -m space --focus last # previous
-rshift + ralt + rctrl + lshift - r : yabai -m space --focus next || yabai -m space --focus first # next
-
-# go to space
-rshift + ralt + rctrl + lshift - 0x1C : yabai -m space --focus 1 # *
-rshift + ralt + rctrl + lshift - 0x1D : yabai -m space --focus 2 # )
-rshift + ralt + rctrl + lshift - 0x18 : yabai -m space --focus 3 # +
-rshift + ralt + rctrl - 0x1E : yabai -m space --focus 4 # ]
-rshift + ralt + rctrl + lshift - 0x12 : yabai -m space --focus 5 # !
-rshift + ralt + rctrl + lshift - 0x14 : yabai -m space --focus 6 # *
-rshift + ralt + rctrl - p: yabai -m space --focus 7
-rshift + ralt + rctrl - u: yabai -m space --focus 8
-rshift + ralt + rctrl - i: yabai -m space --focus 9
-# for laptop keyboard
-rshift + ralt + rctrl - 1 : yabai -m space --focus 1
-rshift + ralt + rctrl - 2 : yabai -m space --focus 2
-rshift + ralt + rctrl - 3 : yabai -m space --focus 3
-rshift + ralt + rctrl - 4 : yabai -m space --focus 4
-rshift + ralt + rctrl - 5 : yabai -m space --focus 5
-rshift + ralt + rctrl - 6 : yabai -m space --focus 6
-rshift + ralt + rctrl - 7 : yabai -m space --focus 7
-rshift + ralt + rctrl - 8 : yabai -m space --focus 8
-rshift + ralt + rctrl - 9 : yabai -m space --focus 9
+.load "layout.skhdrc"
+.load "space.skhdrc"
+.load "monitor.skhdrc"
 
 # zoom
 rshift + ralt + rctrl - z : yabai -m window --toggle zoom-fullscreen # enter fullscreen mode for the focused container
 
+# NOTE: good trick add shift key to shift behaviour.
+# move window to recent workspace
+rshift + ralt + rctrl + lshift - space : yabai -m window --space recent; yabai -m space --focus recent # move focused window to previous workspace
+
+# rotate windows
+rshift + ralt + rctrl - l : yabai -m space --rotate 270
+
+# Window navigation
+rshift + ralt + rctrl - h : yabai -m window --focus west || yabai -m window --focus last
+rshift + ralt + rctrl - t : yabai -m window --focus south
+rshift + ralt + rctrl - n : yabai -m window --focus north
+# rshift + ralt + rctrl - s : yabai -m window --focus east || yabai -m window --focus first
+# Rmeh + Lshift <home> - Move window (swap - assume shape of target)
+rshift + ralt + rctrl + lshift - h : yabai -m window --swap west || $(yabai -m window --display west; yabai -m display --focus west)
+rshift + ralt + rctrl + lshift - t : yabai -m window --swap south || $(yabai -m window --display south; yabai -m display --focus south)
+rshift + ralt + rctrl + lshift - n : yabai -m window --swap north || $(yabai -m window --display north; yabai -m display --focus north)
+rshift + ralt + rctrl + lshift - s : yabai -m window --swap east || $(yabai -m window --display east; yabai -m display --focus east)
+# Rmeh + Lshift + Lcmd <home> - Warp window (keep size)
+rshift + ralt + rctrl + lshift + lcmd - h : yabai -m window --warp west
+rshift + ralt + rctrl + lshift + lcmd - t : yabai -m window --warp south
+rshift + ralt + rctrl + lshift + lcmd - n : yabai -m window --warp north
+rshift + ralt + rctrl + lshift + lcmd - s : yabai -m window --warp east
+# Rmeh + Lshift <bottom row> - Insert in container - trigger shortcut again to turn off
+rshift + ralt + rctrl + lshift - m : yabai -m window --insert west
+rshift + ralt + rctrl + lshift - w : yabai -m window --insert south
+rshift + ralt + rctrl + lshift - v : yabai -m window --insert north
+rshift + ralt + rctrl + lshift - z : yabai -m window --insert east
+
+# Cycling
 # cycle through bsp/stack windows RMeh-/
 rshift + ralt + rctrl - 0x2C : yabai -m window --focus stack.next || yabai -m window --focus next || yabai -m window --focus stack.first || yabai -m window --focus first # only works for bsp windows, not floating windows
 # cycle through all visible windows sorted by: coordinates -> display index
@@ -58,70 +47,14 @@ rshift + ralt + rctrl - return: yabai -m window --focus "$(yabai -m query --wind
 # toggle btw 2 windows
 rshift + ralt + rctrl - backspace : yabai -m window --focus recent
 
-rshift + ralt + rctrl - h : yabai -m window --focus west || yabai -m window --focus last
-rshift + ralt + rctrl - t : yabai -m window --focus south
-rshift + ralt + rctrl - n : yabai -m window --focus north
-# rshift + ralt + rctrl - s : yabai -m window --focus east || yabai -m window --focus first
-
-# Rmeh + Lshift <home> - Move window (swap - assume shape of target)
-rshift + ralt + rctrl + lshift - h : yabai -m window --swap west || $(yabai -m window --display west; yabai -m display --focus west)
-rshift + ralt + rctrl + lshift - t : yabai -m window --swap south || $(yabai -m window --display south; yabai -m display --focus south)
-rshift + ralt + rctrl + lshift - n : yabai -m window --swap north || $(yabai -m window --display north; yabai -m display --focus north)
-rshift + ralt + rctrl + lshift - s : yabai -m window --swap east || $(yabai -m window --display east; yabai -m display --focus east)
-
-# Rmeh + Lshift + Lcmd <home> - Warp window (keep size)
-rshift + ralt + rctrl + lshift + lcmd - h : yabai -m window --warp west
-rshift + ralt + rctrl + lshift + lcmd - t : yabai -m window --warp south
-rshift + ralt + rctrl + lshift + lcmd - n : yabai -m window --warp north
-rshift + ralt + rctrl + lshift + lcmd - s : yabai -m window --warp east
-
-# Rmeh + Lshift + Lctrl <num> - Move to space
-# TODO: add shift to move to space
-rshift + ralt + rctrl + lshift + lctrl - m : yabai -m window --space 1 && yabai -m space --focus 1
-rshift + ralt + rctrl + lshift + lctrl - w : yabai -m window --space 2 && yabai -m space --focus 2
-rshift + ralt + rctrl + lshift + lctrl - v : yabai -m window --space 3 && yabai -m space --focus 3
-rshift + ralt + rctrl + lshift + lctrl - h : yabai -m window --space 4 && yabai -m space --focus 4
-rshift + ralt + rctrl + lshift + lctrl - t : yabai -m window --space 5 && yabai -m space --focus 5
-rshift + ralt + rctrl + lshift + lctrl - n : yabai -m window --space 6 && yabai -m space --focus 6
-rshift + ralt + rctrl + lshift + lctrl - g : yabai -m window --space 7 && yabai -m space --focus 7
-rshift + ralt + rctrl + lshift + lctrl - c : yabai -m window --space 8 && yabai -m space --focus 8
-rshift + ralt + rctrl + lshift + lctrl - r : yabai -m window --space 9 && yabai -m space --focus 9
-
-# Rmeh + Lshift <bottom row> - Insert in container - trigger shortcut again to turn off
-rshift + ralt + rctrl + lshift - m : yabai -m window --insert west
-rshift + ralt + rctrl + lshift - w : yabai -m window --insert south
-rshift + ralt + rctrl + lshift - v : yabai -m window --insert north
-rshift + ralt + rctrl + lshift - z : yabai -m window --insert east
-
-# Rmeh + Lshift + Lalt <home> change layout of desktop
-rshift + ralt + rctrl + lshift + lalt - h : yabai -m space --layout bsp
-rshift + ralt + rctrl + lshift + lalt - t : yabai -m space --layout stack
-# rshift + ralt + rctrl + lshift + lalt - t : yabai -m space --layout float # left alone by yabai
-# lshift + lctrl - h : yabai -m space --layout bsp
-lctrl + lalt - h : yabai -m space --layout bsp
-# lshift + lctrl - t : yabai -m space --layout stack
-lctrl + lalt - t : yabai -m space --layout stack
-# lshift + lctrl - n : yabai -m window --focus stack.next || yabai -m window --focus next || yabai -m window --focus stack.first || yabai -m window --focus first # only works for bsp windows, not floating windows
-# lshift + lctrl - n : yabai -m window --focus "$(yabai -m query --windows | jq -re "sort_by(.display, .frame.x, .frame.y, .id) | map(select(.\"is-visible\" == true and .role != \"AXUnknown\")) | reverse | nth(index(map(select(.\"has-focus\" == true))) - 1).id")"
 lctrl + lalt - n : yabai -m window --focus "$(yabai -m query --windows | jq -re "sort_by(.display, .frame.x, .frame.y, .id) | map(select(.\"is-visible\" == true and .role != \"AXUnknown\" and .app != \"Toggl Track\")) | reverse | nth(index(map(select(.\"has-focus\" == true))) - 1).id")"
-rshift + ralt + rctrl - s : yabai -m window --focus "$(yabai -m query --windows | jq -re "sort_by(.display, .frame.x, .frame.y, .id) | map(select(.\"is-visible\" == true and .role != \"AXUnknown\" and .app != \"Toggl Track\")) | reverse | nth(index(map(select(.\"has-focus\" == true))) - 1).id")"
+
+# cycle among windows in current monitor only
+# yabai -m query --windows --space means for the currently focussed space only
+rshift + ralt + rctrl - s : yabai -m window --focus "$(yabai -m query --windows --space | jq -re "sort_by(.display, .frame.x, .frame.y, .id) | map(select(.\"is-visible\" == true and .role != \"AXUnknown\" and .app != \"Toggl Track\")) | reverse | nth(index(map(select(.\"has-focus\" == true))) - 1).id")"
 # lshift + lctrl - s : yabai -m window --focus stack.next || yabai -m window --focus next || yabai -m window --focus stack.first || yabai -m window --focus first # only works for bsp windows, not floating windows
 lctrl + lalt - s : yabai -m window --focus stack.next || yabai -m window --focus next || yabai -m window --focus stack.first || yabai -m window --focus first # only works for bsp windows, not floating windows
 
 # # mirror
 # alt + shift - y : yabai -m space --mirror y-axis
 # alt + shift - x : yabai -m space --mirror x-axis
-
-# toggle window native fullscreen
-# alt + shift - f : yabai -m window --toggle native-fullscreen
-
-# Apps
-# rshift + ralt + rctrl + lshift + lctrl - c: yabai -m space --focus $(yabai-get-space Chrome) 
-# meh - x : toggle-hide-window "Toggl Track"
-
-# move floating windows left and right, control size
-# rshift + ralt + rctrl - left : yabai -m window --toggle float; yabai -m window --grid 1:2:0:0:1:1
-# rshift + ralt + rctrl - right : yabai -m window --toggle float; yabai -m window --grid 1:2:1:0:1:1
-# grid notation - rows/colums: start-x/start-y (0 based): width/height 
-# rshift + ralt + rctrl - down: yabai -m window --toggle float; yabai -m window --grid 1:6:1:1:4:1 # centre (wide format for browsers)
-# rshift + ralt + rctrl - down: yabai -m window --toggle float; yabai -m window --grid 20:5:2:1:1:18 # toggl centre

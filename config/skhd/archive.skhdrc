@@ -1,0 +1,10 @@
+# Apps
+# rshift + ralt + rctrl + lshift + lctrl - c: yabai -m space --focus $(yabai-get-space Chrome) 
+# meh - x : toggle-hide-window "Toggl Track"
+
+# move floating windows left and right, control size
+# rshift + ralt + rctrl - left : yabai -m window --toggle float; yabai -m window --grid 1:2:0:0:1:1
+# rshift + ralt + rctrl - right : yabai -m window --toggle float; yabai -m window --grid 1:2:1:0:1:1
+# grid notation - rows/colums: start-x/start-y (0 based): width/height 
+# rshift + ralt + rctrl - down: yabai -m window --toggle float; yabai -m window --grid 1:6:1:1:4:1 # centre (wide format for browsers)
+# rshift + ralt + rctrl - down: yabai -m window --toggle float; yabai -m window --grid 20:5:2:1:1:18 # toggl centre

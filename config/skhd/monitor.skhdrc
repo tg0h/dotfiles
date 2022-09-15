@@ -1,0 +1,4 @@
+# Focus previous/next display by arrangement index
+# R g/r to move across monitors
+rshift + ralt + rctrl - g : yabai -m display --focus prev || yabai -m display --focus last
+rshift + ralt + rctrl - r : yabai -m display --focus next || yabai -m display --focus first

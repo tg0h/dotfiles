@@ -1,0 +1,9 @@
+
+# Rmeh + Lshift + Lalt <home> change layout of desktop
+rshift + ralt + rctrl + lshift + lalt - h : yabai -m space --layout bsp
+rshift + ralt + rctrl + lshift + lalt - t : yabai -m space --layout stack
+# rshift + ralt + rctrl + lshift + lalt - t : yabai -m space --layout float # left alone by yabai
+# lshift + lctrl - h : yabai -m space --layout bsp
+lctrl + lalt - h : yabai -m space --layout bsp
+# lshift + lctrl - t : yabai -m space --layout stack
+lctrl + lalt - t : yabai -m space --layout stack
