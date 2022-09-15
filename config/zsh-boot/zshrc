@@ -87,6 +87,7 @@ fi
 
 # set aws credential env vars
 # asst > /dev/null
+# may slow down yabai if asst is unable to set the token, since yabai calls zsh -c <command> to run a command
 # asst
 
 mkdir -p /tmp/tim
