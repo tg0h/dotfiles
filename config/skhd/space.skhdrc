@@ -6,6 +6,7 @@ lshift + lctrl - space : yabai -m space --focus recent # focus previous workspac
 # R Shift g/r to move spaces
 rshift + ralt + rctrl + lshift - g : yabai -m space --focus prev || yabai -m space --focus last # previous
 rshift + ralt + rctrl + lshift - r : yabai -m space --focus next || yabai -m space --focus first # next
+
 ## for laptop use
 rshift + ralt + rctrl + lcmd - g : yabai -m space --focus prev || yabai -m space --focus last # previous
 rshift + ralt + rctrl + lcmd - r : yabai -m space --focus next || yabai -m space --focus first # next

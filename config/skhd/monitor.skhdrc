@@ -1,4 +1,14 @@
 # Focus previous/next display by arrangement index
 # R g/r to move across monitors
-rshift + ralt + rctrl - g : yabai -m display --focus prev || yabai -m display --focus last
-rshift + ralt + rctrl - r : yabai -m display --focus next || yabai -m display --focus first
+# if only 1 monitor (eg on laptop), then focus space to the the left/right
+
+# yabai -m display --focus recent # doesn't work ? cursor moves to top left?
+
+# ternary expression
+rshift + ralt + rctrl - g : [ $(yabai -m query --displays | jq 'length') -eq 1 ] \
+&& ( yabai -m space --focus prev || yabai -m space --focus last ) \
+|| ( yabai -m display --focus prev || yabai -m display --focus last )
+
+rshift + ralt + rctrl - r : [ $(yabai -m query --displays | jq 'length') -eq 1 ] \
+&& ( yabai -m space --focus next || yabai -m space --focus first ) \
+|| ( yabai -m display --focus next || yabai -m display --focus first )
