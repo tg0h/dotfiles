@@ -19,6 +19,7 @@
 
 alias t,=ttsdt
 alias t.=ttsd
+alias t,.=ttdd
 
 ## candy
 alias td="timt -w c -t d" # client, project, tag
