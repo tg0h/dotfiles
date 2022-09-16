@@ -1,0 +1,53 @@
+#!bin/zsh
+
+function fzf-brancher-widget(){
+  # alt-d to delete branch
+  # select to switch to branch
+  is_in_git_repo || return
+
+  local out=$(  git branch -a --color=always | grep -v '/HEAD\s' | sort |
+    fzf --ansi --multi --tac --preview-window right:wrap \
+    --preview 'git log --oneline --graph --date=short --color=always --pretty="format:%C(green bold)%cd %C(auto)%h%d %s %C(magenta)(%an)%Creset %C(cyan)%ar%Creset" $(sed s/^..// <<< {} | cut -d" " -f1)' \
+    --bind 'ctrl-/:change-preview-window(right,40%|right,80%|down,90%,border-top|hidden|)' \
+    --bind 'space:toggle+down' \
+    --bind 'j:down' \
+    --bind 'k:up' \
+    --bind 'alt-space:accept' \
+    --expect=alt-d
+  )
+
+  local key=$(head -1 <<< "$out")
+  local targets=$(tail -n +2 <<< "$out") # get all lines after the first line
+  local target1=$(head -1 <<< "$targets")
+
+  if [ "$key" = alt-d ]; then
+     local branches=()
+
+     while IFS= read -r gitbranchline ; do 
+       # remove first 2 chars of line (contains empty space or *)
+       local branch=${gitbranchline:2}
+       branches+=($branch)
+     done <<< "$targets"
+
+     for branch in $branches; do
+       git branch -D $branch
+     done
+     zle reset-prompt
+     return
+  fi
+
+  if [ $target1 ]; then
+     local remoteBranchName=${target1:2}
+     branch=$(sed 's#^remotes/origin/##' <<< $remoteBranchName)
+     if [ $(git branch -l $branch) ]; then
+       # if the branch exists, just switch to the branch
+       git checkout $branch
+     else
+       # create a new branch with a simplified name, without the remotes/origin prefix
+       git checkout -b $branch $remoteBranchName
+     fi
+  fi
+  zle reset-prompt
+}
+
+fzf-brancher-widget

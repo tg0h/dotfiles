@@ -68,6 +68,9 @@ bindkey '^g^r' fzf-gr-widget
 zle -N fzf-gs-widget # stashes
 bindkey '^g^s' fzf-gs-widget
 
+zle -N fzf-brancher-widget # general purpose branch switcher/deleter
+bindkey '^l' fzf-brancher-widget
+
 # Alt+Backspace to backward kill to dir segment
 zle -N backward-kill-dir
 bindkey '^[^?' backward-kill-dir
