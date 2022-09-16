@@ -67,6 +67,7 @@ export FZF_DEFAULT_OPTS="
 --bind='alt-C:execute(trash {})+abort'
 
 --bind backward-eof:abort
+--bind 'ctrl-/:jump'
 "
 
 # --bind='ctrl-r:execute(echo {} > /tmp/_so_cache)+abort'
