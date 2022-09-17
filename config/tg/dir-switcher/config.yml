@@ -52,6 +52,7 @@ keymaps:
 
   # SRC
   - [s., $HOME/src/candy/main/referralcandy-main, 5]
+  - ["s,.", $HOME/src/candy/playground/github-actions]
   - ["s,", $HOME/src/candy-main/referralcandy-main]
   - [sc, $HOME/src/candy, 5, \\.git$, true, true, dirname | xargs dirname]
   - [sh, $HOME/src/candy/main/referralcandy-main/packages/daemons]
