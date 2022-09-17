@@ -1,26 +1,29 @@
 #!bin/zsh
 
 function fzf-brancher-widget(){
-  # alt-d to delete branch
+  # ctrl-d to delete branch
   # select to switch to branch
   is_in_git_repo || return
 
-  local out=$(  git branch -a --color=always | grep -v '/HEAD\s' | sort |
+  local out=$( git branch -a --color=always | grep -v '/HEAD\s' | sort |
     fzf --ansi --multi --tac --preview-window right:wrap \
     --preview 'git log --oneline --graph --date=short --color=always --pretty="format:%C(green bold)%cd %C(auto)%h%d %s %C(magenta)(%an)%Creset %C(cyan)%ar%Creset" $(sed s/^..// <<< {} | cut -d" " -f1)' \
     --bind 'ctrl-/:change-preview-window(right,40%|right,80%|down,90%,border-top|hidden|)' \
-    --bind 'space:toggle+down' \
-    --bind 'j:down' \
-    --bind 'k:up' \
-    --bind 'alt-space:accept' \
-    --expect=alt-d
+    --bind 'ctrl-space:toggle+down' \
+    --bind 'ctrl-e:half-page-down' \
+    --bind 'ctrl-u:half-page-up' \
+    --bind 'ctrl-h:down' \
+    --bind 'ctrl-t:up' \
+    --bind 'space:down' \
+    --bind 'tab:up' \
+    --expect=alt-d,alt-c,ctrl-d
   )
 
   local key=$(head -1 <<< "$out")
   local targets=$(tail -n +2 <<< "$out") # get all lines after the first line
   local target1=$(head -1 <<< "$targets")
 
-  if [ "$key" = alt-d ]; then
+  if [ "$key" = ctrl-d ]; then
      local branches=()
 
      while IFS= read -r gitbranchline ; do 
