@@ -107,7 +107,13 @@ export FZF_CTRL_T_OPTS="
 #The following example uses tree command to show the entries of the directory.
 #show directories, include hidden dirs, include ignored files/folders from .gitignore
 export FZF_ALT_C_COMMAND="fd --type d --hidden --no-ignore $FD_OPTIONS"
-export FZF_ALT_C_OPTS="--preview 'lsd {} --tree --color always --icon always'"
+export FZF_ALT_C_OPTS="
+--preview 'lsd {} --tree --color always --icon always'
+--bind 'alt-r:reload(fd --type d --max-depth 1 --hidden --no-ignore $FD_OPTIONS)+change-prompt(depth:1>)'
+--bind 'alt-c:reload(fd --type d --hidden --no-ignore $FD_OPTIONS)+change-prompt(>)'
+--bind 'space:down'
+--bind 'tab:up'
+"
 
 #use ~~ instead of **
 export FZF_COMPLETION_TRIGGER='##'
