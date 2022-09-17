@@ -4,6 +4,7 @@ alias al='autoload'
 alias which-command='which'
 
 alias ccc='_fsc && zsh-compile-functions' # compile dir switcher and functions
+alias zcf='zsh-compile-functions'
 
 alias ag="alias | grep"
 alias sg="set | grep"
