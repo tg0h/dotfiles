@@ -1,0 +1,14 @@
+#!bin/zsh
+
+function goa (){
+  # open github actions in browser
+
+  # TODO: utility function that belongs to many components fzf, git
+  is_in_git_repo || return
+
+  # convert origin git@github.com:<my/repo>.git (fetch)
+  # to my/repo
+  local repoName=$(git remote -v | head -n1 | choose 1 | gsed 's#.*:##' | gsed 's#\.git##')
+  echo repoName is $repoName
+  open "https://github.com/$repoName/actions"
+}
