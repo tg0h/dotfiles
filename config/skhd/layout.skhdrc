@@ -7,3 +7,6 @@ rshift + ralt + rctrl + lshift + lalt - t : yabai -m space --layout stack
 lctrl + lalt - h : yabai -m space --layout bsp
 # lshift + lctrl - t : yabai -m space --layout stack
 lctrl + lalt - t : yabai -m space --layout stack
+
+rshift + ralt + rctrl - h : yabai -m space --layout bsp
+rshift + ralt + rctrl - t : yabai -m space --layout stack
