@@ -28,6 +28,9 @@ keymaps:
   - [v, $HOME/Documents/candy/wiki, 5]
   - [z, $HOME/dotfiles, 4]
 
+  - [Q, $HOME/src/candy/playground]
+  - [QJ, $HOME/src/candy/playground/yarn]
+
   - [p, /tmp]
   - [tl, $HOME/Downloads]
 
@@ -40,6 +43,7 @@ keymaps:
   - [lf, $HOME/.local/lib/zsh-functions]
 
   # PLAYGROUND
+  - [ty, $HOME/src/playground/yarn]
   - [tg, $HOME/src/playground/github/scratch]
   - [tp, $HOME/src/playground/python/]
   - [th, $HOME/src/playground/candy/candyStore]
@@ -52,7 +56,9 @@ keymaps:
 
   # SRC
   - [s., $HOME/src/candy/main/referralcandy-main, 5]
-  - ["s,.", $HOME/src/candy/playground/github-actions]
+  - [sa, $HOME/src/candy/playground/github-actions]
+  - [sg, $HOME/src/candy/playground]
+  - [sgc, $HOME/src/candy/playground/referralcandy-secondary]
   - ["s,", $HOME/src/candy-main/referralcandy-main]
   - [sc, $HOME/src/candy, 5, \\.git$, true, true, dirname | xargs dirname]
   - [sh, $HOME/src/candy/main/referralcandy-main/packages/daemons]
