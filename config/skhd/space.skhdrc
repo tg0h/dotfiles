@@ -11,6 +11,9 @@ rshift + ralt + rctrl + lshift - r : yabai -m space --focus next || yabai -m spa
 rshift + ralt + rctrl + lcmd - g : yabai -m space --focus prev || yabai -m space --focus last # previous
 rshift + ralt + rctrl + lcmd - r : yabai -m space --focus next || yabai -m space --focus first # next
 
+# rotate windows
+rshift + ralt + rctrl - l : yabai -m space --rotate 270
+
 # Space
 # space create/destroy
 lshift + lctrl + lalt + lcmd - c : yabai -m space --destroy

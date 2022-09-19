@@ -3,57 +3,12 @@
 # focus the screen where a particular app is in, eg slack. use Rmeh+Lshift
 # https://github.com/koekeishiya/skhd/issues/1
 
-.load "layout.skhdrc"
-.load "space.skhdrc"
 .load "monitor.skhdrc"
+.load "space.skhdrc"
+.load "layout.skhdrc"
+.load "window.skhdrc"
 
-# zoom
-rshift + ralt + rctrl - z : yabai -m window --toggle zoom-fullscreen # enter fullscreen mode for the focused container
 
-# NOTE: good trick add shift key to shift behaviour.
-# move window to recent workspace
-rshift + ralt + rctrl + lshift - space : yabai -m window --space recent; yabai -m space --focus recent # move focused window to previous workspace
-
-# rotate windows
-rshift + ralt + rctrl - l : yabai -m space --rotate 270
-
-# Window navigation
-rshift + ralt + rctrl - h : yabai -m window --focus west || yabai -m window --focus last
-rshift + ralt + rctrl - t : yabai -m window --focus south
-rshift + ralt + rctrl - n : yabai -m window --focus north
-# rshift + ralt + rctrl - s : yabai -m window --focus east || yabai -m window --focus first
-# Rmeh + Lshift <home> - Move window (swap - assume shape of target)
-rshift + ralt + rctrl + lshift - h : yabai -m window --swap west || $(yabai -m window --display west; yabai -m display --focus west)
-rshift + ralt + rctrl + lshift - t : yabai -m window --swap south || $(yabai -m window --display south; yabai -m display --focus south)
-rshift + ralt + rctrl + lshift - n : yabai -m window --swap north || $(yabai -m window --display north; yabai -m display --focus north)
-rshift + ralt + rctrl + lshift - s : yabai -m window --swap east || $(yabai -m window --display east; yabai -m display --focus east)
-# Rmeh + Lshift + Lcmd <home> - Warp window (keep size)
-rshift + ralt + rctrl + lshift + lcmd - h : yabai -m window --warp west
-rshift + ralt + rctrl + lshift + lcmd - t : yabai -m window --warp south
-rshift + ralt + rctrl + lshift + lcmd - n : yabai -m window --warp north
-rshift + ralt + rctrl + lshift + lcmd - s : yabai -m window --warp east
-# Rmeh + Lshift <bottom row> - Insert in container - trigger shortcut again to turn off
-rshift + ralt + rctrl + lshift - m : yabai -m window --insert west
-rshift + ralt + rctrl + lshift - w : yabai -m window --insert south
-rshift + ralt + rctrl + lshift - v : yabai -m window --insert north
-rshift + ralt + rctrl + lshift - z : yabai -m window --insert east
-
-# Cycling
-# cycle through bsp/stack windows RMeh-/
-rshift + ralt + rctrl - 0x2C : yabai -m window --focus stack.next || yabai -m window --focus next || yabai -m window --focus stack.first || yabai -m window --focus first # only works for bsp windows, not floating windows
-# cycle through all visible windows sorted by: coordinates -> display index
-# rshift + ralt + rctrl - return: yabai -m window --focus "$(yabai -m query --windows | jq -re "sort_by(.display, .frame.x, .frame.y, .id) | map(select(.\"is-visible\" == true and .role != \"AXUnknown\" and .app != \"Toggl Track\")) | reverse | nth(index(map(select(.\"has-focus\" == true))) - 1).id")"
-
-# toggle btw 2 windows
-rshift + ralt + rctrl - backspace : yabai -m window --focus recent
-
-lctrl + lalt - n : yabai -m window --focus "$(yabai -m query --windows | jq -re "sort_by(.display, .frame.x, .frame.y, .id) | map(select(.\"is-visible\" == true and .role != \"AXUnknown\" and .app != \"Toggl Track\")) | reverse | nth(index(map(select(.\"has-focus\" == true))) - 1).id")"
-
-# cycle among windows in current monitor only
-# yabai -m query --windows --space means for the currently focussed space only
-rshift + ralt + rctrl - s : yabai -m window --focus "$(yabai -m query --windows --space | jq -re "sort_by(.display, .frame.x, .frame.y, .id) | map(select(.\"is-visible\" == true and .role != \"AXUnknown\" and .app != \"Toggl Track\")) | reverse | nth(index(map(select(.\"has-focus\" == true))) - 1).id")"
-# lshift + lctrl - s : yabai -m window --focus stack.next || yabai -m window --focus next || yabai -m window --focus stack.first || yabai -m window --focus first # only works for bsp windows, not floating windows
-lctrl + lalt - s : yabai -m window --focus stack.next || yabai -m window --focus next || yabai -m window --focus stack.first || yabai -m window --focus first # only works for bsp windows, not floating windows
 
 # # mirror
 # alt + shift - y : yabai -m space --mirror y-axis
