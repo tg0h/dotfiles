@@ -43,3 +43,5 @@
 	; header = black normal bold
 ; [color]
 ; 	ui = auto
+[push]
+	autoSetupRemote = true # automatically push the local branch to origin under the same branch name
