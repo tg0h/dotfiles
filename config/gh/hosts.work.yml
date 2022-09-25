@@ -1,0 +1,4 @@
+github.com:
+  oauth_token: <secret>
+  git_protocol: ssh
+  user: timgsl
