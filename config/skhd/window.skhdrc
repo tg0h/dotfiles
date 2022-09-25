@@ -16,20 +16,20 @@ rshift + ralt + rctrl - 0x2C : yabai -m window --focus stack.next || yabai -m wi
 # toggle btw 2 windows
 rshift + ralt + rctrl - backspace : yabai -m window --focus recent
 
-lctrl + lalt - n : yabai -m window --focus "$(yabai -m query --windows | jq -re "sort_by(.display, .frame.x, .frame.y, .id) | map(select(.\"is-visible\" == true and .role != \"AXUnknown\" and .app != \"Toggl Track\")) | reverse | nth(index(map(select(.\"has-focus\" == true))) - 1).id")"
+# lctrl + lalt - n : yabai -m window --focus "$(yabai -m query --windows | jq -re "sort_by(.display, .frame.x, .frame.y, .id) | map(select(.\"is-visible\" == true and .role != \"AXUnknown\" and .app != \"Toggl Track\")) | reverse | nth(index(map(select(.\"has-focus\" == true))) - 1).id")"
 
 # cycle among windows in current monitor only
 # yabai -m query --windows --space means for the currently focussed space only
 rshift + ralt + rctrl - s : yabai -m window --focus "$(yabai -m query --windows --space | jq -re "sort_by(.display, .frame.x, .frame.y, .id) | map(select(.\"is-visible\" == true and .role != \"AXUnknown\" and .app != \"Toggl Track\")) | reverse | nth(index(map(select(.\"has-focus\" == true))) - 1).id")"
 # lshift + lctrl - s : yabai -m window --focus stack.next || yabai -m window --focus next || yabai -m window --focus stack.first || yabai -m window --focus first # only works for bsp windows, not floating windows
-lctrl + lalt - s : yabai -m window --focus stack.next || yabai -m window --focus next || yabai -m window --focus stack.first || yabai -m window --focus first # only works for bsp windows, not floating windows
+# lctrl + lalt - s : yabai -m window --focus stack.next || yabai -m window --focus next || yabai -m window --focus stack.first || yabai -m window --focus first # only works for bsp windows, not floating windows
 
 
 
 # Window navigation --------------------------------------------------------------------------------------
 # rshift + ralt + rctrl - h : yabai -m window --focus west || yabai -m window --focus last
 # rshift + ralt + rctrl - t : yabai -m window --focus south
-rshift + ralt + rctrl - n : yabai -m window --focus north
+# rshift + ralt + rctrl - n : yabai -m window --focus north
 # rshift + ralt + rctrl - s : yabai -m window --focus east || yabai -m window --focus first
 
 # Rmeh + Lshift <home> - Move window (swap - assume shape of target)
