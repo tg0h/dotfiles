@@ -6,10 +6,11 @@ function asst(){
   # asst - get a token from aws
   # asst -c - clear the token cache, get a fresh token from aws
 
-  local clear
-  while getopts 'c' opt; do
+  local clear reset
+  while getopts 'cr' opt; do
     case "$opt" in
       c) clear=true;;
+      r) reset=true;;
     esac
   done
 
@@ -22,6 +23,9 @@ function asst(){
   unset AWS_SECRET_ACCESS_KEY
   unset AWS_SESSION_TOKEN
   unset AWS_REGION
+
+  # if reset, just unset the AWS env vars and return
+  [ $reset ] && return
 
   mkdir -p /tmp/aws
   local cache=/tmp/aws
