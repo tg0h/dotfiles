@@ -1,5 +1,6 @@
 alias n='which'
 alias al='autoload'
+alias h='https'
 
 alias which-command='which'
 
