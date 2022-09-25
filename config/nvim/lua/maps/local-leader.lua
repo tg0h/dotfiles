@@ -10,6 +10,7 @@ map("n", "<localleader>z", ":qa!<CR>", default_options) -- quit all buffers, spl
 map("n", "<localleader>f", ":Format<CR>", default_options)
 
 -- harpoon
+map("n", "<localleader>d", ":lua require('harpoon.mark').add_file()<CR>", default_options)
 map("n", "<localleader>h", ":Telescope harpoon marks<CR>", default_options)
 map("n", "<localleader>t", ":Telescope live_grep<CR>", default_options)
 map("n", "<localleader>n", ":Telescope git_files<CR>", default_options)
@@ -28,4 +29,4 @@ map("n", "<localleader>c", ":Telescope git_status<CR>", default_options)
 map("n", "<localleader>r", ":lua require('telescope').extensions.frecency.frecency(require('setup.telescope').big_window())<CR>", default_options)
 
 -- buffers
-map("n", "<localleader>b", ":lua require'telescope.builtin'.buffers({ sort_mru = true, ignore_current_buffer = true })<CR>", default_options)
+map("n", "<localleader>b", ":lua require'telescope.builtin'.buffers({ layout_strategy = 'vertical', sort_mru = true, ignore_current_buffer = true })<CR>", default_options)
