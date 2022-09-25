@@ -62,7 +62,7 @@ export FZF_DEFAULT_OPTS="
 --bind='ctrl-a:select-all+accept'
 --bind='ctrl-y:execute-silent(echo {+} | join-lines-fzf | pbcopy)+abort'
 --bind 'ctrl-e:execute(echo {} > /tmp/_nvim_cache && nvim {} > /dev/tty 2>&1)+abort'
---bind 'ctrl-/:change-preview-window(right,80%|down,90%,border-top|hidden|)'
+--bind 'ctrl-space:change-preview-window(right,50%|right,80%|down,90%,border-top|hidden|)'
 --bind='alt-c:execute(rm {})+abort'
 --bind='alt-C:execute(trash {})+abort'
 
@@ -82,6 +82,7 @@ export FZF_DEFAULT_OPTS="
 FD_OPTIONS="--color always --follow --hidden --no-ignore --exclude .git \
 --exclude node_modules \
 --exclude .DS_Store \
+--exclude build \
 "
 export FZF_DEFAULT_COMMAND="fd . --type f --hidden --follow --exclude .git $FD_OPTIONS"
 # export FZF_DEFAULT_COMMAND="git ls-files --cached --others --exclude-standard | fd --type f --type l $FD_OPIONS"
@@ -100,8 +101,11 @@ export FZF_CTRL_T_OPTS="
 --preview='[[ \$(file --mime {}) =~ inode/directory ]] && exa --tree --long --icons --git --color always --octal-permissions --sort created --reverse {} || (bat --style=numbers --color=always {} || cat {}) 2> /dev/null | head -300'
 --preview-window='right:wrap'
 --bind 'ctrl-r:reload(fd . --type f --follow --color always )+change-prompt(file>)'
+--bind 'ctrl-t:reload(fd . $FD_OPTIONS)+change-prompt(file>)'
 --bind 'ctrl-l:reload(fd . --type d --follow --color always )+change-prompt(dir>)'
 --bind 'ctrl-g:reload(fd . --follow --color always )+change-prompt(>)'
+--bind 'ctrl-h:reload(fd . --type f --max-depth 1 --follow $FD_OPTIONS)+change-prompt(depth:1>)'
+--bind 'ctrl-s:reload(fd . --type f --max-depth 2 --follow $FD_OPTIONS)+change-prompt(depth:2>)'
 --bind 'ctrl-space:execute(echo {} > /tmp/_nvim_cache && nvim {} > /dev/tty 2>&1)+abort'
 "
 #The following example uses tree command to show the entries of the directory.
@@ -110,6 +114,8 @@ export FZF_ALT_C_COMMAND="fd --type d --hidden --no-ignore $FD_OPTIONS"
 export FZF_ALT_C_OPTS="
 --preview 'lsd {} --tree --color always --icon always'
 --bind 'alt-r:reload(fd --type d --max-depth 1 --hidden --no-ignore $FD_OPTIONS)+change-prompt(depth:1>)'
+--bind 'alt-g:reload(fd --type d --max-depth 2 --hidden --no-ignore $FD_OPTIONS)+change-prompt(depth:2>)'
+--bind 'alt-l:reload(fd --type d --max-depth 3 --hidden --no-ignore $FD_OPTIONS)+change-prompt(depth:3>)'
 --bind 'alt-c:reload(fd --type d --hidden --no-ignore $FD_OPTIONS)+change-prompt(>)'
 --bind 'space:down'
 --bind 'tab:up'
