@@ -35,6 +35,7 @@
     - $XDG_STATE_HOME/mycli
     - $XDG_STATE_HOME/zsh # create folder to store zsh history
     - $XDG_STATE_HOME/dir-switcher # create folder to store dir switcher MRU file cache
+    - $XDG_STATE_HOME/candy/sqs
 
 # <target>:<source (original file)>
 # if linking directories, do not include a trailing slash

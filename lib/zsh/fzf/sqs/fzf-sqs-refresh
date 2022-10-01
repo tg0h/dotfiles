@@ -1,0 +1,6 @@
+#!/bin/zsh
+
+function fzf-sqs-refresh(){
+  # save list of candy sqs queues to file in CANDY SQS QUEUES STATE
+  aws sqs list-queues | jq --raw-output ".QueueUrls[]" > $CANDY_SQS_QUEUES_STATE
+}

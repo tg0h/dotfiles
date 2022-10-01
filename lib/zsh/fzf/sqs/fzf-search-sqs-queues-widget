@@ -1,0 +1,9 @@
+#!/bin/zsh
+
+function fzf-search-sqs-queues-widget() {
+  local result=$(cat $CANDY_SQS_QUEUES_STATE | fzf)
+  zle reset-prompt
+  LBUFFER+="$result"
+}
+
+fzf-search-sqs-queues-widget

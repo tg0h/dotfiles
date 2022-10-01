@@ -53,6 +53,8 @@ bindkey '^[-' fzf-search-filenameAndContent-widget
 
 zle -N fzf-search-cloudwatch-logs-widget
 bindkey '^[^r' fzf-search-cloudwatch-logs-widget
+zle -N fzf-search-sqs-queues-widget
+bindkey '^[^l' fzf-search-sqs-queues-widget
 
 # fzf git widgets
 zle -N fzf-gh-widget # commits
