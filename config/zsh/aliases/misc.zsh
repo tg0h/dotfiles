@@ -1,6 +1,7 @@
 alias n='which'
 alias al='autoload'
 alias h='https'
+alias o='lnav .'
 
 alias which-command='which'
 
