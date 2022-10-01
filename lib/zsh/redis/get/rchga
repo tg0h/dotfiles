@@ -2,5 +2,5 @@
 
 function rchga(){
   # redis cli hash get all
-  redis-cli HGETALL $1
+  rci HGETALL $1
 }
