@@ -2,6 +2,7 @@
 
 function aqr(){
   # receive sqs message
+  # aqr <queue-url>
   local localOpt
   while getopts 'l' opt; do
     case "$opt" in
