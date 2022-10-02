@@ -4,6 +4,14 @@ function ape(){
   # list pipeline executions
   # ape [number of executions to show] - defaults to 5
 
+  local verbose 
+  while getopts 'vc:n:pd' opt; do
+    case "$opt" in
+      v) verbose=true;;
+    esac
+  done
+  shift $(($OPTIND - 1))
+
   local n=${1:-5}
   local result=$(aws codepipeline list-pipeline-executions --pipeline-name $CANDY_PIPELINE --max-items $n)
 
@@ -19,5 +27,9 @@ EOF
 )
      # "\(.sourceRevisions[0].revisionSummary | fromjson | .CommitMessage | (sub("\\n";" ")))"
 
-jq --raw-output -L "~/.config/jq" "$jqQuery" <<< $result
+  if [ $verbose ]; then
+    jq --raw-output "." <<< $result
+  else
+    jq --raw-output -L "~/.config/jq" "$jqQuery" <<< $result
+  fi
 }
