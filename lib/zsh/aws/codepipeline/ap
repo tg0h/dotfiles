@@ -1,0 +1,80 @@
+#!bin/zsh
+
+function ap(){
+  # get pipeline
+
+  local verbose 
+  while getopts 'vc:n:pd' opt; do
+    case "$opt" in
+      v) verbose=true;;
+    esac
+  done
+  shift $(($OPTIND - 1))
+
+  local result=$(aws codepipeline get-pipeline --name $CANDY_PIPELINE)
+
+    local jqQuery=$(cat <<-EOF
+   include "pad";
+   include "colour";
+   include "aws-pipeline";
+
+   def ioArtifacts(inputArtifacts;outputArtifacts):
+     "\((.inputArtifacts[0].name//"   ")|_artifact)\("->"|_bt(.))\((.outputArtifacts[0].name//"")|_artifact)";
+
+
+   def CFBuildConfig:
+     if has("StackName") then #CF provider
+       "\(.StackName|ltrunc(10)|__(.)) \((.ActionMode//"")|_actionMode) \(.TemplatePath //"     " | ltrunc(5) | __(.))"
+     elif has("ProjectName") then #CB provider
+       "\(.ProjectName|ltrunc(10)|__(.))        "
+     elif has("CustomData") then #Manual provider
+       "\(.CustomData|ltrunc(10)|__(.))        "
+     else
+     # elif has("BranchName") then #CodeStar provider
+       "\(.BranchName|ltrunc(10)|__(.))              "
+     end;
+
+   def mapCFBuildAction:
+     "\(.runOrder | _runOrder) \(.name | rp(40) | _stgProdActionName) \(.actionTypeId.category | _actionTypeCategory) \(.actionTypeId.provider | _actionTypeProvider ):\(.configuration | CFBuildConfig) \(ioArtifacts(.inputArtifacts;.outputArtifacts))";
+      # \(.configuration.TemplatePath // "") 
+
+   def mapCF:
+      "\(.name | _orange_b(.))",
+      "  \(.actions| sort_by((.runOrder|tostring) + .name) | (map(mapCFBuildAction)) | .[])";
+
+   def mapAssetsAction:
+     "\(.runOrder) \(.name | rp(40) | __(.)) \(.actionTypeId.category | _actionTypeCategory) \(.actionTypeId.provider | _actionTypeProvider ):\(.configuration.ProjectName|ltrunc(10)|__(.))         \(ioArtifacts(.inputArtifacts;.outputArtifacts))";
+   def mapAssets:
+      # sort FileAsset1, FileAsset32 etc by number
+      # remove FileAsset first, then convert the numberstring to number
+      # then sort
+      "\(.name | _orange_b(.))",
+      "  \(.actions| sort_by(.name[9:] | tonumber) | (map(mapAssetsAction)) | .[])";
+
+   def mapSourceBuildUpdateAction:
+     "\(.runOrder) \(.name |  rp(40)) \(.actionTypeId.category | _actionTypeCategory) \(.actionTypeId.provider | _actionTypeProvider):\(.configuration | CFBuildConfig) \(ioArtifacts(.inputArtifacts;.outputArtifacts))";
+   def mapSourceBuildUpdate: # assume only 1 action here
+      "\(.name|_orange_b(.))"+"\n"+
+      "  \(.actions[0]|mapSourceBuildUpdateAction)";
+
+   def _stage:
+      if .name=="Source" or .name=="Build" or .name=="UpdatePipeline" then
+        mapSourceBuildUpdate
+      elif .name=="Assets" then
+        mapAssets
+      else # elif .name=="staging" or .name=="production" then
+      # null
+        mapCF
+      end;
+   .pipeline |
+   ("\(.name) \(.artifactStores["ap-southeast-1"] | .type +" "+ .location | __(.))"),
+   (.stages | map(_stage))[]
+EOF
+)
+
+  if [ $verbose ]; then
+    jq --raw-output "." <<< $result
+  else
+    jq --raw-output -L "~/.config/jq" "$jqQuery" <<< $result
+  fi
+}

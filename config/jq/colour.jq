@@ -11,6 +11,10 @@ include "pad";
 # \e, \033 and \x1b cause "Invalid escape" error
 def escape: "\u001b";
 
+def bold: "\u001b[1m";
+def underline: "\u001b[4m";
+def reverse: "\u001b[7m";
+
 ### Terminal color codes
 # 3 bit colours (just 8 available)
 # CSI - Control Sequence Introducer
@@ -83,6 +87,7 @@ def colours:
   "disabled": "[30;100m", # Black on darkgray
   "reset": "[0m",
   "orange": "[38;2;255;135;0m", # #ff8700
+  "bgorange": "[48;2;255;135;0m", # #ff8700
   "purple": "[38;2;135;135;255m", # #8787ff
   "neonBlue": "[38;2;82;96;255m", # #5360ff
   "brightTurquoise": "[38;2;5;217;243m", # #05d9f3
@@ -91,6 +96,12 @@ def colours:
   "jazzberry": "[38;2;167;23;92m", # #a7175c
   "brinkPink": "[38;2;252;93;124m", # #fc5d7c
   "fsg": "[38;2;3;255;19m", # #03ff13
+
+  # RC colours
+  "flourescentPink": "[38;2;255;14;139m", # #ff0e8b
+  "spiroDiscoBall": "[38;2;34;197;236m", # #22c5ec
+  "yaleBlue": "[38;2;18;65;145m", # #124191
+  "yaleBlueBackground": "[48;2;18;65;145m", # #124191
 };
 
 def _(colour):
@@ -110,14 +121,33 @@ def colour(text; colour):
 def _r(text):
   escape + colours["red"] + text + escape + colours.reset;
 
+  # escape + colours["magenta"] + underline + text  + escape + colours.reset;
+def _m(text):
+  escape + colours["magenta"] + text  + escape + colours.reset;
+
+def _m_u(text):
+  escape + colours["magenta"] + underline + text  + escape + colours.reset;
+
 def _by(text):
   escape + colours["byellow"] + text + escape + colours.reset;
 
+def _bgy(text):
+  # background yellow and foreground black
+  escape + colours["bgyellow"] + escape + colours["black"] + text + escape + colours.reset;
+
 def _bgr(text):
-  escape + colours["bgred"] + text + escape + colours.reset;
+  # background red and foreground black
+  escape + colours["bgred"] + escape + colours["black"] + text + escape + colours.reset;
+
+def _bgm(text):
+  # background red and foreground black
+  escape + colours["bgmagenta"] + escape + colours["black"] + text + escape + colours.reset;
 
 def _g(text):
   escape + colours["green"] + text + escape + colours.reset;
+
+def _g_u(text):
+  escape + colours["green"] + underline + text + escape + colours.reset;
 
 def _b(text):
   escape + colours["blue"] + text + escape + colours.reset;
@@ -140,8 +170,26 @@ def _jazzberry(text):
 def _brinkPink(text):
   escape + colours["brinkPink"] + text + escape + colours.reset;
 
+def _fp(text):
+  escape + colours["flourescentPink"] + text + escape + colours.reset;
+
+def _sdb(text):
+  escape + colours["spiroDiscoBall"] + text + escape + colours.reset;
+
+def _yaleBlue(text):
+  escape + colours["yaleBlue"] + text + escape + colours.reset;
+
+def _yaleBlue_b(text):
+  escape + colours["yaleBlueBackground"] + text + escape + colours.reset;
+
+def _fsg(text):
+  escape + colours["fsg"] + text + escape + colours.reset;
+
 def _orange(text):
   escape + colours["orange"] + (text|tostring) + escape + colours.reset;
+
+def _orange_b(text):
+  escape + colours["bgorange"] + escape + colours["black"] + (text|tostring) + escape + colours.reset;
 
 def _purple(text):
   escape + colours["purple"] + text + escape + colours.reset;
@@ -151,6 +199,9 @@ def _y(text):
 
 def __(text):
   escape + colours["darkgray"] + text + escape + colours.reset;
+
+def __reverse(text):
+  escape + colours["darkgray"] + reverse + text + escape + colours.reset;
 
 def ___(text):
   escape + colours["disabled"] + text + escape + colours.reset;
