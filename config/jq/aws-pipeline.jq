@@ -46,8 +46,8 @@ def _artifact:
 
 def __actionName: {
   ## AUTH
-  "cognito": _purple(.),
-  "cognito-wonka": _purple(.),
+  "cognito": _y(.),
+  "cognito-wonka": _y(.),
 
   ## FRONTEND
   "frontend-wonka": _fp(.),
