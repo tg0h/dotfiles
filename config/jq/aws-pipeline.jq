@@ -122,3 +122,54 @@ def _runOrder:
   else
     .
   end;
+
+def _sortKeys:
+[ 
+  ## AUTH
+  "cognito.Prepare",
+  "cognito.Deploy",
+  "cognito-wonka.Prepare",
+  "cognito-wonka.Deploy",
+
+  ## FRONTEND
+  "frontend.Prepare",
+  "frontend.Deploy",
+  "frontend-wonka.Prepare",
+  "frontend-wonka.Deploy",
+  "storybook.Prepare",
+  "storybook.Deploy",
+
+  ## BACKEND
+  "api.Prepare",
+  "api.Deploy",
+  "api-nerfed.Prepare",
+  "api-nerfed.Deploy",
+  "apiInternal.Prepare",
+  "apiInternal.Deploy",
+
+  ## DB
+  "dynamoDBStack.Prepare",
+  "dynamoDBStack.Deploy",
+
+  ## AWS
+  "s3Stack.Prepare",
+  "s3Stack.Deploy",
+  "sendDkimEmail.Prepare",
+  "sendDkimEmail.Deploy",
+  "sqsQueueStack.Prepare",
+  "sqsQueueStack.Deploy",
+
+  ## DAEMONS?
+  "createDaemonDailyScheduler.Prepare",
+  "createDaemonDailyScheduler.Deploy",
+  "createDaemonFifteenMinsScheduler.Prepare",
+  "createDaemonFifteenMinsScheduler.Deploy",
+  "createDaemonTenDayScheduler.Prepare",
+  "createDaemonTenDayScheduler.Deploy",
+  "createDailyRate.Prepare",
+  "createDailyRate.Deploy",
+  "updateReferral.Prepare",
+  "updateReferral.Deploy",
+  "updateStat.Prepare",
+  "updateStat.Deploy"
+];

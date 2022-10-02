@@ -17,6 +17,7 @@ function ap(){
    include "pad";
    include "colour";
    include "aws-pipeline";
+   include "sort";
 
    def ioArtifacts(inputArtifacts;outputArtifacts):
      "\((.inputArtifacts[0].name//"   ")|_artifact)\("->"|_bt(.))\((.outputArtifacts[0].name//"")|_artifact)";
@@ -40,7 +41,9 @@ function ap(){
 
    def mapCF:
       "\(.name | _orange_b(.))",
-      "  \(.actions| sort_by((.runOrder|tostring) + .name) | (map(mapCFBuildAction)) | .[])";
+      # "  \(.actions| sort_by((.runOrder|tostring) + .name) | (map(mapCFBuildAction)) | .[])";
+      "  \(.actions| addSortKey("name";_sortKeys) | sort_by(.runOrder, .sortKey) | (map(mapCFBuildAction)) | .[])";
+
 
    def mapAssetsAction:
      "\(.runOrder) \(.name | rp(40) | __(.)) \(.actionTypeId.category | _actionTypeCategory) \(.actionTypeId.provider | _actionTypeProvider ):\(.configuration.ProjectName|ltrunc(10)|__(.))         \(ioArtifacts(.inputArtifacts;.outputArtifacts))";
