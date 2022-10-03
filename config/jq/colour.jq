@@ -103,6 +103,8 @@ def colours:
   "yaleBlue": "[38;2;18;65;145m", # #124191
   "yaleBlueBackground": "[48;2;18;65;145m", # #124191
   "doveGrey_bg": "[48;2;118;118;118m", # #767676
+  "ebony_bg": "[48;2;51;52;52m", # #333434
+  "dark_grey_bg": "[48;2;88;88;88m", # #585858
 };
 
 def _(colour):
@@ -131,6 +133,10 @@ def _m_u(text):
 
 def _by(text):
   escape + colours["byellow"] + text + escape + colours.reset;
+
+def _bm(text):
+  escape + colours["bmagenta"] + text + escape + colours.reset;
+
 
 def _bgy(text):
   # background yellow and foreground black

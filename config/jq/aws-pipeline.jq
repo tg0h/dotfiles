@@ -2,13 +2,13 @@ include "pad";
 include "colour";
 
 def _colour1(text):
-  escape + colours["doveGrey_bg"] + escape + colours["purple"] + text + escape + colours.reset;
+  escape + colours["dark_grey_bg"] + escape + colours["purple"] + text + escape + colours.reset;
 def _colour2(text):
-  escape + colours["doveGrey_bg"] + escape + colours["neonBlue"] + text + escape + colours.reset;
+  escape + colours["dark_grey_bg"] + escape + colours["bmagenta"] + text + escape + colours.reset;
 def _colour3(text):
-  escape + colours["doveGrey_bg"] + escape + colours["brightTurquoise"] + text + escape + colours.reset;
+  escape + colours["dark_grey_bg"] + escape + colours["brightTurquoise"] + text + escape + colours.reset;
 def _colour5(text):
-  escape + colours["doveGrey_bg"] + escape + colours["brinkPink"] + text + escape + colours.reset;
+  escape + colours["dark_grey_bg"] + escape + colours["brinkPink"] + text + escape + colours.reset;
 
 def awsPipelineStatus:
 {

@@ -1,6 +1,6 @@
 {
   "function": "concat",
-  "x": "[name] ",
+  "x": "[name]:   ",
   "y": {
     "x": {
       "x": {
@@ -48,7 +48,7 @@
       }
     },
     "y": {
-      "x": "#hex[red]hex[green]hex[blue]",
+      "x": "  #hex[red]hex[green]hex[blue]",
       "function": "lower"
     },
     "function": "concat"
