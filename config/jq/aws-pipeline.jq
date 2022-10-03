@@ -110,9 +110,11 @@ def actionName:
 def _CFname:
   actionName | __prepare | __deploy ;
 def __manual:
- sub("(?<p>DeployToProduction)"; _bgr((.p)));
+ # select whitespace with .* to highlight
+ sub("(?<p>DeployToProduction.*)"; _bgr((.p)));
 def __tests:
- sub("(?<p>Tests)"; _bgy((.p)));
+ # select whitespace with .* to highlight
+ sub("(?<p>Tests.*)"; _bgy((.p)));
 def _stgProdActionName:
   _CFname | __manual | __tests;
 
