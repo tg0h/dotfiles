@@ -1,6 +1,15 @@
 include "pad";
 include "colour";
 
+def _colour1(text):
+  escape + colours["doveGrey_bg"] + escape + colours["purple"] + text + escape + colours.reset;
+def _colour2(text):
+  escape + colours["doveGrey_bg"] + escape + colours["neonBlue"] + text + escape + colours.reset;
+def _colour3(text):
+  escape + colours["doveGrey_bg"] + escape + colours["brightTurquoise"] + text + escape + colours.reset;
+def _colour5(text):
+  escape + colours["doveGrey_bg"] + escape + colours["brinkPink"] + text + escape + colours.reset;
+
 def awsPipelineStatus:
 {
   "Succeeded": _g(.), # grey
@@ -108,19 +117,42 @@ def _stgProdActionName:
   _CFname | __manual | __tests;
 
 # color action run order for the staging and production stage
-def _runOrder:
+def __runOrderStaging:
+  if . == 1 then
+    # _purple("1")
+    _colour1("1")
+  elif . == 2 then
+    _colour2("2")
+  elif . == 3 then
+    _bt("3")
+  elif . == 4 then
+    _jazzberry("4")
+  elif . == 5 then
+    _colour5("5")
+  else
+    .
+  end;
+def __runOrderProduction:
   if . == 1 then
     _purple("1")
   elif . == 2 then
-    _nb("2")
+    # _nb("2")
+    _colour2("2")
   elif . == 3 then
-    _bt("3")
+    # _bt("3")
+    _colour3("3")
   elif . == 4 then
     _jazzberry("4")
   elif . == 5 then
     _brinkPink("5")
   else
     .
+  end;
+def _runOrder($stageName):
+  if $stageName == "staging" then
+    __runOrderStaging
+  else
+    __runOrderProduction
   end;
 
 def _sortKeys:
@@ -173,3 +205,4 @@ def _sortKeys:
   "updateStat.Prepare",
   "updateStat.Deploy"
 ];
+

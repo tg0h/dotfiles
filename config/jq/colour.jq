@@ -102,6 +102,7 @@ def colours:
   "spiroDiscoBall": "[38;2;34;197;236m", # #22c5ec
   "yaleBlue": "[38;2;18;65;145m", # #124191
   "yaleBlueBackground": "[48;2;18;65;145m", # #124191
+  "doveGrey_bg": "[48;2;118;118;118m", # #767676
 };
 
 def _(colour):

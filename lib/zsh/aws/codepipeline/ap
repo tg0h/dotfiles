@@ -36,14 +36,14 @@ function ap(){
      end;
 
    def mapCFBuildAction:
-     "\(.runOrder | _runOrder) \(.name | rp(40) | _stgProdActionName) \(.actionTypeId.category | _actionTypeCategory) \(.actionTypeId.provider | _actionTypeProvider ):\(.configuration | CFBuildConfig) \(ioArtifacts(.inputArtifacts;.outputArtifacts))";
+     "\( .stageName as \$stageName | .runOrder | _runOrder(\$stageName)) \(.name | rp(40) | _stgProdActionName) \(.actionTypeId.category | _actionTypeCategory) \(.actionTypeId.provider | _actionTypeProvider ):\(.configuration | CFBuildConfig) \(ioArtifacts(.inputArtifacts;.outputArtifacts))";
       # \(.configuration.TemplatePath // "") 
 
    def mapCF:
-      "\(.name | _orange_b(.))",
-      # "  \(.actions| sort_by((.runOrder|tostring) + .name) | (map(mapCFBuildAction)) | .[])";
-      "  \(.actions| addSortKey("name";_sortKeys) | sort_by(.runOrder, .sortKey) | (map(mapCFBuildAction)) | .[])";
-
+      .name as \$name | "\(.name | _orange_b(.))",
+      # sort by custom sort key
+      # add a .stageName key to actions array for custom sorting of runOrder later when using _runOrder in mapCFBuildAction
+      "  \(.actions| addSortKey("name";_sortKeys) | sort_by(.runOrder, .sortKey) | map(.stageName=\$name) | map(mapCFBuildAction) | .[])";
 
    def mapAssetsAction:
      "\(.runOrder) \(.name | rp(40) | __(.)) \(.actionTypeId.category | _actionTypeCategory) \(.actionTypeId.provider | _actionTypeProvider ):\(.configuration.ProjectName|ltrunc(10)|__(.))         \(ioArtifacts(.inputArtifacts;.outputArtifacts))";
@@ -66,7 +66,6 @@ function ap(){
       elif .name=="Assets" then
         mapAssets
       else # elif .name=="staging" or .name=="production" then
-      # null
         mapCF
       end;
    .pipeline |
