@@ -3,26 +3,36 @@
 function ape(){
   # list pipeline executions
   # ape [number of executions to show] - defaults to 5
+  # -v - verbose
+  # -d - debug
 
-  local verbose 
-  while getopts 'vc:n:pd' opt; do
+  local verbose debug="false"
+  while getopts 'vd' opt; do
     case "$opt" in
       v) verbose=true;;
+      d) debug=true;; # show more output (github commit url)
     esac
   done
   shift $(($OPTIND - 1))
 
-  local n=${1:-5}
+  local n=${1:-20}
   local result=$(aws codepipeline list-pipeline-executions --pipeline-name $CANDY_PIPELINE --max-items $n)
 
-    local jqQuery=$(cat <<-EOF
-   include "pad";
-   include "colour";
-   include "aws-pipeline";
-     .pipelineExecutionSummaries[] |
-     "\(.startTime[8:10] | _bt(.))\(.startTime[5:7] | __(.)) \(.startTime[11:13] | _bt(.))\(.startTime[13:16] | __(.)) \(.sourceRevisions[0].revisionId[0:5] | _g(.)) \(.status | aplStatus) \(.pipelineExecutionId[0:5] | ___(.)) " +
-     "\(.sourceRevisions[0].revisionSummary | fromjson | .CommitMessage | gsub("\\r\\n";" ") | gsub("\\n";" ") ) \n" +
-     "    \(.sourceRevisions[0].revisionUrl | __(.))"
+  local jqQuery=$(cat <<-EOF
+    include "pad";
+    include "colour";
+    include "aws-pipeline";
+
+    def showCommitUrl:
+      if "$debug"=="true" then
+      "\n    \(.sourceRevisions[0].revisionUrl | __(.))"
+      else
+         ""
+      end;
+
+    .pipelineExecutionSummaries[] |
+      "\(.startTime[8:10] | _bt(.))\(.startTime[5:7] | __(.)) \(.startTime[11:13] | _bt(.))\(.startTime[13:16] | __(.)) \(.sourceRevisions[0].revisionId[0:5] | _g(.)) \(.status | aplStatus | rp(20))" +
+      "\(.sourceRevisions[0].revisionSummary | fromjson | .CommitMessage | gsub("\\r\\n";" ") | gsub("\\n";" ") | trunc(150)) \(.pipelineExecutionId | __(.)) " + showCommitUrl
 EOF
 )
      # "\(.sourceRevisions[0].revisionSummary | fromjson | .CommitMessage | (sub("\\n";" ")))"

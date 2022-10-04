@@ -10,16 +10,25 @@ def _colour3(text):
 def _colour5(text):
   escape + colours["dark_grey_bg"] + escape + colours["brinkPink"] + text + escape + colours.reset;
 
-def awsPipelineStatus:
+def _awsPipelineStatus:
 {
   "Succeeded": _g(.), # grey
   "Superseded": __(.), # red
   "Failed": _r(.),
   "InProgress": _y(.),
+  #  "Cancelled": ___(.), # background colours do not work well with padding
 };
 
+# 
+def _cancelledFilter:
+  if .=="Cancelled" then
+    ___(.)+"  "
+  else
+    .
+  end;
+
 def aplStatus:
-  awsPipelineStatus[.] // .;
+  _awsPipelineStatus[.] // . | _cancelledFilter;
 
 
 
@@ -207,4 +216,3 @@ def _sortKeys:
   "updateStat.Prepare",
   "updateStat.Deploy"
 ];
-
