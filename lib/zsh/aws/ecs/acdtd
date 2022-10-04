@@ -23,13 +23,14 @@ function acdtd(){
      gsub(".*/(?<x>.*)";_brinkPink((.x)));
    def taskDefinition:
      # "\(.taskDefinitionArn | __(.)) "+"\n"+
-     "\(.family | _orange(.)) \(.revision|tostring|_purple(.)) \(.status) 💻️\(.cpu) 🐏\(.memory)"+"\n"+
-     "\(.registeredAt | pTime) \(.registeredBy | regBy)";
+     "\(.family | _orange(.)) \(.revision|tostring|_purple(.)) \(.status) 💻️\(.cpu//"-") 🐏\(.memory//"-")"+"\n"+
+     "\(.registeredAt | pTime) \(.registeredBy | regBy)\n"+
+     "executionRole: \(.executionRoleArn|_b(.))\n"+
+     "     taskRole: \(.taskRoleArn|_b(.))";
    def image:
      gsub(".*/(?<image>.*):(?<tag>.*)";_orange((.image))+":"+_g((.tag)));
    def containerDefinition:
-     "\(.name) \(.image | image) 🏥\(.hostname) 💻️\(.cpu) 🐏\(.memory) \(.memoryReservation)"+"\n"+
-     "🌴\(.logConfiguration.options["awslogs-region"]) \(.logConfiguration.options["awslogs-group"])";
+     "\(.name) \(.image | image) 🏥\(.hostname//"-") 💻️\(.cpu//"-") 🐏\(.memory//"-") \(.memoryReservation//"-") 🌴\(.logConfiguration.options["awslogs-region"]//"-") \(.logConfiguration.options["awslogs-group"]//"-")";
    def containerDefinitionEnv:
      sort_by(.name) | map("\(.name | lp(30) | _y(.)): \(.value)")[];
    .taskDefinition |
