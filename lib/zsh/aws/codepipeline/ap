@@ -4,7 +4,7 @@ function ap(){
   # get pipeline
 
   local verbose 
-  while getopts 'vc:n:pd' opt; do
+  while getopts 'v' opt; do
     case "$opt" in
       v) verbose=true;;
     esac

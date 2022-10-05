@@ -156,6 +156,12 @@ def _g(text):
 def _g_u(text):
   escape + colours["green"] + underline + text + escape + colours.reset;
 
+def _y_u(text):
+  escape + colours["yellow"] + underline + text + escape + colours.reset;
+
+def _r_u(text):
+  escape + colours["red"] + underline + text + escape + colours.reset;
+
 def _b(text):
   escape + colours["blue"] + text + escape + colours.reset;
 

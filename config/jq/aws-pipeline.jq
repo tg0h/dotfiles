@@ -120,10 +120,10 @@ def _CFname:
   actionName | __prepare | __deploy ;
 def __manual:
  # select whitespace with .* to highlight
- sub("(?<p>DeployToProduction.*)"; _bgr((.p)));
+ sub("(?<p>DeployToProduction.*)"; _r_u((.p)));
 def __tests:
  # select whitespace with .* to highlight
- sub("(?<p>Tests.*)"; _bgy((.p)));
+ sub("(?<p>Tests.*)"; _y_u((.p)));
 def _stgProdActionName:
   _CFname | __manual | __tests;
 
@@ -159,6 +159,7 @@ def __runOrderProduction:
   else
     .
   end;
+# shared by aws-pipeline and aws pipeline list action executions
 def _runOrder($stageName):
   if $stageName == "staging" then
     __runOrderStaging

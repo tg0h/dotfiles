@@ -1,0 +1,182 @@
+#!bin/zsh
+
+function apa(){
+  # action-executions
+  # aws codepipeline list-action-executions
+
+  local verbose summary=false
+  while getopts 'vs' opt; do
+    case "$opt" in
+      v) verbose=true;;
+      s) summary=true;;
+    esac
+  done
+  shift $(($OPTIND - 1))
+
+  local id=$1
+  local result=$(aws codepipeline list-action-executions --pipeline-name $CANDY_PIPELINE --filter pipelineExecutionId=$1)
+
+  local jqQuery=$(cat <<-EOF
+    include "pad";
+    include "colour";
+    include "aws-pipeline";
+    include "aws-pipeline-actions";
+    include "date";
+    include "aws-time";
+    include "sort";
+
+    def printActionName(\$stageName):
+      if \$stageName == "staging" or \$stageName == "production" then
+        _stgProdActionName
+      else
+        __(.)
+      end;
+
+    def printRunOrder(\$stageName):
+      if \$stageName == "staging" or \$stageName == "production" then
+        _runOrder(\$stageName) # use the aws-pipeline _runOrder printer
+      else
+        .
+      end;
+
+    def printDuration(isMaxDuration):
+      if (isMaxDuration == "true") then
+        .
+      else
+        .
+      end;
+    def durationHighlight:
+      if (.maxDuration//0 > 0) then
+        .maxDuration | tostring | lp(5) | _r(.)
+      else
+        ._duration | tostring | lp(5) | __(.)
+      end;
+
+    def printActions(\$stageName; \$maxarray):
+      "  \(.runOrder | printRunOrder(\$stageName)) \(.actionName| rp(40) |printActionName(\$stageName) ) \(.status|_actionExecutionStatus) \(durationHighlight) \(._prettyDuration) \(.startTime|pTimehms) \(.lastUpdateTime|pTimehms) ";
+
+    def setDuration:
+      ._startTime = (.startTime| aws_fromdate) | ._lastUpdateTime = (.lastUpdateTime| aws_fromdate) | ._duration = ._lastUpdateTime - ._startTime | ._prettyDuration = (._duration|s_ToDuration);
+    def setRunOrder(\$stageName):
+      if \$stageName == "staging" then
+        .runOrder = (_runOrderDict[.actionName][0] // 0)
+      elif \$stageName == "production" then
+        .runOrder = (_runOrderDict[.actionName][1] // 0)
+      else
+        .runOrder = 1
+      end;
+
+    def sortActions(\$stageName):
+      if \$stageName == "Assets" then
+        sort_by(.actionName[9:] | tonumber) 
+      else
+        # use _sortKeys defined in aws-pipeline.jq
+        addSortKey("actionName";_sortKeys) | sort_by(.runOrder, .sortKey)
+      end;
+    def getStats:
+      map(select(.runOrder == 1) | .startTime) | max as \$maxStartTime1
+      | map(select(.runOrder == 1) | .startTime) | max as \$maxStartTime1
+      | map(select(.runOrder == 2) | .startTime) | max as \$maxStartTime2
+      | map(select(.runOrder == 3) | .startTime) | max as \$maxStartTime3
+      | map(select(.runOrder == 4) | .startTime) | max as \$maxStartTime4
+      | map(select(.runOrder == 5) | .startTime) | max as \$maxStartTime5
+      | [ \$maxStartTime1, \$maxStartTime2, \$maxStartTime3, \$maxStartTime4, \$maxStartTime5 ] as \$maxStartTimeArray
+      | .;
+    def setMaxDuration(stagename;maxarray):
+      if .runOrder == 1 and ._duration == maxarray[0] then 
+        .maxDuration = ._duration
+      elif .runOrder == 2 and ._duration == maxarray[1] then 
+        .maxDuration = ._duration
+      elif .runOrder == 3 and ._duration == maxarray[2] then 
+        .maxDuration = ._duration
+      elif .runOrder == 4 and ._duration == maxarray[3] then 
+        .maxDuration = ._duration
+      elif .runOrder == 5 and ._duration == maxarray[4] then 
+        .maxDuration = ._duration
+      else
+        .
+      end;
+
+    def mapStageHeader(\$stageName):
+        if \$stageName == "staging" or \$stageName == "production" then
+          (map(select(.runOrder == 1) | .startTime) | min) as \$stime1
+          | (map(select(.runOrder == 2) | .startTime) | min) as \$stime2
+          | (map(select(.runOrder == 3) | .startTime) | min) as \$stime3
+          | (map(select(.runOrder == 4) | .startTime) | min) as \$stime4
+          | (map(select(.runOrder == 5) | .startTime) | min) as \$stime5
+          | (map(select(.runOrder == 5) | .lastUpdateTime) | max) as \$etime5
+          | ([ \$stime1, \$stime2, \$stime3, \$stime4, \$stime5, \$etime5 ]) as \$maxArr
+          | ((\$etime5|aws_fromdate) - (\$stime1|aws_fromdate)) as \$stageDuration
+          | (\$stageDuration|s_ToDuration) as \$prettyStageDuration
+          | "\(\$stageDuration|lp(5)) \(\$prettyStageDuration) \(\$maxArr[0]|pTimehms_y) ->\(\$maxArr[1]|pTimem)->\(\$maxArr[2]|pTimem)->\(\$maxArr[3]|pTimem)->\(\$maxArr[4]|pTimem) \(\$maxArr[5]|pTimehms_g)"
+        else
+          (map(select(.runOrder == 1) | .startTime) | min) as \$stime1
+          |(map(select(.runOrder == 1) | .lastUpdateTime) | max) as \$etime1
+          | ((\$etime1|aws_fromdate) - (\$stime1|aws_fromdate)) as \$stageDuration
+          | (\$stageDuration|s_ToDuration) as \$prettyStageDuration
+          | ([ \$stime1, \$etime1]) as \$timeArr
+          | "\(\$stageDuration|lp(5)) \(\$prettyStageDuration) \(\$timeArr[0]|pTimehms_y) \(\$timeArr[1]|pTimehms_g)"
+        end;
+    def header(\$stageName; \$rpPadding):
+      # processing a eg {name: "staging", actions: [ ... ]}
+        "\(_orange(.name|rp(\$rpPadding))) \( .actions
+        | map(setRunOrder(\$stageName))
+        | mapStageHeader(\$stageName))"
+        ;
+    def detail(\$stageName):
+        .actions
+        | map(setDuration)
+        | map(setRunOrder(\$stageName))
+        | sortActions(\$stageName)
+        # | getStats
+        | (map(select(.runOrder == 1) | ._duration) | max) as \$max1
+        | (map(select(.runOrder == 2) | ._duration) | max) as \$max2
+        | (map(select(.runOrder == 3) | ._duration) | max) as \$max3
+        | (map(select(.runOrder == 4) | ._duration) | max) as \$max4
+        | (map(select(.runOrder == 5) | ._duration) | max) as \$max5
+        | ([ \$max1, \$max2, \$max3, \$max4, \$max5 ]) as \$maxarray
+        | (map(select(.runOrder == 1) | .startTime) | max) as \$maxStartTime1
+        | (map(select(.runOrder == 2) | .startTime) | max) as \$maxStartTime2
+        | (map(select(.runOrder == 3) | .startTime) | max) as \$maxStartTime3
+        | (map(select(.runOrder == 4) | .startTime) | max) as \$maxStartTime4
+        | (map(select(.runOrder == 5) | .startTime) | max) as \$maxStartTime5
+        | ([ \$maxStartTime1, \$maxStartTime2, \$maxStartTime3, \$maxStartTime4, \$maxStartTime5 ]) as \$maxStartTimeArray
+        | map(setMaxDuration(\$stageName;\$maxarray))
+        | map(printActions(\$stageName; \$maxarray))
+        | .[]
+        ;
+    def mapStages:
+      # processing a eg {name: "staging", actions: [ ... ]}
+      if "$summary" == "true" then
+        .name as \$stageName | header(\$stageName; 20)
+      else
+        .name as \$stageName | header(\$stageName; 46),detail(\$stageName)
+      end
+      ;
+    def sortStages:
+      addSortKey("name";_sortStages) | sort_by(.sortKey);
+    def groupIntoStages:
+      # group into [ {name: "production", actions: [...]}, name: "staging", actions: [...]]
+      group_by(.stageName) | map({name: (first.stageName), actions: .});
+    def getHeader:
+      first.pipelineExecutionId;
+    .actionExecutionDetails |
+    (
+      getHeader,
+      (
+        .[0:] 
+        | groupIntoStages 
+        | sortStages
+        | map(mapStages)
+        | .[]
+      )
+    )
+EOF
+)
+
+  if [ $verbose ]; then
+    jq --raw-output "." <<< $result
+  else
+    jq --raw-output -L "~/.config/jq" "$jqQuery" <<< $result
+  fi
+}

@@ -32,7 +32,7 @@ function ape(){
 
     .pipelineExecutionSummaries[] |
       "\(.startTime[8:10] | _bt(.))\(.startTime[5:7] | __(.)) \(.startTime[11:13] | _bt(.))\(.startTime[13:16] | __(.)) \(.sourceRevisions[0].revisionId[0:5] | _g(.)) \(.pipelineExecutionId | __(.)) \(.status | aplStatus | rp(20))" +
-      "\(.sourceRevisions[0].revisionSummary | fromjson | .CommitMessage | gsub("\\r\\n";" ") | gsub("\\n";" ") | trunc(75))  " + showCommitUrl
+      "\(.sourceRevisions[0].revisionSummary | fromjson | .CommitMessage | gsub("\\r\\n";" ") | gsub("\\n";" ") | trunc(55))  " + showCommitUrl
 EOF
 )
      # "\(.sourceRevisions[0].revisionSummary | fromjson | .CommitMessage | (sub("\\n";" ")))"
