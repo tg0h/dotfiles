@@ -13,7 +13,7 @@ def escape: "\u001b";
 
 def bold: "\u001b[1m";
 def underline: "\u001b[4m";
-def reverse: "\u001b[7m";
+def _reverse: "\u001b[7m"; # zzz this is a jq keyword!
 
 ### Terminal color codes
 # 3 bit colours (just 8 available)
