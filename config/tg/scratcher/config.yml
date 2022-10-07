@@ -1,6 +1,8 @@
 keymaps:
   - [h, zsh]
   - [ht, zsh]
+  - [g, zsh] # use for jq
+  - [c, zsh] # use for jq
   - [t, javascript-mjs]
   - [th, javascript]
   - [n, typescript]
