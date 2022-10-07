@@ -4,6 +4,7 @@ alias a="lazygit"
 alias g.="gloz -10"
 alias g..="gloz -20"
 alias g,.="glodm"
+alias g,.p="glodmm"
 
 alias ggp="gg && gp"
 alias gge="gg -e" # allow empty commit
