@@ -125,6 +125,8 @@ tap 'lindell/multi-gitter'
 brew 'lindell/multi-gitter/multi-gitter'
 brew 'nushell'
 brew 'graphviz' # used by madge cli code dependency tool
+brew 'sampler'
+brew 'dura', restart_service: true
 
 tap 'romkatv/gitstatus'
 brew 'romkatv/gitstatus/gitstatus'

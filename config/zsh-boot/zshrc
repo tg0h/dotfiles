@@ -85,6 +85,8 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+add-zsh-hook chpwd dura-chpwd-hook
+
 # set aws credential env vars
 # asst > /dev/null
 # may slow down yabai if asst is unable to set the token, since yabai calls zsh -c <command> to run a command

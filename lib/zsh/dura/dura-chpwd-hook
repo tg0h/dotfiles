@@ -1,0 +1,11 @@
+#!/bin/zsh
+
+function dura-chpwd-hook(){
+# dura watch any git repos on chpwd
+
+  if [[ -d $PWD/.git ]]; then 
+    # silence dura watch since it noisily says that a repo is being watched
+    # if you run dura watch twice for the same dir
+    dura watch >/dev/null
+  fi
+}
