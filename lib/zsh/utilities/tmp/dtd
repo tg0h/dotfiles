@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+function dtd(){
+  rm -rf /tmp/tim
+  mkdir /tmp/tim
+  cd /tmp/tim
+}

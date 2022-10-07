@@ -1,0 +1,6 @@
+#!/bin/zsh
+
+function dt(){
+  mkdir -p /tmp/tim
+  cd /tmp/tim
+}
