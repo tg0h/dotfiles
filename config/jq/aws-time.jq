@@ -24,31 +24,40 @@ def pTimehms:
   "\( $hour|__(.) )\((":")+($min) | _bt(.)).\( $sec|__(.) )";
 
 def pTimehms_y:
-  .[0:4] as $year |
-  .[5:7] as $month |
-  .[8:10] as $day |
-  .[11:13] as $hour |
-  .[14:16] as $min |
-  .[17:19] as $sec |
-  "\( $hour|__(.) )\((":")+($min|_y(.))).\( $sec|__(.) )";
+  if . == null then .
+  else
+    .[0:4] as $year |
+    .[5:7] as $month |
+    .[8:10] as $day |
+    .[11:13] as $hour |
+    .[14:16] as $min |
+    .[17:19] as $sec |
+    "\( $hour|__(.) )\((":")+($min|_y(.))).\( $sec|__(.) )"
+  end;
 
 def pTimehms_g:
-  .[0:4] as $year |
-  .[5:7] as $month |
-  .[8:10] as $day |
-  .[11:13] as $hour |
-  .[14:16] as $min |
-  .[17:19] as $sec |
-  "\( $hour|__(.) )\((":")+($min|_g(.))).\( $sec|__(.) )";
+  if . == null then .
+  else
+    .[0:4] as $year |
+    .[5:7] as $month |
+    .[8:10] as $day |
+    .[11:13] as $hour |
+    .[14:16] as $min |
+    .[17:19] as $sec |
+    "\( $hour|__(.) )\((":")+($min|_g(.))).\( $sec|__(.) )"
+  end;
 
 def pTimem:
-  .[0:4] as $year |
-  .[5:7] as $month |
-  .[8:10] as $day |
-  .[11:13] as $hour |
-  .[14:16] as $min |
-  .[17:19] as $sec |
-  "\($min)";
+  if . == null then .
+  else
+    .[0:4] as $year |
+    .[5:7] as $month |
+    .[8:10] as $day |
+    .[11:13] as $hour |
+    .[14:16] as $min |
+    .[17:19] as $sec |
+    "\($min)"
+  end;
 
 
 def _minHighlight:
@@ -73,7 +82,10 @@ def _hourHighlight:
   end;
 
 def s_ToDuration:
-  ( . / (60*60) | floor ) as $hour |
-  ( (. / 60) % 60 | floor) as $min |
-  (. % 60) as $sec |
-  "\($hour|_hourHighlight|.+__(":"))\($min|_minHighlight|lp(2))\("."|__(.))\($sec|tostring|lp(2)|__(.))";
+  if . == null then .
+  else
+    ( . / (60*60) | floor ) as $hour |
+    ( (. / 60) % 60 | floor) as $min |
+    (. % 60) as $sec |
+    "\($hour|_hourHighlight|.+__(":"))\($min|_minHighlight|lp(2))\("."|__(.))\($sec|tostring|lp(2)|__(.))"
+  end;
