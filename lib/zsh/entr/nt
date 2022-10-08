@@ -4,16 +4,15 @@ function nt(){
   # nt [dir] <cmd>
   # use entr to run <cmd> when files in <dir> change
   # if dir not supplied, default to ~/dotfiles
+  local rootDir=~/dotfiles
+  while getopts 'd:' opt; do
+    case "$opt" in
+      d) rootDir=$OPTARG;;
+    esac
+  done
+  shift $(($OPTIND - 1))
 
-  local rootDir cmd
-
-  if [ $# -eq 1 ]; then
-    rootDir=~/dotfiles
-    cmd=$1
-  else
-    rootDir=$1
-    cmd=$2
-  fi
+  local cmd="$@"
 
   # -cc clears the screen and scrollback as well
   # prefer entr zsh -c to entr -s
