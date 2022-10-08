@@ -58,7 +58,8 @@ function git_develop_branch() {
 # (sorted alphabetically)
 #
 
-alias g='git'
+# alias g='git'
+alias g='git status -s'
 
 alias ga='git add'
 alias gaa='git add --all'
@@ -119,6 +120,7 @@ alias gcss='git commit -S -s'
 alias gcssm='git commit -S -s -m'
 
 alias gd='git diff'
+alias gd.='git diff @~'
 alias gdca='git diff --cached'
 alias gdcw='git diff --cached --word-diff'
 alias gdct='git describe --tags $(git rev-list --tags --max-count=1)'
@@ -254,6 +256,7 @@ alias grbo='git rebase --onto'
 alias grbs='git rebase --skip'
 alias grev='git revert'
 alias grh='git reset'
+alias grhs='git reset --soft'
 alias grhh='git reset --hard'
 alias groh='git reset origin/$(git_current_branch) --hard'
 alias grm='git rm'
