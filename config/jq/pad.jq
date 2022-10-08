@@ -2,17 +2,18 @@
 # do not need to escape $ with \, unlike in a heredoc
 # include "colour";
 
+# if null or false provided, convert to empty string
 def rpad($len; $fill):
-  tostring | ($len - length) as $l | . + ($fill * $l)[:$l];
+  if . == null then "" else . end | tostring | ($len - length) as $l | . + ($fill * $l)[:$l];
 
 def lpad($len; $fill):
-  tostring | ($len - length) as $l | ($fill * $l)[:$l] + .;
+  if . == null then "" else . end | tostring | ($len - length) as $l | ($fill * $l)[:$l] + .;
 
 def rp($len):
-  tostring | ($len - length) as $l | . + (" " * $l)[:$l];
+  if . == null then "" else . end | tostring | ($len - length) as $l | . + (" " * $l)[:$l];
 
 def lp($len):
-  tostring | ($len - length) as $l | (" " * $l)[:$l] + .;
+  if . == null then "" else . end | tostring | ($len - length) as $l | (" " * $l)[:$l] + .;
 
 # truncate string to $len - 3 and add "..."
 # if string < $len - 3, do nothing
