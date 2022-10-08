@@ -36,7 +36,12 @@ function ap(){
      end;
 
    def mapCFBuildAction:
-     "\( .stageName as \$stageName | .runOrder | _runOrder(\$stageName)) \(.name | rp(40) | _stgProdActionName)\(.actionTypeId.category | _actionTypeCategory) \(.actionTypeId.provider | _actionTypeProvider ):\(.configuration | CFBuildConfig) \(ioArtifacts(.inputArtifacts;.outputArtifacts))";
+     "\(.stageName as \$stageName | .runOrder | _runOrder(\$stageName)) "
+     +"\(.name | rp(40) | _stgProdActionName) "
+     +"\(.actionTypeId.category | _actionTypeCategory) "
+     +"\(.actionTypeId.provider | _actionTypeProvider ):\(.configuration | CFBuildConfig) "
+     +"\(ioArtifacts(.inputArtifacts;.outputArtifacts)) "
+     ;
       # \(.configuration.TemplatePath // "") 
 
    def mapCF:
