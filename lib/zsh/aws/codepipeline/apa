@@ -4,16 +4,31 @@ function apa(){
   # action-executions
   # aws codepipeline list-action-executions
 
-  local verbose summary=false
-  while getopts 'vs' opt; do
+  local verbose summary=false oneline=false
+  while getopts 'vso' opt; do
     case "$opt" in
       v) verbose=true;;
       s) summary=true;;
+      o) oneline=true;;
     esac
   done
   shift $(($OPTIND - 1))
 
   local id=$1
+
+  local statusResult=$(ape -v)
+  local jqQueryStatus=$(cat <<-EOF
+    include "pad";
+    include "colour";
+    include  "date";
+    .pipelineExecutionSummaries
+    | map(select(.pipelineExecutionId == "$id"))
+    | .[]
+    | .status
+EOF
+)
+  local pipelineStatus=$(jq --raw-output -L "~/.config/jq" "$jqQueryStatus" <<< $statusResult)
+
   local result=$(aws codepipeline list-action-executions --pipeline-name $CANDY_PIPELINE --filter pipelineExecutionId=$1)
 
   local jqQuery=$(cat <<-EOF
@@ -139,18 +154,23 @@ function apa(){
       # group into [ {name: "production", actions: [...]}, name: "staging", actions: [...]]
       group_by(.stageName) | map({name: (first.stageName), actions: .});
     def getHeader:
-      first.pipelineExecutionId;
-    .actionExecutionDetails |
-    (
-      getHeader,
+    "\(first.pipelineExecutionId|__(.)) \(getSummaryMinDate) \("$pipelineStatus"|actions_aplStatus) \(getSummaryHeaderDuration) \(getSummaryApprovedBy//"")";
+
+    if "$oneline" == "true" then
+      .actionExecutionDetails | getHeader
+    else
+      .actionExecutionDetails |
       (
-        .[0:] 
-        | groupIntoStages 
-        | sortStages
-        | map(mapStages)
-        | .[]
+        getHeader,
+        (
+          .[0:] 
+          | groupIntoStages 
+          | sortStages
+          | map(mapStages)
+          | .[]
+        )
       )
-    )
+    end
 EOF
 )
 

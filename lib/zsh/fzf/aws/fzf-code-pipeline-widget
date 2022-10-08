@@ -8,7 +8,7 @@ function fzf-code-pipeline-widget() {
     fzf --ansi --multi --preview-window right:wrap \
     --preview 'apa -s {4}' \
     --bind 'ctrl-/:change-preview-window(right,40%|right,80%|down,90%,border-top|hidden|)' \
-    --expect=ctrl-d,ctrl-s
+    --expect=ctrl-d,ctrl-s,ctrl-l
   )
 
   local key=$(head -1 <<< "$out")
@@ -34,6 +34,13 @@ function fzf-code-pipeline-widget() {
       # done
       zle reset-prompt
       return
+    elif [ "$key" = ctrl-l ]; then
+      while IFS= read -r execution ; do 
+        # remove first 2 chars of line (contains empty space or *)
+        # local branch=${gitbranchline:2}
+        local id=$(gawk '{print $4}' <<< "$execution")
+        apa -o $id
+      done <<< "$targets"
     elif [ "$key" = ctrl-d ]; then
       apa $id
     else

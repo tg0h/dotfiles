@@ -14,6 +14,15 @@ def pTime:
   .[17:19] as $sec |
   "\(($day) | _bt(.))\("/"+($month) | __(.)) \($hour)\((":")+($min) | __(.))";
 
+def pTimedm:
+  .[0:4] as $year |
+  .[5:7] as $month |
+  .[8:10] as $day |
+  .[11:13] as $hour |
+  .[14:16] as $min |
+  .[17:19] as $sec |
+  "\(($day) | _orange(.))\("/"+($month) | __(.))";
+
 def pTimehms:
   .[0:4] as $year |
   .[5:7] as $month |

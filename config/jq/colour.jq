@@ -143,11 +143,12 @@ def _bgy(text):
   escape + colours["bgyellow"] + escape + colours["black"] + text + escape + colours.reset;
 
 def _bgr(text):
-  # background red and foreground black
   escape + colours["bgred"] + escape + colours["black"] + text + escape + colours.reset;
 
+def _bgg(text):
+  escape + colours["bggreen"] + escape + colours["black"] + text + escape + colours.reset;
+
 def _bgm(text):
-  # background red and foreground black
   escape + colours["bgmagenta"] + escape + colours["black"] + text + escape + colours.reset;
 
 def _g(text):
