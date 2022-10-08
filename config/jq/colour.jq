@@ -214,7 +214,7 @@ def __(text):
   escape + colours["darkgray"] + text + escape + colours.reset;
 
 def __reverse(text):
-  escape + colours["darkgray"] + reverse + text + escape + colours.reset;
+  escape + colours["darkgray"] + _reverse + text + escape + colours.reset;
 
 def ___(text):
   escape + colours["disabled"] + text + escape + colours.reset;
