@@ -99,7 +99,7 @@ alias gsr='git symbolic-ref'
 alias gct='git commit-tree'
 
 alias gmb="git merge-base"
-alias gcmm='git add . && git commit -m'
+# alias gcmm='git add . && git commit -m '
 alias gbc='git branch --contains'
 #check remote branches as well
 # promote gbca to a function

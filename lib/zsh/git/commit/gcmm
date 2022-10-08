@@ -1,0 +1,9 @@
+#!/bin/zsh
+
+function gcmm(){
+  # add all and commit with message $@
+
+  git add '.'
+  local message="$@"
+  git commit -m "$message"
+}
