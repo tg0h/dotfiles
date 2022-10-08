@@ -32,15 +32,27 @@
   path = config-work
 [init]
 	defaultBranch = main
+; https://git-scm.com/docs/git-config#Documentation/git-config.txt-color
+; bold dim ul blink reverse italic strike
+; normal black red green yellow blue magenta cyan white default
+; brightred brightyellow ... etc
+;
+; use tool terminal-colors -no to see 256 color codes
 [color "status"]
 	added = green
-	updated = cyan
-	changed = yellow
-	untracked = red
+	updated = green normal bold
+	changed = yellow 
+	untracked = 170 bold
 	branch = cyan
 	nobranch = normal
 	unmerged = red
-	; header = black normal bold
+	header = normal
+[color "branch"]
+	current = 46
+	local = 214
+	remote = 207
+	; remote = #ff0e8b
+
 ; [color]
 ; 	ui = auto
 [push]
