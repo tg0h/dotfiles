@@ -74,6 +74,7 @@
     # ~/.local/lib/: lib/*
 
     ~/.local/lib/zsh/candy: ~/src/me/zsh/candy
+    ~/.local/lib/jq: lib/jq
 
     # certis
     # ~/src/certis/edo/abc-cli/config/environment/: config/abc-cli/env/*

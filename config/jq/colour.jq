@@ -214,6 +214,9 @@ def _y(text):
 def __(text):
   escape + colours["darkgray"] + text + escape + colours.reset;
 
+def __u(text):
+  escape + colours["darkgray"] + underline + text + escape + colours.reset;
+
 def __reverse(text):
   escape + colours["darkgray"] + _reverse + text + escape + colours.reset;
 

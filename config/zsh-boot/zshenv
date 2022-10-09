@@ -61,6 +61,10 @@ export BUNDLE_USER_PLUGIN="$XDG_DATA_HOME"/bundle
 export SOLARGRAPH_CACHE=$XDG_CACHE_HOME/solargraph
 export RIPGREP_CONFIG_PATH=$XDG_CONFIG_HOME/ripgrep/ripgreprc
 
+# use these env vars when I specify jq -L $JQ_CONOFIG
+export JQ_CONFIG="~/.config/jq"
+export JQ_LIB="~/.local/lib/jq"
+
 # place the homebrew binaries at the end of path, if not nvm will always point to the homebrew system node
 # add homebrew to path in zshenv so that it is visible to kitty launch scripts
 export PATH="$PATH:/opt/homebrew/bin" # access aws_completer, etc
