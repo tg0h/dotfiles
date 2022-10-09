@@ -92,7 +92,8 @@ add-zsh-hook chpwd dura-chpwd-hook
 # may slow down yabai if asst is unable to set the token, since yabai calls zsh -c <command> to run a command
 # asst
 
-mkdir -p /tmp/tim
+# mkdir -p /tmp/tim
+
 # enter tmux on start up if using kitty (depends on tat script in bin folder)
 # if [[ $TERM = "xterm-kitty" ]] && [[ -z "$TMUX" ]]; then
 #   tat
