@@ -1,0 +1,17 @@
+#!/bin/zsh
+
+function jqf(){
+  # jq filter array
+  # expects an array is input from stdin
+  # CT | jq '.actionExecutionDetails' | jqf '.stageName=="production"'
+  local pipeIn
+  if [ -p /dev/stdin ]
+  then
+    pipeIn=$(cat -)
+    # echo "PIPE=$PIPE"
+  fi
+  # local selectArrayKey=${1:-.}
+  local arrayFilter=${1:-.}
+
+  jq --raw-output "map(select($arrayFilter))" <<< $pipeIn
+}
