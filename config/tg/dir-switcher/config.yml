@@ -11,7 +11,7 @@ keymaps:
   - [g, $XDG_DATA_HOME, 2]
   - [c, $XDG_CONFIG_HOME, 5]
   - [r, $XDG_CACHE_HOME, 2]
-  - [l, $HOME/dotfiles/lib, 5]
+  - [l, $HOME/dotfiles/lib, 7]
   - ["l,", $HOME/.local/lib, 7]
   - [xs, $XDG_STATE_HOME, 5]
   # Home Row
