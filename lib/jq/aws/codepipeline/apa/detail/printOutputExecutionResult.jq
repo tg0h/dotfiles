@@ -1,16 +1,7 @@
 include "pad";
 include "colour";
 include "aws-pipeline";
-
-def subBucket:
- sub("(?<bucketPrefix>referralcandy-main-pipel-pipelineartifactsbucketa-yhtabfeteb9l)"; "…");
-
-def printBucket:
-  . as $s3Location
-  | $s3Location.bucket as $bucket
-  | $s3Location.key as $key
-  | "\($bucket|subBucket|__(.)) \($key|__(.))"
-  ;
+include "hyperlink";
 
 def printGitCommit:
   "\(.CommitId | trunc(6) | _g(.))"
@@ -19,49 +10,42 @@ def printGitCommit:
   ;
 def printSourceExecution:
   .output.outputVariables as $outputVariable |
-  "->"
-  +" "
-  +"\(.output.outputArtifacts[0].s3location | printBucket)"
-  +" "
-  +"\($outputVariable | printGitCommit)"
+  "\($outputVariable | printGitCommit)"
   ;
 
-def printBuildExecution:
-  "\(.input.inputArtifacts[0].s3location | printBucket)"
-  +" -> "
-  +"\(.output.outputArtifacts[0].s3location | printBucket)";
-  
-def printAssetExecution:
-  .input.inputArtifacts[0].s3location | printBucket
-  +" ->"
+def printStagingExecution:
+  "#"
+  +"\(.output.executionResult.externalExecutionId)"
   ;
 
 def subPipelineChange:
- sub("(?<w>PipelineChange was)"; (.w|__(.)));
+ sub("(?<w>PipelineChange was)"; (.w|__("PC…")));
 def subChangeSet:
  sub("(?<w>Change set)"; (.w|_purple(.)));
+
 def subCreated:
- sub("(?<w>created)"; (.w|_orange(.)));
+ sub("(?<w>created)"; ("C"|_orange(.)));
 def subUpdated:
- sub("(?<w>updated)"; (.w|_m(.)));
+ sub("(?<w>updated)"; ("U"|_m(.)));
 def subExecuted:
- sub("(?<w>executed)"; (.w|_g(.)));
+ sub("(?<w>executed)"; ("X"|_g(.)));
+
 def subStack:
  sub("(?<w>Stack)"; (.w|_tacha(.)));
 def subNoChanges:
- sub("(?<w>no (changes|change).)"; (.w|__(.)));
+ sub("(?<w>no (changes|change).)"; ("-"|__(.)));
 def subPeriod:
- sub("(?<w>\\.)"; (.w|__(.)));
+ sub("(?<w>\\.)"; "");
 def subWith:
- sub("(?<w>with)"; (.w|__(.)));
+ sub("(?<w>with )"; "");
 def subWas:
- sub("(?<w>was)"; (.w|__(.)));
+ sub("(?<w>was )"; "");
 def subProductionAction:
  sub("(?<=production-)(?<action>\\S*)"; (.action|_actionName) );
 def subStagingAction:
  sub("(?<=staging-)(?<action>\\S*)"; (.action|_actionName) );
 def subProductionStaging: # put this after subProductionAction or subStagingAction
- sub("(?<w>(production|staging)-)"; (.w|__(.)) );
+ sub("(?<w>(production|staging)-)"; (.w|__("…")) );
 
 def subApprovedBy: # put this after subProductionAction or subStagingAction
  sub("(?<w>(Approved by))"; (.w|_g(.)) );
@@ -69,8 +53,6 @@ def subRejectedBy: # put this after subProductionAction or subStagingAction
  sub("(?<w>(Rejected by))"; (.w|_r(.)) );
 def subArn: # put this after subProductionAction or subStagingAction
  sub("(?<w>(arn.*/))"; "");
-
-#   capture("(?<action>(Approved|Rejected) by).*/(?<user>(.*))");
  
 def printExecutionSummary:
   if . == null then null else
@@ -80,16 +62,22 @@ def printExecutionSummary:
   | subApprovedBy | subRejectedBy | subArn
   end
   ;
-def printExecutionResult:
-  if .stageName == "staging" or .stageName == "production" then
-    .output.executionResult.externalExecutionSummary | printExecutionSummary // ""
-  elif .stageName == "Assets" or .stageName == "UpdatePipeline" then
-    printAssetExecution
-  elif .stageName == "Build" then
-    printBuildExecution
-  elif .stageName == "Source" then
-    # printBuildExecution
+def printExternalId:
+  . | ltrunc(2) | _b(.);
+
+def printOutputExecutionResult:
+  .output.executionResult.externalExecutionUrl as $hyperlink |
+  .output.executionResult.externalExecutionId as $externalId |
+  if .stageName == "Source" then
     printSourceExecution
+  elif .stageName == "staging" or .stageName == "production" then
+    if .actionName == "DeployToProduction" then
+    "\(.output.executionResult.externalExecutionSummary | printExecutionSummary // "")"
+    else
+    "\(.output.executionResult.externalExecutionSummary | printExecutionSummary // "") \($externalId|printExternalId)\($hyperlink|hyperlink)"
+    end
+  elif .stageName == "Build" or .stageName == "UpdatePipeline" or .stageName == "Assets" then
+    $externalId|printExternalId + "\($hyperlink|hyperlink)"
   else
-    .
+    ""
   end;

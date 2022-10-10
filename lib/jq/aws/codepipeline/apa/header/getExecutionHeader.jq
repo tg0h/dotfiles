@@ -80,7 +80,10 @@ def s_ToDuration_red_underline:
 def getDurationToNow($pipelineStatus):
   if $pipelineStatus == "InProgress" then
     (map(.startTime) | min) as $minTime
-    | "\(_duration_s($minTime|aws_fromdate;now)|s_ToDuration_red_underline)"
+    # aws_fromdate assumes input date is in UTC time not SG time
+    # adjust now since $minTime|aws_fromdate is not in SG time
+    | "\(_duration_s($minTime|aws_fromdate;now+8*60*60)|s_ToDuration_red_underline)"
+    # | $minTime|aws_fromdate,
   else
     ""
   end

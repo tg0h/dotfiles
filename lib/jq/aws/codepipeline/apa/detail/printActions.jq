@@ -2,7 +2,9 @@ include "aws-time";
 include "aws-pipeline";
 include "pad";
 include "colour";
-include "aws/codepipeline/apa/detail/printExecutionResult";
+include "aws/codepipeline/apa/detail/printOutputExecutionResult";
+include "aws/codepipeline/apa/detail/printInputConfiguration";
+include "aws/codepipeline/apa/detail/printInputOutputArtifacts";
 
 
 def durationHighlight:
@@ -35,6 +37,11 @@ def printRunOrder($stageName):
     .
   end;
 
+def printInputProvider:
+  .input.actionTypeId.provider | _actionTypeProvider
+  +" "
+  ;
+
 def printActions($stageName; $maxarray):
   "  \(.runOrder | printRunOrder($stageName)) "
   +"\(.actionName| rp(40) |printActionName($stageName) ) "
@@ -43,5 +50,8 @@ def printActions($stageName; $maxarray):
   +"\(._prettyDuration) "
   +"\(.startTime|pTimehms) "
   +"\(.lastUpdateTime|pTimehms) "
-  +"\(printExecutionResult)"
+  +"\(printInputProvider)"
+  +"\(printInputConfiguration)"
+  +"\(printInputOutputArtifacts)"
+  +"\(printOutputExecutionResult)"
   ;
