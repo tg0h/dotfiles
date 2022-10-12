@@ -1,0 +1,12 @@
+#!bin/zsh
+
+function _apa(){
+  # action-executions
+  # aws codepipeline list-action-executions
+
+  local id=$1
+
+  local result=$(aws codepipeline list-action-executions --pipeline-name $CANDY_PIPELINE --filter pipelineExecutionId=$id)
+
+  jq '.' <<< "$result"
+}

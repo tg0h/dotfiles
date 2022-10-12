@@ -1,0 +1,12 @@
+#!bin/zsh
+
+function _ape(){
+  # list pipeline executions
+  # aws codepipeline list-action-executions
+
+  local n=$1
+
+  local result=$(aws codepipeline list-pipeline-executions --pipeline-name $CANDY_PIPELINE --max-items $n)
+
+  jq '.' <<< "$result"
+}

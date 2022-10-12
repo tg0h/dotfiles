@@ -29,7 +29,11 @@ EOF
 )
 
   local pipelineStatus=$(jq --raw-output -L "~/.config/jq" "$jqQueryStatus" <<< $statusResult)
-  local result=$(aws codepipeline list-action-executions --pipeline-name $CANDY_PIPELINE --filter pipelineExecutionId=$1)
+  local cacheKey="aws/apa/$id"
+  # echo cacheKey is $cacheKey
+  rcache "$cacheKey.604800" _apa $id
+  local result=$(rcg "aws/apa/$id")
+
   local jqQuery=$(cat <<-EOF
     include "aws/codepipeline/apa/_entry";
     _entry("$oneline";"$pipelineStatus";"$summary")
@@ -37,8 +41,8 @@ EOF
 )
 
   if [ $verbose ]; then
-    jq --raw-output "." <<< $result
+    jq --raw-output "." <<< "$result"
   else
-    jq --raw-output -L "~/.config/jq" -L "~/.local/lib/jq" "$jqQuery" <<< $result
+    jq --raw-output -L "~/.config/jq" -L "~/.local/lib/jq" "$jqQuery" <<< "$result"
   fi
 }

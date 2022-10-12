@@ -7,16 +7,21 @@ function ape(){
   # -d - debug
 
   local verbose debug="false"
-  while getopts 'vd' opt; do
+  while getopts 'vdn:' opt; do
     case "$opt" in
       v) verbose=true;;
       d) debug=true;; # show more output (github commit url)
+      n) n=$OPTARG;; # show more output (github commit url)
     esac
   done
   shift $(($OPTIND - 1))
 
-  local n=${1:-20}
-  local result=$(aws codepipeline list-pipeline-executions --pipeline-name $CANDY_PIPELINE --max-items $n)
+  local n=${n:-20}
+  # local result=$(aws codepipeline list-pipeline-executions --pipeline-name $CANDY_PIPELINE --max-items $n)
+
+  # silence REDIS OK 
+  rcache "aws/n:$n/ape.604800" _ape $n
+  local result=$(rcg "aws/n:$n/ape" )
 
   local jqQuery=$(cat <<-EOF
     include "pad";
