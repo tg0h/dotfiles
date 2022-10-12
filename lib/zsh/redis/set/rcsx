@@ -1,0 +1,11 @@
+#!bin/zsh
+
+function rcsx(){
+  # redis cli set with expiry
+
+  if [[ $# -eq 2 ]]; then
+    redis-cli set $@
+  else 
+    redis-cli set $1 $2 EX $3
+  fi
+}

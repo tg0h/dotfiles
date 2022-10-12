@@ -68,12 +68,17 @@ function rcache(){
     # TODO: if there are spaces in $@, then each space results in separate args to $func
     # this is a difficult problem to solve
     # echo rcache: calling funcResult with $@ >> rcache.log
+
+    # DONT CHANGE THIS TO STDOUT or consumers might use this as json and cause a parse error
+    # echo cache miss 1>&2
     funcResult=$(eval $func "$@")
     #rcs sets the cache, ignores expiry if none provided
-    rcs "$cacheKey" "$funcResult" "$cacheExpiry"
+
+    # silence the OK reply by redis since anything later that expects json from rcache will not parse
+    rcsx "$cacheKey" "$funcResult" "$cacheExpiry" >/dev/null
   fi
   # return the cache value. if null, return funcResult
-  echo ${cacheValue:-$funcResult}
+  # echo ${cacheValue:-$funcResult}
 }
 
 # this is a hard problem
