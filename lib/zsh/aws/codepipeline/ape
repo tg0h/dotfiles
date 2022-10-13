@@ -20,8 +20,8 @@ function ape(){
   # local result=$(aws codepipeline list-pipeline-executions --pipeline-name $CANDY_PIPELINE --max-items $n)
 
   # silence REDIS OK 
-  rcache "aws/n:$n/ape.604800" _ape $n
-  local result=$(rcg "aws/n:$n/ape" )
+  rcache "aws/ape/n:$n.604800" _ape $n
+  local result=$(rcg "aws/ape/n:$n" )
 
   local jqQuery=$(cat <<-EOF
     include "pad";
