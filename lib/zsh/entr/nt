@@ -4,7 +4,8 @@ function nt(){
   # nt [dir] <cmd>
   # use entr to run <cmd> when files in <dir> change
   # if dir not supplied, default to ~/dotfiles
-  local rootDir=~/dotfiles
+  # run zsh -c <cmd> if dotfiles, else run npx ava
+  local rootDir=$HOME/dotfiles
   while getopts 'd:' opt; do
     case "$opt" in
       d) rootDir=$OPTARG;;
@@ -17,5 +18,9 @@ function nt(){
   # -cc clears the screen and scrollback as well
   # prefer entr zsh -c to entr -s
   # entr -s prints the exit code which is noisy
-  fd . $rootDir | entr -cc zsh -c $cmd
+  if [ $rootDir = $HOME/dotfiles ]; then
+    fd . $rootDir | entr -cc zsh -c $cmd
+  else
+    fd . $rootDir | entr -cc npx ava $cmd
+  fi
 }
