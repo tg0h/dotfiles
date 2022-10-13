@@ -1,6 +1,6 @@
 # pr
-alias hc="gh pr create"
-alias hc.="gh pr create --fill" # pull request - create pr with defaults
+alias hc.="hc -f" # create pr but prefill title and body
+alias hc,="hc -t " # create pr with title
 alias hl="gh pr list"
 alias hv="gh pr view --web" # pull request - view pr after creating it
 alias ht="gh pr status"

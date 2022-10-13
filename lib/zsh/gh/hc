@@ -1,0 +1,26 @@
+#!bin/zsh
+
+function hc(){
+  # create github pull request
+  # hc -f - just create a pr and fill in title and body for me
+  # hc -t <title> - I want to fill in a title for the PR
+  # hc - i want to provide a title and body interactively
+  local fill title
+  while getopts 'ft' opt; do
+    case "$opt" in
+      f) fill=true;;
+      t) title=true;;
+    esac
+  done
+  shift $(($OPTIND - 1))
+
+  local message="$@"
+
+  if [ $fill ]; then
+    gh pr create --fill
+  elif [ $title ]; then
+    gh pr create --title "$message" --fill
+  else
+    gh pr create
+  fi
+}
