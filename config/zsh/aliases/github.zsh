@@ -7,6 +7,8 @@ alias ht="gh pr status"
 
 # repo
 alias hr="gh repo"
+alias hr.="gh repo view --web"
+
 alias hrc="gh repo create"
 alias hrcp="gh repo create --public"
 alias hrcpp="gh repo create --private"
