@@ -1,0 +1,11 @@
+#!bin/zsh
+
+function zad(){
+  # move all directories to the archive folder in the current directory
+  # does not work if directory is already in the archive folder (prevents overwrites)
+
+  # do not move the archive folder to the archive folder
+  # {} - gets full path of file
+  # {/} - gets basename
+  fd --exclude archive . --type d --max-depth 1 --exec mv {/} archive
+}
