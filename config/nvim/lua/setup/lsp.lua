@@ -12,7 +12,7 @@ capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 -- })
 
 local servers = {
-    "tsserver", "jsonls", "bashls", "dockerls", "yamlls", "sumneko_lua",
+    "tsserver", "jsonls", "dockerls", "yamlls", "sumneko_lua",
     "solargraph", "pyright"
 }
 
