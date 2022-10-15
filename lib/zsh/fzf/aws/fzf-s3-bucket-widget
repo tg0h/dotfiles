@@ -1,0 +1,46 @@
+#!bin/zsh
+
+function fzf-s3-bucket-widget() {
+  # list s3 buckets
+
+  local id
+  local out=$( stl | \
+    fzf --ansi --multi --preview-window right,60%:wrap \
+    --preview 'stl {3}' \
+    --bind 'ctrl-/:change-preview-window(right,40%|down,60%,border-top|hidden|)' \
+    --expect=ctrl-d,ctrl-r
+  )
+
+  local key=$(head -1 <<< "$out")
+  local targets=$(tail -n +2 <<< "$out") # get all lines after the first line
+  local hasTarget=$(head -1 <<< "$targets")
+
+  if [ ! $hasTarget ]; then
+    zle reset-prompt
+    return
+  fi
+
+  local bucketLines buckets
+  buckets=()
+  while IFS= read -r bucketLines ; do 
+    local bucket=$(gawk '{print $3}' <<< "$bucketLines")
+
+    if [ "$key" = ctrl-d ]; then
+      echo deleting bucket $bucket
+      std $bucket
+    elif [ "$key" = ctrl-r ]; then
+      echo removing files from bucket
+      str $bucket
+    else
+      # $buckets="$buckets $bucket"
+      buckets+=($bucket)
+    fi
+  done <<< "$targets"
+
+  if [ ! $key ]; then
+    LBUFFER+=$buckets
+  fi
+
+  zle reset-prompt
+  return
+}

@@ -75,6 +75,8 @@ bindkey '^l' fzf-brancher-widget
 
 zle -N fzf-code-pipeline-widget # show action executions for a code pipeline
 bindkey '^[^g' fzf-code-pipeline-widget
+zle -N fzf-s3-bucket-widget # show action executions for a code pipeline
+bindkey '^[^b' fzf-s3-bucket-widget
 
 # Alt+Backspace to backward kill to dir segment
 zle -N backward-kill-dir

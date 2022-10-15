@@ -2,5 +2,9 @@
 
 function stl(){
   # aws s3 ls
-  aws s3 ls
+  # stl - list buckets
+  # stl <bucket> - list bucket contents
+
+  local bucket=$1
+  aws s3 ls $bucket
 }

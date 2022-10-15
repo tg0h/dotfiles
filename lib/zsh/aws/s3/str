@@ -1,0 +1,9 @@
+#!bin/zsh
+
+function str(){
+  # aws s3 rm - remove items from bucket
+  # str <bucket>
+  local bucket=$1
+
+  aws s3 rm s3://$bucket --recursive
+}

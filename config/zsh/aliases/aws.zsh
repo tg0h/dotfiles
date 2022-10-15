@@ -1,3 +1,5 @@
+alias at='asp tim'
+
 alias qgt='qg -t'
 
 alias acdsp="acds -cp"
