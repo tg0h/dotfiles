@@ -43,7 +43,7 @@ keymaps:
   - [lf, $HOME/.local/lib/zsh-functions]
 
   # PLAYGROUND
-  - [ta, $HOME/src/playground/aws]
+  - [ta, $HOME/src/playground/aws/cdk]
   - [ty, $HOME/src/playground/yarn]
   - [tg, $HOME/src/playground/github/scratch]
   - [tp, $HOME/src/playground/python/]
