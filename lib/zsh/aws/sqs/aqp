@@ -2,8 +2,23 @@
 
 function aqp(){
   # purge sqs queue
-  local queueUrl=${1:-$AWS_QUEUE_URL}
+  # aqp -l to purge local queue
+  local localOpt queueUrl
+  while getopts 'l' opt; do
+    case "$opt" in
+      l) localOpt=true;;
+    esac
+  done
+  shift $(($OPTIND - 1))
 
-  echo purging $queueUrl
-  aws sqs purge-queue --queue-url $queueUrl
+  if [ $localOpt ]; then
+    queueUrl=$AWS_LOCAL_QUEUE
+    echo purging $queueUrl
+    aws --endpoint-url $AWS_LOCAL_QUEUE_ENDPOINT sqs purge-queue --queue-url $queueUrl
+  else
+    queueUrl=${1:-$AWS_QUEUE_URL}
+    echo purging $queueUrl
+    aws sqs purge-queue --queue-url $queueUrl
+  fi
+
 }
