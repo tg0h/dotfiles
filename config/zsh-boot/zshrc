@@ -52,12 +52,12 @@ zinit lucid wait for \
   OMZP::gitignore \
   agkozak/zhooks \
   rupa/z \
-  OMZP::aws/aws.plugin.zsh \
   atload"_zsh_autosuggest_start" \
       zsh-users/zsh-autosuggestions \
       atinit"zicompinit; zicdreplay; nvm use default --silent; _evalcache pyenv init -;" \
       zdharma-continuum/fast-syntax-highlighting \
       #
+# OMZP::aws/aws.plugin.zsh \
 # marlonrichert/zsh-autocomplete \
 # TODO: zsh-autosuggestions has a bug that destroys the kill ring zzzz
 
@@ -89,8 +89,9 @@ add-zsh-hook chpwd dura-chpwd-hook
 
 # set aws credential env vars
 # asst > /dev/null
+# set up the default profile stored in xdg state
 # may slow down yabai if asst is unable to set the token, since yabai calls zsh -c <command> to run a command
-# asst
+as $(asg) > /dev/null
 
 # mkdir -p /tmp/tim
 
