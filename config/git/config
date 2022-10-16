@@ -30,6 +30,8 @@
   path = config-work
 [includeIf "gitdir:~/src/candy-main/"]
   path = config-work
+[includeIf "gitdir:~/src/playground/"]
+  path = config-work
 [init]
 	defaultBranch = main
 ; https://git-scm.com/docs/git-config#Documentation/git-config.txt-color
