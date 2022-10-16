@@ -1,0 +1,12 @@
+#!bin/zsh
+
+function gra(){
+  # git remote add
+  # gra owner/repo
+  local repo=$1
+
+  # eg
+  # git remote add git@github.com:timgsl/my-pipeline.git
+
+  git remote add origin git@github.com:$repo.git
+}
