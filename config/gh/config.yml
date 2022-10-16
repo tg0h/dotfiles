@@ -9,6 +9,9 @@ pager:
 # Aliases allow you to create nicknames for gh commands
 aliases:
   co: pr checkout
+  # https://stackoverflow.com/questions/21083933/what-does-the-exclamation-mark-mean-in-git-config-alias
+  # ! runs the gh subcommand as a shell command and in the git repo root directory
+  # if not, the alias runs as a gh sub command
   personal: "!cp ~/.config/gh/hosts.personal.yml ~/.config/gh/hosts.yml && gh auth status"
   p: "!cp ~/.config/gh/hosts.personal.yml ~/.config/gh/hosts.yml && gh auth status"
   work: "!cp ~/.config/gh/hosts.work.yml ~/.config/gh/hosts.yml && gh auth status"
