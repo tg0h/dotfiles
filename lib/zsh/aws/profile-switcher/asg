@@ -1,0 +1,8 @@
+#!bin/zsh
+
+function asg(){
+  # get the default profile from xdg state
+  local defaultProfile=$XDG_STATE_HOME/aws/profile-switcher/profile
+
+  cat $defaultProfile
+}

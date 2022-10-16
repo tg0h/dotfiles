@@ -81,4 +81,4 @@ fpath=($ZSH_FUNCTIONS_PATH $ZSH_FUNCTIONS_COMPILED_PATH $fpath)
 autoload $ZSH_FUNCTIONS_PATH/*
 autoload $ZSH_FUNCTIONS_COMPILED_PATH/*
 
-asst > /dev/null
+# asst > /dev/null

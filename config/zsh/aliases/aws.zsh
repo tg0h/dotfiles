@@ -1,4 +1,6 @@
-alias at='asp tim'
+# aws profile switcher
+alias ast='as t' # switch to aws profile tim
+alias asc='as c' # switch to aws candy
 
 alias qgt='qg -t'
 

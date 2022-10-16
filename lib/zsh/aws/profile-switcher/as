@@ -1,110 +1,21 @@
 #!bin/zsh
 
-function asiu(){
-  # unset env vars
-  unset AWS_DEFAULT_PROFILE
-  unset AWS_PROFILE
-  unset AWS_EB_PROFILE
-
-  unset AWS_ACCESS_KEY_ID
-  unset AWS_SECRET_ACCESS_KEY
-  unset AWS_SESSION_TOKEN
-}
-
 function as(){
-  asiu #unset all the variables set by asst
-  local profile
-  case $1 in
-    d)
-      # export AWS_DEFAULT_REGION=ap-southeast-1
-      #stores cloudwatch cache log name
-      . $XDG_CONFIG_HOME/aws/aws.argus.develop.env
-      # argus ssh and rds settings
-      . $XDG_CONFIG_HOME/argus/env/argus.develop.env
-      . $XDG_CONFIG_HOME/abs/argus.develop.env
-      asp adev
-      ;;
-    s)
-      # export AWS_DEFAULT_REGION=ap-southeast-1
-      . $XDG_CONFIG_HOME/aws/aws.argus.staging.env #TODO: duplication?
-      . $XDG_CONFIG_HOME/argus/env/argus.staging.env
-      . $XDG_CONFIG_HOME/abs/argus.staging.env
-      asp adev
-      ;;
-    p)
-      # export AWS_DEFAULT_REGION=ap-southeast-1
-      . $XDG_CONFIG_HOME/aws/aws.argus.production.env
-      . $XDG_CONFIG_HOME/argus/env/argus.production.env
-      . $XDG_CONFIG_HOME/abs/argus.production.env
-      asp aprod
-      ;;
+  # switch aws profiles
+  # as t - use tim profile
+  # as c - use candy profile
 
-    as)
-      # export AWS_DEFAULT_REGION=ap-southeast-2
-      . $XDG_CONFIG_HOME/aws/aws.argus.au.staging.env
-      . $XDG_CONFIG_HOME/argus/env/argusAu.staging.env
-      . $XDG_CONFIG_HOME/abs/argus.au.staging.env
-      asp aastg
-      ;;
-    ap)
-      # export AWS_DEFAULT_REGION=ap-southeast-2
-      . $XDG_CONFIG_HOME/aws/aws.argus.au.production.env
-      . $XDG_CONFIG_HOME/argus/env/argusAu.production.env
-      # . ~/.abs/argus.au.production.env
-      asp aaprod
-      ;;
+  local profile=$1
 
-    od)
-      # export AWS_DEFAULT_REGION=ap-southeast-1
-      #stores cloudwatch cache log name
-      . $XDG_CONFIG_HOME/aws/aws.optimax.develop.env
-      # argus ssh and rds settings
-      . $XDG_CONFIG_HOME/argus/env/optimax.develop.env
-      . $XDG_CONFIG_HOME/abs/optimax.develop.env
-      asp odev
-      ;;
-    os)
-      # export AWS_DEFAULT_REGION=ap-southeast-1
-      . $XDG_CONFIG_HOME/aws/aws.optimax.staging.env #TODO: duplication?
-      . $XDG_CONFIG_HOME/argus/env/optimax.staging.env
-      . $XDG_CONFIG_HOME/abs/optimax.staging.env
-      asp odev
-      ;;
-    op)
-      # export AWS_DEFAULT_REGION=ap-southeast-1
-      . $XDG_CONFIG_HOME/aws/aws.optimax.production.env
-      . $XDG_CONFIG_HOME/argus/env/optimax.production.env
-      . $XDG_CONFIG_HOME/abs/optimax.production.env
-      asp oprod
-      ;;
+  _aws-unset-key-env # unset all the variables set by asst or as
 
-    cd)
-      # export AWS_DEFAULT_REGION=ap-southeast-1
-      . $XDG_CONFIG_HOME/aws/aws.certify.develop.env
-      . $XDG_CONFIG_HOME/certify/certify.develop.env
-      asp cdev
+  case $profile in
+    t)
+      _aws-set-profile-env tim
       ;;
-    cs)
-      # export AWS_DEFAULT_REGION=ap-southeast-1
-      . $XDG_CONFIG_HOME/aws/aws.certify.develop.env
-      . $XDG_CONFIG_HOME/certify/certify.staging.env
-      asp cdev
-      ;;
-    cp)
-      # export AWS_DEFAULT_REGION=ap-southeast-1
-      . $XDG_CONFIG_HOME/aws/aws.certify.production.env
-      . $XDG_CONFIG_HOME/certify/certify.production.env
-      asp cprod
-      ;;
-    sb)
-      # export AWS_DEFAULT_REGION=ap-southeast-1
-      . $XDG_CONFIG_HOME/aws/aws.sandbox.env
-      asp sb
-      asst #the sb account requires mfa, use sts to get the token
-      ;;
-    cvs)
-      # export AWS_DEFAULT_REGION=ap-southeast-1
-      asp cvs
+    c)
+      _aws-set-profile-env default
+      asst
       ;;
     *)
       echo "${fg[red]} no profile found ${reset_color}"

@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+function _aws-set-profile-env(){
+  export AWS_DEFAULT_PROFILE=$1 
+  export AWS_PROFILE=$1 
+  export AWS_EB_PROFILE=$1 
+}

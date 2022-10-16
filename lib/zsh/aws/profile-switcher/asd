@@ -1,0 +1,16 @@
+#!bin/zsh
+
+function asd(){
+  # store the default profile in xdg state
+  local default
+  default=$1
+
+  if [ $default ]; then
+    local stateDir=$XDG_STATE_HOME/aws/profile-switcher
+
+    md -p $stateDir
+    echo $default > $stateDir/profile
+
+    return
+  fi
+}
