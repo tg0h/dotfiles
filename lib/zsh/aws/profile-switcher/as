@@ -14,7 +14,8 @@ function as(){
       _aws-set-profile-env tim
       ;;
     c)
-      _aws-set-profile-env default
+      # cl does not work if i set a profile ??
+      # _aws-set-profile-env default
       asst
       ;;
     *)
