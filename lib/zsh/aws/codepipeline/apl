@@ -2,5 +2,23 @@
 
 function apl(){
   # list pipelines
-   aws codepipeline list-pipelines
+  local verbose
+  local result=$(aws codepipeline list-pipelines)
+
+  local jqQuery=$(cat <<-EOF
+    include "aws-time";
+    include "pad";
+
+    .pipelines 
+    | map(
+      "\(.updated|pTime) \(.version|lp(2)) \(.name)"
+    )[]
+EOF
+)
+
+  if [ $verbose ]; then
+    jq --raw-output "." <<< "$result"
+  else
+    jq --raw-output -L "~/.config/jq" "$jqQuery" <<< "$result"
+  fi
 }
