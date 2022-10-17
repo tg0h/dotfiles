@@ -6,8 +6,10 @@ function fzf-code-pipeline-widget() {
   # id=$(ape | fzf | awk '{print $4}')
   local out=$( ape | \
     fzf --ansi --multi --preview-window down,60%:wrap \
-    --preview 'apa -s {4}' \
+    --preview 'apa -p {3} -s {5}' \
     --bind 'ctrl-/:change-preview-window(right,40%|down,60%,border-top|hidden|)' \
+    --bind 'alt-g:reload(ape lambda-stack-cdk-pipeline)' \
+    --bind 'alt-c:reload(ape)' \
     --expect=ctrl-d,ctrl-s,ctrl-l
   )
 
@@ -15,8 +17,8 @@ function fzf-code-pipeline-widget() {
   local targets=$(tail -n +2 <<< "$out") # get all lines after the first line
   local target1=$(head -1 <<< "$targets")
 
-  local id=$(gawk '{print $4}' <<< "$target1")
-
+  local id=$(gawk '{print $5}' <<< "$target1")
+  local pipelineName=$(gawk '{print $3}' <<< "$target1")
   if [ $id ]; then
     if [ "$key" = ctrl-s ]; then
       # apa -s $id
@@ -25,8 +27,9 @@ function fzf-code-pipeline-widget() {
       while IFS= read -r execution ; do 
         # remove first 2 chars of line (contains empty space or *)
         # local branch=${gitbranchline:2}
-        local id=$(gawk '{print $4}' <<< "$execution")
-        apa -s $id
+        local id=$(gawk '{print $5}' <<< "$execution")
+        local pipelineName=$(gawk '{print $3}' <<< "$execution")
+        apa -p $pipelineName -s $id
       done <<< "$targets"
 
       # for branch in $branches; do
@@ -38,13 +41,14 @@ function fzf-code-pipeline-widget() {
       while IFS= read -r execution ; do 
         # remove first 2 chars of line (contains empty space or *)
         # local branch=${gitbranchline:2}
-        local id=$(gawk '{print $4}' <<< "$execution")
-        apa -o $id
+        local id=$(gawk '{print $5}' <<< "$execution")
+        local pipelineName=$(gawk '{print $3}' <<< "$execution")
+        apa -p $pipelineName -o $id
       done <<< "$targets"
     elif [ "$key" = ctrl-d ]; then
-      apa $id
+      apa -p $pipelineName $id
     else
-      apa $id
+      apa -p $pipelineName $id
     fi
   fi
 
