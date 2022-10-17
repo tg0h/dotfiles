@@ -113,13 +113,14 @@ export FZF_CTRL_T_OPTS="
 export FZF_ALT_C_COMMAND="fd --type d --hidden --no-ignore $FD_OPTIONS"
 export FZF_ALT_C_OPTS="
 --preview 'lsd {} --tree --color always --icon always'
---bind 'alt-r:reload(fd --type d --max-depth 1 --hidden --no-ignore $FD_OPTIONS)+change-prompt(depth:1>)'
+--bind 'alt-r:reload(exa --oneline --color always --sort accessed --reverse --only-dirs)+change-prompt(depth:1>)'
 --bind 'alt-g:reload(fd --type d --max-depth 2 --hidden --no-ignore $FD_OPTIONS)+change-prompt(depth:2>)'
 --bind 'alt-l:reload(fd --type d --max-depth 3 --hidden --no-ignore $FD_OPTIONS)+change-prompt(depth:3>)'
 --bind 'alt-c:reload(fd --type d --hidden --no-ignore $FD_OPTIONS)+change-prompt(>)'
 --bind 'space:down'
 --bind 'tab:up'
 "
+# --bind 'alt-r:reload(fd --type d --max-depth 1 --hidden --no-ignore $FD_OPTIONS)+change-prompt(depth:1>)'
 
 #use ~~ instead of **
 export FZF_COMPLETION_TRIGGER='##'
