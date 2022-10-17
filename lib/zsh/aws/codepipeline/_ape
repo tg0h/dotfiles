@@ -3,10 +3,12 @@
 function _ape(){
   # list pipeline executions
   # aws codepipeline list-action-executions
+  # _ape <pipelineName> <maxItems>
 
-  local n=$1
+  local pipelineName=$1
+  local n=$2
 
-  local result=$(aws codepipeline list-pipeline-executions --pipeline-name $CANDY_PIPELINE --max-items $n)
+  local result=$(aws codepipeline list-pipeline-executions --pipeline-name $pipelineName --max-items $n)
 
   jq '.' <<< "$result"
 }

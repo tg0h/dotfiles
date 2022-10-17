@@ -2,11 +2,12 @@
 
 function ape(){
   # list pipeline executions
-  # ape [number of executions to show] - defaults to 5
+  # ape <pipelineName> - defaults to RC pipeline
   # -v - verbose
   # -d - debug
+  # -n - maxItems
 
-  local verbose debug="false"
+  local verbose debug="false" local n
   while getopts 'vdn:' opt; do
     case "$opt" in
       v) verbose=true;;
@@ -16,12 +17,14 @@ function ape(){
   done
   shift $(($OPTIND - 1))
 
-  local n=${n:-20}
+  n=${n:-20}
+  local pipelineName=${1:-$CANDY_PIPELINE}
   # local result=$(aws codepipeline list-pipeline-executions --pipeline-name $CANDY_PIPELINE --max-items $n)
 
   # silence REDIS OK 
-  rcache "aws/ape/n:$n.604800" _ape $n
-  local result=$(rcg "aws/ape/n:$n" )
+  local cacheKey="aws/ape/pipelineName:$pipelineName/n:$n"
+  rcache $cacheKey.604800 _ape $pipelineName $n
+  local result=$(rcg $cacheKey)
 
   local jqQuery=$(cat <<-EOF
     include "pad";
