@@ -4,19 +4,21 @@ function apa(){
   # action-executions
   # aws codepipeline list-action-executions
 
-  local verbose summary=false oneline=false
-  while getopts 'vso' opt; do
+  local verbose summary=false oneline=false p
+  while getopts 'vsop:' opt; do
     case "$opt" in
       v) verbose=true;;
       s) summary=true;;
       o) oneline=true;;
+      p) p=$OPTARG;;
     esac
   done
   shift $(($OPTIND - 1))
 
   local id=$1
+  local pipelineName=${p:-$CANDY_PIPELINE}
 
-  local statusResult=$(ape -v)
+  local statusResult=$(ape -v $pipelineName)
   local jqQueryStatus=$(cat <<-EOF
     include "pad";
     include "colour";
@@ -29,10 +31,9 @@ EOF
 )
 
   local pipelineStatus=$(jq --raw-output -L "~/.config/jq" "$jqQueryStatus" <<< $statusResult)
-  local cacheKey="aws/apa/$id"
-  # echo cacheKey is $cacheKey
-  rcache "$cacheKey.604800" _apa $id
-  local result=$(rcg "aws/apa/$id")
+  local cacheKey="aws/apa/pipelineName:$pipelineName/$id"
+  rcache "$cacheKey.604800" _apa $pipelineName $id
+  local result=$(rcg $cacheKey)
 
   local jqQuery=$(cat <<-EOF
     include "aws/codepipeline/apa/_entry";
