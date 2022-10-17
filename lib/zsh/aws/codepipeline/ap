@@ -11,7 +11,9 @@ function ap(){
   done
   shift $(($OPTIND - 1))
 
-  local result=$(aws codepipeline get-pipeline --name $CANDY_PIPELINE)
+  local pipelineName=${1:-$CANDY_PIPELINE}
+
+  local result=$(aws codepipeline get-pipeline --name $pipelineName)
 
     local jqQuery=$(cat <<-EOF
    include "pad";
