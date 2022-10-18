@@ -9,3 +9,8 @@ alias acdsfp="acdsf -cp"
 
 alias aqgl="aqg -l"
 alias aqsl="aqs -l"
+
+# cdk
+alias cd.="cdk synth"
+alias cd,="cdk ls"
+alias cdp="cdk deploy"
