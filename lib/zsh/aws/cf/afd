@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+function afd(){
+  # aws cloudformation delete-stack
+  local stackName=$1
+  aws cloudformation delete-stack --stack-name $stackName
+}
