@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-function acl(){
+function afl(){
   # aws cloudformation list-stacks
   # aws lists stacks that have been deleted for up to 90 days
   # -v
