@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+function rcda(){
+  # redis cli delete all keys matching <pattern>
+  # rcda <pattern>
+  redis-cli keys "*$1*" | xargs redis-cli DEL
+}
