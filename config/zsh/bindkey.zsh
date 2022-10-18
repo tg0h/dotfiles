@@ -43,10 +43,10 @@ zle -N fzf-docker-image-widget
 bindkey '^[^V' fzf-docker-image-widget
 
 # npm
-# zle -N fzf-search-package-widget
-# bindkey '^s^g' fzf-search-package-widget
-# zle -N fzf-search-package-downwards-widget
-# bindkey '^s^f' fzf-search-package-downwards-widget
+zle -N fzf-search-package-widget
+bindkey '^[^h' fzf-search-package-widget
+zle -N fzf-search-package-downwards-widget
+bindkey '^[^n' fzf-search-package-downwards-widget
 
 zle -N fzf-search-filenameAndContent-widget
 bindkey '^[-' fzf-search-filenameAndContent-widget

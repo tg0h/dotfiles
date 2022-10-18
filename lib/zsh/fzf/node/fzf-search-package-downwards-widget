@@ -1,6 +1,6 @@
 #!bin/zsh
 
-function no(){
+function nd(){
   # search downwards for all package.json npm commands
   # TODO: colour files with alternate random colours
 
@@ -30,7 +30,7 @@ EOF
 }
 
 function fzf-search-package-downwards-widget() {
-  no
+  nd
   zle reset-prompt
 }
 
