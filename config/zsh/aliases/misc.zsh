@@ -26,7 +26,7 @@ alias eo='scratcher-cheat'
 
 # quick print eval loop ====================================================
 # nvim
-alias eu="nvim"
+alias e="nvim"
 
 # source from nvim cache
 alias son="so -n"
