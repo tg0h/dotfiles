@@ -1,0 +1,8 @@
+#!bin/zsh
+
+function sts(){
+  # sync an s3 bucket
+  local bucket=$1
+
+  aws s3 sync s3://$bucket .
+}
