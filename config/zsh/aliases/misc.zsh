@@ -1,3 +1,4 @@
+alias x='npx'
 alias n='which'
 alias al='autoload'
 alias h='https'
