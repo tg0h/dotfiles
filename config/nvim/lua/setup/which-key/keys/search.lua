@@ -19,6 +19,10 @@ local M = {
     u = {"<cmd>Telescope help_tags<CR>", "Find Help"},
     H = {"<cmd>Telescope heading<CR>", "Find Header"},
     M = {"<cmd>Telescope man_pages<CR>", "Man Pages"},
+    q = {
+        "<cmd>lua require'telescope.builtin'.quickfix{}<CR>",
+        "Search quickfix"
+    },
     R = {"<cmd>Telescope registers<CR>", "Registers"},
     t = {"<cmd>Telescope live_grep<CR>", "Text"},
     T = {
