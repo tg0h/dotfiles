@@ -26,6 +26,21 @@ def _sortStages:
 ];
 
 
+#convert seconds to minutes
+def s_tom_highlight:
+  if . == null then .
+  else
+    ( (. / 60) | floor) as $min |
+    "\($min|_minHighlight|tostring)"
+  end;
+
+def printActionGroupDuration($duration):
+  if $duration == null then ""
+  else
+    "\($duration|s_tom_highlight).\($duration|s_mods|__(.))"
+  end;
+  
+ 
 
 
 def mapStageHeader($stageName):
@@ -47,16 +62,22 @@ def mapStageHeader($stageName):
     # get the max 
     | $maxArr | max as $lastTime
     | _duration_s($stime1|aws_fromdate; $maxEndTime|aws_fromdate) as $stageDuration
+    # get the duration for each action group (per run order)
+    | _duration_s($stime1|aws_fromdate; $etime1|aws_fromdate) as $duration1
+    | _duration_s($stime2|aws_fromdate; $etime2|aws_fromdate) as $duration2
+    | _duration_s($stime3|aws_fromdate; $etime3|aws_fromdate) as $duration3
+    | _duration_s($stime4|aws_fromdate; $etime4|aws_fromdate) as $duration4
+    | _duration_s($stime5|aws_fromdate; $etime5|aws_fromdate) as $duration5
+    | ([ $duration1, $duration2, $duration3, $duration4, $duration5 ]) as $actionGroupDuration
     | ($stageDuration|s_ToDuration) as $prettyStageDuration
-    | "\($stageDuration|lp(5)) \($prettyStageDuration//"") \($maxArr[0]|pTimehms_y) ->\($maxArr[1]|pTimem|lp(2))->\($maxArr[2]|pTimem|lp(2))->\($maxArr[3]|pTimem|lp(2))->\($maxArr[4]|pTimem|lp(2)) \($maxArr[5]|pTimehms_g//"")"
-    # | "\($stime1)
-    # \($stime2)
-    # \($stime3)
-    # \($stime4)
-    # \($stime5)
-    # \($stime5|aws_fromdate)
-    # \(_duration_s($stime1|aws_fromdate; $etime5)) 
-    # "
+    | "\($stageDuration|lp(5)) \($prettyStageDuration//"")"
+    +" \($maxArr[0]|pTimehms_y) \($maxArr[5]|pTimehms_g//"")"
+    +" \(printActionGroupDuration($actionGroupDuration[0]))"
+    +" \(printActionGroupDuration($actionGroupDuration[1]))"
+    +" \(printActionGroupDuration($actionGroupDuration[2]))"
+    +" \(printActionGroupDuration($actionGroupDuration[3]))"
+    +" \(printActionGroupDuration($actionGroupDuration[4]))"
+    +" \($maxArr[1]|pTimem|lp(2))->\($maxArr[2]|pTimem|lp(2))->\($maxArr[3]|pTimem|lp(2))->\($maxArr[4]|pTimem|lp(2)) "
   else
     (map(select(.runOrder == 1) | .startTime) | min) as $stime1
     |(map(select(.runOrder == 1) | .lastUpdateTime) | max) as $etime1

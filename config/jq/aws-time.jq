@@ -115,3 +115,19 @@ def s_ToDuration:
     (. % 60) as $sec |
     "\($hour|_hourHighlight|.+__(":"))\($min|_minHighlight|lp(2))\("."|__(.))\($sec|tostring|lp(2)|__(.))"
   end;
+
+#convert seconds to minutes
+def s_tom:
+  if . == null then .
+  else
+    ( (. / 60) | floor) as $min |
+    "\($min|tostring)"
+  end;
+
+#convert seconds to minutes
+def s_mods:
+  if . == null then .
+  else
+    (. % 60) as $sec |
+    "\($sec|tostring|lp(2))"
+  end;
