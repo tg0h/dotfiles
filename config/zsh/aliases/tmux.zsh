@@ -1,4 +1,4 @@
-alias x="tat" # tmux attach script
+# alias x="tat" # tmux attach script
 alias xu="tmux ls"
 alias xx="tmux kill-server"
 alias xt="tmux list-commands"
