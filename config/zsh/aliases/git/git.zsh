@@ -23,7 +23,7 @@ alias gr.='gr @~' # review with previous commit
 alias gr,='gr master' # review comparing to master
 
 # diff
-alias gy='gd'
+alias ad='gd'
 alias gdst='git diff --stat'
 alias gdms='git diff main --stat'
 
