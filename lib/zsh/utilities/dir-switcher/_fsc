@@ -88,6 +88,7 @@ EOF
     # go to base directory
     echo "dd$bindkey() {cd $dir }" > $outputFolder/dd$bindkey
     echo "alias :$bindkey=dd$bindkey" >> $aliasFile
+    echo "alias z$bindkey=dd$bindkey" >> $aliasFile
 
     # open directory in nvim
     echo "alias q$bindkey='nvim $dir'" >> $aliasFile
