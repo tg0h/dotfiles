@@ -1,0 +1,29 @@
+#!/bin/zsh
+
+function alp(){
+  # aws lambda get-policy - lists lambda triggers
+  # alp <lambdaName>
+
+  while getopts 'v' opt; do
+    case "$opt" in
+      v) verbose=true;;
+    esac
+  done
+  shift $(($OPTIND - 1))
+
+  local functionName=$1
+
+  local result=$(aws lambda get-policy --function-name $functionName)
+
+  local jqQuery=$(cat <<-EOF
+    include "aws/lambda/alp";
+    alp
+EOF
+)
+
+  if [ $verbose ]; then
+    jq --raw-output "." <<< "$result"
+  else
+    jq --raw-output -L "~/.config/jq" -L "~/.local/lib/jq" "$jqQuery" <<< "$result"
+  fi
+}

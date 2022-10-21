@@ -1,0 +1,26 @@
+#!/bin/zsh
+
+function al(){
+  # aws lambda list-functions
+
+  while getopts 'v' opt; do
+    case "$opt" in
+      v) verbose=true;;
+    esac
+  done
+  shift $(($OPTIND - 1))
+
+  local result=$(aws lambda list-functions)
+
+  local jqQuery=$(cat <<-EOF
+    include "aws/lambda/al";
+    al
+EOF
+)
+
+  if [ $verbose ]; then
+    jq --raw-output "." <<< "$result"
+  else
+    jq --raw-output -L "~/.config/jq" -L "~/.local/lib/jq" "$jqQuery" <<< "$result"
+  fi
+}

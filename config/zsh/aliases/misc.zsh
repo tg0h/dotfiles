@@ -1,6 +1,6 @@
 alias x='npx'
 alias n='which'
-alias al='autoload'
+# alias al='autoload'
 alias h='https'
 alias o='lnav .'
 
