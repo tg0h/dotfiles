@@ -84,3 +84,6 @@ bindkey '^[^?' backward-kill-dir
 
 # C-S--
 bindkey '^_' copy-prev-shell-word
+
+zle -N execute-buffer-in-nvim-widget
+bindkey '^[^e' execute-buffer-in-nvim-widget

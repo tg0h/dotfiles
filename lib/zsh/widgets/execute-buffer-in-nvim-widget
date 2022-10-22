@@ -1,0 +1,8 @@
+#!/bin/zsh
+
+function execute-buffer-in-nvim-widget() {
+  if [[ $BUFFER != "nvim "* ]]; then
+    BUFFER="nvim $BUFFER"; CURSOR+=2
+    zle accept-line
+  fi
+}
