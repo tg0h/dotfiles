@@ -31,9 +31,6 @@ keymaps:
   # trash
   - [q, $HOME/.Trash]
 
-  - [Q, $HOME/src/candy/playground]
-  - [QJ, $HOME/src/candy/playground/yarn]
-
   - [p, /tmp]
   - [tl, $HOME/Downloads]
 
