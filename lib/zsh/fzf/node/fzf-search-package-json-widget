@@ -1,0 +1,6 @@
+#!/bin/zsh
+
+function fzf-search-package-json-widget() {
+  fd --color always package.json . | fzf --preview $FZF_PREVIEW_T_OPTS --bind "ctrl-e:$FZF_X_NVIM+abort"
+  zle reset-prompt
+}
