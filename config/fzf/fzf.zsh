@@ -31,6 +31,9 @@ export FZF_DEFAULT_OPTS="
 --cycle
 --color='gutter:-1,hl:-1:underline:#03ff13,hl+:-1:underline:reverse'
 --bind='f3:execute(bat --style=numbers {} || less -f {})'
+
+--header=$'⌃H ⌃S ⌃A ⌃Y ⌃E ⌃␣ ⌥c ⇧⌥c F2' \
+
 --bind='f2:toggle-preview'
 --bind='ctrl-d:half-page-down'
 --bind='ctrl-u:half-page-up'
