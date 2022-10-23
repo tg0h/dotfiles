@@ -1,5 +1,5 @@
 # exa
-alias exaRecent="exa --header --created --changed --accessed --tree --long --icons --git --color always --octal-permissions --sort accessed --reverse --links --git --no-user"
+alias exaRecent="exa --header --created --changed --accessed --tree --long --icons --git --color always --octal-permissions --sort accessed --reverse --links --git --no-user --all"
 
 alias p="exaRecent --level 1"
 alias p,="exaRecent --level 2"
