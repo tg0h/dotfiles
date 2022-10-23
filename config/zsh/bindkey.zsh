@@ -91,3 +91,8 @@ zle -N execute-buffer-in-nvim-widget
 # works together with kitty send text
 # terminals do not recognize ctrl enter - use kitty to send this instead
 bindkey '^Ai' execute-buffer-in-nvim-widget
+
+zle -N fzf-chrome-bookmarks-widget
+bindkey '^[^m' fzf-chrome-bookmarks-widget
+zle -N fzf-chrome-history-widget
+bindkey '^[^w' fzf-chrome-history-widget
