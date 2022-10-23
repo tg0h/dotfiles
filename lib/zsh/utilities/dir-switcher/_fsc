@@ -18,7 +18,10 @@ function _fsc(){
 
   local outputFolder=$DOTFILES/lib/zsh/utilities/dir-switcher/out
   echo $fg[red] removing files in "$outputFolder" "..."
-  [[ -n "$outputFolder" ]] && trash "$outputFolder/*"
+
+  # do not surround glob with double quotes - globs do not work in double quotes
+  # this is super dangerous... if outputFolder is empty, this deletes everything in / ??
+  [[ -n "$outputFolder" ]] && rm -rf $outputFolder/*
 
   local aliasFile=$XDG_CONFIG_HOME/zsh/aliases/out/dir-switcher.zsh
   echo $fg[cyan] removing aliases in $aliasFile "..."

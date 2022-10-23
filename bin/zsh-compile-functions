@@ -21,7 +21,7 @@ if [ -z $ZSH_FUNCTIONS_PATH ]; then
 fi
 
 echo removing files in "$ZSH_FUNCTIONS_PATH" "..."
-[[ -n "$ZSH_FUNCTIONS_PATH" ]] && trash "$ZSH_FUNCTIONS_PATH/*"
+[[ -n "$ZSH_FUNCTIONS_PATH" ]] && rm -rf $ZSH_FUNCTIONS_PATH/*
 
 # TODO: exclude files with extensions eg README.md
 # exclude /Users/tim/dotfiles/lib/zsh/utilities/dir-switcher/out
@@ -31,7 +31,7 @@ for func in $DOTFILES/lib/zsh/***/*~(*/archive/*|*.zsh|*.md|*/out/*)(.); do
 done
 
 echo removing files in "$ZSH_FUNCTIONS_COMPILED_PATH" "..."
-[[ -n "$ZSH_FUNCTIONS_COMPILED_PATH" ]] && trash "$ZSH_FUNCTIONS_COMPILED_PATH/*"
+[[ -n "$ZSH_FUNCTIONS_COMPILED_PATH" ]] && rm -rf $ZSH_FUNCTIONS_COMPILED_PATH/*
 
 for func in /Users/tim/dotfiles/lib/zsh/utilities/dir-switcher/out/*; do
   # if link already exists, overwrite it

@@ -8,8 +8,8 @@ export HISTSIZE=1000000000 # Number of commands that are loaded into memory from
 export SAVEHIST=1000000000 # Refers to the number of commands that are stored in the zsh history file
 # Show the timestamp for each entry of the history file
 export HISTTIMEFORMAT="%Y-%m-%dT%H:%M:%S "
-setopt share_history # share history between terminals running at the same time, adds the strange numbers to the beginning of each line in the history file
-setopt extended_history       # record timestamp of command in HISTFLE
+setopt SHARE_HISTORY # share history between terminals running at the same time, adds the strange numbers to the beginning of each line in the history file
+setopt EXTENDED_HISTORY       # record timestamp of command in HISTFLE
 
 export NVM_AUTO_USE=true # zsh-nvm plugin autoloads .nvmrc, set before the plugins array
 export NVM_LAZY_LOAD=true  # zsh-nvm lazy load
@@ -17,10 +17,13 @@ ZSH_EVALCACHE_DIR=$XDG_CACHE_HOME/zsh-evalcache
 
 bindkey -e # use emacs keymap for zsh
 
-setopt autocd # type dir name to cd directly
+setopt AUTOCD # type dir name to cd directly
 autoload zmv # so i can use zmv immediately
 autoload -U colors && colors # enable $fg[red] etc
 autoload zargs # parallel fun
+
+# https://unix.stackexchange.com/questions/135084/double-rm-verification-in-zsh
+setopt RM_STAR_SILENT # turn off zsh warning if using * with rm
 
 # TODO: how are completions here loaded?
 fpath=(/opt/homebrew/share/zsh/site-functions $fpath) # add homebrew completions to fpath
