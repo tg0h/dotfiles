@@ -21,6 +21,7 @@ source /opt/homebrew/opt/fzf/shell/key-bindings.zsh
 # hl - colour of matching substrings. -1 means accept the original colour
 # hl+ - colour of matching substrings on current line
 
+export FZF_X_NVIM="execute(echo {} > /tmp/_nvim_cache && nvim {} > /dev/tty 2>&1)"
 export FZF_DEFAULT_OPTS="
 --ansi
 --no-mouse
@@ -30,7 +31,6 @@ export FZF_DEFAULT_OPTS="
 --multi
 --cycle
 --color='gutter:-1,hl:-1:underline:#03ff13,hl+:-1:underline:reverse'
---bind='f3:execute(bat --style=numbers {} || less -f {})'
 
 --header=$'⌃H ⌃S ⌃A ⌃Y ⌃E ⌃␣ ⌥c ⇧⌥c F2' \
 
@@ -38,12 +38,12 @@ export FZF_DEFAULT_OPTS="
 --bind='ctrl-d:half-page-down'
 --bind='ctrl-u:half-page-up'
 
---bind 'ctrl-h:preview-half-page-down'
---bind 'ctrl-t:preview-half-page-up'
+--bind 'ctrl-h:preview-half-page-up'
+--bind 'ctrl-s:preview-half-page-down'
 
 --bind='ctrl-a:select-all+accept'
 --bind='ctrl-y:execute-silent(echo {+} | join-lines-fzf | pbcopy)+abort'
---bind 'ctrl-e:execute(echo {} > /tmp/_nvim_cache && nvim {} > /dev/tty 2>&1)+abort'
+--bind 'ctrl-e:$FZF_X_NVIM+abort'
 --bind 'ctrl-space:change-preview-window(right,50%|right,80%|down,90%,border-top|hidden|)'
 --bind='alt-c:execute(rm {})+abort'
 --bind='alt-C:execute(trash {})+abort'
@@ -51,9 +51,6 @@ export FZF_DEFAULT_OPTS="
 --bind backward-eof:abort
 --bind 'ctrl-/:jump'
 "
-# --bind='ctrl-r:execute(echo {} > /tmp/_so_cache)+abort'
-
-# NOTE: trash is slower than rm -rf but is safer
 
 FD_OPTIONS="--color always --follow --hidden"
 
@@ -68,19 +65,20 @@ export FZF_DEFAULT_COMMAND="fd . --type f --hidden --follow --exclude .git $FD_O
 
 #search to exclude .git and node_modules
 export FZF_CTRL_R_OPTS="--preview-window='right:hidden:wrap'"
+export FZF_PREVIEW_T_OPTS="[[ \$(file --mime {}) =~ inode/directory ]] && exa --tree --long --icons --git --color always --octal-permissions --sort created --reverse {} || (bat --style=numbers --color=always {} || cat {}) 2> /dev/null | head -300"
 
 export FZF_CTRL_T_COMMAND="fd $FD_OPTIONS"
 export FZF_CTRL_T_OPTS="
---preview='[[ \$(file --mime {}) =~ inode/directory ]] && exa --tree --long --icons --git --color always --octal-permissions --sort created --reverse {} || (bat --style=numbers --color=always {} || cat {}) 2> /dev/null | head -300'
+--preview='$FZF_PREVIEW_T_OPTS'
 --preview-window='right:wrap'
 --bind 'ctrl-g:reload(fd $FD_OPTIONS --type d)+change-prompt(dir> )'
 --bind 'ctrl-c:reload(fd $FD_OPTIONS_NO_IGNORE)+change-prompt(no-ignore> )'
 --bind 'ctrl-r:reload(fd $FD_OPTIONS --type f)+change-prompt(file> )'
 --bind 'ctrl-t:reload(fd $FD_OPTIONS)+change-prompt(> )'
---bind 'ctrl-h:reload(fd $FD_OPTIONS --type f --max-depth 1 )+change-prompt(depth:1> )'
---bind 'ctrl-s:reload(fd $FD_OPTIONS --type f --max-depth 2 )+change-prompt(depth:2> )'
---bind 'ctrl-space:execute(echo {} > /tmp/_nvim_cache && nvim {} > /dev/tty 2>&1)+abort'
+--bind 'alt-g:reload(fd $FD_OPTIONS --type f --max-depth 1 )+change-prompt(depth:1> )'
+--bind 'alt-r:reload(fd $FD_OPTIONS --type f --max-depth 2 )+change-prompt(depth:2> )'
 "
+# --bind 'ctrl-space:execute(echo {} > /tmp/_nvim_cache && nvim {} > /dev/tty 2>&1)+abort'
 
 # include git ignore since there shouldn't be too many such directories
 export FD_C_OPTIONS="$FD_OPTIONS_NO_IGNORE --type d"
