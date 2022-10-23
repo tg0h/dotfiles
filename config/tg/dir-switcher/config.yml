@@ -28,6 +28,9 @@ keymaps:
   - [v, $HOME/Documents/candy/wiki, 5]
   - [z, $HOME/dotfiles, 4]
 
+  # trash
+  - [q, $HOME/.Trash]
+
   - [Q, $HOME/src/candy/playground]
   - [QJ, $HOME/src/candy/playground/yarn]
 
@@ -45,6 +48,9 @@ keymaps:
   # PLAYGROUND
   - [ta, $HOME/src/playground/aws/cdk/my-pipeline]
   - [ty, $HOME/src/playground/yarn]
+  - ["ty,", $HOME/src/playground/yarn/yarn-old]
+  - ["ty.", $HOME/src/playground/yarn/yarn-modern]
+  - ["ty,.", $HOME/src/playground/yarn/npm]
   - [tg, $HOME/src/playground/github/scratch]
   - [tp, $HOME/src/playground/python/]
   - [th, $HOME/src/playground/candy/candyStore]
@@ -53,7 +59,7 @@ keymaps:
   - [nk, $HOME/src/clones/python/kitty]
 
   # UDEMY
-  - [k, /Users/tim/src/udemy/portilla/Complete-Python-3-Bootcamp]
+  # - [k, /Users/tim/src/udemy/portilla/Complete-Python-3-Bootcamp]
 
   # SRC
   - ["s,", $HOME/src/candy-main/referralcandy-main]
