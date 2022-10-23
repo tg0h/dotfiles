@@ -86,4 +86,6 @@ bindkey '^[^?' backward-kill-dir
 bindkey '^_' copy-prev-shell-word
 
 zle -N execute-buffer-in-nvim-widget
-bindkey '^[^e' execute-buffer-in-nvim-widget
+# works together with kitty send text
+# terminals do not recognize ctrl enter - use kitty to send this instead
+bindkey '^Ai' execute-buffer-in-nvim-widget
