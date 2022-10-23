@@ -18,9 +18,9 @@ alias :/=':xs'
 alias vh='nvim ~/Documents/candy/wiki/old/readme.md'
 
 # zsh boot
-alias zr='nvim ~/.dotfiles/config/zsh-boot/zshrc'
-alias zz='nvim ~/.config/zsh/.zshenv'
-alias ze='nvim ~/.dotfiles/config/secret/env'
+alias z,.='nvim ~/.dotfiles/config/secret/env'
+alias z.='nvim ~/.config/zsh/.zshenv'
+alias z,='nvim ~/.dotfiles/config/zsh-boot/zshrc'
 
 # scratch
 # alias aes='nvim ~/certis/docs/wiki/scratch.md'
