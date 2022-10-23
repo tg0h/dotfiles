@@ -32,7 +32,7 @@ export FZF_DEFAULT_OPTS="
 --cycle
 --color='gutter:-1,hl:-1:underline:#03ff13,hl+:-1:underline:reverse'
 
---header=$'⌃H ⌃S ⌃A ⌃Y ⌃E ⌃␣ ⌥c ⇧⌥c F2' \
+--header=$'⌃H ⌃S ⌃A ⌃Y ⌃E ⌃␣ ⌥C ⇧⌥C F2' \
 
 --bind='f2:toggle-preview'
 --bind='ctrl-d:half-page-down'
@@ -60,6 +60,7 @@ FD_OPTIONS_NO_IGNORE="$FD_OPTIONS \
 --exclude node_modules \
 --exclude .DS_Store \
 --exclude build \
+--exclude cdk.out
 "
 export FZF_DEFAULT_COMMAND="fd . --type f --hidden --follow --exclude .git $FD_OPTIONS"
 
@@ -81,14 +82,17 @@ export FZF_CTRL_T_OPTS="
 # --bind 'ctrl-space:execute(echo {} > /tmp/_nvim_cache && nvim {} > /dev/tty 2>&1)+abort'
 
 # include git ignore since there shouldn't be too many such directories
-export FD_C_OPTIONS="$FD_OPTIONS_NO_IGNORE --type d"
+export FD_C_OPTIONS="$FD_OPTIONS --type d"
+export FD_C_OPTIONS_NO_IGNORE="$FD_OPTIONS_NO_IGNORE --type d"
 export FZF_ALT_C_COMMAND="fd $FD_C_OPTIONS"
 export FZF_ALT_C_OPTS="
 --preview 'lsd {} --tree --color always --icon always'
+--header=$'⌥r ⌥g ⌥l ⌥c ⌥f' \
 --bind 'alt-r:reload(exa --oneline --color always --sort accessed --reverse --only-dirs)+change-prompt(depth:1> )'
 --bind 'alt-g:reload(fd $FD_C_OPTIONS --max-depth 2 )+change-prompt(depth:2> )'
 --bind 'alt-l:reload(fd $FD_C_OPTIONS --max-depth 3 )+change-prompt(depth:3> )'
 --bind 'alt-c:reload(fd $FD_C_OPTIONS )+change-prompt(> )'
+--bind 'alt-f:reload(fd $FD_C_OPTIONS_NO_IGNORE )+change-prompt(no-ignore> )'
 --bind 'space:down'
 --bind 'tab:up'
 "
