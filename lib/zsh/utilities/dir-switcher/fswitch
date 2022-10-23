@@ -33,10 +33,10 @@ function fswitch(){
       t) case "$OPTARG" in
           f) 
             fileType="--type f"
-            fzfPrompt="file>";;
+            fzfPrompt='file> ';;
           d) 
             fileType="--type d"
-            fzfPrompt="dir>";;
+            fzfPrompt='dir> ';;
         esac
     esac
   done
@@ -68,9 +68,10 @@ function fswitch(){
 
   local out=$(eval $searchCmd | fzf +m --prompt=$fzfPrompt --preview='[[ $(file --mime {}) =~ inode/directory ]] &&
     exa '$previewGitIgnore' --tree --long --icons --git --color always --sort modified --reverse --level '$searchDepth' --no-permissions --no-user --changed {}/ || (bat --style=numbers --color=always {} || cat {}) 2> /dev/null | head -300' \
-    --bind 'ctrl-t:reload(fd . '$searchDir' --type f --follow --color always --max-depth '$searchDepth')+change-prompt(file>)' \
-    --bind 'ctrl-s:reload(fd . '$searchDir' --type d --follow --color always --max-depth '$searchDepth')+change-prompt(dir>)' \
-    --bind 'ctrl-h:reload(fd . '$searchDir' --follow --color always --max-depth '$searchDepth')+change-prompt(>)' \
+    --header=$'⌃T ⌃S ⌃H ⌥D ⌥Y' \
+    --bind 'ctrl-t:reload(fd . '$searchDir' --type f --follow --color always --max-depth '$searchDepth')+change-prompt(file> )' \
+    --bind 'ctrl-s:reload(fd . '$searchDir' --type d --follow --color always --max-depth '$searchDepth')+change-prompt(dir> )' \
+    --bind 'ctrl-h:reload(fd . '$searchDir' --follow --color always --max-depth '$searchDepth')+change-prompt(> )' \
     --multi \
     --expect=alt-d,alt-y
   )
