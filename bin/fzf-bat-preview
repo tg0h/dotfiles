@@ -2,6 +2,9 @@
 # fzf-bat-preview <file> <highlightLineNumber>
 # centres the preview with the specified win height
 
+# NOTE: possible to use fzf instead of this script 
+# see https://github.com/junegunn/fzf/blob/master/ADVANCED.md#ripgrep-integration
+
 # number of lines to show
 local WIN_HEIGHT=40
 
