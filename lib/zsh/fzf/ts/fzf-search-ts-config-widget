@@ -1,0 +1,6 @@
+#!/bin/zsh
+
+function fzf-search-ts-config-widget() {
+  fzf-fd-rg-search tsconfig.json
+  zle reset-prompt
+}

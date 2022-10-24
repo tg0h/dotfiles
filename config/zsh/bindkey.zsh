@@ -50,6 +50,10 @@ bindkey '^[^n' fzf-search-package-downwards-widget
 zle -N fzf-search-package-json-widget
 bindkey '^[g' fzf-search-package-json-widget
 
+# ts
+zle -N fzf-search-ts-config-widget
+bindkey '^[r' fzf-search-ts-config-widget
+
 zle -N fzf-search-filenameAndContent-widget
 bindkey '^[-' fzf-search-filenameAndContent-widget
 
