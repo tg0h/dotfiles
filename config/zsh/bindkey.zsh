@@ -48,7 +48,7 @@ bindkey '^[^h' fzf-search-package-widget
 zle -N fzf-search-package-downwards-widget
 bindkey '^[^n' fzf-search-package-downwards-widget
 zle -N fzf-search-package-json-widget
-bindkey '^[^t' fzf-search-package-json-widget
+bindkey '^[g' fzf-search-package-json-widget
 
 zle -N fzf-search-filenameAndContent-widget
 bindkey '^[-' fzf-search-filenameAndContent-widget
