@@ -1,68 +1,6 @@
 #!/bin/zsh
 
 function fzf-search-package-json-widget() {
-  # search package json files
-  # fd mode - list package.json files, use fzf to fuzzy search the filenames, select multiple to edit multiple files
-  # rg mode - use rg to search for file contents - rg searches exactly
-
-  # when in a mode, we want to disable the key that triggered the mode, to avoid a flicker when pressing the same trigger
-  # when changing modes, we want to move the prompt to the first position
-  # clear query when changing modes
-  # context aware execute (using state in tmp file)- edit file with nvim, if line number given, go to the line
-  # coloured prompt
-  # fzf native preview window (without script)
-  # tmpfile stores state
-
-  # inspiration from - https://github.com/junegunn/fzf/wiki/Examples#dnf
-
-  # TODO: is basename a strange name ??? zsh highlight call ?
-  local readonly basename="$(basename "$0")"
-
-  local esc=$'\033'
-  local BLUE="${esc}[1m${esc}[34m"
-  local RED="${esc}[31m"
-  local GREEN="${esc}[32m"
-  local YELLOW="${esc}[33m"
-  local CYAN="${esc}[36m"
-
-  local QUERY_SUFFIX=' > '
-
-  local RG_OPTS="--column --line-number --no-heading --color=always --smart-case --glob package.json"
-  local RG_QUERY="rg $RG_OPTS ."
-  local RG_PREVIEW="bat --color=always {1} --highlight-line {2}"
-  local RG_PROMPT="${GREEN}RG${QUERY_SUFFIX}"
-  local RG_PREVIEW_WINDOW="up,60%,noborder,+{2}+3/3,~3"
-  local RG_EDIT="nvim {1} +{2}"
-
-  local FD_QUERY="fd --color always package.json"
-  local FD_PREVIEW="bat --color=always {1}"
-  local FD_PROMPT="${RED}FD${QUERY_SUFFIX}"
-  local FD_PREVIEW_WINDOW="up,60%,noborder"
-
-  local tmp_file
-  if tmp_file="$(mktemp "/tmp/${basename}".XXXXXX)"; then
-    printf 'rg' > "${tmp_file}"
-  fi
-
-  # TODO: add help
-  # --bind="alt-?:preview(printf \"${fhelp[0]}\")" \
-
-  # --header-first - show header before prompt
-  rg ${=RG_OPTS} . | 
-    fzf --ansi \
-        --delimiter : \
-        --prompt "$RG_PROMPT" \
-        --preview "$RG_PREVIEW" \
-        --header="⌥G ⌥R" \
-        --header-first \
-        --preview-window 'up,60%,noborder,+{2}+3/3,~3' \
-        --bind "change:reload:sleep 0.1; rg $RG_OPTS {q} || true" \
-        --bind="enter:execute(if grep -q 'rg' \"${tmp_file}\"; then nvim {1} +{2}; 
-                elif grep -q 'fd' \"${tmp_file}\"; then nvim {+} > /dev/tty 2>&1; fi; \
-                read -s -r -n1 -p $'\n${BLUE}Press any key to continue...' && printf '\n')" \
-        --bind="alt-r:unbind(change,alt-r)+reload(${FD_QUERY})+change-preview(${FD_PREVIEW})+change-prompt(${FD_PROMPT})+change-preview-window(${FD_PREVIEW_WINDOW})+execute-silent(printf 'fd' > \"${tmp_file}\")+first+clear-query+rebind(alt-g)+enable-search" \
-        --bind="alt-g:unbind(alt-g)+reload(rg $RG_OPTS {q})+change-preview(${RG_PREVIEW})+change-prompt(${RG_PROMPT})+change-preview-window(${RG_PREVIEW_WINDOW})+execute-silent(printf 'rg' > \"${tmp_file}\")+first+clear-query+disable-search+reload(rg "$RG_OPTS" {q} || true)+rebind(change,alt-r)"
-  rm -f "${tmp_file}" &> /dev/null
-
+  fzf-fd-rg-search package.json
   zle reset-prompt
 }
