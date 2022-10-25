@@ -60,7 +60,7 @@ bindkey '^[-' fzf-search-filenameAndContent-widget
 zle -N fzf-search-cloudwatch-logs-widget
 bindkey '^[^r' fzf-search-cloudwatch-logs-widget
 zle -N fzf-search-sqs-queues-widget
-bindkey '^[^l' fzf-search-sqs-queues-widget
+# bindkey '^[^l' fzf-search-sqs-queues-widget
 
 # fzf git widgets
 zle -N fzf-gh-widget # commits
@@ -78,6 +78,8 @@ bindkey '^g^s' fzf-gs-widget
 
 zle -N fzf-brancher-widget # general purpose branch switcher/deleter
 bindkey '^l' fzf-brancher-widget
+zle -N fzf-git-repo-widget 
+bindkey '^[^l' fzf-git-repo-widget
 
 zle -N fzf-code-pipeline-widget # show action executions for a code pipeline
 bindkey '^[^g' fzf-code-pipeline-widget

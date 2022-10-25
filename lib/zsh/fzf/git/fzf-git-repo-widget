@@ -1,0 +1,13 @@
+#!bin/zsh
+
+function fzf-git-repo-widget(){
+  # ctrl-d to delete branch
+  # select to switch to branch
+  is_in_git_repo || return
+
+  local result=$(gh repo ls | 
+                 fzf --ansi |
+                 gawk '{print $1}')
+  zle reset-prompt
+  LBUFFER+=$result
+}
