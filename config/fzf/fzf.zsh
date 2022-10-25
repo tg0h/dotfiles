@@ -93,6 +93,7 @@ export FZF_ALT_C_OPTS="
 --bind 'alt-l:reload(fd $FD_C_OPTIONS --max-depth 3 )+change-prompt(depth:3> )'
 --bind 'alt-c:reload(fd $FD_C_OPTIONS )+change-prompt(> )'
 --bind 'alt-f:reload(fd $FD_C_OPTIONS_NO_IGNORE )+change-prompt(no-ignore> )'
+--bind 'alt-d:reload(fd package.json | xargs dirname)+change-prompt(package.json> )'
 --bind 'space:down'
 --bind 'tab:up'
 "
