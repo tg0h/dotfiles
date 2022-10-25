@@ -250,6 +250,7 @@ return require("packer").startup({
 
         use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim', config= get_setup("diffview") }
         use { 'vito-c/jq.vim'}
+        use {'mityu/vim-applescript'}
 
     end,
     config = {
