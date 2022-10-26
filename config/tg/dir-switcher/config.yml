@@ -73,6 +73,7 @@ keymaps:
   - [soc, $HOME/src/candy/old/composer]
   - [sp, $HOME/src/candy/old/pentel]
   - [sr, $HOME/src/candy/old/referral_corner]
+  - [sm, $HOME/src/candy/old/candymold]
   - [st, $HOME/src/candy/old/candymold/tools]
   - [sw, $HOME/src/candy/old/webapp/]
 
