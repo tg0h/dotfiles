@@ -28,7 +28,7 @@ function acri(){
      sort_by(.imagePushedAt) | reverse | 
      .[0:20] |
      .[] |
-     "\(.imagePushedAt | pTime) \(.imageTags )"
+     "\(.imagePushedAt | pTimedmyhm) \(.imageTags )"
 EOF
 )
 
