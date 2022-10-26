@@ -2,14 +2,15 @@
 
 function fzf-code-pipeline-widget() {
 # show the action executions for a pipeline 
+# show ape by default
   local id
   # id=$(ape | fzf | awk '{print $4}')
   local out=$( ape | \
     fzf --ansi --multi --preview-window down,60%:wrap \
     --preview 'apa -p {3} -s {5}' \
     --bind 'ctrl-/:change-preview-window(right,40%|down,60%,border-top|hidden|)' \
-    --bind 'alt-g:reload(ape lambda-stack-cdk-pipeline)' \
-    --bind 'alt-c:reload(ape)' \
+    --bind 'alt-g:reload(rcda aws >/dev/null ; ape lambda-stack-cdk-pipeline)' \
+    --bind 'alt-r:reload(rcda aws >/dev/null ; ape)' \
     --expect=ctrl-d,ctrl-s,ctrl-l
   )
 
