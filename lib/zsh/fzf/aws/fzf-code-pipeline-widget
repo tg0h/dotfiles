@@ -6,12 +6,14 @@ function fzf-code-pipeline-widget() {
   local id
   # id=$(ape | fzf | awk '{print $4}')
   local out=$( ape | \
-    fzf --ansi --multi --preview-window down,60%:wrap \
+    fzf --ansi --multi \
+    --preview-window top,noborder,7 \
+    --header="⌃S ⌃L" \
     --preview 'apa -p {3} -s {5}' \
     --bind 'ctrl-/:change-preview-window(right,40%|down,60%,border-top|hidden|)' \
     --bind 'alt-g:reload(rcda aws >/dev/null ; ape lambda-stack-cdk-pipeline)' \
     --bind 'alt-r:reload(rcda aws >/dev/null ; ape)' \
-    --expect=ctrl-d,ctrl-s,ctrl-l
+    --expect=ctrl-s,ctrl-l
   )
 
   local key=$(head -1 <<< "$out")
@@ -46,8 +48,6 @@ function fzf-code-pipeline-widget() {
         local pipelineName=$(gawk '{print $3}' <<< "$execution")
         apa -p $pipelineName -o $id
       done <<< "$targets"
-    elif [ "$key" = ctrl-d ]; then
-      apa -p $pipelineName $id
     else
       apa -p $pipelineName $id
     fi
