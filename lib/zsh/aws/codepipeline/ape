@@ -17,7 +17,7 @@ function ape(){
   done
   shift $(($OPTIND - 1))
 
-  n=${n:-20}
+  n=${n:-50}
   local pipelineName=${1:-$CANDY_PIPELINE}
   # local result=$(aws codepipeline list-pipeline-executions --pipeline-name $CANDY_PIPELINE --max-items $n)
 
@@ -45,7 +45,7 @@ function ape(){
       " \(.sourceRevisions[0].revisionId[0:5] | _g(.))"+
       " \(.pipelineExecutionId | __(.))"+
       " \(.status | aplStatus | rp(20))"+
-      "\(.sourceRevisions[0].revisionSummary | fromjson | .CommitMessage | gsub("\\r\\n";" ") | gsub("\\n";" ") | trunc(35))  " + showCommitUrl
+      "\(.sourceRevisions[0].revisionSummary | fromjson | .CommitMessage | gsub("\\r\\n";" ") | gsub("\\n";" ") | trunc(70))  " + showCommitUrl
 EOF
 )
      # "\(.sourceRevisions[0].revisionSummary | fromjson | .CommitMessage | (sub("\\n";" ")))"
