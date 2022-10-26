@@ -1,5 +1,6 @@
 # redirect stderr to null
 alias -g no='2&>/dev/null'
+alias -g Q='>/dev/null'
 
 # regex for argus ticket key
 alias -g A="'ARG-\d*'"
