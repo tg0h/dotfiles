@@ -22,16 +22,17 @@ source /opt/homebrew/opt/fzf/shell/key-bindings.zsh
 # hl+ - colour of matching substrings on current line
 
 export FZF_X_NVIM="execute(echo {} > /tmp/_nvim_cache && nvim {} > /dev/tty 2>&1)"
+# --info=inline
 export FZF_DEFAULT_OPTS="
 --ansi
 --no-mouse
 --height 80%
---info=inline
 --reverse
 --multi
 --cycle
 --color='gutter:-1,hl:-1:underline:#03ff13,hl+:-1:underline:reverse'
 
+--header-first
 --header=$'⌃H ⌃S ⌃A ⌃Y ⌃E ⌃␣ ⌥C ⇧⌥C F2' \
 
 --bind='f2:toggle-preview'
