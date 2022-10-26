@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+function dceit(){
+  # docker container exec -it <container name> bash -l
+  local container=$1
+  docker container exec -it $container bash -l
+}

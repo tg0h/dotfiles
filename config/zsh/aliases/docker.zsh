@@ -16,7 +16,7 @@ alias dca='docker container attach'
 
 ## EXEC
 alias dce='docker container exec'
-alias dceit='docker container exec -it'
+# alias dceit='docker container exec -it'
 alias dceh='docker container exec --help'
 
 ## LOGS
