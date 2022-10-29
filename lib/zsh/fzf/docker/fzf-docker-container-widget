@@ -1,16 +1,31 @@
 #!bin/zsh
-
-# Select a docker container to remove
 function fzf-docker-container-widget() {
-  local container_ids
-  container_ids=$(dcla | fzf \
+  # show docker containers
+
+  local fzfOut
+  fzfOut=$(dcla | fzf \
     --preview-window bottom,noborder,80% \
+    --header="⌃T ⌃V" \
     --height ~95% \
     --preview 'dcin {2}' \
-    |
-    awk '{print $2}' | 
-    join-lines
+    --expect 'ctrl-t,ctrl-v'
   )
+
+  local key=$(head -1 <<< "$fzfOut")
+  local selections=$(tail -n +2 <<< "$fzfOut") # get all lines after the first line
+  local selection1=$(head -1 <<< "$selections")
+
+  local selectedId=$(gawk '{print $2}' <<< "$selection1")
+
+  if [ $selectedId ]; then
+    if [ "$key" = ctrl-t ]; then
+      dcin $selectedId
+    elif [ "$key" = ctrl-v ]; then
+      dcin -v $selectedId
+    else
+      local selectedIds=$(echo $selections | choose 1 | join-lines)
+      LBUFFER+=$selectedIds
+    fi
+  fi
   zle reset-prompt
-  LBUFFER+=$container_ids
 }
