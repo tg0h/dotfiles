@@ -24,6 +24,7 @@ alias dcg='docker container logs'
 alias dcgt='docker container logs --tail'
 
 ## INSPECT
+alias d.='docker inspect'
 alias dci='docker container inspect'
 
 ## PORT
