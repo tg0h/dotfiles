@@ -1,22 +1,20 @@
 #!bin/zsh
 
 function dcin(){
-  # docker container ls
-  # dcl -a 
-  # dcl -t - show original docker container ls command
-  # dcl -f - exclude candy containers
+  # docker container inspect
+  while getopts 'v' opt; do
+    case "$opt" in
+      v) verbose=true;;
+    esac
+  done
+  shift $(($OPTIND - 1))
 
   local result=$(docker container inspect $@)
+  local jqQuery='include "docker/dcin"; dcin'
 
-    local jqQuery=$(cat <<-EOF
-   include "pad";
-   include "colour";
-     .[] | 
-     .Name as \$name | 
-     .NetworkSettings | "\(\$name) \(.IPAddress)", .Networks
-EOF
-)
-
-jq --raw-output -L "~/.config/jq" "$jqQuery" <<< $result
-
+  if [ $verbose ]; then
+    jq --raw-output "." <<< "$result"
+  else
+    jq --raw-output -L "~/.config/jq" -L "~/.local/lib/jq" "$jqQuery" <<< $result
+  fi
 }

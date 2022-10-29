@@ -3,7 +3,14 @@
 # Select a docker container to remove
 function fzf-docker-container-widget() {
   local container_ids
-  container_ids=$(dcla | fzf | awk '{print $2}' | join-lines)
+  container_ids=$(dcla | fzf \
+    --preview-window bottom,noborder,80% \
+    --height ~95% \
+    --preview 'dcin {2}' \
+    |
+    awk '{print $2}' | 
+    join-lines
+  )
   zle reset-prompt
   LBUFFER+=$container_ids
 }
