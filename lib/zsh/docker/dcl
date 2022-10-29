@@ -3,29 +3,21 @@
 function dcl(){
   # docker container ls
   # dcl -a 
-  # dcl -t - show original docker container ls command
+  # dcl -p - plain - show original docker container ls command
   # dcl -f - exclude candy containers
 
-  local all format="prettyTable" formatArg filter excludeCandy debug
-  while getopts 'atfd' opt; do
+  local all format formatArg filter excludeCandy debug
+  while getopts 'apf' opt; do
     case "$opt" in
       a) all="-a";;
-      t) format="table";;
+      p) plain=true;;
       f) filter=true;;
-      d) debug=true;;
     esac
   done
   shift $(($OPTIND - 1))
 
-  if [ "$format" = "table" ]; then
-    formatArg="."
-  else
-    formatArg='--format="{{json .}}"'
-  fi
-
-  # local result=$(docker container ls $all --format="{{json .}}")
-if [ "$format" = "prettyTable" ]; then
-  local result=$(eval docker container ls $all $formatArg)
+if ! [ $plain ]; then
+  local result=$(docker container ls $all --format="{{json .}}")
 
   if [ -n "$filter" ]; then
     excludeCandy='select(.Names | contains("composer") | not) '
@@ -33,24 +25,12 @@ if [ "$format" = "prettyTable" ]; then
     excludeCandy="."
   fi
 
-    local jqQuery=$(cat <<-EOF
-   include "pad";
-   include "colour";
-   include "docker";
-   def image:
-     # truncate and highlight aws ecr prefix
-     gsub("(?<dkr>.*amazonaws.*)/(?<x>.*)";((.dkr[0:3]+"...")|_("bblue"))+(.x | _tacha(.)));
-   # sort by status descending (show up first then exit). ignore the exit code (whether exit 0 or exit 127 etc) by just getting the first 2 chars of exit. 
-   # then sort by name ascending
-   sort_by((.Status[0:2] | explode | map(-.)), .Names)[] |
-   $excludeCandy |
-   "\(.ID[0:5] | __(.)) \(.Names[0:45] | rp(45)) \(.Status | prettyStatus) \(.Ports | rp(35) | _brinkPink(.)) \(.Image | image | rp(15) | _tacha(.)) \(.Command[1:11] | rp(10) | __(.)) \(.CreatedAt|pCreatedAt)"
+  local jqQuery=$(cat <<-EOF
+  include "docker/dcl";
+    dcl
 EOF
 )
-
-  [ -n "$debug" ] && echo jqQuery:"\n"$jqQuery
-
-  jq --raw-output --slurp -L "~/.config/jq" "$jqQuery" <<< $result
+  jq --raw-output --slurp -L "~/.config/jq" -L "~/.local/lib/jq" "$jqQuery" <<< $result
 else
   docker container ls $all
 fi
