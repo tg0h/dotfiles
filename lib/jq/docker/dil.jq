@@ -146,6 +146,17 @@ def setSizeUnit:
   | ._size = $sizeNumber
 ;
 
+def setSizeKb:
+  ._unit as $unit
+  | ._size as $sizeNumber
+  |
+  if $unit == "kB" then ._sizeKb = ($sizeNumber|tonumber)
+  elif $unit == "MB" then ._sizeKb = ($sizeNumber|tonumber)*1000
+  elif $unit == "GB" then ._sizeKb = ($sizeNumber|tonumber)*1000*1000
+  else .
+  end
+;
+
 def _mb:
   (. |tostring|lp(4)) as $mb |
   if . < 100 then $mb | _cs0
@@ -183,10 +194,29 @@ def _size($size; $unit):
   end
   ;
 
-def dil:
-  sort_by(.Repository)
-  | map(setMonthsAgo)
+def _sortBy($sortBy):
+  if $sortBy == "createdAt" then sort_by(.CreatedAt) | reverse
+  elif $sortBy == "repository" then sort_by(._sortKey,.Repository)
+  elif $sortBy == "size" then sort_by(._sizeKb) | reverse
+  else .
+  end
+  ;
+
+def setImageSortKey:
+  .Repository as $repo |
+  if $repo | startswith("203") then ._sortKey = 3 # rc images
+  elif $repo | contains("/") then ._sortKey = 2 # images from docker registry
+  else ._sortKey = 1 # local images
+  end
+;
+
+def dil($sortBy):
+  map(setMonthsAgo)
   | map(setSizeUnit)
+  | map(setSizeKb)
+  | map(setImageSortKey)
+
+  | _sortBy($sortBy)
   | .[]
   | ._monthsAgo as $monthsAgo
   | ._unit as $unit
@@ -197,6 +227,7 @@ def dil:
   +"\(.Repository|_repository)"
   +" \(.Tag|_tag)"
   +" \(_size($size;$unit))"
+
   # +" \(.Size)"
   # +" \(.VirtualSize)"
   ;
