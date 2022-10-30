@@ -6,17 +6,18 @@ function dcl(){
   # dcl -p - plain - show original docker container ls command
   # dcl -f - exclude candy containers
 
-  local all format formatArg filter excludeCandy debug
-  while getopts 'apf' opt; do
+  local all format formatArg filter excludeCandy debug plain verbose
+  while getopts 'afpv' opt; do
     case "$opt" in
       a) all="-a";;
-      p) plain=true;;
       f) filter=true;;
+      p) plain=true;;
+      v) verbose=true;; # json format
     esac
   done
   shift $(($OPTIND - 1))
 
-if ! [ $plain ]; then
+if ! [ $plain ] && ! [ $verbose ]; then
   local result=$(docker container ls $all --format="{{json .}}")
 
   if [ -n "$filter" ]; then
@@ -31,6 +32,8 @@ if ! [ $plain ]; then
 EOF
 )
   jq --raw-output --slurp -L "~/.config/jq" -L "~/.local/lib/jq" "$jqQuery" <<< $result
+elif [ $verbose ]; then
+  docker container ls $all --format="{{json .}}" | jq .
 else
   docker container ls $all
 fi
