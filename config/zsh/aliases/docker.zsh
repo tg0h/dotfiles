@@ -76,7 +76,7 @@ alias dir='docker image rm'
 
 alias dib='docker image build'
 
-alias dil='docker image ls'
+# alias dil='docker image ls'
 alias dill="docker image ls | rg -v '^2.*'"
 
 ################################################### Network

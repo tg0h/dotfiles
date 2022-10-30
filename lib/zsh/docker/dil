@@ -1,0 +1,40 @@
+#!bin/zsh
+
+function dil(){
+  # docker image ls
+  # dcl -a 
+  # dcl -p - plain - show original docker container ls command
+  # dcl -f - exclude candy containers
+
+  local all format formatArg filter excludeCandy debug plain verbose
+  while getopts 'apfv' opt; do
+    case "$opt" in
+      a) all="-a";;
+      p) plain=true;;
+      v) verbose=true;; # json format
+      f) filter=true;;
+    esac
+  done
+  shift $(($OPTIND - 1))
+
+if ! [ $plain ] && ! [ $verbose ]; then
+  local result=$(docker image ls $all --format="{{json .}}")
+
+  if [ -n "$filter" ]; then
+    excludeCandy='select(.Names | contains("composer") | not) '
+  else
+    excludeCandy="."
+  fi
+
+  local jqQuery=$(cat <<-EOF
+  include "docker/dil";
+    dil
+EOF
+)
+  jq --raw-output --slurp -L "~/.config/jq" -L "~/.local/lib/jq" "$jqQuery" <<< $result
+elif [ $verbose ]; then
+  docker image ls $all --format="{{json .}}"
+else
+  docker image ls $all
+fi
+}
