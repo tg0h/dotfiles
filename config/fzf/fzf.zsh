@@ -45,12 +45,12 @@ export FZF_DEFAULT_OPTS="
 --bind='ctrl-a:select-all+accept'
 --bind='ctrl-y:execute-silent(echo {+} | join-lines-fzf | pbcopy)+abort'
 --bind 'ctrl-e:$FZF_X_NVIM+abort'
---bind 'ctrl-space:change-preview-window(right,50%|right,80%|down,90%,border-top|hidden|)'
+--bind 'ctrl-/:change-preview-window(right,80%|down,90%,border-top|hidden|)'
 --bind='alt-c:execute(rm {})+abort'
 --bind='alt-C:execute(trash {})+abort'
 
 --bind backward-eof:abort
---bind 'ctrl-/:jump'
+--bind 'ctrl-space:jump'
 "
 
 FD_OPTIONS="--color always --follow --hidden"
