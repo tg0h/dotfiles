@@ -9,8 +9,9 @@ function fzf-filename-and-content(){
   local dir=$1
 
   local fzfEntry=$(rg --follow --line-number --with-filename . $dir --color=always --field-match-separator ' '\
-    | fzf --preview "bat --color=always {1} --highlight-line {2}" \
-    --preview-window ~8,+{2}-5)
+    | fzf --preview "bat --style=numbers,header-filename --color=always {1} --highlight-line {2}" \
+    --preview-window "right,noborder,~1,+{2}+1/2,<80(up)"
+  )
 
   if [ -n "$fzfEntry" ]; then
     local file lineNumber
