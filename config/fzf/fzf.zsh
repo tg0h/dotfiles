@@ -67,12 +67,12 @@ export FZF_DEFAULT_COMMAND="fd . --type f --hidden --follow --exclude .git $FD_O
 
 #search to exclude .git and node_modules
 export FZF_CTRL_R_OPTS="--preview-window='right:hidden:wrap'"
-export FZF_PREVIEW_T_OPTS="[[ \$(file --mime {}) =~ inode/directory ]] && exa --tree --long --icons --git --color always --octal-permissions --sort created --reverse {} || (bat --style=numbers --color=always {} || cat {}) 2> /dev/null | head -300"
+export FZF_PREVIEW_T_OPTS="[[ \$(file --mime {}) =~ inode/directory ]] && exa --tree --long --icons --git --color always --octal-permissions --sort created --reverse {} || (bat --style=numbers,header-filename --color=always {} || cat {}) 2> /dev/null | head -300"
 
 export FZF_CTRL_T_COMMAND="fd $FD_OPTIONS"
 export FZF_CTRL_T_OPTS="
 --preview='$FZF_PREVIEW_T_OPTS'
---preview-window='right:wrap'
+--preview-window='right:wrap,noborder'
 --bind 'ctrl-g:reload(fd $FD_OPTIONS --type d)+change-prompt(dir> )'
 --bind 'ctrl-c:reload(fd $FD_OPTIONS_NO_IGNORE)+change-prompt(no-ignore> )'
 --bind 'ctrl-r:reload(fd $FD_OPTIONS --type f)+change-prompt(file> )'
@@ -88,6 +88,7 @@ export FD_C_OPTIONS_NO_IGNORE="$FD_OPTIONS_NO_IGNORE --type d"
 export FZF_ALT_C_COMMAND="fd $FD_C_OPTIONS"
 export FZF_ALT_C_OPTS="
 --preview 'lsd {} --tree --color always --icon always'
+--preview-window='right:wrap,noborder'
 --header=$'⌥r ⌥g ⌥l ⌥c ⌥f' \
 --bind 'alt-r:reload(exa --oneline --color always --sort accessed --reverse --only-dirs)+change-prompt(depth:1> )'
 --bind 'alt-g:reload(fd $FD_C_OPTIONS --max-depth 2 )+change-prompt(depth:2> )'
