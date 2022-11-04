@@ -1,0 +1,21 @@
+#!bin/zsh
+
+function dii(){
+  # docker image inspect
+
+  while getopts 'v' opt; do
+    case "$opt" in
+      v) verbose=true;;
+    esac
+  done
+  shift $(($OPTIND - 1))
+
+  local result=$(docker image inspect $@)
+  local jqQuery='include "docker/dii"; dii'
+
+  if [ $verbose ]; then
+    jq --raw-output "." <<< "$result"
+  else
+    jq --raw-output -L "~/.config/jq" -L "~/.local/lib/jq" "$jqQuery" <<< $result
+  fi
+}

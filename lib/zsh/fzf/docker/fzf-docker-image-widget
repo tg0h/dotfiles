@@ -2,9 +2,35 @@
 
 # Select a docker container to remove
 function fzf-docker-image-widget() {
-  local container_ids
-  container_ids=$(dil | fzf | awk '{print $1}' | join-lines)
-  zle reset-prompt
-  LBUFFER+=$container_ids
-}
 
+  local fzfOut
+  fzfOut=$(dil | fzf \
+    --header="Docker Images: ⌃V ⌃G ⌃C ⌃R" \
+    --height ~95% \
+    --expect 'ctrl-t,ctrl-v' \
+    --prompt "created> " \
+    --bind 'ctrl-g:reload(dil -s c)+change-prompt(created> )' \
+    --bind 'ctrl-c:reload(dil -s r)+change-prompt(repo> )' \
+    --bind 'ctrl-r:reload(dil -s s)+change-prompt(size> )' \
+    --preview 'dii {1}' \
+    --preview-window 'right,noborder,wrap,68%,<100(50%)'
+  )
+
+  local key=$(head -1 <<< "$fzfOut")
+  local selections=$(tail -n +2 <<< "$fzfOut") # get all lines after the first line
+  local selection1=$(head -1 <<< "$selections")
+
+  local selectedId=$(gawk '{print $1}' <<< "$selection1")
+
+  if [ $selectedId ]; then
+    if [ "$key" = ctrl-t ]; then
+      dii $selectedId
+    elif [ "$key" = ctrl-v ]; then
+      dii -v $selectedId
+    else
+      local selectedIds=$(echo $selections | choose 0 | join-lines)
+      LBUFFER+=$selectedIds
+    fi
+  fi
+  zle reset-prompt
+}

@@ -67,7 +67,7 @@ alias dck='docker container kill' # sigkill
 alias dp='docker pull'
 alias di='docker image'
 alias dih='docker image history'
-alias dii='docker image inspect'
+# alias dii='docker image inspect'
 
 alias dit='docker image tag'
 alias dip='docker image push'
