@@ -24,11 +24,22 @@ def setImageSortKey:
   end
 ;
 
-def dil($sortBy; $rev):
+def filterImage($imageFilter):
+  if $imageFilter == "all" then true
+  elif $imageFilter == "slash" then ._sortKey == 2 # TODO: use another property
+  elif $imageFilter == "local" then ._sortKey == 1
+  elif $imageFilter == "candy" then ._sortKey == 3
+  else
+    true
+  end
+;
+
+def dil($sortBy; $rev; $imageFilter):
   map(setMonthsAgo)
   | map(SetUnitSize)
   | map(SetKbSize)
   | map(setImageSortKey)
+  | map(select(filterImage($imageFilter)))
   | _sortBy($sortBy)
   | if $rev then reverse else . end
   | .[]

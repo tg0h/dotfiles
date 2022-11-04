@@ -6,38 +6,41 @@ function dil(){
   # dcl -p - plain - show original docker container ls command
   # dcl -f - exclude candy containers
 
-  local all format formatArg filter excludeCandy debug plain verbose sortOption sortBy="createdAt"
-  local reverse=false
+  local all format formatArg filter excludeCandy debug plain verbose filterOption sortOption 
 
-  while getopts 'apfvs:r' opt; do
+  local sortBy="createdAt"
+  local reverse=false 
+  local imageFilter="all"
+
+  while getopts 'apf:vs:r' opt; do
     case "$opt" in
       a) all="-a";;
       p) plain=true;;
       v) verbose=true;; # json format
-      f) filter=true;;
+      f) filterOption=$OPTARG
+        case "$filterOption" in
+          a) imageFilter="all";; # docker image names with <group>/<image>
+          c) imageFilter="candy";; # refcandy ecr images that begin with 203...
+          l) imageFilter="local";; # docker images without slash 
+          s) imageFilter="slash";; # docker image names with <group>/<image>
+        esac;;
       r) reverse=true;;
       s) sortOption=$OPTARG
         case "$sortOption" in
           c) sortBy="createdAt";;
           r) sortBy="repository";;
           s) sortBy="size";;
-        esac
+        esac;;
     esac
   done
   shift $(($OPTIND - 1))
 
   if ! [ $plain ] && ! [ $verbose ]; then
-    local result=$(docker image ls $all --format="{{json .}}")
-
-    if [ -n "$filter" ]; then
-      excludeCandy='select(.Names | contains("composer") | not) '
-    else
-      excludeCandy="."
-    fi
+  local result=$(docker image ls $all --format="{{json .}}")
 
   local jqQuery=$(cat <<-EOF
   include "docker/dil";
-    dil("$sortBy";$reverse)
+    dil("$sortBy";$reverse;"$imageFilter")
 EOF
 )
     jq --raw-output --slurp -L "~/.config/jq" -L "~/.local/lib/jq" "$jqQuery" <<< $result

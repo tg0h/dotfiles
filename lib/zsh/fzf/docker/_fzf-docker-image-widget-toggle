@@ -1,0 +1,25 @@
+#!/bin/zsh
+
+function _fzf-docker-image-widget-toggle(){
+  # toggle between state and state2
+  # if state2 is blank then state2 is empty string
+  # _fzf-docker-image-widget-toggle file state state2
+  # defaults to <state> if file is empty
+
+  local file=$1
+  local state=$2
+  local state2=$3
+
+  # echo file is $file
+  # echo state is $state
+
+  # if ! [ -f $file ]; then
+  #   return 9
+  # fi
+
+  if grep -q "$state" $file; then
+    printf $state2 > $file
+  else
+    printf $state > $file # default to $state if file is empty
+  fi
+}

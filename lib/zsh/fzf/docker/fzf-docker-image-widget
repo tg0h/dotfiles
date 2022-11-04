@@ -4,49 +4,62 @@
 function fzf-docker-image-widget() {
 
   local fzfOut
+  local basename=fzf-docker-image-widget
 
-  local tmp_file
-  if tmp_file="$(mktemp "/tmp/${basename}".XXXXXX)"; then
-    printf '' > "${tmp_file}"
+  local reverse_tmp_file
+  if reverse_tmp_file="$(mktemp "/tmp/${basename}_reverse".XXXXXX)"; then
+    # dil's default reverse option is reverse to sort by created at descending
+    # set up the initial state to reflect this
+    printf 'r' > "${reverse_tmp_file}" 
+  fi
+
+  local sortBy_tmp_file
+  if sortBy_tmp_file="$(mktemp "/tmp/${basename}_sortBy".XXXXXX)"; then
+    printf 'c' > "${sortBy_tmp_file}"
+  fi
+
+  local filter_tmp_file 
+  if filter_tmp_file="$(mktemp "/tmp/${basename}_filter".XXXXXX)"; then
+    printf '' > "${filter_tmp_file}"
   fi
 
   fzfOut=$(dil | fzf \
-    --header="Docker Images: ⌃V ⌃G ⌃C ⌃R" \
+    --header="Docker Images: ⌃V Toggle-Sort:(⌃G ⌃C ⌃R) Toggle-Filter:(⌥G ⌥C ⌥R)"\
     --height ~95% \
     --expect 'ctrl-t,ctrl-v' \
+    --preview 'dii {1}' \
+    --preview-window 'right,noborder,wrap,68%,<100(50%)' \
     --prompt "created> " \
     --bind "ctrl-g:reload(
-              if grep -q 'reverse' \"${tmp_file}\"; 
-              then 
-                  printf '' > \"${tmp_file}\"; 
-                  dil -s c -r; 
-              else 
-                print 'reverse' > \"${tmp_file}\"; 
-                dil -s c; 
-              fi
+              printf 'c' > \"${sortBy_tmp_file}\"; 
+              _fzf-docker-image-widget-toggle \"${reverse_tmp_file}\" reverse;
+              _fzf-docker-image-widget-state \"${sortBy_tmp_file}\" ${reverse_tmp_file} ${filter_tmp_file};
             )+change-prompt(created> )" \
-    --bind 'ctrl-c:reload(
-              if grep -q 'reverse' \"${tmp_file}\"; 
-              then 
-                  printf '' > \"${tmp_file}\"; 
-                  dil -s r -r; 
-              else 
-                print 'reverse' > \"${tmp_file}\"; 
-                dil -s r; 
-              fi
-            )+change-prompt(repo> )' \
-    --bind 'ctrl-r:reload(
-              if grep -q 'reverse' \"${tmp_file}\"; 
-              then 
-                  printf '' > \"${tmp_file}\"; 
-                  dil -s s -r; 
-              else 
-                print 'reverse' > \"${tmp_file}\"; 
-                dil -s s; 
-              fi
-            )+change-prompt(size> )' \
-    --preview 'dii {1}' \
-    --preview-window 'right,noborder,wrap,68%,<100(50%)'
+    --bind "ctrl-c:reload(
+              printf 'r' > \"${sortBy_tmp_file}\"; 
+              _fzf-docker-image-widget-toggle \"${reverse_tmp_file}\" reverse;
+              _fzf-docker-image-widget-state \"${sortBy_tmp_file}\" ${reverse_tmp_file} ${filter_tmp_file};
+            )+change-prompt(repo> )" \
+    --bind "ctrl-r:reload(
+              printf 's' > \"${sortBy_tmp_file}\"; 
+              _fzf-docker-image-widget-toggle \"${reverse_tmp_file}\" reverse;
+              _fzf-docker-image-widget-state \"${sortBy_tmp_file}\" ${reverse_tmp_file} ${filter_tmp_file};
+            )+change-prompt(size> )" \
+    --bind "alt-g:reload(
+              # toggle candy repos / all
+              _fzf-docker-image-widget-toggle \"${filter_tmp_file}\" c a;
+              _fzf-docker-image-widget-state \"${sortBy_tmp_file}\" ${reverse_tmp_file} ${filter_tmp_file};
+            )" \
+    --bind "alt-c:reload(
+              # toggle local repos /all
+              _fzf-docker-image-widget-toggle \"${filter_tmp_file}\" l a;
+              _fzf-docker-image-widget-state \"${sortBy_tmp_file}\" ${reverse_tmp_file} ${filter_tmp_file};
+            )" \
+    --bind "alt-r:reload(
+              # toggle slash repos /all
+              _fzf-docker-image-widget-toggle \"${filter_tmp_file}\" s a;
+              _fzf-docker-image-widget-state \"${sortBy_tmp_file}\" ${reverse_tmp_file} ${filter_tmp_file};
+            )" \
   )
 
   local key=$(head -1 <<< "$fzfOut")
@@ -66,6 +79,8 @@ function fzf-docker-image-widget() {
     fi
   fi
 
-  rm -f "${tmp_file}" &> /dev/null
+  rm -f "${reverse_tmp_file}" &> /dev/null
+  rm -f "${sortBy_tmp_file}" &> /dev/null
+  rm -f "${filter_tmp_file}" &> /dev/null
   zle reset-prompt
 }

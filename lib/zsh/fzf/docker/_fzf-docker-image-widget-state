@@ -1,0 +1,30 @@
+#!/bin/zsh
+
+function _fzf-docker-image-widget-state(){
+
+  local sortByStateFile=$1
+  local reverseStateFile=$2
+  local filterStateFile=$3
+
+  local reverseOption
+  local sortByOption=c
+  local filterOption=a
+
+  if grep -q 'reverse' $reverseStateFile; then
+    reverseOption="-r"
+  fi
+
+  if grep -q 'c' $sortByStateFile; then sortByOption="c" # created at
+  elif grep -q 'r' $sortByStateFile; then sortByOption="r" # repo name
+  elif grep -q 's' $sortByStateFile; then sortByOption="s" # size
+  fi
+
+  if grep -q 'a' $filterStateFile; then filterOption="a" # created at
+  elif grep -q 'c' $filterStateFile; then filterOption="c" # repo name
+  elif grep -q 'l' $filterStateFile; then filterOption="l" # size
+  elif grep -q 's' $filterStateFile; then filterOption="s" # size
+  fi
+
+  dil -s $sortByOption -f $filterOption $reverseOption
+
+}
