@@ -97,6 +97,7 @@ def colours:
   "brinkPink": "[38;2;252;93;124m", # #fc5d7c
   "fsg": "[38;2;3;255;19m", # #03ff13
 
+  "ebony": "[38;2;51;52;52m", # #333434
   # RC colours
   "flourescentPink": "[38;2;255;14;139m", # #ff0e8b
   "spiroDiscoBall": "[38;2;34;197;236m", # #22c5ec
@@ -119,7 +120,7 @@ def colourTest:
 # \u001b[31msome text\u001b[0m
 # WARNING parameters are separated by ; not ,
 def colour(text; colour):
-  tostring | escape + colours[colour] + text + escape + colours.reset;
+  escape + colours[colour] + text + escape + colours.reset;
 
 def _r(text):
   escape + colours["red"] + text + escape + colours.reset;
