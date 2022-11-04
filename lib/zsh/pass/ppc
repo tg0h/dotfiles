@@ -7,5 +7,5 @@ function ppc(){
   dir=$XDG_DATA_HOME/pass
   # get keys from the password store directory filenames, remove the gpg extension, then fzf search
   local key=$(basename $(fd . $dir --extension .gpg) | cut -f 1 -d'.' | fzf --preview-window hidden)
-  pass otp --clip $key
+  pass otp --clip $key || pass --clip $key
 }
