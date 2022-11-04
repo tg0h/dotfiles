@@ -21,7 +21,9 @@ alias pa='pbpaste'
 alias ghd='gh dash'
 
 alias f/='fsCheat' # show ud cheatsheet
-alias fscl='fswitch configure list' # show ud configuration
+
+# fscl collides with fswitch 
+# alias fscl='fswitch configure list' # show ud configuration
 alias fsce='fswitch configure edit' # edit ud configuration
 
 alias eo='scratcher-cheat'
