@@ -4,14 +4,47 @@
 function fzf-docker-image-widget() {
 
   local fzfOut
+
+  local tmp_file
+  if tmp_file="$(mktemp "/tmp/${basename}".XXXXXX)"; then
+    printf '' > "${tmp_file}"
+  fi
+
   fzfOut=$(dil | fzf \
     --header="Docker Images: ⌃V ⌃G ⌃C ⌃R" \
     --height ~95% \
     --expect 'ctrl-t,ctrl-v' \
     --prompt "created> " \
-    --bind 'ctrl-g:reload(dil -s c)+change-prompt(created> )' \
-    --bind 'ctrl-c:reload(dil -s r)+change-prompt(repo> )' \
-    --bind 'ctrl-r:reload(dil -s s)+change-prompt(size> )' \
+    --bind "ctrl-g:reload(
+              if grep -q 'reverse' \"${tmp_file}\"; 
+              then 
+                  printf '' > \"${tmp_file}\"; 
+                  dil -s c -r; 
+              else 
+                print 'reverse' > \"${tmp_file}\"; 
+                dil -s c; 
+              fi
+            )+change-prompt(created> )" \
+    --bind 'ctrl-c:reload(
+              if grep -q 'reverse' \"${tmp_file}\"; 
+              then 
+                  printf '' > \"${tmp_file}\"; 
+                  dil -s r -r; 
+              else 
+                print 'reverse' > \"${tmp_file}\"; 
+                dil -s r; 
+              fi
+            )+change-prompt(repo> )' \
+    --bind 'ctrl-r:reload(
+              if grep -q 'reverse' \"${tmp_file}\"; 
+              then 
+                  printf '' > \"${tmp_file}\"; 
+                  dil -s s -r; 
+              else 
+                print 'reverse' > \"${tmp_file}\"; 
+                dil -s s; 
+              fi
+            )+change-prompt(size> )' \
     --preview 'dii {1}' \
     --preview-window 'right,noborder,wrap,68%,<100(50%)'
   )
@@ -32,5 +65,7 @@ function fzf-docker-image-widget() {
       LBUFFER+=$selectedIds
     fi
   fi
+
+  rm -f "${tmp_file}" &> /dev/null
   zle reset-prompt
 }
