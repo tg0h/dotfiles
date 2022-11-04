@@ -9,10 +9,11 @@ include "docker/docker.image-tag";
 
 def _sortBy($sortBy):
   if $sortBy == "createdAt" then sort_by(.CreatedAt) | reverse
-  elif $sortBy == "repository" then sort_by(._sortKey,.Repository)
-  elif $sortBy == "size" then sort_by(._sizeKb) | reverse
-  else .
+    elif $sortBy == "repository" then sort_by(._sortKey,.Repository)
+    elif $sortBy == "size" then sort_by(._sizeKb) | reverse
+    else .
   end
+  | .
   ;
 
 def setImageSortKey:
@@ -23,13 +24,13 @@ def setImageSortKey:
   end
 ;
 
-def dil($sortBy):
+def dil($sortBy; $rev):
   map(setMonthsAgo)
   | map(SetUnitSize)
   | map(SetKbSize)
   | map(setImageSortKey)
-
   | _sortBy($sortBy)
+  | if $rev then reverse else . end
   | .[]
   | ._monthsAgo as $monthsAgo
   | ._unit as $unit
