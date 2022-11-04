@@ -15,6 +15,8 @@ def rp($len):
 def lp($len):
   if . == null then "" else . end | tostring | ($len - length) as $l | (" " * $l)[:$l] + .;
 
+def ljust($len): " " * $len;
+
 # truncate string to $len - 3 and add "..."
 # if string < $len - 3, do nothing
 # subtract 3 from $len so it is easy to do eg . | trunc(5) | lp(5)
