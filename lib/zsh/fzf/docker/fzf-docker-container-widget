@@ -1,10 +1,14 @@
 #!bin/zsh
 function fzf-docker-container-widget() {
   # show docker containers
+  # on large monitors, show side by side
+  # on laptop screen, show top-bottom
+  # revers-list shows prompt in center with search results on top and preview at bottom
 
   local fzfOut
   fzfOut=$(dcla | fzf \
-    --preview-window bottom,noborder,80% \
+    --preview-window 'right,noborder,50%,<75(bottom)' \
+    --layout "reverse-list" \
     --header="⌃T ⌃V" \
     --height ~95% \
     --preview 'dcin {2}' \
