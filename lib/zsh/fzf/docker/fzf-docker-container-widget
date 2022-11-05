@@ -1,4 +1,5 @@
 #!bin/zsh
+
 function fzf-docker-container-widget() {
   # show docker containers
   # on large monitors, show side by side
