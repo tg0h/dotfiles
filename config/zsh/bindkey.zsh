@@ -102,3 +102,6 @@ zle -N fzf-chrome-bookmarks-widget
 bindkey '^[^m' fzf-chrome-bookmarks-widget
 zle -N fzf-chrome-history-widget
 bindkey '^[^w' fzf-chrome-history-widget
+
+zle -N fzf-yarn-widget
+bindkey '^[w' fzf-yarn-widget

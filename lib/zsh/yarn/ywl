@@ -1,0 +1,27 @@
+#!/bin/zsh
+
+function ywl(){
+  # yarn workspace list
+
+  local verbose
+  while getopts 'v' opt; do
+    case "$opt" in
+      v) verbose=true;;
+    esac
+  done
+  shift $(($OPTIND - 1))
+
+  local result=$(yarn workspaces list --json)
+
+  local jqQuery=$(cat <<-EOF
+  include "yarn/ywl";
+    ywl
+EOF
+)
+
+  if [ $verbose ]; then
+    jq --raw-output "." <<< "$result"
+  else
+    jq --slurp --raw-output -L "~/.config/jq" -L "~/.local/lib/jq" "$jqQuery" <<< "$result"
+  fi
+}

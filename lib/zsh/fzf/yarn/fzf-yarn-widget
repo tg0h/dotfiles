@@ -1,0 +1,38 @@
+#!bin/zsh
+
+function fzf-yarn-widget() {
+  # show yarn workspaces
+
+  local fzfOut
+  fzfOut=$(ywl | fzf \
+    --preview-window 'right,noborder,50%,<75(bottom)' \
+    --expect 'ctrl-t,ctrl-v'
+  )
+    # --height ~95% \
+    # --preview 'dcin {2}' \
+    # --layout "reverse-list" \
+    # --header="⌃T ⌃V" \
+
+  local key=$(head -1 <<< "$fzfOut")
+  local selections=$(tail -n +2 <<< "$fzfOut") # get all lines after the first line
+  local selection1=$(head -1 <<< "$selections")
+  # echo key is $key
+  # echo selection1 is $selection1
+  # echo selections is $selections
+
+  local selectedId=$(gawk '{print $1}' <<< "$selection1")
+
+  if [ $selectedId ]; then
+    if [ "$key" = ctrl-t ]; then
+      # yarn workspace $selectedId test
+      LBUFFER+="yarn workspace $selectedId test"
+    elif [ "$key" = ctrl-v ]; then
+      # dcin -v $selectedId
+    else
+      local selectedIds=$(echo $selections | join-lines)
+      LBUFFER+=$selectedIds
+    fi
+  fi
+  zle reset-prompt
+}
+
