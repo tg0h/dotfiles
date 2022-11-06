@@ -73,13 +73,14 @@ export FZF_CTRL_T_COMMAND="fd $FD_OPTIONS"
 export FZF_CTRL_T_OPTS="
 --preview='$FZF_PREVIEW_T_OPTS'
 --preview-window='right:wrap,noborder'
---bind 'ctrl-g:reload(fd $FD_OPTIONS --type d)+change-prompt(dir> )'
+--bind 'ctrl-g:reload(fd $FD_OPTIONS --exec-batch ls -lt | choose 8)+change-prompt(files-sorted> )'
 --bind 'ctrl-c:reload(fd $FD_OPTIONS_NO_IGNORE)+change-prompt(no-ignore> )'
 --bind 'ctrl-r:reload(fd $FD_OPTIONS --type f)+change-prompt(file> )'
 --bind 'ctrl-t:reload(fd $FD_OPTIONS)+change-prompt(> )'
 --bind 'alt-g:reload(fd $FD_OPTIONS --type f --max-depth 1 )+change-prompt(depth:1> )'
 --bind 'alt-r:reload(fd $FD_OPTIONS --type f --max-depth 2 )+change-prompt(depth:2> )'
 "
+# --bind 'ctrl-g:reload(fd $FD_OPTIONS --type d)+change-prompt(dir> )'
 # --bind 'ctrl-space:execute(echo {} > /tmp/_nvim_cache && nvim {} > /dev/tty 2>&1)+abort'
 
 # include git ignore since there shouldn't be too many such directories
