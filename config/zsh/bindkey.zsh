@@ -105,3 +105,12 @@ bindkey '^[^w' fzf-chrome-history-widget
 
 zle -N fzf-yarn-widget
 bindkey '^[w' fzf-yarn-widget
+
+# https://stackoverflow.com/questions/28819359/in-zsh-how-do-i-bind-a-keyboard-shortcut-to-run-the-last-command
+# run the last command if pressing enter with empty buffer!!
+# override the accept-line widget
+# https://zsh.sourceforge.io/Doc/Release/Zsh-Line-Editor.html
+# $WIDGET is a special variable that refers to the name of the currently executing widget
+# run the built in accept line widget with .accept-line
+accept-line() { [ -z "$BUFFER" ] && zle up-history; zle ".accept-line"; }
+zle -N accept-line
