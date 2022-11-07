@@ -1,10 +1,10 @@
 [user]
-	email = timslgoh@gmail.com
-	name = tim goh
+  email = timslgoh@gmail.com
+  name = tim goh
 [credential]
-	helper = store
+  helper = store
 [core]
-	pager = delta
+  pager = delta
 [interactive]
     diffFilter = delta --color-only
 [delta]
@@ -15,7 +15,7 @@
     file-style = bold yellow ul
     file-decoration-style = none
 [diff]
-	tool = vimdiff
+  tool = vimdiff
   ; https://git-scm.com/docs/git-diff#Documentation/git-diff.txt-dimmed-zebra
   ; only highlights moved blocks if they are 20 chars or more
   colorMoved = dimmed-zebra
@@ -23,12 +23,12 @@
   ; instead of an added block
   colorMovedWS = allow-indentation-change
 [merge]
-	tool = vimdiff
-	conflictstyle = diff3
+  tool = vimdiff
+  conflictstyle = diff3
 [pull]
-	rebase = false
+  rebase = false
 [difftool]
-	prompt = false
+  prompt = false
 
 ; https://git-scm.com/docs/git-config
 ; If the pattern ends with /, ** will be automatically added.
@@ -39,7 +39,7 @@
 [includeIf "gitdir:~/src/playground/"]
   path = config-work
 [init]
-	defaultBranch = main
+  defaultBranch = main
 ; https://git-scm.com/docs/git-config#Documentation/git-config.txt-color
 ; bold dim ul blink reverse italic strike
 ; normal black red green yellow blue magenta cyan white default
@@ -47,21 +47,21 @@
 ;
 ; use tool terminal-colors -no to see 256 color codes
 [color "status"]
-	added = green
-	updated = green normal bold
-	changed = yellow 
-	untracked = 170 bold
-	branch = cyan
-	nobranch = normal
-	unmerged = red
-	header = normal
+  added = green
+  updated = green normal bold
+  changed = yellow 
+  untracked = 170 bold
+  branch = cyan
+  nobranch = normal
+  unmerged = red
+  header = normal
 [color "branch"]
-	current = 46
-	local = 214
-	remote = 207
-	; remote = #ff0e8b
+  current = 46
+  local = 214
+  remote = 207
+  ; remote = #ff0e8b
 
 ; [color]
-; 	ui = auto
+;   ui = auto
 [push]
-	autoSetupRemote = true # automatically push the local branch to origin under the same branch name
+  autoSetupRemote = true # automatically push the local branch to origin under the same branch name
