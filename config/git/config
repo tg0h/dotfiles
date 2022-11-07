@@ -16,6 +16,12 @@
     file-decoration-style = none
 [diff]
 	tool = vimdiff
+  ; https://git-scm.com/docs/git-diff#Documentation/git-diff.txt-dimmed-zebra
+  ; only highlights moved blocks if they are 20 chars or more
+  colorMoved = dimmed-zebra
+  ; if the moved block has indentation added, count it as a moved block 
+  ; instead of an added block
+  colorMovedWS = allow-indentation-change
 [merge]
 	tool = vimdiff
 	conflictstyle = diff3
