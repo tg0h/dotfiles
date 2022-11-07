@@ -107,6 +107,10 @@ function gccd() {
 alias gclean='git clean -id'
 alias gpristine='git reset --hard && git clean -dffx'
 alias gcm='git checkout $(git_main_branch)'
+# https://git-scm.com/docs/git-checkout#Documentation/git-checkout.txt-ltbranchgt
+# git checkout the previously checked out branch
+alias gc.='git checkout @{-1}' 
+
 alias gcd='git checkout $(git_develop_branch)'
 alias gcmsg='git commit -m'
 alias gco='git checkout'
