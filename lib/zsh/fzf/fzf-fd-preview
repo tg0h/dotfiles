@@ -1,0 +1,13 @@
+#!/bin/zsh
+
+function fzf-fd-preview(){
+  # previews files or directories
+
+  local entry=$1
+  if [[ $(file --mime $entry) =~ inode/directory ]]; then 
+    exa --tree --long --icons --git --color always --octal-permissions --sort created --reverse $entry 
+  else
+    bat --style=numbers,header-filename --color=always $entry
+    # || cat $entry 2> /dev/null | head -300
+  fi
+}

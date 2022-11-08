@@ -114,3 +114,6 @@ bindkey '^[w' fzf-yarn-widget
 # run the built in accept line widget with .accept-line
 accept-line() { [ -z "$BUFFER" ] && zle up-history; zle ".accept-line"; }
 zle -N accept-line
+
+zle     -N            fzf-t-widget
+bindkey -M emacs '^T' fzf-t-widget
