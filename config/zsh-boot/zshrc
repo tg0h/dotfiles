@@ -1,15 +1,13 @@
 # zmodload zsh/zprof # turn this on to profile zshrc (with zprof below)
-# export KEYTIMEOUT=1 # Make Vi mode transitions faster (KEYTIMEOUT is in hundredths of a second)
 export EDITOR='nvim'
 
 export HISTFILE="$XDG_STATE_HOME"/zsh/history # overrid HISTFILE setting in /etc/zshenv
 export HISTFILESIZE=1000000000
 export HISTSIZE=1000000000 # Number of commands that are loaded into memory from the history file
 export SAVEHIST=1000000000 # Refers to the number of commands that are stored in the zsh history file
-# Show the timestamp for each entry of the history file
-export HISTTIMEFORMAT="%Y-%m-%dT%H:%M:%S "
+export HISTTIMEFORMAT="%Y-%m-%dT%H:%M:%S " # Show the timestamp for each entry of the history file
 setopt SHARE_HISTORY # share history between terminals running at the same time, adds the strange numbers to the beginning of each line in the history file
-setopt EXTENDED_HISTORY       # record timestamp of command in HISTFLE
+setopt EXTENDED_HISTORY # record timestamp of command in HISTFLE
 
 export NVM_AUTO_USE=true # zsh-nvm plugin autoloads .nvmrc, set before the plugins array
 export NVM_LAZY_LOAD=true  # zsh-nvm lazy load
@@ -43,7 +41,6 @@ autoload -Uz _zinit
 
 # NOTE: zinit install
 zinit ice depth=1; zinit light romkatv/powerlevel10k
-
 zinit ice as"program" pick"bin/git-fuzzy"
 zinit light bigH/git-fuzzy
 
@@ -61,13 +58,9 @@ zinit lucid wait for \
       zsh-users/zsh-autosuggestions \
       atinit"zicompinit; zicdreplay; nvm use default --silent; _evalcache pyenv init -; _evalcache rbenv init -" \
       zdharma-continuum/fast-syntax-highlighting \
-      #
-# OMZP::aws/aws.plugin.zsh \
-# marlonrichert/zsh-autocomplete \
+
 # TODO: zsh-autosuggestions has a bug that destroys the kill ring zzzz
 
-# atinit"zicompinit; zicdreplay; nvm use default --silent; _evalcache pyenv init -; _evalcache rbenv init -" \
-# hlissner/zsh-autopair \
 # zicompinint runs autoload compinit; compinit
 # zicdreplay replays the captured compdefs
 
@@ -79,10 +72,6 @@ source $XDG_CONFIG_HOME/zsh/start/SOURCEME.zsh # source oh-my-zsh and other cust
 for f in $XDG_CONFIG_HOME/zsh/***/*.zsh~*/start/*; do # exclude start folders
   source $f
 done 
-# fpath=($HOME/.local/lib/zsh/***/*~*/archive*(/) $fpath) # / matches directories, exclude archive/
-# for func in $HOME/.local/lib/zsh/***/*~(*/archive/*|*.zsh)(.); do 
-#   autoload $func
-# done
 unsetopt EXTENDED_GLOB
 
 # set up p10k instant prompt
@@ -96,12 +85,7 @@ add-zsh-hook chpwd dura-chpwd-hook
 # asst > /dev/null
 # set up the default profile stored in xdg state
 # may slow down yabai if asst is unable to set the token, since yabai calls zsh -c <command> to run a command
+
 as $(asg) > /dev/null
 
-# mkdir -p /tmp/tim
-
-# enter tmux on start up if using kitty (depends on tat script in bin folder)
-# if [[ $TERM = "xterm-kitty" ]] && [[ -z "$TMUX" ]]; then
-#   tat
-# fi
 # zprof # turn this on to profile zsh (with zmodload zsh/zprof above)
