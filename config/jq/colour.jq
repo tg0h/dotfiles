@@ -1,6 +1,7 @@
 include "pad";
 # To learn more about colors in terminal, 
 # see https://mhttps://apihandyman.io/api-toolbox-jq-and-openapi-part-4-bonus-coloring-jqs-raw-output/isc.flogisoft.com/bash/tip_colors_and_formatting
+# https://notes.burke.libbey.me/ansi-escape-codes/#:~:text=write%20them%20effectively.-,%5Cx1b,and%20this%20is%20basically%20why.
 
 # use with -r flag on jq command
 # sample code to include this custom jq module:
@@ -8,7 +9,7 @@ include "pad";
 # jq -L "~/.config/jq" -r 'include "colour"; .Parameters[] | .Name + " = " + colour_text(.Value; "green")'
 
 # Unicode escape character
-# \e, \033 and \x1b cause "Invalid escape" error
+# \e, \033 and \x1b 
 def escape: "\u001b";
 
 def bold: "\u001b[1m";
