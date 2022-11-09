@@ -1,6 +1,10 @@
 # zmodload zsh/zprof # turn this on to profile zshrc (with zprof below)
 export EDITOR='nvim'
 
+# the default is 400 (ms)
+# if too slow, then pressing alt causes zsh to wait for the next key after alt
+export KEYTIMEOUT=1 # 10ms
+
 export HISTFILE="$XDG_STATE_HOME"/zsh/history # overrid HISTFILE setting in /etc/zshenv
 export HISTFILESIZE=1000000000
 export HISTSIZE=1000000000 # Number of commands that are loaded into memory from the history file
