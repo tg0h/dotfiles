@@ -9,10 +9,10 @@ alias gya="git fuzzy stash"
 alias a="lazygit"
 # the zsh git plugin defines git aliases in ~/.oh-my-zsh/plugins/git/git.plugin.zsh
 # unalias gg # remove alias set by omz git plugin
-alias g.="gloz -10"
-alias g..="gloz -20"
-alias g,.="glodm"
-alias g,.p="glodmm"
+alias g.="gloz -10 --color=always D"
+alias g..="gloz -20 --color=always D"
+alias g,.="glodm --color=always D"
+alias g,.p="glodmm --color=always D"
 
 alias ggp="gg && gp"
 alias gge="gg -e" # allow empty commit
