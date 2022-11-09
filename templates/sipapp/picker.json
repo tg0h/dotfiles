@@ -1,8 +1,6 @@
 {
-  "function": "concat",
-  "x": "[name]:   ",
   "y": {
-    "x": {
+    "y": {
       "x": {
         "x": {
           "x": "[red]",
@@ -47,10 +45,12 @@
         }
       }
     },
-    "y": {
-      "x": "  #hex[red]hex[green]hex[blue]",
+    "x": {
+      "x": "#hex[red]_hex[green]_hex[blue] ",
       "function": "lower"
     },
     "function": "concat"
-  }
+  },
+  "x": "terminal: ",
+  "function": "concat"
 }

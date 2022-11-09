@@ -1,7 +1,6 @@
 {
-  "x": "[38;2;",
   "y": {
-    "x": {
+    "y": {
       "x": {
         "x": {
           "x": "[red]",
@@ -13,7 +12,7 @@
       },
       "function": "concat",
       "y": {
-        "x": ";",
+        "x": " ",
         "function": "concat",
         "y": {
           "x": {
@@ -27,7 +26,7 @@
           },
           "function": "concat",
           "y": {
-            "x": ";",
+            "x": " ",
             "function": "concat",
             "y": {
               "x": {
@@ -40,17 +39,18 @@
                 "y": 0
               },
               "function": "concat",
-              "y": "m"
+              "y": " "
             }
           }
         }
       }
     },
-    "y": {
-      "x": "#hex[red]hex[green]hex[blue]",
+    "x": {
+      "x": "#hex[red]_hex[green]_hex[blue] ",
       "function": "lower"
     },
     "function": "concat"
   },
+  "x": "[name]: ",
   "function": "concat"
 }
