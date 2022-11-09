@@ -1,0 +1,115 @@
+; https://dandavison.github.io/delta/full---help-output.html
+
+; https://git-scm.com/docs/git-config#Documentation/git-config.txt-color
+; contains 0,1 or 2 colours
+; must specify fg if you want to specify bg
+; attributes can be in any position
+; <fg colour> <bg colour> <attribute 1> <attribute 2> <attribute n...>
+; NOTE: attributes: blink bold dim hidden italic reverse strike ul
+; NOTE: the special omit attribute is supported by commit-style, file-style and hunk-header-style - meaning remove from output
+
+
+; In addition to real colors, there are 4 special color names: 'auto', 'normal', 'raw', and 'syntax'.
+; auto - delta chooses colour automatically
+; normal - your terminal's foreground/background colour
+; syntax - can only be used for foreground (text), used to syntax highlight text
+; raw - delta strips colours from its input, if you want delta to output the colours unchanged, use --raw
+
+; empty string '' style means do not apply any colours or styling
+
+; 4 ways to specify colour
+; css colour
+; rgb hex
+; ansi colour name - black, red, green, yellow, blue magenta, cyan, white and bright form brightred...
+; ansi colour number (8 bit - 256 numbers)
+
+[delta "cyberpunk"]
+    dark = true
+    blame-code-style = syntax
+    ; blame-format = "{author:<18} ({commit:>7}) ┊{timestamp:^16}┊ "
+    ; blame-palette = "#101010 #200020 #002800 #000028 #202000 #280000 #002020 #002800 #202020"
+    ; blame-separator-format
+    ; blame-separator-style
+    ; blame-timestamp-format
+    ; blame-timestamp-output-format
+
+    commit-decoration-style = bold ul "#34fd50"
+    ; commit-regex <REGEX>
+    ; commit-style
+
+
+    ; diff-stat-align-width <N>
+
+    file-added-label = [+]
+    file-copied-label = [C]
+    file-decoration-style = "#606018" overline
+    file-modified-label = [M]
+    file-removed-label = [-]
+    file-renamed-label = [R]
+    file-style = 232 bold 184
+    ; file-transformation <SED_CMD>
+
+    ; grep-context-line-style
+    ; grep-file-style
+    ; grep-line-number-style
+    ; grep-match-line-style
+    ; grep-match-word-style
+    ; grep-separator-symbol
+
+    # syntax-theme = Vibrant Sunburst
+    ; commit-style
+    hunk-header-decoration-style = "#00b494" 
+    hunk-header-file-style = "#999999"
+    hunk-header-line-number-style = bold "#03a4ff"
+    hunk-header-style = file line-number syntax
+    ; hunk-label <STRING> - used in navigate-regex
+
+    ; hyperlinks-file-link-format
+    ; inline-hint-style
+    ; inspect-raw-lines
+    ; keep-plus-minus-markers
+    ; line-buffer-size - performance
+
+    ; NOTE: line fill method in side by side mode
+    ; line-fill-method <STRING>
+
+    line-numbers = true
+    ; line-numbers-left-format
+    line-numbers-left-style = black
+    line-numbers-minus-style = "#B10036"
+    line-numbers-plus-style = "#03a4ff"
+    ; line-numbers-right-format
+    line-numbers-right-style = black
+    line-numbers-zero-style = "#999999"
+
+    ; map-styles
+    ; max-line-length - truncate
+
+    ; merge-conflict-begin-symbol
+    ; merge-conflict-end-symbol
+    ; merge-conflict-ours-diff-header-decoration-style
+    ; merge-conflict-ours-diff-header-style
+    ; merge-conflict-theirs-diff-header-decoration-style
+    ; merge-conflict-theirs-diff-header-style
+
+    ; minus-empty-line-marker-style
+
+    minus-emph-style = normal "#de004e"
+    ; minus-non-emph-style 
+    minus-style = normal "#990017"
+    plus-emph-style = syntax "#03a4ff"
+    ; plus-empty-line-marker-style
+    ; plus-non-emph-style
+    plus-style = syntax "#450eff"
+    ; right-arrow
+    whitespace-error-style = 22 reverse
+    ; NOTE: width of overline underline decorations
+    ; width
+
+    ; wrap-left-symbol
+    ; wrap-max-lines
+    ; wrap-right-percent
+    ; wrap-right-prefix-symbol
+    ; wrap-right-symbol
+
+    ; zero-style
