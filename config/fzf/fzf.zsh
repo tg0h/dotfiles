@@ -36,13 +36,14 @@ export FZF_DEFAULT_OPTS="
 --header=$'⌃H ⌃S ⌃A ⌃Y ⌃E ⌃␣ ⌥C ⇧⌥C F2' \
 
 --bind='f2:toggle-preview'
+
 --bind='ctrl-d:half-page-down'
 --bind='ctrl-u:half-page-up'
 
 --bind 'ctrl-h:preview-half-page-up'
 --bind 'ctrl-s:preview-half-page-down'
 
---bind='ctrl-a:select-all+accept'
+--bind='ctrl-a:up'
 --bind='ctrl-y:execute-silent(echo {+} | join-lines-fzf | pbcopy)+abort'
 --bind 'ctrl-e:$FZF_X_NVIM+abort'
 --bind 'ctrl-/:change-preview-window(right,80%|down,90%,border-top|hidden|)'
@@ -52,6 +53,7 @@ export FZF_DEFAULT_OPTS="
 --bind backward-eof:abort
 --bind 'ctrl-space:jump'
 "
+# --bind='ctrl-a:select-all+accept'
 
 FD_OPTIONS="--color always --follow --hidden"
 
