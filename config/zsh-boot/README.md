@@ -1,5 +1,32 @@
 # ZSH env, rc Setup
 
+## compiling functions
+
+instead of autoloading functions via
+
+```bash
+setopt EXTENDED_GLOB # use ~ to exclude patterns in file globbing
+fpath=($HOME/.local/lib/zsh/***/*~*/archive*(/) $fpath) # / matches directories, exclude archive/
+for func in $HOME/.local/lib/zsh/***/*~(*/archive/*|*.zsh)(.); do
+  autoload $func
+done
+unsetopt EXTENDED_GLOB
+```
+
+I compile my functions into a single directory and then source this directory
+
+```bash
+export ZSH_FUNCTIONS_PATH="$HOME/.local/lib/zsh-functions"
+export ZSH_FUNCTIONS_COMPILED_PATH="$HOME/.local/lib/zsh-functions-compiled"
+
+# autoload zsh functions - loading from a single directory provides a speedup of up to 0.05
+fpath=($ZSH_FUNCTIONS_PATH $ZSH_FUNCTIONS_COMPILED_PATH $fpath)
+autoload $ZSH_FUNCTIONS_PATH/*
+autoload $ZSH_FUNCTIONS_COMPILED_PATH/*
+```
+
+this is faster
+
 ## ZSH rc file load order
 
 zsh rc load order
