@@ -1,3 +1,11 @@
+alias gyy="git fuzzy"
+alias gy="git fuzzy log"
+alias gy,="git fuzzy branch"
+alias gy.="git fuzzy diff"
+alias gy,.="git fuzzy reflog"
+alias u="git fuzzy status"
+alias gya="git fuzzy stash"
+
 alias a="lazygit"
 # the zsh git plugin defines git aliases in ~/.oh-my-zsh/plugins/git/git.plugin.zsh
 # unalias gg # remove alias set by omz git plugin
