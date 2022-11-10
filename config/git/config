@@ -11,17 +11,36 @@
 [interactive]
     diffFilter = delta --color-only
 [delta]
-    features = side-by-side line-numbers decorations
-    whitespace-error-style = 22 reverse
-[delta "decorations"]
-    commit-decoration-style = bold yellow box ul
-    file-style = bold yellow ul
-    file-decoration-style = none
+  navigate = true
+  side-by-side = true
+  line-numbers = true
+  ; paging = never
+  features = otter
+    ; navigate-regex
+    ; no-gitconfig
+    ; inspect-raw-lines
+    ; pager
+    ; paging
+    ; keep-plus-minus-markers
+    ; line-buffer-size - performance
+    ; parse-ansi
+    ; raw
+    ; relative-paths
+    ; show-colors
+    ; show-config
+    ; show-syntax-themes
+    ; show-themes
+    ; show-syntax-themes
+    ; syntax-theme - defaults to BAT_THEME env var
+    ; tabs
+    ; true-color
+    ; word-diff-regex
 [diff]
   tool = vimdiff
   ; https://git-scm.com/docs/git-diff#Documentation/git-diff.txt-dimmed-zebra
   ; only highlights moved blocks if they are 20 chars or more
-  colorMoved = dimmed-zebra
+  ; colorMoved = dimmed-zebra
+  colorMoved = default
   ; if the moved block has indentation added, count it as a moved block 
   ; instead of an added block
   colorMovedWS = allow-indentation-change
