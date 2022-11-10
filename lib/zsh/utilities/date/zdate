@@ -1,0 +1,28 @@
+#!/bin/zsh
+
+function zdate(){
+  # zdate 0911T1557 - eg 09 nov this year, 1557H local time
+  # returns iso date in ms 2022-11-10T15:57:00.000+08:00
+  # TODO: handle unexpected input format
+  
+  local inputDate=$1
+  local month day hour min
+  if [ ${#inputDate} = 9 ]; then 
+    month=${inputDate:2:2}
+    day=${inputDate:0:2}
+    hour=${inputDate:5:2}
+    min=${inputDate:7:2}
+  fi
+
+  local year=$(gdate +"%Y")
+
+  # gdate -d 2022-12-09 --iso-8601 +"%Y-%m-%dT%H:%M:%S%:z"
+  local isoDate=$(gdate --date "$year-$month-$day $hour$min" --iso-8601=s)
+  # 2022-11-10T00:00:00+08:00
+
+  local isoDateNoTZ=${isoDate:0:19}
+  local isoDateTZ=${isoDate:19:6}
+  local isoDateMs=$isoDateNoTZ.000$isoDateTZ
+
+  print $isoDateMs
+}
