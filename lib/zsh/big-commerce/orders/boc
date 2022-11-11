@@ -1,0 +1,28 @@
+#!/bin/zsh
+
+function boc(){
+  # big commerce order coupons
+  local verbose
+  while getopts 'v' opt; do
+    case "$opt" in
+      v) verbose=true;;
+    esac
+  done
+  shift $(($OPTIND - 1))
+
+  local orderId=$1
+
+  local result=$(https -p=b --json https://api.bigcommerce.com/stores/$BG_STORE_HASH/v2/orders/$orderId/coupons X-Auth-Token:$BG_ACCESS_TOKEN)
+
+  local jqQuery=$(cat <<-EOF
+    include "big-commerce/orders/boc";
+    boc
+EOF
+)
+
+  if [ $verbose ]; then
+    jq --raw-output "." <<< "$result"
+  else
+    jq --raw-output -L "~/.config/jq" -L "~/.local/lib/jq" "$jqQuery" <<< "$result"
+  fi
+}

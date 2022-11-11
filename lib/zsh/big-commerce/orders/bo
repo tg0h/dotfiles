@@ -1,0 +1,34 @@
+#!/bin/zsh
+
+function bo(){
+  # big commerce orders
+  local verbose minDate
+  while getopts 'vm:' opt; do
+    case "$opt" in
+      v) verbose=true;;
+      m) minDate=$OPTARG;;
+    esac
+  done
+  shift $(($OPTIND - 1))
+
+  local _minDate=$(zdate $minDate)
+  echo _minDate is $_minDate
+
+  __minDate=${minDate:+min_date_created==\'$_minDate\'}
+
+  echo __minDate is $__minDate
+
+  local result=$(eval "https -p=b --json https://api.bigcommerce.com/stores/$BG_STORE_HASH/v2/orders X-Auth-Token:$BG_ACCESS_TOKEN $__minDate")
+
+  local jqQuery=$(cat <<-EOF
+    include "big-commerce/orders/bo";
+    bo
+EOF
+)
+
+  if [ $verbose ]; then
+    jq --raw-output "." <<< "$result"
+  else
+    jq --raw-output -L "~/.config/jq" -L "~/.local/lib/jq" "$jqQuery" <<< "$result"
+  fi
+}

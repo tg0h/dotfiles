@@ -10,7 +10,9 @@ function _fzf-docker-image-widget-toggle(){
   local state=$2
   local state2=$3
 
-  # echo file is $file
+  echo file is $file >> /tmp/tim/debug
+  echo state is $state >> /tmp/tim/debug
+  echo state2 is $state2 >> /tmp/tim/debug
   # echo state is $state
 
   # if ! [ -f $file ]; then
@@ -18,7 +20,7 @@ function _fzf-docker-image-widget-toggle(){
   # fi
 
   if grep -q "$state" $file; then
-    printf $state2 > $file
+    printf ${state2:-""} > $file
   else
     printf $state > $file # default to $state if file is empty
   fi
