@@ -19,7 +19,7 @@ function fzf-t-widget() {
         --header="⌃A ⌃O | ⌃G ⌃C ⌃R _ ⌃H ⌃T | ⌥G ⌥R" \
         --header-first \
         --preview="fzf-fd-preview {}" \
-        --preview-window='right:nowrap,noborder,75%' \
+        --preview-window='right:nowrap,noborder,70%' \
         \
         --bind "ctrl-g:reload(fd $FD_OPTIONS --type d)+change-prompt(dir> )" \
         --bind "ctrl-c:reload(fd $FD_OPTIONS_NO_IGNORE)+change-prompt(no-ignore> )" \
