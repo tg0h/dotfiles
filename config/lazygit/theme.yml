@@ -2,22 +2,31 @@ gui:
   theme:
     lightTheme: false # For terminals with a light background
     activeBorderColor:
-      - green
+      # - "#6970d7"
+      # - "#850ccc"
+      - "#ff0082"
       - bold
     inactiveBorderColor:
-      - white
+      - "#ffd700"
     optionsTextColor:
-      - blue
-    selectedLineBgColor:
-      - blue # set to `default` to have no background colour
+      - "#5260ff"
+    selectedLineBgColor: # set to `default` to have no background colour
+      - reverse
     selectedRangeBgColor:
-      - blue
+      - reverse
     cherryPickedCommitBgColor:
-      - cyan
-    cherryPickedCommitFgColor:
-      - blue
+      - yellow
     unstagedChangesColor:
       - red
+      - blue
+      - magenta
   authorColors:
-    "chingyeow": "#ffd700"
+    # "chingyeow": "#ffd700"
+    "tim goh": "#ff0082"
+    "chingyeow": "#6970d7"
     "Alan Smithee": "#00ff00"
+  branchColors:
+    # "timg": "#458ac7"
+    "timg": "#ff0082"
+    "chingyeow": "#ffd700"
+    "chingyeowp": "#6970d7"

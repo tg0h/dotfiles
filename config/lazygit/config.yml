@@ -6,7 +6,8 @@ gui:
   expandFocusedSidePanel: false
   mainPanelSplitMode: "flexible" # one of 'horizontal' | 'flexible' | 'vertical'
   language: "auto" # one of 'auto' | 'en' | 'zh' | 'pl' | 'nl' | 'ja' | 'ko'
-  timeFormat: "02 Jan 06 15:04 MST" # https://pkg.go.dev/time#Time.Format
+  # timeFormat: "02 Jan 06 15:04 MST" # https://pkg.go.dev/time#Time.Format
+  timeFormat: "02 Jan 06 15:04" # https://pkg.go.dev/time#Time.Format
   commitLength:
     show: true
   mouseEvents: true
@@ -17,7 +18,7 @@ gui:
   showRandomTip: true
   showBottomLine: true # for hiding the bottom information line (unless it has important information to tell you)
   showCommandLog: true
-  showIcons: false
+  showIcons: true
   commandLogSize: 8
   splitDiff: "auto" # one of 'auto' | 'always'
 git:
