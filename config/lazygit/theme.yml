@@ -1,0 +1,23 @@
+gui:
+  theme:
+    lightTheme: false # For terminals with a light background
+    activeBorderColor:
+      - green
+      - bold
+    inactiveBorderColor:
+      - white
+    optionsTextColor:
+      - blue
+    selectedLineBgColor:
+      - blue # set to `default` to have no background colour
+    selectedRangeBgColor:
+      - blue
+    cherryPickedCommitBgColor:
+      - cyan
+    cherryPickedCommitFgColor:
+      - blue
+    unstagedChangesColor:
+      - red
+  authorColors:
+    "chingyeow": "#ffd700"
+    "Alan Smithee": "#00ff00"

@@ -1,70 +1,70 @@
 gui:
-  theme:
-    activeBorderColor:
-      - "#ff00ff"
-      - bold
-    inactiveBorderColor:
-      - yellow
-    selectedLineBgColor:
-      - reverse
-    selectedRangeBgColor:
-      - reverse
-    optionsTextColor:
-      - blue
-    cherryPickedCommitBgColor:
-      - blue
-    cherryPickedCommitFgColor:
-      - cyan
-    unstagedChangesColor:
-      - red
-promptToReturnFromSubprocess: false
-keybinding:
-  universal:
-    #     prevItem-alt: 't' # go one line up (vim k)
-    #     nextItem-alt: 'h' # go one line down (vim j)
-    #     scrollUpMain-alt1: 'T' # main panel scroll up
-    #     scrollDownMain-alt1: 'H' # main panel scroll down
-    #     scrollLeft: 'D' # scroll left within list view
-    #     scrollRight: 'n' # scroll right within list view
-    #     prevBlock-alt: 'd' # goto the previous block / panel
-    nextBlock-alt: "s" # goto the next block / panel
-  files:
-    stashAllChanges: "l"
-  commits:
-    squashDown: "l"
+  # stuff relating to the UI
+  scrollHeight: 2 # how many lines you scroll by
+  scrollPastBottom: true # enable scrolling past the bottom
+  sidePanelWidth: 0.3333 # number from 0 to 1
+  expandFocusedSidePanel: false
+  mainPanelSplitMode: "flexible" # one of 'horizontal' | 'flexible' | 'vertical'
+  language: "auto" # one of 'auto' | 'en' | 'zh' | 'pl' | 'nl' | 'ja' | 'ko'
+  timeFormat: "02 Jan 06 15:04 MST" # https://pkg.go.dev/time#Time.Format
+  commitLength:
+    show: true
+  mouseEvents: true
+  skipUnstageLineWarning: false
+  skipStashWarning: false
+  showFileTree: true # for rendering changes files in a tree format
+  showListFooter: true # for seeing the '5 of 20' message in list panels
+  showRandomTip: true
+  showBottomLine: true # for hiding the bottom information line (unless it has important information to tell you)
+  showCommandLog: true
+  showIcons: false
+  commandLogSize: 8
+  splitDiff: "auto" # one of 'auto' | 'always'
 git:
   paging:
     colorArg: always
     pager: delta --dark --paging=never
-customCommands:
-  - key: "t"
-    context: "files"
-    prompts:
-      - type: "menu"
-        options:
-          - name: "feat"
-            description: "A new feature"
-            value: "feat"
-          - name: "fix"
-            description: "A bug fix"
-            value: "fix"
-          - name: "docs"
-            description: "Documentation only changes"
-            value: "docs"
-          - name: "style"
-            description: "Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)"
-            value: "style"
-          - name: "refactor"
-            description: "A code change that neither fixes a bug nor adds a feature"
-            value: "refactor"
-          - name: "test"
-            description: "Adding missing tests or correcting existing tests"
-            value: "test"
-          - name: "chore"
-            description: "Other changes that don't modify src or test files"
-            value: "chore"
-      - type: "input"
-        title: "message:"
-        initialValue: ""
-    command: 'git-conventional-commit -f {{.SelectedFile.Name}} -t {{index .PromptResponses 0}} -m "{{index .PromptResponses 1}}"'
-notARepository: "skip" # one of: 'prompt' | 'create' | 'skip' - prevent prompt from showing when opening lazygit via opening a new tmux window
+  commit:
+    signOff: false
+  merging:
+    # only applicable to unix users
+    manualCommit: false
+    # extra args passed to `git merge`, e.g. --no-ff
+    args: ""
+  log:
+    # one of date-order, author-date-order, topo-order.
+    # topo-order makes it easier to read the git log graph, but commits may not
+    # appear chronologically. See https://git-scm.com/docs/git-log#_commit_ordering
+    order: "topo-order"
+    # one of always, never, when-maximised
+    # this determines whether the git graph is rendered in the commits panel
+    showGraph: "when-maximised"
+    # displays the whole git graph by default in the commits panel (equivalent to passing the `--all` argument to `git log`)
+    showWholeGraph: false
+  skipHookPrefix: WIP
+  autoFetch: true
+  autoRefresh: true
+  branchLogCmd: "git log --graph --color=always --abbrev-commit --decorate --date=relative --pretty=medium {{branchName}} --"
+  allBranchesLogCmd: "git log --graph --all --color=always --abbrev-commit --decorate --date=relative  --pretty=medium"
+  overrideGpg: false # prevents lazygit from spawning a separate process when using GPG
+  disableForcePushing: false
+  parseEmoji: false
+  diffContextSize: 3 # how many lines of context are shown around a change in diffs
+os:
+  editCommand: "" # see 'Configuring File Editing' section
+  editCommandTemplate: ""
+  openCommand: ""
+refresher:
+  refreshInterval: 10 # File/submodule refresh interval in seconds. Auto-refresh can be disabled via option 'git.autoRefresh'.
+  fetchInterval: 60 # Re-fetch interval in seconds. Auto-fetch can be disabled via option 'git.autoFetch'.
+update:
+  method: prompt # can be: prompt | background | never
+  days: 14 # how often an update is checked for
+reporting: "undetermined" # one of: 'on' | 'off' | 'undetermined'
+confirmOnQuit: false
+# determines whether hitting 'esc' will quit the application when there is nothing to cancel/close
+quitOnTopLevelReturn: false
+disableStartupPopups: false
+notARepository: "prompt" # one of: 'prompt' | 'create' | 'skip' | 'quit'
+# notARepository: "skip" # one of: 'prompt' | 'create' | 'skip' - prevent prompt from showing when opening lazygit via opening a new tmux window
+promptToReturnFromSubprocess: false # display confirmation when subprocess terminates
