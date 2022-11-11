@@ -37,6 +37,7 @@ brew 'koekeishiya/formulae/yabai', args: ['HEAD'], restart_service: true
 tap 'cmacrae/formulae'
 cask 'spaceman'
 
+brew 'gnu-getopt'
 brew 'less'
 brew 'mysql'
 brew 'openssh'
