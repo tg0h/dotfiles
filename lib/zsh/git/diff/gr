@@ -27,7 +27,7 @@ function gr (){
   local commitStart=${1:-"main"}
   local commitRange="$commitStart..."
 
-  local preview="git diff $commitRange --color=always -- {-1} | delta --side-by-side -w ${FZF_PREVIEW_COLUMNS:-$COLUMNS}"
+  local preview="git diff $commitRange --color=always -- {-1} | delta -w ${FZF_PREVIEW_COLUMNS:-$COLUMNS}"
   git diff $commitRange --name-only | fzf --cycle --height '100%' --ansi --preview-window 'bottom,80%' --preview $preview \
     --bind 'h:preview-half-page-down' \
     --bind 't:preview-half-page-up' \
