@@ -6,9 +6,10 @@ function fzf-docker-container-widget() {
   # on laptop screen, show top-bottom
   # revers-list shows prompt in center with search results on top and preview at bottom
 
+    # --preview-window 'right,noborder,50%,<75(bottom)' \
   local fzfOut
   fzfOut=$(dcla | fzf \
-    --preview-window 'right,noborder,50%,<75(bottom)' \
+    --preview-window 'bottom,border-top,border-horizontal,60%' \
     --layout "reverse-list" \
     --header="⌃T ⌃V" \
     --height ~95% \
