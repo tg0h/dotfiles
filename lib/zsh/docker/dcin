@@ -2,6 +2,7 @@
 
 function dcin(){
   # docker container inspect
+  local verbose
   while getopts 'v' opt; do
     case "$opt" in
       v) verbose=true;;
