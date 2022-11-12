@@ -40,8 +40,9 @@ def __volumes: if . == null then "" else
 def _subSha256: sub("sha256:";"");
 
 def _config:
-  ljust(12)+_g("Streams")+__(": ")+"\(.AttachStdin|__attachStdIn) \(.AttachStdout|__attachStdOut) \(.AttachStderr|__attachStdErr)"
-  + "\(.Tty|__tty) \(.OpenStdin|__openStdIn) \(.StdinOnce|__stdInOnce)\n"
+  ljust(12)+_g("Streams")+__(": ")
+    + "\(.AttachStdin|__attachStdIn) \(.AttachStdout|__attachStdOut) \(.AttachStderr|__attachStdErr) "
+    + "\(.Tty|__tty) \(.OpenStdin|__openStdIn) \(.StdinOnce|__stdInOnce)\n"
   +__HEADER2("Cmd: ")+ "\(.Cmd|_cmd)\n"
   +__HEADER2("Image: ")+ "\(__(.Image|_subSha256|trunc(10)))\n"
   +__HEADER2("Entry point: ")+"\(.Entrypoint|__entryPoint)\n"
