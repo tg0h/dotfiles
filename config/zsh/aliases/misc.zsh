@@ -14,7 +14,8 @@ alias sg="set | grep"
 
 alias rl=reload-function
 alias th='trash'
-alias tha='trash * .*' # trash all files
+alias tha='trash *'  # trash all files
+alias th.='trash * .*' # trash all files, including . files
 
 alias pa='pbpaste'
 
