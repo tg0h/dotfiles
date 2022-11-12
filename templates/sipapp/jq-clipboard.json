@@ -47,7 +47,7 @@
       }
     },
     "y": {
-      "x": " # hex[red]hex[green]hex[blue]",
+      "x": " # #hex[red]hex[green]hex[blue]",
       "function": "lower"
     },
     "function": "concat"
