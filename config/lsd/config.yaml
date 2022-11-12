@@ -10,12 +10,15 @@ classic: false
 # layout.
 # Possible values: permission, user, group, size, size_value, date, name, inode
 blocks:
+  - inode
   - permission
+  - links
+  - size
   - user
   - group
-  - size
   - date
   - name
+  # - size_value
 
 # == Color ==
 # This has various color options. (Will be expanded in the future.)
@@ -38,8 +41,8 @@ color:
 # When "classic" is set, this is set to "date".
 # Possible values: date, relative, '+<date_format>'
 # `date_format` will be a `strftime` formatted value. e.g. `date: '+%d %b %y %X'` will give you a date like this: 17 Jun 21 20:14:55
-date: date
-# date: relative
+# date: "+%d %b %y %X %a"
+date: relative
 
 # == Dereference ==
 # Whether to dereference symbolic links.
@@ -125,7 +128,7 @@ total-size: false
 # == Hyperlink ==
 # Attach hyperlink to filenames
 # Possible values: always, auto, never
-hyperlink: auto
+hyperlink: always
 
 # == Symlink arrow ==
 # Specifies how the symlink arrow display, chars in both ascii and utf8
@@ -134,4 +137,4 @@ symlink-arrow: ⇒
 # == Header ==
 # Whether to display block headers.
 # Possible values: false, true
-header: false
+header: true
