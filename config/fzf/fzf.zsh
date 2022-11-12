@@ -35,7 +35,7 @@ export FZF_DEFAULT_OPTS="
 --header-first
 --header=$'⌃H ⌃S ⌃A ⌃Y ⌃E ⌃␣ ⌥C ⇧⌥C F2' \
 
---bind='f2:toggle-preview'
+--bind='ctrl-space:toggle-preview'
 
 --bind='ctrl-d:half-page-down'
 --bind='ctrl-u:half-page-up'
@@ -51,8 +51,8 @@ export FZF_DEFAULT_OPTS="
 --bind='alt-C:execute(trash {})+abort'
 
 --bind backward-eof:abort
---bind 'ctrl-space:jump'
 "
+# --bind 'ctrl-space:jump'
 # --bind='ctrl-a:select-all+accept'
 
 FD_OPTIONS="--color always --follow --hidden"
