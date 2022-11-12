@@ -131,7 +131,7 @@ brew 'lindell/multi-gitter/multi-gitter'
 brew 'nushell'
 brew 'graphviz' # used by madge cli code dependency tool
 brew 'sampler'
-brew 'dura', restart_service: true
+# brew 'dura', restart_service: true
 brew 'nb'
 tap 'jakehilborn/jakehilborn'
 # brew 'displayplacer' # doesn't work
@@ -143,8 +143,8 @@ brew 'romkatv/gitstatus/gitstatus'
 tap 'saulpw/vd'
 brew 'saulpw/vd/visidata'
 
-tap 'shopify/shopify'
-brew 'shopify-cli'
+# tap 'shopify/shopify'
+# brew 'shopify-cli'
 
 cask 'docker'
 cask 'alfred'

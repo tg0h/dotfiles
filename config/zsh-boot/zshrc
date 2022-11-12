@@ -83,7 +83,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-add-zsh-hook chpwd dura-chpwd-hook
+# add-zsh-hook chpwd dura-chpwd-hook
 
 # set aws credential env vars
 # asst > /dev/null
