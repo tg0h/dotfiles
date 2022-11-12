@@ -104,7 +104,7 @@
     ; wrap-right-prefix-symbol
     ; wrap-right-symbol
 
-    zero-style = syntax
+    zero-style = dim syntax
 
 [delta "collared-trogon"]
     # author: https://github.com/clnoll
