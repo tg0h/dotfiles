@@ -73,6 +73,7 @@
     # confident that the directories here won't have other files added
     # ~/.local/lib/: lib/*
 
+    ~/dotfiles/lib/zsh/candy: ~/src/me/zsh/candy
     ~/.local/lib/zsh/candy: ~/src/me/zsh/candy
     ~/.local/lib/jq: lib/jq
 

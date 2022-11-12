@@ -32,8 +32,9 @@ config/zsh/aliases/scratch.zsh
 
 lib/zsh/aws/sqs/aqs
 
-# ignore candy zsh functions symlink
-lib/zsh/candy
+# do not ignore the candy zsh functions symlink so that fd can search inside here
+# creating a .fdignore file for this is too much work
+# lib/zsh/candy
 
 packer_compiled.lua
 
