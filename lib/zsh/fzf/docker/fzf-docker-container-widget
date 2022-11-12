@@ -7,13 +7,13 @@ function fzf-docker-container-widget() {
   # revers-list shows prompt in center with search results on top and preview at bottom
 
     # --preview-window 'right,noborder,50%,<75(bottom)' \
+    # --layout "reverse-list" \
   local fzfOut
   fzfOut=$(dcla | fzf \
-    --preview-window 'bottom,border-top,border-horizontal,60%' \
-    --layout "reverse-list" \
+    --preview-window 'bottom,border-horizontal,70%' \
     --header="⌃T ⌃V" \
-    --height ~95% \
-    --preview 'dcin {2}' \
+    --height 95% \
+    --preview 'dcin {1}' \
     --expect 'ctrl-t,ctrl-v'
   )
 
@@ -21,7 +21,7 @@ function fzf-docker-container-widget() {
   local selections=$(tail -n +2 <<< "$fzfOut") # get all lines after the first line
   local selection1=$(head -1 <<< "$selections")
 
-  local selectedId=$(gawk '{print $2}' <<< "$selection1")
+  local selectedId=$(gawk '{print $3}' <<< "$selection1")
 
   if [ $selectedId ]; then
     if [ "$key" = ctrl-t ]; then
@@ -29,7 +29,7 @@ function fzf-docker-container-widget() {
     elif [ "$key" = ctrl-v ]; then
       dcin -v $selectedId
     else
-      local selectedIds=$(echo $selections | choose 1 | join-lines)
+      local selectedIds=$(echo $selections | choose 0 | join-lines)
       LBUFFER+=$selectedIds
     fi
   fi

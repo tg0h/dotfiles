@@ -83,7 +83,15 @@ def colours:
   "bbgcyan": "[106m",
   "bbgwhite": "[107m",
 
+  "ebony": "[38;2;51;52;52m", # #333434
+  "mineShaft": "[38;2;51;51;51m", # #333333
+  "thunder": "[38;2;77;77;76m", # #4d4d4c
+  "steel": "[38;2;102;102;102m", # #666666
   "darkgray": "[90m",
+  "tin": "[38;2;128;127;128m", # #807f80
+  "aluminium": "[38;2;153;153;153m", # #999999
+  "iron": "[38;2;204;204;204m", # #cccccc
+
   # 3 bit colours - specify FG and BG together
   "disabled": "[30;100m", # Black on darkgray
   "reset": "[0m",
@@ -97,8 +105,8 @@ def colours:
   "jazzberry": "[38;2;167;23;92m", # #a7175c
   "brinkPink": "[38;2;252;93;124m", # #fc5d7c
   "fsg": "[38;2;3;255;19m", # #03ff13
+  "malachiteGreen": "[38;2;95;255;135m", # #5fff87
 
-  "ebony": "[38;2;51;52;52m", # #333434
   # RC colours
   "flourescentPink": "[38;2;255;14;139m", # #ff0e8b
   "spiroDiscoBall": "[38;2;34;197;236m", # #22c5ec
@@ -191,6 +199,28 @@ def _fp(text):
 
 def _sdb(text):
   escape + colours["spiroDiscoBall"] + text + escape + colours.reset;
+
+def _ebony(text):
+  escape + colours["ebony"] + text + escape + colours.reset;
+
+def _thunder(text):
+  escape + colours["thunder"] + text + escape + colours.reset;
+
+def _steel(text):
+  escape + colours["steel"] + text + escape + colours.reset;
+
+def _tin(text):
+  escape + colours["tin"] + text + escape + colours.reset;
+
+def _aluminium(text):
+  escape + colours["aluminium"] + text + escape + colours.reset;
+
+def _iron(text):
+  escape + colours["iron"] + text + escape + colours.reset;
+
+
+def _mg(text):
+  escape + colours["malachiteGreen"] + text + escape + colours.reset;
 
 def _yaleBlue(text):
   escape + colours["yaleBlue"] + text + escape + colours.reset;

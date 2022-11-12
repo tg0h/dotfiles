@@ -32,8 +32,9 @@ def _gb:
   ;
 
 def DockerBytesFormat($size; $unit; $padding):
-  if $unit == "kB" then __($size|lp($padding)) +" "+ colour($unit|tostring;"ebony")
-  elif $unit == "MB" then ($size|tonumber|floor|_mb) +" "+ colour($unit|tostring;"ebony")
+  if $unit == "B" then _ebony($size|lp($padding)) +" "+ _ebony(" "+$unit|tostring)
+  elif $unit == "kB" then __($size|lp($padding)) +" "+ _ebony($unit|tostring)
+  elif $unit == "MB" then ($size|tonumber|floor|_mb) +" "+ _ebony($unit|tostring)
   elif $unit == "GB" then ($size|tonumber|_gb) +" "+ __($unit)
   else _r($size) + " " + $unit
   end

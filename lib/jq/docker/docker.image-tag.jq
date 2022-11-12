@@ -17,7 +17,7 @@ def _repo:
 def _203image:
   gsub("(?<dkr>.*)\\.\\.\\.(?<image>.*)" ; 
         ( "\(.dkr|_("bblue"))"
-          +"\("..."|__(.))"
+          +"\("…"|__(.))"
           +"\(.image|_orange(.))"
         )
       );
@@ -49,8 +49,8 @@ def _isStartWithNonDigit: test("^\\D");
 
 def _tag:
   # rp(15) |
-  if . | contains("latest") then .|_cs0
-  elif . | contains("<none>") then .|__(.)
+  if . | contains("latest") then __(.)
+  elif . | contains("<none>") then colour(.;"ebony")
   elif . | startswith("git") then .|_git
   elif _isStartWithVAndDigit then .
   elif _isStartWithNonDigit then _m(.)

@@ -33,7 +33,7 @@ EOF
 )
   jq --raw-output --slurp -L "~/.config/jq" -L "~/.local/lib/jq" "$jqQuery" <<< $result
 elif [ $verbose ]; then
-  docker container ls $all --format="{{json .}}" | jq .
+  docker container ls $all --format="{{json .}}" | jq --slurp .
 else
   docker container ls $all
 fi
