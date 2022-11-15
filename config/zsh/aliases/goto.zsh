@@ -2,6 +2,8 @@ function dt(){
   mkdir -p /tmp/tim
   cd /tmp/tim
 }
+alias dt.='cd ~/Documents/tim'
+alias d.='cd $HOME/dotfiles'
 alias dd='cd $HOME/dotfiles'
 alias dl='cd $HOME/downloads'
 # alias dp='cd /tmp' - use :t instead
