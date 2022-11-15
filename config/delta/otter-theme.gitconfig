@@ -1,0 +1,101 @@
+[delta "otter"]
+    dark = true
+
+    ; this refers to removing/adding some words in a sentence
+    # minus-emph-style = "#ff0e8b" strike reverse
+    minus-emph-style = "#ff0e8b" reverse
+    minus-non-emph-style = syntax "#371f42"
+    minus-style = syntax "#33031c"
+
+    ; minus-empty-line-marker-style ; only used if minus-style has no background colour
+
+    plus-emph-style = "#f8ef00" reverse 
+    plus-non-emph-style = syntax "#15391e"
+    plus-style = syntax "#12413f"
+
+    ; plus-empty-line-marker-style = orange
+    ; right-arrow
+    whitespace-error-style = "#03ff13" reverse
+
+    blame-code-style = syntax
+    ; cool rust string format for width.precision - precision for string types means truncation
+    blame-format = "{timestamp:<15}┊ {commit:>3} ┊ {author:>10.10}"
+    blame-palette = " #18081f #2f163f #280000 #31004c #002800 #101010 #701e72 #18081f #000028 #202000 #002020 #202020"
+    # blame-separator-format = "{n:^4}"
+    blame-separator-style = "#a301ff"
+    ; blame-timestamp-format
+    ; blame-timestamp-output-format
+
+    # commit-decoration-style = box
+    # show green commits 
+    commit-style = "#ffd700"
+    ; commit-regex <REGEX>
+
+    ; diff-stat-align-width <N>
+
+    file-decoration-style = "#05d9f3" ul
+    file-style = "#ff0e8b"
+    file-added-label = A
+    file-copied-label = C
+    file-modified-label = M
+    file-removed-label = D
+    file-renamed-label = >
+
+    ; file-transformation <SED_CMD>
+
+    ; grep-context-line-style
+    ; grep-file-style
+    ; grep-line-number-style
+    ; grep-match-line-style
+    ; grep-match-word-style
+    ; grep-separator-symbol
+
+    ; commit-style ; commit hash style in eg git log
+    hunk-header-style = file line-number
+    hunk-label = ""
+    hunk-header-decoration-style = "#00b494"
+    hunk-header-file-style = "#a301ff"
+    hunk-header-line-number-style = "#03ff13"
+
+    ; hyperlinks-file-link-format
+    ; used by delta for right align etc text
+    ; inline-hint-style
+
+    ; NOTE: line fill method in side by side mode
+    ; line-fill-method <STRING>
+
+    # line-numbers = true
+    line-numbers-left-format = "{nm:>3} "
+    line-numbers-left-style = auto
+    line-numbers-minus-style = "#a301ff"
+    line-numbers-plus-style = "#f8ef00"
+    line-numbers-right-format = "{np:>3} "
+    line-numbers-right-style = auto
+    line-numbers-zero-style = "#999999"
+
+    # map-styles = \
+    #    bold purple => syntax "#330f29", \
+    #    bold blue => syntax "#271344", \
+    #    bold cyan => syntax "#0d3531", \
+    #    bold yellow => syntax "#222f14"
+    ; max-line-length - truncate
+
+    ; merge-conflict-begin-symbol
+    ; merge-conflict-end-symbol
+    merge-conflict-ours-diff-header-decoration-style = "#03ff13" dim box
+    merge-conflict-ours-diff-header-style = "#a301ff" 
+    merge-conflict-theirs-diff-header-decoration-style = "#03ff13" dim ol
+    merge-conflict-theirs-diff-header-style = dim
+
+
+    ; NOTE: width of overline underline decorations
+    ; extend to the end of the text only
+    # width=variable 
+
+    ; wrap-left-symbol
+    ; wrap-max-lines
+    ; wrap-right-percent
+    ; wrap-right-prefix-symbol
+    ; wrap-right-symbol
+
+    zero-style = dim syntax

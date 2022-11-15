@@ -1,6 +1,7 @@
 [include]
   ; include link to themes copied from the delta github repo
   path = ~/.config/delta/themes.gitconfig
+  path = ~/.config/delta/otter-theme.gitconfig
 [user]
   email = timslgoh@gmail.com
   name = tim goh
