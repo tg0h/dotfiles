@@ -3,7 +3,7 @@
 
     ; this refers to removing/adding some words in a sentence
     # minus-emph-style = "#ff0e8b" strike reverse
-    minus-emph-style = "#ff0e8b" reverse
+    minus-emph-style = "#ff0e8b" reverse strike
     minus-non-emph-style = syntax "#371f42"
     minus-style = syntax "#33031c"
 
