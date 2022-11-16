@@ -6,21 +6,21 @@ def _isDeleted: if . == true then _r("D") else __("D") end;
 
 def _orderStatus:
 {
-  "Incomplete": _g("Incomplete"), 
-  "Pending": _g("Pending"), 
+  "Incomplete": _y("Incomplete"), 
+  "Pending": _y("Pending"), 
   "Shipped": _g("Shipped"), 
   "Partially Shipped": _g("Partially Shipped"), 
-  "Refunded": _g("Refunded"), 
-  "Cancelled": _g("Cancelled"), 
-  "Declined": _g("Declined"), 
-  "Awaiting Payment": _g("Awaiting Payment"), 
-  "Awaiting Pickup": _g("Awaiting Pickup"), 
+  "Refunded": _r("Refunded"), 
+  "Cancelled": _r("Cancelled"), 
+  "Declined": _r("Declined"), 
+  "Awaiting Payment": _y("Awaiting Payment"), 
+  "Awaiting Pickup": _y("Awaiting Pickup"), 
   "Awaiting Shipment": _g("Awaiting Shipment"), 
   "Completed": _g("Completed"), 
   "Awaiting Fulfillment": _g("Awaiting Fulfillment"), 
-  "Manual Verification Required": _g("Manual Verification Required"), 
-  "Disputed": _g("Disputed"), 
-  "Partially Refunded": _g("Partially Refunded"), 
+  "Manual Verification Required": _y("Manual Verification Required"), 
+  "Disputed": _r("Disputed"), 
+  "Partially Refunded": _r("Partially Refunded"), 
 };
 
 def convertDate:
