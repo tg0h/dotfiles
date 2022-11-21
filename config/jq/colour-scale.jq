@@ -1,4 +1,3 @@
-
 def escape: "\u001b";
 def reset: "[0m";
 
@@ -25,35 +24,19 @@ def colourscale:
 
 def _colourify(colour):
   escape + colour + . + escape + reset;
-def _cs0:
-  _colourify(colourscale["0"]);
-def _cs1:
-  _colourify(colourscale["1"]);
-def _cs2:
-  _colourify(colourscale["2"]);
-def _cs3:
-  _colourify(colourscale["3"]);
-def _cs4:
-  _colourify(colourscale["4"]);
-def _cs5:
-  _colourify(colourscale["5"]);
-def _cs6:
-  _colourify(colourscale["6"]);
-def _cs7:
-  _colourify(colourscale["7"]);
-def _cs8:
-  _colourify(colourscale["8"]);
-def _cs9:
-  _colourify(colourscale["9"]);
-def _cs10:
-  _colourify(colourscale["10"]);
-def _cs11:
-  _colourify(colourscale["11"]);
-def _cs12:
-  _colourify(colourscale["12"]);
-def _cs13:
-  _colourify(colourscale["13"]);
-def _cs14:
-  _colourify(colourscale["14"]);
-def _cs15:
-  _colourify(colourscale["15"]);
+def _cs0: _colourify(colourscale["0"]);
+def _cs1: _colourify(colourscale["1"]);
+def _cs2: _colourify(colourscale["2"]);
+def _cs3: _colourify(colourscale["3"]);
+def _cs4: _colourify(colourscale["4"]);
+def _cs5: _colourify(colourscale["5"]);
+def _cs6: _colourify(colourscale["6"]);
+def _cs7: _colourify(colourscale["7"]);
+def _cs8: _colourify(colourscale["8"]);
+def _cs9: _colourify(colourscale["9"]);
+def _cs10: _colourify(colourscale["10"]);
+def _cs11: _colourify(colourscale["11"]);
+def _cs12: _colourify(colourscale["12"]);
+def _cs13: _colourify(colourscale["13"]);
+def _cs14: _colourify(colourscale["14"]);
+def _cs15: _colourify(colourscale["15"]);
