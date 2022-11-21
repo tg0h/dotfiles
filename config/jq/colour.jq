@@ -97,6 +97,7 @@ def colours:
   "reset": "[0m",
   "orange": "[38;2;255;135;0m", # #ff8700
   "bgorange": "[48;2;255;135;0m", # #ff8700
+  "christine": "[38;2;236;114;17m", # #ec7211 # aws colours
   "purple": "[38;2;135;135;255m", # #8787ff
   "neonBlue": "[38;2;82;96;255m", # #5360ff
   "brightTurquoise": "[38;2;5;217;243m", # #05d9f3
@@ -104,10 +105,24 @@ def colours:
   "tacha": "[38;2;217;186;94m", # #d9ba5e
   "jazzberry": "[38;2;167;23;92m", # #a7175c
   "brinkPink": "[38;2;252;93;124m", # #fc5d7c
-  "fsg": "[38;2;3;255;19m", # #03ff13
+  "freeSpeechGreen": "[38;2;3;255;19m", # #03ff13
   "malachiteGreen": "[38;2;95;255;135m", # #5fff87
-
+  "tePapaGreen": "[38;2;29;67;60m", # #1d433c
+  "sapphireBg": "[48;2;1;31;100m", # #011f64 # new zealand
+  "burntCrimson": "[38;2;93;28;39m", # #5d1c27 #buddhist robes nepal
+  "burntCrimsonBg": "[48;2;93;28;39m", # #5d1c27 #buddhist robes nepal
+  "indianYellow": "[38;2;230;168;84m", # #e6a854
+  "gold": "[38;2;255;215;0m", # #ffd700
+  "pinkFlamingo": "[38;2;245;97;245m", # #f561f5
+  "danube": "[38;2;93;138;189m", # #5d8abd
+  "rossoCorsa": "[38;2;217;0;14m", # #d9000e # man u 
+  "steelPink": "[38;2;203;29;209m", # #cb1dd1
+  "tan": "[38;2;210;180;140m", # #d2b48c
+  "beaver": "[38;2;142;112;92m", # #8e705c
+  "mySin": "[38;2;245;179;39m", # #f5b327 # lakers lol
+  "morningGlory": "[38;2;151;220;228m", # #97dce4 - princess jasmine from aladdin
   # RC colours
+
   "flourescentPink": "[38;2;255;14;139m", # #ff0e8b
   "spiroDiscoBall": "[38;2;34;197;236m", # #22c5ec
   "yaleBlue": "[38;2;18;65;145m", # #124191
@@ -117,11 +132,13 @@ def colours:
   "dark_grey_bg": "[48;2;88;88;88m", # #585858
 };
 
+
 def _(colour):
   tostring | escape + colours[colour] + . + escape + colours.reset;
 
-def colourTest:
-  colours | to_entries | map("\(escape)\(.value)\(.key)\(escape)\(colours.reset) \(.value)")[];
+def _showColourDict: to_entries | map("\(escape)\(.value)\(.key)\(escape)\(colours.reset) \(.value)")[];
+
+def colourTest: colours | _showColourDict;
 
 # Colors text with the given color
 # colored_text("some text"; "red")
@@ -130,6 +147,26 @@ def colourTest:
 # WARNING parameters are separated by ; not ,
 def colour(text; colour):
   escape + colours[colour] + text + escape + colours.reset;
+
+def colourReverse(text; colour):
+  escape + colours[colour] + _reverse + text + escape + colours.reset;
+
+def _colourCompile: 
+  colours 
+  | to_entries
+  | map(
+    .key as $key
+    | .value as $colour
+    | "def _\($key)($text): \"\($key)\" as $c | colour($text; $c);" as $colourDef
+    | "def _\($key)Reverse($text): \"\($key)\" as $c | colourReverse($text; $c);" as $colourReverseDef
+    | $colourDef+"\n"
+    + $colourReverseDef
+  )
+  | .[]
+;
+
+def _gold($text): "gold" as $c | colour($text; $c);
+def _malachiteGreen($text): "malachiteGreen" as $c | colour($text; $c);
 
 def _r(text):
   escape + colours["red"] + text + escape + colours.reset;
@@ -228,8 +265,6 @@ def _yaleBlue(text):
 def _yaleBlue_b(text):
   escape + colours["yaleBlueBackground"] + text + escape + colours.reset;
 
-def _fsg(text):
-  escape + colours["fsg"] + text + escape + colours.reset;
 
 def _orange(text):
   escape + colours["orange"] + (text|tostring) + escape + colours.reset;

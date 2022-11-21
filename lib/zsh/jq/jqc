@@ -1,0 +1,12 @@
+#!/bin/zsh
+
+function jqc(){
+  # jq compile colours
+  # generate convenience colour fuctions from colour hash
+  local JQ_COLOUR_COMPILE_OUT=~/.config/jq/colour-out.jq
+  local colourFunctionDefinitions=$(jq -n --raw-output -L "~/.config/jq" 'include "colour"; _colourCompile')
+  print compiling jq colours into $JQ_COLOUR_COMPILE_OUT
+  print 'include "colour";' > $JQ_COLOUR_COMPILE_OUT
+  print '' >> $JQ_COLOUR_COMPILE_OUT
+  print $colourFunctionDefinitions >> $JQ_COLOUR_COMPILE_OUT
+}

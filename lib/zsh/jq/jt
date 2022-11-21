@@ -2,5 +2,22 @@
 
 function jt(){
   # jq test show jq colours 
-  jq -n --raw-output -L "~/.config/jq" 'include "colour"; colourTest'
+
+  local jqQuery=$(cat <<-EOF
+    include "colour";
+    include "colour-scale";
+    include "green-scale";
+    include "grey-scale";
+    include "rainbow-theme";
+    (colours | _showColourDict),
+    (colourscale | _showColourDict),
+    (greyscale | _showColourDict),
+    (rainbowTheme | _showColourDict),
+    (greenscale | _showColourDict)
+EOF
+)
+
+  jq --null-input --raw-output -L "~/.config/jq" -L "~/.local/lib/jq" "$jqQuery" <<< "$result"
+
+  # jq -n --raw-output -L "~/.config/jq" 'include "colour"; colourTest'
 }
