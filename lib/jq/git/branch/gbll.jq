@@ -10,6 +10,7 @@ include "rainbow-theme";
 include "colour-scale";
 include "grey-scale";
 include "decoration";
+include "sort";
 
 def formatCommitterName:{
 "CowBelleh": _christine("brian"), # aws orange
@@ -75,6 +76,7 @@ def formatTable:
   +"\(.committerDateAgoHumanNumberRoundFormat | showAgo) "
   +"\(.committerDateFormat) "
   +"\(.commiterName| formatCommitterName[.]//. | lp(10)) "
+  # +"\(.authorName)"
   +"\(.refNameFormat ) "
   # +"\(.upstream) "
   # +"\(.committerDate) "
@@ -84,8 +86,30 @@ def formatTable:
   +"\(.body | trunc(70) | _gs4 ) "
   ;
 
-def gbll:
+def _sortBy($sortBy):
+  if $sortBy == "" then sort_by(.CreatedAt) | reverse
+    elif $sortBy == "" then sort_by(._sortKey,.Repository)
+    elif $sortBy == "" then sort_by(._sizeKb) | reverse
+    else sort_by( .sortKeyHead, .sortKeyLocal, .sortKeyCommitterName, .sortKeyGithub, (.commiterName|ascii_downcase), .committerDateSecondsAgo )
+  end
+  | .
+  ;
+
+def setSortKeyLocal: if (.refName | startswith("refs/heads")) then 0 else 99 end;
+def setSortKeyHead: if .head == "*" then 0 else 99 end;
+def setSortKeyGithub: if .commiterName == "GitHub" then 999 else .sortKeyCommitterName end;
+
+def _committerNameSortOrder: [
+"tim goh",
+"chingyeow"
+];
+
+def gbll($sortBy; $rev; $imageFilter):
   map(.committerDateSeconds = (.committerDate | ToSeconds) )
+  | map(.sortKeyHead = setSortKeyHead)
+  | map(.sortKeyLocal = setSortKeyLocal)
+  | addSortKey("commiterName";_committerNameSortOrder; "sortKeyCommitterName")
+  | map(.sortKeyCommitterName = setSortKeyGithub)
   | map(.committerDateSecondsAgo = (now - .committerDateSeconds))
   | map(.committerDateDaysAgo = (now - .committerDateSeconds)/(24*60*60))
   | map(.committerDateAgoHumanNumber = (.committerDateSecondsAgo | TimeFormat))
@@ -94,6 +118,8 @@ def gbll:
   | map(.committerDateObject= (.committerDateSeconds | ToDateObject ) )
   | map(.committerDateFormatObject = (.committerDateSeconds | ToDateFormatObject("ymdhM"))) 
   | map(.committerDateFormat = (formatCommitterDate(.committerDateObject;.committerDateFormatObject;.committerDateSecondsAgo)))
+  | _sortBy($sortBy)
+  | if $rev then reverse else . end
   | map(.refNameFormat = (.refName|formatRefName))
   # | map(.committerDateAgoHumanUnit= .committerDateAgoHumanNumber[1]) 
   # map(.committerDateSecondsAgo = (.committerDate | ToSeconds) )

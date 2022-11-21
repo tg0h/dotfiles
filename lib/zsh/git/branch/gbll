@@ -66,8 +66,7 @@ EOF
   if ! [ $plain ] && ! [ $verbose ]; then
   local jqQuery=$(cat <<-EOF
   include "git/branch/gbll";
-    # dil("$sortBy";$reverse;"$imageFilter")
-    gbll
+    gbll("$sortBy";$reverse;"$imageFilter")
 EOF
 )
     jq --raw-output --slurp -L "~/.config/jq" -L "~/.local/lib/jq" "$jqQuery" <<< $result

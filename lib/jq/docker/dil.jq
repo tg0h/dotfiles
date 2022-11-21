@@ -11,7 +11,8 @@ def _sortBy($sortBy):
   if $sortBy == "createdAt" then sort_by(.CreatedAt) | reverse
     elif $sortBy == "repository" then sort_by(._sortKey,.Repository)
     elif $sortBy == "size" then sort_by(._sizeKb) | reverse
-    else .
+    # else sort_by(.refName,.commiterName, .committerDateSecondsAgo)
+    else sort_by(.refName)
   end
   | .
   ;
