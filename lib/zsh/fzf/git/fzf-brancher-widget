@@ -70,8 +70,8 @@ function fzf-brancher-widget(){
      local branches=()
 
      while IFS= read -r gitbranchline ; do 
-       # remove first 2 chars of line (contains empty space or *)
-       local branch=${gitbranchline:2}
+       # remove *
+       local branch=$(sed s/^\*// <<< $gitbranchline | choose 5)
        branches+=($branch)
      done <<< "$targets"
 
@@ -83,14 +83,16 @@ function fzf-brancher-widget(){
   fi
 
   if [ $target1 ]; then
-     local remoteBranchName=${target1:2}
-     branch=$(sed 's#^remotes/origin/##' <<< $remoteBranchName)
+     # the targetBranch ref name may contain a prefix eg origin/...
+     local targetBranch=$(sed s/^\*// <<< $target1 | choose 5)
+     # remove any prefix from the refname
+     local branch=$(sed 's#^origin/##' <<< $targetBranch)
      if [ $(git branch -l $branch) ]; then
        # if the branch exists, just switch to the branch
        git checkout $branch
      else
        # create a new branch with a simplified name, without the remotes/origin prefix
-       git checkout -b $branch $remoteBranchName
+       git checkout -b $branch $targetBranch
      fi
   fi
   rm -f "${reverse_tmp_file}" &> /dev/null

@@ -17,9 +17,9 @@ def formatCommitterName:{
 "Eri Sitohang": _cyan("Eri"),
 "Gary": _mySin("gary"), # lakers colours
 "Giggs": _rossoCorsa("Giggs"), # man u 
-"GitHub": _freeSpeechGreen("GitHub"), # bright green
+"GitHub": __("GitHub"), # bright green
 "Glenn Sunkel": _sapphireBg("Glenn"), # new zealand
-"Jared Tong": _brinkPink("Jared"), # rc colours
+"Jared Tong": _tacha("Jared"), # rc colours
 "Kel Vyn Ong": _danube("Kelvyn"), # sound of music
 "Timothy Tan": _tan("TimTan"),
 "chingyeow": _indianYellow("chingyeow"), # nepal buddist monk robes
@@ -37,12 +37,13 @@ def formatCommitterName:{
 def subAfterOrigin: sub("(?:\/)(?<after>.*)";"/"+(.after|_cs0));
 def subTicket: sub("(?:/)(?<ticket>\\w+-\\d+)(?:\/)";"/"+(.ticket|_y(.)+"/"));
 
-def subOrigin: sub("(?<o>origin)";(.o)|_purple(.));
+def subOrigin: sub("(?<o>origin)";(.o)|_gs1);
 def gSubSlash: gsub("/";"/"|_gs3);
 def subRefsHeads: sub("refs/heads/";" ");
 def subRefsRemotes: sub("refs/remotes/";" ");
-def formatRemoteRef: sub("origin/(?<r>.*)";"origin/"+(.r|_rb9));
-def formatLocalRef: sub("heads/(?<r>.*)";"heads/"+(.r|_rb5));
+
+def formatRemoteRef: sub("origin/(?<r>.*)";"origin/"+(.r|__(.)));
+def formatLocalRef: sub("heads/(?<r>.*)";"heads/"+(.r|_orange(.)));
 def formatMyLocalRef: sub("heads/(?<r>timg)";"heads/"+(_brinkPink(.r)));
 def formatMyLocalRefName: sub("heads/timg/(?<r>.*)";"heads/timg/"+(_brinkPink(.r)));
 def formatLocalMain: sub("heads/(?<r>main)";"heads/"+(_g(.r)));
@@ -124,7 +125,7 @@ def filterCommitter($committerFilter):
   end
 ;
 
-def gbll($sortBy; $rev; $committerFilter):
+def gbl($sortBy; $rev; $committerFilter):
   map(.committerDateSeconds = (.committerDate | ToSeconds) )
   # filter
   | map(select(filterCommitter($committerFilter)))
