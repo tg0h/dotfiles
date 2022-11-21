@@ -11,7 +11,7 @@
 
     plus-emph-style = "#f8ef00" reverse 
     plus-non-emph-style = syntax "#15391e"
-    plus-style = syntax "#12413f"
+    plus-style = syntax "#071a1b"
 
     ; plus-empty-line-marker-style = orange
     ; right-arrow
