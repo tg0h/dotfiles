@@ -1,6 +1,6 @@
 #!bin/zsh
 
-function gbll(){
+function gbl(){
   # git branch list
 
   # see https://git-scm.com/docs/git-for-each-ref#_field_names for the field names 

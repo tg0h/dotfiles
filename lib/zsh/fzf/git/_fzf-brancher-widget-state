@@ -1,0 +1,29 @@
+#!/bin/zsh
+
+function _fzf-brancher-widget-state(){
+
+  local sortByStateFile=$1
+  local reverseStateFile=$2
+  local filterStateFile=$3
+
+  local reverseOption
+  local sortByOption=c
+  local filterOption=a
+
+  if grep -q 'reverse' $reverseStateFile; then
+    reverseOption="-r"
+  fi
+
+  if grep -q 'c' $sortByStateFile; then sortByOption="c" # created at
+  elif grep -q 'r' $sortByStateFile; then sortByOption="r" # repo name
+  elif grep -q 's' $sortByStateFile; then sortByOption="s" # size
+  fi
+
+  if grep -q 'a' $filterStateFile; then filterOption="a" # all
+  elif grep -q 'm' $filterStateFile; then filterOption="m" # my branches
+  elif grep -q 't' $filterStateFile; then filterOption="t" # my team branches
+  fi
+
+  gbl -s $sortByOption -f $filterOption $reverseOption
+
+}
