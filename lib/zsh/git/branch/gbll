@@ -19,10 +19,9 @@ function gbll(){
       v) verbose=true;; # json format
       f) filterOption=$OPTARG
         case "$filterOption" in
-          a) imageFilter="all";; # docker image names with <group>/<image>
-          c) imageFilter="candy";; # refcandy ecr images that begin with 203...
-          l) imageFilter="local";; # docker images without slash 
-          s) imageFilter="slash";; # docker image names with <group>/<image>
+          a) imageFilter="all";; # everyone
+          m) imageFilter="me";; # me
+          t) imageFilter="team";; # my team
         esac;;
       r) reverse=true;;
       s) sortOption=$OPTARG

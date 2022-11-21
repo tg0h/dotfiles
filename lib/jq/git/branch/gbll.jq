@@ -86,13 +86,23 @@ def formatTable:
   +"\(.body | trunc(70) | _gs4 ) "
   ;
 
-def _sortBy($sortBy):
-  if $sortBy == "" then sort_by(.CreatedAt) | reverse
-    elif $sortBy == "" then sort_by(._sortKey,.Repository)
-    elif $sortBy == "" then sort_by(._sizeKb) | reverse
-    else sort_by( .sortKeyHead, .sortKeyLocal, .sortKeyCommitterName, .sortKeyGithub, (.commiterName|ascii_downcase), .committerDateSecondsAgo )
+def _sortBy($sortBy; $rev):
+  # if $sortBy == "" then sort_by(.CreatedAt) | reverse
+  # elif $sortBy == "" then sort_by(._sortKey,.Repository)
+  # elif $sortBy == "" then sort_by(._sizeKb) | reverse
+  if $rev|not then
+  sort_by( .sortKeyHead, .sortKeyLocal, .sortKeyCommitterName, .sortKeyGithub, (.commiterName|ascii_downcase), .committerDateSecondsAgo ) 
+  else
+    # if any (.sortKeyHead | length > 0)
+    # then
+      # reverse the sort but keep the currently checked out branch as the top branch
+      sort_by( .sortKeyHead, .sortKeyLocal, .sortKeyCommitterName, .sortKeyGithub, (.commiterName|ascii_downcase), .committerDateSecondsAgo ) | ([.[0]] + ( .[1:] | sort_by( .sortKeyLocal, .sortKeyCommitterName, .sortKeyGithub, (.commiterName|ascii_downcase), .committerDateSecondsAgo )|reverse ))
+    # else
+    #   # if checked out branch does not exist (perhaps filtered out)
+    #   # just reverse
+    #   reverse
+    # end
   end
-  | .
   ;
 
 def setSortKeyLocal: if (.refName | startswith("refs/heads")) then 0 else 99 end;
@@ -104,12 +114,29 @@ def _committerNameSortOrder: [
 "chingyeow"
 ];
 
-def gbll($sortBy; $rev; $imageFilter):
+
+def filterCommitter($committerFilter):
+  if $committerFilter == "all" then true
+  elif $committerFilter == "me" then .commiterName == "tim goh" or .head == "*"
+  elif $committerFilter == "team" then .commiterName == "tim goh" or .commiterName =="chingyeow" or .head == "*"
+  else
+    true
+  end
+;
+
+def gbll($sortBy; $rev; $committerFilter):
   map(.committerDateSeconds = (.committerDate | ToSeconds) )
+  # filter
+  | map(select(filterCommitter($committerFilter)))
+
+  # sort
   | map(.sortKeyHead = setSortKeyHead)
   | map(.sortKeyLocal = setSortKeyLocal)
   | addSortKey("commiterName";_committerNameSortOrder; "sortKeyCommitterName")
   | map(.sortKeyCommitterName = setSortKeyGithub)
+
+
+  # process
   | map(.committerDateSecondsAgo = (now - .committerDateSeconds))
   | map(.committerDateDaysAgo = (now - .committerDateSeconds)/(24*60*60))
   | map(.committerDateAgoHumanNumber = (.committerDateSecondsAgo | TimeFormat))
@@ -118,8 +145,8 @@ def gbll($sortBy; $rev; $imageFilter):
   | map(.committerDateObject= (.committerDateSeconds | ToDateObject ) )
   | map(.committerDateFormatObject = (.committerDateSeconds | ToDateFormatObject("ymdhM"))) 
   | map(.committerDateFormat = (formatCommitterDate(.committerDateObject;.committerDateFormatObject;.committerDateSecondsAgo)))
-  | _sortBy($sortBy)
-  | if $rev then reverse else . end
+  | _sortBy($sortBy; $rev)
+  # | if $rev then reverse else . end
   | map(.refNameFormat = (.refName|formatRefName))
   # | map(.committerDateAgoHumanUnit= .committerDateAgoHumanNumber[1]) 
   # map(.committerDateSecondsAgo = (.committerDate | ToSeconds) )
