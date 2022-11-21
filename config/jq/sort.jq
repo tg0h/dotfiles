@@ -10,6 +10,9 @@
 def getSortKey($input; $sortKeys):
   $sortKeys | to_entries | map(select(.value==$input))[].key;
 
+# def getSortKey($input; $topSortKeys; $bottomSortKeys):
+#   $sortKeys | to_entries | map(select(.value==$input))[].key;
+
   # $key is the key to sort by 
   # assumes an array of objects an input.
   # [
@@ -28,3 +31,9 @@ def getSortKey($input; $sortKeys):
   # we can then sort the array by the sortKey to get our special sorting
 def addSortKey($key;$sortKeys):
   map(.sortKey = (getSortKey(.[$key]; $sortKeys) // 99)); 
+
+def addSortKey($key;$sortKeys;$setKey):
+  map(.[$setKey] = (getSortKey(.[$key]; $sortKeys) // 99)); 
+
+# def addSortKey($key;$setKey;$topSortKeys; $bottomSortKeys):
+#   map(.[$setKey] = (getSortKey(.[$key]; $topSortKeys; $bottomSortKeys) // 99)); 
