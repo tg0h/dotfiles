@@ -2,6 +2,9 @@
 # do not need to escape $ with \, unlike in a heredoc
 # include "colour";
 
+# https://stackoverflow.com/questions/74500168/how-do-i-calculate-the-length-exclude-escape-codes-of-a-string-containing-ansi
+def _strip_ansi: gsub("\\x1b\\[[0-9;]*m"; "");
+
 # if null or false provided, convert to empty string
 def rpad($len; $fill):
   if . == null then "" else . end | tostring | ($len - length) as $l | . + ($fill * $l)[:$l];
@@ -9,13 +12,28 @@ def rpad($len; $fill):
 def lpad($len; $fill):
   if . == null then "" else . end | tostring | ($len - length) as $l | ($fill * $l)[:$l] + .;
 
-def rp($len):
-  if . == null then "" else . end | tostring | ($len - length) as $l | . + (" " * $l)[:$l];
+def rp($desiredWordLength):
+  . // ""
+  | tostring 
+  | (_strip_ansi | length) as $wordLength 
+  | ($desiredWordLength - $wordLength) as $rightPadLength 
+  | . + (" " * $rightPadLength)
+;
+  # if . == null then "" else . end | tostring | (_strip_ansi | length) as $length | ($len - $length) as $l | . + (" " * $l)[:$l];
 
-def lp($len):
-  if . == null then "" else . end | tostring | ($len - length) as $l | (" " * $l)[:$l] + .;
+def lp($desiredWordLength):
+  . // "" 
+  | tostring 
+  | (_strip_ansi | length) as $wordLength 
+  | ($desiredWordLength - $wordLength) as $leftPadLength 
+  | (" " * $leftPadLength) + .
+;
+# if . == null then "" else . end | tostring | (_strip_ansi | length) as $length | ($len - $length) as $l | (" " * $l)[:$l] + .;
 
 def ljust($len): " " * $len;
+
+# remove starting white space
+def ltrim: gsub("^\\s+";"");
 
 # truncate string to $len - 3 and add "..."
 # if string < $len - 3, do nothing
