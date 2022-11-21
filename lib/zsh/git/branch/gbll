@@ -35,28 +35,45 @@ function gbll(){
   done
   shift $(($OPTIND - 1))
 
+  # author - who wrote this
+  # commiter - who applied this
   local formatString=$(cat <<-EOF
-    %(HEAD) %(refname:short) %(committerdate:iso8601) %(authordate:iso8601) %(subject) %(authorname) %(contents:subject)
+		{
+		         ^^^head^^^: ^^^%(HEAD)^^^,
+		      ^^^refName^^^: ^^^%(refname)^^^,
+		     ^^^upstream^^^: ^^^%(upstream)^^^,
+		^^^committerDate^^^: ^^^%(committerdate:iso8601)^^^,
+		 ^^^commiterName^^^: ^^^%(committername)^^^,
+		   ^^^authorDate^^^: ^^^%(authordate:iso8601)^^^,
+		   ^^^authorName^^^: ^^^%(authorname)^^^,
+		      ^^^subject^^^: ^^^%(subject)^^^,
+		         ^^^body^^^: ^^^%(body)^^^
+		}
 EOF
 )
 
-git branch -a --sort=-committerdate --format=$formatString
-git branch -a --sort=-committerdate --format='%(HEAD)  %(committerdate:iso8601) %(refname:short) %(authordate:iso8601) %(subject) %(authorname) %(contents:subject)'
+  # cleanup - replace " with \"
+  # substitute ^^^ with "
+  # cleanup - replace  with <empty string>
+  # cleanup - replace \n with ' '
 
-  # if ! [ $plain ] && ! [ $verbose ]; then
-  # local result=$(docker image ls $all --format="{{json .}}")
-# git branch -a --sort=-committerdate --format='%(HEAD) %(refname:short) %(committerdate:iso8601) %(authordate:iso8601) %(subject) %(authorname) %(contents:subject)'
+  local result=$(git branch -a --format=$formatString |
+                  sed 's/"/\\"/g' | 
+                  sed 's/\^^^/"/g' | 
+                  sed 's///g' | 
+                  tr '\n' ' ')
 
-#   local jqQuery=$(cat <<-EOF
-#   include "docker/dil";
-#     dil("$sortBy";$reverse;"$imageFilter")
-# EOF
-# )
-#     jq --raw-output --slurp -L "~/.config/jq" -L "~/.local/lib/jq" "$jqQuery" <<< $result
-#   elif [ $verbose ]; then
-#     docker image ls $all --format="{{json .}}" | jq .
-#   else
-#     docker image ls $all
-#   fi
-
+  if ! [ $plain ] && ! [ $verbose ]; then
+  local jqQuery=$(cat <<-EOF
+  include "git/branch/gbll";
+    # dil("$sortBy";$reverse;"$imageFilter")
+    gbll
+EOF
+)
+    jq --raw-output --slurp -L "~/.config/jq" -L "~/.local/lib/jq" "$jqQuery" <<< $result
+  elif [ $verbose ]; then
+    printf $result | jq .
+  # else
+  #   # docker image ls $all
+  fi
 }
