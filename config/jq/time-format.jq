@@ -85,7 +85,7 @@ def RoundHumanTime:
   .[0] as $number
   | .[1] as $unit
   | 
-    if $unit == "s" then .
+    if $unit == "s" then $number
     elif $unit == "m" then $number | RoundTo(1)
     elif $unit == "h" then $number | RoundTo(1)
     elif $unit == "D" then $number | RoundTo(1)

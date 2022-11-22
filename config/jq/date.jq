@@ -107,8 +107,8 @@ def ToSeconds:
 # def _setSecondsAgo($offset): .;
 
 # accepts unixTime and converts to iso date object in UTC
-def ToDateObject:
-  (. | todate) as $isoDate
+def ToDateObject($offsetHours):
+  ((. + $offsetHours * HOUR) | todate) as $isoDate
   | ($isoDate[0:4] | tonumber) as $year
   | ($isoDate[5:7] | tonumber) as $month
   | ($isoDate[8:10] | tonumber) as $day
@@ -118,11 +118,14 @@ def ToDateObject:
   | { $year,$month,$day,$hour,$minute,$second }
 ;
 
+def ToDateObject: ToDateObject(0);
+def ToLocalDateObject: ToDateObject(8);
+
 # accepts format string of ymdhMs
 # specify yy for 4 year format
-def ToDateFormatObject($_format):
+def ToDateFormatObject($_format; $offsetHours):
   ($_format|tostring) as $format
-  |(. | todate) as $isoDate
+  |((. + $offsetHours * HOUR) | todate) as $isoDate
   |(if ($format | contains("y")) then 
       if ($format | contains("yy")) then 
         $isoDate[0:4]
@@ -154,5 +157,9 @@ def ToDateFormatObject($_format):
   # +"\($minuteSeparator)"
   # +"\($second)"
 ;
+
+def ToDateFormatObject($_format): ToDateFormatObject($_format; 0);
+def ToLocalDateFormatObject($_format): ToDateFormatObject($_format; 8);
+
 # accepts unixTime and converts to iso date in SG time
 def ToLocalDate:.;

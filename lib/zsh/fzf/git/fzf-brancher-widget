@@ -34,7 +34,7 @@ function fzf-brancher-widget(){
       # --bind 'ctrl-space:toggle+down' \
   local out=$( gbl |
     fzf --ansi --multi \
-      --preview-window top,noborder,20 \
+      --preview-window right,noborder,50% \
       --preview 'git log --oneline --graph --date=short --color=always --pretty="format:%C(green bold)%cd %C(auto)%h%d %s %C(magenta)(%an)%Creset %C(cyan)%ar%Creset" $(sed s/^\*// <<< {} | choose 5)' \
       --bind 'alt-g:reload(
         git branch -a --color=always --sort=-committerdate | sort -r

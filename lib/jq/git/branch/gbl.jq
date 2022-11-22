@@ -143,8 +143,8 @@ def gbl($sortBy; $rev; $committerFilter):
   | map(.committerDateAgoHumanNumber = (.committerDateSecondsAgo | TimeFormat))
   | map(.committerDateAgoHumanNumberRound = [(.committerDateAgoHumanNumber|RoundHumanTime), .committerDateAgoHumanNumber[1], .committerDateAgoHumanNumber[2]] ) 
   | map(.committerDateAgoHumanNumberRoundFormat = formatCommitterDateAgo(.committerDateAgoHumanNumberRound)) 
-  | map(.committerDateObject= (.committerDateSeconds | ToDateObject ) )
-  | map(.committerDateFormatObject = (.committerDateSeconds | ToDateFormatObject("ymdhM"))) 
+  | map(.committerDateObject= (.committerDateSeconds | ToLocalDateObject ) )
+  | map(.committerDateFormatObject = (.committerDateSeconds | ToLocalDateFormatObject("ymdhM"))) 
   | map(.committerDateFormat = (formatCommitterDate(.committerDateObject;.committerDateFormatObject;.committerDateSecondsAgo)))
   | _sortBy($sortBy; $rev)
   # | if $rev then reverse else . end
