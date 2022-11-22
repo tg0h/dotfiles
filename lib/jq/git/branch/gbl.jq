@@ -75,8 +75,8 @@ def showAgo:
 def formatTable:
   "\(.head) "
   +"\(.committerDateAgoHumanNumberRoundFormat | showAgo) "
-  +"\(.committerDateFormat) "
   +"\(.commiterName| formatCommitterName[.]//. | lp(10)) "
+  +"\(.committerDateFormat) "
   # +"\(.authorName)"
   +"\(.refNameFormat ) "
   # +"\(.upstream) "
