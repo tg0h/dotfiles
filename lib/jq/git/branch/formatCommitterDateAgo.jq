@@ -8,12 +8,12 @@ include "grey-scale";
 include "time-format";
 
 def formatUnit: {
-  "s": "s"|_gs0,
-  "m": "m"|_cs0,
-  "h": "h"|_gs7,
-  "D": "D"|_rb8,
-  "W": ("W")|_cs5,
-  "M": ("M")|_rb0
+  "s": "s"|_cs0|rv,
+  "m": "m"|_cs1|rv,
+  "h": "h"|_cs2|rv,
+  "D": "D"|_g(.),
+  "W": ("W")|_y(.),
+  "M": ("M")|_r(.),
 };
 
 def formatDuration($secs):

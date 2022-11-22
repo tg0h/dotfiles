@@ -16,7 +16,7 @@ function fzf-brancher-widget(){
 
   local sortBy_tmp_file
   if sortBy_tmp_file="$(mktemp "/tmp/${basename}_sortBy".XXXXXX)"; then
-    printf 'c' > "${sortBy_tmp_file}"
+    printf 'c' > "${sortBy_tmp_file}" # not in use, but need to pass in dummy variable
   fi
 
   local filter_tmp_file 

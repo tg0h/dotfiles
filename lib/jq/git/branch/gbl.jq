@@ -14,23 +14,23 @@ include "sort";
 
 def formatCommitterName:{
 "CowBelleh": _christine("brian"), # aws orange
-"Eri Sitohang": _cyan("Eri"),
+"Eri Sitohang": _purple("Eri"),
 "Gary": _mySin("gary"), # lakers colours
 "Giggs": _rossoCorsa("Giggs"), # man u 
-"GitHub": __("GitHub"), # bright green
+"GitHub": __("GH"), # bright green
 "Glenn Sunkel": _sapphireBg("Glenn"), # new zealand
-"Jared Tong": _tacha("Jared"), # rc colours
-"Kel Vyn Ong": _danube("Kelvyn"), # sound of music
-"Timothy Tan": _tan("TimTan"),
-"chingyeow": _indianYellow("chingyeow"), # nepal buddist monk robes
-"darrenong17": _beaver("darren"), # otter singaporean beaver geddit lol
+"Jared Tong": _cyan("J"), # rc colours
+"Kel Vyn Ong": _danube("Kel"), # sound of music
+"Timothy Tan": _tan("timt"),
+"chingyeow": _orange("cy"), # nepal buddist monk robes
+"darrenong17": _beaver("darrn"), # otter singaporean beaver geddit lol
 "garyfoo88": _mySin("gary"), # lakers
-"jasmined09": _morningGlory("jasmine"), # princess jasmine
+"jasmined09": _morningGlory("jasd"), # princess jasmine
 "joel": _pinkFlamingo("joel"),
 "tim goh": _steelPink("timg"),
 "Chris Fraser": "Chris",
 "Will Fong": "Will",
-"Jason Nulla": "Jason",
+"Miguel": "Migl",
 };
 
 # sub("(?:\/)(?<ticket>\\w+-\\d+)(?:\/)";(.ticket));
@@ -46,12 +46,12 @@ def formatRemoteRef: sub("origin/(?<r>.*)";"origin/"+(.r|__(.)));
 def formatLocalRef: sub("heads/(?<r>.*)";"heads/"+(.r|_orange(.)));
 def formatMyLocalRef: sub("heads/(?<r>timg)";"heads/"+(_brinkPink(.r)));
 def formatMyLocalRefName: sub("heads/timg/(?<r>.*)";"heads/timg/"+(_brinkPink(.r)));
-def formatLocalMain: sub("heads/(?<r>main)";"heads/"+(_g(.r)));
+def formatLocalMainOrMaster: sub("heads/(?<r>(main|master))";"heads/"+(_g(.r)));
 def subRefsPrefix: 
   .
   | formatMyLocalRefName
   | formatMyLocalRef
-  | formatLocalMain
+  | formatLocalMainOrMaster
   | formatLocalRef
   | formatRemoteRef
   | subTicket 
@@ -75,7 +75,7 @@ def showAgo:
 def formatTable:
   "\(.head) "
   +"\(.committerDateAgoHumanNumberRoundFormat | showAgo) "
-  +"\(.commiterName| formatCommitterName[.]//. | lp(10)) "
+  +"\(.commiterName| formatCommitterName[.]//. | lp(5)) "
   +"\(.committerDateFormat) "
   # +"\(.authorName)"
   +"\(.refNameFormat ) "
@@ -112,7 +112,8 @@ def setSortKeyGithub: if .commiterName == "GitHub" then 999 else .sortKeyCommitt
 
 def _committerNameSortOrder: [
 "tim goh",
-"chingyeow"
+"chingyeow",
+"Jared Tong"
 ];
 
 
