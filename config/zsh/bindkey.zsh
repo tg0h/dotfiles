@@ -26,6 +26,8 @@ zle -N pb-backward-kill-line
 bindkey -e '^u' pb-backward-kill-line
 zle -N pb-kill-line
 bindkey -e '^k' pb-kill-line
+zle -N pb-backward-kill-word
+bindkey -e '^w' pb-backward-kill-word
 
 # file searchers
 zle     -N   fzf-search-dotfiles-widget
@@ -86,9 +88,10 @@ bindkey '^[^g' fzf-code-pipeline-widget
 zle -N fzf-s3-bucket-widget # show action executions for a code pipeline
 bindkey '^[^b' fzf-s3-bucket-widget
 
-# Alt+Backspace to backward kill to dir segment
-zle -N backward-kill-dir
-bindkey '^[^?' backward-kill-dir
+# # Alt+Backspace to backward kill to dir segment
+# use pb-backward-kill-word instead
+# zle -N backward-kill-dir
+# bindkey '^[^?' backward-kill-dir
 
 # C-S--
 bindkey '^_' copy-prev-shell-word

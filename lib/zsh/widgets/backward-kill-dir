@@ -1,7 +1,13 @@
 #!/bin/zsh
 
+# no longer in use
 function backward-kill-dir () {
-    local WORDCHARS=${WORDCHARS/\/}
+# see pattern replacement in https://zsh.sourceforge.io/Guide/zshguide05.html
+    # local WORDCHARS=${WORDCHARS/=\/}
+    # // - globally replace
+    # [<chars to remove>]
+    # escape special chars like / and {}
+    local WORDCHARS=${WORDCHARS//[_.$=\/()\{\}]}
     zle backward-kill-word
     zle -f kill  # Ensures that after repeated backward-kill-dir, Ctrl+Y will restore all of them.
 }

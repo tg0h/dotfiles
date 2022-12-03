@@ -5,6 +5,11 @@ export EDITOR='nvim'
 # if too slow, then pressing alt causes zsh to wait for the next key after alt
 export KEYTIMEOUT=1 # 10ms
 
+# see https://zsh.sourceforge.io/Guide/zshguide04.html
+# determines word delimiters when killing words
+# // globally removes 
+# anything in [] is removed
+export WORDCHARS=${WORDCHARS//[\/=_.$\{\}()]}
 export HISTFILE="$XDG_STATE_HOME"/zsh/history # overrid HISTFILE setting in /etc/zshenv
 export HISTFILESIZE=1000000000
 export HISTSIZE=1000000000 # Number of commands that are loaded into memory from the history file
