@@ -20,7 +20,7 @@ function nt(){
   # prefer entr zsh -c to entr -s
   # entr -s prints the exit code which is noisy
   if [[ $rootDir == /Users/tim/src/candy/main/referralcandy-main/* ]]; then
-    fd . $rootDir | entr -cc npx ava $cmd
+    fd . $rootDir | entr -cc npx ava --fail-fast $cmd
   else
     fd . $rootDir | entr -cc zsh -c $cmd
   fi
