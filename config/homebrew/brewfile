@@ -136,6 +136,8 @@ brew 'nb'
 tap 'jakehilborn/jakehilborn'
 # brew 'displayplacer' # doesn't work
 brew 'buku'
+brew 'goaccess'
+brew 'pgcli'
 
 tap 'romkatv/gitstatus'
 brew 'romkatv/gitstatus/gitstatus'
