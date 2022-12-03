@@ -28,7 +28,7 @@ def formatMonth($secondsAgo):
 def formatDay($secondsAgo):
   ($secondsAgo / (1*DAY)) as $diff
   | 
-    if $diff < 1 then .|_cs0
+    if $diff < 1 then __(.)
     elif $diff < 2 then .  | _cs1
     elif $diff < 3 then .  | _cs2
     elif $diff < 4 then .  | _cs3
@@ -46,16 +46,18 @@ def formatDay($secondsAgo):
 def formatHour($secondsAgo):
   ($secondsAgo / HOUR) as $diff
   | 
-    if $diff < 1 then .|_cs0
-    elif $diff < 2 then .  | _cs1
-    elif $diff < 3 then .  | _cs2
-    elif $diff < 4 then .  | _cs3
-    elif $diff < 5 then .  | _cs4
-    elif $diff < 6 then .  | _cs5
-    elif $diff < 7 then .  | _cs6
-    elif $diff < 8 then .  | _cs7
-    elif $diff < 9 then .  | _cs8
-    elif $diff < 13 then . | _cs9
+    # if $diff < 1 then .|_cs0
+    # elif $diff < 2 then .  | _cs1
+    # elif $diff < 3 then .  | _cs2
+    # elif $diff < 4 then .  | _cs3
+    # elif $diff < 5 then .  | _cs4
+    # elif $diff < 6 then .  | _cs5
+    # elif $diff < 7 then .  | _cs6
+    # elif $diff < 8 then .  | _cs7
+    # elif $diff < 9 then .  | _cs8
+    # if $diff < 12  then . | _cs0
+    # elif $diff < 24 then .  | _cs1
+    if $diff < 24 then __(.)
     else
       __(.)
     end
@@ -64,16 +66,18 @@ def formatHour($secondsAgo):
 def formatMinute($secondsAgo):
   ($secondsAgo / HOUR) as $diff
   |
-    if $diff < 1 then .|_cs0
-    elif $diff < 2 then .  | _cs1
-    elif $diff < 3 then .  | _cs2
-    elif $diff < 4 then .  | _cs3
-    elif $diff < 5 then .  | _cs4
-    elif $diff < 6 then .  | _cs5
-    elif $diff < 7 then .  | _cs6
-    elif $diff < 8 then .  | _cs7
-    elif $diff < 9 then .  | _cs8
-    elif $diff < 13 then . | _cs9
+    # if $diff < 1 then .|_cs0
+    # elif $diff < 2 then .  | _cs1
+    # elif $diff < 3 then .  | _cs2
+    # elif $diff < 4 then .  | _cs3
+    # elif $diff < 5 then .  | _cs4
+    # elif $diff < 6 then .  | _cs5
+    # elif $diff < 7 then .  | _cs6
+    # elif $diff < 8 then .  | _cs7
+    # elif $diff < 9 then .  | _cs8
+    # if $diff < 12 then . | _cs0
+    # if $diff < 24 then . | _cs1
+    if $diff < 24 then __(.)
     else
       __(.)
     end
