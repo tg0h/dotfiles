@@ -68,7 +68,8 @@ keymaps:
   - [sdb, $HOME/src/candy/datagrip/candy]
   - [sg, $HOME/src/candy/playground]
   - [sgc, $HOME/src/candy/playground/referralcandy-secondary]
-  - [sh, $HOME/src/candy/main/referralcandy-main/packages/daemons]
+  # oops sh will create zsh shortcut which shadows zsh bin
+  # - [sh, $HOME/src/candy/main/referralcandy-main/packages/daemons]
   - [so, $HOME/src/candy/old]
   - [soc, $HOME/src/candy/old/composer]
   - [sp, $HOME/src/candy/old/pentel]
