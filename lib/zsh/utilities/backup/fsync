@@ -40,7 +40,7 @@ function fsync(){
   rsync -aP --stats --delete ~/Pictures/Snagit $destination/Pictures
 
   # binaries
-  rsync -aP --stats --delete ~/.local/bin $destination/local
+  rsync --progress -aP --stats --delete ~/.local/bin $destination/local
 
   # backup passwordstore and gpg
   # rsync -aP --stats --delete ~/.local/share/pass ~/.local/share/gnupg $destination/local/share
