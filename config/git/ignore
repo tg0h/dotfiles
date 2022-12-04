@@ -16,3 +16,5 @@
 Icon$'\r' # macos Icon? file - ? character is actually a carriage return - https://stackoverflow.com/questions/17556250/how-to-ignore-icon-in-git
 ehthumbs.db
 Thumbs.db
+
+config/git/mailmap
