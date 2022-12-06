@@ -79,6 +79,7 @@ alias gbmr="git branch -r --merged"
 # if you don't specify a branch, it compares against the current HEAD you're on, ie which branch you're currently on
 alias gbnmr="git branch -r --no-merged | rg -v 'release'"
 
+alias glv="git log --graph --raw --stat --numstat --compact-summary --dirstat --summary --parents --abbrev-commit --format=fuller"
 alias gloz="git log --graph --date=format:'%I:%M %p' --pretty='%>|(10,trunc)%Cred%h%Creset %C(bold blue)%cs %Cgreen%ad%Creset %<(50,trunc)%s %<(6,trunc)%C(yellow)%ar %<(8,trunc)%C(cyan)%an%Creset%<(20,trunc)%C(auto)%d'"
 alias glozm="gloz -10"
 alias glod="git log --date=human --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset %C(yellow)%ar%Creset'"
