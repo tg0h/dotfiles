@@ -8,8 +8,8 @@ include "grey-scale";
 include "time-format";
 
 def formatUnit: {
-  "s": "s"|_cs0|rv,
-  "m": "m"|_cs1|rv,
+  "s": "s"|_cs0,
+  "m": "m"|_cs1,
   "h": "h"|_g(.),
   "D": "D"|__(.),
   "W": ("W")|_y(.),
@@ -19,7 +19,7 @@ def formatUnit: {
 def formatDuration($secs):
   (.|tostring) as $duration
   | 
-    if $secs < 60 * MIN then  $duration|_freeSpeechGreen(.)
+    if $secs < 60 * MIN then  $duration|_freeSpeechGreen(.)|rv
     # elif $secs < 3 * HOUR  then $duration|_rb10
     # elif $secs < 6 * HOUR then $duration|_rb10
     # elif $secs < 9 * HOUR then $duration|_rb9
