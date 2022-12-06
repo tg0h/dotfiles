@@ -80,6 +80,8 @@ bindkey '^g^s' fzf-gs-widget
 
 zle -N fzf-brancher-widget # general purpose branch switcher/deleter
 bindkey '^l' fzf-brancher-widget
+zle -N fzf-logger-widget # git logger widget
+bindkey '^s' fzf-logger-widget
 zle -N fzf-git-repo-widget 
 bindkey '^[^l' fzf-git-repo-widget
 

@@ -1,0 +1,114 @@
+#!bin/zsh
+
+function glo(){
+  # git branch list
+
+  # see https://git-scm.com/docs/git-for-each-ref#_field_names for the field names 
+  # permitted in the git branch --format option
+
+  local all format formatArg filter excludeCandy debug plain verbose filterOption sortOption 
+
+  local sortBy="createdAt"
+  local reverse=false 
+  local imageFilter="all"
+
+  while getopts 'apf:vs:r' opt; do
+    case "$opt" in
+      a) all="-a";;
+      p) plain=true;;
+      v) verbose=true;; # json format
+      f) filterOption=$OPTARG
+        case "$filterOption" in
+          a) imageFilter="all";; # everyone
+          m) imageFilter="me";; # me
+          t) imageFilter="team";; # my team
+        esac;;
+      r) reverse=true;;
+      s) sortOption=$OPTARG
+        case "$sortOption" in
+          c) sortBy="createdAt";;
+          r) sortBy="repository";;
+          s) sortBy="size";;
+        esac;;
+    esac
+  done
+  shift $(($OPTIND - 1))
+
+  # author - who wrote this
+  # commiter - who applied this
+  local formatString=$(cat <<-EOF
+		{
+		         ^^^head^^^: ^^^%(HEAD)^^^,
+		      ^^^refName^^^: ^^^%(refname)^^^,
+		     ^^^upstream^^^: ^^^%(upstream)^^^,
+		^^^committerDate^^^: ^^^%(committerdate:iso8601)^^^,
+		 ^^^commiterName^^^: ^^^%(committername)^^^,
+		   ^^^authorDate^^^: ^^^%(authordate:iso8601)^^^,
+		   ^^^authorName^^^: ^^^%(authorname)^^^,
+		      ^^^subject^^^: ^^^%(subject)^^^,
+		         ^^^body^^^: ^^^%(body)^^^
+		}
+EOF
+)
+
+  local formatString=$(cat <<-EOF
+		{
+		         ^^^commitHash^^^: ^^^%H^^^,
+		         ^^^treeHash^^^: ^^^%T^^^,
+		         ^^^parentHash^^^: ^^^%P^^^,
+		         ^^^authorName^^^: ^^^%an^^^,
+		         ^^^authorMailMapName^^^: ^^^%aN^^^,
+		         ^^^authorEmail^^^: ^^^%ae^^^,
+		         ^^^authorMailMapEmail^^^: ^^^%aE^^^,
+		         ^^^authorDate^^^: ^^^%ad^^^,
+		         ^^^authorDateUnix^^^: ^^^%at^^^,
+		         ^^^authorDateIso^^^: ^^^%aI^^^,
+		         ^^^committerName^^^: ^^^%cn^^^,
+		         ^^^committerMailMapName^^^: ^^^%cN^^^,
+		         ^^^committerEmail^^^: ^^^%ce^^^,
+		         ^^^committerMailMapEmail^^^: ^^^%cE^^^,
+		         ^^^committerDate^^^: ^^^%cd^^^,
+		         ^^^committerDateUnix^^^: %ct,
+		         ^^^committerDateIso^^^: ^^^%cI^^^,
+		         ^^^refNames^^^: ^^^%D^^^,
+		         ^^^source^^^: ^^^%S^^^,
+		         ^^^subject^^^: ^^^%s^^^,
+		         ^^^body^^^: ^^^%b^^^,
+		         ^^^notes^^^: ^^^%N^^^,
+		         ^^^reflogSelector^^^: ^^^%gD^^^,
+		         ^^^trailers^^^: ^^^%(trailers:separator=%x2C)^^^
+		}
+EOF
+)
+# trailers with separator option terminates each trailer with the separator, in effect joining several lines into 1
+# %x2C is a comma
+
+  # cleanup - replace \ with \\ - order is important
+  # cleanup - replace " with \"
+  # substitute ^^^ with "
+  # note: use ctrl-v <char> to insert special chars such as <tab> 	
+  # cleanup - replace  with <empty string>
+  # cleanup - replace 	with <empty string>
+  # cleanup - replace \n with ' '
+
+  local result=$(git log --format=$formatString -n 40 |
+                  sed 's#\\#\\\\#g' |
+                  sed 's#"#\\"#g' | 
+                  sed 's#\^^^#"#g' | 
+                  sed 's///g' | 
+                  sed 's/	//g' | 
+                  tr '\n' ' ')
+
+  if ! [ $plain ] && ! [ $verbose ]; then
+  local jqQuery=$(cat <<-EOF
+  include "git/log/glo";
+    glo("$sortBy";$reverse;"$imageFilter")
+EOF
+)
+    jq --raw-output --slurp -L "~/.config/jq" -L "~/.local/lib/jq" "$jqQuery" <<< $result
+  elif [ $verbose ]; then
+    printf $result | jq .
+  # else
+  #   # docker image ls $all
+  fi
+}

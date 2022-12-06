@@ -1,4 +1,6 @@
 include "colour";
+include "colour-scale";
+include "green-scale";
 
 def _ESC: "\u001b";
 def _ST: "\u001b\\"; # string terminator
@@ -16,3 +18,17 @@ def hyperlink:
   +_OSC8
   +";;"
   +_ST;
+
+def hyperlink($linkText):
+  if (. != null) then 
+    _OSC8
+    +";;"
+    + . 
+    + _ST 
+    + "\($linkText+("||>"|_cs0))"
+    +_OSC8
+    +";;"
+    +_ST
+  else 
+    . 
+  end;
