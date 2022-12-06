@@ -69,7 +69,8 @@ export JQ_LIB="~/.local/lib/jq"
 
 # place the homebrew binaries at the end of path, if not nvm will always point to the homebrew system node
 # add homebrew to path in zshenv so that it is visible to kitty launch scripts
-export PATH="$PATH:/opt/homebrew/bin" # access aws_completer, etc
+# export PATH="$PATH:/opt/homebrew/bin" # access aws_completer, etc
+# now replaced by the homebrew brew shellenv command in zprofile
 
 export ZSH_FUNCTIONS_PATH="$HOME/.local/lib/zsh-functions"
 export ZSH_FUNCTIONS_COMPILED_PATH="$HOME/.local/lib/zsh-functions-compiled"

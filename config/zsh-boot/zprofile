@@ -4,10 +4,17 @@
 # run exec zsh --login to apply any configuration updates by running a login shell
 
 # export homebrew variables
-eval "$(/opt/homebrew/bin/brew shellenv)"
+# place homebrew path above /usr/bin so that homebrew git is used over /usr/bin/git
+# eval "$(/opt/homebrew/bin/brew shellenv)"
+export HOMEBREW_PREFIX="/opt/homebrew";
+export HOMEBREW_CELLAR="/opt/homebrew/Cellar";
+export HOMEBREW_REPOSITORY="/opt/homebrew";
+export PATH="/opt/homebrew/bin:/opt/homebrew/sbin${PATH+:$PATH}";
+export MANPATH="/opt/homebrew/share/man${MANPATH+:$MANPATH}:";
+export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}";
 
 # https://github.com/pyenv/pyenv
 # eval "$(pyenv init --path)" -- this expands to the below export PATH
-export PATH="/Users/tim/.local/share/pyenv/shims:${PATH}" 
+# export PATH="/Users/tim/.local/share/pyenv/shims:${PATH}" 
 
 # . "/Users/tim/.local/share/cargo/env"
