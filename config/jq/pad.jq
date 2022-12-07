@@ -2,6 +2,8 @@
 # do not need to escape $ with \, unlike in a heredoc
 # include "colour";
 
+def rtrim: sub("\\s+$";"");
+
 # https://stackoverflow.com/questions/74500168/how-do-i-calculate-the-length-exclude-escape-codes-of-a-string-containing-ansi
 def _strip_ansi: gsub("\\x1b\\[[0-9;]*m"; "");
 
