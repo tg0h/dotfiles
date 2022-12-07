@@ -32,6 +32,10 @@ autoload zargs # parallel fun
 # https://unix.stackexchange.com/questions/135084/double-rm-verification-in-zsh
 setopt RM_STAR_SILENT # turn off zsh warning if using * with rm
 
+# https://superuser.com/questions/385175/how-to-reclaim-s-in-zsh
+# reclaim ctrl-s for personal use, do not use ctrl-s for flow control
+setopt noflowcontrol
+
 # TODO: how are completions here loaded?
 fpath=(/opt/homebrew/share/zsh/site-functions $fpath) # add homebrew completions to fpath
 
