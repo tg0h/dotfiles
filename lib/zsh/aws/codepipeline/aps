@@ -1,0 +1,28 @@
+#!/bin/zsh
+
+function aps(){
+  # aws codepipeline get-pipeline-state - current state of pipeline which includes many pipeline execution ids
+  # compare with apa which only gets the status of a single pipeline execution id and its actions
+  # gets the status and token of the deplayToProduction approval action
+  local verbose
+  while getopts 'v' opt; do
+    case "$opt" in
+      v) verbose=true;;
+    esac
+  done
+  shift $(($OPTIND - 1))
+
+  local result=$(aws codepipeline get-pipeline-state --name $CANDY_PIPELINE )
+
+  local jqQuery=$(cat <<-EOF
+    include "aws/codepipeline/aps";
+    aps
+EOF
+)
+
+  if [ $verbose ]; then
+    jq --raw-output "." <<< "$result"
+  else
+    jq --raw-output -L "~/.config/jq" -L "~/.local/lib/jq" "$jqQuery" <<< "$result"
+  fi
+}

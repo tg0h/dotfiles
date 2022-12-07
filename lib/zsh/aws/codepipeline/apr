@@ -1,0 +1,13 @@
+#!/bin/zsh
+
+function apr(){
+  # aws codepipeline put-approval-result - approve deployment
+  local token=$(aps | choose 0)
+
+  aws codepipeline put-approval-result \
+    --pipeline-name $CANDY_PIPELINE \
+    --stage-name $CANDY_PIPELINE_PRODUCTION_STAGE \
+    --action-name $CANDY_PIPELINE_MANUAL_APPROVAL_ACTION_NAME \
+    --result summary="",status="Approved" \
+    --token $token \
+}
