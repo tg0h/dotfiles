@@ -1,28 +1,32 @@
 #!/bin/zsh
 
 function boc(){
-  # big commerce order coupons
-  local verbose
-  while getopts 'v' opt; do
-    case "$opt" in
-      v) verbose=true;;
-    esac
-  done
-  shift $(($OPTIND - 1))
+  # big commerce orders create
 
-  local orderId=$1
+  local email_suffix=${1:-$RANDOM}
 
-  local result=$(https -p=b --json https://api.bigcommerce.com/stores/$BG_STORE_HASH/v2/orders/$orderId/coupons X-Auth-Token:$BG_ACCESS_TOKEN)
+# https --ignore-stdin --check-status --quiet post https://api.bigcommerce.com/stores/$BG_STORE_HASH/v2/orders X-Auth-Token:$BG_ACCESS_TOKEN \
+local result=$(https --ignore-stdin --check-status -p=b post https://api.bigcommerce.com/stores/$BG_STORE_HASH/v2/orders X-Auth-Token:$BG_ACCESS_TOKEN \
+  "billing_address[first_name]=jane" \
+  "billing_address[last_name]=doe" \
+  "billing_address[street_1]=Tampines Street 123 Blk 548 #09-123" \
+  "billing_address[street_2]=Fernval Dew" \
+  "billing_address[city]=Singapore" \
+  "billing_address[state]=Tampines" \
+  "billing_address[zip]=123789" \
+  "billing_address[country]=Singapore" \
+  "billing_address[country_iso2]=SG" \
+  "billing_address[phone]=87844444444" \
+  "billing_address[email]=timothyg+${email_suffix}@anafore.com" \
+  "products[0][name]=tim" \
+  "products[0][quantity]=1" \
+  "products[0][price_inc_tax]=50" \
+  "products[0][price_ex_tax]=49" \
+  "status_id=11" \
+  "ip_address=12.345.678.910")
 
-  local jqQuery=$(cat <<-EOF
-    include "big-commerce/orders/boc";
-    boc
-EOF
-)
+  local orderId=$(jq '.id' <<< "$result")
+  local email=$(jq '.billing_address.email' <<< "$result")
 
-  if [ $verbose ]; then
-    jq --raw-output "." <<< "$result"
-  else
-    jq --raw-output -L "~/.config/jq" -L "~/.local/lib/jq" "$jqQuery" <<< "$result"
-  fi
+  echo orderId $orderId created for $email
 }

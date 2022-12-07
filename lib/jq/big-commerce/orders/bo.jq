@@ -31,11 +31,11 @@ def convertDate:
   .[20:22] as $min |
   .[23:25] as $sec |
   .[26:31] as $tz |
-  "\(__($year[2:4]))"
-  +__("/")
+  # "\(__($year[2:4]))"
+  # +__("/")
+  "\(_bt($day))"
+  +__("-")
   +"\(__($month))"
-  +__("/")
-  +"\(_bt($day))"
   +" "
   +"\(_y($hour))"
   +__(":")
@@ -54,11 +54,23 @@ def mapOrder:
   +"\(_orderStatus[(.status)]) "
   +"\(.date_created|convertDate) "
   +"\(.date_modified|convertModDate) "
+  +"\(.billing_address.email) "
   # +"\(.coupons) "
   +"\(_m(.customer_locale)) "
   +"\(_g(.currency_code)) "
   +"\(.is_deleted|_isDeleted) "
   +"\(__(.ip_address))"
+  +" "
+  +"\(.subtotal_inc_tax)"
+  +"-"
+  +"\(.coupon_discount)"
+  +"-"
+  +"\(.discount_amount)"
+  +"-"
+  +"\(.subtotal_tax)"
+  +" "
+  +"\(.currency_code)"
+  +"\(.default_currency_code)"
   # +"\(.external_id) "
   # +"\(.custom_status) "
   # +"\(.geoip_country) "

@@ -1,7 +1,7 @@
 #!/bin/zsh
 
-function bac(){
-  # big commerce coupons
+function bmc(){
+  # big commerce marketing > coupons
   local verbose
   while getopts 'v' opt; do
     case "$opt" in
