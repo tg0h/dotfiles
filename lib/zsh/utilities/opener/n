@@ -1,0 +1,16 @@
+#!bin/zsh
+
+function n() {
+  # opener - opens jira, github pr links
+  # n 1234 - opens rc main pr
+  # n mc-12 - opens jira ticket id
+
+  local id=$1 # id of jira ticket or github pr
+
+  if [[ $id =~ ^[0-9]+$ ]]; then
+    open https://github.com/Anafore/referralcandy-main/pull/$id
+  else
+    open https://anafore.atlassian.net/browse/$id
+  fi
+}
+
