@@ -2,12 +2,33 @@
 
 function apr(){
   # aws codepipeline put-approval-result - approve deployment
+  # apr - approve
+  # apr -r - reject
+  # apr <summary> - approve with summary text
+  # apr -r <summary> - reject with summary text
+
+  local reject
+  while getopts 'r' opt; do
+    case "$opt" in
+      r) reject=true;;
+    esac
+  done
+  shift $(($OPTIND - 1))
+
+  local summary="$@"
+
+  local sta="Approved"
+  if [ $reject ]; then sta="Rejected" fi
+
+  echo setting status to $sta 
+  echo setting summary to $summary
+
   local token=$(aps | choose 0)
 
   aws codepipeline put-approval-result \
     --pipeline-name $CANDY_PIPELINE \
     --stage-name $CANDY_PIPELINE_PRODUCTION_STAGE \
     --action-name $CANDY_PIPELINE_MANUAL_APPROVAL_ACTION_NAME \
-    --result summary="",status="Approved" \
+    --result summary="$summary",status=$sta \
     --token $token \
 }
