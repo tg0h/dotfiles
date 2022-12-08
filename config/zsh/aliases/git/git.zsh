@@ -1,9 +1,14 @@
+alias u="glo"
+alias uu="git reflog"
+alias ue="git status --short"
+
 alias gyy="git fuzzy"
 alias gy="git fuzzy log"
 alias gy,="git fuzzy branch"
 alias gy.="git fuzzy diff"
 alias gy,.="git fuzzy reflog"
-alias u="git fuzzy status"
+# alias u="git fuzzy status"
+alias i="git fuzzy status"
 alias gya="git fuzzy stash"
 
 alias a="lazygit"
@@ -18,6 +23,9 @@ alias ggp="gg && gp"
 alias gge="gg -e" # allow empty commit
 alias ggc="gg -c" # specify a checkpoint message
 alias gga="git add --all && gcan!" # add and amend previous commit
+
+alias gao="git commit --amend --no-edit" # add staged files to previous commit
+alias gaoe="git add --all && git commit --amend --no-edit" # stage and add files to previous commit
 
 alias ge="git clone"
 
