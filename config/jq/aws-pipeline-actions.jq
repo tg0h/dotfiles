@@ -33,7 +33,8 @@ def approvedRejected:
   if . == null then 
     . 
   else
-    _approvedRejected[.] // . 
+    # _approvedRejected[.] // . 
+    .
   end;
 
 def __actionExecutionStatus:
@@ -165,13 +166,17 @@ def filterSummaryApprovedBy:
 # match 
 # "Rejected by arn:aws:iam::...:user/giggsc",
 # "Approved by arn:aws:iam::...:user/garyf"
-  capture("(?<action>(Approved|Rejected) by).*/(?<user>(.*))");
+# NOTE: may contain a string if summary provided via cli put approval result reject to deploy newer execution id instead
+  (capture("(?<action>(Approved|Rejected) by).*/(?<user>(.*))")
+    | if . != null then "\(.action|approvedRejected) \(.user)" else . end)
+  //.;
+
 def getSummaryApprovedBy:
   (map(select(.actionName=="DeployToProduction")))[].output
   | if (.|has("executionResult")) then
         .executionResult.externalExecutionSummary 
           | filterSummaryApprovedBy 
-          | "\(.action|approvedRejected) \(.user)"
+          # | "\(.action|approvedRejected) \(.user)"
     else 
       null
     end;

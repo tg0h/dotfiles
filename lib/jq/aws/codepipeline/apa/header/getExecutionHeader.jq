@@ -10,6 +10,7 @@ def _approvedRejected:
   "Approved by": _g(.), # grey
   "Rejected by": _r(.), # red
 };
+
 def approvedRejected:
   if . == null then 
     . 
@@ -21,13 +22,16 @@ def filterSummaryApprovedBy:
 # match 
 # "Rejected by arn:aws:iam::...:user/giggsc",
 # "Approved by arn:aws:iam::...:user/garyf"
-  capture("(?<action>(Approved|Rejected) by).*/(?<user>(.*))");
+  (capture("(?<action>(Approved|Rejected) by).*/(?<user>(.*))")
+    | if . != null then "\(.action|approvedRejected) \(.user)" else . end)
+  //.;
+
 def getSummaryApprovedBy:
   (map(select(.actionName=="DeployToProduction")))
   | max_by(.startTime)
   | .output.executionResult.externalExecutionSummary
   | if . == null then null else filterSummaryApprovedBy end
-  | if . == null then null else "\(.action|approvedRejected) \(.user)" end
+  # | if . == null then null else "\(.action|approvedRejected) \(.user)" end
   | . // ""
   ;
 
