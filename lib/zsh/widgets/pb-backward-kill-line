@@ -2,5 +2,8 @@
 
 function pb-backward-kill-line () {
   zle backward-kill-line
-  print -rn $CUTBUFFER | pbcopy
+  # if CUTBUFFER contains -t eg, 
+  # then -t is passed to print 
+  # instead pass - to print to tell print to print $CUTBUFFER literally
+  print -rn - $CUTBUFFER | pbcopy
 }
