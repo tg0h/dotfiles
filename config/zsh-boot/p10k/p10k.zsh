@@ -103,6 +103,7 @@
     # battery               # internal battery
     # wifi                  # wifi speed
     # example               # example user-defined segment (see prompt_example function below)
+    db                      # my db connections
   )
 
   # Defines character set used by powerlevel10k. It's best to let `p10k configure` set it for you.
@@ -1565,6 +1566,7 @@
     p10k segment -f 208 -i '⭐' -t 'hello, %n'
   }
 
+  ####################################[ example: example ]####################################
   # User-defined prompt segments may optionally provide an instant_prompt_* function. Its job
   # is to generate the prompt segment for display in instant prompt. See
   # https://github.com/romkatv/powerlevel10k/blob/master/README.md#instant-prompt.
@@ -1587,6 +1589,28 @@
   # User-defined prompt segments can be customized the same way as built-in segments.
   # typeset -g POWERLEVEL9K_EXAMPLE_FOREGROUND=208
   # typeset -g POWERLEVEL9K_EXAMPLE_VISUAL_IDENTIFIER_EXPANSION='⭐'
+
+  ####################################[ example: db ]####################################
+  function prompt_db() {
+local dev staging prod
+local result=$(csg)
+if rg -q 3306 <<< $result; then
+  dev=d
+fi
+
+if rg -q 3307 <<< $result; then
+  staging=s
+fi
+
+if rg -q 3308 <<< $result; then
+  prod=p
+fi
+
+# local db_state=$(p10k-get-db-connection)
+
+    p10k segment -f 208 -t "$dev$staging$prod"
+    # p10k segment -t "$db_state"
+  }
 
   # Transient prompt works similarly to the builtin transient_rprompt option. It trims down prompt
   # when accepting a command line. Supported values:

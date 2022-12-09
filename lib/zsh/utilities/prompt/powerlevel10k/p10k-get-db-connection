@@ -1,0 +1,28 @@
+#!/bin/zsh
+
+function p10k-get-db-connection() {
+  local result=$(csg)
+
+  local esc="\u001b"
+  local r="[0m"
+
+  local green="[32m"
+  local yellow="[33m"
+  local red="[31m"
+
+
+  local dev staging prod
+  if rg -q 3306 <<< $result; then
+    dev=$esc$green"d"$esc$r
+  fi
+
+  if rg -q 3307 <<< $result; then
+    staging=$esc$yellow"s"$esc$r
+  fi
+
+  if rg -q 3308 <<< $result; then
+    prod=$esc$red"p"$esc$r
+  fi
+
+  echo $dev$staging$prod
+}

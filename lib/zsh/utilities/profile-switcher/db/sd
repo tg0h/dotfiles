@@ -1,0 +1,39 @@
+#!/bin/zsh
+
+function sd(){
+  # switch db profiles
+  # sd g - show current db profile
+  #
+  # sd a - use local db
+  # sd l - use local db
+  #
+  # sd o - use staging db
+  # sd s - use staging db
+  #
+  # sd e - use production db
+  # sd p - use production db
+
+  local profile=$1
+
+  # _aws-unset-key-env # unset all the variables set by asst or as
+
+  case $profile in
+    g)
+      echo DB_PROFILE is $DB_PROFILE
+      ;;
+    "a" | "l")
+      export DB_PROFILE=local
+      ;;
+    "o" | "s")
+      export DB_PROFILE=staging
+      ;;
+    "e" | "p")
+      export DB_PROFILE=prod
+      # cl does not work if i set a profile ??
+      # _aws-set-profile-env default
+      # asst
+      ;;
+    *)
+      echo "${fg[red]} no profile found ${reset_color}"
+  esac
+}
