@@ -59,7 +59,6 @@ function git_develop_branch() {
 #
 
 # alias g='git'
-alias g='git status -s'
 
 alias ga='git add'
 alias gaa='git add --all'
@@ -263,6 +262,7 @@ alias grbs='git rebase --skip'
 alias grev='git revert'
 alias grh='git reset'
 alias grhs='git reset --soft'
+alias grhm='git reset --mixed'
 alias grhh='git reset --hard'
 alias groh='git reset origin/$(git_current_branch) --hard'
 alias grm='git rm'

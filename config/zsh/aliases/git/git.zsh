@@ -1,6 +1,33 @@
+alias g="git -P" # turn off pager to disable delta
+
+# status
+alias a='git status -s'
+alias ao='git add'
+alias ao.='git add .'
+alias aoe='gg' # quickly add and commit
+
+# undo
+alias aus="git reset --soft @~"
+alias auh="git reset --hard @~"
+alias aut="git reset --mixed @~"
+
+# diff
+alias o="git diff"
+alias oo="git -P diff" # don't use delta (specify no pager)
+alias oe="git diff --cached"
+
+alias i="git fuzzy status"
+
+# rebase
+alias ee="git commit --fixup :/ "
+alias e="git rebase --interactive --autosquash"
+
+# log
 alias u="glo"
+alias u.="glo | fzf"
 alias uu="git reflog"
 alias ue="git status --short"
+
 
 alias gyy="git fuzzy"
 alias gy="git fuzzy log"
@@ -8,10 +35,9 @@ alias gy,="git fuzzy branch"
 alias gy.="git fuzzy diff"
 alias gy,.="git fuzzy reflog"
 # alias u="git fuzzy status"
-alias i="git fuzzy status"
 alias gya="git fuzzy stash"
 
-alias a="lazygit"
+alias q="lazygit"
 # the zsh git plugin defines git aliases in ~/.oh-my-zsh/plugins/git/git.plugin.zsh
 # unalias gg # remove alias set by omz git plugin
 alias g.="gloz -10 --color=always D"
