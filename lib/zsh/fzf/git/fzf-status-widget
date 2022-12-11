@@ -49,7 +49,7 @@ function fzf-status-widget(){
       --bind "ctrl-a:execute(git add .)+reload:$RELOAD" \
       --bind "ctrl-o:execute(git reset --mixed)+reload:$RELOAD" \
       --bind "ctrl-e:execute(nvim {2} > /dev/tty 2>&1)+reload:$RELOAD" \
-      --bind "ctrl-g:execute(git commit > /dev/tty 2>&1)+reload:$RELOAD" \
+      --bind "ctrl-]:execute(git commit > /dev/tty 2>&1)+reload:$RELOAD" \
       --bind "ctrl-h:execute-silent(git add -- {+2..})+reload:$RELOAD" \
       --bind "ctrl-t:execute-silent(git reset -- {+2..})+reload:$RELOAD" \
       --bind "ctrl-r:reload(
