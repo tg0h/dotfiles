@@ -5,7 +5,7 @@ try
       if title contains "Udemy" or title contains "Youtube" then
         -- do nothing
       else
-        execute javascript "window.scrollBy({top: -350, behavior: 'smooth'})"
+        execute javascript "window.scrollBy({top: -350, behavior: 'instant'})"
       end if
   end tell
 end try
@@ -18,7 +18,7 @@ try
       else if title contains "Youtube" then
         -- do nothing
       else
-        execute javascript "window.scrollBy({top: -350, behavior: 'smooth'})"
+        execute javascript "window.scrollBy({top: -350, behavior: 'instant'})"
       end if
   end tell
 end try

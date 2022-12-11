@@ -7,7 +7,7 @@ try
       };"
           execute javascript "togglePlayVideo()"
       else
-        execute javascript "window.scrollBy({top: 350, behavior: 'smooth'})"
+        execute javascript "window.scrollBy({top: 350, behavior: 'instant'})"
       end if
   end tell
 end try
@@ -22,7 +22,7 @@ try
       };"
           execute javascript "togglePlayVideo()"
       else
-        execute javascript "window.scrollBy({top: 350, behavior: 'smooth'})"
+        execute javascript "window.scrollBy({top: 350, behavior: 'instant'})"
       end if
     end tell
   end tell
