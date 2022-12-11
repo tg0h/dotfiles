@@ -88,7 +88,7 @@ function fzf-logger-widget(){
 
   if [ $target1 ]; then
     local hashes=$(echo $targets | choose 5 | join-lines)
-    LBUFFER+=$hashes
+    LBUFFER+=" "$hashes # add a leading space so I don't have to type space with an alias eg <alias><trigger logger widget>
     # the targetBranch ref name may contain a prefix eg origin/...
     # local targetBranch=$(sed s/^\*// <<< $target1 | choose 5)
     # # remove any prefix from the refname
