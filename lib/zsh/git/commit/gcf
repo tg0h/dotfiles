@@ -1,0 +1,19 @@
+#!/bin/zsh
+
+function gcf(){
+  # git commit fixup
+  local amend reword
+  while getopts 'ar' opt; do
+    case "$opt" in
+      a) amend=true;;
+      r) reword=true;;
+    esac
+  done
+  shift $(($OPTIND - 1))
+
+  local searchString="$@"
+
+  git commit --fixup :/$search
+
+
+}
