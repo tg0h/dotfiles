@@ -26,3 +26,5 @@ map("i", "?", "?<C-g>u", default_options)
 -- m' adds a context mark which also adds to the jump list as a side effect
 map("n", "j", [[ (v:count > 5 ? "m'" . v:count : "") . 'j' ]], expr_options)
 map("n", "k", [[ (v:count > 5 ? "m'" . v:count : "") . 'k' ]], expr_options)
+
+-- map("n", "gx", ":!open <C-R><C-A><CR>", expr_options)
