@@ -2,7 +2,7 @@ alias x='npx'
 # alias n='which'
 # alias al='autoload'
 alias h='https'
-alias o='lnav .'
+alias j='lnav .'
 
 alias which-command='which'
 
@@ -15,7 +15,8 @@ alias sg="set | grep"
 alias rl=reload-function
 alias th='trash'
 alias tha='trash *'  # trash all files
-alias th.='trash * .*' # trash all files, including . files
+alias th.='trash .*' # trash . files - needs both normal and . files to be present zzz
+alias th..='trash * .*' # trash all files
 
 alias pa='pbpaste'
 
@@ -31,7 +32,7 @@ alias eo='scratcher-cheat'
 
 # quick print eval loop ====================================================
 # nvim
-alias e="nvim"
+alias ,="nvim"
 
 # source from nvim cache
 alias son="so -n"
