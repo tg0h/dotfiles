@@ -43,6 +43,7 @@ alias zac='nvim $XDG_CONFIG_HOME/zsh/aliases/candy.zsh'
 # config
 alias zt='nvim ~/.config/tg/scratcher/config.yml'
 alias zg='nvim ~/.config/zsh/aliases/git/git.zsh'
+alias ,u='nvim ~/.config/zsh/aliases/git/git.zsh'
 # alias zt='nvim ~/.config/tmux/tmux.conf'
 alias zk='nvim ~/.config/kitty/kitty.conf'
 alias zh='nvim ~/.config/skhd/skhdrc'
