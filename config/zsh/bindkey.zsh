@@ -40,7 +40,7 @@ zle -N _fzf-redraw-prompt # used by fzf bookmarks widget to redraw prompt
 
 zle -N fzf-docker-container-widget
 # replaces the quoted-insert widget
-bindkey '^V' fzf-docker-container-widget
+# bindkey '^V' fzf-docker-container-widget
 zle -N fzf-docker-image-widget
 bindkey '^[^V' fzf-docker-image-widget
 
@@ -79,9 +79,11 @@ zle -N fzf-gs-widget # stashes
 bindkey '^g^s' fzf-gs-widget
 
 zle -N fzf-brancher-widget # general purpose branch switcher/deleter
-bindkey '^l' fzf-brancher-widget
+bindkey '^b' fzf-brancher-widget
 zle -N fzf-logger-widget # git logger widget
-bindkey '^s' fzf-logger-widget
+bindkey '^l' fzf-logger-widget
+zle -N fzf-status-widget
+bindkey '^s' fzf-status-widget
 zle -N fzf-git-repo-widget 
 bindkey '^[^l' fzf-git-repo-widget
 
