@@ -41,6 +41,7 @@ export FZF_DEFAULT_OPTS="
 --bind='ctrl-d:half-page-down'
 --bind='ctrl-u:half-page-up'
 
+--bind 'ctrl-^:preview-half-page-up'
 --bind 'ctrl-h:preview-half-page-up'
 --bind 'ctrl-s:preview-half-page-down'
 
