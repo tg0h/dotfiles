@@ -8,14 +8,14 @@ keymaps:
   # XDG_CONFIG DIRS - Top Row
   - [f, $HOME/dotfiles/bin]
   - ["f,", $HOME/.local/bin]
-  - [g, $XDG_DATA_HOME, 2]
+  - [g, $XDG_DATA_HOME, 3]
   - [c, $XDG_CONFIG_HOME, 5]
   - [r, $XDG_CACHE_HOME, 2]
   - [l, $HOME/dotfiles/lib, 7]
   - ["l,", $HOME/.local/lib, 7]
   - [xs, $XDG_STATE_HOME, 5]
   # Home Row
-  - [d, $HOME/Documents, 2]
+  # - [d, $HOME/Documents, 2]
   - [h, $HOME/src/me, 4, \\.git$, true, true, dirname | xargs dirname] # this yml file is converted to json. a backslash is an escape character in json. we need to escape the backslash. we want to pass \.git$ as the regex filter to fd
   - [t, $HOME/src/playground, 5, \\.git$, true, true, dirname | xargs dirname]
   - ["t,", $HOME/src/playground/langs/ts/scratch]
@@ -59,13 +59,14 @@ keymaps:
   # - [k, /Users/tim/src/udemy/portilla/Complete-Python-3-Bootcamp]
 
   # SRC
+  - [d, $HOME/src/candy/db]
+  - [j, $HOME/src/candy/db]
   - ["s,", $HOME/src/candy-main/referralcandy-main]
   - [s., $HOME/src/candy/main/referralcandy-main, 5]
   - [sa, $HOME/src/candy/playground/github-actions]
   - [sb, $HOME/src/candy/business]
   - [sc, $HOME/src/candy, 5, \\.git$, true, true, dirname | xargs dirname]
   - [sd, $HOME/src/candy/new/devops]
-  - [sdb, $HOME/src/candy/datagrip/candy]
   - [sg, $HOME/src/candy/playground]
   - [sgc, $HOME/src/candy/playground/referralcandy-secondary]
   # oops sh will create zsh shortcut which shadows zsh bin
