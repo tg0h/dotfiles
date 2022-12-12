@@ -1,0 +1,8 @@
+#!/bin/zsh
+
+function fzf-scratcher-cheat-widget(){
+  # scratcher cheat
+
+  scratcher-cheat
+  zle reset-prompt
+}
