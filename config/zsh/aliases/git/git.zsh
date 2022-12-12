@@ -18,15 +18,15 @@ alias oe="git diff --cached"
 
 alias i="git fuzzy status"
 
-# rebase
-alias ee="git commit --fixup :/ "
-alias e="git rebase --interactive --autosquash"
-
 # log
-alias u="glo"
-alias u.="glo | fzf"
-alias uu="git reflog"
-alias ue="git status --short"
+alias e="glo"
+# alias e.="glo | fzf"
+alias eu="git reflog"
+# alias ue="git status --short"
+
+# rebase
+alias ue="git commit --fixup :/"
+alias u="git rebase --interactive --autosquash"
 
 
 alias gyy="git fuzzy"
