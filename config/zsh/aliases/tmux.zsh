@@ -1,7 +1,8 @@
-# alias x="tat" # tmux attach script
+alias x="tat" # tmux attach script
 alias xu="tmux ls"
 alias xx="tmux kill-server"
 alias xt="tmux list-commands"
+alias x="fzf_tmux_create_or_switch_session"
 
 alias xs="tmux list-sessions"
 alias xw="tmux list-windows"
