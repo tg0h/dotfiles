@@ -2,9 +2,11 @@ alias g="git -P" # turn off pager to disable delta
 
 # status
 alias a='git status -s'
+alias a,='git commit -m'
 alias ao='git add'
 alias ao.='git add .'
-alias aoe='gg' # quickly add and commit
+alias aoe='git commit --amend --no-edit'
+alias aoeu='gg' # quickly add and commit
 
 # undo
 alias aus="git reset --soft @~"
@@ -27,7 +29,7 @@ alias eu="git reflog"
 # rebase
 alias ue="git commit --fixup :/"
 alias u="git rebase --interactive --autosquash"
-
+alias uo="git reset --soft @~"
 
 alias gyy="git fuzzy"
 alias gy="git fuzzy log"
