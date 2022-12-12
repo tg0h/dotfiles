@@ -253,6 +253,9 @@ return require("packer").startup({
         use {'mityu/vim-applescript'}
         use {'lbrayner/vim-rzip' } -- use so that go to definition is able to read .yarn/cache plug n play zipped files
 
+        use {'tpope/vim-dadbod'}
+        use {'kristijanhusak/vim-dadbod-ui'}
+
     end,
     config = {
         display = {
