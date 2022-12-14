@@ -6,7 +6,7 @@ alias cgc="~/src/candy/old/candymold/tools/get-credential.js" # credstash
 # CC
 alias cclud="cclu dev | fzf -q 'timothyg'" # list users
 alias cclus="cclu staging | fzf -q 'timothyg'" # list users
-alias cccud="cccu -s dev" # create users
+alias cccud="cccu -s dev -c" # create users
 alias cccus="cccu -s staging -c"
 
 alias ccdud="ccdu -s dev" # delete users
