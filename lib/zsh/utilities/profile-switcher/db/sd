@@ -28,7 +28,7 @@ function sd(){
       export DB_PROFILE=staging
       ;;
     "e" | "p")
-      export DB_PROFILE=prod
+      export DB_PROFILE=prod-read
       # cl does not work if i set a profile ??
       # _aws-set-profile-env default
       # asst
