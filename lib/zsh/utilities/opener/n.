@@ -1,6 +1,6 @@
 #!bin/zsh
 
-function n() {
+function n.() {
   # opener - opens jira, github pr links
   # n 1234 - opens rc main pr
   # n mc-12 - opens jira ticket id
