@@ -3,20 +3,36 @@
 function aqr(){
   # receive sqs message
   # aqr <queue-url>
-  local localOpt
-  while getopts 'l' opt; do
+  local localOpt n verbose
+  while getopts 'ln:v' opt; do
     case "$opt" in
       l) localOpt=true;;
+      n) n=$OPTARG;;
+      v) verbose=true;;
     esac
   done
   shift $(($OPTIND - 1))
 
+  local jqQuery=$(cat <<-EOF
+    include "aws/sqs/aqr";
+    aqr
+EOF
+)
+
+  n=${n:-1}
   local queueUrl=${1:-$AWS_QUEUE_URL}
 
+  local result
   if [ -n "$localOpt" ]; then
     echo getting $AWS_LOCAL_QUEUE
-    aws --endpoint-url $AWS_LOCAL_QUEUE_ENDPOINT sqs receive-message --queue-url $AWS_LOCAL_QUEUE --attribute-names All --message-attribute-names All
+    result=$(aws --endpoint-url $AWS_LOCAL_QUEUE_ENDPOINT sqs receive-message --queue-url $AWS_LOCAL_QUEUE --attribute-names All --message-attribute-names All --max-number-of-messages $n)
   else
-    aws sqs receive-message --queue-url $queueUrl --attribute-names All --message-attribute-names All
+    result=$(aws sqs receive-message --queue-url $queueUrl --attribute-names All --message-attribute-names All --max-number-of-messages $n)
+  fi
+
+  if [ $verbose ]; then
+    jq --raw-output "." <<< "$result"
+  else
+    jq --raw-output -L "~/.config/jq" -L "~/.local/lib/jq" "$jqQuery" <<< "$result"
   fi
 }
