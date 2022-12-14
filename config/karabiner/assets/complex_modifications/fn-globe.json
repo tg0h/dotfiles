@@ -1,0 +1,21 @@
+{
+  "title": "Change Globe (fn) to other keys",
+  "rules": [
+    {
+      "description": "Change Globe (fn) to other keys, if alone",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "fn"
+          },
+          "to_if_alone": [
+            {
+              "key_code": "return_or_enter"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
