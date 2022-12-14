@@ -1,0 +1,28 @@
+#!/bin/zsh
+
+function scratchz(){
+  # 
+  local verbose
+  while getopts 'v' opt; do
+    case "$opt" in
+      v) verbose=true;;
+    esac
+  done
+  shift $(($OPTIND - 1))
+
+  # CT is not visible in non-interactive zsh
+  # use cat /tmp/t instead
+  local result=$(cat /tmp/t)
+
+  local jqQuery=$(cat <<-EOF
+    include "scratch";
+    scratch
+EOF
+)
+
+  if [ $verbose ]; then
+    jq --raw-output "." <<< "$result"
+  else
+    jq --raw-output -L "~/.config/jq" -L "~/.local/lib/jq" "$jqQuery" <<< "$result"
+  fi
+}
