@@ -45,3 +45,6 @@ templates/git
 templates/candy
 
 scratch.jq
+
+# ignore datafold datadiff config files
+datadiff.toml
