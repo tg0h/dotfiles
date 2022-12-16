@@ -1,15 +1,15 @@
 {
-  "title": "Change Globe (fn) to other keys",
+  "title": "Change Globe (fn) to enter",
   "rules": [
     {
-      "description": "Change Globe (fn) to other keys, if alone",
+      "description": "Change Globe (fn) to enter",
       "manipulators": [
         {
           "type": "basic",
           "from": {
             "key_code": "fn"
           },
-          "to_if_alone": [
+          "to": [
             {
               "key_code": "return_or_enter"
             }
