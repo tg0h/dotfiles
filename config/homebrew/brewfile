@@ -75,6 +75,65 @@ brew 'redis'
 tap 'redis-stack/redis-stack' # contains redis json
 cask 'redis-stack'
 
+
+tap 'romkatv/gitstatus'
+brew 'romkatv/gitstatus/gitstatus'
+
+tap 'saulpw/vd'
+brew 'saulpw/vd/visidata'
+
+# tap 'shopify/shopify'
+# brew 'shopify-cli'
+
+cask 'docker'
+cask 'alfred'
+cask '1password'
+cask 'nvalt'
+cask 'authy'
+cask 'lastpass'
+cask 'ithoughtsx'
+cask 'time-out'
+cask 'istat-menus'
+cask 'bartender'
+cask 'cleanshot'
+cask 'toggl-track'
+cask 'ngrok'
+# cask 'sip' # DO NOT INSTALL SIP, i do not have a subscription for
+# cask 'multipass'
+
+cask 'foxitreader'
+cask 'google-chrome'
+cask 'brave-browser'
+cask 'firefox'
+cask 'karabiner-elements'
+cask 'postman'
+cask 'houdahspot'
+cask 'hook'
+cask 'pixelsnap'
+cask 'keyboard-maestro'
+cask 'cold-turkey-blocker'
+cask 'glyphfinder'
+cask 'transmit'
+# cask 'devutils' - need  to use 1.13 because license expired
+cask 'affinity-photo'
+cask 'affinity-designer'
+cask 'affinity-publisher'
+cask 'slack'
+cask 'zoom'
+cask 'hazel'
+cask 'alt-tab'
+# cask 'another-redis-desktop-manager'
+cask 'vlc'
+cask 'hammerspoon'
+cask 'gimp'
+
+tap 'homebrew/cask-drivers'
+cask 'zsa-wally'
+
+# mas 'Blackmagic Disk Speed Test', id: 425264550
+mas 'Aquarelo', id: 1263012549
+mas 'Goldie', id: 1375037046
+
 brew 'tealdeer'
 brew 'mutt'
 brew 'neomutt'
@@ -138,61 +197,6 @@ tap 'jakehilborn/jakehilborn'
 brew 'buku'
 brew 'goaccess'
 brew 'pgcli'
-
-tap 'romkatv/gitstatus'
-brew 'romkatv/gitstatus/gitstatus'
-
-tap 'saulpw/vd'
-brew 'saulpw/vd/visidata'
-
-# tap 'shopify/shopify'
-# brew 'shopify-cli'
-
-cask 'docker'
-cask 'alfred'
-cask '1password'
-cask 'nvalt'
-cask 'authy'
-cask 'lastpass'
-cask 'ithoughtsx'
-cask 'time-out'
-cask 'istat-menus'
-cask 'bartender'
-cask 'cleanshot'
-cask 'toggl-track'
-cask 'ngrok'
-# cask 'sip' # DO NOT INSTALL SIP, i do not have a subscription for
-# cask 'multipass'
-
-cask 'foxitreader'
-cask 'google-chrome'
-cask 'brave-browser'
-cask 'firefox'
-cask 'karabiner-elements'
-cask 'postman'
-cask 'houdahspot'
-cask 'hook'
-cask 'pixelsnap'
-cask 'keyboard-maestro'
-cask 'cold-turkey-blocker'
-cask 'glyphfinder'
-cask 'transmit'
-# cask 'devutils' - need  to use 1.13 because license expired
-cask 'affinity-photo'
-cask 'affinity-designer'
-cask 'affinity-publisher'
-cask 'slack'
-cask 'zoom'
-cask 'hazel'
-cask 'alt-tab'
-# cask 'another-redis-desktop-manager'
-cask 'vlc'
-cask 'hammerspoon'
-cask 'gimp'
-
-tap 'homebrew/cask-drivers'
-cask 'zsa-wally'
-
-# mas 'Blackmagic Disk Speed Test', id: 425264550
-mas 'Aquarelo', id: 1263012549
-mas 'Goldie', id: 1375037046
+tap 'aybabtme/homebrew-tap'
+brew 'humanlog'
+cask 'qutebrowser'
