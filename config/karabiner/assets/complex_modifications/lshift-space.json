@@ -1,0 +1,25 @@
+{
+  "title": "Change lshift space to ctrl opt shift enter",
+  "rules": [
+    {
+      "manipulators": [
+        {
+          "description": "Change left_shift space to ctrl opt shift enter",
+          "from": {
+            "key_code": "spacebar",
+            "modifiers": {
+              "mandatory": ["left_shift"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "return_or_enter",
+              "modifiers": ["left_control", "left_option", "left_shift"]
+            }
+          ],
+          "type": "basic"
+        }
+      ]
+    }
+  ]
+}
