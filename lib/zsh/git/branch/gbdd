@@ -2,37 +2,35 @@
 
 function gbdd(){
   # delete local git branches with a search string
-  #EXAMPLES:
+  # EXAMPLES:
   # gbdd <search string>
-  # gbdd -d <search string> - force delete
 
   #NOTE: git branch -r --merged is with reference to the branch you are currently on!
   #example: gbdd sprint-13
   #might need to run git fetch --prune to clean up remote before running this command
 
   local force=""
-  while getopts 'd' opt; do
+  while getopts 'x' opt; do
     case "$opt" in
-      d) force=true;;
+      x) excludeMyBranches=true;;
     esac
   done
   shift $(($OPTIND - 1))
 
+  # default rg search to everything (.)
+  local search=${1-.}
 
-  # if [[ -z $1 ]]; then
-  #   echo please provide a search string, eg gbmrd sprint-18
-  #   exit
-  # fi
-  # cut
-  #   f2- - cut from the second field to the end of line
-  #   -d/ - use a field separator of /
-  # xargs
-  #   -P - number of processes to run
-  #   -n - how many arguments from stdin to pass to each xargs command
-  if [[ -n $force ]]; then
-    gb | rg '^\s*'$1 | xargs -P 12 -n 1 -I{} git branch -D {}
-  else;
-    gb | rg '^\s*'$1 | xargs -P 12 -n 1 -I{} git branch -d {}
-  fi
+  local exclude=()
+  exclude+=("-e=\*")
+  exclude+=("-e=main")
+  exclude+=("-e=master")
+  if [ $excludeMyBranches ]; then
+    exclude+=("-e=timg/")
+  fi;
+
+  # echo $exclude
+
+  git branch | rg -v $exclude | rg $search | xargs -P 0 -n 1 -I{} git branch -D {}
+  # git branch | rg -v $exclude | rg $search
 }
 

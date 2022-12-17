@@ -57,7 +57,7 @@ function fzf-brancher-widget(){
                 _fzf-docker-image-widget-toggle \"${filter_tmp_file}\" t a;
                 _fzf-brancher-widget-state \"${sortBy_tmp_file}\" ${reverse_tmp_file} ${filter_tmp_file};
               )" \
-      --expect=alt-d
+      --expect=alt-d,ctrl-alt-d
   )
     # --bind 'space:down' \
     # --bind 'tab:up' \
@@ -66,6 +66,7 @@ function fzf-brancher-widget(){
   local targets=$(tail -n +2 <<< "$out") # get all lines after the first line
   local target1=$(head -1 <<< "$targets")
 
+  echo $key
   if [ "$key" = alt-d ]; then
      local branches=()
 
@@ -80,6 +81,14 @@ function fzf-brancher-widget(){
      done
      zle reset-prompt
      return
+  fi
+
+  if [ "$key" = ctrl-alt-d ]; then
+    # delete all local branches including timg branches
+    gbdd
+    zle reset-prompt
+    return
+    # gbdd -x # do not delete timg branches
   fi
 
   if [ $target1 ]; then
