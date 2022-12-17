@@ -97,6 +97,8 @@ alias gwr="git worktree remove"
 alias gwp="git worktree prune"
 
 # fetch - worktrees
+alias gfr="fd -H -I --type d '\.git$' --exec git -C {//} fetch" # git fetch recursive
+# alias gfr="fd -H -I --type d '\.git$' --exec echo {//}"
 alias gfos="git fetch origin '+*:*' --prune" # from a bare repo, get everything
 
 # branch status
