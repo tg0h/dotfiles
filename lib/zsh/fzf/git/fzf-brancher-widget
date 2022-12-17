@@ -6,8 +6,10 @@ function fzf-brancher-widget(){
   is_in_git_repo || return
 
   local HEADER=$(cat <<-EOF
+   ⌥ d - delete selected branch(es) 
   ⌃⌥ d - delete all local branches
-   ⌥ d - delete branch(es) 
+   ⌥ r - delete selected remote branches
+  ⌃⌥ r - delete all timg remote branches
 EOF
 )
 
@@ -64,7 +66,7 @@ EOF
                 _fzf-docker-image-widget-toggle \"${filter_tmp_file}\" t a;
                 _fzf-brancher-widget-state \"${sortBy_tmp_file}\" ${reverse_tmp_file} ${filter_tmp_file};
               )" \
-      --expect=alt-d,ctrl-alt-d
+      --expect=alt-d,ctrl-alt-d,ctrl-alt-r
   )
     # --bind 'space:down' \
     # --bind 'tab:up' \
@@ -73,7 +75,6 @@ EOF
   local targets=$(tail -n +2 <<< "$out") # get all lines after the first line
   local target1=$(head -1 <<< "$targets")
 
-  echo $key
   if [ "$key" = alt-d ]; then
      local branches=()
 
@@ -96,6 +97,30 @@ EOF
     zle reset-prompt
     return
     # gbdd -x # do not delete timg branches
+  fi
+
+  # delete all timg remote branches
+  if [ "$key" = ctrl-alt-r ]; then
+    # delete all remote branches with timg
+    gbdr -d timg
+    zle reset-prompt
+    return
+  fi
+
+  if [ "$key" = alt-r ]; then
+    local branches=()
+     while IFS= read -r gitbranchline ; do 
+       # remove *
+       local branch=$(sed s/^\*// <<< $gitbranchline | choose 5)
+       branches+=($branch)
+     done <<< "$targets"
+
+     echo branches are $branches
+     for branch in $branches; do
+       git branch -r -d $branch
+     done
+     zle reset-prompt
+     return
   fi
 
   if [ $target1 ]; then

@@ -19,7 +19,7 @@ alias -g T='| tail -n 10'
 
 alias -g P="| tr -d '\n' | pbcopy" # remove newlines before putting in pbcopy
 
-alias -g D="| delta --hyperlinks" # show fields in output for use in format table go template
+# alias -g D="| delta --hyperlinks" # show fields in output for use in format table go template
 # docker
 alias -g DJ="--format='{{json .}}'" # show fields in output for use in format table go template
 

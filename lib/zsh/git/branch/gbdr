@@ -1,0 +1,34 @@
+#!bin/zsh
+
+function gbdr(){
+  # delete remote branches
+  # EXAMPLES:
+  # gbdr <search string>  - dry run echo what you would have deleted
+  # gbdr -d <search string> - delete remote origin branch
+  # additional safety hatch - always exclude main/master branch
+
+  local force="" delete
+  while getopts 'd' opt; do
+    case "$opt" in
+      d) delete=true;;
+    esac
+  done
+  shift $(($OPTIND - 1))
+
+  # default rg search to everything (.)
+  local search=${1-.}
+
+  local exclude=()
+  exclude+=("-e=main")
+  exclude+=("-e=master")
+
+  # git branch -r | rg timg | xargs -P 0 -n 1 -I{} git branch -D {}
+  # exclude origin from origin/timg/branchName with cut -d/ -f2- (second field onwards)
+  if [ $delete ]; then
+    git branch -r | cut -d/ -f2- | rg -v $exclude | rg $search | xargs -P 0 -n 1 -I{} git push -d origin {}
+  else
+    # default to dry run if no options passed
+    git branch -r | cut -d/ -f2- | rg -v $exclude | rg $search 
+  fi
+}
+
