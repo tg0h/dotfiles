@@ -80,12 +80,12 @@ zinit lucid wait for \
 ### NOTE: Source my config and functions
 source $DOTFILES/config/secret/env
 
-setopt EXTENDED_GLOB # use ~ to exclude patterns in file globbing
-source $XDG_CONFIG_HOME/zsh/start/SOURCEME.zsh # source oh-my-zsh and other custom plugins
-for f in $XDG_CONFIG_HOME/zsh/***/*.zsh~*/start/*; do # exclude start folders
-  source $f
-done 
-unsetopt EXTENDED_GLOB
+# setopt EXTENDED_GLOB # use ~ to exclude patterns in file globbing
+# source $XDG_CONFIG_HOME/zsh/start/SOURCEME.zsh # source oh-my-zsh and other custom plugins
+# for f in $XDG_CONFIG_HOME/zsh/***/*.zsh~*/start/*; do # exclude start folders
+#   source $f
+# done 
+# unsetopt EXTENDED_GLOB
 
 # set up p10k instant prompt
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
