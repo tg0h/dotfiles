@@ -5,8 +5,9 @@ function nt(){
   # use entr to run <cmd> when files in <dir> change
   # if dir not supplied, default to ~/dotfiles
   # run npx ava if in candy repo
+  # accepts 1 or more dirs in the -d option
 
-  local rootDir=$HOME/dotfiles
+  local directories="$HOME/dotfiles $HOME/.local/bin/scratch"
   while getopts 'd:' opt; do
     case "$opt" in
       d) rootDir=$OPTARG;;
@@ -19,9 +20,9 @@ function nt(){
   # -cc clears the screen and scrollback as well
   # prefer entr zsh -c to entr -s
   # entr -s prints the exit code which is noisy
-  if [[ $rootDir == /Users/tim/src/candy/main/referralcandy-main/* ]]; then
-    fd . $rootDir | entr -cc npx ava --fail-fast $cmd
+  if [[ $directories == /Users/tim/src/candy/main/referralcandy-main/* ]]; then
+    fd . ${=directories} | entr -cc npx ava --fail-fast $cmd
   else
-    fd . $rootDir | entr -cc zsh -c $cmd
+    fd . ${=directories} | entr -cc zsh -c $cmd
   fi
 }
