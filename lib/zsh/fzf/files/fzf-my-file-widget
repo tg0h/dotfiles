@@ -4,6 +4,13 @@ function fzf-my-file-widget() {
 
   local readonly basename="$WIDGET"
 
+  local HEADER=$(cat <<-EOF
+  ⌃h recent | ⌃t default
+  ⌃g dir    | ⌃c no ignore | ⌃r files
+  ⌥g/⌥r depth 1/2
+  ⌃o/⌃b  blame preview/blame
+EOF
+)
   local FD_COMMAND="fd $FD_OPTIONS"
   local FD_OPTIONS="--color always --follow --hidden"
   local FILE_PREVIEW="[[ \$(file --mime {}) =~ inode/directory ]] && exa --tree --long --icons --git --color always --octal-permissions --sort created --reverse {} || (bat --style=numbers,header-filename --color=always {} || cat {}) 2> /dev/null | head -300"
@@ -16,7 +23,7 @@ function fzf-my-file-widget() {
   local out=$(fd ${=FD_OPTIONS} | 
     FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS" fzf --ansi \
         --preview "$FILE_PREVIEW" \
-        --header="⌃A ⌃O | ⌃G ⌃C ⌃R _ ⌃H ⌃T | ⌥G ⌥R" \
+        --header="$HEADER"\
         --header-first \
         --preview="fzf-fd-preview {}" \
         --preview-window='right:nowrap,noborder,70%' \
