@@ -10,6 +10,7 @@ function fzf-brancher-widget(){
   ⌃⌥ d - delete all local branches
    ⌥ r - delete selected remote branches
   ⌃⌥ r - delete all timg remote branches
+   ⌃ s - switch to recent branch
 EOF
 )
 
@@ -66,7 +67,7 @@ EOF
                 _fzf-docker-image-widget-toggle \"${filter_tmp_file}\" t a;
                 _fzf-brancher-widget-state \"${sortBy_tmp_file}\" ${reverse_tmp_file} ${filter_tmp_file};
               )" \
-      --expect=alt-d,ctrl-alt-d,ctrl-alt-r
+      --expect=alt-d,ctrl-alt-d,ctrl-alt-r,ctrl-s
   )
     # --bind 'space:down' \
     # --bind 'tab:up' \
@@ -74,6 +75,12 @@ EOF
   local key=$(head -1 <<< "$out")
   local targets=$(tail -n +2 <<< "$out") # get all lines after the first line
   local target1=$(head -1 <<< "$targets")
+
+  if [ "$key" = ctrl-s ]; then
+    git checkout @{-1}
+    zle reset-prompt
+    return
+  fi
 
   if [ "$key" = alt-d ]; then
      local branches=()
