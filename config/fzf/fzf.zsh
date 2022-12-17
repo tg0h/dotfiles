@@ -1,17 +1,9 @@
-# # Setup fzf
-# # ---------
-# if [[ ! "$PATH" == */usr/local/opt/fzf/bin* ]]; then
-#   export PATH="${PATH:+${PATH}:}/usr/local/opt/fzf/bin"
-# fi
-
 # Auto-completion
 # ---------------
 [[ $- == *i* ]] && source "/usr/local/opt/fzf/shell/completion.zsh" 2> /dev/null
 
 # Key bindings
 # ------------
-# source "/usr/local/opt/fzf/shell/key-bindings.zsh"
-# m1 mini homebrew location
 source /opt/homebrew/opt/fzf/shell/key-bindings.zsh
 
 # TODO: understand piping wizadry needed to open terminal nvim with ctrl e keybind
@@ -68,24 +60,6 @@ FD_OPTIONS_NO_IGNORE="$FD_OPTIONS \
 --exclude cdk.out
 "
 export FZF_DEFAULT_COMMAND="fd . --type f --hidden --follow --exclude .git $FD_OPTIONS"
-
-# include git ignore since there shouldn't be too many such directories
-export FD_C_OPTIONS="$FD_OPTIONS --type d"
-export FD_C_OPTIONS_NO_IGNORE="$FD_OPTIONS_NO_IGNORE --type d"
-export FZF_ALT_C_COMMAND="fd $FD_C_OPTIONS"
-export FZF_ALT_C_OPTS="
---preview 'lsd {} --tree --color always --icon always'
---preview-window='right:wrap,noborder'
---header=$'⌥r ⌥g ⌥l ⌥c ⌥f' \
---bind 'alt-r:reload(exa --oneline --color always --sort accessed --reverse --only-dirs)+change-prompt(depth:1> )'
---bind 'alt-g:reload(fd $FD_C_OPTIONS --max-depth 2 )+change-prompt(depth:2> )'
---bind 'alt-l:reload(fd $FD_C_OPTIONS --max-depth 3 )+change-prompt(depth:3> )'
---bind 'alt-c:reload(fd $FD_C_OPTIONS )+change-prompt(> )'
---bind 'alt-f:reload(fd $FD_C_OPTIONS_NO_IGNORE )+change-prompt(no-ignore> )'
---bind 'alt-d:reload(fd package.json | xargs dirname)+change-prompt(package.json> )'
---bind 'space:down'
---bind 'tab:up'
-"
 
 export FZF_COMPLETION_TRIGGER='##'
 # Options to fzf command

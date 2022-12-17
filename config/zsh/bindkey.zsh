@@ -126,3 +126,5 @@ zle -N accept-line
 
 zle     -N            fzf-my-file-widget
 bindkey -M emacs '^T' fzf-my-file-widget
+zle     -N            fzf-my-dir-widget
+bindkey -M emacs '^[c' fzf-my-dir-widget

@@ -1,0 +1,83 @@
+#!/bin/zsh
+
+function fzf-my-dir-widget() {
+
+  local readonly basename="$WIDGET"
+
+  local FD_OPTIONS="--color always --follow --hidden --type d"
+  local FD_OPTIONS_NO_IGNORE="$FD_OPTIONS \
+  --no-ignore \
+  --exclude .git \
+  --exclude node_modules \
+  --exclude .DS_Store \
+  --exclude build \
+  --exclude cdk.out
+  --type d
+  "
+
+  local DIR_PREVIEW="lsd {} --tree --color always --icon always"
+  local BLAME_PREVIEW="git blame {} | delta --hyperlinks"
+  local HEADER=$(cat <<-EOF
+⌥g/⌥l - depth 2/3    | ⌥c - default
+   ⌥f - no ignore    | ⌥r - recent
+   ⌥d - package.json
+EOF
+)
+
+
+  if blame_state="$(mktemp "/tmp/${basename}".XXXXXX)"; then
+    printf 'blame' > "${blame_state}"
+  fi
+
+  local out=$(fd ${=FD_OPTIONS} | 
+    FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS" fzf --ansi \
+        --preview "$DIR_PREVIEW" \
+        --header="$HEADER" \
+        --header-first \
+        --preview="$DIR_PREVIEW" \
+        --preview-window='right:nowrap,noborder,70%' \
+        \
+      --bind "alt-r:reload(exa --oneline --color always --sort accessed --reverse --only-dirs)+change-prompt(depth:1> )" \
+      --bind "alt-g:reload(fd $FD_OPTIONS --max-depth 2 )+change-prompt(depth:2> )" \
+      --bind "alt-l:reload(fd $FD_OPTIONS --max-depth 3 )+change-prompt(depth:3> )" \
+      --bind "alt-c:reload(fd $FD_OPTIONS )+change-prompt(> )" \
+      --bind "alt-f:reload(fd $FD_OPTIONS_NO_IGNORE )+change-prompt(no-ignore> )" \
+      --bind "alt-d:reload(fd package.json | xargs dirname)+change-prompt(package.json> )" \
+        \
+        --expect=ctrl-b
+  )
+# --bind 'space:down'
+# --bind 'tab:up'
+  rm -f "${blame_state}" &> /dev/null
+
+  local key=$(head -1 <<< "$out")
+  local targets=$(tail -n +2 <<< "$out") # get all lines after the first line
+  local target1=$(head -1 <<< "$targets")
+
+  local id=$(gawk '{print $1}' <<< "$target1")
+
+  if [ $id ]; then
+    if [ "$key" = ctrl-b ]; then
+      git blame $target1 | delta --hyperlinks
+    else
+      # local selectedIds=$(echo $targets | join-lines)
+      local dir=$id
+
+      # this is copied from the fzf source - /opt/homebrew/opt/fzf/shell
+      if [[ -z "$dir" ]]; then
+        zle redisplay
+        return 0
+      fi
+      zle push-line # Clear buffer. Auto-restored on next prompt.
+      BUFFER="builtin cd -- ${(q)dir}"
+      zle accept-line
+      local ret=$?
+      unset dir # ensure this doesn't end up appearing in prompt expansion
+      zle reset-prompt
+      return $ret
+    fi;
+  fi
+
+  zle reset-prompt
+  return
+}
