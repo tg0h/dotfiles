@@ -5,6 +5,12 @@ function fzf-brancher-widget(){
   # select to switch to branch
   is_in_git_repo || return
 
+  local HEADER=$(cat <<-EOF
+  ⌃⌥ d - delete all local branches
+   ⌥ d - delete branch(es) 
+EOF
+)
+
   local basename=fzf-brancher-widget
 
   local reverse_tmp_file
@@ -34,6 +40,7 @@ function fzf-brancher-widget(){
       # --bind 'ctrl-space:toggle+down' \
   local out=$( gbl |
     fzf --ansi --multi \
+      --header "$HEADER" \
       --preview-window hidden,right,noborder,50% \
       --preview 'git log --oneline --graph --date=short --color=always --pretty="format:%C(green bold)%cd %C(auto)%h%d %s %C(magenta)(%an)%Creset %C(cyan)%ar%Creset" $(sed s/^\*// <<< {} | choose 5)' \
       --bind 'alt-g:reload(
