@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-function fzf-t-widget() {
+function fzf-my-file-widget() {
 
   local readonly basename="$WIDGET"
 

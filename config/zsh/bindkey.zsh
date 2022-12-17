@@ -124,5 +124,5 @@ bindkey '^[^s' fzf-scratcher-cheat-widget
 accept-line() { [ -z "$BUFFER" ] && zle up-history; zle ".accept-line"; }
 zle -N accept-line
 
-zle     -N            fzf-t-widget
-bindkey -M emacs '^T' fzf-t-widget
+zle     -N            fzf-my-file-widget
+bindkey -M emacs '^T' fzf-my-file-widget
