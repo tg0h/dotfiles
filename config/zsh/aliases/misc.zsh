@@ -3,6 +3,7 @@ alias x='npx'
 # alias al='autoload'
 alias h='https'
 alias j='lnav .'
+alias tt='tail -n 20 -f /tmp/tim/log'
 
 alias which-command='which'
 
