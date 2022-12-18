@@ -1,6 +1,8 @@
 #!/bin/zsh
 
+# TODO: pass selected file to git log preview to limit scope of change
 function fzf-my-file-widget() {
+  # my file widget
 
   local basename="fzf-my-file-widget"
 
@@ -67,6 +69,7 @@ EOF
         --expect=ctrl-b
   )
   rm -f "${blame_state}" &> /dev/null
+  rm -f "${logger_blame_state}" &> /dev/null
 
   local key=$(head -1 <<< "$out")
   local targets=$(tail -n +2 <<< "$out") # get all lines after the first line
