@@ -16,5 +16,5 @@ rshift + ralt + rctrl - r : [ $(yabai -m query --displays | jq 'length') -eq 1 ]
 # shortcut to toggle monitors
 # simpler than previous and next
 rshift + ralt + rctrl - t : [ $(yabai -m query --displays | jq 'length') -eq 1 ] \
-&& ( yabai -m space --focus prev || yabai -m space --focus last ) \
+&& ( yabai -m space --focus recent ) \
 || ( yabai -m display --focus prev || yabai -m display --focus last )
