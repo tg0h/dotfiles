@@ -2,13 +2,14 @@
 
 function fzf-my-file-widget() {
 
-  local readonly basename="$WIDGET"
+  local basename="fzf-my-file-widget"
 
   local HEADER=$(cat <<-EOF
   ⌃h recent | ⌃t default
   ⌃g dir    | ⌃c no ignore | ⌃r files
   ⌥g/⌥r depth 1/2
   ⌃o/⌃b  blame preview/blame
+  ⌃l - log history of selected file
 EOF
 )
   local FD_COMMAND="fd $FD_OPTIONS"
@@ -16,8 +17,12 @@ EOF
   local FILE_PREVIEW="[[ \$(file --mime {}) =~ inode/directory ]] && exa --tree --long --icons --git --color always --octal-permissions --sort created --reverse {} || (bat --style=numbers,header-filename --color=always {} || cat {}) 2> /dev/null | head -300"
   local BLAME_PREVIEW="git blame {} | delta --hyperlinks"
 
-  if blame_state="$(mktemp "/tmp/${basename}".XXXXXX)"; then
+  if blame_state="$(mktemp "/tmp/${basename}_blame_state".XXXXXX)"; then
     printf 'blame' > "${blame_state}"
+  fi
+
+  if logger_blame_state="$(mktemp "/tmp/${basename}_logger_blame_state".XXXXXX)"; then
+    printf '' > "${logger_blame_state}"
   fi
 
   local out=$(fd ${=FD_OPTIONS} | 
@@ -44,6 +49,19 @@ EOF
           _fzf-docker-image-widget-toggle $blame_state blame;
           )+refresh-preview" \
         \
+        --bind "ctrl-l:reload(
+          if grep -q 'logger_blame' ${logger_blame_state}; then 
+            glo -n -1 -f {} 
+          else 
+            fd $FD_OPTIONS
+          fi;
+          )+clear-query+change-preview(
+          if grep -q 'logger_blame' ${logger_blame_state}; then 
+           git show --dirstat --stat --numstat --parents --abbrev-commit --patch --notes --color=always {6} | delta -w ${FZF_PREVIEW_COLUMNS:-$COLUMNS}
+          else 
+            fzf-fd-preview {}
+          fi;
+          )+refresh-preview+execute-silent(_fzf-docker-image-widget-toggle \"${logger_blame_state}\" logger_blame)" \
         --bind "alt-g:reload(fd $FD_OPTIONS --type f --max-depth 1 )+change-prompt(depth:1> )" \
         --bind "alt-r:reload(fd $FD_OPTIONS --type f --max-depth 2 )+change-prompt(depth:2> )" \
         --expect=ctrl-b
