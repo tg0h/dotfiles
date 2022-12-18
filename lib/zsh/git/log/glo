@@ -49,7 +49,7 @@ function glo(){
   gitOptions[-n]="${number:-40}"
 
   local fileArray=()
-  [ $files ] && fileArray=("--" $files)
+  [ $files ] && fileArray=("--follow" "--" $files)
 
   # author - who wrote this
   # commiter - who applied this
