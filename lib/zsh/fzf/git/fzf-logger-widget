@@ -7,102 +7,54 @@ function fzf-logger-widget(){
 
   local basename=fzf-logger-widget
 
-  local reverse_tmp_file
-  if reverse_tmp_file="$(mktemp "/tmp/${basename}_reverse".XXXXXX)"; then
-    # dil's default reverse option is reverse to sort by created at descending
-    # set up the initial state to reflect this
-    printf 'r' > "${reverse_tmp_file}" 
-  fi
+  local HEADER=$(cat <<-EOF
+     ⌃ l - default | ⌃ r - grep | ⌃ t - author
+   ⌃ g/t - -S/-G pickaxe
+ ⌃ f/h/b - all/200/500 commits
+EOF
+)
 
-  local sortBy_tmp_file
-  if sortBy_tmp_file="$(mktemp "/tmp/${basename}_sortBy".XXXXXX)"; then
-    printf 'c' > "${sortBy_tmp_file}" # not in use, but need to pass in dummy variable
-  fi
-
-  local filter_tmp_file 
-  if filter_tmp_file="$(mktemp "/tmp/${basename}_filter".XXXXXX)"; then
-    printf '' > "${filter_tmp_file}"
-  fi
-
-  # local out=$( git branch -a --color=always | grep -v -e '/HEAD\s' -e 'dura/' | sort |
-      # --preview 'git log --oneline --graph --date=short --color=always --pretty="format:%C(green bold)%cd %C(auto)%h%d %s %C(magenta)(%an)%Creset %C(cyan)%ar%Creset" $(sed s/^..// <<< {} | cut -d" " -f1)' \
-      # --preview 'git log --oneline --graph --date=short --color=always --pretty="format:%C(green bold)%cd %C(auto)%h%d %s %C(magenta)(%an)%Creset %C(cyan)%ar%Creset" $(sed s/^// <<< {} | choose 6)' \
-      # --preview 'echo $(gsed s/^\*// <<< {} | choose 5)' \
-      # --bind 'ctrl-/:change-preview-window(right,40%|right,80%|down,90%,border-top|hidden|)' \
-      # --bind 'ctrl-d:half-page-down' \
-      # --bind 'ctrl-u:half-page-up' \
-      # --bind 'ctrl-space:toggle+down' \
-
-      # --preview 'git log --oneline --graph --date=short --color=always --pretty="format:%C(green bold)%cd %C(auto)%h%d %s %C(magenta)(%an)%Creset %C(cyan)%ar%Creset" $(sed s/^\*// <<< {} | choose 5)' \
-      # --preview-window hidden,right,noborder,50% \
-      # --bind 'ctrl-h:down' \
    local out=$( glo |
     fzf --ansi --multi \
-      --preview-window right,noborder,50% \
-      --bind 'ctrl-/:change-preview-window(right,80%|down,90%,border-top|hidden|)' \
+      --header=$HEADER \
+      --preview-window ~5,right,noborder,50% \
+      --bind 'ctrl-/:change-preview-window(right,80%|down,80%,border-top|hidden|)' \
       --preview 'git show --dirstat --stat --numstat --parents --abbrev-commit --patch --notes --color=always {6} | delta -w ${FZF_PREVIEW_COLUMNS:-$COLUMNS}' \
-      --bind 'alt-g:reload(
-        git branch -a --color=always --sort=-committerdate | sort -r
-      )+change-prompt(sort-commit-date>)' \
-      --bind 'ctrl-t:up' \
-      --bind "ctrl-r:reload(
-                # reverse
-                printf 's' > \"${sortBy_tmp_file}\"; 
-                _fzf-docker-image-widget-toggle \"${reverse_tmp_file}\" reverse;
-                _fzf-brancher-widget-state \"${sortBy_tmp_file}\" ${reverse_tmp_file} ${filter_tmp_file};
-              )+change-prompt(size> )" \
-      --bind "alt-g:reload(
-                # toggle my branches
-                _fzf-docker-image-widget-toggle \"${filter_tmp_file}\" m a;
-                _fzf-brancher-widget-state \"${sortBy_tmp_file}\" ${reverse_tmp_file} ${filter_tmp_file};
-              )" \
-      --bind "alt-c:reload(
-                # toggle my team branches
-                _fzf-docker-image-widget-toggle \"${filter_tmp_file}\" t a;
-                _fzf-brancher-widget-state \"${sortBy_tmp_file}\" ${reverse_tmp_file} ${filter_tmp_file};
-              )" \
-      --expect=alt-d
+      --bind "ctrl-l:reload(
+                glo;
+              )+change-prompt(> )+enable-search" \
+      --bind "ctrl-r:+disable-search+reload(
+                  glo -i -n -1 -r {q}
+                )+change-prompt(grep >)" \
+      --bind "ctrl-g:+disable-search+reload(
+                  glo -i -n -1 -s {q}
+                )+change-prompt(-S >)" \
+      --bind "ctrl-t:+disable-search+reload(
+                  glo -i -n -1 -g {q}
+                )+change-prompt(-G >)" \
+      --bind "ctrl-f:+enable-search+reload(
+                  glo -n -1
+                )+change-prompt(all > )" \
+      --bind "ctrl-h:+enable-search+reload(
+                  glo -n 200
+                )+change-prompt(200 > )" \
+      --bind "ctrl-b:+enable-search+reload(
+                  glo -n 500
+                )+change-prompt(500 > )" \
+      --bind "ctrl-t:+disable-search+reload(
+                  glo -i -n 500 -u {q}
+                )+change-prompt(author > )"
   )
-    # --bind 'space:down' \
-    # --bind 'tab:up' \
+  # NOTE: disabling search (disable-search) ensures that original order is not changed by fzf query string sort
 
   local key=$(head -1 <<< "$out")
   local targets=$(tail -n +2 <<< "$out") # get all lines after the first line
   local target1=$(head -1 <<< "$targets")
 
-  if [ "$key" = alt-d ]; then
-     local branches=()
-
-     while IFS= read -r gitbranchline ; do 
-       # remove *
-       local branch=$(sed s/^\*// <<< $gitbranchline | choose 5)
-       branches+=($branch)
-     done <<< "$targets"
-
-     for branch in $branches; do
-       git branch -D $branch
-     done
-     zle reset-prompt
-     return
-  fi
-
   if [ $target1 ]; then
     local hashes=$(echo $targets | choose 5 | join-lines)
     LBUFFER+=" "$hashes # add a leading space so I don't have to type space with an alias eg <alias><trigger logger widget>
-    # the targetBranch ref name may contain a prefix eg origin/...
-    # local targetBranch=$(sed s/^\*// <<< $target1 | choose 5)
-    # # remove any prefix from the refname
-    # local branch=$(sed 's#^origin/##' <<< $targetBranch)
-    # if [ $(git branch -l $branch) ]; then
-    #   # if the branch exists, just switch to the branch
-    #   git checkout $branch
-    # else
-    #   # create a new branch with a simplified name, without the remotes/origin prefix
-    #   git checkout -b $branch $targetBranch
-    # fi
   fi
-  rm -f "${reverse_tmp_file}" &> /dev/null
-  rm -f "${sortBy_tmp_file}" &> /dev/null
-  rm -f "${filter_tmp_file}" &> /dev/null
+
   zle reset-prompt
 }
