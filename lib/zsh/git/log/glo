@@ -10,29 +10,46 @@ function glo(){
 
   local sortBy="createdAt"
   local reverse=false 
-  local imageFilter="all"
 
-  while getopts 'apf:vs:r' opt; do
+      # a) all="-a";;
+      # f) filterOption=$OPTARG
+      #   case "$filterOption" in
+      #     a) imageFilter="all";; # everyone
+      #     m) imageFilter="me";; # me
+      #     t) imageFilter="team";; # my team
+      #   esac;;
+      # r) reverse=true;;
+      # s) sortOption=$OPTARG
+      #   case "$sortOption" in
+      #     c) sortBy="createdAt";;
+      #     r) sortBy="repository";;
+      #     s) sortBy="size";;
+      #   esac;;
+    # same as declare -A - declare associative array
+  local -A gitOptions
+  while getopts 'pvn:s:g:r:a:b:u:if:' opt; do
     case "$opt" in
-      a) all="-a";;
       p) plain=true;;
-      v) verbose=true;; # json format
-      f) filterOption=$OPTARG
-        case "$filterOption" in
-          a) imageFilter="all";; # everyone
-          m) imageFilter="me";; # me
-          t) imageFilter="team";; # my team
-        esac;;
-      r) reverse=true;;
-      s) sortOption=$OPTARG
-        case "$sortOption" in
-          c) sortBy="createdAt";;
-          r) sortBy="repository";;
-          s) sortBy="size";;
-        esac;;
+      v) verbose=true;; 
+      n) number=$OPTARG;;
+      s) gitOptions[-S]="$OPTARG";;
+      g) gitOptions[-G]="$OPTARG";;
+      r) gitOptions[--grep]="$OPTARG";;
+      a) gitOptions[--after]="$OPTARG";;
+      b) gitOptions[--before]="$OPTARG";;
+      u) gitOptions[--author]="$OPTARG";;
+      i) gitOptions[-i]="";;
+      f) files="${=OPTARG}";;
     esac
   done
   shift $(($OPTIND - 1))
+
+  local otherGitOptions="$@"
+
+  gitOptions[-n]="${number:-40}"
+
+  local fileArray=()
+  [ $files ] && fileArray=("--" $files)
 
   # author - who wrote this
   # commiter - who applied this
@@ -91,7 +108,9 @@ EOF
   # cleanup - replace 	with <empty string>
   # cleanup - replace \n with ' '
 
-  local result=$(git log --format=$formatString -n 40 |
+  # echo gitoptions is ${=otherGitOptions} ${(kv)gitOptions} ${=fileArray}
+
+  local result=$(git log ${=otherGitOptions} --format=$formatString ${(@kv)gitOptions} ${=fileArray} |
                   sed 's#\\#\\\\#g' |
                   sed 's#"#\\"#g' | 
                   sed 's#\^^^#"#g' | 
