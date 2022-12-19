@@ -1,3 +1,4 @@
+alias s.='asst -c'
 alias x='npx'
 # alias n='which'
 # alias al='autoload'
