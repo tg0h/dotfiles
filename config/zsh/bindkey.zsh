@@ -105,10 +105,13 @@ zle -N execute-buffer-in-nvim-widget
 # terminals do not recognize ctrl enter - use kitty to send this instead
 bindkey '^Ai' execute-buffer-in-nvim-widget
 
+zle -N execute-buffer-with-git-show-widget
+bindkey '^[^m' execute-buffer-with-git-show-widget
+
 zle -N fzf-chrome-bookmarks-widget
-bindkey '^[^m' fzf-chrome-bookmarks-widget
+# bindkey '^[^m' fzf-chrome-bookmarks-widget
 zle -N fzf-chrome-history-widget
-bindkey '^[^w' fzf-chrome-history-widget
+# bindkey '^[^w' fzf-chrome-history-widget
 
 zle -N fzf-yarn-widget
 bindkey '^[w' fzf-yarn-widget
