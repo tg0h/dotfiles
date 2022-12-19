@@ -2,10 +2,8 @@
 # move window to recent workspace
 rshift + ralt + rctrl + lshift - space : yabai -m window --space recent; yabai -m space --focus recent # move focused window to previous workspace
 
-
 # zoom
 rshift + ralt + rctrl - z : yabai -m window --toggle zoom-fullscreen # enter fullscreen mode for the focused container
-
 
 # Cycling
 # cycle through bsp/stack windows RMeh-/
