@@ -6,11 +6,13 @@ function fzf-brancher-widget(){
   is_in_git_repo || return
 
   local HEADER=$(cat <<-EOF
-   ⌥ d - delete selected branch(es) 
+   ⌃ r - remove selected branch (in place)
+   ⌥ d - delete selected branch(es)
   ⌃⌥ d - delete all local branches
    ⌥ r - delete selected remote branches
   ⌃⌥ r - delete all timg remote branches
    ⌃ s - switch to recent branch
+   ⌥ g - ⌥ c - ⌥ r 
 EOF
 )
 
@@ -33,14 +35,6 @@ EOF
     printf '' > "${filter_tmp_file}"
   fi
 
-  # local out=$( git branch -a --color=always | grep -v -e '/HEAD\s' -e 'dura/' | sort |
-      # --preview 'git log --oneline --graph --date=short --color=always --pretty="format:%C(green bold)%cd %C(auto)%h%d %s %C(magenta)(%an)%Creset %C(cyan)%ar%Creset" $(sed s/^..// <<< {} | cut -d" " -f1)' \
-      # --preview 'git log --oneline --graph --date=short --color=always --pretty="format:%C(green bold)%cd %C(auto)%h%d %s %C(magenta)(%an)%Creset %C(cyan)%ar%Creset" $(sed s/^// <<< {} | choose 6)' \
-      # --preview 'echo $(gsed s/^\*// <<< {} | choose 5)' \
-      # --bind 'ctrl-/:change-preview-window(right,40%|right,80%|down,90%,border-top|hidden|)' \
-      # --bind 'ctrl-d:half-page-down' \
-      # --bind 'ctrl-u:half-page-up' \
-      # --bind 'ctrl-space:toggle+down' \
   local out=$( gbl |
     fzf --ansi --multi \
       --header "$HEADER" \
@@ -67,10 +61,11 @@ EOF
                 _fzf-docker-image-widget-toggle \"${filter_tmp_file}\" t a;
                 _fzf-brancher-widget-state \"${sortBy_tmp_file}\" ${reverse_tmp_file} ${filter_tmp_file};
               )" \
+      --bind "ctrl-r:reload(
+                gbl
+              )+execute-silent( git branch -D {6})" \
       --expect=alt-d,ctrl-alt-d,ctrl-alt-r,ctrl-s
   )
-    # --bind 'space:down' \
-    # --bind 'tab:up' \
 
   local key=$(head -1 <<< "$out")
   local targets=$(tail -n +2 <<< "$out") # get all lines after the first line
