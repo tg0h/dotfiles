@@ -54,8 +54,7 @@ EOF
 
   if [ "$key" = ctrl-e ]; then
     local sha=$(echo $targets | choose 5 )
-    # sha=$(echo $sha | sed 's/^[[:blank:]]*//;s/[[:blank:]]*$//')
-    git show $sha
+    gsv $sha # git show verbose alias
 
     zle reset-prompt
     return
