@@ -81,8 +81,15 @@ EOF
     if [ "$key" = ctrl-b ]; then
       git blame $target1 | delta --hyperlinks
     else
-      local selectedIds=$(echo $targets | join-lines)
-      LBUFFER+=$selectedIds
+      if [ -f "$target1" ]; then
+        # if files
+        local selectedIds=$(echo $targets | join-lines)
+        LBUFFER+=$selectedIds
+      else
+        # if git log line, get the hash
+        local sha=$(gawk '{print $6}' <<< "$target1")
+        LBUFFER+=$sha
+      fi
     fi;
   fi
 
