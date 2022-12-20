@@ -8,6 +8,7 @@ function fzf-logger-widget(){
   local basename=fzf-logger-widget
 
   local HEADER=$(cat <<-EOF
+     ⌃ e - git show
      ⌃ l - default | ⌃ r - grep | ⌃ t - author
    ⌃ g/t - -S/-G pickaxe
  ⌃ f/h/b - all/200/500 commits
@@ -44,8 +45,12 @@ EOF
       --bind "ctrl-t:+reload(
                   glo -i -n 500 -u {q}
                 )+change-prompt(author > )" \
-      --expect=ctrl-e
+      --bind "ctrl-e:execute(
+                  kitty @ launch --type overlay --cwd=current zsh -c 'git show {6} | delta --paging=always'
+                )" \
+      --expect=ctrl-f
   )
+# kitty @ launch --type overlay --cwd=current zsh -c "git show @; zsh"
   # NOTE: disabling search (disable-search) ensures that original order is not changed by fzf query string sort
 
   local key=$(head -1 <<< "$out")
