@@ -2,7 +2,7 @@
 
 function execute-buffer-with-git-show-widget() {
   # if [[ $BUFFER != "nvim "* ]]; then
-    BUFFER="git show $BUFFER"; CURSOR+=2
+    BUFFER="gsv $BUFFER"; CURSOR+=2
     zle accept-line
   # fi
 }
