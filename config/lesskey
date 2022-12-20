@@ -1,0 +1,6 @@
+#command
+# Z quit
+# z quit
+# \ew toggle-option S
+
+# \ew toggle-option -chop-long-lines\n
