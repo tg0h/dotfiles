@@ -46,7 +46,7 @@ EOF
                   glo -i -n 500 -u {q}
                 )+change-prompt(author > )" \
       --bind "ctrl-e:execute(
-                  kitty @ launch --type overlay --cwd=current zsh -c 'git show {6} | delta --paging=always'
+                  kitty @ launch --type overlay --cwd=current zsh -c 'git show {6} | delta --paging=always --hyperlinks'
                 )" \
       --expect=ctrl-f
   )
