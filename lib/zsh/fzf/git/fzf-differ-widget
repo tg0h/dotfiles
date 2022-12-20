@@ -1,0 +1,79 @@
+#!bin/zsh
+
+function fzf-differ-widget(){
+  # ctrl-d to delete branch
+  # select to switch to branch
+  is_in_git_repo || return
+
+  local basename=fzf-differ-widget
+
+  local HEADER=$(cat <<-EOF
+     ⌃ e - git show
+     ⌃ l - default | ⌃ r - grep | ⌃ t - author
+   ⌃ g/t - -S/-G pickaxe
+ ⌃ f/h/b - all/200/500 commits
+EOF
+)
+
+    local preview="git diff main... --color=always -- {-1} | delta -w ${FZF_PREVIEW_COLUMNS:-$COLUMNS}"
+
+    local out=$( git diff main... --name-only |
+    fzf --ansi --multi \
+      --header=$HEADER \
+      --preview-window ~5,bottom,noborder,80% \
+      --preview "$preview" \
+      --cycle \
+      --bind 'ctrl-/:change-preview-window(right,80%|down,80%,border-top|hidden|)' \
+      --bind "ctrl-l:reload(
+                glo;
+              )+change-prompt(> )" \
+      --bind "ctrl-r:+reload(
+                  glo -i -n -1 -r {q}
+                )+change-prompt(grep >)" \
+      --bind "ctrl-g:+reload(
+                  glo -i -n -1 -s {q}
+                )+change-prompt(-S >)" \
+      --bind "ctrl-t:+reload(
+                  glo -i -n -1 -g {q}
+                )+change-prompt(-G >)" \
+      --bind "ctrl-f:+reload(
+                  glo -n -1
+                )+change-prompt(all > )" \
+      --bind "ctrl-h:+reload(
+                  glo -n 200
+                )+change-prompt(200 > )" \
+      --bind "ctrl-b:+reload(
+                  glo -n 500
+                )+change-prompt(500 > )" \
+      --bind "ctrl-t:+reload(
+                  glo -i -n 500 -u {q}
+                )+change-prompt(author > )" \
+      --bind "ctrl-s:execute(
+                  kitty @ launch --type overlay --cwd=current zsh -c 'git show {-1} | delta --paging=always --hyperlinks'
+                )" \
+      --bind 'ctrl-e:execute(echo {} > /tmp/_nvim_cache && nvim {} > /dev/tty 2>&1)' \
+      --bind 'enter:execute(echo {} > /tmp/_nvim_cache && nvim {} > /dev/tty 2>&1)' \
+      --expect=ctrl-f
+  )
+# kitty @ launch --type overlay --cwd=current zsh -c "git show @; zsh"
+  # NOTE: disabling search (disable-search) ensures that original order is not changed by fzf query string sort
+
+  local key=$(head -1 <<< "$out")
+  local targets=$(tail -n +2 <<< "$out") # get all lines after the first line
+  local target1=$(head -1 <<< "$targets")
+
+  if [ "$key" = ctrl-e ]; then
+    local sha=$(echo $targets | choose 5 )
+    gsv $sha # git show verbose alias
+
+    zle reset-prompt
+    return
+  fi
+
+  if [ $target1 ]; then
+    local hashes=$(echo $targets | choose 5 | join-lines)
+    LBUFFER+=" "$hashes # add a leading space so I don't have to type space with an alias eg <alias><trigger logger widget>
+  fi
+
+  zle reset-prompt
+}

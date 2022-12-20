@@ -84,6 +84,8 @@ zle -N fzf-logger-widget # git logger widget
 bindkey '^l' fzf-logger-widget
 zle -N fzf-status-widget
 bindkey '^s' fzf-status-widget
+zle -N fzf-differ-widget # git logger widget
+bindkey '^[r' fzf-differ-widget
 zle -N fzf-git-repo-widget 
 bindkey '^[^l' fzf-git-repo-widget
 
