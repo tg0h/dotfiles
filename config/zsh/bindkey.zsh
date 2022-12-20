@@ -54,7 +54,7 @@ bindkey '^[g' fzf-search-package-json-widget
 
 # ts
 zle -N fzf-search-ts-config-widget
-bindkey '^[r' fzf-search-ts-config-widget
+bindkey '^[j' fzf-search-ts-config-widget
 
 zle -N fzf-search-filenameAndContent-widget
 bindkey '^[-' fzf-search-filenameAndContent-widget
