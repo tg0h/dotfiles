@@ -55,6 +55,7 @@
         - config/npm/**
 
     ~/.config/viddy.toml: config/viddy.toml
+    ~/.config/lesskey: config/lesskey
     ~/.zshenv: config/zsh-boot/boot.zshenv
     # zsh reads the dot files in the $ZDOTDIR dir
     ~/.config/zsh/.zshenv: config/zsh-boot/zshenv
