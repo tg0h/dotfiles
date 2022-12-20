@@ -28,3 +28,4 @@ map("n", "j", [[ (v:count > 5 ? "m'" . v:count : "") . 'j' ]], expr_options)
 map("n", "k", [[ (v:count > 5 ? "m'" . v:count : "") . 'k' ]], expr_options)
 
 -- map("n", "gx", ":!open <C-R><C-A><CR>", expr_options)
+map("n", "<M-C-z>", ":qa!<CR>", default_options) -- quit all buffers, splits and tabs
