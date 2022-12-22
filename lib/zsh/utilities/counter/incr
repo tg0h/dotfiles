@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+function incr(){
+  # increment a global counter and return the latest value
+  # uses redis
+  redis-cli INCR tmp/counter
+}
