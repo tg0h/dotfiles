@@ -1,3 +1,4 @@
+alias au.=ul
 alias s.='asst -c'
 alias x='npx'
 # alias n='which'
