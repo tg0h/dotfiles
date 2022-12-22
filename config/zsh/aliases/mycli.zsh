@@ -1,3 +1,4 @@
+alias ma='mycli -d timtest' # connect to timtest db
 alias m.='mycli -d local' # connect to candy db local
 alias m,='mycli -d staging' # connect to candy db staging
 alias m,.='mycli -d prod-read' # connect to candy db prod-read
