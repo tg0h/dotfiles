@@ -36,7 +36,7 @@ keymaps:
 
   - [ch, $XDG_CONFIG_HOME/skhd]
   - [cn, $XDG_CONFIG_HOME/nvim, 5]
-  - [ck, $XDG_CONFIG_HOME/kitty]
+  - [ck, $DOTFILES/config/kitty]
   - [ca, $XDG_CONFIG_HOME/zsh/aliases, 5]
 
   # LIB
