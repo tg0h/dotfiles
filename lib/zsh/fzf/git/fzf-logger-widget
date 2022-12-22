@@ -15,40 +15,46 @@ function fzf-logger-widget(){
 EOF
 )
 
-   local out=$( glo |
-    fzf --ansi --multi \
-      --header=$HEADER \
-      --preview-window ~5,right,noborder,50% \
-      --bind 'ctrl-/:change-preview-window(right,80%|down,80%,border-top|hidden|)' \
-      --preview 'git show --dirstat --stat --numstat --parents --abbrev-commit --patch --notes --color=always {6} | delta -w ${FZF_PREVIEW_COLUMNS:-$COLUMNS}' \
-      --bind "ctrl-l:reload(
-                glo;
-              )+change-prompt(> )" \
-      --bind "ctrl-r:+reload(
-                  glo -i -n -1 -r {q}
-                )+change-prompt(grep >)" \
-      --bind "ctrl-g:+reload(
-                  glo -i -n -1 -s {q}
-                )+change-prompt(-S >)" \
-      --bind "ctrl-t:+reload(
-                  glo -i -n -1 -g {q}
-                )+change-prompt(-G >)" \
-      --bind "ctrl-f:+reload(
-                  glo -n -1
-                )+change-prompt(all > )" \
-      --bind "ctrl-h:+reload(
-                  glo -n 200
-                )+change-prompt(200 > )" \
-      --bind "ctrl-b:+reload(
-                  glo -n 500
-                )+change-prompt(500 > )" \
-      --bind "ctrl-t:+reload(
-                  glo -i -n 500 -u {q}
-                )+change-prompt(author > )" \
-      --bind "ctrl-e:execute(
-                  kitty @ launch --type overlay --cwd=current zsh -c 'git show {6} | delta --paging=always --hyperlinks'
-                )" \
-      --expect=ctrl-f
+  local preview_cmd='git show --dirstat --stat --numstat --parents --abbrev-commit --patch --notes --color=always {6}'
+  local delta_cmd="delta -w ${FZF_PREVIEW_COLUMNS:-$COLUMNS}"
+  local preview="$preview_cmd | $delta_cmd"
+
+  # --bind "ctrl-j:change-preview($preview_cmd | DELTA_FEATURES=+side-by-side delta -w ${FZF_PREVIEW_COLUMNS:-$COLUMNS})+refresh-preview" \
+  # --bind "ctrl-k:change-preview($preview_cmd | delta -w ${FZF_PREVIEW_COLUMNS:-$COLUMNS})+refresh-preview" \
+  local out=$( glo |
+  fzf --ansi --multi \
+    --header=$HEADER \
+    --preview-window ~5,right,noborder,50% \
+    --bind 'ctrl-/:change-preview-window(right,80%|down,80%,border-top|hidden|)' \
+    --preview "$preview" \
+    --bind "ctrl-l:reload(
+              glo;
+            )+change-prompt(> )" \
+    --bind "ctrl-r:+reload(
+                glo -i -n -1 -r {q}
+              )+change-prompt(grep >)+clear-query" \
+    --bind "ctrl-g:+reload(
+                glo -i -n -1 -s {q}
+              )+change-prompt(-S >)+clear-query" \
+    --bind "ctrl-t:+reload(
+                glo -i -n -1 -g {q}
+              )+change-prompt(-G >)+clear-query" \
+    --bind "ctrl-f:+reload(
+                glo -n -1
+              )+change-prompt(all > )" \
+    --bind "ctrl-h:+reload(
+                glo -n 200
+              )+change-prompt(200 > )" \
+    --bind "ctrl-b:+reload(
+                glo -n 500
+              )+change-prompt(500 > )" \
+    --bind "ctrl-t:+reload(
+                glo -i -n 500 -u {q}
+              )+change-prompt(author > )+clear-query" \
+    --bind "ctrl-e:execute(
+                kitty @ launch --type overlay --cwd=current zsh -c 'git show {6} | delta --paging=always --hyperlinks'
+              )" \
+    --expect=ctrl-f
   )
 # kitty @ launch --type overlay --cwd=current zsh -c "git show @; zsh"
   # NOTE: disabling search (disable-search) ensures that original order is not changed by fzf query string sort
