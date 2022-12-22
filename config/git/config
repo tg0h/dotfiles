@@ -13,7 +13,7 @@
     diffFilter = delta --color-only
 [delta]
   navigate = true
-  side-by-side = true
+  ; side-by-side = true
   line-numbers = true
   ; hyperlinks = true
   ; paging = never
@@ -37,6 +37,8 @@
     ; tabs
     ; true-color
     ; word-diff-regex
+[delta "side-by-side"]
+  side-by-side = true
 [diff]
   tool = vimdiff
   ; https://git-scm.com/docs/git-diff#Documentation/git-diff.txt-dimmed-zebra
