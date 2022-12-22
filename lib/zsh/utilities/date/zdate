@@ -2,11 +2,27 @@
 
 function zdate(){
   # zdate 0911T1557 - eg 09 nov this year, 1557H local time
+  # or accepts a gdate "dateish" string
+  # eg zdate "911" gives 911am today
   # returns iso date in ms 2022-11-10T15:57:00.000+08:00
-  # TODO: handle unexpected input format
   
-  local inputDate=$1
-  local month day hour min
+  local inputDate="$1"
+
+  local year month day hour min
+  local dateString
+
+  if [ ${#inputDate} = 9 ]; then 
+    year=$(gdate +"%Y")
+    month=${inputDate:2:2}
+    day=${inputDate:0:2}
+    hour=${inputDate:5:2}
+    min=${inputDate:7:2}
+    dateString="$year-$month-$day $hour$min"
+  else
+    dateString="$1"
+  fi
+
+  # eg 0911 - then interpret as 911am today
   if [ ${#inputDate} = 9 ]; then 
     month=${inputDate:2:2}
     day=${inputDate:0:2}
@@ -14,10 +30,8 @@ function zdate(){
     min=${inputDate:7:2}
   fi
 
-  local year=$(gdate +"%Y")
-
   # gdate -d 2022-12-09 --iso-8601 +"%Y-%m-%dT%H:%M:%S%:z"
-  local isoDate=$(gdate --date "$year-$month-$day $hour$min" --iso-8601=s)
+  local isoDate=$(gdate --date "$dateString" --iso-8601=s)
   # 2022-11-10T00:00:00+08:00
 
   local isoDateNoTZ=${isoDate:0:19}
