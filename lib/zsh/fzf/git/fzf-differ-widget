@@ -15,6 +15,7 @@ function fzf-differ-widget(){
 EOF
 )
 
+    TODO: refactor to function
     local preview="git diff main... --color=always -- {-1} | delta -w ${FZF_PREVIEW_COLUMNS:-$COLUMNS}"
 
     local out=$( git diff main... --name-only |
