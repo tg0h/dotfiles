@@ -153,6 +153,6 @@ alias gbc='git branch --contains'
 # alias gbca='git branch -a --contains'
 
 alias gs='git show'
-alias gsv='git show --dirstat --stat --numstat --parents --abbrev-commit --patch --notes --color=always' # git show verbose
+alias gsv='git show --dirstat --stat --numstat --parents --abbrev-commit --patch --notes --color=always --format=fuller' # git show verbose
 alias gsp='git status --porcelain'
 alias gsno='git show --name-only'
