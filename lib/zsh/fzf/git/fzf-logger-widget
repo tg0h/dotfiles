@@ -54,7 +54,7 @@ EOF
     --bind "ctrl-e:execute(
                 kitty @ launch --type overlay --cwd=current zsh -c 'git show {6} | delta --paging=always --hyperlinks'
               )" \
-    --expect=ctrl-f
+    --expect=ctrl-z
   )
 # kitty @ launch --type overlay --cwd=current zsh -c "git show @; zsh"
   # NOTE: disabling search (disable-search) ensures that original order is not changed by fzf query string sort
