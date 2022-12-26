@@ -7,6 +7,15 @@ function fzf-status-widget(){
 
   local basename=fzf-status-widget
 
+  local HEADER=$(cat <<-EOF
+     ⌃ a - git add .
+     ⌃ o - git reset --mixed
+     ⌃ e - 
+     ⌃ - - git commit
+   ⌃ h/t - add/reset
+EOF
+)
+
   local reverse_tmp_file
   if reverse_tmp_file="$(mktemp "/tmp/${basename}_reverse".XXXXXX)"; then
     # dil's default reverse option is reverse to sort by created at descending
@@ -39,13 +48,13 @@ function fzf-status-widget(){
    local RELOAD="git -c color.status=always status -s"
    local out=$( ${=RELOAD} |
     fzf --ansi --multi \
+      --header=$HEADER \
       --preview-window right,noborder,80% \
       --bind 'ctrl-/:change-preview-window(down,80%,border-top|right,50%|hidden|)' \
       --preview 'git diff --dirstat --stat --numstat --parents --abbrev-commit --patch --notes --color=always HEAD {2} | delta -w ${FZF_PREVIEW_COLUMNS:-$COLUMNS}' \
       --bind 'alt-g:reload(
         git branch -a --color=always --sort=-committerdate | sort -r
       )+change-prompt(sort-commit-date>)' \
-      --bind 'ctrl-t:up' \
       --bind "ctrl-a:execute(git add .)+reload:$RELOAD" \
       --bind "ctrl-o:execute(git reset --mixed)+reload:$RELOAD" \
       --bind "ctrl-e:execute(nvim {2} > /dev/tty 2>&1)+reload:$RELOAD" \
