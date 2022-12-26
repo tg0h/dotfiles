@@ -33,32 +33,22 @@ EOF
     printf '' > "${filter_tmp_file}"
   fi
 
-  # local out=$( git branch -a --color=always | grep -v -e '/HEAD\s' -e 'dura/' | sort |
-      # --preview 'git log --oneline --graph --date=short --color=always --pretty="format:%C(green bold)%cd %C(auto)%h%d %s %C(magenta)(%an)%Creset %C(cyan)%ar%Creset" $(sed s/^..// <<< {} | cut -d" " -f1)' \
-      # --preview 'git log --oneline --graph --date=short --color=always --pretty="format:%C(green bold)%cd %C(auto)%h%d %s %C(magenta)(%an)%Creset %C(cyan)%ar%Creset" $(sed s/^// <<< {} | choose 6)' \
-      # --preview 'echo $(gsed s/^\*// <<< {} | choose 5)' \
-      # --bind 'ctrl-/:change-preview-window(right,40%|right,80%|down,90%,border-top|hidden|)' \
-      # --bind 'ctrl-d:half-page-down' \
-      # --bind 'ctrl-u:half-page-up' \
-      # --bind 'ctrl-space:toggle+down' \
-
-      # --preview 'git log --oneline --graph --date=short --color=always --pretty="format:%C(green bold)%cd %C(auto)%h%d %s %C(magenta)(%an)%Creset %C(cyan)%ar%Creset" $(sed s/^\*// <<< {} | choose 5)' \
-      # --preview-window hidden,right,noborder,50% \
-      # --bind 'ctrl-h:down' \
+  local preview="git-get-scope {2}; git diff --dirstat --stat --numstat --parents --abbrev-commit --patch --notes --color=always HEAD {2} | delta -w ${FZF_PREVIEW_COLUMNS:-$COLUMNS}"
+      # --preview 'git diff --dirstat --stat --numstat --parents --abbrev-commit --patch --notes --color=always HEAD {2} | delta -w ${FZF_PREVIEW_COLUMNS:-$COLUMNS}' \
    local RELOAD="git -c color.status=always status -s"
    local out=$( ${=RELOAD} |
     fzf --ansi --multi \
       --header=$HEADER \
       --preview-window right,noborder,80% \
       --bind 'ctrl-/:change-preview-window(down,80%,border-top|right,50%|hidden|)' \
-      --preview 'git diff --dirstat --stat --numstat --parents --abbrev-commit --patch --notes --color=always HEAD {2} | delta -w ${FZF_PREVIEW_COLUMNS:-$COLUMNS}' \
+      --preview "$preview" \
       --bind 'alt-g:reload(
         git branch -a --color=always --sort=-committerdate | sort -r
       )+change-prompt(sort-commit-date>)' \
       --bind "ctrl-a:execute(git add .)+reload:$RELOAD" \
       --bind "ctrl-o:execute(git reset --mixed)+reload:$RELOAD" \
       --bind "ctrl-e:execute(nvim {2} > /dev/tty 2>&1)+reload:$RELOAD" \
-      --bind "ctrl-]:execute(git commit > /dev/tty 2>&1)+reload:$RELOAD" \
+      --bind "ctrl-]:execute(git-conventional-commit -e -f {2} > /dev/tty 2>&1)+reload:$RELOAD" \
       --bind "ctrl-h:execute-silent(git add -- {+2..})+reload:$RELOAD" \
       --bind "ctrl-t:execute-silent(git reset -- {+2..})+reload:$RELOAD" \
       --bind "ctrl-r:reload(
