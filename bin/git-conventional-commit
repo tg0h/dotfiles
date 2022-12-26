@@ -4,26 +4,42 @@
 # assumes that a coventional-commit.yml config file exists in the current dir
 
 # type is a keyword so use typ instead
-local message t scope typescope
+local message t scope typescope edit cc_type
 
-while getopts 'm:t:f:' opt; do
+while getopts 'm:t:f:e' opt; do
   case "$opt" in
     m) message=$OPTARG;;
     t) t=$OPTARG;;
-    f) filepath=$OPTARG
+    f) filepath=$OPTARG;;
+    e) edit=true;;
   esac
 done
 shift $(($OPTIND - 1))
 
+cc_type=${t:-"feat"}
+
 scope=$(git-get-scope $filepath)
 
+# add brackets around scope
 [[ -n "$scope" ]] && scope="($scope)"
 
-typescope=$t$scope
-[[ -n "$typescope" ]] && typescope="$t$scope: "
+# add : and space
+typescope=$cc_type$scope
+[[ -n "$typescope" ]] && typescope="$typescope: "
  
 # echo "$typescope$message"
-git commit -m "$typescope$message"
+if [ $edit ]; then
+  message=$(echo $typescope | nipe)
+  returnCode=$?
+  # echo message is $message
+  # echo returnCode is $returnCode
+  if [ $returnCode -eq 1 ]; then
+    return 1
+  fi
+  git commit -m "$message"
+else
+  git commit -m "$typescope$message"
+fi
 
 # if ! git commit -m "$typescope$message"; then
 #   echo "No changes added to commit"

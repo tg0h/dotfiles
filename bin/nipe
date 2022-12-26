@@ -1,0 +1,30 @@
+#!/bin/zsh
+# nvim pipe
+# use nvim keymaps to save or wirte
+
+TMPDIR=/tmp/nvim
+TMPFILE=$TMPDIR/nvim_pipe
+
+mkdir -p $TMPDIR
+touch $TMPFILE
+
+# pass piped input to tempfile
+cat > ${TMPFILE}
+
+# start nvim in insert mode and go to end of line
+
+# need the dev/tty magic so that $(echo haha | nipe ) works vs echo haha | nipe
+nvim -c "startinsert" \
+     -c "autocmd VimEnter * call cursor(0,99)" \
+     ${TMPFILE} < /dev/tty > /dev/tty
+
+# use :cq from nvim to exit with a return code of 1
+returnCode=$?
+# echo return code is $returnCode
+
+if [ $returnCode -eq 0 ]; then
+  cat ${TMPFILE}
+  rm ${TMPFILE}
+else
+  return $returnCode
+fi

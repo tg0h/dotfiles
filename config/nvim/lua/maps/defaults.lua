@@ -28,4 +28,9 @@ map("n", "j", [[ (v:count > 5 ? "m'" . v:count : "") . 'j' ]], expr_options)
 map("n", "k", [[ (v:count > 5 ? "m'" . v:count : "") . 'k' ]], expr_options)
 
 -- map("n", "gx", ":!open <C-R><C-A><CR>", expr_options)
-map("n", "<M-C-z>", ":qa!<CR>", default_options) -- quit all buffers, splits and tabs
+-- https://vi.stackexchange.com/questions/27255/how-can-i-make-a-single-mapping-take-effect-for-both-normal-mode-insert-mode-a (you can't)
+-- define for both normal and insert modes
+map("n", "<M-C-z>", ":cquit<CR>", default_options) -- exit with error code
+map("i", "<M-C-z>", "<Esc>:cquit<CR>", default_options) -- exit with error code
+
+map("i", "<M-C-S>", "<Esc>:wq<CR>", default_options) -- insert mode - save and exit
