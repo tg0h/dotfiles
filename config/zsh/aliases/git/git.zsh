@@ -1,4 +1,5 @@
 alias g="git -P" # turn off pager to disable delta
+alias gc,="git-conventional-commit"
 
 # status
 alias a='git status -s'
@@ -73,6 +74,7 @@ alias gdms='git diff main --stat'
 
 # diff-filter=d
 # https://git-scm.com/docs/git-diff
+alias gdv="git diff --dirstat --stat --numstat --parents --abbrev-commit --patch --notes --color=always"
 alias gdnm="git diff --name-only main..." # git merge base with main, add --diff-filter=... option to filter
 alias gdnsm='git diff --name-status main..'
 
