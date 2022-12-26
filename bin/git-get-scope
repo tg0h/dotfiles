@@ -18,7 +18,7 @@ while read glob; do
     # remove $glob and '/' from the start of the $file string
     local remainderPath=${file#"$glob/"}
     # search for the %% leftmost '/' from the tail and remove * everything till the tail
-    # then search for a . and remove everything till the tail
+    # then search for a . and remove everything till the tail (remove file extensions)
     local scope=${${remainderPath%%/*}%.*}
     local jqQuery=$(cat <<-EOF
     .["$glob"] // ""
