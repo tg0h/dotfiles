@@ -41,7 +41,7 @@ function fzf-status-widget(){
     fzf --ansi --multi \
       --preview-window right,noborder,80% \
       --bind 'ctrl-/:change-preview-window(down,80%,border-top|right,50%|hidden|)' \
-      --preview 'git diff --dirstat --stat --numstat --parents --abbrev-commit --patch --notes --color=always {2} | delta -w ${FZF_PREVIEW_COLUMNS:-$COLUMNS}' \
+      --preview 'git diff --dirstat --stat --numstat --parents --abbrev-commit --patch --notes --color=always HEAD {2} | delta -w ${FZF_PREVIEW_COLUMNS:-$COLUMNS}' \
       --bind 'alt-g:reload(
         git branch -a --color=always --sort=-committerdate | sort -r
       )+change-prompt(sort-commit-date>)' \
