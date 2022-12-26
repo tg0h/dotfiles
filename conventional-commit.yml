@@ -18,6 +18,10 @@
 # default: get first segment after glob as scope
 # any string in key specifies prefix
 
+# examples
+# lib/zsh/yabai -> lib/yabai (because lib/zsh becomes lib)
+# lib/zsh/aws/ecs/acds -> aws/ecs (because lib/zsh/aws/ becomes aws)
+
 scope:
   config/zsh/aliases: alias # alias/dotbot, alias/brew
   config/zsh/fzf: "fzf" # fzf/bookmarks, fzf/cloudwatch
@@ -36,7 +40,7 @@ scope:
   lib/zsh/fzf: "fzf"
   lib/zsh/utilities:
   lib/zsh: "lib"
-  bin:
+  bin: "bin"
   conventional-commit.yml:
 
 type:
