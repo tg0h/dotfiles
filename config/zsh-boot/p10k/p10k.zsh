@@ -1592,7 +1592,7 @@
 
   ####################################[ example: db ]####################################
   function prompt_db() {
-local dev staging prod_read prod
+local dev staging prod_read prod customerTracks
 local result=$(csg)
 if rg -q 3306 <<< $result; then
   dev=d
@@ -1609,9 +1609,13 @@ fi
 if rg -q 3309 <<< $result; then
   prod=P
 fi
+
+if rg -q 3406 <<< $result; then
+  customerTracks=C
+fi
 # local db_state=$(p10k-get-db-connection)
 
-    p10k segment -f 208 -t "$dev$staging$prod_read$prod"
+    p10k segment -f 208 -t "$dev$staging$prod_read$prod$customerTracks"
     # p10k segment -t "$db_state"
   }
 
