@@ -54,6 +54,7 @@
         - config/karabiner/**
         - config/npm/**
 
+    ~/.qutebrowser/config.py: config/qutebrowser/config.py
     ~/.config/viddy.toml: config/viddy.toml
     ~/.config/lesskey: config/lesskey
     ~/.zshenv: config/zsh-boot/boot.zshenv
