@@ -1,0 +1,22 @@
+#!bin/zsh
+
+function aqv(){
+  # aws sqs change message visibility
+  local localOpt
+
+  while getopts 'l' opt; do
+    case "$opt" in
+      l) localOpt=true;;
+      q) queueUrl=$OPTARG;;
+    esac
+  done
+  shift $(($OPTIND - 1))
+
+  local queueUrl=${queueUrl:-$AWS_QUEUE_URL}
+
+  aws sqs change-message-visibility \
+    --queue-url $1 \
+    --receipt-handle $1 \
+    --visibility-timeout 300
+}
+
