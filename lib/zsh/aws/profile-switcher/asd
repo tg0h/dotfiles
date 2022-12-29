@@ -1,7 +1,7 @@
 #!bin/zsh
 
 function asd(){
-  # store the default profile in xdg state
+  # aws - store the default profile in xdg state
   local default
   default=$1
 

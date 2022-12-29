@@ -1,7 +1,7 @@
 #!bin/zsh
 
 function as(){
-  # switch aws profiles
+  # aws - switch aws profiles
   # as t - use tim profile
   # as c - use candy profile
 
