@@ -104,6 +104,7 @@
     # wifi                  # wifi speed
     # example               # example user-defined segment (see prompt_example function below)
     db                      # my db connections
+    my_aws                  # my aws profile
   )
 
   # Defines character set used by powerlevel10k. It's best to let `p10k configure` set it for you.
@@ -1616,6 +1617,18 @@ fi
 # local db_state=$(p10k-get-db-connection)
 
     p10k segment -f 208 -t "$dev$staging$prod_read$prod$customerTracks"
+    # p10k segment -t "$db_state"
+  }
+
+  ####################################[ example: my_aws ]####################################
+  function prompt_my_aws() {
+local myAwsProfile
+ if [ "$AWS_PROFILE" = "tim" ]; then
+   myAwsProfile="T"
+ fi
+# local db_state=$(p10k-get-db-connection)
+
+    p10k segment -f 165 -t "$myAwsProfile"
     # p10k segment -t "$db_state"
   }
 
