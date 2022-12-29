@@ -133,3 +133,4 @@ zle     -N            fzf-my-file-widget
 bindkey -M emacs '^T' fzf-my-file-widget
 zle     -N            fzf-my-dir-widget
 bindkey -M emacs '^[c' fzf-my-dir-widget
+# bindkey -M emacs '^[^z' fzf-my-dir-widget
