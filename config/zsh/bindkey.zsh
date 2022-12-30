@@ -134,3 +134,5 @@ bindkey -M emacs '^T' fzf-my-file-widget
 zle     -N            fzf-my-dir-widget
 bindkey -M emacs '^[c' fzf-my-dir-widget
 # bindkey -M emacs '^[^z' fzf-my-dir-widget
+zle     -N            fzf-my-history-widget
+bindkey -M emacs '^R' fzf-my-history-widget
