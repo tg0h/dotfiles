@@ -75,6 +75,8 @@ export JQ_LIB="~/.local/lib/jq"
 # --RAW-CONTROL-CHARS - interpret ANSI and hyperlinks
 export LESS='--LONG-PROMPT --quit-on-intr --QUIET --no-init --RAW-CONTROL-CHARS --status-column'
 
+export _ZO_DATA_DIR=$XDG_DATA_HOME/zoxide
+
 # place the homebrew binaries at the end of path, if not nvm will always point to the homebrew system node
 # add homebrew to path in zshenv so that it is visible to kitty launch scripts
 # export PATH="$PATH:/opt/homebrew/bin" # access aws_completer, etc

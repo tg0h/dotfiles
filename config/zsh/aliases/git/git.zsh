@@ -29,7 +29,7 @@ alias eu="git reflog"
 
 # rebase
 alias ue="git commit --fixup :/"
-alias u="git rebase --interactive --autosquash"
+# alias u="git rebase --interactive --autosquash"
 alias uo="git reset --soft @~"
 
 alias gyy="git fuzzy"

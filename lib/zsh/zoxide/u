@@ -1,0 +1,11 @@
+#!/usr/env zsh
+
+function u() {
+  # zoxide query interactive
+  # TODO: handle no match found (which is not an error)
+  local dir=$(zoxide query -i "$*")
+  if [ -d $dir ]; then
+    cd $dir
+  fi
+}
+
