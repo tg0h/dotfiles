@@ -7,8 +7,9 @@ function fzf-my-file-widget() {
   local basename="fzf-my-file-widget"
 
   local HEADER=$(cat <<-EOF
-  ⌃h recent | ⌃t default
-  ⌃g dir    | ⌃c no ignore | ⌃r files
+  ⌃a add file/dir | ⌃c/⌥C trash/rm
+  ⌃h recent       | ⌃t default
+  ⌃g dir          | ⌃c no ignore | ⌃r files
   ⌥g/⌥r depth 1/2
   ⌃o/⌃b  blame preview/blame
   ⌃l - log history of selected file
@@ -35,6 +36,8 @@ EOF
         --preview="fzf-fd-preview {}" \
         --preview-window='right:nowrap,noborder,70%' \
         --bind "ctrl-a:execute(fzf-make-dir {1} $(pwd))+reload(fd $FD_OPTIONS)" \
+        --bind="alt-c:execute(trash {})+reload(fd $FD_OPTIONS)" \
+        --bind="alt-C:execute(rm {})+reload(fd $FD_OPTIONS)" \
         \
         --bind "ctrl-g:reload(fd $FD_OPTIONS --type d)+change-prompt(dir> )" \
         --bind "ctrl-c:reload(fd $FD_OPTIONS_NO_IGNORE)+change-prompt(no-ignore> )" \
