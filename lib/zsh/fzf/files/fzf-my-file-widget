@@ -34,6 +34,7 @@ EOF
         --header-first \
         --preview="fzf-fd-preview {}" \
         --preview-window='right:nowrap,noborder,70%' \
+        --bind "ctrl-a:execute(fzf-make-dir {1} $(pwd))+reload(fd $FD_OPTIONS)" \
         \
         --bind "ctrl-g:reload(fd $FD_OPTIONS --type d)+change-prompt(dir> )" \
         --bind "ctrl-c:reload(fd $FD_OPTIONS_NO_IGNORE)+change-prompt(no-ignore> )" \

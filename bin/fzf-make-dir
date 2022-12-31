@@ -1,0 +1,44 @@
+#!/bin/zsh
+# add files or directories from fzf file widget
+# provide filePath and current working directory to script
+# opens nvim
+# enter new file in nvim
+# add trailing slash to add directory
+# exit nvim with exit code to abort
+
+filePath=$1
+workingDirectory=$2
+
+# echo workingDirectory is "$2" >> /tmp/tim/log
+# echo filePath is "$filePath" >> /tmp/tim/log
+
+if [ -d "$filePath" ]; then
+  addedFileDir=$(echo "$filePath" | nipe | head -n 1)
+else
+  filePathDir=$(dirname $filePath)
+  addedFileDir=$(echo "$filePathDir/" | nipe | head -n 1)
+fi
+
+nvimReturnCode=$?
+# echo return code is $nvimReturnCode >> /tmp/tim/log
+if [ $nvimReturnCode -eq 1 ]; then
+  return 1
+fi
+
+# echo addedFileDir is "$addedFileDir">> /tmp/tim/log
+
+newPath="$workingDirectory/$addedFileDir"
+
+# https://stackoverflow.com/questions/17542892/how-to-get-the-last-character-of-a-string-in-a-shell
+# Arithmetic expressions starting with a - must be separated by whitespace from
+# the preceding : to be distinguished from the Use Default Values expansion
+lastChar=${addedFileDir: -1}
+if [ "$lastChar" = "/" ]; then
+  # echo creating dir $newPath >> /tmp/tim/log
+  mkdir $newPath
+else
+  # echo lastChar is $lastChar >> /tmp/tim/log
+  # echo $fileDir >> /tmp/tim/log
+  # echo creating file $newPath >> /tmp/tim/log
+  touch $newPath
+fi
