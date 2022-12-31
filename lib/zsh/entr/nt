@@ -1,21 +1,13 @@
 #!/bin/zsh
 
 function nt(){
-  # nt [dir] <cmd>
+  # nt <dir> <cmd>
+  # nt <cmd> - defaults dir to my dotfiles
   # use entr to run <cmd> when files in <dir> change
-  # if dir not supplied, default to ~/dotfiles
-  # run npx ava if in candy repo
-  # accepts 1 or more dirs in the -d option
 
-  local directories="$HOME/dotfiles $HOME/.local/bin/scratch"
-  while getopts 'd:' opt; do
-    case "$opt" in
-      d) rootDir=$OPTARG;;
-    esac
-  done
-  shift $(($OPTIND - 1))
-
-  local cmd="$@"
+  # https://stackoverflow.com/questions/9057387/process-all-arguments-except-the-first-one-in-a-bash-script
+  local directories=$1
+  local cmd="${@:2}"
 
   # -cc clears the screen and scrollback as well
   # prefer entr zsh -c to entr -s
