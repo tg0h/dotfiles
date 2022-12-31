@@ -39,10 +39,11 @@ export FZF_DEFAULT_OPTS="
 
 --bind='ctrl-a:up'
 --bind='ctrl-y:execute-silent(echo {+} | join-lines-fzf | pbcopy)+abort'
---bind 'ctrl-e:$FZF_X_NVIM+abort'
+--bind 'ctrl-e:$FZF_X_NVIM'
+--bind 'ctrl-alt-e:$FZF_X_NVIM+abort'
 --bind 'ctrl-/:change-preview-window(right,80%|down,90%,border-top|hidden|)'
---bind='alt-c:execute(rm {})+abort'
---bind='alt-C:execute(trash {})+abort'
+--bind='alt-c:execute(trash {})'
+--bind='alt-C:execute(rm {})'
 
 --bind backward-eof:abort
 "
