@@ -16,6 +16,7 @@ alias aut="git reset --mixed @~"
 
 # diff
 alias o="git diff"
+alias o.="git -c delta.side-by-side=true diff"
 alias oo="git -P diff" # don't use delta (specify no pager)
 alias oe="git diff --cached"
 
