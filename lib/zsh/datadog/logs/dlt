@@ -1,0 +1,18 @@
+#!/bin/zsh
+
+function dlt(){
+  # datadog logs tail
+
+  local verbose quiet
+  while getopts 'vq' opt; do
+    case "$opt" in
+      v) verbose=true;;
+      q) quiet=true;;
+    esac
+  done
+  shift $(($OPTIND - 1))
+
+  https -p=h "https://api.datadoghq.com/api/v2/logs/events" \
+    "DD-API-KEY":$DD_API_KEY \
+    "DD-APPLICATION-KEY":$DD_APP_KEY
+}
