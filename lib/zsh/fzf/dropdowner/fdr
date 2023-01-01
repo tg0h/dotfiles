@@ -1,0 +1,17 @@
+#!/bin/zsh
+
+function fdr(){
+  # refresh fzf dropdowner data
+
+  local DATA_FROM=$FZF_DROPDOWNER_DATADOG_SERVICES
+  local file=$(basename $DATA_FROM)
+
+  local DATA_TO_DIR=$XDG_DATA_HOME/fzf/dropdowner/
+
+  local DATA_TO=$DATA_TO_DIR$file
+
+  mkdir -p $DATA_TO_DIR
+
+  echo copying $DATA_FROM to $DATA_TO
+  cp $DATA_FROM $DATA_TO
+}

@@ -1,0 +1,13 @@
+#!bin/zsh
+# search for filename and file contents
+# edits the file after picking the fzf entry
+
+function dropdowner(){
+  # fzf dropdowner
+  
+  local service=$(cat $XDG_DATA_HOME/fzf/dropdowner/services.json | gojq -r '.services[]' | fzf)
+
+  LBUFFER+=$service
+  zle reset-prompt
+  return
+}
