@@ -1,5 +1,15 @@
 # README
 
+## TODO
+
+https://dev.to/ecologic/passing-a-parameter-to-a-zsh-keyboard-shortcut-1877
+convert to zsh widget to manipulate buffer - eg paste path to buffer
+
+use $BUFFER to read "input"
+eg input=$BUFFER
+
+## -
+
 the fuzzy switcher provides quick navigation throughout the terminal
 
 define shortcut keys for any folder, compile and then go to or search these folders quickly.
@@ -27,7 +37,7 @@ it uses fzf and fd
     - e\<bindkey\> - search directories only
     - .\<bindkey\> - search filename and content
     - :\<bindkey\> - cd to directory
-  - the zsh-compile-functions script grabs all my functions and 
+  - the zsh-compile-functions script grabs all my functions and
     - places them into 2 folders
       - normal functions
       - generated functions
