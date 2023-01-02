@@ -50,7 +50,12 @@ keymaps:
   - ["ty,.", $HOME/src/playground/yarn/npm]
   - [tg, $HOME/src/playground/github/scratch]
   - [tp, $HOME/src/playground/python/]
-  - [th, $HOME/src/playground/candy/candyStore]
+  # - [th, $HOME/dotfiles/templates]
+  - bindkey: th
+    dir: $HOME/dotfiles/templates
+    depth: 3
+    show-hidden: true
+    show-ignore: true
 
   # CLONES
   - [nk, $HOME/src/clones/python/kitty]

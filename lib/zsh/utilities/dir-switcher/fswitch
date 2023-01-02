@@ -8,6 +8,7 @@ function fswitch(){
   # fswitch <searchDir> <searchDepth)
   # eg fswitch ~/.local/bin 2
   # TODO: how to implement priority with most frequently used first?
+  # TODO: convert to zsh widget to add to buffer
 
   local configFile=$XDG_CONFIG_HOME/tg/dir-switcher/config.yml
   local cache=$XDG_STATE_HOME/dir-switcher/cache # store MRU files for each directory here
