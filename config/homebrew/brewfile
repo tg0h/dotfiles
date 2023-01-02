@@ -204,3 +204,7 @@ brew 'gojq'
 cask 'shortcat'
 brew 'graphviz'
 brew 'zoxide'
+# brew 'girara', args: ['HEAD']
+# tap 'zegervdv/zathura'
+# brew 'zathura', args: ['HEAD']
+# brew 'zathura-pdf-mupdf'
