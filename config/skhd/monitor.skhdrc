@@ -3,15 +3,20 @@
 # if only 1 monitor (eg on laptop), then focus space to the the left/right
 
 # ternary expression
-rshift + ralt + rctrl - g : [ $(yabai -m query --displays | jq 'length') -eq 1 ] \
-&& ( yabai -m space --focus prev || yabai -m space --focus last ) \
-|| ( yabai -m display --focus prev || yabai -m display --focus last )
+# rshift + ralt + rctrl - g : [ $(yabai -m query --displays | jq 'length') -eq 1 ] \
+# && ( yabai -m space --focus prev || yabai -m space --focus last ) \
+# || ( yabai -m display --focus prev || yabai -m display --focus last )
 
-rshift + ralt + rctrl - r : [ $(yabai -m query --displays | jq 'length') -eq 1 ] \
-&& ( yabai -m space --focus next || yabai -m space --focus first ) \
-|| ( yabai -m display --focus next || yabai -m display --focus first )
+rshift + ralt + rctrl - g : yabai -m space --focus prev || yabai -m space --focus last
+rshift + ralt + rctrl - r : yabai -m space --focus next || yabai -m space --focus first 
+
+# rshift + ralt + rctrl - r : [ $(yabai -m query --displays | jq 'length') -eq 1 ] \
+# && ( yabai -m space --focus next || yabai -m space --focus first ) \
+# || ( yabai -m display --focus next || yabai -m display --focus first )
 
 # shortcut to toggle monitors
+# if 2 monitors, rmeh-t toggles monitors, else toggles spaces
+# use rmeh-space to toggle to last used space
 # simpler than previous and next
 rshift + ralt + rctrl - t : [ $(yabai -m query --displays | jq 'length') -eq 1 ] \
 && ( yabai -m space --focus recent ) \
