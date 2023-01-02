@@ -70,7 +70,7 @@ require"nvim-tree".setup {
         adaptive_size = false,
         centralize_selection = false,
         width = 60,
-        height = 30,
+        -- height = 30,
         hide_root_folder = false,
         side = "left",
         preserve_window_proportions = false,
@@ -143,7 +143,19 @@ require"nvim-tree".setup {
                 -- { key = ".", action = "run_file_command" },
                 {key = "m", action = "toggle_mark"}
             }
-        }
+        },
+        float = {
+              enable = false,
+              quit_on_focus_loss = true,
+              open_win_config = {
+                relative = "editor",
+                border = "rounded",
+                width = 30,
+                height = 30,
+                row = 1,
+                col = 1,
+              },
+            },
     },
     renderer = {
         add_trailing = false,
