@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+function sa(){
+  # sampler - open dashboard
+
+  sampler -c $DOTFILES/lib/zsh/candy/sampler/config.yml
+}
