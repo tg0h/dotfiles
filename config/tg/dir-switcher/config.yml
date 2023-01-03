@@ -56,6 +56,11 @@ keymaps:
     depth: 3
     show-hidden: true
     show-ignore: true
+  - bindkey: td
+    dir: $HOME/dotfiles/lib/zsh/candy/templates
+    depth: 3
+    show-hidden: true
+    show-ignore: true
 
   # CLONES
   - [nk, $HOME/src/clones/python/kitty]
