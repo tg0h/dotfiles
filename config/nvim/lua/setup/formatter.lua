@@ -45,17 +45,17 @@ require("formatter").setup({
         javascriptreact = {prettierFormat},
         json = {prettierFormat},
         markdown = {prettierFormat},
-
-        yaml = {
-            function()
-                return {
-                    -- exe = "yamlfix",
-                    -- args = {vim.fn.fnameescape(vim.api.nvim_buf_get_name(0))},
-                    exe = "prettier",
-                    args = {"--single-quote", "false", "--parser", "yaml"},
-                    stdin = true
-                }
-            end
-        }
+        yaml = {prettierFormat}
+        -- yaml = {
+        --     function()
+        --         return {
+        --             -- exe = "yamlfix",
+        --             -- args = {vim.fn.fnameescape(vim.api.nvim_buf_get_name(0))},
+        --             exe = "prettier",
+        --             args = {"--single-quote", "false", "--parser", "yaml"},
+        --             stdin = true
+        --         }
+        --     end
+        -- }
     }
 })
