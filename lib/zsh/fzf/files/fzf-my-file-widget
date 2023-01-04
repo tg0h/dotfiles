@@ -85,8 +85,8 @@ EOF
     if [ "$key" = ctrl-b ]; then
       git blame $target1 | delta --hyperlinks
     else
-      if [ -f "$target1" ]; then
-        # if files
+      if [ -f "$target1" ] || [ -d "$target1" ]; then
+        # if files or dirs
         local selectedIds=$(echo $targets | join-lines)
         LBUFFER+=$selectedIds
       else
