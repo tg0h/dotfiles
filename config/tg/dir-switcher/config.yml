@@ -74,7 +74,7 @@ keymaps:
   - ["s,", $HOME/src/candy-main/referralcandy-main]
   - [s., $HOME/src/candy/main/referralcandy-main, 5]
   - [sa, $HOME/src/candy/playground/github-actions]
-  - [sb, $HOME/src/candy/business]
+  - [sb, $HOME/src/candy/old/business]
   - [sc, $HOME/src/candy, 5, \\.git$, true, true, dirname | xargs dirname]
   - [sd, $HOME/src/candy/new/devops]
   - [sg, $HOME/src/candy/playground]
