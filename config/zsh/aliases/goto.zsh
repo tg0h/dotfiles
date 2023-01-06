@@ -2,6 +2,12 @@ function dt(){
   mkdir -p /tmp/tim
   cd /tmp/tim
 }
+# alias c.='cd ~/src/playground/cdk'
+alias c.='cd ~/src/playground/cdk/cdk-workshop'
+alias c,='cd ~/src/playground/candy/referralcandy-secondary'
+
+alias s.='cd ~/src/candy/main/referralcandy-main'
+
 alias dt.='cd ~/Documents/tim'
 alias d.='cd $HOME/dotfiles'
 alias dd='cd $HOME/dotfiles'
