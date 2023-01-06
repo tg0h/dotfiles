@@ -1,5 +1,5 @@
 alias au.=ul
-alias s.='asst -c'
+alias a.='asst -c'
 alias x='npx'
 # alias n='which'
 # alias al='autoload'
