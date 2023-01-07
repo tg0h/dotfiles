@@ -17,17 +17,26 @@
       # sdt
       # sdm
 
-alias t,=ttsdt
-alias t.=ttsd
-alias t,.=ttdd
+# dev
+alias ha=thw    # this week
+alias h,=thsd   # summary this week
+alias h.=thdd   # detail this week
+alias h,.=thsdt # summary today
+alias hp=thm    # this month
 
-alias h,=thsdt
-alias h.=thsd
-alias h,.=thdd
+# study
+alias ta=ttw    # this week
+alias t,=ttsd   # summary this week
+alias t.=ttdd   # detail this week
+alias t,.=ttsdt # summary today
+alias tp=ttm    # this month
 
-alias n,=tsdt
-alias n.=tsd
-alias n,.=tdd
+# candy
+alias na=tw     # this week
+alias n,=tsd    # summary this week
+alias n.=tdd    # detail this week
+alias n,.=tsdt  # summary today
+alias np=tm     # this month
 
 ## candy
 alias td="timt -w c -t d" # client, project, tag
