@@ -1,8 +1,10 @@
+# tell eslint to stop treewalking upwards looking for configuration
+root: true
 env:
-    node: true
-    es2021: true
+  node: true
+  es2021: true
 extends: eslint:recommended
 parserOptions:
-    ecmaVersion: latest
-    sourceType: module
+  ecmaVersion: latest
+  sourceType: module
 rules: {}
