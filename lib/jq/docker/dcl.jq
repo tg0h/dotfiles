@@ -97,7 +97,7 @@ def setContainerPortsSocket:
 def getUpTime:
   if contains("Up About") then 
       (capture("Up About (a|an) (?<timeUp>((\\w)*))") | .timeUp) as $unit
-      | { timeup : 1, unit : ($unit+"s")}
+      | { timeUp : 1, unit : ($unit+"s")}
   else
      capture("Up (?<timeUp>(\\d)+) (?<unit>(\\w)*)")
   end;
