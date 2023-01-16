@@ -58,7 +58,6 @@ alias fua='funky -a'
 alias fue='funky -e'
 alias fur='funky -r'
 
-alias fork="open . -a /Applications/Fork.app"
 alias nm="neomutt"
 
 alias norg="gron --ungron"
