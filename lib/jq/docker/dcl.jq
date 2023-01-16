@@ -71,7 +71,7 @@ def setRepository:
 ;
 def setTag:
   (.Image | split(":") | .[1]) as $tag
-  | ._tag = ($tag // "<none>")
+  | ._tag = ($tag // "")
 ;
 
 def setHostIpPorts:
@@ -245,7 +245,7 @@ def dcl:
    +" "
    +"\(.Status | prettyStatus) "
    +"\(.Names[0:30] | lp(30) | _names)"
-   +" \(._repository|_repository) \(._tag|_tag ) "
+   +" \(._repository|_repository|lp(30)) \(._tag|_tag|lp(3) ) "
    +"\( _formatPortBinding(._hostIp;._hostPorts;._containerPorts;._containerSocket))"
    ;
 

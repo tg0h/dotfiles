@@ -50,7 +50,7 @@ def _isStartWithNonDigit: test("^\\D");
 def _tag:
   # rp(15) |
   if . | contains("latest") then __(.)
-  elif . | contains("<none>") then colour(.;"ebony")
+  elif . | contains("n/a") then colour(.;"ebony")
   elif . | startswith("git") then .|_git
   elif _isStartWithVAndDigit then .
   elif _isStartWithNonDigit then _m(.)
