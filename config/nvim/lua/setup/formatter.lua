@@ -45,7 +45,8 @@ require("formatter").setup({
         javascriptreact = {prettierFormat},
         json = {prettierFormat},
         markdown = {prettierFormat},
-        yaml = {prettierFormat}
+        yaml = {prettierFormat},
+        sql = {prettierFormat}
         -- yaml = {
         --     function()
         --         return {
