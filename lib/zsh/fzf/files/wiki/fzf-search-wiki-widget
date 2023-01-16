@@ -1,7 +1,7 @@
 #!bin/zsh
 
 function fzf-search-wiki-widget() {
-  fd --color always . '/Users/tim/certis/docs/wiki' | fzf --ansi
+  fd --color always . "/Users/tim/src/me/wiki" | fzf --ansi
   zle reset-prompt;
   LBUFFER+=$result
 }
