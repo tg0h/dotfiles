@@ -22,7 +22,7 @@ function sd(){
       echo DB_PROFILE is $DB_PROFILE
       ;;
     "a" | "l")
-      export DB_PROFILE=local
+      export DB_PROFILE=dev
       ;;
     "o" | "s")
       export DB_PROFILE=staging
