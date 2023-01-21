@@ -2,6 +2,18 @@
 
 function sa(){
   # sampler - open dashboard
+  # sa -l - local
 
-  sampler -c $DOTFILES/lib/zsh/candy/sampler/config.yml
+  while getopts 'l' opt; do
+    case "$opt" in
+      l) localOpt=true;;
+    esac
+  done
+  shift $(($OPTIND - 1))
+
+  if [ $localOpt ]; then
+    sampler -c $DOTFILES/lib/zsh/candy/sampler/local.yml
+  else
+    sampler -c $DOTFILES/lib/zsh/candy/sampler/config.yml
+  fi
 }
