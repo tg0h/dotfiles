@@ -9,7 +9,7 @@ function fzf-my-file-widget() {
   local HEADER=$(cat <<-EOF
   ⌃a add file/dir | ⌃c/⌥C trash/rm
   ⌃h recent       | ⌃t default
-  ⌃g dir          | ⌃c no ignore | ⌃r files
+  ⌃g .test. files | ⌃c no ignore | ⌃r files | ^f dirs
   ⌥g/⌥r depth 1/2
   ⌃o/⌃b  blame preview/blame
   ⌃l - log history of selected file
@@ -39,7 +39,8 @@ EOF
         --bind="alt-c:execute(trash {})+reload(fd $FD_OPTIONS)" \
         --bind="alt-C:execute(rm {})+reload(fd $FD_OPTIONS)" \
         \
-        --bind "ctrl-g:reload(fd $FD_OPTIONS --type d)+change-prompt(dir> )" \
+        --bind "ctrl-f:reload(fd $FD_OPTIONS --type d)+change-prompt(dir> )" \
+        --bind "ctrl-g:reload(fd $FD_OPTIONS --type f --case-sensitive '\.test\.' )+change-prompt(test-files> )" \
         --bind "ctrl-c:reload(fd $FD_OPTIONS_NO_IGNORE)+change-prompt(no-ignore> )" \
         --bind "ctrl-r:reload(fd $FD_OPTIONS --type f)+change-prompt(file> )" \
         \
