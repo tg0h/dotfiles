@@ -71,7 +71,7 @@ def setRepository:
 ;
 def setTag:
   (.Image | split(":") | .[1]) as $tag
-  | ._tag = ($tag // "")
+  | ._tag = ($tag // "   ")
 ;
 
 def setHostIpPorts:
@@ -147,7 +147,7 @@ def setSize:
 def _formatPortBinding($hostIp;$hostPorts;$containerPorts;$containerSocket):
   (if $hostIp == "0.0.0.0" then "_" else $hostIp end) as $_hostIp
   | if $hostIp == null then "" else
-    __($_hostIp) + __(":") + _mg($hostPorts) + _g("->") + _brinkPink($containerPorts) + __("/") + __($containerSocket)
+    __($_hostIp) + __(":") + _mg($hostPorts|lp(9)) + _g("->") + _brinkPink($containerPorts|rp(9)) + __("/") + __($containerSocket)
   end
 ;
 
