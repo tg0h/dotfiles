@@ -1,0 +1,12 @@
+#!/bin/zsh
+
+function dlp(){
+  # datadog post logs
+
+  https -p=HhBb post "https://http-intake.logs.datadoghq.com/api/v2/logs" \
+    "DD-API-KEY":$DD_API_KEY \
+    "DD-APPLICATION-KEY":$DD_APP_KEY \
+    "[0][service]=timtest" \
+    "[0][message]=2023-01-26T05:00:00,000 INFO Error - timtest" \
+    "[0][ddtags]=env:development" 
+}
