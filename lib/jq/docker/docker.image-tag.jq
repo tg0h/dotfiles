@@ -49,7 +49,7 @@ def _isStartWithNonDigit: test("^\\D");
 
 def _tag:
   # rp(15) |
-  if . | contains("latest") then __(.)
+  if . | contains("latest") then __("ltz")
   elif . | contains("n/a") then colour(.;"ebony")
   elif . | startswith("git") then .|_git
   elif _isStartWithVAndDigit then .
