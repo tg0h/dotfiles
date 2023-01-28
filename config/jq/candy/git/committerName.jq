@@ -26,7 +26,7 @@ def formatCommitterName:{
 "garyfoo88": _mySin("gary"), # lakers
 "jasd": _morningGlory("jasd"), # princess jasmine
 "jasmined09": _morningGlory("jasd"), # princess jasmine
-"joel": _pinkFlamingo("joel"),
+"joel": _jazzberry("joel"),
 "timg": _steelPink("timg"),
 "tim goh": _steelPink("timg"),
 "shanhan": "shnhn",
