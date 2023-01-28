@@ -240,8 +240,8 @@ def dcl:
    +"\(._mounts | showMounts) "
    +"\(.LocalVolumes | showVolumes) "
    +"\(.__size | showSize) "
-   + showRunningTime # since created ?
-   + showUpTime
+   # + showRunningTime # since created ?
+   # + showUpTime
    +" "
    +"\(.Status | prettyStatus) "
    +"\(.Names[0:30] | lp(30) | _names)"
