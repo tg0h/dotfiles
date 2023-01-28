@@ -40,6 +40,7 @@ scope:
   lib/zsh/fzf: "fzf"
   lib/zsh/utilities:
   lib/zsh: "lib"
+  lib/jq: "lib"
   bin: "bin"
   conventional-commit.yml:
 
