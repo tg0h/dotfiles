@@ -256,6 +256,7 @@ return require("packer").startup({
         use {'tpope/vim-dadbod'}
         use {'kristijanhusak/vim-dadbod-ui'}
         use {'dkarter/bullets.vim'}
+        use { 'rizzatti/dash.vim'}
 
     end,
     config = {

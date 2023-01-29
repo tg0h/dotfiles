@@ -38,3 +38,4 @@ map("i", "<C-M-t>", "<Esc>:w<CR>a", default_options) -- insert mode save
 
 map("i", "<C-M-S>", "<Esc>:wq<CR>", default_options) -- insert mode - save and exit
 
+map("n", "<C-M-d>", "<Esc>:Dash<CR>", default_options) -- open dash docs with word under cursor
