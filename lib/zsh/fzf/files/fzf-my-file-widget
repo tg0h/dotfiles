@@ -11,8 +11,9 @@ function fzf-my-file-widget() {
   ⌃h recent       | ⌃t default
   ⌃g .test. files | ⌃c no ignore | ⌃r files | ^f dirs
   ⌥g/⌥r depth 1/2
-  ⌃o/⌃b  blame preview/blame
-  ⌃l - log history of selected file
+  ⌃o/⌃b blame preview/blame
+  ⌃l    log history of selected file
+  ⌃⌥n   node <file>
 EOF
 )
   local FD_COMMAND="fd $FD_OPTIONS"
@@ -71,7 +72,7 @@ EOF
           )+refresh-preview+execute-silent(_fzf-docker-image-widget-toggle \"${logger_blame_state}\" logger_blame)" \
         --bind "alt-g:reload(fd $FD_OPTIONS --type f --max-depth 1 )+change-prompt(depth:1> )" \
         --bind "alt-r:reload(fd $FD_OPTIONS --type f --max-depth 2 )+change-prompt(depth:2> )" \
-        --expect=ctrl-b
+        --expect=ctrl-b,ctrl-alt-n
   )
   rm -f "${blame_state}" &> /dev/null
   rm -f "${logger_blame_state}" &> /dev/null
@@ -85,6 +86,8 @@ EOF
   if [ $id ]; then
     if [ "$key" = ctrl-b ]; then
       git blame $target1 | delta --hyperlinks
+    elif [ "$key" = ctrl-alt-n ]; then
+      node $target1
     else
       if [ -f "$target1" ] || [ -d "$target1" ]; then
         # if files or dirs
