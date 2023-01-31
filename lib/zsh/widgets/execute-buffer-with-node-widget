@@ -1,0 +1,9 @@
+#!/bin/zsh
+
+function execute-buffer-with-node-widget() {
+  # if [[ $BUFFER != "nvim "* ]]; then
+    BUFFER="node $BUFFER"; CURSOR+=2
+    zle accept-line
+  # fi
+}
+ execute-buffer-with-node-widget
