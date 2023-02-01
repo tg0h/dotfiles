@@ -6,8 +6,10 @@ expr_options = {noremap = true, expr = true, silent = true}
 -- map("n", "<Space>", "<NOP>", default_options)
 vim.g.mapleader = " "
 
+-- Emacs emulation
 map("i", "<C-a>", "<Esc>I", default_options) -- go to beginning of line in insert mode
 map("i", "<C-e>", "<Esc>A", default_options) -- go to end of line in insert mode
+map("i", "<C-d>", "<Del>", default_options) -- go to end of line in insert mode
 
 -- Help
 map("n", "<F1>", ":WhichKey<CR>", default_options) -- show all mappings
