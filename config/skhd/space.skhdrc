@@ -1,8 +1,9 @@
 # https://github.com/koekeishiya/skhd/issues/1 - list of keys
 
 # go to space shortcuts
-rshift + ralt + rctrl - space : yabai -m space --focus recent # focus previous workspace
-lshift + lctrl - space : yabai -m space --focus recent # focus previous workspace
+# use Rmeh-t instead
+# rshift + ralt + rctrl - space : yabai -m space --focus recent # focus previous workspace
+# lshift + lctrl - space : yabai -m space --focus recent # focus previous workspace
 
 # Move Spaces 
 # R Shift g/r to move spaces
