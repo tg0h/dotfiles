@@ -12,9 +12,10 @@ function nt(){
   # -cc clears the screen and scrollback as well
   # prefer entr zsh -c to entr -s
   # entr -s prints the exit code which is noisy
+  # no ignore - i want to trigger for example the scratchz jq file
   if [[ $directories == /Users/tim/src/candy/main/referralcandy-main/* ]]; then
-    fd . ${=directories} | entr -cc npx ava --fail-fast $cmd
+    fd --no-ignore --exclude '.git' --exclude 'node_modules' . ${=directories} | entr -cc npx ava --fail-fast $cmd
   else
-    fd . ${=directories} | entr -cc zsh -c $cmd
+    fd --no-ignore --exclude '.git' --exclude 'node_modules' . ${=directories} | entr -cc zsh -c $cmd
   fi
 }
