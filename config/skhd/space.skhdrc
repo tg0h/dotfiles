@@ -2,7 +2,7 @@
 
 # go to space shortcuts
 # use Rmeh-t instead
-# rshift + ralt + rctrl - space : yabai -m space --focus recent # focus previous workspace
+rshift + ralt + rctrl - t : yabai -m space --focus recent # focus previous workspace
 # lshift + lctrl - space : yabai -m space --focus recent # focus previous workspace
 
 # Move Spaces 

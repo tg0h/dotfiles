@@ -18,6 +18,6 @@ rshift + ralt + rctrl - r : yabai -m space --focus next || yabai -m space --focu
 # if 2 monitors, rmeh-t toggles monitors, else toggles spaces
 # use rmeh-space to toggle to last used space
 # simpler than previous and next
-rshift + ralt + rctrl - t : [ $(yabai -m query --displays | jq 'length') -eq 1 ] \
+rshift + ralt + rctrl - return: [ $(yabai -m query --displays | jq 'length') -eq 1 ] \
 && ( yabai -m space --focus recent ) \
 || ( yabai -m display --focus prev || yabai -m display --focus last )
