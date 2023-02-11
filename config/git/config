@@ -15,7 +15,7 @@
   navigate = true
   ; side-by-side = true
   line-numbers = true
-  ; hyperlinks = true
+  hyperlinks = true
   ; paging = never
   features = otter
     ; navigate-regex
