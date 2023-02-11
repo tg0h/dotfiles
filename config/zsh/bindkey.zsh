@@ -40,7 +40,7 @@ zle -N _fzf-redraw-prompt # used by fzf bookmarks widget to redraw prompt
 
 zle -N fzf-docker-container-widget
 # replaces the quoted-insert widget
-# bindkey '^V' fzf-docker-container-widget
+bindkey '^V' fzf-docker-container-widget
 zle -N fzf-docker-image-widget
 bindkey '^[^V' fzf-docker-image-widget
 
