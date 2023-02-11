@@ -18,6 +18,7 @@ map("n", "<localleader>t", ":Telescope live_grep<CR>", default_options)
 map("n", "<localleader>n", ":Telescope git_files<CR>", default_options)
 map("n", "<localleader>s", ":Telescope current_buffer_fuzzy_find<CR>", default_options)
 map("n", "<localleader>-", ":Telescope grep_string<CR>", default_options) -- search text under cursor
+map("n", "<localleader>m", ":Telescope marks<CR>", default_options) -- search text under cursor
 
 
 -- map("n", "<localleader>t",
