@@ -258,7 +258,15 @@ return require("packer").startup({
         use {'dkarter/bullets.vim'}
         use {'rizzatti/dash.vim'}
         use {'chentoast/marks.nvim', config=get_setup('marks')}
-
+        use({ "andythigpen/nvim-coverage",
+          requires = "nvim-lua/plenary.nvim",
+          config = get_setup('nvim-coverage')
+        })
+        -- use {
+        --     "~/src/me/nvim/nvim-coverage",
+        --     requires = {"nvim-lua/plenary.nvim"},
+        --     config = get_setup("nvim-coverage")
+        -- }
     end,
     config = {
         display = {

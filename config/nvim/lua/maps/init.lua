@@ -16,5 +16,6 @@ require('maps.plugins.trouble')
 require('maps.plugins.git-signs')
 require('maps.plugins.lsp')
 require('maps.plugins.vim-kitty-navigator')
+require('maps.plugins.nvim-coverage')
 
 require('maps.plugins.vim-dadbod-ui')
