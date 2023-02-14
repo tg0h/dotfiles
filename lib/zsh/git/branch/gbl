@@ -45,11 +45,11 @@ function gbl(){
 		 ^^^commiterName^^^: ^^^%(committername)^^^,
 		   ^^^authorDate^^^: ^^^%(authordate:iso8601)^^^,
 		   ^^^authorName^^^: ^^^%(authorname)^^^,
-		      ^^^subject^^^: ^^^%(subject)^^^,
-		         ^^^body^^^: ^^^%(body)^^^
+		      ^^^subject^^^: ^^^%(subject)^^^
 		}
 EOF
 )
+		         # ^^^body^^^: ^^^%(body)^^^
 
   # cleanup - replace " with \"
   # substitute ^^^ with "

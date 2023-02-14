@@ -64,7 +64,7 @@ def formatTable:
   # +"\(.authorDate) "
   # +"\(.authorName|lp(20)) "
   +"\(.subject|_gs8) "
-  +"\(.body | trunc(70) | _gs4 ) "
+  # +"\(.body | trunc(70) | _gs4 ) "
   ;
 
 def _sortBy($sortBy; $rev):
