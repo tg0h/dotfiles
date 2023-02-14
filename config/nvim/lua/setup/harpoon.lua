@@ -40,7 +40,7 @@ map("n", "<C-s>", ":lua require('harpoon.ui').nav_file(4)<CR>", default_options)
 
 -- map("n", "<C-M-h>", ":lua require('harpoon.ui').nav_file(5)<CR>", default_options)
 -- map("n", "<C-M-t>", ":lua require('harpoon.ui').nav_file(6)<CR>", default_options)
-map("n", "<C-M-n>", ":lua require('harpoon.ui').nav_file(5)<CR>", default_options)
-map("n", "<C-M-s>", ":lua require('harpoon.ui').nav_file(6)<CR>", default_options)
+-- map("n", "<C-M-n>", ":lua require('harpoon.ui').nav_file(5)<CR>", default_options)
+-- map("n", "<C-M-s>", ":lua require('harpoon.ui').nav_file(6)<CR>", default_options)
 
 map("n", "<C-M-b>", ":lua require('harpoon.mark').add_file()<CR>", default_options)
