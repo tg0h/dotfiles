@@ -12,7 +12,7 @@ capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 -- })
 
 local servers = {
-    "tsserver", "jsonls", "dockerls", "yamlls", "sumneko_lua",
+    "tsserver", "jsonls", "dockerls", "yamlls", "lua_ls",
     "solargraph", "pyright", "sqlls", "eslint"
 }
 
@@ -49,30 +49,23 @@ for _, lsp in ipairs(servers) do
                 hover = true
             },
 
-            Lua = {
-                cmd = {"lua-language-server"},
-                filetypes = {"lua"},
-                runtime = {
-                    version = "LuaJIT",
-                    path = vim.split(package.path, ";")
-                },
-                completion = {enable = true, callSnippet = "Both"},
-                diagnostics = {
-                    enable = true,
-                    globals = {"vim", "describe"},
-                    disable = {"lowercase-global"}
-                },
-                workspace = {
-                    library = {
-                        vim.api.nvim_get_runtime_file("", true),
-                        [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-                        [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true
-                    },
-                    -- adjust these two values if your performance is not optimal
-                    maxPreload = 2000,
-                    preloadFileSize = 1000
-                },
-                telemetry = {enable = false}
+            Lua = { 
+              runtime = {
+                -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+                version = 'LuaJIT',
+              },
+              diagnostics = {
+                -- Get the language server to recognize the `vim` global
+                globals = {'vim'},
+              },
+              workspace = {
+                -- Make the server aware of Neovim runtime files
+                library = vim.api.nvim_get_runtime_file("", true),
+              },
+              -- Do not send telemetry data containing a randomized but unique identifier
+              telemetry = {
+                enable = false,
+              },
             }
         }
     }
