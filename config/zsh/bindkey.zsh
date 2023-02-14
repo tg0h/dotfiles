@@ -46,7 +46,7 @@ bindkey '^[^V' fzf-docker-image-widget
 
 # npm
 zle -N fzf-search-package-widget
-bindkey '^[^h' fzf-search-package-widget
+bindkey '^[^s' fzf-search-package-widget
 zle -N fzf-search-package-downwards-widget
 bindkey '^[^n' fzf-search-package-downwards-widget
 zle -N fzf-search-package-json-widget
@@ -125,7 +125,7 @@ zle -N fzf-yarn-widget
 bindkey '^[w' fzf-yarn-widget
 
 zle -N fzf-scratcher-cheat-widget
-bindkey '^[^s' fzf-scratcher-cheat-widget
+# bindkey '^[^s' fzf-scratcher-cheat-widget
 # https://stackoverflow.com/questions/28819359/in-zsh-how-do-i-bind-a-keyboard-shortcut-to-run-the-last-command
 # run the last command if pressing enter with empty buffer!!
 # override the accept-line widget
