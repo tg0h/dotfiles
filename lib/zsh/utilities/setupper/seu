@@ -2,23 +2,32 @@
 
 function seu(){
   # setupper - set up projects
+  # -p - add prettier
+  # -l - add eslint
+  # -a - all - add both prettier and eslint
 
-  local verbose quiet
-  while getopts 'vq' opt; do
+  local verbose quiet pretty lint all
+  while getopts 'vqpla' opt; do
     case "$opt" in
       v) verbose=true;;
       q) quiet=true;;
+      p) pretty=true;;
+      l) lint=true;;
+      a) all=true;;
     esac
   done
   shift $(($OPTIND - 1))
 
-  local prettierYml=$DOTFILES/templates/eslint/.eslintrc.yml
-  local eslintYml=$DOTFILES/templates/prettier/.prettierrc.yml
+  local prettierYml=$DOTFILES/templates/prettier/.prettierrc.yml
+  local eslintYml=$DOTFILES/templates/eslint/.eslintrc.yml
 
-  echo copying $prettierYml to here
-  cp $prettierYml .
+  if [ $pretty ] || [ $all ]; then
+    echo copying $prettierYml to here
+    cp $prettierYml .
+  fi
 
-  echo copying $eslintYml to here
-  cp $eslintYml .
-
+  if [ $lint ] || [ $all ]; then
+    echo copying $eslintYml to here
+    cp $eslintYml .
+  fi
 }

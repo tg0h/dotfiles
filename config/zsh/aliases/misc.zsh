@@ -65,6 +65,8 @@ alias norg="gron --ungron"
 alias vpn="networksetup -connectpppoeservice 'edo vpn'"
 alias dvpn="networksetup -disconnectpppoeservice 'edo vpn'"
 
+alias seup="seu -p"
+
 function take() {
 # copied from oh-my-zsh/lib/functions.zsh
   mkdir -p $@ && cd ${@:$#}
