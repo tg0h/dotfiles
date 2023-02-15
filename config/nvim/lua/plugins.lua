@@ -240,10 +240,12 @@ return require("packer").startup({
         use {"~/src/me/nvim/gitdiffer"}
         -- use {"kana/vim-textobj-user"}
         -- iv and av text objects for snake_case and camelCase
-        use {
-            "Julian/vim-textobj-variable-segment",
-            requires = {"kana/vim-textobj-user"}
-        }
+
+        -- use {
+        --     "Julian/vim-textobj-variable-segment",
+        --     requires = {"kana/vim-textobj-user"}
+        -- }
+
         use {"jxnblk/vim-mdx-js"}
         use "fladson/vim-kitty" -- syntax highlighting for kitty
         use {"knubie/vim-kitty-navigator", run='cp ./*.py ~/.config/kitty/'}
