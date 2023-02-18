@@ -22,6 +22,8 @@ rshift + ralt + rctrl - l : yabai -m space --rotate 270
 lshift + lctrl + lalt + lcmd - c : yabai -m space --destroy
 lshift + lctrl + lalt + lcmd - g : yabai -m space --create
 
+lshift + lctrl + lalt + lcmd - b : yabai -m space --balance # rebalance all windows after resizing them
+
 # Space harpoon
 rshift + ralt + rctrl + lcmd - h : yabai -m space --focus 1
 rshift + ralt + rctrl + lcmd - t : yabai -m space --focus 2
