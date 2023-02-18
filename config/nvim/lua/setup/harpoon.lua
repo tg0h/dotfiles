@@ -28,7 +28,7 @@ require("harpoon").setup({
     }
 })
 
-map("n", "<C-e>", ":lua require('harpoon.ui').toggle_quick_menu()<CR>",
+map("n", "<C-b>", ":lua require('harpoon.ui').toggle_quick_menu()<CR>",
     default_options)
 map("n", "<C-space>", ":lua require('harpoon.ui').toggle_quick_menu()<CR>",
     default_options)
