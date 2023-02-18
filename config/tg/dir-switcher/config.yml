@@ -24,7 +24,7 @@ keymaps:
   # Bottom row
   - [b, $HOME/Documents/notes]
   - [m, $HOME/src/me/wiki/projects/ou]
-  - [w, $HOME/src/me/wiki, 5]
+  - [w, $HOME/src/me/wiki, 8]
   - [v, $HOME/Documents/candy/wiki, 5]
   - [z, $HOME/dotfiles, 4]
 
@@ -71,8 +71,8 @@ keymaps:
   # SRC
   - [d, $HOME/src/candy/db]
   - [j, $HOME/src/candy/db]
-  - ["s,", $HOME/src/candy-main/referralcandy-main]
   - [s., $HOME/src/candy/main/referralcandy-main, 5]
+  - ["s,", $HOME/src/candy/main2/referralcandy-main]
   - [sa, $HOME/src/candy/playground/github-actions]
   - [sb, $HOME/src/candy/old/business]
   - [sc, $HOME/src/candy, 5, \\.git$, true, true, dirname | xargs dirname]
