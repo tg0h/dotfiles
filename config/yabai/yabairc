@@ -22,7 +22,8 @@ yabai -m config top_padding 0
 
 # global settings
 yabai -m config mouse_follows_focus          on
-yabai -m config focus_follows_mouse          autofocus
+# yabai -m config focus_follows_mouse          autofocus
+yabai -m config focus_follows_mouse          autoraise
 
 # new windows go to the right/bottom
 yabai -m config window_placement             second_child
@@ -38,7 +39,7 @@ yabai -m config split_ratio                  0.50
 yabai -m config auto_balance                 off
 
 # Mouse support
-yabai -m config mouse_modifier               alt
+yabai -m config mouse_modifier               fn
 yabai -m config mouse_action1                move
 yabai -m config mouse_action2                resize
 
