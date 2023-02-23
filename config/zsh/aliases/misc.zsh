@@ -7,6 +7,8 @@ alias h='https'
 alias j='lnav .'
 alias tt='tail -n 20 -f /tmp/tim/log'
 
+alias p.=pm2
+
 alias which-command='which'
 
 alias ccc='_fsc && zsh-compile-functions' # compile dir switcher and functions
