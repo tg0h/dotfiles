@@ -5,6 +5,12 @@ rshift + ralt + rctrl + lshift - t : yabai -m window --space recent; yabai -m sp
 # zoom
 rshift + ralt + rctrl - z : yabai -m window --toggle zoom-fullscreen # enter fullscreen mode for the focused container
 
+
+# how to resize windows
+# https://github.com/koekeishiya/yabai/issues/200
+rshift + ralt + rctrl - left : yabai -m window --resize left:10:0
+rshift + ralt + rctrl - right : yabai -m window --resize right:10:0
+
 # Cycling
 # cycle through bsp/stack windows RMeh-/
 # rshift + ralt + rctrl - 0x2C : yabai -m window --focus stack.next || yabai -m window --focus next || yabai -m window --focus stack.first || yabai -m window --focus first # only works for bsp windows, not floating windows
