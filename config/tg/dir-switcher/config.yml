@@ -72,6 +72,8 @@ keymaps:
   - [d, $HOME/src/candy/db]
   - [j, $HOME/src/candy/db]
   - [s., $HOME/src/candy/main/referralcandy-main, 5]
+  - [s2, $HOME/src/candy/main2/referralcandy-main, 5]
+  - [st, $HOME/src/candy/old/customer-tracks/]
   - ["s,", $HOME/src/candy/main2/referralcandy-main]
   - [sa, $HOME/src/candy/playground/github-actions]
   - [sb, $HOME/src/candy/old/business]
@@ -86,7 +88,7 @@ keymaps:
   - [sp, $HOME/src/candy/old/pentel]
   - [sr, $HOME/src/candy/old/referral_corner]
   - [sm, $HOME/src/candy/old/candymold]
-  - [st, $HOME/src/candy/old/candymold/tools]
+  # - [st, $HOME/src/candy/old/candymold/tools]
   - [sw, $HOME/src/candy/old/webapp/]
 
   - [su, $HOME/src/udemy, 4, \\.git$, true, true, dirname | xargs dirname]
