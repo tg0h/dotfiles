@@ -2,5 +2,9 @@
 
 function dt(){
   mkdir -p /tmp/tim
+
+  # setup prettier and eslint config files in tmp so that i can create scratch js files in /tmp/tim
+  [[ ! -f /tmp/.prettierrc.yml ]] && ln -s $DOTFILES/templates/prettier/.prettierrc.yml /tmp/.prettierrc.yml
+  [[ ! -f /tmp/.eslintrc.yml ]] && ln -s $DOTFILES/templates/eslint/.eslintrc.yml /tmp/.eslintrc.yml
   cd /tmp/tim
 }
