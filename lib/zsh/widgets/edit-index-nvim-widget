@@ -1,0 +1,8 @@
+#!/bin/zsh
+
+function edit-index-nvim-widget() {
+  if [[ $BUFFER != "nvim "* ]]; then
+    BUFFER="nvim index.mjs"
+    zle accept-line
+  fi
+}

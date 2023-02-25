@@ -116,6 +116,10 @@ zle -N execute-buffer-with-git-show-widget
 zle -N execute-index-node-widget
 bindkey '^[^m' execute-index-node-widget
 
+zle -N edit-index-nvim-widget
+# ctrl-, works with kitty map which maps ctrl- to ctrln
+bindkey '^]' edit-index-nvim-widget
+
 zle -N execute-buffer-with-node-widget
 # works with kitty map
 bindkey '^J' execute-buffer-with-node-widget
