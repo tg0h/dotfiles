@@ -90,6 +90,7 @@
 ; [color]
 ;   ui = auto
 [push]
+  # no more git push --set-upstream origin <branchName>, use autoSetupRemote below
   autoSetupRemote = true # automatically push the local branch to origin under the same branch name
 [rebase]
   autosquash = true
