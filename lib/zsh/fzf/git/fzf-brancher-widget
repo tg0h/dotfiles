@@ -6,11 +6,13 @@ function fzf-brancher-widget(){
   is_in_git_repo || return
 
   local HEADER=$(cat <<-EOF
-   ⌃ r - remove selected branch (in place)
-   ⌥ d - delete selected branch(es)
+   --- in place
+   ⌃ r - remove selected branch
+   ⌥ r - delete selected remote branch
+   --- exits fzf
+   ⌥ d - delete selected branches
   ⌃⌥ d - delete all local branches
-   ⌥ r - delete selected remote branches
-  ⌃⌥ r - delete all timg remote branches
+  ⌃⌥ r - delete all timg/ remote branches
    ⌃ s - switch to recent branch
    ⌥ g - ⌥ c - ⌥ r 
 EOF
@@ -45,12 +47,6 @@ EOF
       )+change-prompt(sort-commit-date>)' \
       --bind 'ctrl-h:down' \
       --bind 'ctrl-t:up' \
-      --bind "ctrl-r:reload(
-                # reverse
-                printf 's' > \"${sortBy_tmp_file}\"; 
-                _fzf-docker-image-widget-toggle \"${reverse_tmp_file}\" reverse;
-                _fzf-brancher-widget-state \"${sortBy_tmp_file}\" ${reverse_tmp_file} ${filter_tmp_file};
-              )+change-prompt(size> )" \
       --bind "alt-g:reload(
                 # toggle my branches
                 _fzf-docker-image-widget-toggle \"${filter_tmp_file}\" m a;
@@ -64,6 +60,9 @@ EOF
       --bind "ctrl-r:reload(
                 gbl
               )+execute-silent( git branch -D {6})" \
+      --bind "alt-r:reload(
+                gbl
+              )+execute-silent( gbdr -d {6})" \
       --expect=alt-d,ctrl-alt-d,ctrl-alt-r,ctrl-s
   )
 
@@ -109,21 +108,21 @@ EOF
     return
   fi
 
-  if [ "$key" = alt-r ]; then
-    local branches=()
-     while IFS= read -r gitbranchline ; do 
-       # remove *
-       local branch=$(sed s/^\*// <<< $gitbranchline | choose 5)
-       branches+=($branch)
-     done <<< "$targets"
-
-     echo branches are $branches
-     for branch in $branches; do
-       git branch -r -d $branch
-     done
-     zle reset-prompt
-     return
-  fi
+  # if [ "$key" = alt-r ]; then
+  #   local branches=()
+  #    while IFS= read -r gitbranchline ; do 
+  #      # remove *
+  #      local branch=$(sed s/^\*// <<< $gitbranchline | choose 5)
+  #      branches+=($branch)
+  #    done <<< "$targets"
+  #
+  #    echo branches are $branches
+  #    for branch in $branches; do
+  #      git branch -r -d $branch
+  #    done
+  #    zle reset-prompt
+  #    return
+  # fi
 
   if [ $target1 ]; then
      # the targetBranch ref name may contain a prefix eg origin/...
