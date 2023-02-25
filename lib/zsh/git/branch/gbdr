@@ -1,22 +1,42 @@
 #!bin/zsh
 
 function gbdr(){
-  # delete remote branches
+  # delete remote branches - always excludes main and master branch
   # EXAMPLES:
   # gbdr <search string>  - dry run echo what you would have deleted
   # gbdr -d <search string> - delete remote origin branch
   # additional safety hatch - always exclude main/master branch
+  # throws an error if you are trying to delete a currently checked out branch
+  # -s - match branches starting with search string only eg -s timg matches remote branches origin/timg...
 
-  local force="" delete
-  while getopts 'd' opt; do
+  local force="" delete startsWith originBranchName rgSearch
+  while getopts 'ds' opt; do
     case "$opt" in
       d) delete=true;;
+      s) startsWith=true;;
     esac
   done
   shift $(($OPTIND - 1))
 
   # default rg search to everything (.)
-  local search=${1-.}
+  local searchArg=${1-.}
+
+  # remove origin/ prefix from any search string
+  # eg the git brancher widget passes branch names to delete with an origin/ prefix
+  # it is also unlikely that a branch name will contain origin
+  rgSearch=$searchArg
+
+  if [ $startsWith ]; then
+    rgSearch="^$searchArg"
+  fi
+
+  # override rgSearch if searchArg begins with origin/timSearch
+  # if searchArg is 'origin/timg' then we want to search with '^timg' without 'origin/'
+  if [[ $searchArg == origin/* ]]; then
+    originBranchName=$(sed s#^origin/## <<< $searchArg)
+    rgSearch="^$originBranchName"
+  fi
+
 
   local exclude=()
   exclude+=("-e=main")
@@ -25,10 +45,10 @@ function gbdr(){
   # git branch -r | rg timg | xargs -P 0 -n 1 -I{} git branch -D {}
   # exclude origin from origin/timg/branchName with cut -d/ -f2- (second field onwards)
   if [ $delete ]; then
-    git branch -r | cut -d/ -f2- | rg -v $exclude | rg $search | xargs -P 0 -n 1 -I{} git push -d origin {}
+    git branch -r | cut -d/ -f2- | rg -v $exclude | rg $rgSearch | xargs -P 0 -n 1 -I{} git push -d origin {}
   else
     # default to dry run if no options passed
-    git branch -r | cut -d/ -f2- | rg -v $exclude | rg $search 
+    git branch -r | cut -d/ -f2- | rg -v $exclude | rg $rgSearch 
   fi
 }
 
