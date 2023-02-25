@@ -1,9 +1,22 @@
 #!/bin/zsh
 
 function execute-index-node-widget() {
-  # if [[ $BUFFER != "nvim "* ]]; then
-    BUFFER="node index.mjs"; CURSOR+=2
-    zle accept-line
-  # fi
+  # exceute index.js|.mjs|.ts files in current directory
+  local cwd=$(pwd)
+  local indexFile
+
+  if [[ -f $cwd/index.ts ]]; then
+    BUFFER="ts-node --esm index.ts"
+  elif [[ -f $cwd/index.js ]]; then
+    indexFile=index.js
+    BUFFER="node $indexFile"
+  elif [[ -f $cwd/index.mjs ]]; then
+    indexFile=index.mjs
+    BUFFER="node $indexFile"
+  else
+    return
+  fi
+
+  zle accept-line
 }
  execute-index-node-widget
