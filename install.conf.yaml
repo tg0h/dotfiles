@@ -45,6 +45,10 @@
     # folder which will then appear in my dotfiles repo :|
     ~/.dotfiles: ~/dotfiles
 
+    # set up default prettier and eslint config for playground projects
+    ~/src/playground/.prettierrc.yml: templates/prettier/.prettierrc.yml
+    ~/src/playground/.eslintrc.yml: templates/eslint/.eslintrc.yml
+
     ~/.config/:
       path: config/*/**
       exclude:
