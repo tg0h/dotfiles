@@ -1,0 +1,9 @@
+#!/bin/zsh
+
+function execute-index-node-widget() {
+  # if [[ $BUFFER != "nvim "* ]]; then
+    BUFFER="node index.mjs"; CURSOR+=2
+    zle accept-line
+  # fi
+}
+ execute-index-node-widget
