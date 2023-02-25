@@ -1,7 +1,3 @@
-function dt(){
-  mkdir -p /tmp/tim
-  cd /tmp/tim
-}
 # alias c.='cd ~/src/playground/cdk'
 alias c.='cd ~/src/playground/cdk/cdk-workshop'
 alias c,='cd ~/src/playground/candy/referralcandy-secondary'
@@ -9,7 +5,7 @@ alias c,='cd ~/src/playground/candy/referralcandy-secondary'
 alias s.='cd ~/src/candy/main/referralcandy-main'
 
 alias dt.='cd ~/Documents/tim'
-alias d.='cd $HOME/dotfiles'
+alias d.='dt'
 alias dd='cd $HOME/dotfiles'
 alias dl='cd $HOME/downloads'
 # alias dp='cd /tmp' - use :t instead

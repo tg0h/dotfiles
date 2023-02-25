@@ -1,6 +1,7 @@
 #!/bin/zsh
 
 function dt(){
+  # use d. alias instead... faster
   mkdir -p /tmp/tim
 
   # setup prettier and eslint config files in tmp so that i can create scratch js files in /tmp/tim
