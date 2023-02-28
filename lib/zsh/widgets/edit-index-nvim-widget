@@ -1,8 +1,24 @@
 #!/bin/zsh
 
 function edit-index-nvim-widget() {
-  if [[ $BUFFER != "nvim "* ]]; then
-    BUFFER="nvim index.mjs"
-    zle accept-line
+  local cwd=$(pwd)
+  local indexFile
+
+  if [[ -f $cwd/index.ts ]]; then
+    indexFile=index.ts
+    BUFFER="nvim $indexFile"
+  elif [[ -f $cwd/index.js ]]; then
+    indexFile=index.js
+    BUFFER="nvim $indexFile"
+  elif [[ -f $cwd/index.mjs ]]; then
+    indexFile=index.mjs
+    BUFFER="nvim $indexFile"
+  else
+    # if no file, create index.mjs
+    indexFile=index.mjs
+    BUFFER="nvim $indexFile"
+    # return
   fi
+
+  zle accept-line
 }
