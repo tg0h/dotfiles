@@ -10,9 +10,9 @@ function fzf-docker-container-widget() {
     # --layout "reverse-list" \
 
   local HEADER=$(cat <<-EOF
-     ⌃ T/V - inspect/verbose
-     ⌃ A   - all containers
-     ⌃ R   - active containers
+     ⌃ T | ⌃ V  - inspect | verbose
+     ⌃ A | ⌃ H  - all     | active containers
+     ⌃ C | ^ R  - kill    | remove
 EOF
 )
   local fzfOut
@@ -22,7 +22,13 @@ EOF
     --height 95% \
     --preview 'dcin {1}' \
     --bind "ctrl-a:reload(dcla)" \
-    --bind "ctrl-r:reload(dcl)" \
+    --bind "ctrl-h:reload(dcl)" \
+    --bind "ctrl-c:reload(
+              dcl
+            )+execute-silent( docker container kill {1})" \
+    --bind "ctrl-r:reload(
+              dcl
+            )+execute-silent( docker container rm --force {1})" \
     --expect 'ctrl-t,ctrl-v'
   )
 
