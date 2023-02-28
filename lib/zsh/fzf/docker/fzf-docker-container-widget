@@ -10,26 +10,32 @@ function fzf-docker-container-widget() {
     # --layout "reverse-list" \
 
   local HEADER=$(cat <<-EOF
-     ⌃ T | ⌃ V  - inspect | verbose
+     ⌥ I | ⌃ V  - inspect | verbose               ⌥ R | refresh
      ⌃ A | ⌃ H  - all     | active containers
-     ⌃ C | ^ R  - kill    | remove
+     ⌃ C | ⌃ R  | ⌃ T - kill | remove | start
 EOF
 )
   local fzfOut
-  fzfOut=$(dcl | fzf \
-    --preview-window 'bottom,border-horizontal,80%' \
+  fzfOut=$(dcla | fzf \
+    --preview-window 'bottom,border-horizontal,70%' \
     --header=$HEADER \
     --height 95% \
     --preview 'dcin {1}' \
     --bind "ctrl-a:reload(dcla)" \
     --bind "ctrl-h:reload(dcl)" \
     --bind "ctrl-c:reload(
-              dcl
+              sleep 0.9; dcla
             )+execute-silent( docker container kill {1})" \
     --bind "ctrl-r:reload(
-              dcl
+              sleep 0.5; dcla
             )+execute-silent( docker container rm --force {1})" \
-    --expect 'ctrl-t,ctrl-v'
+    --bind "ctrl-t:reload(
+              sleep 0.9; dcla
+            )+execute-silent( docker container start {1})" \
+    --bind "alt-r:reload(
+              dcla
+            )" \
+    --expect 'alt-i,ctrl-v'
   )
 
   local key=$(head -1 <<< "$fzfOut")
@@ -39,7 +45,7 @@ EOF
   local selectedId=$(gawk '{print $1}' <<< "$selection1")
 
   if [ $selectedId ]; then
-    if [ "$key" = ctrl-t ]; then
+    if [ "$key" = alt-i ]; then
       dcin $selectedId
     elif [ "$key" = ctrl-v ]; then
       dcin -v $selectedId
