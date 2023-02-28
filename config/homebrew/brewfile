@@ -210,3 +210,4 @@ brew 'consul'
 # tap 'zegervdv/zathura'
 # brew 'zathura', args: ['HEAD']
 # brew 'zathura-pdf-mupdf'
+brew 'rabbitmq'
