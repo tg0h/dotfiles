@@ -211,3 +211,4 @@ brew 'consul'
 # brew 'zathura', args: ['HEAD']
 # brew 'zathura-pdf-mupdf'
 brew 'rabbitmq'
+brew 'duf'
