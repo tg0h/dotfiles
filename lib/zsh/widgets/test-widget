@@ -1,0 +1,6 @@
+#!/bin/zsh
+
+function test-widget() {
+  BUFFER="LOG_LEVEL=error nt . npx ava $BUFFER";
+  zle accept-line
+}

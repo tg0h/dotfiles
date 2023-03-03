@@ -14,7 +14,7 @@ bindkey '^[^h' run-help
 bindkey '^[^r' redo
 
 # alt-ctrl-t to transpose words
-bindkey '^[^t' transpose-words
+# bindkey '^[^t' transpose-words
 
 # replace current region with contents of kill buffer
 bindkey '^[v' put-replace-selection
@@ -151,3 +151,6 @@ bindkey -M emacs '^[c' fzf-my-dir-widget
 # bindkey -M emacs '^[^z' fzf-my-dir-widget
 zle     -N            fzf-my-history-widget
 bindkey -M emacs '^R' fzf-my-history-widget
+
+zle     -N            test-widget
+bindkey '^[^t'        test-widget
