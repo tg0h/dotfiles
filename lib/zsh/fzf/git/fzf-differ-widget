@@ -21,7 +21,7 @@ EOF
     local out=$( git diff main... --name-only |
     fzf --ansi --multi \
       --header=$HEADER \
-      --preview-window ~5,bottom,noborder,80% \
+      --preview-window ~5,bottom,noborder,60% \
       --preview "$preview" \
       --cycle \
       --bind 'ctrl-/:change-preview-window(right,80%|down,80%,border-top|hidden|)' \
