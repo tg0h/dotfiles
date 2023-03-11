@@ -23,13 +23,24 @@ function fzf-docker-image-widget() {
     printf '' > "${filter_tmp_file}"
   fi
 
+  local HEADER=$(cat <<-EOF
+       ⌃ T | ⌃ V        - inspect | verbose
+sort   ⌃ G | ⌃ C  | ⌃ R - created | repo | size (toggle to reverse sort order)
+filter ⌥ G | ⌥ C  | ⌥ R - candy | local | slash
+       ⌃ H              - remove
+EOF
+)
+
   fzfOut=$(dil | fzf \
-    --header="Docker Images: ⌃V Toggle-Sort:(⌃G ⌃C ⌃R) Toggle-Filter:(⌥G ⌥C ⌥R)"\
+    --header=$HEADER \
     --height ~95% \
     --expect 'ctrl-t,ctrl-v' \
     --preview 'dii {1}' \
     --preview-window 'right,noborder,wrap,68%,<100(50%)' \
     --prompt "created> " \
+    --bind "ctrl-h:reload(
+              _fzf-docker-image-widget-state \"${sortBy_tmp_file}\" ${reverse_tmp_file} ${filter_tmp_file};
+            )+execute-silent( docker image rm {1})" \
     --bind "ctrl-g:reload(
               printf 'c' > \"${sortBy_tmp_file}\"; 
               _fzf-docker-image-widget-toggle \"${reverse_tmp_file}\" reverse;
