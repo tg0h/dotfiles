@@ -49,6 +49,7 @@ return require("packer").startup({
             },
             config = get_setup("cmp")
         }
+        use {"mfussenegger/nvim-lint", config = get_setup("nvim-lint")}
 
         use {
             "neovim/nvim-lspconfig",
