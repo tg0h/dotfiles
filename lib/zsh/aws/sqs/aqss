@@ -1,0 +1,42 @@
+#!bin/zsh
+
+function aqss(){
+  # send sqs message (without message attributes)
+  # TODO: use --cli-input-json <json> to specify a message body to pass to qs
+  # generate the body from a template file
+  local localOpt
+  while getopts 'l' opt; do
+    case "$opt" in
+      l) localOpt=true;;
+    esac
+  done
+  shift $(($OPTIND - 1))
+
+
+  local joArgs=$(cat <<-EOF | tr -d "\n"
+  queue='delete-campaign'
+  task='delete-campaign'
+  data.client_id=92877
+  data.campaign_id=92208
+  delay=0
+EOF
+)
+
+  local msg=$(eval jo -d. $joArgs)
+  echo $msg
+
+  if [ -n "$localOpt" ]; then
+    echo sending to $AWS_LOCAL_QUEUE
+    echo sending --mssage-body $msg
+    echo sending --message-attributes $msgAtt
+    aws --endpoint-url $AWS_LOCAL_QUEUE_ENDPOINT sqs send-message --queue-url $AWS_LOCAL_QUEUE \
+      --message-body "$msg"
+      # --message-attributes $msgAtt
+  else
+    local queueUrl=${1:-$AWS_QUEUE_URL}
+    echo sending to $queueUrl
+    aws sqs send-message --queue-url $queueUrl \
+      --message-body "$msg"
+      # --message-attributes $msgAtt
+  fi
+}
