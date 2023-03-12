@@ -1,5 +1,5 @@
 # see https://github.com/Koihik/LuaFormatter/blob/master/docs/Style-Config.md
-column_limit: 80
+column_limit: 120
 indent_width: 4
 use_tab: false
 tab_width: 4
@@ -22,11 +22,11 @@ break_before_table_rb: true
 chop_down_table: false
 chop_down_kv_table: true
 table_sep: ","
-column_table_limit: 0
+# column_table_limit: 0
 extra_sep_at_table_end: false
 spaces_inside_table_braces: false
 break_after_operator: true
-double_quote_to_single_quote: false
+double_quote_to_single_quote: true
 single_quote_to_double_quote: false
 spaces_around_equals_in_field: true
 line_breaks_after_function_body: 1
