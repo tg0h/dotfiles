@@ -270,6 +270,9 @@ return require("packer").startup({
         --     requires = {"nvim-lua/plenary.nvim"},
         --     config = get_setup("nvim-coverage")
         -- }
+
+        use({"rhysd/committia.vim"}) -- git commit buffer with splits
+
     end,
     config = {
         display = {
