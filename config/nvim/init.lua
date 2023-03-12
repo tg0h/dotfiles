@@ -1,4 +1,5 @@
 require("disable-plugins")
+require("utils")
 require("plugins")
 require("maps")
 require("options")

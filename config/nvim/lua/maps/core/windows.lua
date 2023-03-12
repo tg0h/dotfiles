@@ -12,3 +12,4 @@ map("n", "<S-A-e>", ":wincmd =<CR>", default_options) -- equal splits
 map("n", "<S-A-e>", ":wincmd =<CR>", default_options) -- equal splits
 map("n", "+", ":res +5<CR>", default_options) -- equal splits
 map("n", "-", ":res -5<CR>", default_options) -- equal splits
+map("n", "<A-d>", ":lua require'utils'.close_floating_windows()<CR>", default_options) -- close all floating windows (eg lsp hover windows)
