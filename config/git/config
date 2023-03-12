@@ -98,3 +98,5 @@
   mailmap = true
 [mailmap]
   file = ~/.config/git/mailmap
+[commit]
+  verbose = true ; show splits in git commit buffer with status and diff
