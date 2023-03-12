@@ -1,5 +1,6 @@
 require('disable-plugins')
 require('utils')
+require('diagnostic')
 require('plugins')
 require('maps')
 require('options')
