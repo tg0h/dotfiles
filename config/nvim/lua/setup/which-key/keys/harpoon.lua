@@ -1,8 +1,8 @@
 local M = {
-    name = "Harpoon",
-    b = {"<CMD>lua require('harpoon.dev').reload()<CR>", "Reload Harpoon"},
+    name = 'Harpoon',
+    b = {'<CMD>lua require(\'harpoon.dev\').reload()<CR>', 'Reload Harpoon'},
 
-    s = {"<CMD>lua require('harpoon.mark').add_file()<CR>", "Add file"},
+    s = {'<CMD>lua require(\'harpoon.mark\').add_file()<CR>', 'Add file'},
 
     -- o = {
     --     "<CMD>lua require('harpoon.tmux').gotoTerminal(2)<CR>",
@@ -42,14 +42,11 @@ local M = {
     --     "Send Command 1 to Terminal 2"
     -- },
 
-    t = {"<CMD>Telescope harpoon marks<CR>", "Telescope harpoon marks"},
+    t = {'<CMD>Telescope harpoon marks<CR>', 'Telescope harpoon marks'},
 
-    j = {"<CMD>lua require('harpoon.ui').nav_next()<CR>", "Next mark"},
-    k = {"<CMD>lua require('harpoon.ui').nav_previous()<CR>", "Previous mark"},
+    j = {'<CMD>lua require(\'harpoon.ui\').nav_next()<CR>', 'Next mark'},
+    k = {'<CMD>lua require(\'harpoon.ui\').nav_previous()<CR>', 'Previous mark'},
 
-    u = {
-        "<CMD>lua require('harpoon.cmd-ui').toggle_quick_menu()<cr>",
-        "Open Menu"
-    }
+    u = {'<CMD>lua require(\'harpoon.cmd-ui\').toggle_quick_menu()<cr>', 'Open Menu'}
 }
 return M

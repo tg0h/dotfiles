@@ -1,4 +1,4 @@
-require"colorizer".setup()
+require'colorizer'.setup()
 -- lua feature - pcall means protected call
 -- local status_ok, colorizer = pcall(require, "colorizer")
 -- if not status_ok then
@@ -7,7 +7,7 @@ require"colorizer".setup()
 -- colorizer.setup({ "*" }, {
 
 -- for all filetypes, enable all the options
-require"colorizer".setup({"*"}, {
+require'colorizer'.setup({'*'}, {
     RGB = true, -- #RGB hex codes
     RRGGBB = true, -- #RRGGBB hex codes
     RRGGBBAA = true, -- #RRGGBBAA hex codes

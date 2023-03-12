@@ -1,39 +1,14 @@
-require("gitsigns").setup {
+require('gitsigns').setup {
     keymaps = {
         -- Default keymap options
         noremap = false
     },
     signs = {
-        add = {
-            hl = "GitSignsAdd",
-            text = "│",
-            numhl = "GitSignsAddNr",
-            linehl = "GitSignsAddLn"
-        },
-        change = {
-            hl = "GitSignsChange",
-            text = "│",
-            numhl = "GitSignsChangeNr",
-            linehl = "GitSignsChangeLn"
-        },
-        delete = {
-            hl = "GitSignsDelete",
-            text = "_",
-            numhl = "GitSignsDeleteNr",
-            linehl = "GitSignsDeleteLn"
-        },
-        topdelete = {
-            hl = "GitSignsDelete",
-            text = "‾",
-            numhl = "GitSignsDeleteNr",
-            linehl = "GitSignsDeleteLn"
-        },
-        changedelete = {
-            hl = "GitSignsChange",
-            text = "~",
-            numhl = "GitSignsChangeNr",
-            linehl = "GitSignsChangeLn"
-        }
+        add = {hl = 'GitSignsAdd', text = '│', numhl = 'GitSignsAddNr', linehl = 'GitSignsAddLn'},
+        change = {hl = 'GitSignsChange', text = '│', numhl = 'GitSignsChangeNr', linehl = 'GitSignsChangeLn'},
+        delete = {hl = 'GitSignsDelete', text = '_', numhl = 'GitSignsDeleteNr', linehl = 'GitSignsDeleteLn'},
+        topdelete = {hl = 'GitSignsDelete', text = '‾', numhl = 'GitSignsDeleteNr', linehl = 'GitSignsDeleteLn'},
+        changedelete = {hl = 'GitSignsChange', text = '~', numhl = 'GitSignsChangeNr', linehl = 'GitSignsChangeLn'}
     },
     signcolumn = true, -- Toggle with :Gitsigns toggle_signs`
     numhl = true, -- Toggle with `:Gitsigns toggle_numhl`
@@ -50,9 +25,9 @@ require("gitsigns").setup {
     max_file_length = 40000,
     preview_config = {
         -- Options passed to nvim_open_win
-        border = "single",
-        style = "minimal",
-        relative = "cursor",
+        border = 'single',
+        style = 'minimal',
+        relative = 'cursor',
         row = 0,
         col = 1
     },
