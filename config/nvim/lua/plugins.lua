@@ -25,8 +25,16 @@ return require('packer').startup({
         use {'sainnhe/sonokai', config = get_setup('sonokai')}
 
         use {
+            'nvim-tree/nvim-tree.lua',
+            requires = {
+                'nvim-tree/nvim-web-devicons' -- optional, for file icon
+            },
+            config = get_setup('nvim-tree')
+        }
+
+        use {
             'nvim-lualine/lualine.nvim',
-            requires = {'kyazdani42/nvim-web-devicons', opt = true},
+            requires = {'nvim-tree/nvim-web-devicons', opt = true},
             config = get_setup('lualine')
         }
 
@@ -70,14 +78,6 @@ return require('packer').startup({
         use {'nvim-telescope/telescope-frecency.nvim', requires = {'tami5/sqlite.lua'}}
 
         use {
-            'kyazdani42/nvim-tree.lua',
-            requires = {
-                'kyazdani42/nvim-web-devicons' -- optional, for file icon
-            },
-            config = get_setup('nvim-tree')
-        }
-
-        use {
             'lewis6991/gitsigns.nvim',
             requires = {'nvim-lua/plenary.nvim'},
             event = 'BufReadPre',
@@ -86,7 +86,7 @@ return require('packer').startup({
 
         use {
             'folke/trouble.nvim',
-            requires = 'kyazdani42/nvim-web-devicons',
+            requires = 'nvim-tree/nvim-web-devicons',
             cmd = {'TroubleToggle', 'Trouble'},
             config = get_setup('trouble')
         }
@@ -112,7 +112,7 @@ return require('packer').startup({
         use {
             'akinsho/nvim-bufferline.lua',
             branch = 'main',
-            requires = 'kyazdani42/nvim-web-devicons',
+            requires = 'nvim-tree/nvim-web-devicons',
             event = 'BufReadPre',
             config = get_setup('bufferline')
         }
