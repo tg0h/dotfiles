@@ -19,3 +19,5 @@ require('maps.plugins.vim-kitty-navigator')
 require('maps.plugins.nvim-coverage')
 
 require('maps.plugins.vim-dadbod-ui')
+
+require('maps.plugins.lsp-signature')

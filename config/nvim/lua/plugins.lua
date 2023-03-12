@@ -151,7 +151,7 @@ return require('packer').startup({
         use {'mhartington/formatter.nvim', event = 'BufWritePre', config = get_setup('formatter')}
 
         use {'tweekmonster/startuptime.vim'}
-        use {'ray-x/lsp_signature.nvim', requires = {{'neovim/nvim-lspconfig'}}}
+        -- use {'ray-x/lsp_signature.nvim', requires = {{'neovim/nvim-lspconfig'}}}
         -- use {"ggandor/lightspeed.nvim", event = "BufReadPre"}
 
         -- to enable dot repeat for lightspeed
@@ -223,6 +223,7 @@ return require('packer').startup({
 
         use({'rhysd/committia.vim'}) -- git commit buffer with splits
 
+        use {'ray-x/lsp_signature.nvim', config = get_setup('lsp-signature')}
     end,
     config = {
         display = {open_fn = function() return require('packer.util').float({border = 'single'}) end},
