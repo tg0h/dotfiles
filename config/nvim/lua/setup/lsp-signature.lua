@@ -11,8 +11,8 @@ cfg = {
     -- This setting only take effect in insert mode, it does not affect signature help in normal
     -- mode, 10 by default
 
-    max_height = 12, -- max height of signature floating_window
-    max_width = 80, -- max_width of signature floating_window
+    max_height = 120, -- max height of signature floating_window
+    max_width = 150, -- max_width of signature floating_window
     noice = false, -- set to true if you using noice to render markdown
     wrap = true, -- allow doc/signature text wrap inside floating_window, useful if your lsp return doc/sig is too long
 
