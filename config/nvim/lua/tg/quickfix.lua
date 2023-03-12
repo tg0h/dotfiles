@@ -1,6 +1,7 @@
 local g = vim.g
 local cmd = vim.api.nvim_command
 
+-- used by maps/core/quick-fix.lua
 g.tg_quickfix_local = 0
 g.tg_quickfix_global = 0
 
