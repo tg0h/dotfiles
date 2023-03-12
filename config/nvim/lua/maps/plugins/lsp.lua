@@ -12,4 +12,4 @@ map('n', '<C-A-r>', ':lua vim.diagnostic.goto_next()<CR>', default_options) -- n
 
 map('n', '<C-A-l>', ':lua vim.diagnostic.open_float()<CR>', default_options) -- show diagnostic
 
-map('n', '<A-l>', ':lua vim.lsp.buf.signature_help()<CR>', default_options) -- signature help
+-- map('n', '<A-l>', ':lua vim.lsp.buf.signature_help()<CR>', default_options) -- signature help
