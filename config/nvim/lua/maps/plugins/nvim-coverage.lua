@@ -9,5 +9,6 @@ map("n", "<C-M-d>", ":lua require'coverage'.toggle()<CR>", default_options)
 map("n", "<C-M-n>", ":lua require'coverage'.jump_next('uncovered')<CR>", default_options)
 map("n", "<C-M-p>", ":lua require'coverage'.jump_prev('uncovered')<CR>", default_options)
 
-map("n", "<M-S-n>", ":lua require'coverage'.jump_next('partial')<CR>", default_options)
-map("n", "<M-S-p>", ":lua require'coverage'.jump_prev('partial')<CR>", default_options)
+-- S-A-n aka M-N used to open new split
+-- map("n", "<S-A-n>", ":lua require'coverage'.jump_next('partial')<CR>", default_options)
+-- map("n", "<S-A-p>", ":lua require'coverage'.jump_prev('partial')<CR>", default_options)
