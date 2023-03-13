@@ -1,7 +1,20 @@
 require'nvim-treesitter.configs'.setup {
     ensure_installed = {
-        'bash', 'cmake', 'dockerfile', 'go', 'html', 'javascript', 'typescript', 'json', 'ledger', 'lua', 'python',
-        'toml', 'yaml', 'markdown', 'ruby'
+        'bash',
+        'cmake',
+        'dockerfile',
+        'go',
+        'html',
+        'javascript',
+        'typescript',
+        'json',
+        'ledger',
+        'lua',
+        'python',
+        'toml',
+        'yaml',
+        'markdown',
+        'ruby'
     },
     ignore_install = {}, -- List of parsers to ignore installing
     highlight = {

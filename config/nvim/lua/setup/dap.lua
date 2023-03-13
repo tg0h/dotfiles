@@ -16,7 +16,8 @@ dap.configurations.javascript = {
         sourceMaps = true,
         protocol = 'inspector',
         console = 'integratedTerminal'
-    }, {
+    },
+    {
         -- For this to work you need to make sure the node process is started with the `--inspect` flag.
         name = 'Attach to process',
         type = 'node2',

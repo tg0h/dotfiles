@@ -23,7 +23,9 @@ require('lualine').setup {
         },
         lualine_x = {
             {'diagnostics', sources = {'nvim_diagnostic'}}, -- LSP diagnostics
-            'encoding', 'fileformat', 'filetype'
+            'encoding',
+            'fileformat',
+            'filetype'
         },
         lualine_y = {'progress'}, -- percentage of file shown
         lualine_z = {'location'} -- which file line and column
