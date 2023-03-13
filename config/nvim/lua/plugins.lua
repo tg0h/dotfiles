@@ -41,6 +41,15 @@ return require('packer').startup({
         use {'nvim-treesitter/nvim-treesitter', config = get_setup('treesitter'), run = ':TSUpdate'}
         use 'nvim-treesitter/nvim-treesitter-textobjects'
 
+        use({
+            "L3MON4D3/LuaSnip",
+            -- follow latest release.
+            -- tag = "v<CurrentMajor>.*",
+            -- install jsregexp (optional!:).
+            run = "make install_jsregexp",
+            config = get_setup('luasnip')
+        })
+
         use {
             'hrsh7th/nvim-cmp',
             requires = {
@@ -65,7 +74,7 @@ return require('packer').startup({
 
         use {'onsails/lspkind-nvim'}
 
-        use {'hrsh7th/vim-vsnip', config = get_setup('vsnip')}
+        -- use {'hrsh7th/vim-vsnip', config = get_setup('vsnip')}
         use {'rafamadriz/friendly-snippets', requires = {{'hrsh7th/vim-vsnip'}}}
 
         use({
