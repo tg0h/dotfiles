@@ -99,7 +99,12 @@ cmp.setup({
     },
 
     sources = {
-        {name = 'nvim_lsp'}, {name = 'buffer', keyword_length = 5}, {name = 'vsnip'}, {name = 'calc'}, {name = 'emoji'},
+        {name = 'nvim_lsp'},
+        {name = 'luasnip'},
+        {name = 'nvim_lua'},
+        {name = 'buffer', keyword_length = 5},
+        {name = 'calc'},
+        {name = 'emoji'},
         {name = 'path'}
     }
 
