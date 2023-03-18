@@ -27,7 +27,7 @@ function acds(){
 
   number=${number:-20}
   cluster=${cluster:-StagingCluster}
-  service=${@:-DaemonV2Service}
+  service=${@:-DaemonV2Service-default}
   [ -n "$debug" ] && echo number is $number >&2
 
   # service.status can be
