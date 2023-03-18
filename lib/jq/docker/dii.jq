@@ -32,6 +32,13 @@ def _env:
 
 def __entryPoint: if . == null then "" else . | join (" ") | _cs11 end;
 def _cmd: if . == null then "" else .|join(" ")|_m(.) end;
+
+# copied from dcin.jq
+def __exposedPortsValue: if length == 0 then "" else . end;
+def _exposedPorts: if . == null then "" else 
+    to_entries | map("\(.key|_brinkPink(.))\("->"|_g(.))\(.value|__exposedPortsValue)") | join ("\n \(ljust(18)) ")
+  end;
+
 def __volumeValue: if length == 0 then "" else . end ;
 def __volumes: if . == null then "" else
     to_entries | map("\(.key|__(.))\(":"|__(.))\(.value|__volumeValue)" ) | join ("\(" , "|__(.))")
@@ -44,6 +51,7 @@ def _config:
     + "\(.AttachStdin|__attachStdIn) \(.AttachStdout|__attachStdOut) \(.AttachStderr|__attachStdErr) "
     + "\(.Tty|__tty) \(.OpenStdin|__openStdIn) \(.StdinOnce|__stdInOnce)\n"
   +__HEADER2("Cmd: ")+ "\(.Cmd|_cmd)\n"
+  +__HEADER2("Exposed Ports: ")+ "\(.ExposedPorts|_exposedPorts)\n"
   +__HEADER2("Image: ")+ "\(__(.Image|_subSha256|trunc(10)))\n"
   +__HEADER2("Entry point: ")+"\(.Entrypoint|__entryPoint)\n"
   # +__HEADER2("Working Dir: ")+"\(.WorkingDir|__(.)//"")\n"
