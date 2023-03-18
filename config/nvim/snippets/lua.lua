@@ -1,4 +1,4 @@
-local ls = require("luasnip") -- {{{
+local ls = require("luasnip") -- {{{local ls = require("luasnip") -- {{{local ls = require("luasnip") -- {{{local ls = require("luasnip") -- {{{
 local s = ls.s -- > snippet
 local i = ls.i -- > insert node
 local t = ls.t -- > text node
@@ -139,10 +139,39 @@ local {} = {}kj
 
 -- Tutorial Snippets go here --
 --
-local myFirstSnippet = s("myFirstSnippet", {t("Hi! this is my first snippet in LuaSnip")})
+-- local myFirstSnippet = s("myFirstSnippet", {
+--     t("Hi! wzas is my first snippet in LuaSnip"),
+--     i(1, 'placeholder text'),
+--     t({'', 'this is another text node'})
+-- })
+--
+-- table.insert(snippets, myFirstSnippet)
+--
+-- local mySecondSnippet = s('mySecondSnippet', fmt([[
+-- local {} = function({})
+-- {} {{ im in a curly brace}}
+-- end
+-- ]], {i(1, 'myVar'), c(2, {t(''), i(1, 'myArg')}), i(3, '--TODO: something')}))
+-- table.insert(snippets, mySecondSnippet)
 
-table.insert(snippets, myFirstSnippet)
+-- local myFirstAutoSnippet = s('auto trigger-', {t('this was auto triggered')})
+-- local myFirstAutoSnippet = s({trig = 'digit%d', regTrig = true, hidden=false}, {t('this was auto triggered')})
+-- local myFirstAutoSnippet = s({trig = 'normal', regTrig = true }, {t('this was auto triggered')})
+-- local myFirstAutoSnippet = s({trig = 'digit(%d)(%d)', regTrig = true}, {
+--     i(1, "let's try this"),
+--     f(function(arg, snip) return snip.captures[1] .. ' and ' end, 1),
+--     f(function(_, snip) return snip.captures[2] end)
+-- })
 
+-- local myFirstAutoSnippet = s({trig = 'digit(%d)(%d)', regTrig = true}, {
+--     i(1, "uppercase me "),
+--     f(function(arg, snip) return arg[1][1]:upper() .. arg[2][1]:lower() end, {1, 2}),
+--     i(2, "lowercase me")
+-- })
+
+-- local myFirstAutoSnippet = s({trig = 'auto', regTrig = true}, {i(1, "uppercase me "), rep(1)})
+
+-- table.insert(autosnippets, myFirstAutoSnippet)
 -- End Refactoring --
 
 return snippets, autosnippets
