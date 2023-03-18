@@ -82,7 +82,8 @@ return require('packer').startup({
             requires = {
                 {'nvim-lua/plenary.nvim'},
                 {'nvim-telescope/telescope-fzy-native.nvim'},
-                {'nvim-telescope/telescope-dap.nvim'}
+                {'nvim-telescope/telescope-dap.nvim'},
+                {'nvim-telescope/telescope-ui-select.nvim'}
             },
             config = get_setup('telescope'),
             event = 'BufWinEnter'
