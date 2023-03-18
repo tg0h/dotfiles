@@ -72,8 +72,9 @@ vim.keymap.set({"i", "s"}, "<a-p>", function() if ls.expand_or_jumpable() then l
 vim.keymap.set({"i", "s"}, "<A-y>", "<Esc>o", {silent = true})
 
 -- jumping
-vim.keymap.set({"i", "s"}, "<a-k>", function() if ls.jumpable(1) then ls.jump(1) end end, {silent = true})
-vim.keymap.set({"i", "s"}, "<a-j>", function() if ls.jumpable(-1) then ls.jump(-1) end end, {silent = true})
+-- also used by quickfix down/up
+vim.keymap.set({"i", "s"}, "<M-j>", function() if ls.jumpable(1) then ls.jump(1) end end, {silent = true})
+vim.keymap.set({"i", "s"}, "<M-k>", function() if ls.jumpable(-1) then ls.jump(-1) end end, {silent = true})
 
 -- cycle through choices
 vim.keymap.set({"i", "s"}, "<a-l>", function()
