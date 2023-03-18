@@ -128,7 +128,7 @@ for (let {} = 0; {} < {}; {}++) {{
     ]], {
     d(1, function(_, snip) return sn(1, i(1, snip.captures[1])) end),
     rep(1),
-    c(2, {i(1, "num"), sn(1, {i(1, "arr"), t(".length")})}),
+    c(2, {i(1, "num"), sn(1, {i(1, "arr"), t(".length")})}), -- wrap in snippet node - you can change arr and .length remains the same
     rep(1),
     i(3, "// TODO:"),
     i(4)
@@ -139,7 +139,8 @@ while ({}) {{
   {}
 }}
   ]], {i(1, ""), i(2, "// TODO:")})) -- }}}
-cs("cl", {t("console.log("), i(1, ""), t(")")}, {"jcl", "jj"}) -- console.log
+-- cs("cl", {t("console.log("), i(1, ""), t(")")}, {"<C-d>", "hh"}) -- console.log
+cs("cl", {t("console.log("), i(1, ""), t(")")}, {"hh"}) -- console.log
 
 -- End Refactoring --
 
