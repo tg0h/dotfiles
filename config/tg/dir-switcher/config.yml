@@ -39,6 +39,8 @@ keymaps:
   - [ck, $DOTFILES/config/kitty]
   - [ca, $XDG_CONFIG_HOME/zsh/aliases, 5]
 
+  - [dn, ~/dotfiles/config/nvim, 5]
+
   # LIB
   - [lf, $HOME/.local/lib/zsh-functions]
 
