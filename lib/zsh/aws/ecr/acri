@@ -2,22 +2,24 @@
 
 function acri(){
   # aws ecr images list
-  # acil <repository name>
-  # acil -r <repository name>
+  # acri <repository name>
+  # acri -n 40 <repository name>
+  # acri -r <repository name>
   # (aws ecr describe-images)
 
   # if you provide max items, it won't get the latest image!!!
 
-  local verbose repository maxItems
+  local verbose repository number _n
   while getopts 'vr:n:' opt; do
     case "$opt" in
       v) verbose=true;;
       r) repository=$OPTARG;;
-      n) maxItems=$OPTARG;;
+      n) number=$OPTARG;;
     esac
   done
   shift $(($OPTIND - 1))
 
+  _n=${number:-20}
   repository=${repository:-$1}
 
     local jqQuery=$(cat <<-EOF
@@ -26,7 +28,7 @@ function acri(){
    include "aws-time";
      .imageDetails | 
      sort_by(.imagePushedAt) | reverse | 
-     .[0:20] |
+     .[0:$_n] |
      .[] |
      "\(.imagePushedAt | pTimedmyhm) \(.imageTags )"
 EOF
