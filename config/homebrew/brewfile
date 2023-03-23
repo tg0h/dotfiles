@@ -26,6 +26,7 @@ brew 'bash'
 brew 'zsh'
 brew 'cmake' # needed for luaformatter installed via luarocks
 brew 'solargraph' # ruby lang server
+brew 'stylua'
 # brew 'swi-prolog'
 
 # brew 'neovim', args: ['HEAD']
@@ -212,3 +213,4 @@ brew 'consul'
 # brew 'zathura-pdf-mupdf'
 brew 'rabbitmq'
 brew 'duf'
+
