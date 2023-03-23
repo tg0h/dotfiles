@@ -137,6 +137,16 @@ cs( -- [local] Lua local variable snippet{{{
 local {} = {}kj
   ]], {i(1, ""), i(2, "")}), "jj") -- }}}
 
+local sss = s("trig", c(1, {
+    t("Ugh boring, a text node"),
+    i(nil, "At least I can edit something now..."),
+    f(function(args) return "Still only counts as text!!" end, {})
+}))
+table.insert(snippets, sss)
+
+local ssss = s('req', fmt("local {} = require('{}')", {i(1, 'default'), rep(1)}))
+table.insert(snippets, ssss)
+
 -- Tutorial Snippets go here --
 --
 -- local myFirstSnippet = s("myFirstSnippet", {
