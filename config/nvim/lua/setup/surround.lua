@@ -6,7 +6,7 @@ require'surround'.setup {
     -- context_offset = 100,
     -- load_autogroups = false,
     -- mappings_style = "sandwich",
-    -- map_insert_mode = true,
+    map_insert_mode = false, -- do not allow surround to create C-s insert mode keymaps
     -- quotes = {"'", "\""},
     -- brackets = {"(", '{', '[' },
     -- space_on_closing_char = false,
