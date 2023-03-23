@@ -1,8 +1,8 @@
 local g = vim.g
 
-g.registers_return_symbol = '⏎'
-g.registers_tab_symbol = '»'
-g.registers_space_symbol = ' '
+g.registers_return_symbol = "⏎"
+g.registers_tab_symbol = "»"
+g.registers_space_symbol = " "
 
 g.registers_delay = 100
 g.registers_window_max_width = 100

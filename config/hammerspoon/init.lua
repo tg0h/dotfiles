@@ -7,4 +7,3 @@
 
 -- https://github.com/koekeishiya/yabai/discussions/1011
 -- TODO: use hammerspoon to run a yabai command
-

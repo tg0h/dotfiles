@@ -1,5 +1,8 @@
-vim.api.nvim_exec([[
+vim.api.nvim_exec(
+  [[
   highlight Beacon guibg=magenta
-]], true)
+]],
+  true
+)
 
 vim.g.beacon_size = 120

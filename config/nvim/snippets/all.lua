@@ -14,7 +14,7 @@ local rep = require("luasnip.extras").rep
 
 local snippets, autosnippets = {}, {} -- }}}
 
-local jl = s('jl', {t('https://anafore.atlassian.net/browse/')})
+local jl = s("jl", { t("https://anafore.atlassian.net/browse/") })
 
 table.insert(snippets, jl)
 
