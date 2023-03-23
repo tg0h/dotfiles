@@ -15,9 +15,16 @@ end
 
 require('formatter').setup({
     filetype = {
-        -- install luarocks with brew
-        -- https://github.com/Koihik/LuaFormatter
-        lua = {function() return {exe = 'lua-format', args = {'-i'}, stdin = true} end},
+        -- install stylua with brew
+        lua = {
+            function()
+                return {
+                    exe = "stylua",
+                    args = {"--config-path " .. os.getenv("XDG_CONFIG_HOME") .. "/stylua/stylua.toml", "-"},
+                    stdin = true
+                }
+            end
+        },
 
         html = {prettierFormat},
         typescript = {prettierFormat},
