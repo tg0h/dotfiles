@@ -25,5 +25,7 @@ def mapRemoveDeleted($all):
 
 def acl($all):
 .StackSummaries 
+| sort_by(.StackName)
 | mapRemoveDeleted($all)
-| map(mapStackSummary)[] ;
+| map(mapStackSummary)[]
+;
