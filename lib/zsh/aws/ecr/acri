@@ -30,7 +30,7 @@ function acri(){
      sort_by(.imagePushedAt) | reverse | 
      .[0:$_n] |
      .[] |
-     "\(.imagePushedAt | pTimedmyhm) \(.imageTags )"
+     "\(.imagePushedAt ) \(.imageSizeInBytes / 1000000 | floor) MB \(.imageTags )"
 EOF
 )
 
