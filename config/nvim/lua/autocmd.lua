@@ -82,3 +82,15 @@ vim.api.nvim_create_autocmd(
   { "BufWritePre" },
   { pattern = { "*.tsx", "*.ts", "*.jsx", "*.js" }, command = "EslintFixAll" }
 )
+
+vim.api.nvim_create_autocmd({ "FileType" }, {
+  pattern = { "*" },
+  callback = function()
+    -- https://www.reddit.com/r/neovim/comments/mmhwgc/lua_equivalent_of_and/
+    -- https://vim.fandom.com/wiki/Disable_automatic_comment_insertion
+    -- :help fo-table
+    vim.opt.formatoptions:remove("c")
+    vim.opt.formatoptions:remove("r")
+    vim.opt.formatoptions:remove("o")
+  end,
+})
