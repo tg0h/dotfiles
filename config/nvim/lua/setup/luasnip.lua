@@ -57,7 +57,7 @@ ls.config.set_config({
 -- vim.keymap.set({"i", "s"}, "<c-s>", "<Esc>:w<cr>")
 
 -- show picker via vim.ui.select to select choice
-vim.keymap.set({ "i", "s" }, "<c-u>", '<cmd>lua require("luasnip.extras.select_choice")()<cr><C-c><C-c>')
+-- vim.keymap.set({ "i", "s" }, "<c-u>", '<cmd>lua require("luasnip.extras.select_choice")()<cr><C-c><C-c>')
 
 -- this is the expand key
 vim.keymap.set({ "i", "s" }, "<C-t>", function()
