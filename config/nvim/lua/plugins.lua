@@ -177,7 +177,6 @@ return require("packer").startup({
     use({ "tpope/vim-repeat" })
 
     -- use {"ahmedkhalf/project.nvim", config = get_setup("project")}
-    use({ "folke/zen-mode.nvim", cmd = "ZenMode", config = get_setup("zen-mode") })
     -- use {"sidebar-nvim/sidebar.nvim", config = get_setup("sidebar")}
     use({ "windwp/nvim-autopairs", config = get_setup("autopairs") })
     use({ "windwp/nvim-ts-autotag" })
