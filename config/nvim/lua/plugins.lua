@@ -155,7 +155,6 @@ return require("packer").startup({
 
     use({ "rcarriga/nvim-dap-ui", after = "nvim-dap", config = get_setup("dap-ui") })
     use({ "theHamsta/nvim-dap-virtual-text", after = "nvim-dap", config = get_setup("dap-virtual-text") })
-    use({ "alexghergh/nvim-tmux-navigation" })
     use({ "danilamihailov/beacon.nvim", config = get_setup("beacon") })
     use({ "ur4ltz/surround.nvim", config = get_setup("surround") })
     use({ "gennaro-tedesco/nvim-peekup" })
