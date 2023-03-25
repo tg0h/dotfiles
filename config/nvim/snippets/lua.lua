@@ -208,6 +208,34 @@ cs(
   })
 )
 
+local get_test_result = function(position)
+  return d(position, function()
+    local nodes = {}
+    table.insert(nodes, t(" "))
+    local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
+    for _, line in ipairs(lines) do
+      -- if current buffer contains 'tim' then do this
+      if line:match("tim") then
+        table.insert(nodes, t("->result<()>"))
+        break
+      end
+    end
+    -- return sn(nil, c(1, { t("example"), t("other thing"), t("final ") }))
+    return sn(nil, c(1, nodes))
+  end)
+end
+
+cs(
+  "test",
+  fmt(
+    [[
+fn {} () {} {{
+    {}
+}}
+]],
+    { i(1, "testname"), get_test_result(2), i(0) }
+  )
+)
 cs(
   "curtime",
   f(function()
@@ -257,6 +285,7 @@ end
 -- local myFirstAutoSnippet = s({trig = 'auto', regTrig = true}, {i(1, "uppercase me "), rep(1)})
 
 -- table.insert(autosnippets, myFirstAutoSnippet)
+
 -- End Refactoring --
 
 return snippets, autosnippets
