@@ -1,4 +1,4 @@
-local ls = require("luasnip") -- {{{local ls = require("luasnip") -- {{{local ls = require("luasnip") -- {{{local ls = require("luasnip") -- {{{
+local ls = require("luasnip") -- {{{local ls = require("luasnip") -- {{{local ls = require("luasnip") -- {{{local ls = require("luasnip") -- {{{local ls = require("luasnip") -- {{{local ls = require("luasnip") -- {{{local ls = require("luasnip") -- {{{local ls = require("luasnip") -- {{{
 local s = ls.s -- > snippet
 local i = ls.i -- > insert node
 local t = ls.t -- > text node
@@ -192,16 +192,28 @@ local sss = s(
 )
 table.insert(snippets, sss)
 
-local ssss = s("req", fmt("local {} = require('{}')", { i(1, "default"), rep(1) }))
-table.insert(snippets, ssss)
+-- cs("req", fmt("local {} = require('{}')", { i(1, "default"), rep(1) }))
 
-local test = s(
+cs(
+  "req",
+  -- local telescope = require('telescope')
+  -- local builtin = require('telescope.builtin')
+  fmt("local {} = require('{}')", {
+    f(function(import_name)
+      local parts = vim.split(import_name[1][1], ".", true)
+      -- #parts means last element (length of parts)
+      return parts[#parts] or ""
+    end, { 1 }),
+    i(1),
+  })
+)
+
+cs(
   "curtime",
   f(function()
     return os.date("%D - %H:%M")
   end)
 )
-table.insert(snippets, test)
 
 local same = function(index)
   return f(function(arg)
@@ -210,6 +222,7 @@ local same = function(index)
 end
 
 -- Tutorial Snippets go here --
+--
 --
 -- local myFirstSnippet = s("myFirstSnippet", {
 --     t("Hi! wzas is my first snippet in LuaSnip"),
