@@ -18,11 +18,6 @@ return require("packer").startup({
     -- use("~/src/playground/vim/plugin")
     -- keys = {"<C-e>"}
 
-    -- use("rafcamlet/nvim-luapad")
-
-    -- TODO: luadev requires lspconfig ??
-    -- use {"folke/lua-dev.nvim", config = get_setup("luadev")}
-
     use("wbthomason/packer.nvim")
     use({ "sainnhe/sonokai", config = get_setup("sonokai") })
 
@@ -91,9 +86,7 @@ return require("packer").startup({
       event = "BufWinEnter",
     })
     use({ "nvim-telescope/telescope-file-browser.nvim" })
-    -- use {"crispgm/telescope-heading.nvim"} -- markdown headings
     use({ "nvim-telescope/telescope-symbols.nvim" }) -- add emojis
-    -- use {"ThePrimeagen/git-worktree.nvim"}
     use({ "nvim-telescope/telescope-frecency.nvim", requires = { "tami5/sqlite.lua" } })
 
     use({
@@ -136,17 +129,6 @@ return require("packer").startup({
       config = get_setup("bufferline"),
     })
 
-    -- use {
-    --     "ThePrimeagen/harpoon",
-    --     -- keybindings which will lazyload this plugin
-    --     -- keys = {
-    --     --     "<leader>ha", "<leader>hu", "<leader>h1", "<leader>h1", "<leader>h3",
-    --     --     "<leader>h4"
-    --     -- },
-    --     requires = {"nvim-lua/plenary.nvim"},
-    --     config = get_setup("harpoon")
-    -- }
-
     use({
       "akinsho/nvim-toggleterm.lua",
       branch = "main",
@@ -157,12 +139,6 @@ return require("packer").startup({
     -- gitsigns also provides a git blame
     use({ "f-person/git-blame.nvim", config = get_setup("git-blame") })
 
-    -- use {
-    --     "ptzz/lf.vim",
-    --     requires = "voldikss/vim-floaterm",
-    --     config = get_setup("lf")
-    -- }
-
     use({ "folke/which-key.nvim", config = get_setup("which-key") })
 
     use({ "mbbill/undotree" })
@@ -170,14 +146,10 @@ return require("packer").startup({
     use({ "mhartington/formatter.nvim", event = "BufWritePre", config = get_setup("formatter") })
 
     use({ "tweekmonster/startuptime.vim" })
-    -- use {'ray-x/lsp_signature.nvim', requires = {{'neovim/nvim-lspconfig'}}}
-    -- use {"ggandor/lightspeed.nvim", event = "BufReadPre"}
 
     -- to enable dot repeat for lightspeed
     use({ "tpope/vim-repeat" })
 
-    -- use {"ahmedkhalf/project.nvim", config = get_setup("project")}
-    -- use {"sidebar-nvim/sidebar.nvim", config = get_setup("sidebar")}
     use({ "windwp/nvim-autopairs", config = get_setup("autopairs") })
     use({ "windwp/nvim-ts-autotag" })
     use("p00f/nvim-ts-rainbow")
@@ -185,18 +157,11 @@ return require("packer").startup({
     use({ "norcalli/nvim-colorizer.lua", event = "BufReadPre", config = get_setup("colorizer") })
     use({ "mfussenegger/nvim-dap", config = get_setup("dap") })
 
-    -- use {
-    --     "Pocco81/DAPInstall.nvim",
-    --     config = get_setup("dap-install"),
-    --     after = "nvim-dap"
-    -- }
-
     use({ "rcarriga/nvim-dap-ui", after = "nvim-dap", config = get_setup("dap-ui") })
     use({ "theHamsta/nvim-dap-virtual-text", after = "nvim-dap", config = get_setup("dap-virtual-text") })
     use({ "alexghergh/nvim-tmux-navigation" })
     use({ "danilamihailov/beacon.nvim", config = get_setup("beacon") })
     use({ "ur4ltz/surround.nvim", config = get_setup("surround") })
-    -- use {"tversteeg/registers.nvim", config = get_setup("registers")}
     use({ "gennaro-tedesco/nvim-peekup" })
 
     use({
@@ -204,25 +169,16 @@ return require("packer").startup({
       requires = { { "tami5/sqlite.lua", module = "sqlite" }, { "nvim-telescope/telescope.nvim" } },
       config = get_setup("neoclip"),
     })
-    -- use {"tpope/vim-fugitive"}
 
     use({ "~/src/me/nvim/harpoon", requires = { "nvim-lua/plenary.nvim" }, config = get_setup("harpoon") })
 
     use({ "~/src/me/nvim/git-worktree.nvim" })
     use({ "~/src/me/nvim/gitdiffer" })
-    -- use {"kana/vim-textobj-user"}
-    -- iv and av text objects for snake_case and camelCase
-
-    -- use {
-    --     "Julian/vim-textobj-variable-segment",
-    --     requires = {"kana/vim-textobj-user"}
-    -- }
 
     use({ "jxnblk/vim-mdx-js" })
     use("fladson/vim-kitty") -- syntax highlighting for kitty
     use({ "knubie/vim-kitty-navigator", run = "cp ./*.py ~/.config/kitty/" })
 
-    -- use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim', config= get_setup("diffview") }
     use({ "vito-c/jq.vim" })
     use({ "mityu/vim-applescript" })
     use({ "lbrayner/vim-rzip" }) -- use so that go to definition is able to read .yarn/cache plug n play zipped files
@@ -233,11 +189,6 @@ return require("packer").startup({
     use({ "rizzatti/dash.vim" })
     use({ "chentoast/marks.nvim", config = get_setup("marks") })
     use({ "andythigpen/nvim-coverage", requires = "nvim-lua/plenary.nvim", config = get_setup("nvim-coverage") })
-    -- use {
-    --     "~/src/me/nvim/nvim-coverage",
-    --     requires = {"nvim-lua/plenary.nvim"},
-    --     config = get_setup("nvim-coverage")
-    -- }
 
     use({ "rhysd/committia.vim" }) -- git commit buffer with splits
 
