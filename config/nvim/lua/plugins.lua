@@ -80,7 +80,8 @@ return require('packer').startup({
         { 'nvim-telescope/telescope-ui-select.nvim' },
       },
       config = get_setup('telescope'),
-      event = 'BufWinEnter',
+      -- do not lazy load so that i can set keymaps in nvim/config/after/
+      -- event = 'BufWinEnter',
     })
     use({ 'nvim-telescope/telescope-file-browser.nvim' })
     use({ 'nvim-telescope/telescope-symbols.nvim' }) -- add emojis
