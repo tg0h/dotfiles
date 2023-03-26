@@ -10,20 +10,20 @@ augroup END
 
 local function prettierFormat()
   return {
-    exe = "prettier",
-    args = { "--stdin-filepath", vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)) },
+    exe = 'prettier',
+    args = { '--stdin-filepath', vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)) },
     stdin = true,
   }
 end
 
-require("formatter").setup({
+require('formatter').setup({
   filetype = {
     -- install stylua with brew
     lua = {
       function()
         return {
-          exe = "stylua",
-          args = { "--config-path " .. os.getenv("XDG_CONFIG_HOME") .. "/stylua/stylua.toml", "-" },
+          exe = 'stylua',
+          args = { '--config-path ' .. os.getenv('XDG_CONFIG_HOME') .. '/stylua/stylua.toml', '-' },
           stdin = true,
         }
       end,

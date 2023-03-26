@@ -1,4 +1,4 @@
-local ls = require("luasnip") -- {{{
+local ls = require('luasnip') -- {{{
 local s = ls.s
 local i = ls.i
 local t = ls.t
@@ -8,13 +8,13 @@ local c = ls.choice_node
 local f = ls.function_node
 local sn = ls.snippet_node
 
-local fmt = require("luasnip.extras.fmt").fmt
-local rep = require("luasnip.extras").rep
+local fmt = require('luasnip.extras.fmt').fmt
+local rep = require('luasnip.extras').rep
 
 local snippets, autosnippets = {}, {} -- }}}
 
-local group = vim.api.nvim_create_augroup("Javascript Snippets", { clear = true })
-local file_pattern = "*.js"
+local group = vim.api.nvim_create_augroup('Javascript Snippets', { clear = true })
+local file_pattern = '*.js'
 
 local function cs(trigger, nodes, opts) -- {{{
   local snippet = s(trigger, nodes)
@@ -30,19 +30,19 @@ local function cs(trigger, nodes, opts) -- {{{
     end
 
     -- if opts is a string
-    if type(opts) == "string" then
-      if opts == "auto" then
+    if type(opts) == 'string' then
+      if opts == 'auto' then
         target_table = autosnippets
       else
-        table.insert(keymaps, { "i", opts })
+        table.insert(keymaps, { 'i', opts })
       end
     end
 
     -- if opts is a table
-    if opts ~= nil and type(opts) == "table" then
+    if opts ~= nil and type(opts) == 'table' then
       for _, keymap in ipairs(opts) do
-        if type(keymap) == "string" then
-          table.insert(keymaps, { "i", keymap })
+        if type(keymap) == 'string' then
+          table.insert(keymaps, { 'i', keymap })
         else
           table.insert(keymaps, keymap)
         end
@@ -50,9 +50,9 @@ local function cs(trigger, nodes, opts) -- {{{
     end
 
     -- set autocmd for each keymap
-    if opts ~= "auto" then
+    if opts ~= 'auto' then
       for _, keymap in ipairs(keymaps) do
-        vim.api.nvim_create_autocmd("BufEnter", {
+        vim.api.nvim_create_autocmd('BufEnter', {
           pattern = pattern,
           group = group,
           callback = function()
@@ -68,10 +68,10 @@ local function cs(trigger, nodes, opts) -- {{{
   table.insert(target_table, snippet) -- insert snippet into appropriate table
 end -- }}}
 
-cs("cl", { t("console.log("), i(1, ""), t(")") }) -- console.log
+cs('cl', { t('console.log('), i(1, ''), t(')') }) -- console.log
 -- cs("c", { t("const "), i(1, ""), t  })
-cs("c", fmt([[const {} = {}]], { i(1), i(0) }))
-cs("l", { t("let "), i(1, "") })
-cs("js", fmt([[JSON.stringify({}){}]], { i(1), i(0) }))
+cs('c', fmt([[const {} = {}]], { i(1), i(0) }))
+cs('l', { t('let '), i(1, '') })
+cs('js', fmt([[JSON.stringify({}){}]], { i(1), i(0) }))
 
 return snippets, autosnippets

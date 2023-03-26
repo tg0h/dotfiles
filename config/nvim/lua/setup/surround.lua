@@ -2,7 +2,7 @@
 -- replace - sr<from><to>
 -- delete  - sd<char>
 -- ss repeats last surround command.
-require("surround").setup({
+require('surround').setup({
   -- context_offset = 100,
   -- load_autogroups = false,
   -- mappings_style = "sandwich",
@@ -14,5 +14,5 @@ require("surround").setup({
   --   nestable = { b = { "(", ")" }, s = { "[", "]" }, B = { "{", "}" }, a = { "<", ">" } },
   --   linear = { q = { "'", "'" }, t = { "`", "`" }, d = { '"', '"' }
   -- },
-  prefix = "s",
+  prefix = 's',
 })

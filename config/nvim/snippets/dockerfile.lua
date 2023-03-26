@@ -1,4 +1,4 @@
-local ls = require("luasnip") -- {{{
+local ls = require('luasnip') -- {{{
 local s = ls.s
 local i = ls.i
 local t = ls.t
@@ -8,21 +8,21 @@ local c = ls.choice_node
 local f = ls.function_node
 local sn = ls.snippet_node
 
-local fmt = require("luasnip.extras.fmt").fmt
-local rep = require("luasnip.extras").rep
+local fmt = require('luasnip.extras.fmt').fmt
+local rep = require('luasnip.extras').rep
 
 local snippets, autosnippets = {}, {} -- }}}
 
-local group = vim.api.nvim_create_augroup("Lua Snippets", { clear = true })
-local file_pattern = "*.lua"
+local group = vim.api.nvim_create_augroup('Lua Snippets', { clear = true })
+local file_pattern = '*.lua'
 
 local function cs(trigger, nodes, opts) -- {{{
   local snippet = s(trigger, nodes)
   local target_table = snippets
 
   if opts ~= nil then
-    if type(opts) == "string" then
-      if opts == "auto" then
+    if type(opts) == 'string' then
+      if opts == 'auto' then
         target_table = autosnippets
       end
     end
@@ -32,7 +32,7 @@ local function cs(trigger, nodes, opts) -- {{{
 end -- }}}
 
 cs(
-  "df",
+  'df',
   fmt(
     [[
 FROM node:16

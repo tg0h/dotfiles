@@ -73,24 +73,24 @@ autocmd Filetype harpoon setlocal cursorline
 
 -- https://github.com/neovim/neovim/issues/17867#issuecomment-1079934289
 -- doesn't work with tmux :|
-if vim.env.TERM == "xterm-kitty" then
+if vim.env.TERM == 'xterm-kitty' then
   vim.cmd([[autocmd UIEnter * if v:event.chan ==# 0 | call chansend(v:stderr, "\x1b[>1u") | endif]])
   vim.cmd([[autocmd UILeave * if v:event.chan ==# 0 | call chansend(v:stderr, "\x1b[<1u") | endif]])
 end
 
 vim.api.nvim_create_autocmd(
-  { "BufWritePre" },
-  { pattern = { "*.tsx", "*.ts", "*.jsx", "*.js" }, command = "EslintFixAll" }
+  { 'BufWritePre' },
+  { pattern = { '*.tsx', '*.ts', '*.jsx', '*.js' }, command = 'EslintFixAll' }
 )
 
-vim.api.nvim_create_autocmd({ "FileType" }, {
-  pattern = { "*" },
+vim.api.nvim_create_autocmd({ 'FileType' }, {
+  pattern = { '*' },
   callback = function()
     -- https://www.reddit.com/r/neovim/comments/mmhwgc/lua_equivalent_of_and/
     -- https://vim.fandom.com/wiki/Disable_automatic_comment_insertion
     -- :help fo-table
-    vim.opt.formatoptions:remove("c")
-    vim.opt.formatoptions:remove("r")
-    vim.opt.formatoptions:remove("o")
+    vim.opt.formatoptions:remove('c')
+    vim.opt.formatoptions:remove('r')
+    vim.opt.formatoptions:remove('o')
   end,
 })
