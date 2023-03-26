@@ -36,6 +36,7 @@ return require('packer').startup({
     })
 
     use({ 'nvim-treesitter/nvim-treesitter', config = get_setup('treesitter'), run = ':TSUpdate' })
+    use({ 'nvim-treesitter/playground' })
     use('nvim-treesitter/nvim-treesitter-textobjects')
 
     use({
