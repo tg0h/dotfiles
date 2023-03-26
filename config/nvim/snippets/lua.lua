@@ -192,7 +192,7 @@ local sss = s(
 )
 table.insert(snippets, sss)
 
--- cs("req", fmt("local {} = require('{}')", { i(1, "default"), rep(1) }))
+cs("re", fmt("require('{}')", { i(1, "") }))
 
 cs(
   "req",
