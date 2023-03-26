@@ -1,0 +1,16 @@
+#!/bin/zsh
+
+function acrl(){
+  # aws ecr list repositories with size
+
+  local repos=$(aws ecr describe-repositories --query 'repositories[].repositoryName' | jq --raw-output '.[]')
+
+  while read -r repo
+  do
+    repo=$(gawk '{print $1}' <<< "$repo")
+    totalSize=$(aws ecr describe-images --repository-name $repo --query 'sum(imageDetails[].imageSizeInBytes)')
+    imageCount=$(aws ecr describe-images --repository-name $repo --query 'length(imageDetails)')
+    latestImageSize=$(aws ecr describe-images --repository-name $repo --query 'sort_by(imageDetails, &imagePushedAt)[-1].imageSizeInBytes')
+    echo $repo,$totalSize,$imageCount,$latestImageSize
+  done <<< "$repos"
+}
