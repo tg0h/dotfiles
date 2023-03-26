@@ -72,5 +72,6 @@ cs("cl", { t("console.log("), i(1, ""), t(")") }) -- console.log
 -- cs("c", { t("const "), i(1, ""), t  })
 cs("c", fmt([[const {} = {}]], { i(1), i(0) }))
 cs("l", { t("let "), i(1, "") })
+cs("js", fmt([[JSON.stringify({}){}]], { i(1), i(0) }))
 
 return snippets, autosnippets
