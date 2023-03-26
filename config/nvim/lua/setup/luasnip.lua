@@ -50,6 +50,12 @@ ls.config.set_config({
     --  },
     -- },
   },
+
+  -- Events on which to leave the current snippet if the cursor is outside its' 'region'.
+  region_check_events = "InsertEnter",
+
+  -- When to check if the current snippet was deleted, and if so, remove it from the history
+  delete_check_events = "TextChanged,InsertLeave",
 }) -- }}}
 
 -- Key Mapping --{{{
