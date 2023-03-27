@@ -1,0 +1,29 @@
+#!/bin/zsh
+
+function hcl(){
+  # 
+
+  local verbose
+  while getopts 'v' opt; do
+    case "$opt" in
+      v) verbose=true;;
+    esac
+  done
+  shift $(($OPTIND - 1))
+
+  local result=$(gh api /repos/$CANDY_GITHUB_OWNER/$CANDY_GITHUB_MAIN_REPO/actions/caches)
+  # -H "X-GitHub-Api-Version: 2022-11-28" \
+  # -H "Accept: application/vnd.github+json" \
+
+  local jqQuery=$(cat <<-EOF
+    include "gh/cache/hcl";
+    hcl
+EOF
+)
+
+  if [ $verbose ]; then
+    jq --raw-output "." <<< "$result"
+  else
+    jq --raw-output -L "~/.config/jq" -L "~/.local/lib/jq" "$jqQuery" <<< "$result"
+  fi
+}
