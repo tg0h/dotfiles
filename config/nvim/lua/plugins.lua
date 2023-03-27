@@ -131,7 +131,7 @@ return require('packer').startup({
 
     use({ 'mbbill/undotree' })
 
-    use({ 'mhartington/formatter.nvim'})
+    use({ 'mhartington/formatter.nvim' })
 
     use({ 'tweekmonster/startuptime.vim' })
 
