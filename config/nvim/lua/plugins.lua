@@ -64,6 +64,11 @@ return require('packer').startup({
       requires = { { 'b0o/schemastore.nvim' }, { 'hrsh7th/nvim-cmp' }, { 'folke/lua-dev.nvim' } },
     })
 
+    use({
+      'williamboman/mason.nvim',
+      run = ':MasonUpdate', -- :MasonUpdate updates registry contents
+    })
+
     use({ 'onsails/lspkind-nvim' })
 
     use({
