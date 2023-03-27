@@ -1,6 +1,6 @@
 #!bin/zsh
 
-function ho(){
+function hpo(){
   # open my github pr in browser
   # gets the first pr found
   local prNum=$(gh pr list | rg 'timg' | head -n 1 | cut -f1)

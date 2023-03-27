@@ -1,6 +1,6 @@
 #!bin/zsh
 
-function hc(){
+function hpc(){
   # create github pull request
   # hc -f - just create a pr and fill in title and body for me
   # hc -t <title> - I want to fill in a title for the PR
