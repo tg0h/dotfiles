@@ -19,14 +19,14 @@ brew 'dotbot'
 brew 'mas' # brew installer for the mac app store
 
 brew 'lua'
-brew 'lua-language-server'
+# brew 'lua-language-server'
 brew 'luarocks'
 brew 'rustup-init' # aka rustup
 brew 'bash'
 brew 'zsh'
 brew 'cmake' # needed for luaformatter installed via luarocks
-brew 'solargraph' # ruby lang server
-brew 'stylua'
+# brew 'solargraph' # ruby lang server
+# brew 'stylua'
 # brew 'swi-prolog'
 
 # brew 'neovim', args: ['HEAD']
