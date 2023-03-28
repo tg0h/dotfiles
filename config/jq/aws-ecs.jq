@@ -4,7 +4,7 @@ include "colour";
 def awsDeploymentStatus:
 {
   "PRIMARY": _g(.), # MOST RECENT DEPLOYMENT
-  "ACTIVE": _bgr(.), # still has running tasks, being replaced by PRIMARY
+  "ACTIVE": _bgr(.|rp(7)), # still has running tasks, being replaced by PRIMARY
   "INACTIVE": __(.), # completely replaced
 };
 
