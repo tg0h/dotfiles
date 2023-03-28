@@ -170,8 +170,6 @@ while ({}) {{
     { i(1, ''), i(2, '// TODO:') }
   )
 ) -- }}}
--- cs("cl", {t("console.log("), i(1, ""), t(")")}, {"<C-d>", "hh"}) -- console.log
-cs('cl', { t('console.log('), i(1, ''), t(')') }, { 'hh' }) -- console.log
 
 -- End Refactoring --
 
