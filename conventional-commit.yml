@@ -32,6 +32,7 @@ scope:
   config/nvim/lua: "vim"
   config/nvim/snippets: "vim/snippets"
   config/nvim: "vim"
+  config/jq: "jq"
   config/tg:
   config:
   lib/zsh/archive:
