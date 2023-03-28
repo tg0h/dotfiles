@@ -1,0 +1,20 @@
+#!bin/zsh
+
+function hcd(){
+  # github cache delete by branch for rc main
+  # hcd <pr number>
+  local PR_NUM=$1
+  local REPO=$CANDY_GITHUB_OWNER/$CANDY_GITHUB_MAIN_REPO
+  local BRANCH="refs/pull/$PR_NUM/merge"
+
+  local cacheKeysForPR=$(gh actions-cache list -R $REPO -B $BRANCH | tail -n +5 | cut -f 1 )
+
+  local cacheKey
+  echo "Deleting caches..."
+  # for cacheKey in "$cacheKeysForPR"
+  while read -r cacheKey
+  do
+    gh actions-cache delete $cacheKey -R $REPO -B $BRANCH --confirm
+  done <<< "$cacheKeysForPR"
+  echo "Done"
+}
