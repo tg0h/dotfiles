@@ -214,3 +214,4 @@ brew 'consul'
 brew 'rabbitmq'
 brew 'duf'
 
+brew 'aichat'
