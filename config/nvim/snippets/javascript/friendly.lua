@@ -68,8 +68,20 @@ local function cs(trigger, nodes, opts) -- {{{
   table.insert(target_table, snippet) -- insert snippet into appropriate table
 end -- }}}
 
-cs('cl', { t('console.log('), i(1, ''), t(')') }) -- console.log
--- cs("c", { t("const "), i(1, ""), t  })
+cs(
+  'cl',
+  fmt(
+    [[console.log({}{})
+{}
+]],
+    {
+      c(1, { sn(nil, { t("'"), i(1, ''), t("'") }), i(nil, '') }),
+      c(2, { sn(nil, { t(','), i(1, '') }), i(nil, '') }),
+      i(0, ''),
+    }
+  )
+)
+
 cs('c', fmt([[const {} = {}]], { i(1), i(0) }))
 cs('l', { t('let '), i(1, '') })
 cs('js', fmt([[JSON.stringify({}){}]], { i(1), i(0) }))
