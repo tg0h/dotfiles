@@ -86,4 +86,14 @@ cs('c', fmt([[const {} = {}]], { i(1), i(0) }))
 cs('l', { t('let '), i(1, '') })
 cs('js', fmt([[JSON.stringify({}){}]], { i(1), i(0) }))
 
+cs(
+  'ifs',
+  fmt(
+    [[import fs from 'fs'
+{}
+]],
+    { i(nil, '') }
+  )
+)
+
 return snippets, autosnippets
