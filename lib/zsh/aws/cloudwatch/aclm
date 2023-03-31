@@ -1,0 +1,27 @@
+#!/bin/zsh
+
+function aclm(){
+  # aws cloudwatch list metrics - of logs that had incoming bytes in past 14 days
+
+  local verbose
+  while getopts 'v' opt; do
+    case "$opt" in
+      v) verbose=true;;
+    esac
+  done
+  shift $(($OPTIND - 1))
+
+  local result=$(aws cloudwatch list-metrics --namespace "AWS/Logs" --metric-name "IncomingBytes")
+
+  local jqQuery=$(cat <<-EOF
+    include "aws/cloudwatch/aclm";
+    aclm
+EOF
+)
+
+  if [ $verbose ]; then
+    jq --raw-output "." <<< "$result"
+  else
+    jq --raw-output -L "~/.config/jq" -L "~/.local/lib/jq" "$jqQuery" <<< "$result"
+  fi
+}
