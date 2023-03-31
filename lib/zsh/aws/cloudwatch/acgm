@@ -1,0 +1,59 @@
+#!/bin/zsh
+
+function acgm(){
+  # aws cloudwatch get incoming bytes metric of log group for the past 30 days
+  # acgm <logGroupName>
+  # returns <active days>,<total incoming bytes (ingested) in MB>
+
+  local verbose
+  while getopts 'v' opt; do
+    case "$opt" in
+      v) verbose=true;;
+    esac
+  done
+  shift $(($OPTIND - 1))
+
+  local logGroupName=$1
+
+  local MONTH=2592000
+  local DAY=86400
+  local metricDataQuery=$(cat <<-EOF
+[
+    {
+        "Id": "m1",
+        "MetricStat": {
+            "Metric": {
+                "Namespace": "AWS/Logs",
+                "MetricName": "IncomingBytes",
+                "Dimensions": [
+                    {
+                        "Name": "LogGroupName",
+                        "Value": "$logGroupName"
+                    }
+                ]
+            },
+            "Period": $DAY,
+            "Stat": "Sum"
+        },
+        "ReturnData": true
+    }
+]
+EOF
+)
+
+  local startTime=$(gdate -u '+%Y-%m-%dT00:00:00Z' -d '30 days ago')
+  local endTime=$(gdate -u '+%Y-%m-%dT23:59:59Z')
+  local result=$(aws cloudwatch get-metric-data --metric-data-queries "$metricDataQuery" \
+    --start-time $startTime --end-time $endTime)
+
+  local jqQuery=$(cat <<-EOF
+    include "aws/cloudwatch/acgm";
+    acgm
+EOF
+)
+  if [ $verbose ]; then
+    jq --raw-output "." <<< "$result"
+  else
+    jq --raw-output -L "~/.config/jq" -L "~/.local/lib/jq" "$jqQuery" <<< "$result"
+  fi
+}
