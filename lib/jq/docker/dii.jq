@@ -108,12 +108,13 @@ def _setMonthsAgo:
 ;
 
 def _mapRepoTags($isPadded):
-  map(split(":"))
-  | map( 
-      .[0] as $image 
-      | .[1] as $tag 
-      | "\($image | _repository) \($tag | _tag)"
-    )
+  # map(split(":"))
+  map(.)
+  # | map( 
+  #     .[0] as $image 
+  #     | .[1] as $tag 
+  #     | "\($image | _repository) \($tag | _tag)"
+  #   )
   | join ("\n"+"\(" "|lp(21))");
       
 def _repoTags: 
