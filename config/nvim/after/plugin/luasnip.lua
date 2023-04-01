@@ -58,6 +58,7 @@ ls.config.set_config({
   delete_check_events = 'TextChanged,InsertLeave',
 }) -- }}}
 
+ls.filetype_extend('typescript', { 'javascript' })
 -- Key Mapping --{{{
 
 -- vim.keymap.set({"i", "s"}, "<c-s>", "<Esc>:w<cr>")
