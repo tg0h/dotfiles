@@ -33,7 +33,7 @@ bindkey -e '^w' pb-backward-kill-word
 zle     -N   fzf-search-dotfiles-widget
 # bindkey '^N^H' fzf-search-dotfiles-widget
 zle     -N   fzf-search-wiki-widget
-bindkey '^[^W' fzf-search-wiki-widget
+bindkey '^[^w' fzf-search-wiki-widget
 zle     -N   fzf-search-bookmarks-widget
 # bindkey '^N^M' fzf-search-bookmarks-widget
 zle -N _fzf-redraw-prompt # used by fzf bookmarks widget to redraw prompt
@@ -42,7 +42,7 @@ zle -N fzf-docker-container-widget
 # replaces the quoted-insert widget
 bindkey '^V' fzf-docker-container-widget
 zle -N fzf-docker-image-widget
-bindkey '^[^V' fzf-docker-image-widget
+bindkey '^[^v' fzf-docker-image-widget
 
 # npm
 zle -N fzf-search-package-widget
