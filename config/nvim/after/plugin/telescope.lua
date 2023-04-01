@@ -154,4 +154,6 @@ vim.keymap.set('n', '<leader>ps', function() -- search text provided via input
   builtin.grep_string({ search = vim.fn.input('Grep > ') })
 end)
 
+vim.keymap.set('n', '<C-s>', builtin.commands)
+
 return M
