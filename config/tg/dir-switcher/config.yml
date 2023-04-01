@@ -10,6 +10,7 @@ keymaps:
   - ["f,", $HOME/.local/bin]
   - [g, $XDG_DATA_HOME, 3]
   - [gn, $XDG_DATA_HOME/nvim, 5]
+  - [gnm, $XDG_DATA_HOME/nvim/mason, 5]
   - [c, $XDG_CONFIG_HOME, 5]
   - [r, $XDG_CACHE_HOME, 2]
   - [l, $HOME/dotfiles/lib, 7]
