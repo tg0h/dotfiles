@@ -3,6 +3,7 @@ default_options = { noremap = true, silent = true }
 expr_options = { noremap = true, expr = true, silent = true }
 
 map('n', '<A-e>', ':lua vim.lsp.buf.rename()<CR>', default_options) -- rename
+map('n', '<A-o>', ':lua vim.lsp.buf.code_action()<CR>', default_options) -- code action
 
 map('n', '<A-a>', ':lua vim.lsp.buf.definition()<CR>', default_options) -- go to def
 map('n', '<A-u>', ':lua vim.lsp.buf.references()<CR>', default_options) -- find references
