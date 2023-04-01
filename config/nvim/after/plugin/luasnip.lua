@@ -26,6 +26,8 @@ local types = require('luasnip.util.types')
 local parse = require('luasnip.util.parser').parse_snippet
 local ms = ls.multi_snippet
 
+-- TODO: load helpers in snip_env - https://github.com/L3MON4D3/LuaSnip/issues/781
+
 -- https://github.com/ziontee113/luasnip-tutorial/blob/main/luasnip-config/init.lua
 -- {{{
 
