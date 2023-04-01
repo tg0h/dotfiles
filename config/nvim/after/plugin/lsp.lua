@@ -61,6 +61,18 @@ for _, lsp in ipairs(servers) do
         telemetry = { enable = false },
       },
     },
+
+    root_dir = require('lspconfig.util').root_pattern({
+      '.luarc.json',
+      '.luarc.jsonc',
+      '.luacheckrc',
+      '.stylua.toml',
+      'stylua.toml',
+      'selene.toml',
+      'selene.yml',
+      '.git',
+      vim.fn.getcwd(),
+    }),
   })
   -- require'lsp_signature'.setup({
   --     bind = true, -- This is mandatory, otherwise border config won't get registered.
