@@ -46,4 +46,5 @@ map('i', '<C-M-S>', '<Esc>:wq<CR>', default_options) -- insert mode - save and e
 
 map('n', '<C-M-a>', '<Esc>:Dash<CR>', default_options) -- open dash docs with word under cursor
 
+map('n', '<C-z>', '<NOP>', default_options)
 -- map("n", "<C-M-z>", "<Esc>:ZenMode<CR>", default_options)
