@@ -25,8 +25,9 @@ keybinding:
     prevMatch: "N"
     optionMenu: "x" # show help menu
     optionMenu-alt1: "?" # show help menu
-    select: "<space>"
+    select: "<enter>"
     goInto: "-"
+
     openRecentRepos: "<c-r>"
     confirm: "<enter>"
     confirm-alt1: "y"
