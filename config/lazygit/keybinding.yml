@@ -26,7 +26,7 @@ keybinding:
     optionMenu: "x" # show help menu
     optionMenu-alt1: "?" # show help menu
     select: "<space>"
-    goInto: "<enter>"
+    goInto: "-"
     openRecentRepos: "<c-r>"
     confirm: "<enter>"
     confirm-alt1: "y"
