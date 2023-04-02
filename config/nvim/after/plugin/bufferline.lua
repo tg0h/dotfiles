@@ -1,9 +1,9 @@
 require('bufferline').setup({
   options = {
     -- do not show the buffer id
-    -- numbers = function(opts)
-    --     return string.format("%s", opts.id) -- :h bufferline-numbers
-    -- end,
+    numbers = function(opts)
+      return string.format('%s%s', opts.ordinal, opts.raise(opts.id)) -- :h bufferline-numbers
+    end,
     close_command = 'bdelete! %d', -- can be a string | function, see "Mouse actions"
     right_mouse_command = 'bdelete! %d', -- can be a string | function, see "Mouse actions"
     left_mouse_command = 'buffer %d', -- can be a string | function, see "Mouse actions"
