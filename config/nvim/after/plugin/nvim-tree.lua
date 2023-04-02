@@ -263,3 +263,7 @@ require('nvim-tree').setup({
     },
   },
 })
+
+vim.keymap.set('n', '<leader>mn', require('nvim-tree.api').marks.navigate.next, { desc = 'nvim-tree marks next' })
+vim.keymap.set('n', '<leader>mp', require('nvim-tree.api').marks.navigate.next, { desc = 'nvim-tree marks previous' })
+vim.keymap.set('n', '<leader>ms', require('nvim-tree.api').marks.navigate.next, { desc = 'nvim-tree marks select' })
