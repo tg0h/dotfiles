@@ -182,6 +182,8 @@ return require('packer').startup({
     use({ 'rhysd/committia.vim' }) -- git commit buffer with splits
 
     use({ 'ray-x/lsp_signature.nvim' })
+    use({ 'tpope/vim-fugitive' })
+    use({ 'rhysd/git-messenger.vim' })
   end,
   config = {
     display = {
