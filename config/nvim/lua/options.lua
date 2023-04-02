@@ -34,3 +34,6 @@ o.ignorecase = true -- ignore case in search patterns
 o.smartcase = true -- smart case - only works if ignorecase is true
 o.cmdheight = 1 -- space for displaying messages/commands
 o.grepprg = 'rg --hidden --vimgrep --smart-case --' -- use rg instead of grep
+
+o.timeoutlen = 300 -- time to wait for a mapped sequence to complete (in milliseconds)
+-- o.ttimeoutlen = 0 -- Time in milliseconds to wait for a key code sequence to complete
