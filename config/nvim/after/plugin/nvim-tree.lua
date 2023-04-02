@@ -79,7 +79,7 @@ local function on_attach(bufnr)
   vim.keymap.set('n', 'T', api.node.navigate.sibling.last, opts('Last Sibling'))
   vim.keymap.set('n', 'n', api.node.navigate.sibling.prev, opts('Previous Sibling'))
   vim.keymap.set('n', 'N', api.node.navigate.sibling.first, opts('First Sibling'))
-  vim.keymap.set('n', 'l', edit_or_open, opts('Edit or Open'))
+  vim.keymap.set('n', 's', edit_or_open, opts('Edit or Open'))
   vim.keymap.set('n', 'L', function()
     local node = api.tree.get_node_under_cursor()
     -- your code goes here
