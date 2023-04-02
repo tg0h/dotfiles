@@ -72,7 +72,7 @@ keybinding:
     commitChangesWithEditor: "C"
     ignoreFile: "i"
     refreshFiles: "r"
-    stashAllChanges: "s"
+    stashAllChanges: "_"
     viewStashOptions: "S"
     toggleStagedAll: "a" # stage/unstage all
     viewResetOptions: "D"
