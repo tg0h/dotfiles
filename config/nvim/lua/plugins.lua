@@ -153,7 +153,6 @@ return require('packer').startup({
     use({ 'theHamsta/nvim-dap-virtual-text', after = 'nvim-dap' })
     use({ 'danilamihailov/beacon.nvim' })
     use({ 'ur4ltz/surround.nvim' })
-    use({ 'gennaro-tedesco/nvim-peekup' })
 
     use({
       'AckslD/nvim-neoclip.lua',
