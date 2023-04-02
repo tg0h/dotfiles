@@ -92,7 +92,7 @@ keybinding:
     setUpstream: "u" # set as upstream of checked-out branch
     fetchRemote: "f"
   commits:
-    squashDown: "s"
+    squashDown: "#"
     renameCommit: "r"
     renameCommitWithEditor: "R"
     viewResetOptions: "g"
