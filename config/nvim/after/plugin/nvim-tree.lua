@@ -53,7 +53,85 @@ local function next_sibling_preview()
   api.node.open.preview()
 end
 
+local function on_attach(bufnr)
+  local api = require('nvim-tree.api')
+
+  local function opts(desc)
+    return { desc = 'nvim-tree: ' .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+  end
+
+  vim.keymap.set('n', '<CR>', api.node.open.edit, opts('Open'))
+  vim.keymap.set('n', '<C-e>', api.node.open.replace_tree_buffer, opts('Open: In Place')) -- open in same pane as nvim tree
+  vim.keymap.set('n', 'O', api.node.open.no_window_picker, opts('Open: No Window Picker'))
+  vim.keymap.set('n', 'o', api.node.open.edit, opts('Open'))
+  vim.keymap.set('n', '<2-LeftMouse>', api.node.open.edit, opts('Open'))
+
+  vim.keymap.set('n', '<C-v>', api.node.open.vertical, opts('Open: Vertical Split'))
+  vim.keymap.set('n', '<C-x>', api.node.open.horizontal, opts('Open: Horizontal Split'))
+  vim.keymap.set('n', '<C-t>', api.node.open.tab, opts('Open: New Tab'))
+
+  -- useful home row mappings
+  vim.keymap.set('n', '<Tab>', api.node.open.preview, opts('Open Preview'))
+  vim.keymap.set('n', 'D', api.node.navigate.parent, opts('Parent Directory'))
+  vim.keymap.set('n', 'h', api.node.navigate.parent_close, opts('Close Directory'))
+  vim.keymap.set('n', 'H', api.tree.collapse_all, opts('Collapse'))
+  vim.keymap.set('n', 't', api.node.navigate.sibling.next, opts('Next Sibling'))
+  vim.keymap.set('n', 'T', api.node.navigate.sibling.last, opts('Last Sibling'))
+  vim.keymap.set('n', 'n', api.node.navigate.sibling.prev, opts('Previous Sibling'))
+  vim.keymap.set('n', 'N', api.node.navigate.sibling.first, opts('First Sibling'))
+  vim.keymap.set('n', 'l', edit_or_open, opts('Edit or Open'))
+  vim.keymap.set('n', 'L', function()
+    local node = api.tree.get_node_under_cursor()
+    -- your code goes here
+    vsplit_preview()
+  end, opts('vsplit_preview'))
+
+  vim.keymap.set('n', '-', api.tree.change_root_to_parent, opts('Up'))
+
+  -- local node = api.tree.get_node_under_cursor()
+  vim.keymap.set('n', '<C-n>', next_sibling_preview, opts('no description'))
+  vim.keymap.set('n', '<C-p>', previous_sibling_preview, opts('no description'))
+
+  vim.keymap.set('n', 'E', api.tree.expand_all, opts('Expand All'))
+  vim.keymap.set('n', '<2-RightMouse>', api.tree.change_root_to_node, opts('CD'))
+
+  vim.keymap.set('n', '<A-g>', api.node.navigate.git.prev, opts('Prev Git'))
+  vim.keymap.set('n', '<A-r>', api.node.navigate.git.next, opts('Next Git'))
+
+  vim.keymap.set('n', '[e', api.node.navigate.diagnostics.prev, opts('Prev Diagnostic'))
+  vim.keymap.set('n', ']e', api.node.navigate.diagnostics.next, opts('Next Diagnostic'))
+
+  vim.keymap.set('n', 'I', api.tree.toggle_gitignore_filter, opts('Toggle Git Ignore'))
+  vim.keymap.set('n', '.', api.tree.toggle_hidden_filter, opts('Toggle Dotfiles'))
+  vim.keymap.set('n', 'U', api.tree.toggle_custom_filter, opts('Toggle Hidden'))
+
+  vim.keymap.set('n', '<C-]>', api.tree.change_root_to_node, opts('CD'))
+  vim.keymap.set('n', '_', api.tree.change_root_to_node, opts('CD'))
+  vim.keymap.set('n', 'A', api.tree.search_node, opts('Search'))
+  vim.keymap.set('n', 'R', api.tree.reload, opts('Refresh'))
+  vim.keymap.set('n', 'a', api.fs.create, opts('Create'))
+  vim.keymap.set('n', 'd', api.fs.remove, opts('Delete'))
+  vim.keymap.set('n', 'r', api.fs.rename, opts('Rename'))
+  vim.keymap.set('n', '<C-r>', api.fs.rename_sub, opts('Rename: Omit Filename'))
+  vim.keymap.set('n', 'x', api.fs.cut, opts('Cut'))
+  vim.keymap.set('n', 'c', api.fs.copy.node, opts('Copy'))
+  vim.keymap.set('n', 'p', api.fs.paste, opts('Paste'))
+  vim.keymap.set('n', 'y', api.fs.copy.filename, opts('Copy Name'))
+  vim.keymap.set('n', 'Y', api.fs.copy.relative_path, opts('Copy Relative Path'))
+  vim.keymap.set('n', 'gy', api.fs.copy.absolute_path, opts('Copy Absolute Path'))
+
+  vim.keymap.set('n', "'", api.node.run.system, opts('Run System'))
+
+  vim.keymap.set('n', 'q', api.tree.close, opts('Close'))
+  vim.keymap.set('n', 'u', api.node.show_info_popup, opts('Info'))
+  vim.keymap.set('n', 'g?', api.tree.toggle_help, opts('Help'))
+  vim.keymap.set('n', 'f', api.live_filter.start, opts('Filter'))
+  vim.keymap.set('n', 'F', api.live_filter.clear, opts('Clean Filter'))
+  vim.keymap.set('n', 'm', api.marks.toggle, opts('Toggle Bookmark'))
+end
+
 local tree_cb = require('nvim-tree.config').nvim_tree_callback
+
 require('nvim-tree').setup({
 
   auto_reload_on_write = true,
@@ -73,6 +151,8 @@ require('nvim-tree').setup({
   reload_on_bufenter = false,
   respect_buf_cwd = false,
 
+  on_attach = on_attach,
+
   view = {
     adaptive_size = false,
     centralize_selection = false,
@@ -86,63 +166,6 @@ require('nvim-tree').setup({
     signcolumn = 'yes',
     mappings = {
       custom_only = true,
-      list = {
-        { key = { '<CR>', 'o', '<2-LeftMouse>' }, cb = tree_cb('edit') },
-        { key = '<C-e>', action = 'edit_in_place' },
-        { key = 'O', action = 'edit_no_picker' },
-        { key = '<C-v>', cb = tree_cb('vsplit') },
-        { key = '<C-x>', cb = tree_cb('split') },
-        { key = '<C-t>', cb = tree_cb('tabnew') },
-        { key = '<Tab>', cb = tree_cb('preview') }, -- useful home row mappings
-        { key = 'D', cb = tree_cb('parent_node') },
-        { key = 'h', cb = tree_cb('close_node') },
-        { key = 'H', cb = tree_cb('collapse_all') },
-        { key = 't', cb = tree_cb('next_sibling') },
-        { key = 'T', cb = tree_cb('last_sibling') },
-        { key = 'n', cb = tree_cb('prev_sibling') },
-        { key = 'N', cb = tree_cb('first_sibling') },
-        { key = 'l', action = 'edit', action_cb = edit_or_open },
-        { key = 'L', action = 'vsplit_preview', action_cb = vsplit_preview },
-        { key = '-', cb = tree_cb('dir_up') },
-
-        { key = { 'J', '<C-n>' }, action_cb = next_sibling_preview },
-        { key = { 'K', '<C-p>' }, action_cb = previous_sibling_preview },
-
-        { key = 'E', action = 'expand_all' },
-        { key = { '<2-RightMouse>', '<C-]>', '_' }, cb = tree_cb('cd') },
-
-        { key = '<A-g>', cb = tree_cb('prev_git_item') },
-        { key = '<A-r>', cb = tree_cb('next_git_item') },
-
-        { key = '[e', action = 'prev_diag_item' },
-        { key = ']e', action = 'next_diag_item' },
-
-        { key = 'I', action = 'toggle_git_ignored' },
-        { key = 'i', cb = tree_cb('toggle_ignored') },
-        { key = '.', cb = tree_cb('toggle_dotfiles') },
-        { key = 'U', action = 'toggle_custom' },
-
-        { key = 'A', cb = tree_cb('search_node') },
-        { key = 'R', cb = tree_cb('refresh') },
-        { key = 'a', cb = tree_cb('create') },
-        { key = 'd', cb = tree_cb('remove') },
-        { key = 'r', cb = tree_cb('rename') },
-        { key = '<C-r>', cb = tree_cb('full_rename') },
-        { key = 'x', cb = tree_cb('cut') },
-        { key = 'c', cb = tree_cb('copy') },
-        { key = 'p', cb = tree_cb('paste') },
-        { key = 'y', cb = tree_cb('copy_name') },
-        { key = 'Y', cb = tree_cb('copy_path') },
-        { key = 'gy', cb = tree_cb('copy_absolute_path') },
-        { key = "'", cb = tree_cb('system_open') }, -- avoid clash with lightspeed
-
-        { key = 'q', cb = tree_cb('close') },
-        { key = 'u', action = 'toggle_file_info' },
-        { key = 'g?', cb = tree_cb('toggle_help') },
-        { key = 'f', action = 'live_filter' },
-        { key = 'F', action = 'clear_live_filter' }, -- { key = ".", action = "run_file_command" },
-        { key = 'm', action = 'toggle_mark' },
-      },
     },
     float = {
       enable = false,
