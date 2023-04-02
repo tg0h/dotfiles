@@ -20,8 +20,8 @@ local M = {
 
   -- telescope
   g = { '<CMD>Telescope git_status<CR>', 'Open changed file' },
-  b = { '<CMD>Telescope git_branches<CR>', 'Checkout branch' },
-  B = { '<CMD>GitBlameToggle<CR>', 'Toggle Blame' },
+  -- b = { '<CMD>Telescope git_branches<CR>', 'Checkout branch' },
+  b = { '<CMD>GitBlameToggle<CR>', 'Toggle Blame' },
   c = { '<CMD>Telescope git_commits<CR>', 'Checkout commit' },
   -- f = {"<CMD>Telescope git_bcommits<CR>", "Checkout commit(for current file)"}
 
