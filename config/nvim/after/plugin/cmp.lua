@@ -116,4 +116,34 @@ cmp.setup.cmdline('/', { sources = { { name = 'buffer' } } })
 
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 -- TODO: doesn't play well with nvimtree, causes eg :args to show filename instead of output?
-cmp.setup.cmdline(':', { sources = cmp.config.sources({ { name = 'path' } }, { { name = 'cmdline' } }) })
+cmp.setup.cmdline(':', {
+  mapping = {
+    ['<C-n>'] = {
+      c = function(fallback)
+        -- local cmp = require('cmp')
+        if cmp.visible() then
+          cmp.select_next_item()
+        else
+          fallback()
+        end
+      end,
+    },
+    ['<C-p>'] = {
+      c = function(fallback)
+        -- local cmp = require('cmp')
+        if cmp.visible() then
+          cmp.select_prev_item()
+        else
+          fallback()
+        end
+      end,
+    },
+    ['<C-e>'] = {
+      c = cmp.mapping.abort(),
+    },
+    ['<C-y>'] = {
+      c = cmp.mapping.confirm({ select = false }),
+    },
+  },
+  sources = cmp.config.sources({ { name = 'path' } }, { { name = 'cmdline' } }),
+})
