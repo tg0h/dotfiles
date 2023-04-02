@@ -117,6 +117,7 @@ cmp.setup({
   sources = {
     { name = 'luasnip' },
     { name = 'nvim_lsp' },
+    { name = 'git' },
     { name = 'nvim_lua' },
     { name = 'buffer', keyword_length = 5 },
     { name = 'calc' },

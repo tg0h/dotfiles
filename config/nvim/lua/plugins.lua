@@ -55,6 +55,7 @@ return require('packer').startup({
         { 'hrsh7th/cmp-emoji' },
         { 'hrsh7th/cmp-calc' },
         { 'saadparwaiz1/cmp_luasnip' },
+        { 'petertriho/cmp-git' },
       },
     })
     -- use({ 'mfussenegger/nvim-lint', config = get_setup('nvim-lint') })
