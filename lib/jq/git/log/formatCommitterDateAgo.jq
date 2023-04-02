@@ -25,7 +25,8 @@ def formatDuration($secs):
     # elif $secs < 9 * HOUR then $duration|_rb9
     # elif $secs < 12 * HOUR then $duration|_cs0
 
-    elif $secs < 1 * DAY then $duration|_cs0
+    elif $secs < 12 * HOUR then $duration|_cs0
+    elif $secs < 1 * DAY then $duration|_cs3
     elif $secs < 2 * DAY then $duration|_cs5
     # elif $secs < 3 * DAY then $duration|_cs3
 
