@@ -6,12 +6,15 @@ expr_options = { noremap = true, expr = true, silent = true }
 -- map("n", "<A-Esc>", ":e#<CR>", default_options) -- edit previously opened buffer (or C-^)
 -- map('n', '<A-CR>', ':e#<CR>', default_options) -- edit previously opened buffer (or C-^)
 
--- map('n', '<A-1>', ':BufferLineGoToBuffer 1<CR>', default_options) -- Go to Buffer 1
--- map('n', '<A-2>', ':BufferLineGoToBuffer 2<CR>', default_options) -- Go to Buffer 2
--- map('n', '<A-S-[>', ':BufferLineGoToBuffer 2<CR>', default_options) -- A-{
--- map('n', '<A-S-]>', ':BufferLineGoToBuffer 3<CR>', default_options) -- A-}
--- map('n', '<A-S-9>', ':BufferLineGoToBuffer 4<CR>', default_options) -- A-(
--- map('n', '<A-=>', ':BufferLineGoToBuffer 5<CR>', default_options)
+map('n', '<A-1>', ':BufferLineGoToBuffer 1<CR>', default_options) -- Go to Buffer 1
+map('n', '<A-2>', ':BufferLineGoToBuffer 2<CR>', default_options) -- Go to Buffer 2
+map('n', '<A-3>', ':BufferLineGoToBuffer 3<CR>', default_options) -- Go to Buffer 2
+map('n', '<A-4>', ':BufferLineGoToBuffer 4<CR>', default_options) -- Go to Buffer 2
+map('n', '<A-5>', ':BufferLineGoToBuffer 5<CR>', default_options) -- Go to Buffer 2
+map('n', '<A-6>', ':BufferLineGoToBuffer 6<CR>', default_options) -- Go to Buffer 2
+map('n', '<A-7>', ':BufferLineGoToBuffer 7<CR>', default_options) -- Go to Buffer 2
+map('n', '<A-8>', ':BufferLineGoToBuffer 8<CR>', default_options) -- Go to Buffer 2
+map('n', '<A-9>', ':BufferLineGoToBuffer 9<CR>', default_options) -- Go to Buffer 2
 
 map('n', '<A-g>', ':BufferLineCyclePrev<CR>', default_options) -- Go to left buffer 'tab'
 map('n', '<A-r>', ':BufferLineCycleNext<CR>', default_options) -- Go to right buffer 'tab'
