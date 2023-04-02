@@ -1,5 +1,6 @@
 local lib = require('nvim-tree.lib')
 local view = require('nvim-tree.view')
+local api = require('nvim-tree.api')
 
 local function collapse_all()
   require('nvim-tree.actions.tree-modifiers.collapse-all').fn()
@@ -38,6 +39,18 @@ local function vsplit_preview()
 
   -- Finally refocus on tree if it was lost
   view.focus()
+end
+
+local function previous_sibling_preview()
+  -- local node = lib.get_node_at_cursor()
+  api.node.navigate.sibling.prev()
+  api.node.open.preview()
+end
+
+local function next_sibling_preview()
+  -- local node = lib.get_node_at_cursor()
+  api.node.navigate.sibling.next()
+  api.node.open.preview()
 end
 
 local tree_cb = require('nvim-tree.config').nvim_tree_callback
@@ -91,6 +104,9 @@ require('nvim-tree').setup({
         { key = 'l', action = 'edit', action_cb = edit_or_open },
         { key = 'L', action = 'vsplit_preview', action_cb = vsplit_preview },
         { key = '-', cb = tree_cb('dir_up') },
+
+        { key = { 'J', '<C-n>' }, action_cb = next_sibling_preview },
+        { key = { 'K', '<C-p>' }, action_cb = previous_sibling_preview },
 
         { key = 'E', action = 'expand_all' },
         { key = { '<2-RightMouse>', '<C-]>', '_' }, cb = tree_cb('cd') },
