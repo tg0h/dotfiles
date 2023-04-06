@@ -5,8 +5,8 @@ alias c,='cd ~/src/playground/candy/referralcandy-secondary'
 alias s.='cd ~/src/candy/main/referralcandy-main'
 
 alias dt.='cd ~/Documents/tim'
-alias d.='dt'
-alias dd='cd $HOME/dotfiles'
+# alias d.='dt'
+alias d.='cd $HOME/dotfiles'
 alias dl='cd $HOME/downloads'
 # alias dp='cd /tmp' - use :t instead
 # alias dc='cd ~/src/clones'
