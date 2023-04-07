@@ -61,7 +61,7 @@ local function on_attach(bufnr)
   end
 
   vim.keymap.set('n', '<CR>', api.node.open.edit, opts('Open'))
-  vim.keymap.set('n', '<C-e>', api.node.open.replace_tree_buffer, opts('Open: In Place')) -- open in same pane as nvim tree
+  -- vim.keymap.set('n', '<C-e>', api.node.open.replace_tree_buffer, opts('Open: In Place')) -- open in same pane as nvim tree
   vim.keymap.set('n', 'O', api.node.open.no_window_picker, opts('Open: No Window Picker'))
   vim.keymap.set('n', 'o', api.node.open.edit, opts('Open'))
   vim.keymap.set('n', '<2-LeftMouse>', api.node.open.edit, opts('Open'))
