@@ -30,6 +30,8 @@ keymaps:
   - [v, $HOME/Documents/candy/wiki, 5]
   - [z, $HOME/dotfiles, 4]
 
+  - [k, $HOME/Desktop]
+
   # trash
   - [q, $HOME/.Trash]
 
