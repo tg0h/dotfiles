@@ -87,5 +87,5 @@ rshift + ralt + rctrl + lalt - 9 : yabai -m window --space 9 && yabai -m space -
 
 
 ## move to next monitor
-rshift + ralt + rctrl + lalt - n : yabai -m window --display next && yabai -m display --focus next || yabai -m window --display prev && yabai -m display --focus prev
-shift + ralt + rctrl + lalt - n : yabai -m display --focus next && yabai -m window last --insert east || yabai -m display --focus prev && yabai -m window last --insert east
+# rshift + ralt + rctrl + lalt - n : yabai -m window --display next && yabai -m display --focus next || yabai -m window --display prev && yabai -m display --focus prev
+# shift + ralt + rctrl + lalt - n : yabai -m display --focus next && yabai -m window last --insert east || yabai -m display --focus prev && yabai -m window last --insert east
