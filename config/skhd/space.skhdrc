@@ -11,8 +11,8 @@ rshift + ralt + rctrl - g : yabai -m space --focus prev || yabai -m space --focu
 rshift + ralt + rctrl - r : yabai -m space --focus next || yabai -m space --focus first 
 
 ## for laptop use
-rshift + ralt + rctrl + lcmd - g : yabai -m space --focus prev || yabai -m space --focus last # previous
-rshift + ralt + rctrl + lcmd - r : yabai -m space --focus next || yabai -m space --focus first # next
+# rshift + ralt + rctrl + lcmd - g : yabai -m space --focus prev || yabai -m space --focus last # previous
+# rshift + ralt + rctrl + lcmd - r : yabai -m space --focus next || yabai -m space --focus first # next
 
 # rotate windows
 rshift + ralt + rctrl - l : yabai -m space --rotate 270
