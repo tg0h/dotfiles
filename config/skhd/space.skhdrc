@@ -10,6 +10,10 @@ rshift + ralt + rctrl - t : yabai -m space --focus recent # focus previous works
 rshift + ralt + rctrl - g : yabai -m space --focus prev || yabai -m space --focus last
 rshift + ralt + rctrl - r : yabai -m space --focus next || yabai -m space --focus first 
 
+## move window to next/prev space
+rshift + ralt + rctrl + lalt - g : yabai -m window --space prev && yabai -m space --focus prev 
+rshift + ralt + rctrl + lalt - r : yabai -m window --space next && yabai -m space --focus next 
+
 ## for laptop use
 # rshift + ralt + rctrl + lcmd - g : yabai -m space --focus prev || yabai -m space --focus last # previous
 # rshift + ralt + rctrl + lcmd - r : yabai -m space --focus next || yabai -m space --focus first # next
@@ -81,9 +85,6 @@ rshift + ralt + rctrl + lalt - 7 : yabai -m window --space 7 && yabai -m space -
 rshift + ralt + rctrl + lalt - 8 : yabai -m window --space 8 && yabai -m space --focus 8
 rshift + ralt + rctrl + lalt - 9 : yabai -m window --space 9 && yabai -m space --focus 9
 
-## move to next/prev space
-rshift + ralt + rctrl + lalt - g : yabai -m window --space prev && yabai -m space --focus prev 
-rshift + ralt + rctrl + lalt - r : yabai -m window --space next && yabai -m space --focus next 
 
 ## move to next monitor
 rshift + ralt + rctrl + lalt - n : yabai -m window --display next && yabai -m display --focus next || yabai -m window --display prev && yabai -m display --focus prev
