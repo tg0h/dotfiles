@@ -24,6 +24,11 @@ return {
       { i(nil, '') }
     )
   ),
+  s('do', {
+    t('/*'),
+    sn(nil, { t('*'), i(1, '') }),
+    t('*/'),
+  }),
 }, {
   -- s('autotrig', t('autotriggered, if enabled')),
 }
