@@ -122,7 +122,7 @@ keybinding:
   main:
     toggleDragSelect: "v"
     toggleDragSelect-alt: "V"
-    toggleSelectHunk: "a"
+    toggleSelectHunk: "<enter>"
     pickBothHunks: "b"
   submodules:
     init: "i"
