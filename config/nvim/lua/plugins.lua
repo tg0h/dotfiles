@@ -126,7 +126,7 @@ return require('packer').startup({
     })
 
     -- gitsigns also provides a git blame
-    use({ 'f-person/git-blame.nvim' })
+    use({ 'f-person/git-blame.nvim', config = get_setup('git-blame') })
 
     use({ 'folke/which-key.nvim', config = get_setup('which-key') })
 
