@@ -61,8 +61,8 @@ keybinding:
     appendNewline: "<a-enter>"
     extrasMenu: "@"
     toggleWhitespaceInDiffView: "<c-w>"
-    increaseContextInDiffView: "}"
-    decreaseContextInDiffView: "{"
+    increaseContextInDiffView: "r"
+    decreaseContextInDiffView: "g"
   status:
     checkForUpdate: "u"
     recentRepos: "<enter>"
