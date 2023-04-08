@@ -73,7 +73,7 @@ keybinding:
     commitChangesWithEditor: "C"
     ignoreFile: "i"
     refreshFiles: "r"
-    stashAllChanges: "_"
+    stashAllChanges: "-"
     viewStashOptions: "S"
     toggleStagedAll: "a" # stage/unstage all
     viewResetOptions: "D"
@@ -93,7 +93,7 @@ keybinding:
     setUpstream: "u" # set as upstream of checked-out branch
     fetchRemote: "f"
   commits:
-    squashDown: "#"
+    squashDown: "_"
     renameCommit: "r"
     renameCommitWithEditor: "R"
     viewResetOptions: "g"
