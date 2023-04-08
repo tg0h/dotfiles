@@ -12,6 +12,7 @@ map('n', '<S-A-b>', ':wincmd s<CR>', default_options) -- horizontal split
 
 -- map("n", "<S-A-z>", ":wincmd _<CR>:wincmd |<CR>", default_options) -- zoom
 map('n', '<S-A-z>', ":lua require'tg.toggle-window-zoom'.toggle()<CR>", default_options) -- zoom
+map('n', '<S-M-h>', ':wincmd w<CR>', default_options) -- switch to next window ie C-W C-W
 -- map("n", "<S-A-e>", ":wincmd =<CR>", default_options) -- equal splits
 
 -- map("n", "+", ":res +5<CR>", default_options)
