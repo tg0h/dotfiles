@@ -184,6 +184,12 @@ return require('packer').startup({
     use({ 'ray-x/lsp_signature.nvim' })
     use({ 'tpope/vim-fugitive' })
     use({ 'rhysd/git-messenger.vim' })
+    use({
+      'notjedi/nvim-rooter.lua',
+      config = function()
+        require('nvim-rooter').setup()
+      end,
+    })
   end,
   config = {
     display = {
