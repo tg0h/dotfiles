@@ -48,4 +48,4 @@ map('n', '<C-M-a>', '<Esc>:Dash<CR>', default_options) -- open dash docs with wo
 
 map('n', '<C-z>', '<NOP>', default_options)
 -- map("n", "<C-M-z>", "<Esc>:ZenMode<CR>", default_options)
--- vim.keymap.set('n', '<A-1>', ':hello')
+-- vim.keymap.set('n', '<D-:>', ':lua print "hello"<CR>')
