@@ -148,6 +148,7 @@ require('nvim-tree').setup({
   root_dirs = {},
   prefer_startup_root = false,
   sync_root_with_cwd = false,
+  root_dirs = { '/Users/tim/src/candy/main/referralcandy-main' },
   reload_on_bufenter = false,
   respect_buf_cwd = false,
 
@@ -217,6 +218,7 @@ require('nvim-tree').setup({
   },
 
   hijack_directories = { enable = true, auto_open = true },
+  -- do not update root so that i can still continue to eg grep for a string with the cwd of the project root
   update_focused_file = { enable = true, update_root = true, ignore_list = {} },
   ignore_ft_on_setup = {}, -- will not open on setup if the filetype is in this list
   system_open = { cmd = '', args = {} },
