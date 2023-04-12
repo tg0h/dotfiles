@@ -29,6 +29,7 @@ export FZF_DEFAULT_OPTS="
 --header=$'⌃H ⌃S ⌃A ⌃Y ⌃E ⌃␣ ⌥C ⇧⌥C F2' \
 
 --bind='ctrl-space:toggle-preview'
+--bind='ctrl-z:toggle-preview'
 
 --bind='ctrl-d:half-page-down'
 --bind='ctrl-u:half-page-up'
