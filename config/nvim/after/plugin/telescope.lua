@@ -147,12 +147,17 @@ telescope.load_extension('ui-select')
 
 local builtin = require('telescope.builtin')
 
-vim.keymap.set('n', '<leader>pf', builtin.find_files, {})
-vim.keymap.set('n', '<C-p>', builtin.git_files, {})
+vim.keymap.set('n', '<leader>pf', builtin.find_files, { desc = 'find files' })
+-- vim.keymap.set('n', '<C-p>', builtin.git_files, { desc = 'git files' })
+vim.keymap.set('n', '<C-p>', require('setup/telescope').my_git_files, { desc = 'git files' })
+
+-- vim.keymap.set('n', '<leader>ps', function() -- search text provided via input
+--   builtin.grep_string({ search = vim.fn.input('Grep > ') })
+-- end)
 
 vim.keymap.set('n', '<leader>ps', function() -- search text provided via input
-  builtin.grep_string({ search = vim.fn.input('Grep > ') })
-end)
+  require('setup/telescope').my_grep_string({ search = vim.fn.input('Grep > ') })
+end, { desc = 'search for word provided via input' })
 
 vim.keymap.set('n', '<S-C-s>', builtin.commands)
 
