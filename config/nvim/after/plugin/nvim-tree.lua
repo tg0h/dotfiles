@@ -140,7 +140,7 @@ require('nvim-tree').setup({
   hijack_cursor = false, -- hijack the cursor in the tree to put it at the start of the filename
   hijack_netrw = true, -- hijack netrw window on startup
   hijack_unnamed_buffer_when_opening = false,
-  ignore_buffer_on_setup = false,
+  -- ignore_buffer_on_setup = false,
   -- open_on_setup = true, -- open the tree when running this setup function
   -- open_on_setup_file = false,
   open_on_tab = false,
@@ -220,7 +220,7 @@ require('nvim-tree').setup({
   hijack_directories = { enable = true, auto_open = true },
   -- do not update root so that i can still continue to eg grep for a string with the cwd of the project root
   update_focused_file = { enable = true, update_root = true, ignore_list = {} },
-  ignore_ft_on_setup = {}, -- will not open on setup if the filetype is in this list
+  -- ignore_ft_on_setup = {}, -- will not open on setup if the filetype is in this list
   system_open = { cmd = '', args = {} },
   diagnostics = { -- show lsp diagnostics in the signcolumn
     enable = false,
