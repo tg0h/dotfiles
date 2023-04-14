@@ -215,3 +215,4 @@ brew 'rabbitmq'
 brew 'duf'
 
 brew 'aichat'
+brew 'youplot'
