@@ -191,7 +191,7 @@ return require('packer').startup({
         require('nvim-rooter').setup()
       end,
     })
-    use({ 'vim-test/vim-test' })
+    use({ 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' })
   end,
   config = {
     display = {
