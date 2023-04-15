@@ -66,3 +66,6 @@ require('Comment').setup({
   ---@type fun(ctx: Ctx)
   post_hook = nil,
 })
+
+local api = require('Comment.api')
+vim.keymap.set('n', '<M-/>', api.toggle.linewise.current, { desc = 'comment' })
