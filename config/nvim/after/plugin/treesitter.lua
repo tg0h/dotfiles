@@ -124,3 +124,11 @@ require('nvim-treesitter.configs').setup({
     max_file_lines = 2000, -- Do not enable for files with more than specified lines
   },
 })
+
+local ts_repeat_move = require('nvim-treesitter.textobjects.repeatable_move')
+
+-- Repeat movement with ; and ,
+-- ensure ; goes forward and , goes backward regardless of the last direction
+-- x is visual mode
+vim.keymap.set({ 'n', 'x', 'o' }, '-', ts_repeat_move.repeat_last_move_next)
+vim.keymap.set({ 'n', 'x', 'o' }, '+', ts_repeat_move.repeat_last_move_previous)
