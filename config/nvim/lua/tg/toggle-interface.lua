@@ -5,8 +5,11 @@ local function open_buf(buf_id)
   vim.api.nvim_buf_set_option(buf_id, 'buflisted', true)
 end
 
-local function does_file_exist(dirName, fileName)
+local function get_file_if_exist(dirName, fileName)
   -- returns filename if fileName exists
+  if fileName == nil then
+    return nil
+  end
 
   -- print('searcrhing for ' .. vim.inspect(fileName))
   local files = vim.fs.find(fileName, { path = dirName, upward = false, type = 'file' })
@@ -16,6 +19,22 @@ local function does_file_exist(dirName, fileName)
   return file
 end
 
+local function get_alternate_repository_file(f)
+  if string.find(f, 'Repository') ~= nil then
+    local test = string.sub(f, 1, #'Sequelize')
+    if string.sub(f, 1, #'Sequelize') == 'Sequelize' then
+      -- convert SequelizeTestRepository.ts to ITestRepository.ts if string beings with Sequelize, remove the Sequelize
+      local fileName = string.sub(f, #'Sequelize' + 1)
+      return 'I' .. fileName
+    else
+      -- convert ITestRepository.ts to SequelizeTestRepository.ts
+      local fileNameWithoutI = string.sub(f, 2) -- remove I
+      return 'Sequelize' .. fileNameWithoutI
+    end
+    return nil
+  end
+end
+
 local function find_alternate_file()
   local f = vim.api.nvim_buf_get_name(0)
   local fname = vim.fs.basename(f)
@@ -23,14 +42,19 @@ local function find_alternate_file()
 
   local interfaceFileName = 'I' .. fname
   local serviceFileName = string.sub(fname, 2) -- remove first char of current file name
+  local alternateRepositoryFileName = get_alternate_repository_file(fname)
 
-  local switch_to_file = does_file_exist(dirname, interfaceFileName) or does_file_exist(dirname, serviceFileName)
+  local switch_to_file = get_file_if_exist(dirname, interfaceFileName)
+    or get_file_if_exist(dirname, serviceFileName)
+    or get_file_if_exist(dirname, alternateRepositoryFileName)
   return switch_to_file
 end
 
 function M.Toggle()
   -- if current file is Service.ts, switch to IService.ts in current dir
   -- if current file is IService.ts, switch to Service.ts in current dir
+  -- if current file is SequelizeTestRepository.ts, switch to ITestRepository.ts in current dir
+  -- if current file is ITestRepository.ts, switch to SequelizeRepository.ts in current dir
 
   local filename = find_alternate_file()
   -- print('filename is ' .. filename)
