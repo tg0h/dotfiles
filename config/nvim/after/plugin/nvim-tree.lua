@@ -90,7 +90,9 @@ local function on_attach(bufnr)
 
   -- local node = api.tree.get_node_under_cursor()
   vim.keymap.set('n', '<C-n>', next_sibling_preview, opts('no description'))
+  vim.keymap.set('n', '<M-n>', next_sibling_preview, opts('no description'))
   vim.keymap.set('n', '<C-p>', previous_sibling_preview, opts('no description'))
+  vim.keymap.set('n', '<M-p>', previous_sibling_preview, opts('no description'))
 
   vim.keymap.set('n', 'E', api.tree.expand_all, opts('Expand All'))
   vim.keymap.set('n', '<2-RightMouse>', api.tree.change_root_to_node, opts('CD'))

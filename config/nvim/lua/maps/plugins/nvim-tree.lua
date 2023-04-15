@@ -8,11 +8,14 @@ expr_options = { noremap = true, expr = true, silent = true }
 vim.keymap.set('n', '<A-m>', ':NvimTreeToggle<CR>', { desc = 'nvim tree toggle' })
 vim.keymap.set('n', '<A-b>', ':NvimTreeFindFile<CR>', { desc = 'nvim tree find file' })
 
-vim.keymap.set('n', '<M-CR>', function()
+local function openNvimTreeAndKeepOpen()
   if vim.fn.bufname():match('NvimTree_') then
     -- previous window
     vim.cmd.wincmd('p')
   else
     api.tree.open({ find_file = true })
   end
-end, { desc = 'nvim-tree: toggle' })
+end
+
+vim.keymap.set('n', '<M-CR>', openNvimTreeAndKeepOpen, { desc = 'nvim-tree: toggle' })
+vim.keymap.set('n', '<M-Space>', openNvimTreeAndKeepOpen, { desc = 'nvim-tree: toggle' })

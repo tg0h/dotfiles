@@ -191,6 +191,7 @@ return require('packer').startup({
         require('nvim-rooter').setup()
       end,
     })
+    use({ 'vim-test/vim-test' })
   end,
   config = {
     display = {
