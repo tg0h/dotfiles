@@ -132,3 +132,5 @@ local ts_repeat_move = require('nvim-treesitter.textobjects.repeatable_move')
 -- x is visual mode
 vim.keymap.set({ 'n', 'x', 'o' }, '-', ts_repeat_move.repeat_last_move_next)
 vim.keymap.set({ 'n', 'x', 'o' }, '+', ts_repeat_move.repeat_last_move_previous)
+
+vim.keymap.set({ 'n' }, '<S-C-t>', vim.cmd.TSPlaygroundToggle)
