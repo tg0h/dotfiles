@@ -74,11 +74,44 @@ require('nvim-treesitter.configs').setup({
       enable = true,
       set_jumps = true, -- whether to set jumps in the jumplist
       goto_next_start = {
-        [']m'] = '@function.outer',
-        [']]'] = { query = '@class.outer', desc = 'Next class start' },
-        --
+        -- [']]'] = { query = '@class.outer', desc = 'Next class start' },
+        -- function.outer can refer to both the start of the function or the end fo the function
+        -- goto_next_start means go to the start of the next function
+        ['<S-C-r>'] = '@function.outer',
+        ['<S-C-l>'] = '@function.inner',
+
+        ['<S-C-7>'] = '@assignment.outer',
+        ['<S-C-8>'] = '@assignment.inner',
+        -- [']o'] = '@assignment.lhs',
+        -- [']u'] = '@assignment.rhs',
+
+        -- any {} block
+        ['<S-C-v>'] = '@block.outer',
+        ['<S-C-z>'] = '@block.inner',
+
+        -- a function call
+        ['<S-C-n>'] = '@call.outer',
+        ['<S-C-s>'] = '@call.inner',
+
+        ['<leader>nc'] = '@comment.outer',
+        -- [']o'] = '@comment.inner', -- not supported in ts
+
+        -- if
+        ['<S-C-M-n>'] = '@conditional.outer',
+        ['<S-C-M-s>'] = '@conditional.inner',
+
+        -- [']:'] = '@loop.outer',
+        -- [']q'] = '@loop.inner',
+        -- [']e'] = '@number.outer',
+        -- [']u'] = '@number.inner',
+        -- [']j'] = '@parameter.outer',
+        -- [']k'] = '@parameter.inner', --more useful
+        ['<M-]>'] = '@parameter.inner', --more useful
+        -- [']j'] = '@regex.outer',
+        -- [']k'] = '@regex.inner',
+
         -- You can use regex matching (i.e. lua pattern) and/or pass a list in a "query" key to group multiple queires.
-        [']o'] = '@loop.*',
+        -- [']o'] = '@loop.*',
         -- ["]o"] = { query = { "@loop.inner", "@loop.outer" } }
         --
         -- You can pass a query group to use query from `queries/<lang>/<query_group>.scm file in your runtime path.
@@ -87,16 +120,33 @@ require('nvim-treesitter.configs').setup({
         [']z'] = { query = '@fold', query_group = 'folds', desc = 'Next fold' },
       },
       goto_next_end = {
-        [']M'] = '@function.outer',
-        [']['] = '@class.outer',
+        [']]'] = '@function.outer',
+        -- [']['] = '@class.outer',
       },
+
       goto_previous_start = {
-        ['[m'] = '@function.outer',
         ['[['] = '@class.outer',
+
+        ['<S-C-g>'] = '@function.outer',
+        ['<S-C-c>'] = '@function.inner',
+
+        ['<S-C-.>'] = '@assignment.outer',
+        ['<S-C-p>'] = '@assignment.inner',
+
+        ['<S-C-m>'] = '@block.outer',
+        ['<S-C-w>'] = '@block.inner',
+
+        ['<S-C-h>'] = '@call.outer',
+        ['<S-C-t>'] = '@call.inner',
+
+        ['<S-C-M-h>'] = '@conditional.outer',
+        ['<S-C-M-t>'] = '@conditional.inner',
+
+        ['<M-[>'] = '@parameter.inner', --more useful
       },
       goto_previous_end = {
-        ['[M'] = '@function.outer',
-        ['[]'] = '@class.outer',
+        ['[['] = '@function.outer',
+        -- ['[]'] = '@class.outer',
       },
       -- Below will go to either the start or the end, whichever is closer.
       -- Use if you want more granular movements
@@ -123,6 +173,28 @@ require('nvim-treesitter.configs').setup({
     extended_mode = true, -- Highlight also non-parentheses delimiters, boolean or table: lang -> boolean
     max_file_lines = 2000, -- Do not enable for files with more than specified lines
   },
+  playground = {
+    enable = true,
+    disable = {},
+    updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
+    persist_queries = false, -- Whether the query persists across vim sessions
+    keybindings = {
+
+      -- in the editor, write the query below and move the cursor to @capture
+      -- this highlights all the if statements
+      -- (if_statement) @capture
+      toggle_query_editor = 'd',
+      toggle_hl_groups = 'i',
+      toggle_injected_languages = 't',
+      toggle_anonymous_nodes = 'a',
+      toggle_language_display = 'I',
+      focus_language = 'f',
+      unfocus_language = 'F',
+      update = 'R',
+      goto_node = '<cr>',
+      show_help = '?',
+    },
+  },
 })
 
 local ts_repeat_move = require('nvim-treesitter.textobjects.repeatable_move')
@@ -133,4 +205,4 @@ local ts_repeat_move = require('nvim-treesitter.textobjects.repeatable_move')
 vim.keymap.set({ 'n', 'x', 'o' }, '-', ts_repeat_move.repeat_last_move_next)
 vim.keymap.set({ 'n', 'x', 'o' }, '+', ts_repeat_move.repeat_last_move_previous)
 
-vim.keymap.set({ 'n' }, '<S-C-t>', vim.cmd.TSPlaygroundToggle)
+vim.keymap.set({ 'n' }, '<S-C-/>', vim.cmd.TSPlaygroundToggle)
