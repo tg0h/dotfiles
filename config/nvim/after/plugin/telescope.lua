@@ -86,3 +86,6 @@ vim.keymap.set('n', '<leader>ps', function() -- search text provided via input
 end, { desc = 'search for word provided via input' })
 
 vim.keymap.set('n', '<S-C-->', builtin.commands)
+vim.keymap.set('n', '<S-M-f>', function()
+  builtin.diagnostics({ layout_strategy = 'vertical', layout_config = { width = 0.5 } })
+end)
