@@ -164,6 +164,7 @@ require('nvim-treesitter.configs').setup({
       floating_preview_opts = {},
       peek_definition_code = {
         ['<leader>df'] = '@function.outer',
+        ['<M-f>'] = '@function.outer',
         ['<leader>dF'] = '@class.outer',
       },
     },
