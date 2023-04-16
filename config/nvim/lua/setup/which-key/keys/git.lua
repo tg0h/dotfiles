@@ -6,6 +6,7 @@ local M = {
 
   -- hunk preview
   ['.'] = { '<CMD>Gitsigns toggle_linehl<CR>', 'Signs Line Highlight' },
+  [','] = { '<CMD>Gitsigns toggle_word_diff<CR>', 'Signs Word Diff' },
   p = { "<CMD>lua require 'gitsigns'.preview_hunk()<CR>", 'Signs Preview Hunk' },
 
   -- hunk managemenent
@@ -13,7 +14,6 @@ local M = {
   r = { "<CMD>lua require 'gitsigns'.reset_hunk()<CR>", 'Signs Reset Hunk' },
   u = { "<CMD>lua require 'gitsigns'.undo_stage_hunk()<CR>", 'Undo Stage Hunk' },
   R = { "<CMD>lua require 'gitsigns'.reset_buffer()<CR>", 'Signs Reset Buffer' },
-
   -- lazygit
   l = 'Open lazygit', -- comand in toggleterm.lua
   -- n = {"<CMD>Neogit<CR>", "Open Neogit"},
@@ -28,5 +28,4 @@ local M = {
   -- use tabclose to exit diffview file history
   f = { '<CMD>DiffviewFileHistory %<CR>', 'Diffview File History' },
 }
-
 return M
