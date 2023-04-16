@@ -74,7 +74,8 @@ require('nvim-treesitter.configs').setup({
       enable = true,
       set_jumps = true, -- whether to set jumps in the jumplist
       goto_next_start = {
-        -- [']]'] = { query = '@class.outer', desc = 'Next class start' },
+        [']m'] = '@function.outer',
+        [']]'] = { query = '@class.outer', desc = 'Next class start' },
         -- function.outer can refer to both the start of the function or the end fo the function
         -- goto_next_start means go to the start of the next function
         ['<S-C-r>'] = '@function.outer',
@@ -120,11 +121,12 @@ require('nvim-treesitter.configs').setup({
         [']z'] = { query = '@fold', query_group = 'folds', desc = 'Next fold' },
       },
       goto_next_end = {
-        [']]'] = '@function.outer',
-        -- [']['] = '@class.outer',
+        [']M'] = '@function.outer',
+        [']['] = '@class.outer',
       },
 
       goto_previous_start = {
+        ['[m'] = '@function.outer',
         ['[['] = '@class.outer',
 
         ['<S-C-g>'] = '@function.outer',
@@ -145,8 +147,8 @@ require('nvim-treesitter.configs').setup({
         ['<M-[>'] = '@parameter.inner', --more useful
       },
       goto_previous_end = {
-        ['[['] = '@function.outer',
-        -- ['[]'] = '@class.outer',
+        ['[M'] = '@function.outer',
+        ['[]'] = '@class.outer',
       },
       -- Below will go to either the start or the end, whichever is closer.
       -- Use if you want more granular movements
@@ -200,10 +202,21 @@ require('nvim-treesitter.configs').setup({
 
 local ts_repeat_move = require('nvim-treesitter.textobjects.repeatable_move')
 
--- Repeat movement with ; and ,
--- ensure ; goes forward and , goes backward regardless of the last direction
+-- Repeat movement
+-- ensure <PageDown> goes forward and <PageUp> goes backward regardless of the last direction
 -- x is visual mode
-vim.keymap.set({ 'n', 'x', 'o' }, '-', ts_repeat_move.repeat_last_move_next)
-vim.keymap.set({ 'n', 'x', 'o' }, '+', ts_repeat_move.repeat_last_move_previous)
+vim.keymap.set({ 'n', 'x', 'o' }, '<PageUp>', ts_repeat_move.repeat_last_move_previous)
+vim.keymap.set({ 'n', 'x', 'o' }, '<PageDown>', ts_repeat_move.repeat_last_move_next)
+
+-- toggle <Home> and <End> to switch between the start and end of range
+-- This repeats the last query with always previous direction and to the START of the range.
+vim.keymap.set({ 'n', 'x', 'o' }, '<Home>', function()
+  ts_repeat_move.repeat_last_move({ forward = false, start = true })
+end)
+
+-- This repeats the last query with always next direction and to the END of the range.
+vim.keymap.set({ 'n', 'x', 'o' }, '<End>', function()
+  ts_repeat_move.repeat_last_move({ forward = true, start = false })
+end)
 
 vim.keymap.set({ 'n' }, '<S-C-/>', vim.cmd.TSPlaygroundToggle)
