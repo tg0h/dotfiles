@@ -5,6 +5,8 @@ expr_options = { noremap = true, expr = true, silent = true }
 -- Map the leader key
 -- map("n", "<Space>", "<NOP>", default_options)
 vim.g.mapleader = ' '
+-- vim.g.maplocalleader = ','
+-- vim.g.maplocalleader = '<BS>' --doesn't work
 
 -- Emacs emulation
 map('i', '<C-a>', '<Esc>I', default_options) -- go to beginning of line in insert mode
