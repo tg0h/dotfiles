@@ -1,8 +1,38 @@
 local M = {}
+local ts_utils = require('nvim-treesitter.ts_utils')
+local ts = vim.treesitter
+local tsu = require('tg.treesitter-utils')
 
-local function open_buf(buf_id)
+local function get_current_function_name()
+  local current_node = ts_utils.get_node_at_cursor()
+  if not current_node then
+    return ''
+  end
+  local expr = current_node
+
+  while expr do
+    -- class     - method def
+    -- interface - method signature
+    if expr:type() == 'method_definition' or expr:type() == 'method_signature' then
+      break
+    end
+    expr = expr:parent()
+  end
+
+  if not expr then
+    return ''
+  end
+  -- print('tim expr sexpr is ' .. expr:sexpr())
+  local bufnr = vim.fn.bufnr()
+  local first_named_child_text = vim.treesitter.query.get_node_text(expr:named_child(0), bufnr)
+  return first_named_child_text
+end
+
+local function open_buf(buf_id, function_name)
   vim.api.nvim_set_current_buf(buf_id)
   vim.api.nvim_buf_set_option(buf_id, 'buflisted', true)
+
+  tsu.goto_function(function_name, buf_id)
 end
 
 local function get_file_if_exist(dirName, fileName)
@@ -56,13 +86,15 @@ function M.Toggle()
   -- if current file is SequelizeTestRepository.ts, switch to ITestRepository.ts in current dir
   -- if current file is ITestRepository.ts, switch to SequelizeRepository.ts in current dir
 
+  local function_name = get_current_function_name()
+  -- print('function name is ' .. function_name)
   local filename = find_alternate_file()
   -- print('filename is ' .. filename)
 
   if filename then
     local buf_id = vim.fn.bufnr(filename, true)
     -- local isLoaded = vim.api.nvim_buf_is_loaded(buf_id)
-    open_buf(buf_id)
+    open_buf(buf_id, function_name)
   end
 end
 
