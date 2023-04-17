@@ -6,6 +6,7 @@ function fzf-brancher-widget(){
   is_in_git_repo || return
 
   local HEADER=$(cat <<-EOF
+   ⌃ y - paste branch to LBUFFER
    --- in place
    ⌃ r - remove selected branch
    ⌥ r - delete selected remote branch
@@ -63,12 +64,13 @@ EOF
       --bind "alt-r:reload(
                 gbl
               )+execute-silent( gbdr -d {6})" \
-      --expect=alt-d,ctrl-alt-d,ctrl-alt-r,ctrl-s
+      --expect=alt-d,ctrl-alt-d,ctrl-alt-r,ctrl-s,ctrl-y
   )
 
   local key=$(head -1 <<< "$out")
   local targets=$(tail -n +2 <<< "$out") # get all lines after the first line
   local target1=$(head -1 <<< "$targets")
+
 
   if [ "$key" = ctrl-s ]; then
     git checkout @{-1}
@@ -129,6 +131,11 @@ EOF
      local targetBranch=$(sed s/^\*// <<< $target1 | choose 5)
      # remove any prefix from the refname
      local branch=$(sed 's#^origin/##' <<< $targetBranch)
+    if [ "$key" = ctrl-y ]; then
+      # delete all local branches including timg branches
+      echo $targetBranch
+      LBUFFER+="$targetBranch"
+    else
      if [ $(git branch -l $branch) ]; then
        # if the branch exists, just switch to the branch
        git checkout $branch
@@ -136,6 +143,7 @@ EOF
        # create a new branch with a simplified name, without the remotes/origin prefix
        git checkout -b $branch $targetBranch
      fi
+    fi
   fi
   rm -f "${reverse_tmp_file}" &> /dev/null
   rm -f "${sortBy_tmp_file}" &> /dev/null
