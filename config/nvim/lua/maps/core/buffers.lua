@@ -25,4 +25,4 @@ map('n', '<S-A-[>', ':BufferLineMoveNext<CR>', default_options)
 
 map('n', '<A-7>', ':BufferLineCloseLeft<CR>', default_options) -- A-* close all buffers to the left
 map('n', '<A-8>', ':BufferLineCloseLeft<CR>:BufferLineCloseRight<CR>', default_options) -- A-+ close all but selected buffer
-map('n', '<A-[>', ':BufferLineCloseRight<CR>', default_options) -- A-! close all buffers to the right
+map('n', '<A-6>', ':BufferLineCloseRight<CR>', default_options) -- A-! close all buffers to the right A-[ used by treesitter text objects
