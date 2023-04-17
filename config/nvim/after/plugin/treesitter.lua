@@ -144,7 +144,7 @@ require('nvim-treesitter.configs').setup({
         ['<S-C-M-h>'] = '@conditional.outer',
         ['<S-C-M-t>'] = '@conditional.inner',
 
-        ['<M-[>'] = '@parameter.inner', --more useful
+        ['<M-[>'] = '@parameter.inner', -- more useful
       },
       goto_previous_end = {
         ['[M'] = '@function.outer',
