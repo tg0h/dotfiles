@@ -36,15 +36,14 @@ rshift + ralt + rctrl + lcmd - s : yabai -m space --focus 4
 rshift + ralt + rctrl + lcmd - 0x1B : yabai -m space --focus 5 # -
 
 # go to space
-rshift + ralt + rctrl - d : yabai -m space --focus 1
+rshift + ralt + rctrl - d : [ $(yabai -m query --spaces --space | jq '.index') -eq 1 ] && ( yabai -m space --focus recent ) || yabai -m space --focus 1
 # rshift + ralt + rctrl + lshift - 0x1C : yabai -m space --focus 1 # *
 # rshift + ralt + rctrl + lshift - 0x1D : yabai -m space --focus 2 # )
 # rshift + ralt + rctrl + lshift - 0x18 : yabai -m space --focus 3 # +
-rshift + ralt + rctrl - c : yabai -m space --focus 3
+rshift + ralt + rctrl - c : [ $(yabai -m query --spaces --space | jq '.index') -eq 3 ] && ( yabai -m space --focus recent ) || yabai -m space --focus 3
 # rshift + ralt + rctrl - 0x1E : yabai -m space --focus 4 # ]
 # rshift + ralt + rctrl + lshift - 0x12 : yabai -m space --focus 5 # !
-rshift + ralt + rctrl - s : yabai -m space --focus 5
-# rshift + ralt + rctrl - w : yabai -m space --focus 6
+rshift + ralt + rctrl - s : [ $(yabai -m query --spaces --space | jq '.index') -eq 5 ] && ( yabai -m space --focus recent ) || yabai -m space --focus 5
 rshift + ralt + rctrl - w : [ $(yabai -m query --spaces --space | jq '.index') -eq 6 ] && ( yabai -m space --focus recent ) || yabai -m space --focus 6
 # rshift + ralt + rctrl + lshift - 0x14 : yabai -m space --focus 6 # *
 # rshift + ralt + rctrl - p: yabai -m space --focus 7
