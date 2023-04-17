@@ -82,7 +82,7 @@ vim.keymap.set('n', '<C-p>', require('setup/telescope').my_git_files, { desc = '
 -- end)
 
 vim.keymap.set('n', '<leader>ps', function() -- search text provided via input
-  require('setup/telescope').my_grep_string({ search = vim.fn.input('Grep > ') })
+  require('setup/telescope').my_grep_string()
 end, { desc = 'search for word provided via input' })
 
 vim.keymap.set('n', '<S-C-->', builtin.commands)

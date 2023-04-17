@@ -2,6 +2,7 @@ local M = {}
 
 M.my_grep_string = function()
   require('telescope.builtin').grep_string({
+    search = vim.fn.input('Grep > '),
     hidden = false,
     layout_strategy = 'vertical',
     layout_config = {
