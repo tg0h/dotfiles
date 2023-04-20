@@ -153,7 +153,8 @@ function M.goto_function(function_name, bufnr, lang)
 
   -- print('tim func list' .. vim.inspect(func_list))
 
-  if vim.tbl_isempty(func_list) then
+  -- func_list can be empty if eg switching to alternate file and cursor is not on a function name
+  if not func_list or vim.tbl_isempty(func_list) then
     return
   end
 
