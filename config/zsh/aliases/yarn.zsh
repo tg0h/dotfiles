@@ -1,6 +1,7 @@
 alias y.="yarn workspace"
 alias y,="yarn build"
 alias y,.="LOG_LEVEL=silent yarn test-all"
+alias y,.p="LOG_LEVEL=silent yarn test-all -nf"
 alias y,.cs="LOG_LEVEL=silent yarn workspace @rc-main/common-services test"
 alias y,.fa="LOG_LEVEL=silent yarn workspace @rc-main/folp-api test"
 alias y,.a="LOG_LEVEL=silent yarn workspace @rc-main/api test"
