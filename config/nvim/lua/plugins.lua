@@ -192,6 +192,7 @@ return require('packer').startup({
       end,
     })
     use({ 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' })
+    use('dmmulroy/tsc.nvim')
   end,
   config = {
     display = {
