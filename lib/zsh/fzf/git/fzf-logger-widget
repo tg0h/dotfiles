@@ -9,8 +9,8 @@ function fzf-logger-widget(){
 
   local HEADER=$(cat <<-EOF
      ⌃ e - git show
-     ⌃ l - default | ⌃ r - grep | ⌃ t - author
-   ⌃ g/t - -S/-G pickaxe
+     ⌃ l - default | ⌃ r - grep (search message) | ⌃ t - author
+   ⌃ g/t - -S/-G pickaxe (search patch content)
  ⌃ f/h/b - all/200/500 commits
 EOF
 )
@@ -53,8 +53,7 @@ EOF
               )+change-prompt(author > )+clear-query" \
     --bind "ctrl-e:execute(
                 kitty @ launch --type overlay --cwd=current zsh -c '$preview_cmd | delta --paging=always --hyperlinks'
-              )" \
-    --expect=ctrl-z
+              )"
   )
 # kitty @ launch --type overlay --cwd=current zsh -c "git show @; zsh"
   # NOTE: disabling search (disable-search) ensures that original order is not changed by fzf query string sort
@@ -62,14 +61,6 @@ EOF
   local key=$(head -1 <<< "$out")
   local targets=$(tail -n +2 <<< "$out") # get all lines after the first line
   local target1=$(head -1 <<< "$targets")
-
-  if [ "$key" = ctrl-e ]; then
-    local sha=$(echo $targets | choose 5 )
-    gsv $sha # git show verbose alias
-
-    zle reset-prompt
-    return
-  fi
 
   if [ $target1 ]; then
     local hashes=$(echo $targets | choose 5 | join-lines)
