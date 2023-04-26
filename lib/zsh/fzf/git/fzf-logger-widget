@@ -24,8 +24,8 @@ EOF
   local out=$( glo |
   fzf --ansi --multi \
     --header=$HEADER \
-    --preview-window ~5,right,noborder,50% \
-    --bind 'ctrl-/:change-preview-window(right,80%|down,80%,border-top|hidden|)' \
+    --preview-window ~5,bottom,noborder,50% \
+    --bind 'ctrl-/:change-preview-window(bottom,80%|hidden|)' \
     --preview "$preview" \
     --bind "ctrl-l:reload(
               glo;
