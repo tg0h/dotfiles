@@ -69,7 +69,7 @@ local function getAlternateFile(dirname, filename)
   return fullFileName
 end
 
-local function find_alternate_file()
+function find_alternate_file()
   local filename = vim.api.nvim_buf_get_name(0)
   local fname = vim.fs.basename(filename)
   local dirname = vim.fs.dirname(filename)
@@ -81,6 +81,8 @@ local function find_alternate_file()
     return switch_to_file
   end
 end
+
+M.find_alternate_file = find_alternate_file
 
 function M.Toggle()
   -- if current file is Service.ts, switch to its Service.test.ts file
