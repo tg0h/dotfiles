@@ -89,3 +89,6 @@ vim.keymap.set('n', '<S-C-->', builtin.commands)
 vim.keymap.set('n', '<S-M-f>', function()
   builtin.diagnostics({ layout_strategy = 'vertical', layout_config = { width = 0.5 } })
 end)
+
+local multi_rg = require('tg.telescope-multi-rg')
+vim.keymap.set('n', '<leader>sg', multi_rg, { desc = 'tj multi rg' })
