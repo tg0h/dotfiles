@@ -153,7 +153,7 @@ return require('packer').startup({
 
     use({ 'rcarriga/nvim-dap-ui', after = 'nvim-dap' })
     use({ 'theHamsta/nvim-dap-virtual-text', after = 'nvim-dap' })
-    use({ 'danilamihailov/beacon.nvim' })
+    -- use({ 'danilamihailov/beacon.nvim' })
     use({ 'ur4ltz/surround.nvim' })
 
     use({
@@ -162,6 +162,7 @@ return require('packer').startup({
     })
 
     use({ '~/src/me/nvim/harpoon', requires = { 'nvim-lua/plenary.nvim' } })
+    -- use({ '~/src/me/nvim/nvim-coverage', requires = { 'nvim-lua/plenary.nvim' } })
 
     use({ '~/src/me/nvim/git-worktree.nvim' })
     use({ '~/src/me/nvim/gitdiffer' })
