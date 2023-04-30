@@ -75,11 +75,16 @@ local ext = require('telescope').extensions
 local builtin = require('telescope.builtin')
 
 vim.keymap.set('n', '<leader>pf', builtin.find_files, { desc = 'find files' })
+vim.keymap.set('n', '<leader>so', builtin.vim_options, { desc = 'vim options' })
 vim.keymap.set('n', '<leader>sa', function()
   vim.cmd.Telescope('heading')
 end, { desc = 'headings' })
 -- vim.keymap.set('n', '<C-p>', builtin.git_files, { desc = 'git files' })
 vim.keymap.set('n', '<C-p>', require('setup/telescope').my_git_files, { desc = 'git files' })
+
+vim.keymap.set('n', '<LEADER>nh', builtin.highlights, { desc = 'highlights' })
+
+vim.keymap.set('n', '<LEADER>sh', builtin.help_tags, { desc = 'neovim help' })
 
 -- vim.keymap.set('n', '<leader>ps', function() -- search text provided via input
 --   builtin.grep_string({ search = vim.fn.input('Grep > ') })
