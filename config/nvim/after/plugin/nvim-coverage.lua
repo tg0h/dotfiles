@@ -5,6 +5,7 @@ require('coverage').setup({
     -- covered = { fg = "#C3E88D" },   -- supports style, fg, bg, sp (see :h highlight-gui)
     covered = { fg = 'green' }, -- supports style, fg, bg, sp (see :h highlight-gui)
     uncovered = { fg = '#F07178' },
+    -- summary_cursor_line = { fg = 'red', bg = 'purple' },
   },
   signs = {
     -- use your own highlight groups or text markers
@@ -14,8 +15,8 @@ require('coverage').setup({
   summary = {
     -- customize the summary pop-up
     min_coverage = 80.0, -- minimum coverage threshold (used for highlighting)
-    width_percentage = 1.0,
-    height_percentage = 1.0,
+    width_percentage = 0.7,
+    height_percentage = 0.7,
   },
   lang = {
     -- customize language specific settings
@@ -26,3 +27,6 @@ require('coverage').setup({
     typescript = { coverage_file = '/Users/tim/src/candy/main/referralcandy-main/coverage/lcov.info' },
   },
 })
+
+-- vim.cmd('highlight CoverageCovered gui=NONE guifg=green guibg=NONE')
+vim.cmd('highlight CoverageSummaryCursorLine gui=NONE guifg=NoNE guibg=purple')
