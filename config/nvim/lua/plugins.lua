@@ -79,6 +79,7 @@ return require('packer').startup({
         { 'nvim-telescope/telescope-fzy-native.nvim' },
         { 'nvim-telescope/telescope-dap.nvim' },
         { 'nvim-telescope/telescope-ui-select.nvim' },
+        { 'crispgm/telescope-heading.nvim' },
       },
       -- do not lazy load so that i can set keymaps in nvim/config/after/
       -- event = 'BufWinEnter',

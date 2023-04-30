@@ -8,12 +8,14 @@ local telescope = require('telescope')
 
 telescope.load_extension('fzy_native')
 telescope.load_extension('file_browser')
--- telescope.load_extension "heading" -- markdown headings
+telescope.load_extension('heading') -- markdown, help headings
 -- telescope.load_extension "projects" -- recent projects
 telescope.load_extension('harpoon')
 telescope.load_extension('git_worktree')
 telescope.load_extension('neoclip')
 telescope.load_extension('gitdiffer')
+telescope.load_extension('frecency')
+telescope.load_extension('ui-select')
 
 telescope.setup({
   defaults = {
@@ -68,12 +70,14 @@ telescope.setup({
   },
 })
 
-telescope.load_extension('frecency')
-telescope.load_extension('ui-select')
+local ext = require('telescope').extensions
 
 local builtin = require('telescope.builtin')
 
 vim.keymap.set('n', '<leader>pf', builtin.find_files, { desc = 'find files' })
+vim.keymap.set('n', '<leader>sa', function()
+  vim.cmd.Telescope('heading')
+end, { desc = 'headings' })
 -- vim.keymap.set('n', '<C-p>', builtin.git_files, { desc = 'git files' })
 vim.keymap.set('n', '<C-p>', require('setup/telescope').my_git_files, { desc = 'git files' })
 
