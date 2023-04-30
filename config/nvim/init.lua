@@ -4,6 +4,8 @@ require('diagnostic')
 require('plugins')
 require('maps')
 require('options')
+-- define colorscheme here
+-- the colorscheme might set highlight clear, undoing all your highlight groups?
 require('colours')
 require('autocmd')
 require('tg.toggle-interface')
