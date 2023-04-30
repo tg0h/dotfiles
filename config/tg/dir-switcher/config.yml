@@ -9,7 +9,10 @@ keymaps:
   - [f, $HOME/dotfiles/bin]
   - ["f,", $HOME/.local/bin]
   - [g, $XDG_DATA_HOME, 3]
+  # local nvim runtime
   - [gn, $XDG_DATA_HOME/nvim, 5]
+  # homebrew nvim runtime
+  - [gnn, /opt/homebrew/opt/neovim/share/nvim/runtime, 5]
   - [gnm, $XDG_DATA_HOME/nvim/mason, 5]
   - [c, $XDG_CONFIG_HOME, 5]
   - [r, $XDG_CACHE_HOME, 2]
