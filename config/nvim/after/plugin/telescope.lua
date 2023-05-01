@@ -125,6 +125,9 @@ vim.keymap.set('n', '<LEADER>nQ', builtin.quickfixhistory, { desc = 'quickfix hi
 -- vim.keymap.set('n', '<LEADER>nC', builtin.colorscheme, { desc = 'colorschemes' })
 -- vim.keymap.set('n', '<LEADER>ny', builtin.symbols, { desc = 'emojis' })
 
+-- telescope #########################################################################################
+vim.keymap.set('n', '<LEADER>tr', builtin.resume, { desc = 'telescope resume' })
+vim.keymap.set('n', '<LEADER>th', builtin.pickers, { desc = 'telescope previous pickers' })
 -- search #########################################################################################
 vim.keymap.set('n', '<LEADER>st', builtin.live_grep, { desc = 'telescope live_grep' })
 vim.keymap.set('n', '<LEADER>ss', function() -- search text provided via input
