@@ -11,7 +11,6 @@ local M = {
 
   b = require('setup.which-key.keys.buffers'),
   c = require('setup.which-key.keys.coverage'),
-  -- d = require('setup.which-key.keys.dap'),
   f = require('setup.which-key.keys.files'),
   g = require('setup.which-key.keys.git'),
   l = require('setup.which-key.keys.lsp'),
