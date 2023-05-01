@@ -19,3 +19,9 @@ map('n', '<S-M-h>', ':wincmd w<CR>', default_options) -- switch to next window i
 -- map("n", "-", ":res -5<CR>", default_options)
 
 map('n', '<A-d>', ":lua require'utils'.close_floating_windows()<CR>", default_options) -- close all floating windows (eg lsp hover windows)
+
+-- Resizing windows
+map('n', '<Left>', ':vertical resize +5<CR>', default_options)
+map('n', '<Right>', ':vertical resize -5<CR>', default_options)
+map('n', '<Up>', ':resize -5<CR>', default_options) -- do not use Up/Down so that mousewheel scroll can be used to navigate
+map('n', '<Down>', ':resize +5<CR>', default_options)
