@@ -3,7 +3,6 @@ local M = {
   j = { '<cmd>lnext<CR>', 'Location List next' },
   k = { '<cmd>lprev<CR>', 'Location List prev' },
 
-  -- r = require('setup.which-key.keys.git-worktree'),
   r = require('setup.which-key.keys.notes'),
 
   h = require('setup.which-key.keys.harpoon'),
