@@ -145,6 +145,8 @@ vim.keymap.set(
   { desc = 'telescope lsp dynamic workspace symbols' }
 )
 
+vim.keymap.set('n', '<LEADER>tt', builtin.treesitter, { desc = 'telescope treesitter' })
+
 -- telescope git #########################################################################################
 vim.keymap.set('n', '<LEADER>gs', builtin.git_status, { desc = 'telescope git status' })
 vim.keymap.set('n', '<LEADER>gt', builtin.git_stash, { desc = 'telescope git stash' })
