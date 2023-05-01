@@ -1,6 +1,6 @@
 require('core.disable-plugins')
 require('utils')
-require('diagnostic')
+require('core.diagnostic')
 require('plugins')
 require('maps')
 require('options')
