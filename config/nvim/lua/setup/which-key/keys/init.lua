@@ -11,7 +11,7 @@ local M = {
 
   b = require('setup.which-key.keys.buffers'),
   c = require('setup.which-key.keys.coverage'),
-  f = require('setup.which-key.keys.files'),
+  f = { name = 'Files' },
   g = require('setup.which-key.keys.git'),
   l = require('setup.which-key.keys.lsp'),
 
