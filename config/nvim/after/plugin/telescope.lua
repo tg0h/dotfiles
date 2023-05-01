@@ -29,8 +29,8 @@ telescope.setup({
       i = {
         ['<C-x>'] = false,
         ['<C-q>'] = actions.send_to_qflist,
-        ['<C-l>'] = actions.send_to_loclist,
-        ['<M-l>'] = actions.add_selected_to_loclist,
+        ['<S-C-;>'] = actions.send_to_loclist, -- aka C-:
+        ['<C-l>'] = actions.add_selected_to_loclist,
         -- ["<esc>"] = actions.close
       },
     },
