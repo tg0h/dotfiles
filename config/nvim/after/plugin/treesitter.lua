@@ -94,7 +94,7 @@ require('nvim-treesitter.configs').setup({
         ['<S-C-n>'] = '@call.outer',
         ['<S-C-s>'] = '@call.inner',
 
-        ['<leader>nc'] = '@comment.outer',
+        -- ['<leader>nc'] = '@comment.outer',
         -- [']o'] = '@comment.inner', -- not supported in ts
 
         -- if
