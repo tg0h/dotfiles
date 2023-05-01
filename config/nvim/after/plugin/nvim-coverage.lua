@@ -30,3 +30,24 @@ require('coverage').setup({
 
 -- vim.cmd('highlight CoverageCovered gui=NONE guifg=green guibg=NONE')
 vim.cmd('highlight CoverageSummaryCursorLine gui=NONE guifg=NoNE guibg=purple')
+
+vim.keymap.set('n', '<C-M-c>', function()
+  require('tg.toggle-coverage').toggle_coverage()
+end, { desc = 'toggle nvim coverage' })
+
+vim.keymap.set('n', '<C-M-d>', function()
+  require('tg.toggle-coverage').toggle_summary()
+end, { desc = 'toggle nvim coverage summary' })
+
+vim.keymap.set(
+  'n',
+  '<C-M-n>',
+  ":lua require'coverage'.jump_next('uncovered')<CR>",
+  { desc = 'coverage next uncovered' }
+)
+vim.keymap.set(
+  'n',
+  '<C-M-p>',
+  ":lua require'coverage'.jump_prev('uncovered')<CR>",
+  { desc = 'coverage prev uncovered' }
+)
