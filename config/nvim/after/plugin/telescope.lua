@@ -113,6 +113,14 @@ vim.keymap.set('n', '<LEADER>nQ', builtin.quickfixhistory, { desc = 'quickfix hi
 -- vim.keymap.set('n', '<LEADER>nC', builtin.colorscheme, { desc = 'colorschemes' })
 -- vim.keymap.set('n', '<LEADER>ny', builtin.symbols, { desc = 'emojis' })
 
+vim.keymap.set('n', '<LEADER>st', builtin.live_grep, { desc = 'telescope live_grep' })
+vim.keymap.set('n', '<leader>ss', function() -- search text provided via input
+  require('setup/telescope').my_grep_string_no_input()
+end, { desc = 'telescope my grep string no input' })
+vim.keymap.set('n', '<leader>sp', function() -- search text provided via input
+  require('setup/telescope').my_grep_string()
+end, { desc = 'telescope my grep string with input' })
+vim.keymap.set('n', '<LEADER>sb', builtin.current_buffer_fuzzy_find, { desc = 'telescope current buffer fuzzy find' })
 vim.keymap.set('n', '<LEADER>nh', builtin.help_tags, { desc = 'neovim help' })
 
 vim.keymap.set('n', '<LEADER>sM', function()
@@ -123,10 +131,6 @@ end, { desc = 'harpoon marks' })
 --   builtin.grep_string({ search = vim.fn.input('Grep > ') })
 -- end)
 
-vim.keymap.set('n', '<leader>ps', function() -- search text provided via input
-  require('setup/telescope').my_grep_string()
-end, { desc = 'search for word provided via input' })
-
 vim.keymap.set('n', '<S-C-->', builtin.commands)
 
 -- workspace diagnostics
@@ -136,3 +140,10 @@ end)
 
 local multi_rg = require('tg.telescope-multi-rg')
 vim.keymap.set('n', '<leader>sg', multi_rg, { desc = 'tj multi rg' })
+
+vim.keymap.set('n', '<leader>cd', function()
+  require('setup/telescope').search_dotfiles()
+end, { desc = 'search dotfiles' })
+vim.keymap.set('n', '<leader>cn', function()
+  require('setup/telescope').search_neovim_dotfiles()
+end, { desc = 'search dotfiles' })

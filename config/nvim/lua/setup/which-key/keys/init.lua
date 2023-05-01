@@ -6,10 +6,11 @@ local M = {
   r = require('setup.which-key.keys.notes'),
 
   t = require('setup.which-key.keys.trouble'),
-  s = require('setup.which-key.keys.search'),
+  s = { name = 'search' },
 
   b = { name = 'Buffers' },
   f = { name = 'Files' },
+  n = { name = 'neovim core' },
   g = require('setup.which-key.keys.git'),
   l = require('setup.which-key.keys.lsp'),
 
