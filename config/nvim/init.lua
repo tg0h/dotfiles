@@ -1,4 +1,4 @@
-require('disable-plugins')
+require('core.disable-plugins')
 require('utils')
 require('diagnostic')
 require('plugins')
