@@ -5,7 +5,6 @@ local M = {
 
   r = require('setup.which-key.keys.notes'),
 
-  h = require('setup.which-key.keys.harpoon'),
   t = require('setup.which-key.keys.trouble'),
   s = require('setup.which-key.keys.search'),
 
