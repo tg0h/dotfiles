@@ -10,5 +10,3 @@ require('maps.core.nvim-tmux-navigation')
 require('maps.core.quick-fix')
 
 require('maps.plugins.vim-kitty-navigator')
-
-require('maps.plugins.vim-dadbod-ui')
