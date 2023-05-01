@@ -2,7 +2,11 @@ local M = {
   -- q = { "<cmd>lua require'tg.quickfix'.ToggleQFList(0)<CR>", 'Toggle Location List' },
   h = { name = 'diagnostics' },
 
-  r = require('setup.which-key.keys.notes'),
+  r = {
+    name = 'Notes',
+    h = { "<cmd>lua require('setup/telescope').search_wiki_candy()<CR>", 'Search wiki candy' },
+    t = { "<cmd>lua require('setup/telescope').search_wiki()<CR>", 'Search wiki' },
+  },
 
   t = require('setup.which-key.keys.trouble'),
   c = { name = 'config' },
