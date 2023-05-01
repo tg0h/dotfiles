@@ -34,3 +34,6 @@ require('gitsigns').setup({
   diff_opts = { internal = true },
   yadm = { enable = false },
 })
+
+vim.keymap.set('n', '<S-A-g>', ":lua require('gitsigns').prev_hunk()<CR>", { desc = 'gitsigns prev hunk' }) -- prev git hunk
+vim.keymap.set('n', '<S-A-r>', ":lua require('gitsigns').next_hunk()<CR>", { desc = 'gitsigns next hunk' }) -- next git hunk
