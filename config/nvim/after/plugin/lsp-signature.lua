@@ -57,3 +57,10 @@ cfg = {
 
 -- recommended:
 require('lsp_signature').setup(cfg) -- no need to specify bufnr if you don't use toggle_key
+
+vim.keymap.set(
+  'n',
+  '<A-l>',
+  ':lua require("lsp_signature").toggle_float_win()<CR>',
+  { desc = 'lsp_signature toggle float win' }
+) -- signature help

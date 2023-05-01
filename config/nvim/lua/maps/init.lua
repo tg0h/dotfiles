@@ -16,5 +16,3 @@ require('maps.plugins.lsp')
 require('maps.plugins.vim-kitty-navigator')
 
 require('maps.plugins.vim-dadbod-ui')
-
-require('maps.plugins.lsp-signature')
