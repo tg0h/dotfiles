@@ -131,7 +131,7 @@ vim.keymap.set('n', '<LEADER>th', builtin.pickers, { desc = 'telescope previous 
 -- telescope lsp ####################################################################################
 vim.keymap.set('n', '<LEADER>tf', builtin.lsp_references, { desc = 'telescope lsp references' })
 vim.keymap.set('n', '<LEADER>td', builtin.lsp_definitions, { desc = 'telescope lsp definitions' })
-vim.keymap.set('n', '<LEADER>tt', builtin.lsp_type_definitions, { desc = 'telescope type definitions' })
+vim.keymap.set('n', '<LEADER>ty', builtin.lsp_type_definitions, { desc = 'telescope type definitions' })
 vim.keymap.set('n', '<LEADER>tm', builtin.lsp_implementations, { desc = 'telescope lsp implementations' })
 vim.keymap.set('n', '<LEADER>ti', builtin.lsp_incoming_calls, { desc = 'telescope lsp incoming calls' })
 vim.keymap.set('n', '<LEADER>to', builtin.lsp_outgoing_calls, { desc = 'telescope lsp outgoing calls' })
