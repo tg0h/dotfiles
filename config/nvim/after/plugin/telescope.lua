@@ -10,7 +10,7 @@ telescope.load_extension('fzy_native')
 local file_browser = telescope.load_extension('file_browser')
 telescope.load_extension('heading') -- markdown, help headings
 -- telescope.load_extension "projects" -- recent projects
-telescope.load_extension('harpoon')
+local harpoon = telescope.load_extension('harpoon')
 telescope.load_extension('git_worktree')
 telescope.load_extension('neoclip')
 telescope.load_extension('gitdiffer')
@@ -111,6 +111,10 @@ vim.keymap.set('n', '<LEADER>nQ', builtin.quickfixhistory, { desc = 'quickfix hi
 -- vim.keymap.set('n', '<LEADER>ny', builtin.symbols, { desc = 'emojis' })
 
 vim.keymap.set('n', '<LEADER>nh', builtin.help_tags, { desc = 'neovim help' })
+
+vim.keymap.set('n', '<LEADER>sM', function()
+  harpoon.marks()
+end, { desc = 'harpoon marks' })
 
 -- vim.keymap.set('n', '<leader>ps', function() -- search text provided via input
 --   builtin.grep_string({ search = vim.fn.input('Grep > ') })
