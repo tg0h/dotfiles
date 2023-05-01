@@ -11,7 +11,6 @@ require('maps.core.quick-fix')
 
 require('maps.plugins.dap')
 require('maps.plugins.undo-tree')
-require('maps.plugins.trouble')
 require('maps.plugins.lsp')
 require('maps.plugins.vim-kitty-navigator')
 
