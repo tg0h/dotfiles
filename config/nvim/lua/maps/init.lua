@@ -8,5 +8,3 @@ require('maps.core.buffers')
 require('maps.core.windows')
 require('maps.core.nvim-tmux-navigation')
 require('maps.core.quick-fix')
-
-require('maps.plugins.vim-kitty-navigator')
