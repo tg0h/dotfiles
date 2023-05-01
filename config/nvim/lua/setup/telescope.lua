@@ -71,7 +71,7 @@ M.search_wiki_candy = function()
 end
 
 local bookmarks = {}
-
+-- "<CMD>lua require('setup/telescope').bookmarks(require('telescope.themes').get_dropdown {})<CR>",
 -- get .bookmarks file if it exists in the current directory
 local test = vim.fn.glob('.bookmarks')
 if test ~= '' then
