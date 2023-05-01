@@ -6,7 +6,7 @@ require('maps')
 require('options')
 -- define colorscheme here
 -- the colorscheme might set highlight clear, undoing all your highlight groups?
-require('colours')
+require('core.colours')
 require('core.autocmd')
 require('tg.toggle-interface')
 require('tg.toggle-test')
