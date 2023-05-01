@@ -10,7 +10,6 @@ require('maps.core.nvim-tmux-navigation')
 require('maps.core.quick-fix')
 
 require('maps.plugins.dap')
-require('maps.plugins.nvim-tree')
 require('maps.plugins.undo-tree')
 require('maps.plugins.trouble')
 require('maps.plugins.lsp')

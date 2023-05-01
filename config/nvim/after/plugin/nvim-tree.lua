@@ -271,3 +271,18 @@ require('nvim-tree').setup({
 vim.keymap.set('n', '<leader>mn', require('nvim-tree.api').marks.navigate.next, { desc = 'nvim-tree marks next' })
 vim.keymap.set('n', '<leader>mp', require('nvim-tree.api').marks.navigate.next, { desc = 'nvim-tree marks previous' })
 vim.keymap.set('n', '<leader>ms', require('nvim-tree.api').marks.navigate.next, { desc = 'nvim-tree marks select' })
+
+vim.keymap.set('n', '<A-m>', ':NvimTreeToggle<CR>', { desc = 'nvim tree toggle' })
+vim.keymap.set('n', '<A-b>', ':NvimTreeFindFile<CR>', { desc = 'nvim tree find file' })
+
+local function openNvimTreeAndKeepOpen()
+  if vim.fn.bufname():match('NvimTree_') then
+    -- previous window
+    vim.cmd.wincmd('p')
+  else
+    api.tree.open({ find_file = true })
+  end
+end
+
+vim.keymap.set('n', '<M-CR>', openNvimTreeAndKeepOpen, { desc = 'nvim-tree: toggle' })
+vim.keymap.set('n', '<M-Space>', openNvimTreeAndKeepOpen, { desc = 'nvim-tree: toggle' })
