@@ -75,24 +75,23 @@ local ext = require('telescope').extensions
 
 local builtin = require('telescope.builtin')
 
+-- project
+vim.keymap.set('n', '<C-p>', require('setup/telescope').my_git_files, { desc = 'git files' })
+
 -- files
-vim.keymap.set('n', '<LEADER>ff', function()
+vim.keymap.set('n', '<LEADER>ff', builtin.find_files, { desc = 'find files' })
+vim.keymap.set('n', '<LEADER>fh', function()
   builtin.find_files({
     find_command = { 'fd', '--hidden', '--type', 'file', '--follow' },
   })
-end, { desc = 'find files' })
+end, { desc = 'find files --hidden' })
 vim.keymap.set('n', '<LEADER>f.', function()
   file_browser.file_browser()
 end, { desc = 'file browser' })
-vim.keymap.set('n', '<LEADER>fl', vim.cmd.Lf, { desc = 'find files' })
 vim.keymap.set('n', '<LEADER>fr', function()
   frecency.frecency(require('setup/telescope').big_window())
 end, { desc = 'find frecent files' })
 vim.keymap.set('n', '<LEADER>fo', builtin.oldfiles, { desc = 'old files' })
-
--- project
-vim.keymap.set('n', '<LEADER>pf', builtin.find_files, { desc = 'find files' })
-vim.keymap.set('n', '<C-p>', require('setup/telescope').my_git_files, { desc = 'git files' })
 
 -- neovim
 vim.keymap.set('n', '<LEADER>na', function()
