@@ -92,6 +92,9 @@ vim.keymap.set('n', '<A-o>', ':lua vim.lsp.buf.code_action()<CR>', { desc = 'lsp
 vim.keymap.set('n', '<A-a>', ':lua vim.lsp.buf.definition()<CR>', { desc = 'lsp buf definition' }) -- go to def
 vim.keymap.set('n', '<A-u>', ':lua vim.lsp.buf.references()<CR>', { desc = 'lsp buf references' }) -- find references
 
+local diagnostic = vim.diagnostic
+vim.keymap.set('n', '<S-C-;>', diagnostic.setloclist, { desc = 'add buffer diagnostics to loc list' }) -- C-:
+
 vim.keymap.set('n', '<C-A-g>', ':lua vim.diagnostic.goto_prev()<CR>', { desc = 'vim diagnostic goto prev' }) -- prev diagnostic
 vim.keymap.set('n', '<C-A-r>', ':lua vim.diagnostic.goto_next()<CR>', { desc = 'vim diagnostic goto next' }) -- next diagnostic
 
