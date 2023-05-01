@@ -66,3 +66,13 @@ require('bufferline').setup({
     --   end,
   },
 })
+
+local bufferline = require('bufferline')
+vim.keymap.set('n', '<LEADER>b.', bufferline.pick, { desc = 'bufferline pick' })
+vim.keymap.set('n', '<LEADER>bd', function()
+  bufferline.sort_by('directory')
+end, { desc = 'bufferline sort by dir' })
+vim.keymap.set('n', '<LEADER>bs', function()
+  bufferline.sort_by('extension')
+end, { desc = 'bufferline sort by dir' })
+-- vim.keymap.set('n', '<LEADER>bs', bufferline.sort_by('extension'), { desc = 'bufferline sort by extension' })
