@@ -19,10 +19,10 @@ local M = {
   -- n = {"<CMD>Neogit<CR>", "Open Neogit"},
 
   -- telescope
-  g = { '<CMD>Telescope git_status<CR>', 'Open changed file' },
+  -- g = { '<CMD>Telescope git_status<CR>', 'Open changed file' },
   -- b = { '<CMD>Telescope git_branches<CR>', 'Checkout branch' },
   -- b = { '<CMD>GitBlameToggle<CR>', 'Toggle Blame' },
-  c = { '<CMD>Telescope git_commits<CR>', 'telescope git commits' },
+  -- c = { '<CMD>Telescope git_commits<CR>', 'telescope git commits' },
   -- f = {"<CMD>Telescope git_bcommits<CR>", "Checkout commit(for current file)"}
 
   -- use tabclose to exit diffview file history

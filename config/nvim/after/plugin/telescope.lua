@@ -145,6 +145,13 @@ vim.keymap.set(
   { desc = 'telescope lsp dynamic workspace symbols' }
 )
 
+-- telescope git #########################################################################################
+vim.keymap.set('n', '<LEADER>gs', builtin.git_status, { desc = 'telescope git status' })
+vim.keymap.set('n', '<LEADER>gt', builtin.git_stash, { desc = 'telescope git stash' })
+vim.keymap.set('n', '<LEADER>gc', builtin.git_commits, { desc = 'telescope git commits' })
+vim.keymap.set('n', '<LEADER>gh', builtin.git_bcommits, { desc = 'telescope git buffer commits (history)' })
+vim.keymap.set('n', '<LEADER>gb', builtin.git_branches, { desc = 'telescope git branches' })
+
 -- search #########################################################################################
 vim.keymap.set('n', '<LEADER>st', builtin.live_grep, { desc = 'telescope live_grep' })
 vim.keymap.set('n', '<LEADER>ss', function() -- search text provided via input
