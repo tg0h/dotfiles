@@ -35,5 +35,14 @@ require('gitsigns').setup({
   yadm = { enable = false },
 })
 
+local gitsigns = require('gitsigns')
 vim.keymap.set('n', '<S-A-g>', ":lua require('gitsigns').prev_hunk()<CR>", { desc = 'gitsigns prev hunk' }) -- prev git hunk
 vim.keymap.set('n', '<S-A-r>', ":lua require('gitsigns').next_hunk()<CR>", { desc = 'gitsigns next hunk' }) -- next git hunk
+vim.keymap.set('n', '<LEADER>g.', gitsigns.toggle_linehl, { desc = 'gitsigns toggle line highlight' }) -- prev git hunk
+vim.keymap.set('n', '<LEADER>g,', gitsigns.toggle_word_diff, { desc = 'gitsigns toggle word diff' }) -- prev git hunk
+vim.keymap.set('n', '<LEADER>gp', gitsigns.preview_hunk, { desc = 'gitsigns preview hunk' }) -- prev git hunk
+
+vim.keymap.set('n', '<LEADER>gs', gitsigns.stage_hunk, { desc = 'gitsigns stage hunk' }) -- prev git hunk
+vim.keymap.set('n', '<LEADER>gr', gitsigns.reset_hunk, { desc = 'gitsigns reset hunk' }) -- prev git hunk
+vim.keymap.set('n', '<LEADER>gu', gitsigns.undo_stage_hunk, { desc = 'gitsigns undo stage hunk' }) -- prev git hunk
+vim.keymap.set('n', '<LEADER>gR', gitsigns.reset_buffer, { desc = 'gitsigns reset buffer' }) -- prev git hunk
