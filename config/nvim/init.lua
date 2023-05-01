@@ -3,7 +3,7 @@ require('utils')
 require('core.diagnostic')
 require('plugins')
 require('maps')
-require('options')
+require('core.options')
 -- define colorscheme here
 -- the colorscheme might set highlight clear, undoing all your highlight groups?
 require('core.colours')
