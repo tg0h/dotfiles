@@ -138,13 +138,17 @@ end, { desc = 'harpoon marks' })
 --   builtin.grep_string({ search = vim.fn.input('Grep > ') })
 -- end)
 
--- workspace diagnostics
+-- diagnostics ####################################################################################
 vim.keymap.set('n', '<S-M-f>', function()
   builtin.diagnostics({ layout_strategy = 'vertical', layout_config = { width = 0.5 } })
 end)
 
-local multi_rg = require('tg.telescope-multi-rg')
-vim.keymap.set('n', '<leader>sg', multi_rg, { desc = 'tj multi rg' })
+vim.keymap.set('n', '<LEADER>ht', function()
+  builtin.diagnostics({ layout_strategy = 'vertical', layout_config = { width = 0.5 }, bufnr = 0 })
+end, { desc = 'buffer diagnostics' })
+vim.keymap.set('n', '<LEADER>hn', function()
+  builtin.diagnostics({ layout_strategy = 'vertical', layout_config = { width = 0.5 }, bufnr = 0 })
+end, { desc = 'workspace diagnostics' })
 
 -- config #########################################################################################
 vim.keymap.set('n', '<LEADER>cd', function()
