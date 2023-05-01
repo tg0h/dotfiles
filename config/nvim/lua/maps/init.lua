@@ -3,5 +3,5 @@ require('maps.modifiers')
 require('maps.local-leader')
 require('maps.goto')
 
-require('maps.core.windows')
+require('maps.windows')
 require('maps.quick-fix')
