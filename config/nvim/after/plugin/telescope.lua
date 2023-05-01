@@ -128,6 +128,23 @@ vim.keymap.set('n', '<LEADER>nQ', builtin.quickfixhistory, { desc = 'quickfix hi
 -- telescope #########################################################################################
 vim.keymap.set('n', '<LEADER>tr', builtin.resume, { desc = 'telescope resume' })
 vim.keymap.set('n', '<LEADER>th', builtin.pickers, { desc = 'telescope previous pickers' })
+-- telescope lsp ####################################################################################
+vim.keymap.set('n', '<LEADER>tf', builtin.lsp_references, { desc = 'telescope lsp references' })
+vim.keymap.set('n', '<LEADER>td', builtin.lsp_definitions, { desc = 'telescope lsp definitions' })
+vim.keymap.set('n', '<LEADER>tt', builtin.lsp_type_definitions, { desc = 'telescope type definitions' })
+vim.keymap.set('n', '<LEADER>tm', builtin.lsp_implementations, { desc = 'telescope lsp implementations' })
+vim.keymap.set('n', '<LEADER>ti', builtin.lsp_incoming_calls, { desc = 'telescope lsp incoming calls' })
+vim.keymap.set('n', '<LEADER>to', builtin.lsp_outgoing_calls, { desc = 'telescope lsp outgoing calls' })
+
+vim.keymap.set('n', '<LEADER>tsd', builtin.lsp_document_symbols, { desc = 'telescope lsp document symbols' })
+vim.keymap.set('n', '<LEADER>tsw', builtin.lsp_workspace_symbols, { desc = 'telescope lsp workspace symbols' })
+vim.keymap.set(
+  'n',
+  '<LEADER>tsn',
+  builtin.lsp_dynamic_workspace_symbols,
+  { desc = 'telescope lsp dynamic workspace symbols' }
+)
+
 -- search #########################################################################################
 vim.keymap.set('n', '<LEADER>st', builtin.live_grep, { desc = 'telescope live_grep' })
 vim.keymap.set('n', '<LEADER>ss', function() -- search text provided via input
@@ -137,7 +154,6 @@ vim.keymap.set('n', '<LEADER>sp', function() -- search text provided via input
   require('setup/telescope').my_grep_string()
 end, { desc = 'telescope my grep string with input' })
 vim.keymap.set('n', '<LEADER>sb', builtin.current_buffer_fuzzy_find, { desc = 'telescope current buffer fuzzy find' })
-vim.keymap.set('n', '<LEADER>nh', builtin.help_tags, { desc = 'neovim help' })
 local multi_rg = require('tg.telescope-multi-rg')
 vim.keymap.set('n', '<leader>sg', multi_rg, { desc = 'tj multi rg' })
 
