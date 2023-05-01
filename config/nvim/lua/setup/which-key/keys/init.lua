@@ -8,7 +8,7 @@ local M = {
     t = { "<cmd>lua require('setup/telescope').search_wiki()<CR>", 'Search wiki' },
   },
 
-  t = require('setup.which-key.keys.trouble'),
+  d = require('setup.which-key.keys.trouble'),
   c = { name = 'config' },
   s = { name = 'search' },
 
