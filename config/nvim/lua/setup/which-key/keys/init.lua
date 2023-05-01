@@ -15,7 +15,6 @@ local M = {
   g = require('setup.which-key.keys.git'),
   l = require('setup.which-key.keys.lsp'),
 
-  m = require('setup.which-key.keys.misc'),
   w = require('setup.which-key.keys.window'),
   z = require('setup.which-key.keys.vim-dadbod-ui'),
 }
