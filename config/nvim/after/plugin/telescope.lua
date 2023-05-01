@@ -12,7 +12,7 @@ telescope.load_extension('heading') -- markdown, help headings
 -- telescope.load_extension "projects" -- recent projects
 local harpoon = telescope.load_extension('harpoon')
 telescope.load_extension('git_worktree')
-telescope.load_extension('neoclip')
+local neoclip = telescope.load_extension('neoclip')
 telescope.load_extension('gitdiffer')
 telescope.load_extension('frecency')
 telescope.load_extension('ui-select')
@@ -121,6 +121,9 @@ vim.keymap.set('n', '<LEADER>ns', builtin.search_history, { desc = 'search histo
 vim.keymap.set('n', '<LEADER>n:', builtin.loclist, { desc = 'loclist' })
 vim.keymap.set('n', '<LEADER>nq', builtin.quickfix, { desc = 'quickfix' })
 vim.keymap.set('n', '<LEADER>nQ', builtin.quickfixhistory, { desc = 'quickfix history' })
+vim.keymap.set('n', '<LEADER>n.', function()
+  neoclip.default()
+end, { desc = 'neoclip' })
 
 -- vim.keymap.set('n', '<LEADER>nC', builtin.colorscheme, { desc = 'colorschemes' })
 -- vim.keymap.set('n', '<LEADER>ny', builtin.symbols, { desc = 'emojis' })
