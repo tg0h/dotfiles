@@ -1,7 +1,6 @@
 local M = {
   -- q = { "<cmd>lua require'tg.quickfix'.ToggleQFList(0)<CR>", 'Toggle Location List' },
-  j = { '<cmd>lnext<CR>', 'Location List next' },
-  k = { '<cmd>lprev<CR>', 'Location List prev' },
+  h = { name = 'diagnostics' },
 
   r = require('setup.which-key.keys.notes'),
 
