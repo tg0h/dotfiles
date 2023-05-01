@@ -6,6 +6,7 @@ local M = {
   r = require('setup.which-key.keys.notes'),
 
   t = require('setup.which-key.keys.trouble'),
+  c = { name = 'config' },
   s = { name = 'search' },
 
   b = { name = 'Buffers' },
