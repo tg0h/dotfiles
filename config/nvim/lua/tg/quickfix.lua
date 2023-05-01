@@ -9,6 +9,7 @@ local M = {}
 
 function M.ToggleQFList(global)
   if global == 1 then
+    -- quickfix list
     if vim.g.tg_quickfix_global == 1 then
       g.tg_quickfix_global = 0
       cmd('cclose')
@@ -17,6 +18,7 @@ function M.ToggleQFList(global)
       cmd('copen')
     end
   else
+    -- loclist
     if vim.g.tg_quickfix_local == 1 then
       g.tg_quickfix_local = 0
       cmd('lclose')
