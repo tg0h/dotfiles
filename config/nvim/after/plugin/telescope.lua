@@ -194,10 +194,16 @@ vim.keymap.set('n', '<LEADER>hn', function()
 end, { desc = 'workspace diagnostics' })
 
 -- config #########################################################################################
+vim.keymap.set('n', '<LEADER>cg', ':messages<CR>', { desc = 'vim messages' })
+vim.keymap.set('n', '<LEADER>cc', function()
+  vim.cmd('messages clear')
+end, { desc = 'vim messages clear' })
+
 vim.keymap.set('n', '<LEADER>cd', function()
   require('setup/telescope').search_dotfiles()
 end, { desc = 'search dotfiles' })
 vim.keymap.set('n', '<LEADER>cn', function()
   require('setup/telescope').search_neovim_dotfiles()
 end, { desc = 'search dotfiles' })
-vim.keymap.set('n', '<LEADER>cr', builtin.reloader, { desc = 'telescope lua reloader' })
+
+vim.keymap.set('n', '<LEADER>cr', builtin.reloader, { desc = 'telescope reloader' })
