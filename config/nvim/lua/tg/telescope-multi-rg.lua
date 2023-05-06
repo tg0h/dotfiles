@@ -32,25 +32,29 @@ return function(opts)
       -- add 2 spaces to pass a glob to rg
       local prompt_split = vim.split(prompt, '  ')
 
-      print('prompt split is', prompt_split.inspect)
       local args = { 'rg' }
-      if prompt_split[1] then
-        table.insert(args, '-e')
-        table.insert(args, prompt_split[1])
-      end
-
-      if prompt_split[2] then
-        table.insert(args, '-g')
-
-        local pattern
-        if opts.shortcuts[prompt_split[2]] then
-          pattern = opts.shortcuts[prompt_split[2]]
+      for i, v in ipairs(prompt_split) do
+        if i == 1 then
+          -- the first arg in the telescope prompt can be separated by a single space
+          -- eg search for this string  !*.yml  !spec is passed as rg -e 'search for this string' -g '!*.yml' -g '!spec'
+          table.insert(args, '-e')
+          table.insert(args, v)
         else
-          pattern = prompt_split[2]
-        end
+          table.insert(args, '-g')
 
-        table.insert(args, string.format(opts.pattern, pattern))
+          local pattern
+          if opts.shortcuts[v] then
+            pattern = opts.shortcuts[v]
+          else
+            pattern = v
+          end
+
+          table.insert(args, string.format(opts.pattern, pattern))
+        end
       end
+
+      -- print('args is ' .. vim.inspect(args))
+      -- print('prompt splits is ' .. vim.inspect(prompt_split))
 
       return flatten({
         args,
