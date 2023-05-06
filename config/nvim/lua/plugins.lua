@@ -195,6 +195,7 @@ return require('packer').startup({
     })
     use({ 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' })
     use('dmmulroy/tsc.nvim')
+    use('opdavies/toggle-checkbox.nvim')
   end,
   config = {
     display = {
