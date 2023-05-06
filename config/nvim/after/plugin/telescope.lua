@@ -17,7 +17,6 @@ telescope.load_extension('gitdiffer')
 telescope.load_extension('frecency')
 telescope.load_extension('ui-select')
 local frecency = telescope.load_extension('frecency')
-local changes = telescope.load_extension('changes')
 
 telescope.setup({
   defaults = {
