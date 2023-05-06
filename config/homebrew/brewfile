@@ -219,3 +219,4 @@ brew 'youplot'
 
 tap 'jkfran/killport'
 brew 'killport'
+brew 'act'
