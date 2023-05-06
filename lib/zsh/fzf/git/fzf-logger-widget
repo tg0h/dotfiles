@@ -58,13 +58,13 @@ EOF
 # kitty @ launch --type overlay --cwd=current zsh -c "git show @; zsh"
   # NOTE: disabling search (disable-search) ensures that original order is not changed by fzf query string sort
 
-  local key=$(head -1 <<< "$out")
-  local targets=$(tail -n +2 <<< "$out") # get all lines after the first line
-  local target1=$(head -1 <<< "$targets")
+  # local result=$(head -1 <<< "$out")
+  local sha=$(gawk '{print $6}' <<< "$out")
+  # local targets=$(tail -n +2 <<< "$out") # get all lines after the first line
+  # local target1=$(head -1 <<< "$targets")
 
-  if [ $target1 ]; then
-    local hashes=$(echo $targets | choose 5 | join-lines)
-    LBUFFER+=" "$hashes # add a leading space so I don't have to type space with an alias eg <alias><trigger logger widget>
+  if [ $sha ]; then
+    LBUFFER+=" "$sha # add a leading space so I don't have to type space with an alias eg <alias><trigger logger widget>
   fi
 
   zle reset-prompt
