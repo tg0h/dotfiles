@@ -15,7 +15,7 @@ require('nvim-treesitter.configs').setup({
     'yaml',
     'markdown',
     'ruby',
-    'help', -- vimdoc
+    'vimdoc',
   },
   -- Install parsers synchronously (only applied to `ensure_installed`)
   sync_install = false,
