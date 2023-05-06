@@ -24,7 +24,7 @@ local function get_current_function_name()
   end
   -- print('tim expr sexpr is ' .. expr:sexpr())
   local bufnr = vim.fn.bufnr()
-  local first_named_child_text = vim.treesitter.query.get_node_text(expr:named_child(0), bufnr)
+  local first_named_child_text = vim.treesitter.get_node_text(expr:named_child(0), bufnr)
   return first_named_child_text
 end
 

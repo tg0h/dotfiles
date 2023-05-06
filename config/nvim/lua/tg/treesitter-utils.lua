@@ -75,7 +75,6 @@ local function get_functions(bufnr, lang, query_string)
 
   for _, captures, metadata in query:iter_matches(root, bufnr) do
     local row, col, _ = captures[1]:start()
-    -- local name = vim.treesitter.query.get_node_text(captures[1], bufnr)
     local name = vim.treesitter.get_node_text(captures[1], bufnr)
     table.insert(func_list, { name, row, col, metadata[1].range })
   end
@@ -139,7 +138,6 @@ function get_func_list(lang, bufnr, type, function_name)
   for _, captures, metadata in query:iter_matches(root, bufnr) do
     -- print(string.format(typescript_function_query_string_interpolation, 'method_definition', 'function_name'))
     local row, col, _ = captures[1]:start()
-    -- local name = vim.treesitter.query.get_node_text(captures[1], bufnr)
     local name = vim.treesitter.get_node_text(captures[1], bufnr)
     table.insert(func_list, { name, row, col, metadata[1].range })
   end
