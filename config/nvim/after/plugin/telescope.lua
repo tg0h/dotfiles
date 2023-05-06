@@ -28,11 +28,77 @@ telescope.setup({
     -- see list for actions https://github.com/nvim-telescope/telescope.nvim/blob/master/lua/telescope/actions/init.lua
     mappings = {
       i = {
-        ['<C-x>'] = false,
-        ['<C-q>'] = actions.send_to_qflist,
+        -- ['<C-x>'] = false,
+        -- ['<C-q>'] = actions.send_to_qflist,
         ['<S-C-;>'] = actions.send_to_loclist, -- aka C-:
-        ['<C-l>'] = actions.add_selected_to_loclist,
+        -- ['<C-l>'] = actions.add_selected_to_loclist,
         -- ["<esc>"] = actions.close
+
+        ['<C-n>'] = actions.move_selection_next,
+        ['<C-p>'] = actions.move_selection_previous,
+
+        ['<C-c>'] = actions.close,
+
+        ['<Down>'] = actions.move_selection_next,
+        ['<Up>'] = actions.move_selection_previous,
+
+        ['<CR>'] = actions.select_default,
+        ['<C-x>'] = actions.select_horizontal,
+        ['<C-v>'] = actions.select_vertical,
+        ['<C-t>'] = actions.select_tab,
+
+        ['<C-u>'] = actions.preview_scrolling_up,
+        ['<C-d>'] = actions.preview_scrolling_down,
+
+        ['<PageUp>'] = actions.results_scrolling_up,
+        ['<PageDown>'] = actions.results_scrolling_down,
+
+        ['<Tab>'] = actions.toggle_selection + actions.move_selection_worse,
+        ['<S-Tab>'] = actions.toggle_selection + actions.move_selection_better,
+        ['<C-q>'] = actions.send_to_qflist + actions.open_qflist,
+        ['<M-q>'] = actions.send_selected_to_qflist + actions.open_qflist,
+        ['<C-l>'] = actions.complete_tag,
+        ['<C-/>'] = actions.which_key,
+        ['<C-_>'] = actions.which_key, -- keys from pressing <C-/>
+
+        -- https://github.com/nvim-telescope/telescope.nvim/pull/1650
+        ['<C-w>'] = { '<c-s-w>', type = 'command' }, --delete word before cursor
+
+        -- disable c-j because we dont want to allow new lines #2123
+        ['<C-j>'] = actions.nop,
+      },
+
+      n = {
+        ['<esc>'] = actions.close,
+        ['<CR>'] = actions.select_default,
+        ['<C-x>'] = actions.select_horizontal,
+        ['<C-v>'] = actions.select_vertical,
+        ['<C-t>'] = actions.select_tab,
+
+        ['<Tab>'] = actions.toggle_selection + actions.move_selection_worse,
+        ['<S-Tab>'] = actions.toggle_selection + actions.move_selection_better,
+        ['<C-q>'] = actions.send_to_qflist + actions.open_qflist,
+        ['<M-q>'] = actions.send_selected_to_qflist + actions.open_qflist,
+
+        -- TODO: This would be weird if we switch the ordering.
+        ['j'] = actions.move_selection_next,
+        ['k'] = actions.move_selection_previous,
+        ['H'] = actions.move_to_top,
+        ['M'] = actions.move_to_middle,
+        ['L'] = actions.move_to_bottom,
+
+        ['<Down>'] = actions.move_selection_next,
+        ['<Up>'] = actions.move_selection_previous,
+        ['gg'] = actions.move_to_top,
+        ['G'] = actions.move_to_bottom,
+
+        ['<C-u>'] = actions.preview_scrolling_up,
+        ['<C-d>'] = actions.preview_scrolling_down,
+
+        ['<PageUp>'] = actions.results_scrolling_up,
+        ['<PageDown>'] = actions.results_scrolling_down,
+
+        ['?'] = actions.which_key,
       },
     },
   },
@@ -103,7 +169,7 @@ vim.keymap.set('n', '<LEADER>fo', builtin.oldfiles, { desc = 'old files' })
 vim.keymap.set('n', '<LEADER>na', builtin.autocommands, { desc = 'autocommands' })
 vim.keymap.set('n', '<LEADER>nb', function()
   builtin.buffers({ sort_mru = true, ignore_current_buffer = true })
-end, { desc = 'buffers' })
+end, { desc = 'search open buffers (ignore current buffer)' })
 vim.keymap.set('n', '<LEADER>nc', builtin.commands, { desc = 'commands' })
 vim.keymap.set('n', '<LEADER>nC', builtin.command_history, { desc = 'command history' })
 vim.keymap.set('n', '<LEADER>nh', builtin.help_tags, { desc = 'neovim help' })
