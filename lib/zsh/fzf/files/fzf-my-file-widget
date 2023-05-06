@@ -3,7 +3,7 @@
 # TODO: pass selected file to git log preview to limit scope of change
 function fzf-my-file-widget() {
   # my file widget
-  # note: kitty maps C-- to C-] so that the C-- maps to C-] in fzf
+  # note: kitty maps C-- to C-\
 
   local basename="fzf-my-file-widget"
 
@@ -11,7 +11,7 @@ function fzf-my-file-widget() {
   ⌃a add file/dir      | ⌃c/⌥C trash/rm
   ⌃h recent            | ⌃t default
   ⌃g .test files       | ⌃c no ignore | ⌃r files | ^f dirs
-  ⌃]/-⌃ no .test files |
+  ⌃\\ no .test files 
   ⌥g/⌥r depth 1/2
   ⌃o/⌃b blame preview/blame
   ⌃l    log history of selected file
@@ -44,7 +44,7 @@ EOF
         \
         --bind "ctrl-f:reload(fd $FD_OPTIONS --type d)+change-prompt(dir> )" \
         --bind "ctrl-g:reload(fd $FD_OPTIONS --type f --case-sensitive '\.test\.' )+change-prompt(test-files> )" \
-        --bind "ctrl-]:reload(fd $FD_OPTIONS --type f --case-sensitive --exclude '\.test\.' )+change-prompt(exclude-test-files> )" \
+        --bind "ctrl-\\:reload(fd $FD_OPTIONS --type f --case-sensitive --exclude '\.test\.' )+change-prompt(exclude-test-files> )" \
         --bind "ctrl-c:reload(fd $FD_OPTIONS_NO_IGNORE)+change-prompt(no-ignore> )" \
         --bind "ctrl-r:reload(fd $FD_OPTIONS --type f)+change-prompt(file> )" \
         \

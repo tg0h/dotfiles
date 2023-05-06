@@ -40,7 +40,7 @@ zle -N _fzf-redraw-prompt # used by fzf bookmarks widget to redraw prompt
 
 zle -N fzf-docker-container-widget
 # replaces the quoted-insert widget
-bindkey '^V' fzf-docker-container-widget
+# bindkey '^V' fzf-docker-container-widget
 zle -N fzf-docker-image-widget
 bindkey '^[^v' fzf-docker-image-widget
 
@@ -115,8 +115,8 @@ zle -N execute-buffer-with-git-show-widget
 
 
 zle -N edit-index-nvim-widget
-# ctrl-, works with kitty map which maps ctrl- to ctrln
-bindkey '^]' edit-index-nvim-widget
+# ctrl-, works with kitty map which maps ctrl- to ctrl-\
+bindkey '^\' edit-index-nvim-widget
 zle -N execute-index-node-widget
 # ctrl+alt+-
 bindkey '^[^]' execute-index-node-widget
