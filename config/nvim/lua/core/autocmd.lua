@@ -1,14 +1,29 @@
-vim.api.nvim_exec(
-  [[
-augroup numbertoggle
-" turn off relative number when entering insert mode or buffer loses focus
-  autocmd!
-  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
-  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
-augroup END
-]],
-  true
-)
+local numberToggleGroup = vim.api.nvim_create_augroup('NumberToggle', { clear = true })
+-- " turn off relative number when entering insert mode or buffer loses focus
+vim.api.nvim_create_autocmd({ 'BufEnter', 'FocusGained', 'InsertLeave' }, {
+  pattern = '*',
+  callback = function()
+    buftype = vim.bo.buftype
+    -- print('buftype is' .. buftype)
+    -- print('filetype is' .. vim.o.filetype)
+    if vim.o.filetype ~= 'toggleterm' then
+      vim.opt.relativenumber = true
+    end
+  end,
+  group = numberToggleGroup,
+})
+vim.api.nvim_create_autocmd({ 'BufLeave', 'FocusLost', 'InsertEnter' }, {
+  pattern = '*',
+  callback = function()
+    buftype = vim.bo.buftype
+    -- print('buftype is' .. buftype)
+    -- print('filetype is' .. vim.o.filetype)
+    if vim.o.filetype ~= 'toggleterm' then
+      vim.opt.relativenumber = false
+    end
+  end,
+  group = numberToggleGroup,
+})
 
 vim.api.nvim_exec(
   [[
