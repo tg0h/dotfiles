@@ -83,7 +83,6 @@ return require('packer').startup({
       },
       -- do not lazy load so that i can set keymaps in nvim/config/after/
       -- event = 'BufWinEnter',
-      config = get_setup('telescope'), -- TODO: how to async load config
     })
     use({ 'nvim-telescope/telescope-file-browser.nvim' })
     use({ 'nvim-telescope/telescope-symbols.nvim' }) -- add emojis

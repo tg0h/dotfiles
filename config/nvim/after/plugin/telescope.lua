@@ -144,7 +144,20 @@ local builtin = require('telescope.builtin')
 --------------------------------------------------------------------------------------------------
 -- MAPS ----------------------------------------------------------------------------------------
 -- project
-vim.keymap.set('n', '<C-p>', require('setup/telescope').my_git_files, { desc = 'git files' })
+vim.keymap.set('n', '<C-p>', function()
+  builtin.git_files({
+    hidden = false,
+    layout_strategy = 'vertical',
+    layout_config = {
+      height = 0.99,
+      -- anchor = 'E',
+      width = 0.9,
+      prompt_position = 'top',
+      preview_height = 0.5,
+      mirror = true,
+    },
+  })
+end, { desc = 'git files' })
 vim.keymap.set('n', '<S-C-->', builtin.commands)
 
 --------------------------------------------------------------------------------------------------
@@ -159,10 +172,10 @@ end, { desc = 'find files --hidden' })
 vim.keymap.set('n', '<LEADER>f.', function()
   file_browser.file_browser()
 end, { desc = 'file browser' })
-vim.keymap.set('n', '<LEADER>fr', function()
-  frecency.frecency(require('setup/telescope').big_window())
+vim.keymap.set('n', '<LEADER>fr', builtin.oldfiles, { desc = 'old files (recent)' })
+vim.keymap.set('n', '<LEADER>fe', function()
+  frecency.frecency({ layout_strategy = 'vertical', layout_config = { mirror = true, width = 0.9, height = 0.9 } })
 end, { desc = 'find frecent files' })
-vim.keymap.set('n', '<LEADER>fo', builtin.oldfiles, { desc = 'old files' })
 
 -- neovim #########################################################################################
 vim.keymap.set('n', '<LEADER>na', builtin.autocommands, { desc = 'autocommands' })
@@ -233,11 +246,36 @@ vim.keymap.set('n', '<LEADER>gg', ':Telescope gitdiffer diff<CR>', { desc = 'git
 -- search #########################################################################################
 vim.keymap.set('n', '<LEADER>st', builtin.live_grep, { desc = 'telescope live_grep' })
 vim.keymap.set('n', '<LEADER>ss', function() -- search text provided via input
-  require('setup/telescope').my_grep_string_no_input()
+  builtin.grep_string({
+    hidden = false,
+    layout_strategy = 'vertical',
+    layout_config = {
+      height = 0.99,
+      -- anchor = 'E',
+      width = 0.9,
+      prompt_position = 'top',
+      preview_height = 0.5,
+      mirror = true,
+    },
+  })
 end, { desc = 'telescope my grep string no input' })
+
 vim.keymap.set('n', '<LEADER>sp', function() -- search text provided via input
-  require('setup/telescope').my_grep_string()
+  builtin.grep_string({
+    search = vim.fn.input('Grep > '),
+    hidden = false,
+    layout_strategy = 'vertical',
+    layout_config = {
+      height = 0.99,
+      -- anchor = 'E',
+      width = 0.9,
+      prompt_position = 'top',
+      preview_height = 0.5,
+      mirror = true,
+    },
+  })
 end, { desc = 'telescope my grep string with input' })
+
 vim.keymap.set('n', '<LEADER>sb', builtin.current_buffer_fuzzy_find, { desc = 'telescope current buffer fuzzy find' })
 local multi_rg = require('tg.telescope-multi-rg')
 vim.keymap.set('n', '<leader>sg', multi_rg, { desc = 'tj multi rg' })
@@ -269,10 +307,36 @@ vim.keymap.set('n', '<LEADER>cc', function()
 end, { desc = 'vim messages clear' })
 
 vim.keymap.set('n', '<LEADER>cd', function()
-  require('setup/telescope').search_dotfiles()
-end, { desc = 'search dotfiles' })
-vim.keymap.set('n', '<LEADER>cn', function()
-  require('setup/telescope').search_neovim_dotfiles()
+  builtin.find_files({
+    -- prompt_title = "< Dotfiles >",
+    cwd = vim.env.DOTFILES,
+    hidden = true,
+  })
 end, { desc = 'search dotfiles' })
 
+vim.keymap.set('n', '<LEADER>cn', function()
+  builtin.find_files({ cwd = vim.env.DOTFILES .. '/config/nvim', hidden = true })
+end, { desc = 'scarch dotfiles' })
+
 vim.keymap.set('n', '<LEADER>cr', builtin.reloader, { desc = 'telescope reloader' })
+
+-- wiki #########################################################################################
+vim.keymap.set('n', '<LEADER>rh', function()
+  builtin.find_files({ cwd = vim.env.HOME .. '/src/me/wiki', hidden = false })
+end, { desc = 'search wiki' })
+
+vim.keymap.set('n', '<LEADER>rt', function()
+  builtin.find_files({
+    cwd = vim.env.XDG_DOCUMENTS_DIR .. '/candy/wiki',
+    hidden = false,
+    layout_strategy = 'vertical',
+    layout_config = {
+      height = 0.99,
+      anchor = 'E',
+      width = 0.5,
+      prompt_position = 'top',
+      preview_height = 0.85,
+      mirror = true,
+    },
+  })
+end, { desc = 'search candy wiki' })
