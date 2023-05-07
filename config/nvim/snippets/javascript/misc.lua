@@ -69,7 +69,7 @@ local function cs(trigger, nodes, opts) -- {{{
 end -- }}}
 
 cs(
-  'hws',
+  'hcs',
   fmt(
     [[
 import http from 'http'
