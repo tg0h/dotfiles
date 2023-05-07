@@ -10,7 +10,7 @@ local M = {
   c = { name = 'config' },
   s = { name = 'search' },
 
-  b = { name = 'Buffers' },
+  -- b = { name = 'Buffers' },
   f = { name = 'Files' },
   n = { name = 'neovim core' },
   g = require('setup.which-key.keys.git'),
