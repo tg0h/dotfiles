@@ -8,31 +8,36 @@ local has_words_before = function()
 end
 
 lspkind.init({
+
+  -- defines how annotations are shown
+  -- default: symbol
+  -- options: 'text', 'text_symbol', 'symbol_text', 'symbol'
+  mode = 'symbol_text',
   symbol_map = {
-    Text = '',
-    Method = '',
-    Function = '',
+    Text = '󰉿',
+    Method = '󰆧',
+    Function = '󰊕',
     Constructor = '',
-    Field = 'ﰠ',
-    Variable = '',
-    Class = 'ﴯ',
+    Field = '󰜢',
+    Variable = '󰀫',
+    Class = '󰠱',
     Interface = '',
     Module = '',
-    Property = 'ﰠ',
-    Unit = '塞',
-    Value = '',
+    Property = '󰜢',
+    Unit = '󰑭',
+    Value = '󰎠',
     Enum = '',
-    Keyword = '',
+    Keyword = '󰌋',
     Snippet = '',
-    Color = '',
-    File = '',
-    Reference = '',
-    Folder = '',
+    Color = '󰏘',
+    File = '󰈙',
+    Reference = '󰈇',
+    Folder = '󰉋',
     EnumMember = '',
-    Constant = '',
-    Struct = 'פּ',
+    Constant = '󰏿',
+    Struct = '󰙅',
     Event = '',
-    Operator = '',
+    Operator = '󰆕',
     TypeParameter = '',
   },
 })
