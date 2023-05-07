@@ -23,6 +23,7 @@ EOF
   # --bind "ctrl-k:change-preview($preview_cmd | delta -w ${FZF_PREVIEW_COLUMNS:-$COLUMNS})+refresh-preview" \
   local out=$( glo |
   fzf --ansi --multi \
+    --no-sort \
     --header=$HEADER \
     --preview-window ~5,bottom,noborder,50% \
     --bind 'ctrl-/:change-preview-window(bottom,80%|hidden|)' \
