@@ -25,6 +25,9 @@ return {
       { i(nil, '') }
     )
   ),
+  s('ihcs', { t("import { createServer } from 'http'") }),
+  s('icc', { t("import cluster from 'cluster'") }),
+  s('ioc', { t("import { cpus } from 'os'") }),
   s('do', {
     t('/*'),
     sn(nil, { t('*'), i(1, '') }),
