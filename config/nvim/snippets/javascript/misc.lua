@@ -69,7 +69,7 @@ local function cs(trigger, nodes, opts) -- {{{
 end -- }}}
 
 cs(
-  'hcs',
+  'zhcs',
   fmt(
     [[
 import http from 'http'
@@ -85,6 +85,36 @@ server.listen({})
 {}
 ]],
     { c(1, { t('80'), i(1) }), i(0) }
+  )
+)
+
+cs(
+  'zhttppost',
+  fmt(
+    [[
+import http from 'http'
+
+const opts = {{
+  method: 'post',
+  hostname: 'pie.dev',
+  path: '/post',
+}}
+
+const req = http.request(opts, (res) => {{
+  process.stdout.write('status Code: ' + res.statusCode + '\n')
+  res.pipe(process.stdout)
+}})
+
+req.on('error', (err) => {{
+  console.error('error:', err)
+}})
+
+const payload = `{{
+  "hello": "world"
+}}`
+req.end(payload)
+]],
+    {}
   )
 )
 
