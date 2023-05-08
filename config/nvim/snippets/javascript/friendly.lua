@@ -28,6 +28,8 @@ return {
   s('ihcs', { t("import { createServer } from 'http'") }),
   s('icc', { t("import cluster from 'cluster'") }),
   s('ioc', { t("import { cpus } from 'os'") }),
+  s('icpf', { t("import fork from 'child_process'") }),
+  s('ihh', { t("import http from 'http'") }),
   s('do', {
     t('/*'),
     sn(nil, { t('*'), i(1, '') }),
