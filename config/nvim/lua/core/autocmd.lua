@@ -82,9 +82,19 @@ au TextYankPost * silent! lua vim.highlight.on_yank({higroup="Visual", timeout=2
 augroup END
 ]])
 
-vim.cmd([[
-autocmd Filetype harpoon setlocal cursorline
-]])
+-- vim.cmd([[
+-- autocmd Filetype harpoon setlocal cursorline
+-- ]])
+
+-- vim.api.nvim_create_autocmd({ 'FileType' }, {
+--   pattern = { 'harpoon' },
+--   callback = function()
+--     -- wo - window specific option
+--     vim.wo.cursorline = true
+--     -- show absolute line numbers for easier reference
+--     vim.wo.relativenumber = false
+--   end,
+-- })
 
 -- https://github.com/neovim/neovim/issues/17867#issuecomment-1079934289
 -- doesn't work with tmux :|
