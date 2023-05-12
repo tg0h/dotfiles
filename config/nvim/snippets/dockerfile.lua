@@ -35,7 +35,7 @@ cs(
   'df',
   fmt(
     [[
-FROM node:16
+FROM node:16-alpine
 
 # Create app directory
 WORKDIR /usr/src/app

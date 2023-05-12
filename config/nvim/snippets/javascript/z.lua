@@ -9,6 +9,7 @@ local f = ls.function_node
 local sn = ls.snippet_node
 
 local fmt = require('luasnip.extras.fmt').fmt
+local fmta = require('luasnip.extras.fmt').fmta
 local rep = require('luasnip.extras').rep
 
 local snippets, autosnippets = {}, {} -- }}}
@@ -113,6 +114,96 @@ const payload = `{{
   "hello": "world"
 }}`
 req.end(payload)
+]],
+    {}
+  )
+)
+
+cs(
+  'zchildprocess',
+  fmt(
+    [[
+import {{ fork }} from 'child_process'
+
+const child = fork('child.js')
+child.send('hello world')
+child.on('message', (message) => console.log(`parent received message from child ${{message}}`))
+
+//child.js
+process.on('message', (message) => console.log(`child received ${{message}} from parent`))
+process.send('child sending this message to parent')
+]],
+    {}
+  )
+)
+
+cs(
+  'zreadstream',
+  fmt(
+    [[
+import fs from 'fs'
+const rs = fs.createReadStream('./file.txt')
+
+rs.on('data', (data) => {{
+  console.log('read data', data.toString())
+}})
+rs.on('end', () => {{
+  console.log('done')
+}})
+]],
+    {}
+  )
+)
+
+cs(
+  'ztransform',
+  fmta(
+    [[
+import fs from "fs";
+import { Transform } from "stream";
+
+const i = fs.createReadStream("in");
+const o = fs.createWriteStream("out");
+
+class Uppercase extends Transform {
+  constructor() {
+    super(); //pass options to super if you want to configure Transform, eg super({...options})
+  }
+  _transform(chunk, encoding, callback) {
+    this.push(chunk.toString().toUpperCase());
+    callback();
+  }
+}
+
+const u = new Uppercase()
+i.pipe(u).pipe(o)
+]],
+    {}
+  )
+)
+
+cs(
+  'zcluster',
+  fmta( -- add a cluster
+    [[
+import { createServer } from 'http'
+import { cpus } from 'os'
+import cluster from 'cluster'
+
+if (cluster.isPrimary) {
+  const availableCpus = cpus()
+  availableCpus.forEach(() =>> {
+    cluster.fork()
+  })
+} else {
+  const server = createServer((req, res) =>> {
+    console.log(`Handling request from ${process.pid}`)
+    res.end(`Hello from ${process.pid}\n`)
+  })
+
+  server.listen(8080)
+}
+
 ]],
     {}
   )
