@@ -54,17 +54,18 @@ keymaps:
   # PLAYGROUND
   - [ta, $HOME/src/playground/aws/cdk/my-pipeline]
   - [ty, $HOME/src/playground/yarn]
+  - [th, $HOME/src/playground/refactoring]
   - ["ty,", $HOME/src/playground/yarn/yarn-old]
   - ["ty.", $HOME/src/playground/yarn/yarn-modern]
   - ["ty,.", $HOME/src/playground/yarn/npm]
   - [tg, $HOME/src/playground/github/scratch]
   - [tp, $HOME/src/playground/python/]
   # - [th, $HOME/dotfiles/templates]
-  - bindkey: th
-    dir: $HOME/dotfiles/templates
-    depth: 3
-    show-hidden: true
-    show-ignore: true
+  # - bindkey: th
+  #   dir: $HOME/dotfiles/templates
+  #   depth: 3
+  #   show-hidden: true
+  #   show-ignore: true
   - bindkey: td
     dir: $HOME/dotfiles/lib/zsh/candy/templates
     depth: 3
@@ -82,6 +83,7 @@ keymaps:
   - [j, $HOME/src/candy/db]
   - [s., $HOME/src/candy/main/referralcandy-main, 5]
   - [s2, $HOME/src/candy/main2/referralcandy-main, 5]
+  - [s3, $HOME/src/candy/main3/referralcandy-main, 5]
   - [st, $HOME/src/candy/old/customer-tracks/]
   - ["s,", $HOME/src/candy/main2/referralcandy-main]
   - [sa, $HOME/src/candy/playground/github-actions]
@@ -94,6 +96,7 @@ keymaps:
   # - [sh, $HOME/src/candy/main/referralcandy-main/packages/daemons]
   - [so, $HOME/src/candy/old]
   - [soc, $HOME/src/candy/old/composer]
+  - [si, $HOME/src/candy/old/internal_tools]
   - [sp, $HOME/src/candy/old/pentel]
   - [sr, $HOME/src/candy/old/referral_corner]
   - [sm, $HOME/src/candy/old/candymold]
