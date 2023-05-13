@@ -17,14 +17,15 @@ map('i', '<C-d>', '<Del>', default_options) -- go to end of line in insert mode
 map('n', '<F1>', ':WhichKey<CR>', default_options) -- show all mappings
 
 -- nice defaults
--- move lines
 vim.keymap.set('n', '<C-d>', '<C-d>zz')
 vim.keymap.set('n', '<C-u>', '<C-u>zz')
+-- move lines, adds indent if moving eg into an if block
 map('v', 'J', ":m '>+1<CR>gv=gv", default_options)
 map('v', 'K', ":m '<-2<CR>gv=gv", default_options)
--- keep it centred
+-- keep it centred when searching
 map('n', 'n', 'nzzzv', default_options) -- zv opens folds
 map('n', 'N', 'Nzzzv', default_options)
+-- keep cursor on same place when you normal J
 map('n', 'J', 'mzJ`z', default_options)
 -- granular undo break points
 map('i', ',', ',<C-g>u', default_options)
