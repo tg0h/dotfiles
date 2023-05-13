@@ -57,3 +57,6 @@ vim.keymap.set('x', '<LEADER>p', '"_dP', { desc = 'preserve " buffer when visual
 map('n', '<C-z>', '<NOP>', default_options)
 -- map("n", "<C-M-z>", "<Esc>:ZenMode<CR>", default_options)
 -- vim.keymap.set('n', '<D-:>', ':lua print "hello"<CR>')
+
+-- replace the word that the cursor is on ... I flag means don't ignore case
+vim.keymap.set('n', '<leader>a', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
