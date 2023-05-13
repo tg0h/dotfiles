@@ -18,6 +18,8 @@ map('n', '<F1>', ':WhichKey<CR>', default_options) -- show all mappings
 
 -- nice defaults
 -- move lines
+vim.keymap.set('n', '<C-d>', '<C-d>zz')
+vim.keymap.set('n', '<C-u>', '<C-u>zz')
 map('v', 'J', ":m '>+1<CR>gv=gv", default_options)
 map('v', 'K', ":m '<-2<CR>gv=gv", default_options)
 -- keep it centred
