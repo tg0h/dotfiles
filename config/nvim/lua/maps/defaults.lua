@@ -51,6 +51,9 @@ map('n', '<M-->', 'yyp', default_options) -- open dash docs with word under curs
 
 vim.keymap.set('n', '<LEADER>0', '"0p', { desc = 'paste 0 register' }) -- open dash docs with word under cursor
 
+-- copied from primeagen - https://www.youtube.com/watch?v=w7i4amO_zaE&t=562s
+vim.keymap.set('x', '<LEADER>p', '"_dP', { desc = 'preserve " buffer when visual mode pasting' })
+
 map('n', '<C-z>', '<NOP>', default_options)
 -- map("n", "<C-M-z>", "<Esc>:ZenMode<CR>", default_options)
 -- vim.keymap.set('n', '<D-:>', ':lua print "hello"<CR>')
