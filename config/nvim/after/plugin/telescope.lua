@@ -6,7 +6,7 @@ local conf = require('telescope.config').values
 local actions = require('telescope.actions')
 local telescope = require('telescope')
 
-telescope.load_extension('fzy_native')
+-- telescope.load_extension('fzy_native')
 local file_browser = telescope.load_extension('file_browser')
 telescope.load_extension('heading') -- markdown, help headings
 -- telescope.load_extension "projects" -- recent projects
@@ -20,7 +20,7 @@ local frecency = telescope.load_extension('frecency')
 
 telescope.setup({
   defaults = {
-    file_sorter = require('telescope.sorters').get_fzy_sorter,
+    -- file_sorter = require('telescope.sorters').get_fzy_sorter,
     prompt_prefix = ' >',
     color_devicons = true,
 
@@ -122,7 +122,6 @@ telescope.setup({
       --   codeactions = false,
       -- }
     },
-    fzy_native = { override_generic_sorter = false, override_file_sorter = true },
     frecency = {
       default_workspace = 'CWD',
       show_scores = true,
@@ -137,6 +136,7 @@ telescope.setup({
   },
 })
 
+-- telescope.load_extension('fzy_native')
 local ext = require('telescope').extensions
 
 local builtin = require('telescope.builtin')
