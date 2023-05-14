@@ -76,6 +76,7 @@ return require('packer').startup({
       'nvim-telescope/telescope.nvim',
       requires = {
         { 'nvim-lua/plenary.nvim' },
+        { 'nvim-telescope/telescope-fzf-native.nvim' },
         { 'nvim-telescope/telescope-dap.nvim' },
         { 'nvim-telescope/telescope-ui-select.nvim' },
         { 'crispgm/telescope-heading.nvim' },
