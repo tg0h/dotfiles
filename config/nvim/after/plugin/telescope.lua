@@ -134,7 +134,11 @@ telescope.setup({
       '--smart-case',
     },
     -- use_less = true, --if less should be enabled in term_previewer (deprecated and no longer used in builtin pickers)
-    set_env = nil, -- set environment for term_previewer - a table
+    -- set environment for term_previewer - a table
+    set_env = {
+      BAT_THEME = 'Monokai Extended',
+      -- BAT_STYLE = ' numbers', --not sure why this isn't working
+    },
     color_devicons = true, -- if devicons should be used. if false, use text highlight group
     file_sorter = require('telescope.sorters').get_fzy_sorter, -- used for find_files, git_files and similar. if native sorter used, this will be overriden
     generic_sorter = require('telescope.sorters').get_fzy_sorter, -- used for everything that is not a file. overriden if native sorter is used.
@@ -144,10 +148,9 @@ telescope.setup({
     get_selection_window = function()
       return 0
     end, -- function that takes function(picker,entry) and returns window id. window id used to decide which window to open chosen file in
-    --TODO: point to bat not cat
-    file_previewer = require('telescope.previewers').vim_buffer_cat.new, -- mostly used for find_files, git_files and similar. can be changed to point to bat
-    grep_previewer = require('telescope.previewers').vim_buffer_vimgrep.new, -- used for live_grep, grep_string and similar. can use bat instead
-    qflist_previewer = require('telescope.previewers').vim_buffer_qflist.new, --
+    file_previewer = require('telescope.previewers').cat.new, -- mostly used for find_files, git_files and similar.
+    grep_previewer = require('telescope.previewers').vimgrep.new, -- used for live_grep, grep_string and similar.
+    qflist_previewer = require('telescope.previewers').qflist.new,
     buffer_previewer_maker = require('telescope.previewers').buffer_previewer_maker, -- developer option for underlining functionality of buffer previewer
 
     -- see list for actions https://github.com/nvim-telescope/telescope.nvim/blob/master/lua/telescope/actions/init.lua
