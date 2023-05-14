@@ -2,6 +2,7 @@ local pickers = require('telescope.pickers')
 local finders = require('telescope.finders')
 -- local previewers = require("telescope.previewers")
 local action_state = require('telescope.actions.state')
+local actions_layout = require('telescope.actions.layout')
 local conf = require('telescope.config').values
 local actions = require('telescope.actions')
 local telescope = require('telescope')
@@ -161,6 +162,9 @@ telescope.setup({
         ['<S-C-;>'] = actions.send_to_loclist, -- aka C-:
         -- ['<C-l>'] = actions.add_selected_to_loclist,
         -- ["<esc>"] = actions.close
+
+        ['<C-z>'] = actions_layout.toggle_preview,
+        ['<S-C-z>'] = actions_layout.toggle_mirror,
 
         ['<C-n>'] = actions.move_selection_next,
         ['<C-p>'] = actions.move_selection_previous,
