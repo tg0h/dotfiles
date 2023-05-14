@@ -64,16 +64,6 @@ autocmd VimResized * :wincmd =
   true
 )
 
--- open help buffers in full screen
-vim.api.nvim_exec(
-  [[
-augroup HelpBuffer 
-  au! filetype help only 
-augroup END
-]],
-  true
-)
-
 -- highlight yanked text for 200ms using the "Visual" highlight group
 vim.cmd([[
 augroup highlight_yank
