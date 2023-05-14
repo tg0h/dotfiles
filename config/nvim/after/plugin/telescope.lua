@@ -21,9 +21,134 @@ telescope.load_extension('fzf')
 
 telescope.setup({
   defaults = {
-    -- file_sorter = require('telescope.sorters').get_fzy_sorter,
+    sorting_strategy = 'descending', -- the direction better results are sorted towards
+    selection_strategy = 'reset', -- how the cursor acts after each sort iteration
+    scroll_strategy = 'cycle', -- what happens if you scroll past the view of the picker
+    layout_strategy = 'horizontal',
+    layout_config = {
+      bottom_pane = {
+        height = 25,
+        preview_cutoff = 120,
+        prompt_position = 'top',
+      },
+      center = {
+        height = 0.4,
+        preview_cutoff = 40,
+        prompt_position = 'top',
+        width = 0.5,
+      },
+      cursor = {
+        height = 0.9,
+        preview_cutoff = 40,
+        width = 0.8,
+      },
+      horizontal = {
+        height = 0.9,
+        preview_cutoff = 120,
+        prompt_position = 'bottom',
+        width = 0.8,
+      },
+      vertical = {
+        height = 0.9,
+        preview_cutoff = 40,
+        prompt_position = 'bottom',
+        width = 0.8,
+      },
+    },
+
+    --- layouts to cycle through when using actions.layout.cycle_layout_next/prev
+    -- can be string[] or {layout_strategy, layout_config, previewer}[]
+    cycle_layout_list = { 'horizontal', 'vertical' },
+    winblend = 0, -- winblend for telescope floating windows
+    wrap_results = false, -- word wrap search results
     prompt_prefix = ' >',
-    color_devicons = true,
+    selection_caret = ' >', -- character(s) shown in front of current selection
+    entry_prefix = '  ', -- prefix in front of each result entry
+    multi_icon = '+', -- symbol to add in front of a multi-selected result entry, replaces final char of telescope.defaults.selection_caret and telescope.defaults.entry_prefix as appropriate
+    initial_mode = 'insert',
+    border = true,
+    path_display = {}, -- array with hidden | tail | absolute | smart | shorten | truncate
+    borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
+    -- get_status_text = -- a function that determines what the virtual text looks like - default shows current count / all
+    hl_result_eol = true,
+    dynamic_preview_title = false,
+    results_title = 'Results',
+    prompt_title = 'Prompt',
+    history = {
+      -- path = stdpath("data")/telescope_history',
+      limit = 100,
+      handler = require('telescope.actions.history').get_simple_history,
+      cycle_wrap = false,
+    },
+    cache_picker = {
+      num_pickers = 1,
+      limit_entries = 1000,
+    },
+
+    -- global previewer config
+    preview = {
+      check_mime_type = true, -- if plenary's filetype detection fails, use `file` if available to infer if binary
+      filesize_limit = 25, -- max filesize in MB to try to preview. set to false to preview any file size
+      timeout = 250, -- in ms, preview timeout
+      -- filetype_hook = ...
+      -- mime_hook = ...
+      -- filesize_hook = ...
+      -- timeout_hook = ...
+
+      -- 1) Do not show previewer for certain files
+      -- filetype_hook = function(filepath, bufnr, opts)
+      --   -- you could analogously check opts.ft for filetypes
+      --   local excluded = vim.tbl_filter(function(ending)
+      --     return filepath:match(ending)
+      --   end, {
+      --     '.*%.csv',
+      --     '.*%.toml',
+      --   })
+      --   if not vim.tbl_isempty(excluded) then
+      --     putils.set_preview_message(bufnr, opts.winid, string.format("I don't like %s files!", excluded[1]:sub(5, -1)))
+      --     return false
+      --   end
+      --   return true
+      -- end,
+
+      -- 2) Truncate lines to preview window for too large files
+      -- filesize_hook = function(filepath, bufnr, opts)
+      --   local path = require('plenary.path'):new(filepath)
+      --   -- opts exposes winid
+      --   local height = vim.api.nvim_win_get_height(opts.winid)
+      --   local lines = vim.split(path:head(height), '[\r]?\n')
+      --   vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, lines)
+      -- end,
+      treesitter = true,
+      msg_bg_fillchar = '╱', -- character to fill background of unpreviewable buffers
+      hide_on_startup = false, -- hide previewer when picker starts
+    },
+
+    vimgrep_arguments = {
+      'rg',
+      '--color=never',
+      '--no-heading',
+      '--with-filename',
+      '--line-number',
+      '--column',
+      '--smart-case',
+    },
+    -- use_less = true, --if less should be enabled in term_previewer (deprecated and no longer used in builtin pickers)
+    set_env = nil, -- set environment for term_previewer - a table
+    color_devicons = true, -- if devicons should be used. if false, use text highlight group
+    file_sorter = require('telescope.sorters').get_fzy_sorter, -- used for find_files, git_files and similar. if native sorter used, this will be overriden
+    generic_sorter = require('telescope.sorters').get_fzy_sorter, -- used for everything that is not a file. overriden if native sorter is used.
+    prefilter_sorter = require('telescope.sorters').get_fzy_sorter, -- wrapper sorter around generic sorter. used for lsp_*_symbols and lsp_*_diagnostics
+    -- tiebreak = ... -- how to break tie when two entries have the same score
+    file_ignore_patterns = nil, -- lua regex that defines files that should be ignored. eg { "^scratch/" } ignores all files in scratch directory. used by all pickers that have a file associated.
+    get_selection_window = function()
+      return 0
+    end, -- function that takes function(picker,entry) and returns window id. window id used to decide which window to open chosen file in
+    --TODO: point to bat not cat
+    file_previewer = require('telescope.previewers').vim_buffer_cat.new, -- mostly used for find_files, git_files and similar. can be changed to point to bat
+    grep_previewer = require('telescope.previewers').vim_buffer_vimgrep.new, -- used for live_grep, grep_string and similar. can use bat instead
+    qflist_previewer = require('telescope.previewers').vim_buffer_qflist.new, --
+    buffer_previewer_maker = require('telescope.previewers').buffer_previewer_maker, -- developer option for underlining functionality of buffer previewer
 
     -- see list for actions https://github.com/nvim-telescope/telescope.nvim/blob/master/lua/telescope/actions/init.lua
     mappings = {
@@ -94,6 +219,9 @@ telescope.setup({
 
         ['<C-u>'] = actions.preview_scrolling_up,
         ['<C-d>'] = actions.preview_scrolling_down,
+
+        ['<C-Down>'] = require('telescope.actions').cycle_history_next,
+        ['<C-Up>'] = require('telescope.actions').cycle_history_prev,
 
         ['<PageUp>'] = actions.results_scrolling_up,
         ['<PageDown>'] = actions.results_scrolling_down,
