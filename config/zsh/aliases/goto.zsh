@@ -52,3 +52,6 @@ alias zhd='nvim $DOTFILES/config/skhd/skhdrc'
 alias zya='nvim $DOTFILES/config/yabai/yabairc'
 alias dos='nvim ~/.dotfiles/install.conf.yaml' # dotbot sourcefile
 alias doi='dotbot --verbose -c ~/.dotfiles/install.conf.yaml'
+
+# scratch
+alias zkt.='nvim ~/Desktop/tim/scratch.md'
