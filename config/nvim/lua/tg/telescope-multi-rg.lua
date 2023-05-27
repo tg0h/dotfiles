@@ -72,6 +72,7 @@ return function(opts)
       finder = custom_grep,
       previewer = conf.grep_previewer(opts),
       sorter = require('telescope.sorters').empty(),
+      layout_config = { width = 0.99 },
     })
     :find()
 end
