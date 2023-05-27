@@ -34,6 +34,7 @@ keymaps:
   - [z, $HOME/dotfiles, 4]
 
   - [k, $HOME/Desktop]
+  - [kt, $HOME/Desktop/tim]
 
   # trash
   - [q, $HOME/.Trash]
@@ -98,6 +99,7 @@ keymaps:
   - [soc, $HOME/src/candy/old/composer]
   - [si, $HOME/src/candy/old/internal_tools]
   - [sp, $HOME/src/candy/old/pentel]
+  - [sp2, $HOME/src/candy/pentel]
   - [sr, $HOME/src/candy/old/referral_corner]
   - [sm, $HOME/src/candy/old/candymold]
   # - [st, $HOME/src/candy/old/candymold/tools]
