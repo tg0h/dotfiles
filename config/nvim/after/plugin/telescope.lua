@@ -383,7 +383,9 @@ vim.keymap.set(
 vim.keymap.set('n', '<LEADER>tt', builtin.treesitter, { desc = 'telescope treesitter' })
 
 -- telescope git #########################################################################################
-vim.keymap.set('n', '<LEADER>gs', builtin.git_status, { desc = 'telescope git status' })
+vim.keymap.set('n', '<LEADER>gs', function()
+  builtin.git_status({ layout_config = { width = 0.99, preview_width = 0.5 } })
+end, { desc = 'telescope git status' })
 vim.keymap.set('n', '<LEADER>gt', builtin.git_stash, { desc = 'telescope git stash' })
 vim.keymap.set('n', '<LEADER>gc', builtin.git_commits, { desc = 'telescope git commits' })
 vim.keymap.set('n', '<LEADER>gh', builtin.git_bcommits, { desc = 'telescope git buffer commits (history)' })
