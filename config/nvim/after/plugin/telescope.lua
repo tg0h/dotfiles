@@ -429,7 +429,7 @@ vim.keymap.set('n', '<LEADER>sb', builtin.current_buffer_fuzzy_find, { desc = 't
 local multi_rg = require('tg.telescope-multi-rg')
 vim.keymap.set('n', '<leader>sg', multi_rg, { desc = 'tj multi rg' })
 
-vim.keymap.set('n', '<LEADER>sM', function()
+vim.keymap.set('n', '<LEADER>sh', function()
   harpoon.marks()
 end, { desc = 'harpoon marks' })
 
