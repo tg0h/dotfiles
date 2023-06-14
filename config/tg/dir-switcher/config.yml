@@ -35,6 +35,7 @@ keymaps:
 
   - [k, $HOME/Desktop]
   - [kt, $HOME/Desktop/tim]
+  - [kt., $HOME/Desktop/klaviyoPatch]
 
   # trash
   - [q, $HOME/.Trash]
@@ -83,6 +84,11 @@ keymaps:
   - [d, $HOME/src/candy/db]
   - [j, $HOME/src/candy/db]
   - [s., $HOME/src/candy/main/referralcandy-main, 5]
+  - [
+      s..,
+      $HOME/src/candy/main/referralcandy-main/packages/common-services/scripts,
+      5,
+    ]
   - [s2, $HOME/src/candy/main2/referralcandy-main, 5]
   - [s3, $HOME/src/candy/main3/referralcandy-main, 5]
   - [st, $HOME/src/candy/old/customer-tracks/]
