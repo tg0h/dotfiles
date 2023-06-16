@@ -19,15 +19,11 @@ brew 'dotbot'
 brew 'mas' # brew installer for the mac app store
 
 brew 'lua'
-# brew 'lua-language-server'
 brew 'luarocks'
 brew 'rustup-init' # aka rustup
 brew 'bash'
 brew 'zsh'
 brew 'cmake' # needed for luaformatter installed via luarocks
-# brew 'solargraph' # ruby lang server
-# brew 'stylua'
-# brew 'swi-prolog'
 
 # brew 'neovim', args: ['HEAD']
 brew 'neovim'
@@ -63,7 +59,6 @@ brew 'lsd'
 brew 'exa'
 brew 'jq'
 brew 'yq'
-# brew 'shfmt'
 brew 'lf'
 brew 'gnupg'
 brew 'pass' # password store
@@ -73,24 +68,11 @@ brew 'httpie'
 brew 'hyperfine'
 # brew 'redis', restart_service: true
 brew 'redis'
-# tap 'redis-stack/redis-stack' # contains redis json
-# cask 'redis-stack'
-
-
-# tap 'romkatv/gitstatus'
-# brew 'romkatv/gitstatus/gitstatus'
-
-# tap 'saulpw/vd'
-# brew 'saulpw/vd/visidata'
-
-# tap 'shopify/shopify'
-# brew 'shopify-cli'
 
 cask 'docker'
 cask 'alfred'
 cask '1password'
 cask 'nvalt'
-# cask 'authy'
 cask 'lastpass'
 cask 'ithoughtsx'
 cask 'time-out'
@@ -99,8 +81,6 @@ cask 'bartender'
 cask 'cleanshot'
 cask 'toggl-track'
 cask 'ngrok'
-# cask 'sip' # DO NOT INSTALL SIP, i do not have a subscription for
-# cask 'multipass'
 
 cask 'foxitreader'
 cask 'google-chrome'
@@ -115,23 +95,13 @@ cask 'keyboard-maestro'
 cask 'cold-turkey-blocker'
 cask 'glyphfinder'
 cask 'transmit'
-# cask 'devutils' - need  to use 1.13 because license expired
-cask 'affinity-photo'
-cask 'affinity-designer'
-cask 'affinity-publisher'
 cask 'slack'
 cask 'zoom'
 cask 'hazel'
-cask 'alt-tab'
-# cask 'another-redis-desktop-manager'
-cask 'vlc'
-cask 'hammerspoon'
-cask 'gimp'
 
 tap 'homebrew/cask-drivers'
 cask 'zsa-wally'
 
-# mas 'Blackmagic Disk Speed Test', id: 425264550
 mas 'Aquarelo', id: 1263012549
 mas 'Goldie', id: 1375037046
 
@@ -146,7 +116,6 @@ brew 'parallel'
 brew 'htop'
 brew 'glances'
 brew 'dust'
-# brew 'sd'
 brew 'bottom'
 brew 'tokei'
 brew 'bandwhich'
@@ -157,65 +126,28 @@ brew 'khanhas/tap/spicetify-cli'
 brew 'zbar'
 brew 'gzip'
 brew 'gnu-tar'
-# brew 'ledger'
 brew 'tokei'
 brew 'ffmpeg'
 brew 'mycli'
-# brew 'fish'
 brew 'glow'
-# brew 'emacs'
-cask 'emacs'
-brew 'asciinema'
-brew 'tig'
 brew 'choose-rust'
-# brew 'shellcheck'
 brew 'gron'
-# brew 'task'
-# brew 'timewarrior'
 brew 'entr'
 brew 'lnav'
 brew 'btop'
 brew 'localstack'
 brew 'viddy'
-brew 'spark'
 brew 'jo'
 brew 'angle-grinder'
-brew 'rga'
-# brew 'poppler'
-brew 'dasel' # from clig.dev https://ilya-sher.org/2018/04/10/list-of-json-tools-for-command-line/
-brew 'jc'
-# brew 'gnu-time'
-brew 'gnuplot'
-tap 'lindell/multi-gitter'
-brew 'lindell/multi-gitter/multi-gitter'
-brew 'nushell'
-brew 'graphviz' # used by madge cli code dependency tool
 brew 'sampler'
-# brew 'dura', restart_service: true
-brew 'nb'
-tap 'jakehilborn/jakehilborn'
-# brew 'displayplacer' # doesn't work
-# brew 'buku'
-brew 'goaccess'
 brew 'pgcli'
-tap 'aybabtme/homebrew-tap'
-brew 'humanlog'
 cask 'qutebrowser'
 brew 'gojq'
-cask 'shortcat'
-brew 'graphviz'
 brew 'zoxide'
 brew 'nginx'
 brew 'consul'
-# brew 'girara', args: ['HEAD']
-# tap 'zegervdv/zathura'
-# brew 'zathura', args: ['HEAD']
-# brew 'zathura-pdf-mupdf'
-brew 'rabbitmq'
 brew 'duf'
 
-brew 'aichat'
-brew 'youplot'
 
 tap 'jkfran/killport'
 brew 'killport'
