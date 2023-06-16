@@ -4,7 +4,7 @@ default_options = { noremap = true, silent = true }
 -- vim.g.harpoon_log_level = "debug"
 
 require('harpoon').setup({
-  menu = { width = 100, height = 18 },
+  menu = { width = 120, height = 18 },
   global_settings = {
     -- sets the marks upon calling `toggle` on the ui, instead of require `:w`.
     save_on_toggle = true,
