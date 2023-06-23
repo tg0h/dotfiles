@@ -17,7 +17,7 @@ def processEventProperties:
   end;
 
 def processEvent:
-  "\(.datetime|pTimedmhms) \(.event_name|rp(20)|_g(.)) \((. | processEventProperties//"")|rp(25))";
+  "\(.datetime|pTimedmyhms) \(.event_name|rp(20)|_g(.)) \((. | processEventProperties//"")|rp(25))";
 def processData:
   processEvent + processPerson
   ; 

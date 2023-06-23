@@ -30,6 +30,24 @@ def pTimedmyhm:
   +"\(($min) | __(.))"
   ;
 
+def pTimedmyhms:
+  .[0:4] as $year |
+  .[5:7] as $month |
+  .[8:10] as $day |
+  .[11:13] as $hour |
+  .[14:16] as $min |
+  .[17:19] as $sec |
+  "\(($day) | _bt(.))"
+  +"\("/"+($month) | __(.))"
+  +"\("/"+($year[2:4]) | __(.))"
+  +" "
+  +"\($hour)"
+  +":"
+  +"\(($min) | __(.))"
+  +"."
+  +"\(($sec) | __(.))"
+  ;
+
 def pTimedmhms:
   .[0:4] as $year |
   .[5:7] as $month |
