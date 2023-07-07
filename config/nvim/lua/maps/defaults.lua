@@ -43,8 +43,8 @@ map('n', 'k', [[ (v:count > 5 ? "m'" . v:count : "") . 'k' ]], expr_options)
 map('n', '<C-M-z>', ':cquit<CR>', default_options) -- exit with error code
 map('i', '<C-M-z>', '<Esc>:cquit<CR>', default_options) -- exit with error code
 
-map('n', '<C-M-t>', ':w<CR>', default_options) -- normal mode save
-map('i', '<C-M-t>', '<Esc>:w<CR>a', default_options) -- insert mode save
+map('n', '<C-M-e>', ':w<CR>', default_options) -- normal mode save
+map('i', '<C-M-e>', '<Esc>:w<CR>a', default_options) -- insert mode save
 
 map('n', '<C-M-S>', ':wq<CR>', default_options) -- normal mode - save and exit
 map('i', '<C-M-S>', '<Esc>:wq<CR>', default_options) -- insert mode - save and exit
