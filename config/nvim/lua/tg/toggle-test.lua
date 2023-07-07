@@ -11,6 +11,7 @@ local function does_file_exist(filename)
   local fname = vim.fs.basename(filename)
   local dirname = vim.fs.dirname(filename)
 
+  -- print('finding file ' .. fname)
   local files = vim.fs.find(fname, { path = dirname, upward = false, type = 'file' })
 
   local file = files[1]
@@ -26,6 +27,7 @@ local packageFolders = {
   'packages/daemons',
   'packages/folp/api',
   'packages/referralcorner/api',
+  'packages/external%-api',
 }
 
 local function isTestFile(filename)
