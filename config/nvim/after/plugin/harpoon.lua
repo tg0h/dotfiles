@@ -23,7 +23,7 @@ require('harpoon').setup({
   },
 })
 
-map('n', '<C-b>', ":lua require('harpoon.ui').toggle_quick_menu()<CR>", default_options)
+map('n', '<C-q>', ":lua require('harpoon.ui').toggle_quick_menu()<CR>", default_options)
 
 map('n', '<C-h>', ":lua require('harpoon.ui').nav_file(1)<CR>", default_options)
 map('n', '<C-t>', ":lua require('harpoon.ui').nav_file(2)<CR>", default_options)
@@ -40,8 +40,8 @@ map('n', '<C-8>', ":lua require('harpoon.ui').nav_file(8)<CR>", default_options)
 -- map("n", "<C-M-n>", ":lua require('harpoon.ui').nav_file(5)<CR>", default_options)
 -- map("n", "<C-M-s>", ":lua require('harpoon.ui').nav_file(6)<CR>", default_options)
 
-map('n', '<C-M-b>', ":lua require('harpoon.mark').add_file()<CR>", default_options)
-map('n', '<C-M-m>', ":lua require('harpoon.mark').add_file()<CR>", default_options)
+map('n', '<C-M-q>', ":lua require('harpoon.mark').add_file()<CR>", default_options)
+-- map('n', '<C-M-m>', ":lua require('harpoon.mark').add_file()<CR>", default_options)
 
 -- <CMD>lua require('harpoon.dev').reload()<CR>
 -- t = { '<CMD>Telescope harpoon marks<CR>', 'Telescope harpoon marks' },
