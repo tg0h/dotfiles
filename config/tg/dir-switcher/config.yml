@@ -84,6 +84,8 @@ keymaps:
   - [d, $HOME/src/candy/db]
   - [j, $HOME/src/candy/db]
   - [s., $HOME/src/candy/main/referralcandy-main, 5]
+  - [se, $HOME/src/candy/main/referralcandy-main/packages/external-api, 5]
+  - [si, $HOME/src/candy/main/referralcandy-main/packages/infra, 5]
   - [
       s..,
       $HOME/src/candy/main/referralcandy-main/packages/common-services/scripts,
@@ -103,7 +105,7 @@ keymaps:
   # - [sh, $HOME/src/candy/main/referralcandy-main/packages/daemons]
   - [so, $HOME/src/candy/old]
   - [soc, $HOME/src/candy/old/composer]
-  - [si, $HOME/src/candy/old/internal_tools]
+  # - [si, $HOME/src/candy/old/internal_tools]
   - [sp, $HOME/src/candy/old/pentel]
   - [sp2, $HOME/src/candy/pentel]
   - [sr, $HOME/src/candy/old/referral_corner]
