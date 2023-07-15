@@ -1,8 +1,9 @@
 require('gitsigns').setup({
-  keymaps = {
-    -- Default keymap options
-    noremap = false,
-  },
+  -- no longer supported in gitsigns
+  -- keymaps = {
+  --   -- Default keymap options
+  --   noremap = false,
+  -- },
   signs = {
     add = { hl = 'GitSignsAdd', text = '│', numhl = 'GitSignsAddNr', linehl = 'GitSignsAddLn' },
     change = { hl = 'GitSignsChange', text = '│', numhl = 'GitSignsChangeNr', linehl = 'GitSignsChangeLn' },
