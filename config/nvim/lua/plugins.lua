@@ -162,8 +162,6 @@ return require('packer').startup({
 
     use({ '~/src/me/nvim/harpoon', requires = { 'nvim-lua/plenary.nvim' } })
 
-    use({ '~/src/me/nvim/gitdiffer' })
-
     use('fladson/vim-kitty') -- syntax highlighting for kitty
     use({ 'knubie/vim-kitty-navigator', run = 'cp ./*.py ~/.config/kitty/' })
 

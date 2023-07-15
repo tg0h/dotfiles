@@ -14,7 +14,6 @@ telescope.load_extension('heading') -- markdown, help headings
 local harpoon = telescope.load_extension('harpoon')
 -- telescope.load_extension('git_worktree')
 local neoclip = telescope.load_extension('neoclip')
-telescope.load_extension('gitdiffer')
 telescope.load_extension('frecency')
 telescope.load_extension('ui-select')
 local frecency = telescope.load_extension('frecency')
