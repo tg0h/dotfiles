@@ -169,8 +169,6 @@ return require('packer').startup({
 
     use({ 'vito-c/jq.vim' })
 
-    use({ 'tpope/vim-dadbod' })
-    use({ 'kristijanhusak/vim-dadbod-ui' })
     use({ 'dkarter/bullets.vim' })
     use({ 'chentoast/marks.nvim' })
     use({ 'andythigpen/nvim-coverage', requires = 'nvim-lua/plenary.nvim' })
