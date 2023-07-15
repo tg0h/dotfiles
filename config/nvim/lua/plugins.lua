@@ -161,38 +161,29 @@ return require('packer').startup({
     })
 
     use({ '~/src/me/nvim/harpoon', requires = { 'nvim-lua/plenary.nvim' } })
-    -- use({ '~/src/me/nvim/nvim-coverage', requires = { 'nvim-lua/plenary.nvim' } })
 
-    use({ '~/src/me/nvim/git-worktree.nvim' })
     use({ '~/src/me/nvim/gitdiffer' })
 
-    use({ 'jxnblk/vim-mdx-js' })
     use('fladson/vim-kitty') -- syntax highlighting for kitty
     use({ 'knubie/vim-kitty-navigator', run = 'cp ./*.py ~/.config/kitty/' })
 
     use({ 'vito-c/jq.vim' })
-    use({ 'mityu/vim-applescript' })
-    use({ 'lbrayner/vim-rzip' }) -- use so that go to definition is able to read .yarn/cache plug n play zipped files
 
     use({ 'tpope/vim-dadbod' })
     use({ 'kristijanhusak/vim-dadbod-ui' })
     use({ 'dkarter/bullets.vim' })
-    use({ 'rizzatti/dash.vim' })
     use({ 'chentoast/marks.nvim' })
     use({ 'andythigpen/nvim-coverage', requires = 'nvim-lua/plenary.nvim' })
 
     use({ 'rhysd/committia.vim' }) -- git commit buffer with splits
 
     use({ 'ray-x/lsp_signature.nvim' })
-    use({ 'tpope/vim-fugitive' })
-    use({ 'rhysd/git-messenger.vim' })
     use({
       'notjedi/nvim-rooter.lua',
       config = function()
         require('nvim-rooter').setup()
       end,
     })
-    use({ 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' })
     use('dmmulroy/tsc.nvim')
     use('opdavies/toggle-checkbox.nvim')
     use('github/copilot.vim')
