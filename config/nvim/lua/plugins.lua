@@ -146,13 +146,7 @@ return require('packer').startup({
     use('p00f/nvim-ts-rainbow')
     use({ 'numToStr/Comment.nvim' })
     use({ 'norcalli/nvim-colorizer.lua' })
-    use({ 'mfussenegger/nvim-dap' })
 
-    use({ 'mxsdev/nvim-dap-vscode-js', requires = { 'mfussenegger/nvim-dap' } })
-
-    use({ 'rcarriga/nvim-dap-ui', after = 'nvim-dap' })
-    use({ 'theHamsta/nvim-dap-virtual-text', after = 'nvim-dap' })
-    -- use({ 'danilamihailov/beacon.nvim' })
     use({ 'ur4ltz/surround.nvim' })
 
     use({
