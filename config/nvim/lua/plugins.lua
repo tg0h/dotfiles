@@ -21,6 +21,7 @@ return require('packer').startup({
     use('wbthomason/packer.nvim')
     use({ 'sainnhe/sonokai' })
 
+    use({ '~/src/me/nvim/harpoon', requires = { 'nvim-lua/plenary.nvim' } })
     use({
       'nvim-tree/nvim-tree.lua',
       requires = {
@@ -143,7 +144,7 @@ return require('packer').startup({
 
     use({ 'windwp/nvim-autopairs' })
     use({ 'windwp/nvim-ts-autotag' })
-    use('p00f/nvim-ts-rainbow')
+    -- use('p00f/nvim-ts-rainbow')
     use({ 'numToStr/Comment.nvim' })
     use({ 'norcalli/nvim-colorizer.lua' })
 
@@ -153,8 +154,6 @@ return require('packer').startup({
       'AckslD/nvim-neoclip.lua',
       requires = { { 'tami5/sqlite.lua', module = 'sqlite' }, { 'nvim-telescope/telescope.nvim' } },
     })
-
-    use({ '~/src/me/nvim/harpoon', requires = { 'nvim-lua/plenary.nvim' } })
 
     use('fladson/vim-kitty') -- syntax highlighting for kitty
     use({ 'knubie/vim-kitty-navigator', run = 'cp ./*.py ~/.config/kitty/' })
