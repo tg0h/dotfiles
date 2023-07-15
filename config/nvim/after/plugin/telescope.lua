@@ -12,7 +12,7 @@ local file_browser = telescope.load_extension('file_browser')
 telescope.load_extension('heading') -- markdown, help headings
 -- telescope.load_extension "projects" -- recent projects
 local harpoon = telescope.load_extension('harpoon')
-telescope.load_extension('git_worktree')
+-- telescope.load_extension('git_worktree')
 local neoclip = telescope.load_extension('neoclip')
 telescope.load_extension('gitdiffer')
 telescope.load_extension('frecency')
