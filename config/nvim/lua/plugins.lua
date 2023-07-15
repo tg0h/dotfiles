@@ -137,7 +137,7 @@ return require('packer').startup({
 
     use({ 'tweekmonster/startuptime.vim' })
 
-    use({ 'ggandor/leap.nvim' })
+    -- use({ 'ggandor/leap.nvim' })
     -- to enable dot repeat for lightspeed
     use({ 'tpope/vim-repeat' })
 
