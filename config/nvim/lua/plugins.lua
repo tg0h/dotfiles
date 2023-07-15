@@ -145,6 +145,7 @@ return require('packer').startup({
     use({ 'windwp/nvim-autopairs' })
     use({ 'windwp/nvim-ts-autotag' })
     -- use('p00f/nvim-ts-rainbow')
+    use('hiphish/rainbow-delimiters.nvim')
     use({ 'numToStr/Comment.nvim' })
     use({ 'norcalli/nvim-colorizer.lua' })
 
