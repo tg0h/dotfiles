@@ -84,6 +84,7 @@ keymaps:
   - [d, $HOME/src/candy/db]
   - [j, $HOME/src/candy/db]
   - [s., $HOME/src/candy/main/referralcandy-main, 5]
+  - [sd, $HOME/src/candy/main/referralcandy-main/packages/daemons]
   - [se, $HOME/src/candy/main/referralcandy-main/packages/external-api, 5]
   - [si, $HOME/src/candy/main/referralcandy-main/packages/infra, 5]
   - [
@@ -98,7 +99,6 @@ keymaps:
   - [sa, $HOME/src/candy/playground/github-actions]
   - [sb, $HOME/src/candy/old/business]
   - [sc, $HOME/src/candy, 5, \\.git$, true, true, dirname | xargs dirname]
-  - [sd, $HOME/src/candy/new/devops]
   - [sg, $HOME/src/candy/playground]
   - [sgc, $HOME/src/candy/playground/referralcandy-secondary]
   # oops sh will create zsh shortcut which shadows zsh bin
