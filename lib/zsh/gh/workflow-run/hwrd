@@ -1,0 +1,18 @@
+#!bin/zsh
+
+function hwrd(){
+  # delete runs of a workflow given workflow id - use workflow filename in url or use gh workflow list to get workflow id
+
+  # workflow_id can also be the workflow filename, eg test-daemon.yml
+  # see the url of the workflow for the workflow filename
+  # https://github.com/Anafore/referralcandy-main/actions/workflows/test-daemon.yml
+  workflow_id=$1
+  per_page=100
+
+  echo deleting runs of workflow id $workflow_id
+
+  gh api -X GET /repos/Anafore/referralcandy-main/actions/workflows/$workflow_id/runs \
+    -F per_page=100 \
+    -q '.workflow_runs[] | .id'  |
+    xargs -I {} -P 10 gh api -X DELETE /repos/Anafore/referralcandy-main/actions/runs/{}
+}
