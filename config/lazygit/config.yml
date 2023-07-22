@@ -11,16 +11,20 @@ gui:
   commitLength:
     show: true
   mouseEvents: true
-  skipUnstageLineWarning: false
+  skipDiscardChangeWarning: false
+  # skipUnstageLineWarning: false
   skipStashWarning: false
   showFileTree: true # for rendering changes files in a tree format
   showListFooter: true # for seeing the '5 of 20' message in list panels
   showRandomTip: true
+  showBranchCommitHash: false # show commit hashes alongside branch names
   showBottomLine: true # for hiding the bottom information line (unless it has important information to tell you)
   showCommandLog: true
-  showIcons: true
+  # showIcons: true
+  nerdFontsVersion: 3
   commandLogSize: 8
   splitDiff: "auto" # one of 'auto' | 'always'
+  skipRewordInEditorWarning: false # for skipping the confirmation before launching the reword editor
 git:
   paging:
     colorArg: always
