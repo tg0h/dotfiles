@@ -1,5 +1,6 @@
 gui:
   # stuff relating to the UI
+  windowSize: "normal" # one of 'normal' | 'half' | 'full' default is 'normal'
   scrollHeight: 2 # how many lines you scroll by
   scrollPastBottom: true # enable scrolling past the bottom
   sidePanelWidth: 0.3333 # number from 0 to 1
@@ -8,6 +9,7 @@ gui:
   language: "auto" # one of 'auto' | 'en' | 'zh' | 'pl' | 'nl' | 'ja' | 'ko'
   # timeFormat: "02 Jan 06 15:04 MST" # https://pkg.go.dev/time#Time.Format
   timeFormat: "02 Jan 06 15:04" # https://pkg.go.dev/time#Time.Format
+  shortTimeFormat: "3:04PM"
   commitLength:
     show: true
   mouseEvents: true
@@ -17,7 +19,8 @@ gui:
   showFileTree: true # for rendering changes files in a tree format
   showListFooter: true # for seeing the '5 of 20' message in list panels
   showRandomTip: true
-  showBranchCommitHash: false # show commit hashes alongside branch names
+  showBranchCommitHash: true # show commit hashes alongside branch names
+  experimentalShowBranchHeads: true # visualize branch heads with (*) in commits list
   showBottomLine: true # for hiding the bottom information line (unless it has important information to tell you)
   showCommandLog: true
   # showIcons: true
@@ -25,6 +28,7 @@ gui:
   commandLogSize: 8
   splitDiff: "auto" # one of 'auto' | 'always'
   skipRewordInEditorWarning: true # for skipping the confirmation before launching the reword editor
+  border: "hidden" # one of 'single' | 'double' | 'rounded' | 'hidden'
 git:
   paging:
     colorArg: always
@@ -47,8 +51,10 @@ git:
     # displays the whole git graph by default in the commits panel (equivalent to passing the `--all` argument to `git log`)
     showWholeGraph: false
   skipHookPrefix: WIP
+  mainBranches: [master, main]
   autoFetch: true
   autoRefresh: true
+  fetchAll: true # Pass --all flag when running git fetch. Set to false to fetch only origin (or the current branch's upstream remote if there is one)
   branchLogCmd: "git log --graph --color=always --abbrev-commit --decorate --date=relative --pretty=medium {{branchName}} --"
   allBranchesLogCmd: "git log --graph --all --color=always --abbrev-commit --decorate --date=relative  --pretty=medium"
   overrideGpg: false # prevents lazygit from spawning a separate process when using GPG
