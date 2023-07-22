@@ -9,10 +9,16 @@ function hwrd(){
   workflow_id=$1
   per_page=100
 
+  # get random page number to parallelize the deletion
+  # (run hwrd in parallel)
+  page=$(( ( RANDOM % 5 )  + 1 ))
   echo deleting runs of workflow id $workflow_id
+  echo deleting page $page
 
   gh api -X GET /repos/Anafore/referralcandy-main/actions/workflows/$workflow_id/runs \
     -F per_page=100 \
-    -q '.workflow_runs[] | .id'  |
+    -F page=1 \
+    -q '.workflow_runs[] | .id' |
     xargs -I {} -P 10 gh api -X DELETE /repos/Anafore/referralcandy-main/actions/runs/{}
+    # -F page=$page \
 }
