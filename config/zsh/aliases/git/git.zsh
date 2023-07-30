@@ -53,6 +53,9 @@ alias ggp="gg && gp"
 alias gge="gg -e" # allow empty commit
 alias ggc="gg -c" # specify a checkpoint message
 alias gga="git add --all && gcan!" # add and amend previous commit
+alias gr='git commit --allow-empty --amend --no-verify' # quick reword without firing hook
+alias ,.='git add --all && git commit -m "timtest" --allow-empty --no-verify' # add everything to a timtest commit - no verify
+alias ,.p='git add --all && git commit --allow-empty --amend --no-edit --no-verify' # add everything to the previous commit - no verify
 
 alias gao="git commit --amend --no-edit" # add staged files to previous commit
 alias gaoe="git add --all && git commit --amend --no-edit" # stage and add files to previous commit
