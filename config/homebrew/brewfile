@@ -106,12 +106,12 @@ mas 'Aquarelo', id: 1263012549
 mas 'Goldie', id: 1375037046
 
 brew 'tealdeer'
-brew 'mutt'
-brew 'neomutt'
-brew 'lynx' # used by mutt to view html?
-brew 'notmuch' # index email
-brew 'abook'
-brew 'mpv' # used by neomutt config to view videos
+# brew 'mutt'
+# brew 'neomutt'
+# brew 'lynx' # used by mutt to view html?
+# brew 'notmuch' # index email
+# brew 'abook'
+# brew 'mpv' # used by neomutt config to view videos
 brew 'parallel'
 brew 'htop'
 brew 'glances'
@@ -119,7 +119,7 @@ brew 'dust'
 brew 'bottom'
 brew 'tokei'
 brew 'bandwhich'
-brew 'git-filter-repo'
+# brew 'git-filter-repo'
 brew 'fx'
 tap 'khanhas/tap'
 brew 'khanhas/tap/spicetify-cli'
@@ -154,3 +154,5 @@ brew 'killport'
 brew 'act'
 brew 'pcalc'
 brew 'dog'
+# brew 'sonar-scanner'
+cask 'orbstack'
