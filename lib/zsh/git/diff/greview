@@ -1,6 +1,6 @@
 #!bin/zsh
 
-function gr (){
+function greview (){
   # fuzzy git review with delta use to review git diffs
   # gr - defaults to comparing main...
   # gr <commitRange> - eg gr <before commit hash>...<after commit hash>, eg gr abc~..abc
