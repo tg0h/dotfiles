@@ -176,7 +176,8 @@ return require('packer').startup({
     })
     use('dmmulroy/tsc.nvim')
     use('opdavies/toggle-checkbox.nvim')
-    use('github/copilot.vim')
+    -- use('github/copilot.vim')
+    use({ 'zbirenbaum/copilot.lua' })
   end,
   config = {
     display = {
