@@ -18,3 +18,6 @@ export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}";
 # export PATH="/Users/tim/.local/share/pyenv/shims:${PATH}" 
 
 # . "/Users/tim/.local/share/cargo/env"
+
+# Added by OrbStack: command-line tools and integration
+source ~/.orbstack/shell/init.zsh 2>/dev/null || :
