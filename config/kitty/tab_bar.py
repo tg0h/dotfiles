@@ -61,14 +61,14 @@ def _draw_left_status(
     # screen.draw(" ")
     screen.cursor.bg = tab_bg
 
-    wikiTabLength = 6 # TODO: do not hardcode, determine the length of the wiki tab title
-    if tab.title != 'wiki':
-        draw_title(draw_data, screen, tab, index)
-    else:
-        saveX = screen.cursor.x
-        screen.cursor.x = screen.columns - wikiTabLength 
-        draw_title(draw_data, screen, tab, index)
-        screen.cursor.x = saveX
+    # wikiTabLength = 6 # TODO: do not hardcode, determine the length of the wiki tab title
+    # if tab.title != 'wiki':
+    draw_title(draw_data, screen, tab, index)
+    # else:
+    #     saveX = screen.cursor.x
+    #     screen.cursor.x = screen.columns - wikiTabLength 
+    #     draw_title(draw_data, screen, tab, index)
+    #     screen.cursor.x = saveX
 
     end = screen.cursor.x
     return end
