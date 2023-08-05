@@ -156,3 +156,5 @@ brew 'pcalc'
 brew 'dog'
 # brew 'sonar-scanner'
 cask 'orbstack'
+brew 'hex' # modern hexdump
+brew 'hexyl'
