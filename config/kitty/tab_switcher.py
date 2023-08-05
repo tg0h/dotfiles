@@ -15,7 +15,8 @@ def redraw_tab_bar(boss):
 def get_wiki_tab_position(tabs):
     i=1
     for tab in tabs:
-        if getattr(tab,"title",None) == 'wiki':
+        tabTitle = getattr(tab,"title",None) 
+        if tabTitle == 'wiki' or tabTitle == 'candy_wiki':
             return i
         i+=1
     return None
@@ -41,26 +42,46 @@ def handle_result(args: List[str], answer: str, target_window_id: int, boss: Bos
     # change the 'wiki' tab colour
 
     # print(f'active tab is {boss.active_tab}')
+    # print(f'wikiFolder is {wikiFolder}')
     tm = boss.active_tab_manager
     # print(f'there are {len(tm.tabs)} tabs')
     # for tab in tm.tabs:
     #     print(f'tab id is {getattr(tab,"id","oops")}')
 
     colourOrange = int(to_color('orange', validate=True))
+    colourPink = int(to_color('pink', validate=True))
     colourBlack = int(to_color('black', validate=True))
 
     is_wiki_focussed=False
-    if boss.active_tab.title == 'wiki':
+    if boss.active_tab.title == 'wiki' or boss.active_tab.title == 'candy_wiki':
         is_wiki_focussed=True
 
-    tabs = boss.match_tabs('title:^wiki')
+    tabs = boss.match_tabs('title:^wiki or title:^candy_wiki')
+    # print(f'tabs is {tabs}')
     tab = next(tabs, None) # default value for generator to None instead of throwing StopIteration error
+    # print(f'tab is {tab}')
+    # if tab is not None:
+    #     tabTitle=tab.title
+    #     print(f'tab title is {tab.title}')
+
+    # print(f'args is {args}')
+    wikiArg=args[1] # these are the args passed to the tab_switcher kitten
+    if wikiArg == 'wiki':
+        wikiFolder='/Users/tim/src/me/wiki'
+        wikiTitle='wiki'
+    else:
+        wikiFolder='/Users/tim/Documents/candy/wiki'
+        wikiTitle='candy_wiki'
 
     if tab:
         # tab.inactive_bg = colourOrange
-        tab.inactive_fg = colourOrange
         tab.active_fg = colourBlack
-        tab.active_bg = colourOrange
+        if tab.title == 'wiki':
+            tab.inactive_fg = colourOrange
+            tab.active_bg = colourOrange
+        else:
+            tab.inactive_fg = colourPink
+            tab.active_bg = colourPink
         redraw_tab_bar(boss)
         if not is_wiki_focussed:
             boss.set_active_tab(tab)
@@ -73,10 +94,14 @@ def handle_result(args: List[str], answer: str, target_window_id: int, boss: Bos
             # unlike goto_tab -1, boss.goto_tab uses 0 instead
             boss.goto_tab(0) # go to previous active tab
     else:
+        if wikiArg == 'wiki':
+            wikiTitle='wiki'
+        else:
+            wikiTitle='candy_wiki'
         boss.launch(
         "--type=tab",
-        "--title=wiki",
-        "--cwd=/Users/tim/src/me/wiki",
+        f"--title={wikiTitle}",
+        f"--cwd={wikiFolder}",
         "nvim",
         "-c",
         "lua open_latest_changed_file()", # run my lua script
