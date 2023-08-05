@@ -77,5 +77,7 @@ def handle_result(args: List[str], answer: str, target_window_id: int, boss: Bos
         "--type=tab",
         "--title=wiki",
         "--cwd=/Users/tim/src/me/wiki",
-        # "nvim"
+        "nvim",
+        "-c",
+        "lua open_latest_changed_file()", # run my lua script
         )
