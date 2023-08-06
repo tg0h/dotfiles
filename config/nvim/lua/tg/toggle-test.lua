@@ -31,8 +31,8 @@ local packageFolders = {
 }
 
 local function isTestFile(filename)
-  local isTestFile = string.find(filename, '.test')
-  return isTestFile
+  local is_test_file = string.find(filename, '.test')
+  return is_test_file
 end
 
 local function getPackageFolder(currentDirName)
@@ -71,7 +71,7 @@ local function getAlternateFile(dirname, filename)
   return fullFileName
 end
 
-function find_alternate_file()
+local function find_alternate_file()
   local filename = vim.api.nvim_buf_get_name(0)
   local fname = vim.fs.basename(filename)
   local dirname = vim.fs.dirname(filename)
@@ -85,12 +85,14 @@ function find_alternate_file()
 end
 
 M.find_alternate_file = find_alternate_file
+M.is_test_file = isTestFile
 
 function M.Toggle()
   -- if current file is Service.ts, switch to its Service.test.ts file
   -- if current file is Service.test.ts, switch to its Service.ts file
 
   local filename = find_alternate_file()
+  -- print('filename is ' .. (filename or ''))
 
   if filename then
     local buf_id = vim.fn.bufnr(filename, true)
