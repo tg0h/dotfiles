@@ -1,0 +1,19 @@
+#!/bin/zsh
+
+function nt-run-single-candy-test(){
+  # use entr to run a single candy test from a testfile (use ava --match)
+
+  # https://stackoverflow.com/questions/9057387/process-all-arguments-except-the-first-one-in-a-bash-script
+  local directories=$1
+  # echo directories is $directories
+  local testFile=$2
+  # echo test file is is $testFile
+  local testName=$3
+  # echo test name is $testName
+
+  # -cc clears the screen and scrollback as well
+  # prefer entr zsh -c to entr -s
+  # entr -s prints the exit code which is noisy
+  # no ignore - i want to trigger for example the scratchz jq file
+  fd --no-ignore --exclude '.git' --exclude 'node_modules' . ${=directories} | entr -cc npx ava $testFile --match=$testName
+}

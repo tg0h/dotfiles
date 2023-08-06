@@ -133,8 +133,6 @@ function get_func_list(lang, bufnr, type, function_name)
   local query = vim.treesitter.query.parse(lang, query_string)
   local func_list = {}
 
-  local func_list = {}
-
   for _, captures, metadata in query:iter_matches(root, bufnr) do
     -- print(string.format(typescript_function_query_string_interpolation, 'method_definition', 'function_name'))
     local row, col, _ = captures[1]:start()
