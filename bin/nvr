@@ -1,0 +1,10 @@
+#!/bin/zsh
+
+# restarts nvim immediately if the nvim exit code is not 1
+
+while true; do
+    nvim "$@"  # change path to real nvim binary as necessary
+    if [ $? -ne 1 ]; then
+        break
+    fi
+done
