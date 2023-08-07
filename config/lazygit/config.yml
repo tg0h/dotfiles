@@ -20,7 +20,7 @@ gui:
   showListFooter: true # for seeing the '5 of 20' message in list panels
   showRandomTip: true
   showBranchCommitHash: true # show commit hashes alongside branch names
-  experimentalShowBranchHeads: true # visualize branch heads with (*) in commits list
+  # experimentalShowBranchHeads: true # visualize branch heads with (*) in commits list
   showBottomLine: true # for hiding the bottom information line (unless it has important information to tell you)
   showCommandLog: true
   # showIcons: true
@@ -62,16 +62,17 @@ git:
   parseEmoji: false
   diffContextSize: 3 # how many lines of context are shown around a change in diffs
 os:
-  editCommand: "" # see 'Configuring File Editing' section
-  editCommandTemplate: ""
-  openCommand: ""
+  editPreset: "nvim"
+  # editCommand: "" # see 'Configuring File Editing' section
+  # editCommandTemplate: ""
+  # openCommand: ""
 refresher:
   refreshInterval: 10 # File/submodule refresh interval in seconds. Auto-refresh can be disabled via option 'git.autoRefresh'.
-  fetchInterval: 15 # Re-fetch interval in seconds. Auto-fetch can be disabled via option 'git.autoFetch'.
+  fetchInterval: 60 # Re-fetch interval in seconds. Auto-fetch can be disabled via option 'git.autoFetch'.
 update:
   method: prompt # can be: prompt | background | never
   days: 14 # how often an update is checked for
-reporting: "undetermined" # one of: 'on' | 'off' | 'undetermined'
+# reporting: "undetermined" # one of: 'on' | 'off' | 'undetermined'
 confirmOnQuit: false
 # determines whether hitting 'esc' will quit the application when there is nothing to cancel/close
 quitOnTopLevelReturn: false
