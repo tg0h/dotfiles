@@ -2,8 +2,8 @@ require('core.disable-plugins')
 -- require('utils')
 -- require('core.diagnostic')
 -- require('plugins')
--- require('maps')
--- require('core.options')
+require('maps')
+require('core.options')
 -- define colorscheme here
 -- the colorscheme might set highlight clear, undoing all your highlight groups?
 -- require('core.colours')
@@ -16,3 +16,6 @@ require('core.disable-plugins')
 -- require('tg.misc')
 -- require('tg.files')
 -- require('setup.vim-kitty-navigator')
+
+-- Plugin management via lazy
+require('core.lazy')
