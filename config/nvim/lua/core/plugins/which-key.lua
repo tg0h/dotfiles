@@ -82,37 +82,6 @@ local M = {
       v = { 'j', 'k' },
     },
   },
-  -- opts = {
-  --   icons = {
-  --     breadcrumb = icons.arrows.DoubleArrowRight, -- symbol used in the command line area that shows your active key combo
-  --     separator = icons.arrows.SmallArrowRight, -- symbol used between a key and it's label
-  --     group = icons.ui.Plus, -- symbol prepended to a group
-  --   },
-  --   window = {
-  --     border = 'none', -- none, single, double, shadow
-  --     position = 'bottom', -- bottom, top
-  --     margin = { 0, 10, 3, 10 }, -- extra window margin [top, right, bottom, left]
-  --     padding = { 2, 2, 2, 2 }, -- extra window padding [top, right, bottom, left]
-  --   },
-  --   layout = {
-  --     height = { min = 3, max = 25 }, -- min and max height of the columns
-  --     width = { min = 5, max = 50 }, -- min and max width of the columns
-  --     spacing = 10, -- spacing between columns
-  --     align = 'center', -- align columns left, center or right
-  --   },
-  --   groups = {
-  --     mode = { 'n', 'v' },
-  --     ['<leader>b'] = { name = 'Buffers' },
-  --     ['<leader>f'] = { name = 'Files' },
-  --     ['<leader>l'] = { name = 'LSP' },
-  --     ['<leader>m'] = { name = 'Misc' },
-  --     ['<leader>q'] = { name = 'Quickfix' },
-  --     ['<leader>s'] = { name = 'Search' },
-  --     ['<leader>t'] = { name = 'Toggles' },
-  --     ['<leader>w'] = { name = 'Windows' },
-  --     ['<leader>z'] = { name = 'Spelling' },
-  --   },
-  -- },
   config = function(_, opts)
     local wk = require('which-key')
     wk.setup(opts)
@@ -122,11 +91,63 @@ local M = {
       ga = { '<Plug>(EasyAlign)', 'Align', mode = 'x' },
     })
 
-    local keyMaps = require('setup.which-key/keys')
+    -- local keyMaps = require('setup.which-key/keys')
+    keyMaps = {
+      h = { name = 'diagnostics' },
+      r = {
+        name = 'Notes',
+      },
+      d = {
+        name = 'Trouble',
+        w = { '<cmd>Trouble workspace_diagnostics<CR>', 'Workspace Diagnostics' },
+        d = { '<cmd>Trouble document_diagnostics<CR>', 'Document Diagnostic' },
+        l = { '<cmd>Trouble loclist<CR>', 'Loclist' },
+        q = { '<cmd>Trouble quickfix<CR>', 'Quickfix' },
+        u = { '<cmd>TodoTrouble<CR>', 'Todos' },
+
+        -- use LSP keymaps instead
+        r = { '<cmd>Trouble lsp_references<CR>', 'LSP References' },
+        e = { '<cmd>Trouble lsp_definitions<CR>', 'LSP Definitions' },
+        o = { '<cmd>Trouble lsp_type_definitions<CR>', 'LSP Type Definitions' },
+
+        R = { '<cmd>TroubleRefresh<CR>', 'Refresh' },
+        s = { '<cmd>TroubleClose<CR>', 'Close' },
+        h = { '<cmd>TroubleToggle<CR>', 'Toggle' },
+      },
+
+      c = { name = 'config' },
+      s = { name = 'search' },
+
+      -- b = { name = 'Buffers' },
+      f = { name = 'Files' },
+      n = { name = 'neovim core' },
+      g = {
+        name = 'Git',
+        f = { '<CMD>DiffviewFileHistory %<CR>', 'Diffview File History' },
+      },
+      l = {
+        name = 'LSP',
+        -- A = { '<cmd>lua vim.lsp.buf.add_workspace_folder()<cr>', 'Add Workspace Folder' },
+        -- W = { '<cmd>lua vim.lsp.buf.remove_workspace_folder()<cr>', 'Remove Workspace Folder' },
+        -- d = { '<cmd>lua vim.lsp.buf.declaration()<cr>', 'Go To Declaration' },
+        m = { '<cmd>lua vim.lsp.buf.implementation()<cr>', 'Show implementations' },
+        h = { '<cmd>lua vim.lsp.buf.hover()<cr>', 'Hover Commands' },
+        -- L = { '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<cr>', 'List Workspace Folders' },
+        -- S = { '<cmd>Telescope lsp_dynamic_workspace_symbols<cr>', 'Workspace Symbols' },
+        i = { '<cmd>LspInfo<cr>', 'Connected Language Servers' },
+        k = { '<cmd>lua vim.lsp.buf.signature_help()<cr>', 'Signature Help' },
+        -- s = { '<cmd>Telescope lsp_document_symbols<CR>', 'Document Symbols' },
+        t = { '<cmd>lua vim.lsp.buf.type_definition()<CR>', 'Type Definition' },
+      },
+    }
     default_options = { noremap = true, silent = true }
     -- Register all leader based mappings
     wk.register(keyMaps, { prefix = '<leader>', mode = 'n', default_options })
     -- wk.register(opts.groups)
+    wk.register({
+      -- x is visual mode
+      ga = { '<Plug>(EasyAlign)', 'Align', mode = 'x' },
+    })
   end,
 }
 
