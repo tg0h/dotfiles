@@ -22,13 +22,14 @@ keymaps:
   # Home Row
   # - [d, $HOME/Documents, 2]
   - [h, $HOME/src/me, 4, \\.git$, true, true, dirname | xargs dirname] # this yml file is converted to json. a backslash is an escape character in json. we need to escape the backslash. we want to pass \.git$ as the regex filter to fd
+  - [hn, $HOME/src/me/nvim] # this yml file is converted to json. a backslash is an escape character in json. we need to escape the backslash. we want to pass \.git$ as the regex filter to fd
   - [t, $HOME/src/playground, 5, \\.git$, true, true, dirname | xargs dirname]
   - ["t,", $HOME/src/playground/langs/ts/scratch]
   - [n, $HOME/src/clones, 4, \\.git$, true, true, dirname | xargs dirname]
   - [s, $HOME/src]
   # Bottom row
   - [b, $HOME/Documents/notes]
-  - [m, $HOME/src/me/wiki/projects/ou]
+  # - [m, $HOME/src/me/wiki/projects/ou]
   - [w, $HOME/src/me/wiki, 8]
   - [v, $HOME/Documents/candy/wiki, 5]
   - [z, $HOME/dotfiles, 4]
@@ -92,6 +93,7 @@ keymaps:
       $HOME/src/candy/main/referralcandy-main/packages/common-services/scripts,
       5,
     ]
+
   - [s2, $HOME/src/candy/main2/referralcandy-main, 5]
   - [s3, $HOME/src/candy/main3/referralcandy-main, 5]
   - [st, $HOME/src/candy/old/customer-tracks/]
@@ -117,4 +119,3 @@ keymaps:
 
   - [hc, $HOME/src/me/zsh/candy]
   - [ht, $HOME/src/me/zsh/candy/klaviyo]
-  - [hn, $HOME/src/me/zsh/candy/shopify]
