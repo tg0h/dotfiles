@@ -49,7 +49,7 @@ local M = {
     vim.keymap.set('n', '<LEADER>g,', gitsigns.toggle_word_diff, { desc = 'gitsigns toggle word diff' }) -- prev git hunk
     vim.keymap.set('n', '<LEADER>gp', gitsigns.preview_hunk, { desc = 'gitsigns preview hunk' }) -- prev git hunk
 
-    vim.keymap.set('n', '<LEADER>gs', gitsigns.stage_hunk, { desc = 'gitsigns stage hunk' }) -- prev git hunk
+    vim.keymap.set('n', '<LEADER>ga', gitsigns.stage_hunk, { desc = 'gitsigns stage hunk' }) -- prev git hunk
     vim.keymap.set('n', '<LEADER>gr', gitsigns.reset_hunk, { desc = 'gitsigns reset hunk' }) -- prev git hunk
     vim.keymap.set('n', '<LEADER>gu', gitsigns.undo_stage_hunk, { desc = 'gitsigns undo stage hunk' }) -- prev git hunk
     vim.keymap.set('n', '<LEADER>gR', gitsigns.reset_buffer, { desc = 'gitsigns reset buffer' }) -- prev git hunk

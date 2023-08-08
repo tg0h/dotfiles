@@ -11,26 +11,326 @@ local M = {
     { 'nvim-telescope/telescope-symbols.nvim' }, -- add emojis
     { 'nvim-telescope/telescope-frecency.nvim' },
   },
+  keys = {
+    -- MAPS ----------------------------------------------------------------------------------------
+    -- project
+    {
+      '<C-p>',
+      function()
+        require('telescope.builtin').git_files({
+          hidden = false,
+          layout_strategy = 'vertical',
+          layout_config = {
+            height = 0.99,
+            -- anchor = 'E',
+            width = 0.9,
+            prompt_position = 'top',
+            preview_height = 0.5,
+            mirror = true,
+          },
+        })
+      end,
+      desc = 'git files',
+    },
+    {
+      '<S-C-->',
+      '<CMD>Telescope commands<CR>',
+      desc = 'Telescope commands',
+    },
+
+    -- files #########################################################################################
+    { '<LEADER>ff', '<CMD>Telescope find_files<CR>', desc = 'Open file (ignore git)' },
+    {
+      '<LEADER>fh',
+      function()
+        require('telescope.builtin').find_files({
+          find_command = { 'fd', '--hidden', '--type', 'file', '--follow' },
+        })
+      end,
+      desc = 'find files --hidden',
+    },
+    {
+      '<LEADER>f.',
+      function()
+        require('telescope').load_extension('file_browser').file_browser()
+      end,
+      desc = 'file_browser()',
+    },
+    { '<LEADER>fr', '<CMD>Telescope oldfiles<CR>', desc = 'old files (Recent files)' },
+    {
+      '<LEADER>fe',
+      function()
+        require('telescope')
+          .load_extension('frecency')
+          .frecency({ layout_strategy = 'vertical', layout_config = { mirror = true, width = 0.9, height = 0.9 } })
+      end,
+      desc = 'find frecent files',
+    },
+
+    -- neovim #########################################################################################
+    { '<LEADER>na', '<CMD>Telescope autocommands<CR>', desc = 'autocommands' },
+    {
+      '<LEADER>nb',
+      function()
+        require('telescope.builtin').buffers({ sort_mru = true, ignore_current_buffer = true })
+      end,
+      desc = 'search open buffers (ignore current buffer)',
+    },
+    { '<LEADER>nc', '<CMD>Telescope commands<CR>', desc = 'commands' },
+    { '<LEADER>nC', '<CMD>Telescope command_history<CR>', desc = 'command history' },
+    { '<LEADER>nh', '<CMD>Telescope help_tags<CR>', desc = 'neovim help tags' },
+    { '<LEADER>nf', '<CMD>Telescope filetypes<CR>', desc = 'filetypes' },
+    {
+      '<LEADER>nd',
+      function()
+        telescope.load_extension('heading') -- markdown, help headings
+        vim.cmd.Telescope('heading')
+      end,
+      desc = 'headings',
+    },
+    { '<LEADER>ni', '<CMD>Telescope highlights<CR>', desc = 'highlights' },
+    { '<LEADER>nu', '<CMD>Telescope builtin<CR>', desc = 'telescope builtin' },
+    {
+      '<LEADER>nj',
+      function()
+        require('telescope.builtin').jumplist({
+          fname_width = 100,
+          layout_strategy = 'vertical',
+          layout_config = { preview_height = 0.4 },
+        })
+      end,
+      desc = 'jumplist',
+    },
+    { '<LEADER>nk', '<CMD>Telescope keymaps<CR>', desc = 'keymaps' },
+    { '<LEADER>nm', '<CMD>Telescope marks<CR>', desc = 'marks' },
+    { '<LEADER>no', '<CMD>Telescope options<CR>', desc = 'vim options' },
+    { '<LEADER>nr', '<CMD>Telescope registers<CR>', desc = 'registers' },
+    { '<LEADER>nwt', '<C-w>T', desc = 'move window to new tab' }, -- needs 2 windows eg S-M-b before it works
+    { '<LEADER>nwx', '<C-w>x', desc = 'swap windows' },
+    { '<LEADER>nw=', '<C-w>=', desc = 'equally size windows' },
+    { '<LEADER>ns', '<CMD>Telescope search_history<CR>', desc = 'search history' },
+    { '<LEADER>n:', '<CMD>Telescope loclist<CR>', desc = 'loclist' },
+    {
+      '<LEADER>nq',
+      function()
+        require('telescope.builtin').quickfix({
+          fname_width = 60,
+          layout_strategy = 'vertical',
+          layout_config = { preview_height = 0.5 },
+        })
+      end,
+      desc = 'quickfix',
+    },
+    {
+      '<LEADER>nQ',
+      function()
+        require('telescope.builtin').quickfixhistory({
+          fname_width = 60,
+          layout_strategy = 'vertical',
+        })
+      end,
+      desc = 'quickfix history',
+    },
+    {
+      '<LEADER>n.',
+      function()
+        require('telescope.').load_extension('neoclip').default()
+      end,
+      desc = 'neoclip',
+    },
+    -- telescope #########################################################################################
+    { '<LEADER>tr', '<CMD>Telescope resume<CR>', desc = 'telescope resume' },
+    { '<LEADER>th', '<CMD>Telescope pickers<CR>', desc = 'telescope previous pickers' },
+
+    -- telescope lsp ####################################################################################
+    { '<LEADER>tf', '<CMD>Telescope lsp_references<CR>', desc = 'telescope lsp references' },
+    { '<LEADER>td', '<CMD>Telescope lsp_definitions<CR>', desc = 'telescope lsp type definitions' },
+    { '<LEADER>tm', '<CMD>Telescope lsp_implementations<CR>', desc = 'telescope lsp implementations' },
+    { '<LEADER>ti', '<CMD>Telescope lsp_incoming_calls<CR>', desc = 'telescope lsp incoming calls' },
+    { '<LEADER>to', '<CMD>Telescope lsp_outgoing_calls<CR>', desc = 'telescope lsp outgoing calls' },
+    { '<LEADER>tsd', '<CMD>Telescope lsp_document_symbols<CR>', desc = 'telescope lsp document symbols' },
+    { '<LEADER>tsw', '<CMD>Telescope lsp_workspace_symbols<CR>', desc = 'telescope lsp workspace symbols' },
+    {
+      '<LEADER>tsn',
+      '<CMD>Telescope lsp_dynamic_workspace_symbols<CR>',
+      desc = 'telescope lsp dynamic workspace symbols',
+    },
+    {
+      '<LEADER>tt',
+      '<CMD>Telescope treesitter<CR>',
+      desc = 'telescope treesitter',
+    },
+
+    -- telescope git ####################################################################################
+    {
+      '<LEADER>gs',
+      function()
+        builtin.git_status({ layout_config = { width = 0.99, preview_width = 0.5 } })
+      end,
+      desc = 'telescope git status',
+    },
+    { '<LEADER>gt', '<CMD>Telescope git_stash<CR>', desc = 'telescope git stash' },
+    { '<LEADER>gc', '<CMD>Telescope git_commits<CR>', desc = 'telescope git commits' },
+    { '<LEADER>gh', '<CMD>Telescope git_bcommits<CR>', desc = 'telescope git buffer commits (history)' },
+    { '<LEADER>gb', '<CMD>Telescope git_branches<CR>', desc = 'telescope git branches' },
+    -- vim.keymap.set('n', '<LEADER>gg', ':Telescope gitdiffer diff<CR>', { desc = 'git diff since main' })
+
+    -- search ####################################################################################
+    { '<LEADER>st', '<CMD>Telescope live_grep<CR>', desc = 'telescope live_grep' },
+    {
+      '<LEADER>ss',
+      function()
+        require('telescope.builtin').grep_string({
+          hidden = false,
+          layout_strategy = 'vertical',
+          layout_config = {
+            height = 0.99,
+            -- anchor = 'E',
+            width = 0.9,
+            prompt_position = 'top',
+            preview_height = 0.5,
+            mirror = true,
+          },
+        })
+      end,
+      desc = 'telescope grep string no input',
+    },
+    {
+      '<LEADER>sp',
+      function()
+        require('telescope.builtin').grep_string({
+          search = vim.fn.input('Grep > '),
+          hidden = false,
+          layout_strategy = 'vertical',
+          layout_config = {
+            height = 0.99,
+            -- anchor = 'E',
+            width = 0.9,
+            prompt_position = 'top',
+            preview_height = 0.5,
+            mirror = true,
+          },
+        })
+      end,
+      desc = 'telescope grep string with input',
+    },
+    { '<LEADER>sb', '<CMD>Telescope current_buffer_fuzzy_find<CR>', desc = 'telescope current buffer fuzzy find' },
+    {
+      '<LEADER>sg',
+      function()
+        require('telescope')
+        require('tg.telescope-multi-rg')
+      end,
+      desc = 'tj multi rg',
+    },
+    {
+      '<LEADER>sh',
+      function()
+        require('telescope').load_extension('harpoon').marks()
+      end,
+      desc = 'harpoon marks',
+    },
+
+    -- diagnostics ####################################################################################
+    {
+      '<S-M-f>',
+      function()
+        require('telescope.builtin').diagnostics({ layout_strategy = 'vertical', layout_config = { width = 0.5 } })
+      end,
+      desc = 'telescope diagnostics',
+    },
+    {
+      '<LEADER>hn',
+      function()
+        require('telescope.builtin').diagnostics({ layout_strategy = 'vertical', layout_config = { width = 0.5 } })
+      end,
+      desc = 'telescope diagnostics',
+    },
+    {
+      '<LEADER>ht',
+      function()
+        require('telescope.builtin').diagnostics({
+          layout_strategy = 'vertical',
+          layout_config = { width = 0.5 },
+          bufnr = 0,
+        })
+      end,
+      desc = 'telescope diagnostics current buffer',
+    },
+
+    -- config ####################################################################################
+    { '<LEADER>cg', '<CMD>messages<CR>', desc = 'vim messages' },
+    { '<LEADER>cc', '<CMD>messages clear<CR>', desc = 'vim messages clear' },
+    { '<LEADER>cc', '<CMD>messages clear<CR>', desc = 'vim messages clear' },
+    {
+      '<LEADER>cd',
+      function()
+        builtin.find_files({
+          -- prompt_title = "< Dotfiles >",
+          cwd = vim.env.DOTFILES,
+          hidden = true,
+        })
+      end,
+      desc = 'search dotfiles',
+    },
+    {
+      '<LEADER>cn',
+      function()
+        builtin.find_files({ cwd = vim.env.DOTFILES .. '/config/nvim', hidden = true })
+      end,
+      desc = 'search nvim config',
+    },
+    { '<LEADER>cr', '<CMD>Telescope reloader<CR>', desc = 'telescope reloader' },
+
+    -- wiki ####################################################################################
+    {
+      '<LEADER>rh',
+      function()
+        builtin.find_files({ cwd = vim.env.HOME .. '/src/me/wiki', hidden = false })
+      end,
+      desc = 'search wiki',
+    },
+    {
+      '<LEADER>rt',
+      function()
+        builtin.find_files({
+          cwd = vim.env.XDG_DOCUMENTS_DIR .. '/candy/wiki',
+          hidden = false,
+          layout_strategy = 'vertical',
+          layout_config = {
+            height = 0.99,
+            anchor = 'E',
+            width = 0.5,
+            prompt_position = 'top',
+            preview_height = 0.85,
+            mirror = true,
+          },
+        })
+      end,
+      desc = 'search candy wiki',
+    },
+  },
+
   config = function()
-    local pickers = require('telescope.pickers')
-    local finders = require('telescope.finders')
+    -- local pickers = require('telescope.pickers')
+    -- local finders = require('telescope.finders')
     -- local previewers = require("telescope.previewers")
-    local action_state = require('telescope.actions.state')
+    -- local action_state = require('telescope.actions.state')
     local actions_layout = require('telescope.actions.layout')
-    local conf = require('telescope.config').values
+    -- local conf = require('telescope.config').values
     local actions = require('telescope.actions')
     local telescope = require('telescope')
 
     -- telescope.load_extension('fzy_native')
-    local file_browser = telescope.load_extension('file_browser')
-    telescope.load_extension('heading') -- markdown, help headings
+    -- local file_browser = telescope.load_extension('file_browser')
+    -- telescope.load_extension('heading') -- markdown, help headings
     -- telescope.load_extension "projects" -- recent projects
-    local harpoon = telescope.load_extension('harpoon')
+    -- local harpoon = telescope.load_extension('harpoon')
     -- telescope.load_extension('git_worktree')
-    local neoclip = telescope.load_extension('neoclip')
-    telescope.load_extension('frecency')
-    telescope.load_extension('ui-select')
-    local frecency = telescope.load_extension('frecency')
+    -- local neoclip = telescope.load_extension('neoclip')
+    -- telescope.load_extension('frecency')
+    -- telescope.load_extension('ui-select')
+    -- local frecency = telescope.load_extension('frecency')
 
     telescope.setup({
       defaults = {
@@ -294,219 +594,219 @@ local M = {
 
     -- telescope.load_extension('fzy_native')
     -- telescope.load_extension('fzf')
-    local ext = require('telescope').extensions
+    -- local ext = require('telescope').extensions
 
-    local builtin = require('telescope.builtin')
+    -- local builtin = require('telescope.builtin')
 
     --------------------------------------------------------------------------------------------------
     -- MAPS ----------------------------------------------------------------------------------------
     -- project
-    vim.keymap.set('n', '<C-p>', function()
-      builtin.git_files({
-        hidden = false,
-        layout_strategy = 'vertical',
-        layout_config = {
-          height = 0.99,
-          -- anchor = 'E',
-          width = 0.9,
-          prompt_position = 'top',
-          preview_height = 0.5,
-          mirror = true,
-        },
-      })
-    end, { desc = 'git files' })
-    vim.keymap.set('n', '<S-C-->', builtin.commands)
+    -- vim.keymap.set('n', '<C-p>', function()
+    --   builtin.git_files({
+    --     hidden = false,
+    --     layout_strategy = 'vertical',
+    --     layout_config = {
+    --       height = 0.99,
+    --       -- anchor = 'E',
+    --       width = 0.9,
+    --       prompt_position = 'top',
+    --       preview_height = 0.5,
+    --       mirror = true,
+    --     },
+    --   })
+    -- end, { desc = 'git files' })
+    -- vim.keymap.set('n', '<S-C-->', builtin.commands)
 
     --------------------------------------------------------------------------------------------------
     -- LEADER ----------------------------------------------------------------------------------------
     -- files #########################################################################################
-    vim.keymap.set('n', '<LEADER>ff', builtin.find_files, { desc = 'find files' })
-    vim.keymap.set('n', '<LEADER>fh', function()
-      builtin.find_files({
-        find_command = { 'fd', '--hidden', '--type', 'file', '--follow' },
-      })
-    end, { desc = 'find files --hidden' })
-    vim.keymap.set('n', '<LEADER>f.', function()
-      file_browser.file_browser()
-    end, { desc = 'file browser' })
-    vim.keymap.set('n', '<LEADER>fr', builtin.oldfiles, { desc = 'old files (recent)' })
-    vim.keymap.set('n', '<LEADER>fe', function()
-      frecency.frecency({ layout_strategy = 'vertical', layout_config = { mirror = true, width = 0.9, height = 0.9 } })
-    end, { desc = 'find frecent files' })
+    -- vim.keymap.set('n', '<LEADER>ff', builtin.find_files, { desc = 'find files' })
+    -- vim.keymap.set('n', '<LEADER>fh', function()
+    --   builtin.find_files({
+    --     find_command = { 'fd', '--hidden', '--type', 'file', '--follow' },
+    --   })
+    -- end, { desc = 'find files --hidden' })
+    -- vim.keymap.set('n', '<LEADER>f.', function()
+    --   file_browser.file_browser()
+    -- end, { desc = 'file browser' })
+    -- vim.keymap.set('n', '<LEADER>fr', builtin.oldfiles, { desc = 'old files (recent)' })
+    -- vim.keymap.set('n', '<LEADER>fe', function()
+    --   frecency.frecency({ layout_strategy = 'vertical', layout_config = { mirror = true, width = 0.9, height = 0.9 } })
+    -- end, { desc = 'find frecent files' })
 
     -- neovim #########################################################################################
-    vim.keymap.set('n', '<LEADER>na', builtin.autocommands, { desc = 'autocommands' })
-    vim.keymap.set('n', '<LEADER>nb', function()
-      builtin.buffers({ sort_mru = true, ignore_current_buffer = true })
-    end, { desc = 'search open buffers (ignore current buffer)' })
-    vim.keymap.set('n', '<LEADER>nc', builtin.commands, { desc = 'commands' })
-    vim.keymap.set('n', '<LEADER>nC', builtin.command_history, { desc = 'command history' })
-    vim.keymap.set('n', '<LEADER>nh', builtin.help_tags, { desc = 'neovim help' })
-    vim.keymap.set('n', '<LEADER>nf', builtin.filetypes, { desc = 'filetypes' })
-    vim.keymap.set('n', '<LEADER>nd', function()
-      vim.cmd.Telescope('heading')
-    end, { desc = 'headings' })
-    vim.keymap.set('n', '<LEADER>ni', builtin.highlights, { desc = 'highlights' })
-    vim.keymap.set('n', '<LEADER>nu', builtin.builtin, { desc = 'telescope builtin' })
-    vim.keymap.set('n', '<LEADER>nj', function()
-      builtin.jumplist({ fname_width = 100, layout_strategy = 'vertical', layout_config = { preview_height = 0.4 } })
-    end, { desc = 'jumplist' })
-    vim.keymap.set('n', '<LEADER>nk', builtin.keymaps, { desc = 'keymaps' })
-    vim.keymap.set('n', '<LEADER>nm', builtin.marks, { desc = 'marks' })
-    vim.keymap.set('n', '<LEADER>no', builtin.vim_options, { desc = 'vim options' })
-    vim.keymap.set('n', '<LEADER>nr', builtin.registers, { desc = 'registers' })
-    vim.keymap.set('n', '<LEADER>nwt', '<C-w>t', { desc = 'move window to new tab' })
-    vim.keymap.set('n', '<LEADER>nwx', '<C-w>x', { desc = 'swap windows' })
-    vim.keymap.set('n', '<LEADER>nw=', '<C-w>=', { desc = 'equally size windows' })
-    vim.keymap.set('n', '<LEADER>ns', builtin.search_history, { desc = 'search history' })
-    vim.keymap.set('n', '<LEADER>n:', builtin.loclist, { desc = 'loclist' })
-    vim.keymap.set('n', '<LEADER>nq', function()
-      builtin.quickfix({ fname_width = 60, layout_strategy = 'vertical', layout_config = { width = 0.5 } })
-    end, { desc = 'quickfix' })
-    vim.keymap.set('n', '<LEADER>nQ', function()
-      builtin.quickfixhistory({ fname_width = 60, layout_strategy = 'vertical' })
-    end, { desc = 'quickfix history' })
-    vim.keymap.set('n', '<LEADER>n.', function()
-      neoclip.default()
-    end, { desc = 'neoclip' })
+    -- vim.keymap.set('n', '<LEADER>na', builtin.autocommands, { desc = 'autocommands' })
+    -- vim.keymap.set('n', '<LEADER>nb', function()
+    --   builtin.buffers({ sort_mru = true, ignore_current_buffer = true })
+    -- end, { desc = 'search open buffers (ignore current buffer)' })
+    -- vim.keymap.set('n', '<LEADER>nc', builtin.commands, { desc = 'commands' })
+    -- vim.keymap.set('n', '<LEADER>nC', builtin.command_history, { desc = 'command history' })
+    -- vim.keymap.set('n', '<LEADER>nh', builtin.help_tags, { desc = 'neovim help' })
+    -- vim.keymap.set('n', '<LEADER>nf', builtin.filetypes, { desc = 'filetypes' })
+    -- vim.keymap.set('n', '<LEADER>nd', function()
+    --   vim.cmd.Telescope('heading')
+    -- end, { desc = 'headings' })
+    -- vim.keymap.set('n', '<LEADER>ni', builtin.highlights, { desc = 'highlights' })
+    -- vim.keymap.set('n', '<LEADER>nu', builtin.builtin, { desc = 'telescope builtin' })
+    -- vim.keymap.set('n', '<LEADER>nj', function()
+    --   builtin.jumplist({ fname_width = 100, layout_strategy = 'vertical', layout_config = { preview_height = 0.4 } })
+    -- end, { desc = 'jumplist' })
+    -- vim.keymap.set('n', '<LEADER>nk', builtin.keymaps, { desc = 'keymaps' })
+    -- vim.keymap.set('n', '<LEADER>nm', builtin.marks, { desc = 'marks' })
+    -- vim.keymap.set('n', '<LEADER>no', builtin.vim_options, { desc = 'vim options' })
+    -- vim.keymap.set('n', '<LEADER>nr', builtin.registers, { desc = 'registers' })
+    -- vim.keymap.set('n', '<LEADER>nwt', '<C-w>t', { desc = 'move window to new tab' })
+    -- vim.keymap.set('n', '<LEADER>nwx', '<C-w>x', { desc = 'swap windows' })
+    -- vim.keymap.set('n', '<LEADER>nw=', '<C-w>=', { desc = 'equally size windows' })
+    -- vim.keymap.set('n', '<LEADER>ns', builtin.search_history, { desc = 'search history' })
+    -- vim.keymap.set('n', '<LEADER>n:', builtin.loclist, { desc = 'loclist' })
+    -- vim.keymap.set('n', '<LEADER>nq', function()
+    --   builtin.quickfix({ fname_width = 60, layout_strategy = 'vertical', layout_config = { width = 0.5 } })
+    -- end, { desc = 'quickfix' })
+    -- vim.keymap.set('n', '<LEADER>nQ', function()
+    --   builtin.quickfixhistory({ fname_width = 60, layout_strategy = 'vertical' })
+    -- end, { desc = 'quickfix history' })
+    -- vim.keymap.set('n', '<LEADER>n.', function()
+    --   neoclip.default()
+    -- end, { desc = 'neoclip' })
 
     -- vim.keymap.set('n', '<LEADER>nC', builtin.colorscheme, { desc = 'colorschemes' })
     -- vim.keymap.set('n', '<LEADER>ny', builtin.symbols, { desc = 'emojis' })
 
-    -- telescope #########################################################################################
-    vim.keymap.set('n', '<LEADER>tr', builtin.resume, { desc = 'telescope resume' })
-    vim.keymap.set('n', '<LEADER>th', builtin.pickers, { desc = 'telescope previous pickers' })
-    -- telescope lsp ####################################################################################
-    vim.keymap.set('n', '<LEADER>tf', builtin.lsp_references, { desc = 'telescope lsp references' })
-    vim.keymap.set('n', '<LEADER>td', builtin.lsp_definitions, { desc = 'telescope lsp definitions' })
-    vim.keymap.set('n', '<LEADER>ty', builtin.lsp_type_definitions, { desc = 'telescope type definitions' })
-    vim.keymap.set('n', '<LEADER>tm', builtin.lsp_implementations, { desc = 'telescope lsp implementations' })
-    vim.keymap.set('n', '<LEADER>ti', builtin.lsp_incoming_calls, { desc = 'telescope lsp incoming calls' })
-    vim.keymap.set('n', '<LEADER>to', builtin.lsp_outgoing_calls, { desc = 'telescope lsp outgoing calls' })
+    -- -- telescope #########################################################################################
+    -- vim.keymap.set('n', '<LEADER>tr', builtin.resume, { desc = 'telescope resume' })
+    -- vim.keymap.set('n', '<LEADER>th', builtin.pickers, { desc = 'telescope previous pickers' })
+    -- -- telescope lsp ####################################################################################
+    -- vim.keymap.set('n', '<LEADER>tf', builtin.lsp_references, { desc = 'telescope lsp references' })
+    -- vim.keymap.set('n', '<LEADER>td', builtin.lsp_definitions, { desc = 'telescope lsp definitions' })
+    -- vim.keymap.set('n', '<LEADER>ty', builtin.lsp_type_definitions, { desc = 'telescope type definitions' })
+    -- vim.keymap.set('n', '<LEADER>tm', builtin.lsp_implementations, { desc = 'telescope lsp implementations' })
+    -- vim.keymap.set('n', '<LEADER>ti', builtin.lsp_incoming_calls, { desc = 'telescope lsp incoming calls' })
+    -- vim.keymap.set('n', '<LEADER>to', builtin.lsp_outgoing_calls, { desc = 'telescope lsp outgoing calls' })
+    --
+    -- vim.keymap.set('n', '<LEADER>tsd', builtin.lsp_document_symbols, { desc = 'telescope lsp document symbols' })
+    -- vim.keymap.set('n', '<LEADER>tsw', builtin.lsp_workspace_symbols, { desc = 'telescope lsp workspace symbols' })
+    -- vim.keymap.set(
+    --   'n',
+    --   '<LEADER>tsn',
+    --   builtin.lsp_dynamic_workspace_symbols,
+    --   { desc = 'telescope lsp dynamic workspace symbols' }
+    -- )
+    --
+    -- vim.keymap.set('n', '<LEADER>tt', builtin.treesitter, { desc = 'telescope treesitter' })
 
-    vim.keymap.set('n', '<LEADER>tsd', builtin.lsp_document_symbols, { desc = 'telescope lsp document symbols' })
-    vim.keymap.set('n', '<LEADER>tsw', builtin.lsp_workspace_symbols, { desc = 'telescope lsp workspace symbols' })
-    vim.keymap.set(
-      'n',
-      '<LEADER>tsn',
-      builtin.lsp_dynamic_workspace_symbols,
-      { desc = 'telescope lsp dynamic workspace symbols' }
-    )
+    -- -- telescope git #########################################################################################
+    -- vim.keymap.set('n', '<LEADER>gs', function()
+    --   builtin.git_status({ layout_config = { width = 0.99, preview_width = 0.5 } })
+    -- end, { desc = 'telescope git status' })
+    -- vim.keymap.set('n', '<LEADER>gt', builtin.git_stash, { desc = 'telescope git stash' })
+    -- vim.keymap.set('n', '<LEADER>gc', builtin.git_commits, { desc = 'telescope git commits' })
+    -- vim.keymap.set('n', '<LEADER>gh', builtin.git_bcommits, { desc = 'telescope git buffer commits (history)' })
+    -- vim.keymap.set('n', '<LEADER>gb', builtin.git_branches, { desc = 'telescope git branches' })
+    -- -- vim.keymap.set('n', '<LEADER>gg', ':Telescope gitdiffer diff<CR>', { desc = 'git diff since main' })
 
-    vim.keymap.set('n', '<LEADER>tt', builtin.treesitter, { desc = 'telescope treesitter' })
-
-    -- telescope git #########################################################################################
-    vim.keymap.set('n', '<LEADER>gs', function()
-      builtin.git_status({ layout_config = { width = 0.99, preview_width = 0.5 } })
-    end, { desc = 'telescope git status' })
-    vim.keymap.set('n', '<LEADER>gt', builtin.git_stash, { desc = 'telescope git stash' })
-    vim.keymap.set('n', '<LEADER>gc', builtin.git_commits, { desc = 'telescope git commits' })
-    vim.keymap.set('n', '<LEADER>gh', builtin.git_bcommits, { desc = 'telescope git buffer commits (history)' })
-    vim.keymap.set('n', '<LEADER>gb', builtin.git_branches, { desc = 'telescope git branches' })
-    vim.keymap.set('n', '<LEADER>gg', ':Telescope gitdiffer diff<CR>', { desc = 'git diff since main' })
-
-    -- search #########################################################################################
-    vim.keymap.set('n', '<LEADER>st', builtin.live_grep, { desc = 'telescope live_grep' })
-    vim.keymap.set('n', '<LEADER>ss', function() -- search text provided via input
-      builtin.grep_string({
-        hidden = false,
-        layout_strategy = 'vertical',
-        layout_config = {
-          height = 0.99,
-          -- anchor = 'E',
-          width = 0.9,
-          prompt_position = 'top',
-          preview_height = 0.5,
-          mirror = true,
-        },
-      })
-    end, { desc = 'telescope my grep string no input' })
-
-    vim.keymap.set('n', '<LEADER>sp', function() -- search text provided via input
-      builtin.grep_string({
-        search = vim.fn.input('Grep > '),
-        hidden = false,
-        layout_strategy = 'vertical',
-        layout_config = {
-          height = 0.99,
-          -- anchor = 'E',
-          width = 0.9,
-          prompt_position = 'top',
-          preview_height = 0.5,
-          mirror = true,
-        },
-      })
-    end, { desc = 'telescope my grep string with input' })
-
-    vim.keymap.set(
-      'n',
-      '<LEADER>sb',
-      builtin.current_buffer_fuzzy_find,
-      { desc = 'telescope current buffer fuzzy find' }
-    )
-    local multi_rg = require('tg.telescope-multi-rg')
-    vim.keymap.set('n', '<leader>sg', multi_rg, { desc = 'tj multi rg' })
-
-    vim.keymap.set('n', '<LEADER>sh', function()
-      harpoon.marks()
-    end, { desc = 'harpoon marks' })
+    -- -- search #########################################################################################
+    -- vim.keymap.set('n', '<LEADER>st', builtin.live_grep, { desc = 'telescope live_grep' })
+    -- vim.keymap.set('n', '<LEADER>ss', function() -- search text provided via input
+    --   builtin.grep_string({
+    --     hidden = false,
+    --     layout_strategy = 'vertical',
+    --     layout_config = {
+    --       height = 0.99,
+    --       -- anchor = 'E',
+    --       width = 0.9,
+    --       prompt_position = 'top',
+    --       preview_height = 0.5,
+    --       mirror = true,
+    --     },
+    --   })
+    -- end, { desc = 'telescope my grep string no input' })
+    --
+    -- vim.keymap.set('n', '<LEADER>sp', function() -- search text provided via input
+    --   builtin.grep_string({
+    --     search = vim.fn.input('Grep > '),
+    --     hidden = false,
+    --     layout_strategy = 'vertical',
+    --     layout_config = {
+    --       height = 0.99,
+    --       -- anchor = 'E',
+    --       width = 0.9,
+    --       prompt_position = 'top',
+    --       preview_height = 0.5,
+    --       mirror = true,
+    --     },
+    --   })
+    -- end, { desc = 'telescope my grep string with input' })
+    --
+    -- vim.keymap.set(
+    --   'n',
+    --   '<LEADER>sb',
+    --   builtin.current_buffer_fuzzy_find,
+    --   { desc = 'telescope current buffer fuzzy find' }
+    -- )
+    -- local multi_rg = require('tg.telescope-multi-rg')
+    -- vim.keymap.set('n', '<leader>sg', multi_rg, { desc = 'tj multi rg' })
+    --
+    -- vim.keymap.set('n', '<LEADER>sh', function()
+    --   harpoon.marks()
+    -- end, { desc = 'harpoon marks' })
 
     -- vim.keymap.set('n', '<leader>ps', function() -- search text provided via input
     --   builtin.grep_string({ search = vim.fn.input('Grep > ') })
     -- end)
 
     -- diagnostics ####################################################################################
-    vim.keymap.set('n', '<S-M-f>', function()
-      builtin.diagnostics({ layout_strategy = 'vertical', layout_config = { width = 0.5 } })
-    end)
-
-    vim.keymap.set('n', '<LEADER>ht', function()
-      builtin.diagnostics({ layout_strategy = 'vertical', layout_config = { width = 0.5 }, bufnr = 0 })
-    end, { desc = 'buffer diagnostics' })
-    vim.keymap.set('n', '<LEADER>hn', function()
-      builtin.diagnostics({ layout_strategy = 'vertical', layout_config = { width = 0.5 }, bufnr = 0 })
-    end, { desc = 'workspace diagnostics' })
+    -- vim.keymap.set('n', '<S-M-f>', function()
+    --   builtin.diagnostics({ layout_strategy = 'vertical', layout_config = { width = 0.5 } })
+    -- end)
+    --
+    -- vim.keymap.set('n', '<LEADER>ht', function()
+    --   builtin.diagnostics({ layout_strategy = 'vertical', layout_config = { width = 0.5 }, bufnr = 0 })
+    -- end, { desc = 'buffer diagnostics' })
+    -- vim.keymap.set('n', '<LEADER>hn', function()
+    --   builtin.diagnostics({ layout_strategy = 'vertical', layout_config = { width = 0.5 }, bufnr = 0 })
+    -- end, { desc = 'workspace diagnostics' })
 
     -- config #########################################################################################
-    vim.keymap.set('n', '<LEADER>cg', ':messages<CR>', { desc = 'vim messages' })
-    vim.keymap.set('n', '<LEADER>cc', function()
-      vim.cmd('messages clear')
-    end, { desc = 'vim messages clear' })
+    -- vim.keymap.set('n', '<LEADER>cg', ':messages<CR>', { desc = 'vim messages' })
+    -- vim.keymap.set('n', '<LEADER>cc', function()
+    --   vim.cmd('messages clear')
+    -- end, { desc = 'vim messages clear' })
+    --
+    -- vim.keymap.set('n', '<LEADER>cd', function()
+    --   builtin.find_files({
+    --     -- prompt_title = "< Dotfiles >",
+    --     cwd = vim.env.DOTFILES,
+    --     hidden = true,
+    --   })
+    -- end, { desc = 'search dotfiles' })
 
-    vim.keymap.set('n', '<LEADER>cd', function()
-      builtin.find_files({
-        -- prompt_title = "< Dotfiles >",
-        cwd = vim.env.DOTFILES,
-        hidden = true,
-      })
-    end, { desc = 'search dotfiles' })
+    -- vim.keymap.set('n', '<LEADER>cn', function()
+    --   builtin.find_files({ cwd = vim.env.DOTFILES .. '/config/nvim', hidden = true })
+    -- end, { desc = 'scarch dotfiles' })
 
-    vim.keymap.set('n', '<LEADER>cn', function()
-      builtin.find_files({ cwd = vim.env.DOTFILES .. '/config/nvim', hidden = true })
-    end, { desc = 'scarch dotfiles' })
-
-    vim.keymap.set('n', '<LEADER>cr', builtin.reloader, { desc = 'telescope reloader' })
+    -- vim.keymap.set('n', '<LEADER>cr', builtin.reloader, { desc = 'telescope reloader' })
 
     -- wiki #########################################################################################
-    vim.keymap.set('n', '<LEADER>rh', function()
-      builtin.find_files({ cwd = vim.env.HOME .. '/src/me/wiki', hidden = false })
-    end, { desc = 'search wiki' })
-
-    vim.keymap.set('n', '<LEADER>rt', function()
-      builtin.find_files({
-        cwd = vim.env.XDG_DOCUMENTS_DIR .. '/candy/wiki',
-        hidden = false,
-        layout_strategy = 'vertical',
-        layout_config = {
-          height = 0.99,
-          anchor = 'E',
-          width = 0.5,
-          prompt_position = 'top',
-          preview_height = 0.85,
-          mirror = true,
-        },
-      })
-    end, { desc = 'search candy wiki' })
+    --   vim.keymap.set('n', '<LEADER>rh', function()
+    --     builtin.find_files({ cwd = vim.env.HOME .. '/src/me/wiki', hidden = false })
+    --   end, { desc = 'search wiki' })
+    --
+    --   vim.keymap.set('n', '<LEADER>rt', function()
+    --     builtin.find_files({
+    --       cwd = vim.env.XDG_DOCUMENTS_DIR .. '/candy/wiki',
+    --       hidden = false,
+    --       layout_strategy = 'vertical',
+    --       layout_config = {
+    --         height = 0.99,
+    --         anchor = 'E',
+    --         width = 0.5,
+    --         prompt_position = 'top',
+    --         preview_height = 0.85,
+    --         mirror = true,
+    --       },
+    --     })
+    --   end, { desc = 'search candy wiki' })
   end,
 }
 
