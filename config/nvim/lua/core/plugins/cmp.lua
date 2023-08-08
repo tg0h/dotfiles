@@ -13,10 +13,11 @@ local M = {
     'petertriho/cmp-git',
     'L3MON4D3/LuaSnip',
   },
+  event = { 'InsertEnter', 'CmdlineEnter' },
   config = function()
     local cmp = require('cmp')
     local lspkind = require('lspkind') -- add icons to comp items
-    local luasnip = require('luasnip')
+    -- local luasnip = require('luasnip')
 
     local has_words_before = function()
       local line, col = unpack(vim.api.nvim_win_get_cursor(0))
