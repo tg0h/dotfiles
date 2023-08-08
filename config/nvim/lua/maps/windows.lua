@@ -18,7 +18,11 @@ map('n', '<S-M-h>', ':wincmd w<CR>', default_options) -- switch to next window i
 -- map("n", "+", ":res +5<CR>", default_options)
 -- map("n", "-", ":res -5<CR>", default_options)
 
-map('n', '<A-d>', ":lua require'utils'.close_floating_windows()<CR>", default_options) -- close all floating windows (eg lsp hover windows)
+-- map('n', '<A-d>', ":lua require'utils'.close_floating_windows()<CR>", default_options) -- close all floating windows (eg lsp hover windows)
+
+vim.keymap.set('n', '<A-d>', function()
+  require('core.utils.functions').close_floating_windows()
+end, { desc = 'close floating windows' })
 
 -- Resizing windows
 map('n', '<Left>', ':vertical resize +5<CR>', default_options)

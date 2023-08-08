@@ -1,4 +1,3 @@
--- require('utils')
 -- require('core.diagnostic')
 -- require('plugins')
 require('maps')
