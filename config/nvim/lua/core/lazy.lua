@@ -44,7 +44,7 @@ require('lazy').setup('core.plugins', {
   },
   dev = {
     -- directory where you store your local plugin projects
-    path = "~/src/me/nvim",
+    path = '~/src/me/nvim',
     ---@type string[] plugins that match these patterns will use your local versions instead of being fetched from GitHub
     patterns = {}, -- For example {"folke"}
     fallback = false, -- Fallback to git when local plugin doesn't exist
@@ -143,14 +143,27 @@ require('lazy').setup('core.plugins', {
       paths = {}, -- add any custom paths here that you want to includes in the rtp
       ---@type string[] list any plugins you want to disable here
       disabled_plugins = {
-        -- "gzip",
-        -- "matchit",
         -- "matchparen",
-        -- "netrwPlugin",
-        -- "tarPlugin",
         -- "tohtml",
         -- "tutor",
-        -- "zipPlugin",
+        -- matchit is used to jump between matching html tags
+        'gzip',
+        'zip',
+        'zipPlugin',
+        'tar',
+        'tarPlugin',
+        'getscript',
+        'getscriptPlugin',
+        'vimball',
+        'vimballPlugin',
+        '2html_plugin',
+        'logipat',
+        'rrhelper',
+        'spellfile_plugin',
+        'netrw',
+        'netrwPlugin',
+        'netrwSettings',
+        'netrwFileHandlers',
       },
     },
   },
