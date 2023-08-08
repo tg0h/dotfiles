@@ -5,7 +5,6 @@ require('maps')
 require('core.options')
 -- define colorscheme here
 -- the colorscheme might set highlight clear, undoing all your highlight groups?
--- require('core.colours')
 -- require('core.autocmd')
 -- require('tg.toggle-interface')
 -- require('tg.toggle-test')
@@ -18,3 +17,4 @@ require('core.options')
 
 -- Plugin management via lazy
 require('core.lazy')
+-- require('core.colours')
