@@ -65,5 +65,4 @@ map('n', '<C-z>', '<NOP>', default_options)
 vim.keymap.set('n', '<leader>a', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
 -- gg
-vim.keymap.set('n', '<LEADER>gg', '<CMD>!gg<CR>')
-
+vim.keymap.set('n', '<LEADER>gg', '<CMD>silent !gg<CR>') --silent means supress all stdout (not added to message history)
