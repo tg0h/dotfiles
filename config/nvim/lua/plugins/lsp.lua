@@ -17,7 +17,7 @@ local M = {
     -- { "folke/neodev.nvim", config = true, lazy = true, ft = "lua" },
   },
   config = function()
-    require('core.plugins.lsp.lsp')
+    require('plugins.lsp.lsp')
   end,
 }
 

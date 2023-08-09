@@ -17,7 +17,7 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.g.mapleader = ' '
 vim.keymap.set('n', '<leader>ml', '<cmd>Lazy<cr>')
 
-require('lazy').setup('core.plugins', {
+require('lazy').setup('plugins', {
   root = vim.fn.stdpath('data') .. '/lazy', -- directory where plugins will be installed
   defaults = {
     lazy = false, -- should plugins be lazy-loaded?

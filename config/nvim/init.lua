@@ -1,8 +1,8 @@
 -- require('core.diagnostic')
-require('maps')
-require('core.options')
-require('core.autocmd')
-require('core.utils.files') -- used by kitty tab switcher to open latest changed files in dir
+require('keymaps')
+require('config.options')
+require('config.autocmd')
+require('utils.files') -- used by kitty tab switcher to open latest changed files in dir
 
 -- Plugin management via lazy
-require('core.lazy')
+require('config.lazy')
