@@ -2,9 +2,9 @@ local M = {
   'nvim-tree/nvim-tree.lua',
   version = '*',
   lazy = false,
-  -- dependencies = {
-  --   'nvim-tree/nvim-web-devicons',
-  -- },
+  dependencies = {
+    'nvim-tree/nvim-web-devicons',
+  },
   config = function()
     local lib = require('nvim-tree.lib')
     local view = require('nvim-tree.view')
@@ -298,10 +298,3 @@ local M = {
 }
 
 return M
-
--- use({
---   'nvim-tree/nvim-tree.lua',
---   requires = {
---     'nvim-tree/nvim-web-devicons', -- optional, for file icon
---   },
--- })

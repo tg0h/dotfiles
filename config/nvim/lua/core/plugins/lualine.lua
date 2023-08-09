@@ -2,7 +2,7 @@ return {
   'nvim-lualine/lualine.nvim',
   event = 'VeryLazy',
   dependencies = {
-    { 'kyazdani42/nvim-web-devicons', lazy = true },
+    { 'nvim-tree/nvim-web-devicons', lazy = true },
   },
   opts = {
     options = {
