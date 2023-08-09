@@ -165,7 +165,7 @@ local M = {
     {
       '<LEADER>gs',
       function()
-        builtin.git_status({ layout_config = { width = 0.99, preview_width = 0.5 } })
+        require('telescope.builtin').git_status({ layout_config = { width = 0.99, preview_width = 0.5 } })
       end,
       desc = 'telescope git status',
     },
@@ -265,7 +265,7 @@ local M = {
     {
       '<LEADER>cd',
       function()
-        builtin.find_files({
+        require('telescope.builtin').find_files({
           -- prompt_title = "< Dotfiles >",
           cwd = vim.env.DOTFILES,
           hidden = true,
@@ -276,7 +276,7 @@ local M = {
     {
       '<LEADER>cn',
       function()
-        builtin.find_files({ cwd = vim.env.DOTFILES .. '/config/nvim', hidden = true })
+        require('telescope.builtin').find_files({ cwd = vim.env.DOTFILES .. '/config/nvim', hidden = true })
       end,
       desc = 'search nvim config',
     },
@@ -286,14 +286,14 @@ local M = {
     {
       '<LEADER>rh',
       function()
-        builtin.find_files({ cwd = vim.env.HOME .. '/src/me/wiki', hidden = false })
+        require('telescope.builtin').find_files({ cwd = vim.env.HOME .. '/src/me/wiki', hidden = false })
       end,
       desc = 'search wiki',
     },
     {
       '<LEADER>rt',
       function()
-        builtin.find_files({
+        require('telescope.builtin').find_files({
           cwd = vim.env.XDG_DOCUMENTS_DIR .. '/candy/wiki',
           hidden = false,
           layout_strategy = 'vertical',
