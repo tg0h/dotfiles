@@ -218,8 +218,7 @@ local M = {
     {
       '<LEADER>sg',
       function()
-        require('telescope')
-        require('tg.telescope-multi-rg')
+        require('tg.telescope-multi-rg')()
       end,
       desc = 'tj multi rg',
     },
