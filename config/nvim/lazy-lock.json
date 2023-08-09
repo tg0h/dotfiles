@@ -41,7 +41,7 @@
   "plenary.nvim": { "branch": "master", "commit": "267282a9ce242bbb0c5dc31445b6d353bed978bb" },
   "rainbow-delimiters.nvim": { "branch": "master", "commit": "c6380e218a2b4ffcc957a71606900a24e5c7b618" },
   "schemastore.nvim": { "branch": "main", "commit": "4136db62991187e2067635b4102f136718739cb9" },
-  "sonokai": { "branch": "master", "commit": "e2e89497f178bec568a0a43cda651f0429ec8ec1" },
+  "sonokai": { "branch": "master", "commit": "17308ee6d9c764bfc1e0fa97213e7a99701b4144" },
   "sqlite.lua": { "branch": "master", "commit": "b7e28c8463254c46a8e61c52d27d6a2040492fc3" },
   "surround.nvim": { "branch": "master", "commit": "36c253d6470910692491b13382f54c9bab2811e1" },
   "symbols-outline.nvim": { "branch": "master", "commit": "512791925d57a61c545bc303356e8a8f7869763c" },

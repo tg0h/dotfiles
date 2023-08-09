@@ -1,12 +1,14 @@
 local M = {
   'sainnhe/sonokai',
-  version = '*',
+  -- version * gets latest stable release, eg with a tag
+  -- version = '*', -- do not specify version * to get latest commit on master
   lazy = false, -- make sure we load this during startup if it is your main colorscheme
   priority = 1000, -- make sure to load this before all the other start plugins
   -- priority is important, the colorscheme might set highlight clear, undoing all your highlight groups?
   config = function()
     -- load the colorscheme here
     vim.cmd([[colorscheme sonokai]])
+
     vim.cmd('highlight Normal guifg=#ffffff guibg=#000000')
 
     vim.api.nvim_exec(
