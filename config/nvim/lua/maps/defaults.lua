@@ -63,3 +63,7 @@ map('n', '<C-z>', '<NOP>', default_options)
 
 -- replace the word that the cursor is on ... I flag means don't ignore case
 vim.keymap.set('n', '<leader>a', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+
+-- gg
+vim.keymap.set('n', '<LEADER>gg', '<CMD>!gg<CR>')
+
