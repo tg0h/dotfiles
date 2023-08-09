@@ -83,10 +83,12 @@ local M = {
       vim.keymap.set('n', 'D', api.node.navigate.parent, opts('Parent Directory'))
       vim.keymap.set('n', 'h', api.node.navigate.parent_close, opts('Close Directory'))
       vim.keymap.set('n', 'H', api.tree.collapse_all, opts('Collapse'))
-      vim.keymap.set('n', 't', api.node.navigate.sibling.next, opts('Next Sibling'))
-      vim.keymap.set('n', 'T', api.node.navigate.sibling.last, opts('Last Sibling'))
-      vim.keymap.set('n', 'n', api.node.navigate.sibling.prev, opts('Previous Sibling'))
-      vim.keymap.set('n', 'N', api.node.navigate.sibling.first, opts('First Sibling'))
+      -- just use j and k
+      -- previous and next sibling is slightly better, keeping it on the same level
+      -- vim.keymap.set('n', 'n', api.node.navigate.sibling.prev, opts('Previous Sibling'))
+      -- vim.keymap.set('n', 't', api.node.navigate.sibling.next, opts('Next Sibling'))
+      -- vim.keymap.set('n', 'T', api.node.navigate.sibling.last, opts('Last Sibling'))
+      -- vim.keymap.set('n', 'N', api.node.navigate.sibling.first, opts('First Sibling'))
       vim.keymap.set('n', 's', edit_or_open, opts('Edit or Open'))
       vim.keymap.set('n', 'L', function()
         local node = api.tree.get_node_under_cursor()
@@ -112,7 +114,7 @@ local M = {
       vim.keymap.set('n', ']e', api.node.navigate.diagnostics.next, opts('Next Diagnostic'))
 
       vim.keymap.set('n', 'I', api.tree.toggle_gitignore_filter, opts('Toggle Git Ignore'))
-      vim.keymap.set('n', '.', api.tree.toggle_hidden_filter, opts('Toggle Dotfiles'))
+      vim.keymap.set('n', 'u', api.tree.toggle_hidden_filter, opts('Toggle Dotfiles'))
       vim.keymap.set('n', 'U', api.tree.toggle_custom_filter, opts('Toggle Hidden'))
 
       vim.keymap.set('n', '<C-]>', api.tree.change_root_to_node, opts('CD'))
@@ -133,7 +135,7 @@ local M = {
       vim.keymap.set('n', "'", api.node.run.system, opts('Run System'))
 
       vim.keymap.set('n', 'q', api.tree.close, opts('Close'))
-      vim.keymap.set('n', 'u', api.node.show_info_popup, opts('Info'))
+      vim.keymap.set('n', 'i', api.node.show_info_popup, opts('Info'))
       vim.keymap.set('n', 'g?', api.tree.toggle_help, opts('Help'))
       vim.keymap.set('n', 'f', api.live_filter.start, opts('Filter'))
       vim.keymap.set('n', 'F', api.live_filter.clear, opts('Clean Filter'))
