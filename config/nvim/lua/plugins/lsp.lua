@@ -11,7 +11,7 @@ local M = {
   -- event = 'VeryLazy',
   dependencies = {
     { 'b0o/schemastore.nvim' },
-    { 'hrsh7th/nvim-cmp' },
+    -- { 'hrsh7th/nvim-cmp' },
     { 'folke/lua-dev.nvim' },
     { 'onsails/lspkind-nvim' },
     -- { "folke/neodev.nvim", config = true, lazy = true, ft = "lua" },
