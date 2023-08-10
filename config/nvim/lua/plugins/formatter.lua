@@ -1,5 +1,6 @@
 local M = {
   'mhartington/formatter.nvim',
+  event = 'VeryLazy',
   config = function()
     vim.api.nvim_exec(
       [[

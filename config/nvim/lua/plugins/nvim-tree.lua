@@ -1,10 +1,11 @@
 local M = {
   'nvim-tree/nvim-tree.lua',
   version = '*',
-  lazy = false,
+  -- lazy = false,
   dependencies = {
     'nvim-tree/nvim-web-devicons',
   },
+  event = 'VeryLazy',
   config = function()
     local lib = require('nvim-tree.lib')
     local view = require('nvim-tree.view')

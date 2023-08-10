@@ -3,6 +3,7 @@ return {
   { 'famiu/bufdelete.nvim', event = 'BufReadPre' },
   {
     'f-person/git-blame.nvim',
+    event = 'VeryLazy',
     config = function()
       local g = vim.g
       g.gitblame_enabled = 0
@@ -15,9 +16,9 @@ return {
     end,
   },
   -- { 'ggandor/leap.nvim', dependencies = { 'tpope/vim-repeat' } },
-  { 'hiphish/rainbow-delimiters.nvim' },
+  { 'hiphish/rainbow-delimiters.nvim', event = 'VeryLazy' },
   { 'fladson/vim-kitty' },
-  { 'vito-c/jq.vim' },
-  { 'dkarter/bullets.vim' },
+  -- { 'vito-c/jq.vim', },
+  { 'dkarter/bullets.vim', event = 'VeryLazy' },
   { 'rhysd/committia.vim' },
 }

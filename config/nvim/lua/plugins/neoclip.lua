@@ -4,6 +4,7 @@ local M = {
     { 'tami5/sqlite.lua', module = 'sqlite' },
     { 'nvim-telescope/telescope.nvim' },
   },
+  event = 'VeryLazy',
   config = function()
     require('neoclip').setup({
       history = 1000,

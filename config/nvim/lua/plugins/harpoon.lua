@@ -4,6 +4,7 @@ local M = {
   dependencies = {
     { 'nvim-lua/plenary.nvim' },
   },
+  event = 'VeryLazy',
   config = function()
     local map = vim.api.nvim_set_keymap
     default_options = { noremap = true, silent = true }

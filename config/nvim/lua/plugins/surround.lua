@@ -1,6 +1,6 @@
 return {
   'ur4ltz/surround.nvim',
-
+  event = 'VeryLazy',
   config = function()
     -- visual  - visually select then press s<char> or press sa{motion}{char}
     -- replace - sr<from><to>

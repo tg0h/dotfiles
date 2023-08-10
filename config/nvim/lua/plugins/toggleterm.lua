@@ -1,5 +1,8 @@
 return {
   'akinsho/nvim-toggleterm.lua',
+  -- keys = {
+  --   { '<C-Bslash>', '<CMD>ToggleTerm', desc = 'open toggleterm' },
+  -- },
   config = function()
     require('toggleterm').setup({
       -- size can be a number or function which is passed the current terminal

@@ -3,6 +3,7 @@ local M = {
   dependencies = {
     'nvim-lua/plenary.nvim',
   },
+  event = 'VeryLazy',
   config = function()
     require('gitsigns').setup({
       -- no longer supported in gitsigns
