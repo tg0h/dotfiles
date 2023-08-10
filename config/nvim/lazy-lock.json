@@ -17,6 +17,7 @@
   "git-blame.nvim": { "branch": "master", "commit": "93d983806a0c76692bebd6f804c8eaa2a3844452" },
   "gitsigns.nvim": { "branch": "main", "commit": "287fffb410ce82d19da2d503a1f1570adf7b7874" },
   "jq.vim": { "branch": "master", "commit": "6ff60efab7a15c60ff073c5bb7aec2858a0bafba" },
+  "kkharji-sqlite": { "branch": "master", "commit": "b7e28c8463254c46a8e61c52d27d6a2040492fc3" },
   "lazy.nvim": { "branch": "main", "commit": "dac844ed617dda4f9ec85eb88e9629ad2add5e05" },
   "lsp_signature.nvim": { "branch": "master", "commit": "58d4e810801da74c29313da86075d6aea537501f" },
   "lspkind-nvim": { "branch": "master", "commit": "57610d5ab560c073c465d6faf0c19f200cb67e6e" },
@@ -64,5 +65,6 @@
   "vim-easy-align": { "branch": "master", "commit": "12dd6316974f71ce333e360c0260b4e1f81169c3" },
   "vim-kitty": { "branch": "main", "commit": "20a2625b600f26ef8ce664c098c78ca5256695a0" },
   "vim-kitty-navigator": { "branch": "master", "commit": "c3d8aaaa61717b2c142ff39553fcab709fd606a7" },
-  "which-key.nvim": { "branch": "main", "commit": "7ccf476ebe0445a741b64e36c78a682c1c6118b7" }
+  "which-key.nvim": { "branch": "main", "commit": "7ccf476ebe0445a741b64e36c78a682c1c6118b7" },
+  "yanky.nvim": { "branch": "main", "commit": "95c2f006ea6eaed2b2d8b8b4943b8fcf13faf03f" }
 }
