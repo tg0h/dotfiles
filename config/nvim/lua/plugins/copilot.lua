@@ -1,50 +1,50 @@
 return {
   'zbirenbaum/copilot.lua',
-  config = function()
-    require('copilot').setup({
-      panel = {
-        enabled = false, -- change to false so that it does not interfere with copilot-cmp
-        auto_refresh = false,
-        keymap = {
-          jump_prev = '[[',
-          jump_next = ']]',
-          accept = '<CR>',
-          refresh = 'gr',
-          open = '<M-CR>',
-        },
-        layout = {
-          position = 'bottom', -- | top | left | right
-          ratio = 0.4,
-        },
+  cmd = 'Copilot',
+  build = ':Copilot auth',
+  opts = {
+    panel = {
+      enabled = false, -- change to false so that it does not interfere with copilot-cmp
+      auto_refresh = false,
+      keymap = {
+        jump_prev = '[[',
+        jump_next = ']]',
+        accept = '<CR>',
+        refresh = 'gr',
+        open = '<M-CR>',
       },
-      suggestion = {
-        enabled = false, -- change to false so that it does not interfere with copilot-cmp
-        auto_trigger = false,
-        debounce = 75,
-        keymap = {
-          accept = '<M-l>',
-          accept_word = false,
-          accept_line = false,
-          next = '<M-]>',
-          prev = '<M-[>',
-          dismiss = '<C-]>',
-        },
+      layout = {
+        position = 'bottom', -- | top | left | right
+        ratio = 0.4,
       },
-      filetypes = {
-        yaml = false,
-        markdown = false,
-        help = false,
-        gitcommit = false,
-        gitrebase = false,
-        hgcommit = false,
-        svn = false,
-        cvs = false,
-        ['.'] = false,
+    },
+    suggestion = {
+      enabled = false, -- change to false so that it does not interfere with copilot-cmp
+      auto_trigger = false,
+      debounce = 75,
+      keymap = {
+        accept = '<M-l>',
+        accept_word = false,
+        accept_line = false,
+        next = '<M-]>',
+        prev = '<M-[>',
+        dismiss = '<C-]>',
       },
-      copilot_node_command = 'node', -- Node.js version must be > 16.x
-      server_opts_overrides = {},
-    })
-  end,
+    },
+    filetypes = {
+      yaml = false,
+      markdown = false,
+      help = false,
+      gitcommit = false,
+      gitrebase = false,
+      hgcommit = false,
+      svn = false,
+      cvs = false,
+      ['.'] = false,
+    },
+    copilot_node_command = 'node', -- Node.js version must be > 16.x
+    server_opts_overrides = {},
+  },
 }
 -- suggestion = { enabled = false },
 -- panel = { enabled = false },
