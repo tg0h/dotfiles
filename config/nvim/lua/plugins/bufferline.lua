@@ -106,7 +106,6 @@ return {
 
     vim.keymap.set('n', '<A-g>', ':BufferLineCyclePrev<CR>', { desc = 'go to previous buffer' }) -- go to left buffer
     vim.keymap.set('n', '<A-r>', ':BufferLineCycleNext<CR>', { desc = 'go to next buffer' }) -- go to right buffer
-    vim.keymap.set('n', '<A-c>', ':Bdelete!<CR>', { desc = 'go to last buffer' }) -- close
 
     vim.keymap.set('n', '<S-A-9>', ':BufferLineMovePrev<CR>', { desc = 'move to previous buffer' })
     vim.keymap.set('n', '<S-A-[>', ':BufferLineMoveNext<CR>', { desc = 'move to next buffer' })

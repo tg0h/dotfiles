@@ -1,6 +1,12 @@
 return {
   { 'junegunn/vim-easy-align' }, -- no lua alternative
-  { 'famiu/bufdelete.nvim', event = 'BufReadPre' },
+  {
+    'famiu/bufdelete.nvim',
+    -- event = 'BufReadPre',
+    keys = {
+      { '<A-c>', ':Bdelete!<CR>', desc = 'go to last buffer' },
+    },
+  },
   {
     'f-person/git-blame.nvim',
     event = 'VeryLazy',
