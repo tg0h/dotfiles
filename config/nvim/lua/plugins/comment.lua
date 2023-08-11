@@ -1,6 +1,7 @@
 return {
   'numToStr/Comment.nvim',
-  event = { 'BufReadPre', 'BufNewFile' },
+  -- event = { 'BufReadPre', 'BufNewFile' },
+  event = 'VeryLazy',
   config = function()
     require('Comment').setup({
       ---Add a space b/w comment and the line
