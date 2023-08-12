@@ -5,7 +5,7 @@ return {
     event = { 'BufReadPre', 'BufNewFile' },
     opts = {
       -- Number of lines within which surrounding is searched
-      n_lines = 50,
+      n_lines = 150,
 
       -- Duration (in ms) of highlight when calling `MiniSurround.highlight()`
       highlight_duration = 500,
