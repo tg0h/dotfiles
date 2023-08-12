@@ -86,13 +86,7 @@ local M = {
     local wk = require('which-key')
     wk.setup(opts)
 
-    wk.register({
-      -- x is visual mode
-      ga = { '<Plug>(EasyAlign)', 'Align', mode = 'x' },
-    })
-
-    -- local keyMaps = require('setup.which-key/keys')
-    keyMaps = {
+    local keyMaps = {
       h = { name = 'diagnostics' },
       r = {
         name = 'Notes',
@@ -140,14 +134,9 @@ local M = {
         t = { '<cmd>lua vim.lsp.buf.type_definition()<CR>', 'Type Definition' },
       },
     }
-    default_options = { noremap = true, silent = true }
+    local default_options = { noremap = true, silent = true }
     -- Register all leader based mappings
     wk.register(keyMaps, { prefix = '<leader>', mode = 'n', default_options })
-    -- wk.register(opts.groups)
-    wk.register({
-      -- x is visual mode
-      ga = { '<Plug>(EasyAlign)', 'Align', mode = 'x' },
-    })
   end,
 }
 

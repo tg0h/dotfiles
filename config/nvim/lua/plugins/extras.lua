@@ -1,5 +1,4 @@
 return {
-  { 'junegunn/vim-easy-align' }, -- no lua alternative
   {
     'famiu/bufdelete.nvim',
     -- event = 'BufReadPre',
