@@ -139,24 +139,24 @@ local M = {
       desc = 'neoclip',
     },
     -- telescope #########################################################################################
-    { '<LEADER>tr', '<CMD>Telescope resume<CR>', desc = 'telescope resume' },
-    { '<LEADER>th', '<CMD>Telescope pickers<CR>', desc = 'telescope previous pickers' },
+    { '<LEADER>hr', '<CMD>Telescope resume<CR>', desc = 'telescope resume' },
+    { '<LEADER>hh', '<CMD>Telescope pickers<CR>', desc = 'telescope previous pickers' },
 
     -- telescope lsp ####################################################################################
-    { '<LEADER>tf', '<CMD>Telescope lsp_references<CR>', desc = 'telescope lsp references' },
-    { '<LEADER>td', '<CMD>Telescope lsp_definitions<CR>', desc = 'telescope lsp type definitions' },
-    { '<LEADER>tm', '<CMD>Telescope lsp_implementations<CR>', desc = 'telescope lsp implementations' },
-    { '<LEADER>ti', '<CMD>Telescope lsp_incoming_calls<CR>', desc = 'telescope lsp incoming calls' },
-    { '<LEADER>to', '<CMD>Telescope lsp_outgoing_calls<CR>', desc = 'telescope lsp outgoing calls' },
-    { '<LEADER>tsd', '<CMD>Telescope lsp_document_symbols<CR>', desc = 'telescope lsp document symbols' },
-    { '<LEADER>tsw', '<CMD>Telescope lsp_workspace_symbols<CR>', desc = 'telescope lsp workspace symbols' },
+    { '<LEADER>hf', '<CMD>Telescope lsp_references<CR>', desc = 'telescope lsp references' },
+    { '<LEADER>hd', '<CMD>Telescope lsp_definitions<CR>', desc = 'telescope lsp type definitions' },
+    { '<LEADER>hm', '<CMD>Telescope lsp_implementations<CR>', desc = 'telescope lsp implementations' },
+    { '<LEADER>hi', '<CMD>Telescope lsp_incoming_calls<CR>', desc = 'telescope lsp incoming calls' },
+    { '<LEADER>ho', '<CMD>Telescope lsp_outgoing_calls<CR>', desc = 'telescope lsp outgoing calls' },
+    { '<LEADER>hsd', '<CMD>Telescope lsp_document_symbols<CR>', desc = 'telescope lsp document symbols' },
+    { '<LEADER>hsw', '<CMD>Telescope lsp_workspace_symbols<CR>', desc = 'telescope lsp workspace symbols' },
     {
-      '<LEADER>tsn',
+      '<LEADER>hsn',
       '<CMD>Telescope lsp_dynamic_workspace_symbols<CR>',
       desc = 'telescope lsp dynamic workspace symbols',
     },
     {
-      '<LEADER>tt',
+      '<LEADER>ht',
       '<CMD>Telescope treesitter<CR>',
       desc = 'telescope treesitter',
     },
@@ -234,23 +234,23 @@ local M = {
     {
       '<S-M-f>',
       function()
-        require('telescope.builtin').diagnostics({ layout_strategy = 'vertical', layout_config = { width = 0.5 } })
+        require('telescope.builtin').diagnostics({ layout_strategy = 'horizontal', layout_config = { width = 0.9 } })
       end,
       desc = 'telescope diagnostics',
     },
     {
-      '<LEADER>hn',
+      '<LEADER>tn',
       function()
-        require('telescope.builtin').diagnostics({ layout_strategy = 'vertical', layout_config = { width = 0.5 } })
+        require('telescope.builtin').diagnostics({ layout_strategy = 'vertical', layout_config = { width = 0.9 } })
       end,
       desc = 'telescope diagnostics',
     },
     {
-      '<LEADER>ht',
+      '<LEADER>tt',
       function()
         require('telescope.builtin').diagnostics({
           layout_strategy = 'vertical',
-          layout_config = { width = 0.5 },
+          layout_config = { width = 0.9 },
           bufnr = 0,
         })
       end,

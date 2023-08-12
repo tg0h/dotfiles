@@ -5,7 +5,21 @@ local M = {
     'nvim-tree/nvim-web-devicons',
   },
   event = 'VeryLazy',
+  keys = {
+    { '<LEADER>tw', '<CMD>Trouble workspace_diagnostics<CR>', desc = 'trouble workspace diagnostics' },
+    { '<LEADER>td', '<CMD>Trouble document_diagnostics<CR>', desc = 'trouble document diagnostics' },
+    { '<LEADER>tl', '<CMD>Trouble loclist<CR>', desc = 'trouble loclist' },
+    { '<LEADER>tq', '<CMD>Trouble quickfix<CR>', desc = 'trouble quickfix' },
+    { '<LEADER>tu', '<CMD>TodoTrouble<CR>', desc = 'trouble todos' },
+    { '<LEADER>tR', '<CMD>TroubleRefresh<CR>', desc = 'trouble refresh' },
+    { '<LEADER>ts', '<CMD>TroubleClose<CR>', desc = 'trouble close' },
+    { '<LEADER>th', '<CMD>TroubleToggle<CR>', desc = 'trouble toggle' },
+  },
   config = function()
+    local wk = require('which-key')
+    wk.register({ d = {
+      name = 'Trouble',
+    } }, { prefix = '<LEADER>', mode = 'n' })
     require('trouble').setup({
       position = 'bottom', -- position of the list can be: bottom, top, left, right
       height = 10, -- height of the trouble list when position is top or bottom
