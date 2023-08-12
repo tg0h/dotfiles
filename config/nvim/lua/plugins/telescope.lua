@@ -328,7 +328,7 @@ local M = {
     -- telescope.load_extension('git_worktree')
     -- local neoclip = telescope.load_extension('neoclip')
     -- telescope.load_extension('frecency')
-    -- telescope.load_extension('ui-select')
+    telescope.load_extension('ui-select')
     -- local frecency = telescope.load_extension('frecency')
 
     telescope.setup({
