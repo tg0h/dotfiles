@@ -1,6 +1,7 @@
 return {
   'aarondiel/spread.nvim',
-  event = { 'BufReadPre', 'BufNewFile' },
+  -- event = { 'BufReadPre', 'BufNewFile' },
+  event = 'VeryLazy',
   config = function()
     local spread = require('spread')
     local wk = require('which-key')
