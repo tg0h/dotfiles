@@ -2,6 +2,22 @@ return {
   'aarondiel/spread.nvim',
   -- event = { 'BufReadPre', 'BufNewFile' },
   event = 'VeryLazy',
+  keys = {
+    {
+      '<M-C-a>',
+      function()
+        require('spread').combine()
+      end,
+      desc = 'spread combine',
+    },
+    {
+      '<M-C-i>',
+      function()
+        require('spread').out()
+      end,
+      desc = 'spread split',
+    },
+  },
   config = function()
     local spread = require('spread')
     local wk = require('which-key')
