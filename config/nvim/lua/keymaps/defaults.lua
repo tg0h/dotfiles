@@ -69,3 +69,12 @@ vim.keymap.set('n', '<LEADER>gg', '<CMD>silent !gg<CR>') --silent means supress 
 
 vim.keymap.set('n', '<LEADER>.g', '<CMD>messages<CR>', { desc = 'vim messages' })
 vim.keymap.set('n', '<LEADER>.c', '<CMD>messages clear<CR>', { desc = 'vim messages clear' })
+
+-- go to next ) and then a
+-- vim.keymap.set('i', '<C-S-n>', '<Esc>%%a', { desc = 'place cursor after next )' })
+
+-- only works in kitty without tmux and using autocmd to send csi u
+-- map("i", "<tab>", "a", default_options)
+-- map("i", "<C-m>", "m", default_options)
+
+-- map('n', '<F5>', ':luafile %<CR>', default_options)
