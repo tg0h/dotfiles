@@ -242,9 +242,6 @@ local M = {
     },
 
     -- config ####################################################################################
-    { '<LEADER>cg', '<CMD>messages<CR>', desc = 'vim messages' },
-    { '<LEADER>cc', '<CMD>messages clear<CR>', desc = 'vim messages clear' },
-    { '<LEADER>cc', '<CMD>messages clear<CR>', desc = 'vim messages clear' },
     {
       '<LEADER>cd',
       function()
