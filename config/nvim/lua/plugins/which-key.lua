@@ -88,22 +88,13 @@ local M = {
 
     local keyMaps = {
       h = { name = 'diagnostics' },
-      r = {
-        name = 'Notes',
-      },
-      -- d = {
-      --   name = 'Trouble',
-      -- },
-
+      r = { name = 'Notes' },
       c = { name = 'config' },
       s = { name = 'search' },
-
-      -- b = { name = 'Buffers' },
       f = { name = 'Files' },
       n = { name = 'neovim core' },
-      g = {
-        name = 'Git',
-      },
+      g = { name = 'Git' },
+      ['.'] = { name = 'messages' },
       l = {
         name = 'LSP',
         -- A = { '<cmd>lua vim.lsp.buf.add_workspace_folder()<cr>', 'Add Workspace Folder' },
