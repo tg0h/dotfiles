@@ -15,7 +15,7 @@ vim.opt.runtimepath:prepend(lazypath)
 -- Must be before lazy
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.g.mapleader = ' '
-vim.keymap.set('n', '<leader>ml', '<cmd>Lazy<cr>')
+vim.keymap.set('n', '<leader><leader>', '<cmd>Lazy<cr>')
 
 require('lazy').setup('plugins', {
   root = vim.fn.stdpath('data') .. '/lazy', -- directory where plugins will be installed
