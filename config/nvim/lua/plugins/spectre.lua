@@ -4,7 +4,7 @@ return {
   dependencies = {
     'nvim-lua/plenary.nvim',
   },
-  config = function()
+  init = function()
     local wk = require('which-key')
     wk.register({
       R = { 'Replace' },
