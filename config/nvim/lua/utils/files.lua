@@ -26,3 +26,19 @@ function open_latest_changed_file()
     open_buf(buf_id)
   end
 end
+
+local M = {}
+function M.load_env()
+  -- Load environment variables from .env file
+  local env_file = os.getenv('XDG_CONFIG_HOME') .. '/secret/env'
+  local f = io.open(env_file, 'r')
+  if f then
+    for line in f:lines() do
+      local _, var, val = line:match('(export )([^=]+)=(.*)')
+      if var and val then vim.env[var] = val end
+    end
+    f:close()
+  end
+end
+
+return M
