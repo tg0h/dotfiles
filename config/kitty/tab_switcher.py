@@ -19,7 +19,8 @@ def handle_result(args: List[str], answer: str, target_window_id: int, boss: Bos
     cwd=args[2]
     tabColour=args[3]
     exe=args[4]
-    exe_arg=args[5]
+    exe_args= args[5::] # slice the args into a new list
+    print(f'exe_arg_list is{exe_args}')
 
     tab = get_tab(boss, title)
 
@@ -34,7 +35,7 @@ def handle_result(args: List[str], answer: str, target_window_id: int, boss: Bos
         f"--title={title}",
         f"--cwd={cwd}",
         exe,
-        exe_arg,
+        *exe_args # unpack the list (splat them)
         )
         tab = get_tab(boss, title)
         colour_tab(boss, tab, tabColour)
