@@ -225,12 +225,12 @@ local M = {
       desc = 'telescope diagnostics',
     },
     {
-      '<LEADER>tn',
+      '<LEADER>en',
       function() require('telescope.builtin').diagnostics({ layout_strategy = 'vertical', layout_config = { width = 0.9 } }) end,
       desc = 'telescope diagnostics',
     },
     {
-      '<LEADER>tt',
+      '<LEADER>et',
       function()
         require('telescope.builtin').diagnostics({
           layout_strategy = 'vertical',

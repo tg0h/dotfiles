@@ -6,18 +6,18 @@ local M = {
   },
   event = 'VeryLazy',
   keys = {
-    { '<LEADER>tw', '<CMD>Trouble workspace_diagnostics<CR>', desc = 'trouble workspace diagnostics' },
-    { '<LEADER>td', '<CMD>Trouble document_diagnostics<CR>', desc = 'trouble document diagnostics' },
-    { '<LEADER>tl', '<CMD>Trouble loclist<CR>', desc = 'trouble loclist' },
-    { '<LEADER>tq', '<CMD>Trouble quickfix<CR>', desc = 'trouble quickfix' },
-    { '<LEADER>tu', '<CMD>TodoTrouble<CR>', desc = 'trouble todos' },
-    { '<LEADER>tR', '<CMD>TroubleRefresh<CR>', desc = 'trouble refresh' },
-    { '<LEADER>ts', '<CMD>TroubleClose<CR>', desc = 'trouble close' },
-    { '<LEADER>th', '<CMD>TroubleToggle<CR>', desc = 'trouble toggle' },
+    { '<LEADER>ew', '<CMD>Trouble workspace_diagnostics<CR>', desc = 'trouble workspace diagnostics' },
+    { '<LEADER>ed', '<CMD>Trouble document_diagnostics<CR>', desc = 'trouble document diagnostics' },
+    { '<LEADER>el', '<CMD>Trouble loclist<CR>', desc = 'trouble loclist' },
+    { '<LEADER>eq', '<CMD>Trouble quickfix<CR>', desc = 'trouble quickfix' },
+    { '<LEADER>eu', '<CMD>TodoTrouble<CR>', desc = 'trouble todos' },
+    { '<LEADER>eR', '<CMD>TroubleRefresh<CR>', desc = 'trouble refresh' },
+    { '<LEADER>es', '<CMD>TroubleClose<CR>', desc = 'trouble close' },
+    { '<LEADER>eh', '<CMD>TroubleToggle<CR>', desc = 'trouble toggle' },
   },
   config = function()
     local wk = require('which-key')
-    wk.register({ d = {
+    wk.register({ e = {
       name = 'Trouble',
     } }, { prefix = '<LEADER>', mode = 'n' })
     require('trouble').setup({
