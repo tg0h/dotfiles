@@ -163,9 +163,9 @@ return {
     })
 
     wk.register({
-      z = {
+      t = {
         name = 'ChatGPT',
-        c = { '<cmd>ChatGPT<CR>', 'ChatGPT' },
+        h = { '<cmd>ChatGPT<CR>', 'ChatGPT' },
         e = { '<cmd>ChatGPTEditWithInstruction<CR>', 'Edit with instruction' },
         g = { '<cmd>ChatGPTRun grammar_correction<CR>', 'Grammar Correction' },
         t = { '<cmd>ChatGPTRun translate<CR>', 'Translate' },
