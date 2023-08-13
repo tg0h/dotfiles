@@ -2,7 +2,8 @@ return {
   {
     'echasnovski/mini.surround',
     -- enabled = false,
-    event = { 'BufReadPre', 'BufNewFile' },
+    -- event = { 'BufReadPre', 'BufNewFile' },
+    event = 'VeryLazy',
     opts = {
       -- Number of lines within which surrounding is searched
       n_lines = 150,
@@ -24,7 +25,8 @@ return {
   },
   {
     'echasnovski/mini.align',
-    event = { 'BufReadPre', 'BufNewFile' },
+    -- event = { 'BufReadPre', 'BufNewFile' },
+    event = 'VeryLazy',
     -- is not loaded without explicitly saying it
     config = true,
     -- Press s to enter split Lua pattern.
