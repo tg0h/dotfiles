@@ -60,11 +60,6 @@ return {
   config = function(_, opts)
     require('lsp_signature').setup(opts)
 
-    vim.keymap.set(
-      'n',
-      '<A-l>',
-      ':lua require("lsp_signature").toggle_float_win()<CR>',
-      { desc = 'lsp_signature toggle float win' }
-    ) -- signature help
+    vim.keymap.set('n', '<A-l>', ':lua require("lsp_signature").toggle_float_win()<CR>', { desc = 'lsp_signature toggle float win' }) -- signature help
   end,
 }

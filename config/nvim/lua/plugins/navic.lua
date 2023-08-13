@@ -9,9 +9,7 @@ return {
     -- add navic to winbar
     vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
     require('utils').on_attach(function(client, buffer)
-      if client.server_capabilities.documentSymbolProvider then
-        require('nvim-navic').attach(client, buffer)
-      end
+      if client.server_capabilities.documentSymbolProvider then require('nvim-navic').attach(client, buffer) end
     end)
 
     -- vim.api.nvim_set_hl(0, 'NavicIconsFile', { default = true, bg = '#000000', fg = '#ffffff' })

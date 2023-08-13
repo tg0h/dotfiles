@@ -22,9 +22,7 @@ local function cs(trigger, nodes, opts) -- {{{
 
   if opts ~= nil then
     if type(opts) == 'string' then
-      if opts == 'auto' then
-        target_table = autosnippets
-      end
+      if opts == 'auto' then target_table = autosnippets end
     end
   end
 

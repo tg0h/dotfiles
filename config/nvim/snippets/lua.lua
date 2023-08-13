@@ -25,9 +25,7 @@ local function cs(trigger, nodes, opts) -- {{{
 
   if opts ~= nil then
     -- check for custom pattern
-    if opts.pattern then
-      pattern = opts.pattern
-    end
+    if opts.pattern then pattern = opts.pattern end
 
     -- if opts is a string
     if type(opts) == 'string' then
@@ -56,9 +54,7 @@ local function cs(trigger, nodes, opts) -- {{{
           pattern = pattern,
           group = group,
           callback = function()
-            vim.keymap.set(keymap[1], keymap[2], function()
-              ls.snip_expand(snippet)
-            end, { noremap = true, silent = true, buffer = true })
+            vim.keymap.set(keymap[1], keymap[2], function() ls.snip_expand(snippet) end, { noremap = true, silent = true, buffer = true })
           end,
         })
       end
@@ -82,13 +78,9 @@ cs({ -- github import for packer{{{
   hidden = true,
 }, {
   t([[use "]]),
-  f(function(_, snip)
-    return snip.captures[1]
-  end),
+  f(function(_, snip) return snip.captures[1] end),
   t('/'),
-  f(function(_, snip)
-    return snip.captures[2]
-  end),
+  f(function(_, snip) return snip.captures[2] end),
   t({ [["]], '' }),
   i(1, ''),
 }, 'auto') -- }}}
@@ -185,9 +177,7 @@ local sss = s(
   c(1, {
     t('Ugh boring, a text node'),
     i(nil, 'At least I can edit something now...'),
-    f(function(args)
-      return 'Still only counts as text!!'
-    end, {}),
+    f(function(args) return 'Still only counts as text!!' end, {}),
   })
 )
 table.insert(snippets, sss)
@@ -236,12 +226,7 @@ fn {} () {} {{
     { i(1, 'testname'), get_test_result(2), i(0) }
   )
 )
-cs(
-  'curtime',
-  f(function()
-    return os.date('%D - %H:%M')
-  end)
-)
+cs('curtime', f(function() return os.date('%D - %H:%M') end))
 
 local same = function(index)
   return f(function(arg)

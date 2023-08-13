@@ -222,14 +222,10 @@ local M = {
 
     -- toggle <Home> and <End> to switch between the start and end of range
     -- This repeats the last query with always previous direction and to the START of the range.
-    vim.keymap.set({ 'n', 'x', 'o' }, '<Home>', function()
-      ts_repeat_move.repeat_last_move({ forward = false, start = true })
-    end)
+    vim.keymap.set({ 'n', 'x', 'o' }, '<Home>', function() ts_repeat_move.repeat_last_move({ forward = false, start = true }) end)
 
     -- This repeats the last query with always next direction and to the END of the range.
-    vim.keymap.set({ 'n', 'x', 'o' }, '<End>', function()
-      ts_repeat_move.repeat_last_move({ forward = true, start = false })
-    end)
+    vim.keymap.set({ 'n', 'x', 'o' }, '<End>', function() ts_repeat_move.repeat_last_move({ forward = true, start = false }) end)
 
     vim.keymap.set({ 'n' }, '<S-C-/>', vim.cmd.TSPlaygroundToggle)
   end,

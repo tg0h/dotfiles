@@ -5,16 +5,12 @@ return {
 
     {
       '<C-M-c>',
-      function()
-        require('tg.toggle-coverage').toggle_coverage()
-      end,
+      function() require('tg.toggle-coverage').toggle_coverage() end,
       desc = 'toggle nvim coverage',
     },
     {
       '<C-M-d>',
-      function()
-        require('tg.toggle-coverage').toggle_summary()
-      end,
+      function() require('tg.toggle-coverage').toggle_summary() end,
       desc = 'toggle nvim coverage summary',
     },
     {

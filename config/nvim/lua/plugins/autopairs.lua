@@ -46,9 +46,7 @@ local M = {
 
     npairs.add_rules({
       -- js anonymous func arrow key ()=> adds {}
-      Rule('%(.*%)%s*%=>$', ' {  }', { 'typescript', 'typescriptreact', 'javascript' })
-        :use_regex(true)
-        :set_end_pair_length(2),
+      Rule('%(.*%)%s*%=>$', ' {  }', { 'typescript', 'typescriptreact', 'javascript' }):use_regex(true):set_end_pair_length(2),
     })
   end,
 }

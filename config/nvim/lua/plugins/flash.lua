@@ -105,9 +105,7 @@ return {
       ---@field hl_group string
       ---@field after boolean
       ---@type fun(opts:Flash.Format): string[][]
-      format = function(opts)
-        return { { opts.match.label, opts.hl_group } }
-      end,
+      format = function(opts) return { { opts.match.label, opts.hl_group } } end,
     },
     highlight = {
       -- show a backdrop with hl FlashBackdrop

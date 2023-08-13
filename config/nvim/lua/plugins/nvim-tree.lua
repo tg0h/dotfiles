@@ -11,9 +11,7 @@ local M = {
     local view = require('nvim-tree.view')
     local api = require('nvim-tree.api')
 
-    local function collapse_all()
-      require('nvim-tree.actions.tree-modifiers.collapse-all').fn()
-    end
+    local function collapse_all() require('nvim-tree.actions.tree-modifiers.collapse-all').fn() end
 
     local function edit_or_open()
       -- open as vsplit on current node
@@ -65,9 +63,7 @@ local M = {
     local function on_attach(bufnr)
       local api = require('nvim-tree.api')
 
-      local function opts(desc)
-        return { desc = 'nvim-tree: ' .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
-      end
+      local function opts(desc) return { desc = 'nvim-tree: ' .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true } end
 
       vim.keymap.set('n', '<CR>', api.node.open.edit, opts('Open'))
       -- vim.keymap.set('n', '<C-e>', api.node.open.replace_tree_buffer, opts('Open: In Place')) -- open in same pane as nvim tree

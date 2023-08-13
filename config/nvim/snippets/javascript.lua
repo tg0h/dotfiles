@@ -25,9 +25,7 @@ local function cs(trigger, nodes, opts) -- {{{
 
   if opts ~= nil then
     -- check for custom pattern
-    if opts.pattern then
-      pattern = opts.pattern
-    end
+    if opts.pattern then pattern = opts.pattern end
 
     -- if opts is a string
     if type(opts) == 'string' then
@@ -56,9 +54,7 @@ local function cs(trigger, nodes, opts) -- {{{
           pattern = pattern,
           group = group,
           callback = function()
-            vim.keymap.set(keymap[1], keymap[2], function()
-              ls.snip_expand(snippet)
-            end, { noremap = true, silent = true, buffer = true })
+            vim.keymap.set(keymap[1], keymap[2], function() ls.snip_expand(snippet) end, { noremap = true, silent = true, buffer = true })
           end,
         })
       end
@@ -115,9 +111,7 @@ if ({}) {}
       -- return sn(1, i(1, snip.captures[1]))
       return sn(1, t(snip.captures[1]))
     end),
-    d(2, function(_, snip)
-      return sn(2, t(snip.captures[2]))
-    end),
+    d(2, function(_, snip) return sn(2, t(snip.captures[2])) end),
     i(3, ''),
   }
 )
@@ -125,9 +119,7 @@ local short_hand_if_statement = s({ trig = 'if[>%s](.+)>>(.+)\\', regTrig = true
 
 local short_hand_if_statement_return_shortcut = s(
   { trig = '(if[>%s].+>>)[r<]', regTrig = true, hidden = true },
-  { f(function(_, snip)
-    return snip.captures[1]
-  end), t('return ') }
+  { f(function(_, snip) return snip.captures[1] end), t('return ') }
 ) -- }}}
 table.insert(autosnippets, if_snippet)
 table.insert(autosnippets, short_hand_if_statement)
@@ -148,9 +140,7 @@ for (let {} = 0; {} < {}; {}++) {{
 {}
     ]],
     {
-      d(1, function(_, snip)
-        return sn(1, i(1, snip.captures[1]))
-      end),
+      d(1, function(_, snip) return sn(1, i(1, snip.captures[1])) end),
       rep(1),
       c(2, { i(1, 'num'), sn(1, { i(1, 'arr'), t('.length') }) }), -- wrap in snippet node - you can change arr and .length remains the same
       rep(1),

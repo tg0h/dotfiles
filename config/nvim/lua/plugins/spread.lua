@@ -5,16 +5,12 @@ return {
   keys = {
     {
       '<M-C-a>',
-      function()
-        require('spread').combine()
-      end,
+      function() require('spread').combine() end,
       desc = 'spread combine',
     },
     {
       '<M-C-i>',
-      function()
-        require('spread').out()
-      end,
+      function() require('spread').out() end,
       desc = 'spread split',
     },
   },

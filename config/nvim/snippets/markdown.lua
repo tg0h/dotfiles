@@ -36,9 +36,7 @@ local function cs(trigger, nodes, keymap) -- > cs stands for create snippet
       pattern = pattern,
       group = group,
       callback = function()
-        map({ 'i' }, keymap, function()
-          ls.snip_expand(snippet)
-        end, opts)
+        map({ 'i' }, keymap, function() ls.snip_expand(snippet) end, opts)
       end,
     })
   end

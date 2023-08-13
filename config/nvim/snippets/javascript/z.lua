@@ -26,9 +26,7 @@ local function cs(trigger, nodes, opts) -- {{{
 
   if opts ~= nil then
     -- check for custom pattern
-    if opts.pattern then
-      pattern = opts.pattern
-    end
+    if opts.pattern then pattern = opts.pattern end
 
     -- if opts is a string
     if type(opts) == 'string' then
@@ -57,9 +55,7 @@ local function cs(trigger, nodes, opts) -- {{{
           pattern = pattern,
           group = group,
           callback = function()
-            vim.keymap.set(keymap[1], keymap[2], function()
-              ls.snip_expand(snippet)
-            end, { noremap = true, silent = true, buffer = true })
+            vim.keymap.set(keymap[1], keymap[2], function() ls.snip_expand(snippet) end, { noremap = true, silent = true, buffer = true })
           end,
         })
       end

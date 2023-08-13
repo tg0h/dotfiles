@@ -6,9 +6,7 @@ return {
     keys = {
       {
         '<A-i>',
-        function()
-          require('toggle-interface').Toggle()
-        end,
+        function() require('toggle-interface').Toggle() end,
         desc = 'toggle interface file',
       },
     },
@@ -20,9 +18,7 @@ return {
     keys = {
       {
         '<A-.>',
-        function()
-          require('toggle-test').Toggle()
-        end,
+        function() require('toggle-test').Toggle() end,
         desc = 'toggle test file',
       },
     },
@@ -34,16 +30,12 @@ return {
     keys = {
       {
         '<M-p>',
-        function()
-          require('test-runner').run_test()
-        end,
+        function() require('test-runner').run_test() end,
         desc = 'run all tests',
       },
       {
         '<M-y>',
-        function()
-          require('test-runner').run_single_test()
-        end,
+        function() require('test-runner').run_single_test() end,
         desc = 'run single test',
       },
     },

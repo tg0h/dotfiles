@@ -6,9 +6,7 @@ vim.api.nvim_create_autocmd({ 'BufEnter', 'FocusGained', 'InsertLeave' }, {
     buftype = vim.bo.buftype
     -- print('buftype is' .. buftype)
     -- print('filetype is' .. vim.o.filetype)
-    if vim.o.filetype ~= 'toggleterm' then
-      vim.opt.relativenumber = true
-    end
+    if vim.o.filetype ~= 'toggleterm' then vim.opt.relativenumber = true end
   end,
   group = numberToggleGroup,
 })
@@ -18,9 +16,7 @@ vim.api.nvim_create_autocmd({ 'BufLeave', 'FocusLost', 'InsertEnter' }, {
     buftype = vim.bo.buftype
     -- print('buftype is' .. buftype)
     -- print('filetype is' .. vim.o.filetype)
-    if vim.o.filetype ~= 'toggleterm' then
-      vim.opt.relativenumber = false
-    end
+    if vim.o.filetype ~= 'toggleterm' then vim.opt.relativenumber = false end
   end,
   group = numberToggleGroup,
 })
@@ -93,10 +89,7 @@ if vim.env.TERM == 'xterm-kitty' then
   vim.cmd([[autocmd UILeave * if v:event.chan ==# 0 | call chansend(v:stderr, "\x1b[<1u") | endif]])
 end
 
-vim.api.nvim_create_autocmd(
-  { 'BufWritePre' },
-  { pattern = { '*.tsx', '*.ts', '*.jsx', '*.js' }, command = 'EslintFixAll' }
-)
+vim.api.nvim_create_autocmd({ 'BufWritePre' }, { pattern = { '*.tsx', '*.ts', '*.jsx', '*.js' }, command = 'EslintFixAll' })
 
 vim.api.nvim_create_autocmd({ 'FileType' }, {
   pattern = { '*' },

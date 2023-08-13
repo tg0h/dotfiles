@@ -14,20 +14,17 @@ local flatten = vim.tbl_flatten
 return function(opts)
   opts = opts or {}
   opts.cwd = opts.cwd and vim.fn.expand(opts.cwd) or vim.loop.cwd()
-  opts.shortcuts = opts.shortcuts
-    or {
-      ['l'] = '*.lua',
-      ['v'] = '*.vim',
-      ['n'] = '*.{vim,lua}',
-      ['c'] = '*.c',
-    }
+  opts.shortcuts = opts.shortcuts or {
+    ['l'] = '*.lua',
+    ['v'] = '*.vim',
+    ['n'] = '*.{vim,lua}',
+    ['c'] = '*.c',
+  }
   opts.pattern = opts.pattern or '%s'
 
   local custom_grep = finders.new_async_job({
     command_generator = function(prompt)
-      if not prompt or prompt == '' then
-        return nil
-      end
+      if not prompt or prompt == '' then return nil end
 
       -- add 2 spaces to pass a glob to rg
       local prompt_split = vim.split(prompt, '  ')

@@ -51,9 +51,7 @@ local M = {
     },
     {
       '<LEADER>f.',
-      function()
-        require('telescope').load_extension('file_browser').file_browser()
-      end,
+      function() require('telescope').load_extension('file_browser').file_browser() end,
       desc = 'file_browser()',
     },
     { '<LEADER>fr', '<CMD>Telescope oldfiles<CR>', desc = 'old files (Recent files)' },
@@ -71,9 +69,7 @@ local M = {
     { '<LEADER>na', '<CMD>Telescope autocommands<CR>', desc = 'autocommands' },
     {
       '<LEADER>nb',
-      function()
-        require('telescope.builtin').buffers({ sort_mru = true, ignore_current_buffer = true })
-      end,
+      function() require('telescope.builtin').buffers({ sort_mru = true, ignore_current_buffer = true }) end,
       desc = 'search open buffers (ignore current buffer)',
     },
     { '<LEADER>nc', '<CMD>Telescope commands<CR>', desc = 'commands' },
@@ -133,9 +129,7 @@ local M = {
     },
     {
       '<LEADER>n.',
-      function()
-        require('telescope.').load_extension('neoclip').default()
-      end,
+      function() require('telescope.').load_extension('neoclip').default() end,
       desc = 'neoclip',
     },
     -- telescope #########################################################################################
@@ -164,9 +158,7 @@ local M = {
     -- telescope git ####################################################################################
     {
       '<LEADER>gs',
-      function()
-        require('telescope.builtin').git_status({ layout_config = { width = 0.99, preview_width = 0.5 } })
-      end,
+      function() require('telescope.builtin').git_status({ layout_config = { width = 0.99, preview_width = 0.5 } }) end,
       desc = 'telescope git status',
     },
     { '<LEADER>gt', '<CMD>Telescope git_stash<CR>', desc = 'telescope git stash' },
@@ -217,32 +209,24 @@ local M = {
     { '<LEADER>sb', '<CMD>Telescope current_buffer_fuzzy_find<CR>', desc = 'telescope current buffer fuzzy find' },
     {
       '<LEADER>sg',
-      function()
-        require('tg.telescope-multi-rg')()
-      end,
+      function() require('tg.telescope-multi-rg')() end,
       desc = 'tj multi rg',
     },
     {
       '<LEADER>sh',
-      function()
-        require('telescope').load_extension('harpoon').marks()
-      end,
+      function() require('telescope').load_extension('harpoon').marks() end,
       desc = 'harpoon marks',
     },
 
     -- diagnostics ####################################################################################
     {
       '<S-M-f>',
-      function()
-        require('telescope.builtin').diagnostics({ layout_strategy = 'horizontal', layout_config = { width = 0.9 } })
-      end,
+      function() require('telescope.builtin').diagnostics({ layout_strategy = 'horizontal', layout_config = { width = 0.9 } }) end,
       desc = 'telescope diagnostics',
     },
     {
       '<LEADER>tn',
-      function()
-        require('telescope.builtin').diagnostics({ layout_strategy = 'vertical', layout_config = { width = 0.9 } })
-      end,
+      function() require('telescope.builtin').diagnostics({ layout_strategy = 'vertical', layout_config = { width = 0.9 } }) end,
       desc = 'telescope diagnostics',
     },
     {
@@ -274,9 +258,7 @@ local M = {
     },
     {
       '<LEADER>cn',
-      function()
-        require('telescope.builtin').find_files({ cwd = vim.env.DOTFILES .. '/config/nvim', hidden = true })
-      end,
+      function() require('telescope.builtin').find_files({ cwd = vim.env.DOTFILES .. '/config/nvim', hidden = true }) end,
       desc = 'search nvim config',
     },
     { '<LEADER>cr', '<CMD>Telescope reloader<CR>', desc = 'telescope reloader' },
@@ -284,9 +266,7 @@ local M = {
     -- wiki ####################################################################################
     {
       '<LEADER>rh',
-      function()
-        require('telescope.builtin').find_files({ cwd = vim.env.HOME .. '/src/me/wiki', hidden = false })
-      end,
+      function() require('telescope.builtin').find_files({ cwd = vim.env.HOME .. '/src/me/wiki', hidden = false }) end,
       desc = 'search wiki',
     },
     {
@@ -457,9 +437,7 @@ local M = {
         prefilter_sorter = require('telescope.sorters').get_fzy_sorter, -- wrapper sorter around generic sorter. used for lsp_*_symbols and lsp_*_diagnostics
         -- tiebreak = ... -- how to break tie when two entries have the same score
         file_ignore_patterns = nil, -- lua regex that defines files that should be ignored. eg { "^scratch/" } ignores all files in scratch directory. used by all pickers that have a file associated.
-        get_selection_window = function()
-          return 0
-        end, -- function that takes function(picker,entry) and returns window id. window id used to decide which window to open chosen file in
+        get_selection_window = function() return 0 end, -- function that takes function(picker,entry) and returns window id. window id used to decide which window to open chosen file in
         file_previewer = require('telescope.previewers').cat.new, -- mostly used for find_files, git_files and similar.
         grep_previewer = require('telescope.previewers').vimgrep.new, -- used for live_grep, grep_string and similar.
         qflist_previewer = require('telescope.previewers').qflist.new,
