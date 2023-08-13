@@ -1,80 +1,80 @@
 local map = vim.api.nvim_set_keymap
-default_options = { noremap = true, silent = true }
+-- {desc=''} = { noremap = true, silent = true }
 expr_options = { noremap = true, expr = true, silent = true }
 
 -- Map the leader key
--- map("n", "<Space>", "<NOP>", default_options)
+-- vim.keymap.set("n", "<Space>", "<NOP>", {desc=''})
 vim.g.mapleader = ' '
 -- vim.g.maplocalleader = ','
 -- vim.g.maplocalleader = '<BS>' --doesn't work
 
 -- Emacs emulation
-map('i', '<C-a>', '<Esc>I', default_options) -- go to beginning of line in insert mode
-map('i', '<C-e>', '<Esc>A', default_options) -- go to end of line in insert mode
-map('i', '<C-d>', '<Del>', default_options) -- go to end of line in insert mode
+vim.keymap.set('i', '<C-a>', '<Esc>I', { desc = 'go to beginning of line in insert mode' }) -- go to beginning of line in insert mode
+vim.keymap.set('i', '<C-e>', '<Esc>A', { desc = 'go to end of line in insert mode' }) -- go to end of line in insert mode
+vim.keymap.set('i', '<C-d>', '<Del>', { desc = 'delete in insert mode' })
 
 -- Help
-map('n', '<F1>', ':WhichKey<CR>', default_options) -- show all mappings
+vim.keymap.set('n', '<F1>', ':WhichKey<CR>', { desc = 'show all which key mappings' }) -- show all mappings
 
 -- nice defaults
-vim.keymap.set('n', '<C-d>', '<C-d>zz')
-vim.keymap.set('n', '<C-u>', '<C-u>zz')
+vim.keymap.set('n', '<C-d>', '<C-d>zz', { desc = 'centre after page down' })
+vim.keymap.set('n', '<C-u>', '<C-u>zz', { desc = 'centre after page up' })
 -- move lines, adds indent if moving eg into an if block
-map('v', 'J', ":m '>+1<CR>gv=gv", default_options)
-map('v', 'K', ":m '<-2<CR>gv=gv", default_options)
+vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv", { desc = 'move lines, adds indent if moving, eg into an if block' })
+vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", { desc = 'move lines, adds indent if moving, eg into an if block' })
 -- keep it centred when searching
-map('n', 'n', 'nzzzv', default_options) -- zv opens folds
-map('n', 'N', 'Nzzzv', default_options)
+vim.keymap.set('n', 'n', 'nzzzv', { desc = 'keep it centred when searching' }) -- zv opens folds
+vim.keymap.set('n', 'N', 'Nzzzv', { desc = 'keep it centred when searching' })
 -- keep cursor on same place when you normal J
-map('n', 'J', 'mzJ`z', default_options)
+vim.keymap.set('n', 'J', 'mzJ`z', { desc = 'keep cursor location after normal J' })
 -- granular undo break points
-map('i', ',', ',<C-g>u', default_options)
-map('i', '.', '.<C-g>u', default_options)
-map('i', '!', '!<C-g>u', default_options)
-map('i', '?', '?<C-g>u', default_options)
+vim.keymap.set('i', ',', ',<C-g>u', { desc = 'granular undo break points' })
+vim.keymap.set('i', '.', '.<C-g>u', { desc = 'granular undo break points' })
+vim.keymap.set('i', '!', '!<C-g>u', { desc = 'granular undo break points' })
+vim.keymap.set('i', '?', '?<C-g>u', { desc = 'granular undo break points' })
 -- vimscript . concats strings
 -- m' adds a context mark which also adds to the jump list as a side effect
 map('n', 'j', [[ (v:count > 5 ? "m'" . v:count : "") . 'j' ]], expr_options)
 map('n', 'k', [[ (v:count > 5 ? "m'" . v:count : "") . 'k' ]], expr_options)
 
--- map("n", "gx", ":!open <C-R><C-A><CR>", expr_options)
+-- vim.keymap.set("n", "gx", ":!open <C-R><C-A><CR>", expr_options)
 -- https://vi.stackexchange.com/questions/27255/how-can-i-make-a-single-mapping-take-effect-for-both-normal-mode-insert-mode-a (you can't)
 -- define for both normal and insert modes
-map('n', '<C-M-z>', ':cquit<CR>', default_options) -- exit with error code
-map('i', '<C-M-z>', '<Esc>:cquit<CR>', default_options) -- exit with error code
+vim.keymap.set('n', '<C-M-z>', ':cquit<CR>', { desc = 'normal mode exit with error code' }) -- exit with error code
+vim.keymap.set('i', '<C-M-z>', '<Esc>:cquit<CR>', { desc = 'insert mode exit with error code' }) -- exit with error code
 
-map('n', '<C-M-e>', ':w<CR>', default_options) -- normal mode save
-map('i', '<C-M-e>', '<Esc>:w<CR>a', default_options) -- insert mode save
+vim.keymap.set('n', '<C-M-e>', ':w<CR>', { desc = 'normal mode save' }) -- normal mode save
+vim.keymap.set('i', '<C-M-e>', '<Esc>:w<CR>a', { desc = 'insert mode save' }) -- insert mode save
 
-map('n', '<C-M-S>', ':wq<CR>', default_options) -- normal mode - save and exit
-map('i', '<C-M-S>', '<Esc>:wq<CR>', default_options) -- insert mode - save and exit
+vim.keymap.set('n', '<C-M-S>', ':wq<CR>', { desc = 'normal mode save and exit' }) -- normal mode - save and exit
+vim.keymap.set('i', '<C-M-S>', '<Esc>:wq<CR>', { desc = 'insert mode save and exit' }) -- insert mode - save and exit
 
-map('n', '<C-M-a>', '<Esc>:Dash<CR>', default_options) -- open dash docs with word under cursor
-map('n', '<M-->', 'yyp', default_options) -- open dash docs with word under cursor
+vim.keymap.set('n', '<C-M-a>', '<Esc>:Dash<CR>', { desc = '' }) -- open dash docs with word under cursor
+vim.keymap.set('n', '<M-->', 'yyp', { desc = '' }) -- open dash docs with word under cursor
 
-vim.keymap.set('n', '<LEADER>0', '"0p', { desc = 'paste 0 register' }) -- open dash docs with word under cursor
+vim.keymap.set('n', '<LEADER>0', '"0p', { desc = 'paste 0 register' })
 
 -- copied from primeagen - https://www.youtube.com/watch?v=w7i4amO_zaE&t=562s
 vim.keymap.set('x', '<LEADER>p', '"_dP', { desc = 'preserve " buffer when visual mode pasting' })
 
-map('n', '<C-z>', '<NOP>', default_options)
--- map("n", "<C-M-z>", "<Esc>:ZenMode<CR>", default_options)
+vim.keymap.set('n', '<C-z>', '<NOP>', { desc = 'disable background job' })
+-- vim.keymap.set("n", "<C-M-z>", "<Esc>:ZenMode<CR>", {desc=''})
 -- vim.keymap.set('n', '<D-:>', ':lua print "hello"<CR>')
 
 -- replace the word that the cursor is on ... I flag means don't ignore case
-vim.keymap.set('n', '<leader>a', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+vim.keymap.set('n', '<leader>a', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = 'replace word under cursor' })
 
 -- gg
-vim.keymap.set('n', '<LEADER>gg', '<CMD>silent !gg<CR>') --silent means supress all stdout (not added to message history)
+vim.keymap.set('n', '<LEADER>gg', '<CMD>silent !gg<CR>', { desc = 'commit with gg script' }) --silent means supress all stdout (not added to message history)
 
-vim.keymap.set('n', '<LEADER>.g', '<CMD>messages<CR>', { desc = 'vim messages' })
-vim.keymap.set('n', '<LEADER>.c', '<CMD>messages clear<CR>', { desc = 'vim messages clear' })
+vim.keymap.set('n', '<LEADER>.g', '<CMD>messages<CR>', { desc = 'show vim messages' })
+vim.keymap.set('n', '<LEADER>.c', '<CMD>messages clear<CR>', { desc = 'clear vim messages' })
 
 -- go to next ) and then a
 -- vim.keymap.set('i', '<C-S-n>', '<Esc>%%a', { desc = 'place cursor after next )' })
 
 -- only works in kitty without tmux and using autocmd to send csi u
--- map("i", "<tab>", "a", default_options)
--- map("i", "<C-m>", "m", default_options)
+-- vim.keymap.set("i", "<tab>", "a", {desc=''})
+-- vim.keymap.set("i", "<C-m>", "m", {desc=''})
 
--- map('n', '<F5>', ':luafile %<CR>', default_options)
+-- vim.keymap.set('n', '<F5>', ':luafile %<CR>', {desc=''})
