@@ -2,9 +2,9 @@ return {
   'rcarriga/nvim-notify',
   keys = {
     {
-      '<leader>un',
+      '<leader>nn',
       function() require('notify').dismiss({ silent = true, pending = true }) end,
-      desc = 'Dismiss all Notifications',
+      desc = 'dismiss all notify notifications',
     },
   },
   opts = {
