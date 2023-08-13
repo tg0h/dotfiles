@@ -158,3 +158,4 @@ brew 'dog'
 cask 'orbstack'
 brew 'hex' # modern hexdump
 brew 'hexyl'
+brew 'aichat'
