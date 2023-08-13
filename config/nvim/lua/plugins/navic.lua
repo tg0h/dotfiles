@@ -3,7 +3,7 @@
 -- etc - in the statusline.
 return {
   'SmiteshP/nvim-navic',
-  lazy = true,
+  event = 'VeryLazy',
   init = function()
     vim.g.navic_silence = true
     -- add navic to winbar
