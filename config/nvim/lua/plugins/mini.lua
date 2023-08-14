@@ -1,5 +1,5 @@
 return {
-  { 'echasnovski/mini.cursorword', opts = { delay = 100 }, event = 'VeryLazy' },
+  { 'echasnovski/mini.cursorword', opts = { delay = 100 }, event = 'VeryLazy', enabled = false },
   {
     'echasnovski/mini.ai',
     event = 'VeryLazy',
