@@ -57,7 +57,7 @@ vim.keymap.set('n', '<LEADER>0', '"0p', { desc = 'paste 0 register' })
 -- copied from primeagen - https://www.youtube.com/watch?v=w7i4amO_zaE&t=562s
 vim.keymap.set('x', '<LEADER>p', '"_dP', { desc = 'preserve " buffer when visual mode pasting' })
 
-vim.keymap.set('n', '<C-z>', '<NOP>', { desc = 'disable background job' })
+-- vim.keymap.set('n', '<C-z>', '<NOP>', { desc = 'disable background job' })
 -- vim.keymap.set("n", "<C-M-z>", "<Esc>:ZenMode<CR>", {desc=''})
 -- vim.keymap.set('n', '<D-:>', ':lua print "hello"<CR>')
 
