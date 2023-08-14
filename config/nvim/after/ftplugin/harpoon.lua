@@ -10,3 +10,5 @@ vim.fn.sign_place(0, 'my_sign', 'my_sign', bufnr, { lnum = 5, priority = 100 })
 
 vim.api.nvim_buf_set_keymap(0, 'n', '<C-j>', ':move +1<CR>', { desc = 'move harpoon menu item down' })
 vim.api.nvim_buf_set_keymap(0, 'n', '<C-k>', ':move -2<CR>', { desc = 'move harpoon menu item up' })
+
+-- vim.api.nvim_buf_set_keymap(0, 'n', '2', '2G<CR>', { desc = 'open harpoon item 2' })
