@@ -1,7 +1,7 @@
 return {
   'mbbill/undotree',
   config = function()
-    vim.keymap.set('n', '<S-C-A-u>', ':UndotreeToggle<CR>', default_options) -- undotree
-    vim.keymap.set('n', '<S-C-z>', ':UndotreeToggle<CR>', default_options) -- undotree
+    -- S-C-z in taken up by treesitter text object
+    vim.keymap.set('n', '<M-C-u>', ':UndotreeToggle<CR>', default_options) -- undotree
   end,
 }
