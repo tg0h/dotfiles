@@ -4,7 +4,7 @@ return {
   ---@type Flash.Config
   opts = {
     -- labels = "abcdefghijklmnopqrstuvwxyz",
-    labels = 'asdfghjklqwertyuiopzxcvbnm',
+    labels = "aoeuhtnsid',.pgcrlyf;qjkmwvzxb",
     search = {
       -- search/jump in all windows
       multi_window = true,
@@ -200,7 +200,8 @@ return {
       -- options used for treesitter selections
       -- `require("flash").treesitter()`
       treesitter = {
-        labels = 'abcdefghijklmnopqrstuvwxyz',
+        -- labels = 'abcdefghijklmnopqrstuvwxyz',
+        labels = "aoeuhtnsid',.pgcrlyf;qjkmwvzxb",
         jump = { pos = 'range' },
         search = { incremental = false },
         label = { before = true, after = true, style = 'inline' },
