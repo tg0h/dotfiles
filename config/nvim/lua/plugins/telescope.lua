@@ -99,7 +99,7 @@ local M = {
     },
     { '<LEADER>nk', '<CMD>Telescope keymaps<CR>', desc = 'keymaps' },
     { '<LEADER>nm', '<CMD>Telescope marks<CR>', desc = 'marks' },
-    { '<LEADER>no', '<CMD>Telescope options<CR>', desc = 'vim options' },
+    { '<LEADER>no', '<CMD>Telescope vim_options<CR>', desc = 'vim options' },
     { '<LEADER>nr', '<CMD>Telescope registers<CR>', desc = 'registers' },
     { '<LEADER>nwt', '<C-w>T', desc = 'move window to new tab' }, -- needs 2 windows eg S-M-b before it works
     { '<LEADER>nwx', '<C-w>x', desc = 'swap windows' },
