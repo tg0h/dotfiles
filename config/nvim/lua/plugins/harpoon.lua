@@ -25,7 +25,7 @@ local M = {
         -- filetypes that you want to prevent from adding to the harpoon list menu.
         excluded_filetypes = { 'harpoon' },
         -- set marks specific to each git branch inside git repository
-        mark_branch = false,
+        mark_branch = true,
 
         base_dirs = { '/Users/tim/src/playground/harpoon/monoRepoDeep', '/Users/tim/src/candy/main/referralcandy-main' },
       },
