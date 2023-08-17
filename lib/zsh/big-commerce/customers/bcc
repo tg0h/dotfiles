@@ -1,0 +1,9 @@
+#!/bin/zsh
+
+function bcc(){
+  # big commerce customer - bcc <customer id>
+  local customer_id=$1
+
+  https -p=HhBb --json https://api.bigcommerce.com/stores/$BG_STORE_HASH/v2/customers/$customer_id X-Auth-Token:$BG_ACCESS_TOKEN
+
+}
