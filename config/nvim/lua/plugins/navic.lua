@@ -4,6 +4,7 @@
 return {
   'SmiteshP/nvim-navic',
   event = 'VeryLazy',
+  enabled = false,
   init = function()
     vim.g.navic_silence = true
     -- add navic to winbar
