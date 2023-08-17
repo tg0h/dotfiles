@@ -159,3 +159,5 @@ cask 'orbstack'
 brew 'hex' # modern hexdump
 brew 'hexyl'
 brew 'aichat'
+tap 'ankitpokhrel/jira-cli'
+brew 'jira-cli'
