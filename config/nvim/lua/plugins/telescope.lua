@@ -164,7 +164,7 @@ local M = {
     { '<LEADER>gt', '<CMD>Telescope git_stash<CR>', desc = 'telescope git stash' },
     { '<LEADER>gc', '<CMD>Telescope git_commits<CR>', desc = 'telescope git commits' },
     { '<LEADER>gh', '<CMD>Telescope git_bcommits<CR>', desc = 'telescope git buffer commits (history)' },
-    { '<LEADER>gb', '<CMD>Telescope git_branches<CR>', desc = 'telescope git branches' },
+    { '<LEADER>gB', '<CMD>Telescope git_branches<CR>', desc = 'telescope git branches' }, -- use leader gb for toggle blame
     -- vim.keymap.set('n', '<LEADER>gg', ':Telescope gitdiffer diff<CR>', { desc = 'git diff since main' })
 
     -- search ####################################################################################
