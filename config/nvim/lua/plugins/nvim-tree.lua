@@ -146,7 +146,7 @@ local M = {
     -- vim.keymap.set('n', '<leader>ms', require('nvim-tree.api').marks.navigate.next, { desc = 'nvim-tree marks select' })
 
     vim.keymap.set('n', '<A-m>', ':NvimTreeToggle<CR>', { desc = 'nvim tree toggle' })
-    vim.keymap.set('n', '<A-b>', ':NvimTreeFindFile<CR>', { desc = 'nvim tree find file' })
+    -- vim.keymap.set('n', '<A-b>', ':NvimTreeFindFile<CR>', { desc = 'nvim tree find file' })
 
     local function openNvimTreeAndKeepOpen()
       if vim.fn.bufname():match('NvimTree_') then
