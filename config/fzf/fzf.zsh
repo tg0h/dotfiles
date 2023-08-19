@@ -13,6 +13,7 @@ source /opt/homebrew/opt/fzf/shell/key-bindings.zsh
 # hl - colour of matching substrings. -1 means accept the original colour
 # hl+ - colour of matching substrings on current line
 
+# --scrollbar '▌▐'
 export FZF_X_NVIM="execute(echo {} > /tmp/_nvim_cache && nvim {} > /dev/tty 2>&1)"
 # --info=inline
 export FZF_DEFAULT_OPTS="
@@ -22,9 +23,9 @@ export FZF_DEFAULT_OPTS="
 --reverse
 --multi
 --cycle
---color='gutter:-1,hl:-1:underline:#03ff13,hl+:-1:underline:reverse'
+--color='gutter:-1,hl:-1:underline:#03ff13,hl+:-1:underline:reverse,scrollbar:grey,preview-scrollbar:grey'
 --separator=''
---scrollbar '▌▐'
+--scrollbar='▏▏'
 
 --header-first
 --header=$'⌃H ⌃S ⌃A ⌃Y ⌃E ⌃␣ ⌥C ⇧⌥C F2' \
