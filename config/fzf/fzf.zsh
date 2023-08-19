@@ -24,6 +24,7 @@ export FZF_DEFAULT_OPTS="
 --cycle
 --color='gutter:-1,hl:-1:underline:#03ff13,hl+:-1:underline:reverse'
 --separator=''
+--scrollbar '▌▐'
 
 --header-first
 --header=$'⌃H ⌃S ⌃A ⌃Y ⌃E ⌃␣ ⌥C ⇧⌥C F2' \
