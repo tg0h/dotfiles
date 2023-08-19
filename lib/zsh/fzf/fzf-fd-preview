@@ -2,9 +2,13 @@
 
 function fzf-fd-preview(){
   # previews files or directories
-
   local entry=$1
-  if [[ $(file --mime $entry) =~ inode/directory ]]; then 
+
+  if [[ $(file --mime $entry) =~ (jpeg|png) ]]; then 
+    # chafa --format symbols -s 100x100 $entry
+    viu --blocks $entry
+    # chafa --format kitty $entry
+  elif [[ $(file --mime $entry) =~ inode/directory ]]; then 
     exa --tree --long --icons --git --color always --octal-permissions --sort created --reverse $entry 
   else
     bat --style=numbers,header-filename --color=always $entry
