@@ -262,12 +262,12 @@ local M = {
 
     -- wiki ####################################################################################
     {
-      '<LEADER>rh',
+      '<LEADER>wh',
       function() require('telescope.builtin').find_files({ cwd = vim.env.HOME .. '/src/me/wiki', hidden = false }) end,
       desc = 'search wiki',
     },
     {
-      '<LEADER>rt',
+      '<LEADER>wm',
       function()
         require('telescope.builtin').find_files({
           cwd = vim.env.XDG_DOCUMENTS_DIR .. '/candy/wiki',

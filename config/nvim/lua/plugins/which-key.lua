@@ -93,6 +93,7 @@ local M = {
       s = { name = 'search' },
       f = { name = 'Files' },
       m = { name = 'misc' },
+      w = { name = 'wiki' },
       n = { name = 'neovim core' },
       g = { name = 'Git' },
       ['.'] = { name = 'messages' },
