@@ -66,6 +66,12 @@ vim.keymap.set('n', '<leader>a', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 
 -- gg
 vim.keymap.set('n', '<LEADER>gg', '<CMD>silent !gg<CR>', { desc = 'commit with gg script' }) --silent means supress all stdout (not added to message history)
+vim.keymap.set(
+  'n',
+  '<LEADER>go',
+  '<CMD>silent !gg -a<CR>',
+  { desc = 'commit with gg script - only commit files that have already been added' }
+)
 
 vim.keymap.set('n', '<LEADER>.g', '<CMD>messages<CR>', { desc = 'show vim messages' })
 vim.keymap.set('n', '<LEADER>.c', '<CMD>messages clear<CR>', { desc = 'clear vim messages' })
