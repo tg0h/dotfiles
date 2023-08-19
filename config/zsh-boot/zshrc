@@ -102,6 +102,7 @@ fi
 # set up the default profile stored in xdg state
 # may slow down yabai if asst is unable to set the token, since yabai calls zsh -c <command> to run a command
 
-as $(asg) > /dev/null
+# set the profile (either personal aws or work aws profile)
+# as $(asg) > /dev/null
 
 # zprof # turn this on to profile zsh (with zmodload zsh/zprof above)
