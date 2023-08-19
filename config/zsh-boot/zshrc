@@ -18,7 +18,8 @@ export HISTTIMEFORMAT="%Y-%m-%dT%H:%M:%S " # Show the timestamp for each entry o
 setopt SHARE_HISTORY # share history between terminals running at the same time, adds the strange numbers to the beginning of each line in the history file
 setopt EXTENDED_HISTORY # record timestamp of command in HISTFLE
 
-export NVM_AUTO_USE=true # zsh-nvm plugin autoloads .nvmrc, set before the plugins array
+# do NOT turn auto_use on... it slows down cd to 0.2s :(
+export NVM_AUTO_USE=false # zsh-nvm plugin autoloads .nvmrc, set before the plugins array
 export NVM_LAZY_LOAD=true  # zsh-nvm lazy load
 ZSH_EVALCACHE_DIR=$XDG_CACHE_HOME/zsh-evalcache
 
