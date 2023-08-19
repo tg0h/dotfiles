@@ -5,17 +5,21 @@ function gg(){
   # gg -e - allow an empty commit
   # gg -e <message> - allow an empty commit, specify message
   # gg -c - commit, specify checkpoint message 
+  # gg -p '/tmp/tim' -e - specify a dir
+  # gg -a - do not auto add files, only commit files that are already added
 
   local allowEmpty=false
   local isCheckpoint=false
   local checkpointMessage="🚧🚧🚧 checkpoint 🚧🚧🚧"
   local gitPath
+  local doNotAdd=""
 
-  while getopts 'ecp:' opt; do
+  while getopts 'ecp:a' opt; do
     case "$opt" in
       e) allowEmpty=true;;
       c) isCheckpoint=true;;
       p) gitPath="-C ""$OPTARG";;
+      a) doNotAdd=true;;
     esac
   done
   shift $(($OPTIND - 1))
@@ -24,7 +28,11 @@ function gg(){
 
   $isCheckpoint && message=$checkpointMessage
 
-  git ${=gitPath} add --all # git add . only works if at root of worktree
+  if [[ -n "$doNotAdd" ]]; then
+  else
+    git ${=gitPath} add --all # git add . only works if at root of worktree
+  fi
+
   if [ -z "$message" ]; then
     # just get the filename from the first line and use that as the commit message
     # copy from the 4th char onwards
