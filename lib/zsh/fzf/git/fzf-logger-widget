@@ -9,9 +9,9 @@ function fzf-logger-widget(){
 
   local HEADER=$(cat <<-EOF
      ⌃ e - git show
-     ⌃ l - default | ⌃ r - grep (search message) | ⌃ t - author
+     ⌃ l - default | ⌃ r - grep (search message) | ⌃ b - author
    ⌃ g/t - -S/-G pickaxe (search patch content)
- ⌃ f/h/b - all/200/500 commits
+ ⌃ f/h - all/200 commits
 EOF
 )
 
@@ -47,9 +47,6 @@ EOF
                 glo -n 200
               )+change-prompt(200 > )" \
     --bind "ctrl-b:+reload(
-                glo -n 500
-              )+change-prompt(500 > )" \
-    --bind "ctrl-t:+reload(
                 glo -i -n 500 -u {q}
               )+change-prompt(author > )+clear-query" \
     --bind "ctrl-e:execute(
