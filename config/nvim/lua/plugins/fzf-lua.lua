@@ -166,6 +166,8 @@ return {
         ['--height'] = '100%',
         ['--layout'] = 'reverse',
         ['--border'] = 'none',
+        ['--separator'] = ' ', -- get rid of annoying border on search line
+        -- ['--header-first'] = '',
       },
       previewers = {
         cat = {
