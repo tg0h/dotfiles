@@ -14,24 +14,24 @@ local M = {
   keys = {
     -- MAPS ----------------------------------------------------------------------------------------
     -- project
-    {
-      '<C-p>',
-      function()
-        require('telescope.builtin').git_files({
-          hidden = false,
-          layout_strategy = 'vertical',
-          layout_config = {
-            height = 0.99,
-            -- anchor = 'E',
-            width = 0.9,
-            prompt_position = 'top',
-            preview_height = 0.5,
-            mirror = true,
-          },
-        })
-      end,
-      desc = 'git files',
-    },
+    -- {
+    --   '<C-p>',
+    --   function()
+    --     require('telescope.builtin').git_files({
+    --       hidden = false,
+    --       layout_strategy = 'vertical',
+    --       layout_config = {
+    --         height = 0.99,
+    --         -- anchor = 'E',
+    --         width = 0.9,
+    --         prompt_position = 'top',
+    --         preview_height = 0.5,
+    --         mirror = true,
+    --       },
+    --     })
+    --   end,
+    --   desc = 'git files',
+    -- },
     {
       '<S-C-->',
       '<CMD>Telescope commands<CR>',
@@ -54,7 +54,7 @@ local M = {
       function() require('telescope').load_extension('file_browser').file_browser() end,
       desc = 'file_browser()',
     },
-    { '<LEADER>fr', '<CMD>Telescope oldfiles<CR>', desc = 'old files (Recent files)' },
+    -- { '<LEADER>fr', '<CMD>Telescope oldfiles<CR>', desc = 'old files (Recent files)' },
     {
       '<LEADER>fe',
       function()
@@ -168,7 +168,7 @@ local M = {
     -- vim.keymap.set('n', '<LEADER>gg', ':Telescope gitdiffer diff<CR>', { desc = 'git diff since main' })
 
     -- search ####################################################################################
-    { '<LEADER>st', '<CMD>Telescope live_grep<CR>', desc = 'telescope live_grep' },
+    -- { '<LEADER>st', '<CMD>Telescope live_grep<CR>', desc = 'telescope live_grep' },
     {
       '<LEADER>ss',
       function()

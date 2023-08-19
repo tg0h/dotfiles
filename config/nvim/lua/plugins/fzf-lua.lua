@@ -4,7 +4,21 @@ return {
   dependencies = { 'nvim-tree/nvim-web-devicons' },
   event = 'VeryLazy',
   keys = {
-    { '<LEADER>rg', '<CMD>FzfLua live_grep<CR> rg', desc = 'fzf lua live grep' },
+    { '<LEADER>r.', '<CMD>FzfLua<CR>', desc = 'fzf lua live grep' },
+    { '<LEADER>rl', '<CMD>FzfLua grep_last<CR>', desc = 'fzf grep last' },
+    { '<LEADER>re', '<CMD>FzfLua grep_cword<CR>', desc = 'fzf grep cursor word' },
+    { '<LEADER>ru', '<CMD>FzfLua grep_cWORD<CR>', desc = 'fzf grep cursor WORD' },
+    { '<LEADER>rp', '<CMD>FzfLua grep_project<CR>', desc = 'fzf grep project lines' },
+    { '<LEADER>rb', '<CMD>FzfLua lgrep_curbuf<CR>', desc = 'fzf live grep current bufer' },
+    { '<LEADER>rg', '<CMD>FzfLua live_grep<CR>', desc = 'fzf lua live grep' },
+    { '<LEADER>rr', '<CMD>FzfLua live_grep_resume<CR>', desc = 'fzf live grep resume' },
+    { '<LEADER>rf', '<CMD>FzfLua live_grep_glob<CR>', desc = 'fzf live grep glob' },
+    { '<LEADER>r,', '<CMD>FzfLua live_grep_native<CR>', desc = 'fzf live grep native' },
+
+    { '<C-p>', '<CMD>FzfLua git_files<CR>', desc = 'fzf git files' },
+    { '<C-,>', '<CMD>FzfLua files<CR>', desc = 'fzf files' },
+
+    { '<LEADER>fr', '<CMD>FzfLua oldfiles<CR>', desc = 'fzf oldfiles' },
   },
   opts = function()
     local actions = require('fzf-lua.actions')
@@ -218,6 +232,7 @@ return {
           -- ext_ft_override = { ["ksql"] = "sql", ... },
         },
       },
+
       -- provider setup
 
       files = {
