@@ -104,21 +104,21 @@ return {
         -- delete or modify is sufficient
         builtin = {
           -- neovim `:tmap` mappings for the fzf win
-          ['<F1>'] = 'toggle-help',
+          ['?'] = 'toggle-help',
           ['<F2>'] = 'toggle-fullscreen',
           -- Only valid with the 'builtin' previewer
           ['<F3>'] = 'toggle-preview-wrap',
-          ['<F4>'] = 'toggle-preview',
+          ['<C-z>'] = 'toggle-preview',
           -- Rotate preview clockwise/counter-clockwise
           ['<F5>'] = 'toggle-preview-ccw',
-          ['<F6>'] = 'toggle-preview-cw',
+          ['<C-/>'] = 'toggle-preview-cw',
           ['<S-down>'] = 'preview-page-down',
           ['<S-up>'] = 'preview-page-up',
           ['<S-left>'] = 'preview-page-reset',
         },
         fzf = {
           -- fzf '--bind=' options
-          ['ctrl-z'] = 'abort',
+          ['ctrl-c'] = 'abort',
           ['ctrl-u'] = 'unix-line-discard',
           ['ctrl-f'] = 'half-page-down',
           ['ctrl-b'] = 'half-page-up',
@@ -132,6 +132,7 @@ return {
           ['shift-up'] = 'preview-page-up',
         },
       },
+
       actions = {
         -- These override the default tables completely
         -- no need to set to `false` to disable an action
@@ -179,10 +180,11 @@ return {
       fzf_colors = {
         -- ['fg'] = { 'fg', 'CursorLine' },
         -- ['bg'] = { 'bg', 'Normal' },
-        -- ['hl'] = { 'fg', 'Comment' },
+        -- ['hl'] = { 'fg', 'Comment', '-1', 'underline', '#03ff13' }, -- colour of matching substrings
+        ['hl'] = { 'fg', 'Comment', '-1', 'underline', '#03ff13' }, -- colour of matching substrings
         -- ['fg+'] = { 'fg', 'Normal' },
         -- ['bg+'] = { 'bg', 'CursorLine' },
-        -- ['hl+'] = { 'fg', 'Statement' },
+        ['hl+'] = { 'fg', 'Statement', '-1', 'underline', 'reverse' }, -- colour of matching substrings on current line
         -- ['info'] = { 'fg', 'PreProc' },
         -- ['prompt'] = { 'fg', 'Conditional' },
         -- ['pointer'] = { 'fg', 'Exception' },
