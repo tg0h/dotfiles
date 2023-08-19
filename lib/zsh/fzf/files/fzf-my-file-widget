@@ -20,7 +20,7 @@ EOF
 )
   local FD_COMMAND="fd $FD_OPTIONS"
   local FD_OPTIONS="--color always --follow --hidden"
-  local FILE_PREVIEW="[[ \$(file --mime {}) =~ inode/directory ]] && exa --tree --long --icons --git --color always --octal-permissions --sort created --reverse {} || (bat --style=numbers,header-filename --color=always {} || cat {}) 2> /dev/null | head -300"
+  # local FILE_PREVIEW="[[ \$(file --mime {}) =~ inode/directory ]] && exa --tree --long --icons --git --color always --octal-permissions --sort created --reverse {} || (bat --style=numbers,header-filename --color=always {} || cat {}) 2> /dev/null | head -300"
   local BLAME_PREVIEW="git blame {} | delta --hyperlinks"
 
   if blame_state="$(mktemp "/tmp/${basename}_blame_state".XXXXXX)"; then
@@ -33,7 +33,6 @@ EOF
 
   local out=$(fd ${=FD_OPTIONS} | 
     FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS" fzf --ansi \
-        --preview "$FILE_PREVIEW" \
         --header="$HEADER"\
         --header-first \
         --preview="fzf-fd-preview {}" \
