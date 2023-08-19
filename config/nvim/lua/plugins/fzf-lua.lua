@@ -152,27 +152,6 @@ return {
         ['--layout'] = 'reverse',
         ['--border'] = 'none',
       },
-      -- Only used when fzf_bin = "fzf-tmux", by default opens as a
-      -- popup 80% width, 80% height (note `-p` requires tmux > 3.2)
-      -- and removes the sides margin added by `fzf-tmux` (fzf#3162)
-      -- for more options run `fzf-tmux --help`
-      fzf_tmux_opts = { ['-p'] = '80%,80%', ['--margin'] = '0,0' },
-      -- fzf '--color=' options (optional)
-      --[[ fzf_colors = {
-      ["fg"]          = { "fg", "CursorLine" },
-      ["bg"]          = { "bg", "Normal" },
-      ["hl"]          = { "fg", "Comment" },
-      ["fg+"]         = { "fg", "Normal" },
-      ["bg+"]         = { "bg", "CursorLine" },
-      ["hl+"]         = { "fg", "Statement" },
-      ["info"]        = { "fg", "PreProc" },
-      ["prompt"]      = { "fg", "Conditional" },
-      ["pointer"]     = { "fg", "Exception" },
-      ["marker"]      = { "fg", "Keyword" },
-      ["spinner"]     = { "fg", "Label" },
-      ["header"]      = { "fg", "Comment" },
-      ["gutter"]      = { "bg", "Normal" },
-  }, ]]
       previewers = {
         cat = {
           cmd = 'cat',
@@ -240,6 +219,7 @@ return {
         },
       },
       -- provider setup
+
       files = {
         -- previewer      = "bat",          -- uncomment to override previewer
         -- (name from 'previewers' table)
@@ -274,6 +254,7 @@ return {
           ['ctrl-y'] = function(selected) print(selected[1]) end,
         },
       },
+
       git = {
         files = {
           prompt = 'GitFiles❯ ',
@@ -378,6 +359,7 @@ return {
           -- ["A"]        = { icon = "+", color = "green" },
         },
       },
+
       grep = {
         prompt = 'Rg❯ ',
         input_prompt = 'Grep For❯ ',
@@ -414,52 +396,21 @@ return {
         no_header = false, -- hide grep|cwd header?
         no_header_i = false, -- hide interactive header?
       },
+
       args = {
         prompt = 'Args❯ ',
         files_only = true,
         -- actions inherit from 'actions.files' and merge
         actions = { ['ctrl-x'] = { fn = actions.arg_del, reload = true } },
       },
+
       oldfiles = {
         prompt = 'History❯ ',
         cwd_only = false,
         stat_file = true, -- verify files exist on disk
         include_current_session = false, -- include bufs from current session
       },
-      buffers = {
-        prompt = 'Buffers❯ ',
-        file_icons = true, -- show file icons?
-        color_icons = true, -- colorize file|git icons
-        sort_lastused = true, -- sort buffers() by last used
-        show_unloaded = true, -- show unloaded buffers
-        cwd_only = false, -- buffers for the cwd only
-        cwd = nil, -- buffers list for a given dir
-        actions = {
-          -- actions inherit from 'actions.buffers' and merge
-          -- by supplying a table of functions we're telling
-          -- fzf-lua to not close the fzf window, this way we
-          -- can resume the buffers picker on the same window
-          -- eliminating an otherwise unaesthetic win "flash"
-          ['ctrl-x'] = { fn = actions.buf_del, reload = true },
-        },
-      },
-      tabs = {
-        prompt = 'Tabs❯ ',
-        tab_title = 'Tab',
-        tab_marker = '<<',
-        file_icons = true, -- show file icons?
-        color_icons = true, -- colorize file|git icons
-        actions = {
-          -- actions inherit from 'actions.buffers' and merge
-          ['default'] = actions.buf_switch,
-          ['ctrl-x'] = { fn = actions.buf_del, reload = true },
-        },
-        fzf_opts = {
-          -- hide tabnr
-          ['--delimiter'] = "'[\\):]'",
-          ['--with-nth'] = '2..',
-        },
-      },
+
       lines = {
         previewer = 'builtin', -- set to 'false' to disable
         prompt = 'Lines❯ ',
@@ -481,6 +432,7 @@ return {
           ['alt-l'] = actions.buf_sel_to_ll,
         },
       },
+
       blines = {
         previewer = 'builtin', -- set to 'false' to disable
         prompt = 'BLines❯ ',
@@ -500,60 +452,17 @@ return {
           ['alt-l'] = actions.buf_sel_to_ll,
         },
       },
-      tags = {
-        prompt = 'Tags❯ ',
-        ctags_file = nil, -- auto-detect from tags-option
-        multiprocess = true,
-        file_icons = true,
-        git_icons = true,
-        color_icons = true,
-        -- 'tags_live_grep' options, `rg` prioritizes over `grep`
-        rg_opts = '--no-heading --color=always --smart-case',
-        grep_opts = '--color=auto --perl-regexp',
-        actions = {
-          -- actions inherit from 'actions.files' and merge
-          -- this action toggles between 'grep' and 'live_grep'
-          ['ctrl-g'] = { actions.grep_lgrep },
-        },
-        no_header = false, -- hide grep|cwd header?
-        no_header_i = false, -- hide interactive header?
-      },
-      btags = {
-        prompt = 'BTags❯ ',
-        ctags_file = nil, -- auto-detect from tags-option
-        ctags_autogen = false, -- dynamically generate ctags each call
-        multiprocess = true,
-        file_icons = true,
-        git_icons = true,
-        color_icons = true,
-        rg_opts = '--no-heading --color=always',
-        grep_opts = '--color=auto --perl-regexp',
-        fzf_opts = {
-          ['--delimiter'] = "'[\\]:]'",
-          ['--with-nth'] = '2..',
-          ['--tiebreak'] = 'index',
-        },
-        -- actions inherit from 'actions.files'
-      },
-      colorschemes = {
-        prompt = 'Colorschemes❯ ',
-        live_preview = true, -- apply the colorscheme on preview?
-        actions = { ['default'] = actions.colorscheme },
-        winopts = { height = 0.55, width = 0.30 },
-        -- uncomment to ignore colorschemes names (lua patterns)
-        -- ignore_patterns   = { "^delek$", "^blue$" },
-        -- uncomment to execute a callback after interface is closed
-        -- e.g. a call to reset statusline highlights
-        -- post_reset_cb     = function() ... end,
-      },
+
       quickfix = {
         file_icons = true,
         git_icons = true,
       },
+
       quickfix_stack = {
         prompt = 'Quickfix Stack> ',
         marker = '>', -- current list marker
       },
+
       lsp = {
         prompt_postfix = '❯ ', -- will be appended to the LSP label
         -- to override use 'prompt' instead
@@ -643,6 +552,7 @@ return {
           },
         },
       },
+
       diagnostics = {
         prompt = 'Diagnostics❯ ',
         cwd_only = false,
@@ -672,20 +582,7 @@ return {
         -- severity_limit:  keep any equal or more severe (lower)
         -- severity_bound:  keep any equal or less severe (higher)
       },
-      complete_path = {
-        cmd = nil, -- default: auto detect fd|rg|find
-        actions = { ['default'] = actions.complete_insert },
-      },
-      complete_file = {
-        cmd = nil, -- default: auto detect rg|fd|find
-        file_icons = true,
-        color_icons = true,
-        git_icons = false,
-        -- actions inherit from 'actions.files' and merge
-        actions = { ['default'] = actions.complete_insert },
-        -- previewer hidden by default
-        winopts = { preview = { hidden = 'hidden' } },
-      },
+
       -- uncomment to use fzf native previewers
       -- (instead of using a neovim floating window)
       -- manpages = { previewer = "man_native" },
