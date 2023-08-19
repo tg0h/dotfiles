@@ -42,7 +42,8 @@ return {
         -- to manually draw the border characters around the preview
         -- window, can be set to 'false' to remove all borders or to
         -- 'none', 'single', 'double', 'thicc' (+cc) or 'rounded' (default)
-        border = { '╭', '─', '╮', '│', '╯', '─', '╰', '│' },
+        -- border = { '╭', '─', '╮', '│', '╯', '─', '╰', '│' },
+        border = 'none',
         -- requires neovim > v0.9.0, passed as is to `nvim_open_win`
         -- can be sent individually to any provider to set the win title
         -- title         = "Title",
@@ -92,7 +93,7 @@ return {
         -- on_close = function() ... end
       },
       keymap = {
-        -- These override the default tables completely
+        -- b 'These override the default tables completely
         -- no need to set to `false` to disable a bind
         -- delete or modify is sufficient
         builtin = {
