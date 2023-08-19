@@ -19,10 +19,16 @@ return {
     { '<C-,>', '<CMD>FzfLua files<CR>', desc = 'fzf files' },
 
     { '<LEADER>fr', '<CMD>FzfLua oldfiles<CR>', desc = 'fzf oldfiles' },
+
+    { '<LEADER>gs', '<CMD>FzfLua git_status<CR>', desc = 'fzf git status' },
+    { '<C-f>', '<CMD>FzfLua git_commits<CR>', desc = 'fzf git commits' },
+    { '<M-C-f>', '<CMD>FzfLua git_bcommits<CR>', desc = 'fzf git buffer commits (history)' },
+    { '<C-g>', '<CMD>FzfLua git_status<CR>', desc = 'fzf git status' },
   },
   opts = function()
     local actions = require('fzf-lua.actions')
     return {
+
       -- fzf_bin         = 'sk',            -- use skim instead of fzf?
       -- https://github.com/lotabout/skim
       -- can also be set to 'fzf-tmux'
