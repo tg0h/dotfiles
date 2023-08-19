@@ -255,4 +255,9 @@ return {
     { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
     { "<C-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search in search mode" },
   },
+
+  config = function(_, opts)
+    require('flash').setup(opts)
+    vim.api.nvim_set_hl(0, 'FlashMatch', { fg = '#ff0e8b' })
+  end,
 }
