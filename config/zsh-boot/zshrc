@@ -56,8 +56,8 @@ autoload -Uz _zinit
 
 # NOTE: zinit install
 zinit ice depth=1; zinit light romkatv/powerlevel10k
-zinit ice as"program" pick"bin/git-fuzzy"
-zinit light bigH/git-fuzzy
+# zinit ice as"program" pick"bin/git-fuzzy"
+# zinit light bigH/git-fuzzy
 
 zinit for \
   OMZP::last-working-dir \
