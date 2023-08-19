@@ -5,6 +5,7 @@ return {
   opts = {
     -- labels = "abcdefghijklmnopqrstuvwxyz",
     labels = "aoeuhtnsid',.pgcrlyf;qjkmwvzxb",
+
     search = {
       -- search/jump in all windows
       multi_window = true,
@@ -22,7 +23,9 @@ return {
       --   mode = function(str)
       --     return "\\<" .. str
       --   end,
-      mode = 'exact',
+      -- mode = 'exact',
+      -- only match beginning of word
+      mode = function(str) return '\\<' .. str end,
       -- behave like `incsearch`
       incremental = false,
       -- Excluded filetypes and custom window filters
@@ -46,6 +49,7 @@ return {
       -- it will either end in a jump or terminate the search
       max_length = false, ---@type number|false
     },
+
     jump = {
       -- save location in the jumplist
       jumplist = true,
@@ -68,6 +72,7 @@ return {
       -- 1: when pos == "end" and pos < current position
       offset = nil, ---@type number
     },
+
     label = {
       -- allow uppercase labels
       uppercase = true,
@@ -107,6 +112,7 @@ return {
       ---@type fun(opts:Flash.Format): string[][]
       format = function(opts) return { { opts.match.label, opts.hl_group } } end,
     },
+
     highlight = {
       -- show a backdrop with hl FlashBackdrop
       backdrop = true,
@@ -131,6 +137,7 @@ return {
     continue = false,
     -- Set config to a function to dynamically change the config
     config = nil, ---@type fun(opts:Flash.Config)|nil
+
     -- You can override the default options for a specific mode.
     -- Use it with `require("flash").jump({mode = "forward"})`
     ---@type table<string, Flash.Config>
@@ -149,6 +156,7 @@ return {
           -- `incremental` is set to `true` when `incsearch` is enabled
         },
       },
+
       -- options used when flash is activated through
       -- `f`, `F`, `t`, `T`, `;` and `,` motions
       char = {
@@ -197,6 +205,7 @@ return {
         highlight = { backdrop = true },
         jump = { register = false },
       },
+
       -- options used for treesitter selections
       -- `require("flash").treesitter()`
       treesitter = {
@@ -210,12 +219,14 @@ return {
           matches = false,
         },
       },
+
       treesitter_search = {
         jump = { pos = 'range' },
         search = { multi_window = true, wrap = true, incremental = false },
         remote_op = { restore = true },
         label = { before = true, after = true, style = 'inline' },
       },
+
       -- options used for remote flash
       remote = {
         remote_op = { restore = true, motion = true },
