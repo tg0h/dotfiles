@@ -92,6 +92,7 @@ local M = {
       c = { name = 'config' },
       s = { name = 'search' },
       f = { name = 'Files' },
+      m = { name = 'misc' },
       n = { name = 'neovim core' },
       g = { name = 'Git' },
       ['.'] = { name = 'messages' },
