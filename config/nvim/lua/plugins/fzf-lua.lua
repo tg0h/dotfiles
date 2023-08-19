@@ -2,6 +2,10 @@ return {
   'ibhagwan/fzf-lua',
   -- optional for icon support
   dependencies = { 'nvim-tree/nvim-web-devicons' },
+  event = 'VeryLazy',
+  keys = {
+    { '<LEADER>rg', '<CMD>FzfLua live_grep<CR> rg', desc = 'fzf lua live grep' },
+  },
   opts = function()
     local actions = require('fzf-lua.actions')
     return {
