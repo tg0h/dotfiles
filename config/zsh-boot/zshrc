@@ -65,11 +65,11 @@ zinit for \
 
 # rupa/z \
 # OMZP::gitignore \
+# agkozak/zhooks \
 
 # lazy load plugins
 zinit lucid wait for \
   lukechilds/zsh-nvm \
-  agkozak/zhooks \
   atload"_zsh_autosuggest_start" \
       zsh-users/zsh-autosuggestions \
       atinit"zicompinit; zicdreplay; nvm use default --silent; _evalcache pyenv init -; _evalcache rbenv init -; source $XDG_CONFIG_HOME/zoxide/zoxide.zsh && _evalcache zoxide init zsh" \
