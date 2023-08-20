@@ -5,7 +5,7 @@ keybinding:
     return: "<esc>" # return to previous menu, will quit if there's nowhere to return
     # return: ":" # return to previous menu, will quit if there's nowhere to return
     quitWithoutChangingDirectory: "Q"
-    togglePanel: "-" # goto the next panel
+    togglePanel: "<C-n>" # goto the next panel
     prevItem: "n" # go one line up
     nextItem: "t" # go one line down
     prevItem-alt: "k" # go one line up
