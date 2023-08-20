@@ -64,11 +64,11 @@ zinit for \
   mroth/evalcache \
 
 # rupa/z \
+# OMZP::gitignore \
 
 # lazy load plugins
 zinit lucid wait for \
   lukechilds/zsh-nvm \
-  OMZP::gitignore \
   agkozak/zhooks \
   atload"_zsh_autosuggest_start" \
       zsh-users/zsh-autosuggestions \
