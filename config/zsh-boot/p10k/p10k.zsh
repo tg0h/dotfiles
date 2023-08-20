@@ -104,7 +104,7 @@
     # wifi                  # wifi speed
     # example               # example user-defined segment (see prompt_example function below)
     db                      # my db connections
-    my_aws                  # my aws profile
+    # my_aws                  # my aws profile
   )
 
   # Defines character set used by powerlevel10k. It's best to let `p10k configure` set it for you.
