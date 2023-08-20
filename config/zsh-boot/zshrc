@@ -61,7 +61,7 @@ zinit ice depth=1; zinit light romkatv/powerlevel10k
 
 zinit for \
   OMZP::last-working-dir \
-  mroth/evalcache \
+  # mroth/evalcache \
 
 # rupa/z \
 # OMZP::gitignore \
