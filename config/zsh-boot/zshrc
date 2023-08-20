@@ -73,7 +73,7 @@ zinit lucid wait for \
   lukechilds/zsh-nvm \
   atload"_zsh_autosuggest_start" \
       zsh-users/zsh-autosuggestions \
-      atinit"zicompinit; zicdreplay; nvm use default --silent; _evalcache pyenv init -; " \
+      atinit"zicompinit; zicdreplay; nvm use default --silent;" \
       zdharma-continuum/fast-syntax-highlighting \
 
 # TODO: zsh-autosuggestions has a bug that destroys the kill ring zzzz
