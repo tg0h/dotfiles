@@ -1629,16 +1629,16 @@ fi
   }
 
   ####################################[ example: my_aws ]####################################
-  function prompt_my_aws() {
-local myAwsProfile
- if [ "$AWS_PROFILE" = "tim" ]; then
-   myAwsProfile="T"
- fi
-# local db_state=$(p10k-get-db-connection)
-
-    p10k segment -f 165 -t "$myAwsProfile"
-    # p10k segment -t "$db_state"
-  }
+#   function prompt_my_aws() {
+# local myAwsProfile
+#  if [ "$AWS_PROFILE" = "tim" ]; then
+#    myAwsProfile="T"
+#  fi
+# # local db_state=$(p10k-get-db-connection)
+#
+#     p10k segment -f 165 -t "$myAwsProfile"
+#     # p10k segment -t "$db_state"
+#   }
 
   # Transient prompt works similarly to the builtin transient_rprompt option. It trims down prompt
   # when accepting a command line. Supported values:
