@@ -103,7 +103,7 @@
     # battery               # internal battery
     # wifi                  # wifi speed
     # example               # example user-defined segment (see prompt_example function below)
-    db                      # my db connections
+    # db                      # my db connections
     # my_aws                  # my aws profile
   )
 
