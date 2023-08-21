@@ -58,6 +58,8 @@ bindkey '^[j' fzf-search-ts-config-widget
 
 zle -N fzf-search-filenameAndContent-widget
 bindkey '^[-' fzf-search-filenameAndContent-widget
+# bind M-esc to filename content
+bindkey '^[^[' fzf-search-filenameAndContent-widget
 
 zle -N fzf-search-cloudwatch-logs-widget
 bindkey '^[^f' fzf-search-cloudwatch-logs-widget
