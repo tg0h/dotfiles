@@ -163,3 +163,5 @@ tap 'ankitpokhrel/jira-cli'
 brew 'jira-cli'
 # brew 'chafa' # image previewer svg?
 brew 'viu' # rust image previewer
+tap 'dbcli/tap'
+brew 'pgcli'
