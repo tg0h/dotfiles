@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+function bow(){
+  # big commerce webhooks
+
+  https -p=HhBb --json https://api.bigcommerce.com/stores/$BG_STORE_HASH/v3/hooks X-Auth-Token:$BG_ACCESS_TOKEN
+}
