@@ -48,6 +48,7 @@ export PATH="$PATH:$HOME/.local/bin/scratch"
 export PATH="$PATH:$CARGO_HOME/bin"
 export PATH="$PATH:$GOPATH/bin"
 export PATH="$PATH:$XDG_DATA_HOME/nvim/mason/bin"
+export PATH="$PATH:/opt/homebrew/opt/libpq/bin" # psql
 
 # source zinit
 source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
