@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-function sd(){
+function sdu(){
   # switch db profiles
   # sd g - show current db profile
   #
