@@ -8,7 +8,7 @@ alias j='lnav .'
 alias tt='tail -n 20 -f /tmp/tim/log'
 alias t='ts-node'
 
-alias p.=pm2
+# alias p.=pm2
 
 alias which-command='which'
 
