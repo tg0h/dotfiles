@@ -1,9 +1,9 @@
 # exa
 alias exaRecent="exa --header --created --changed --accessed --tree --long --icons --git --color always --octal-permissions --sort accessed --reverse --links --git --no-user --all"
 
-alias p="exaRecent --level 1"
-alias p,="exaRecent --level 2"
-alias p,.="exaRecent --level 3"
+alias x.="exaRecent --level 1"
+alias x,="exaRecent --level 2"
+alias x,.="exaRecent --level 3"
 
 alias exad="exa --long --icons --git --color always --octal-permissions --sort created --reverse --links --git --binary --blocks --header --inode --created --changed --classify"
 
