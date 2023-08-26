@@ -32,6 +32,7 @@ local M = {
     })
 
     map('n', '<C-q>', ":lua require('harpoon.ui').toggle_quick_menu()<CR>", default_options)
+    map('n', '<C-Space>', ":lua require('harpoon.ui').toggle_quick_menu()<CR>", default_options)
 
     map('n', '<C-h>', ":lua require('harpoon.ui').nav_file(1)<CR>", default_options)
     map('n', '<C-t>', ":lua require('harpoon.ui').nav_file(2)<CR>", default_options)
