@@ -51,6 +51,11 @@ rshift + ralt + rctrl - r : [ $(yabai -m query --spaces --space | jq '.index') -
 rshift + ralt + rctrl - s : [ $(yabai -m query --spaces --space | jq '.index') -eq 5 ] && ( yabai -m space --focus recent ) || yabai -m space --focus 5
 rshift + ralt + rctrl - w : [ $(yabai -m query --spaces --space | jq '.index') -eq 6 ] && ( yabai -m space --focus recent ) || yabai -m space --focus 6
 # rshift + ralt + rctrl + lshift - 0x14 : yabai -m space --focus 6 # *
+# https://github.com/koekeishiya/yabai/issues/1291
+# cycle forwards on current display with Rmeh -
+rshift + ralt + rctrl - 0x1B : id="$(yabai -m query --spaces --display | jq 'sort_by(.index) | reverse | .[map(."has-focus") | index(true) - 1].index')" && yabai -m space --focus "${id}"
+# this cycles backwards
+# id="$(yabai -m query --spaces --display | jq 'sort_by(.index) | .[map(."has-focus") | index(true) - 1].index')" && yabai -m space --focus "${id}"
 # rshift + ralt + rctrl - p: yabai -m space --focus 7
 # rshift + ralt + rctrl - u: yabai -m space --focus 8
 # rshift + ralt + rctrl - i: yabai -m space --focus 9
