@@ -43,14 +43,14 @@ map('n', 'k', [[ (v:count > 5 ? "m'" . v:count : "") . 'k' ]], expr_options)
 -- vim.keymap.set("n", "gx", ":!open <C-R><C-A><CR>", expr_options)
 -- https://vi.stackexchange.com/questions/27255/how-can-i-make-a-single-mapping-take-effect-for-both-normal-mode-insert-mode-a (you can't)
 -- define for both normal and insert modes
-vim.keymap.set('n', '<C-M-z>', ':cquit<CR>', { desc = 'normal mode exit with error code' }) -- exit with error code
-vim.keymap.set('i', '<C-M-z>', '<Esc>:cquit<CR>', { desc = 'insert mode exit with error code' }) -- exit with error code
+vim.keymap.set('n', '<M-C-z>', ':cquit<CR>', { desc = 'normal mode exit with error code' }) -- exit with error code
+vim.keymap.set('i', '<M-C-z>', '<Esc>:cquit<CR>', { desc = 'insert mode exit with error code' }) -- exit with error code
 
-vim.keymap.set('n', '<C-M-e>', ':w<CR>', { desc = 'normal mode save' }) -- normal mode save
-vim.keymap.set('i', '<C-M-e>', '<Esc>:w<CR>a', { desc = 'insert mode save' }) -- insert mode save
+vim.keymap.set('n', '<M-C-e>', ':w<CR>', { desc = 'normal mode save' }) -- normal mode save
+vim.keymap.set('i', '<M-C-e>', '<Esc>:w<CR>a', { desc = 'insert mode save' }) -- insert mode save
 
-vim.keymap.set('n', '<C-M-S>', ':wq<CR>', { desc = 'normal mode save and exit' }) -- normal mode - save and exit
-vim.keymap.set('i', '<C-M-S>', '<Esc>:wq<CR>', { desc = 'insert mode save and exit' }) -- insert mode - save and exit
+vim.keymap.set('n', '<M-C-S>', ':wq<CR>', { desc = 'normal mode save and exit' }) -- normal mode - save and exit
+vim.keymap.set('i', '<M-C-S>', '<Esc>:wq<CR>', { desc = 'insert mode save and exit' }) -- insert mode - save and exit
 
 vim.keymap.set('n', '<M-->', 'yyp', { desc = '' }) -- open dash docs with word under cursor
 
@@ -60,7 +60,7 @@ vim.keymap.set('n', '<LEADER>0', '"0p', { desc = 'paste 0 register' })
 vim.keymap.set('x', '<LEADER>p', '"_dP', { desc = 'preserve " buffer when visual mode pasting' })
 
 -- vim.keymap.set('n', '<C-z>', '<NOP>', { desc = 'disable background job' })
--- vim.keymap.set("n", "<C-M-z>", "<Esc>:ZenMode<CR>", {desc=''})
+-- vim.keymap.set("n", "<M-C-z>", "<Esc>:ZenMode<CR>", {desc=''})
 -- vim.keymap.set('n', '<D-:>', ':lua print "hello"<CR>')
 
 -- replace the word that the cursor is on ... I flag means don't ignore case

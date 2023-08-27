@@ -110,8 +110,8 @@ local M = {
             -- [']o'] = '@comment.inner', -- not supported in ts
 
             -- if
-            ['<S-C-M-n>'] = '@conditional.outer',
-            ['<S-C-M-s>'] = '@conditional.inner',
+            ['<S-M-C-n>'] = '@conditional.outer',
+            ['<S-M-C-s>'] = '@conditional.inner',
 
             -- [']:'] = '@loop.outer',
             -- [']q'] = '@loop.inner',
@@ -153,8 +153,8 @@ local M = {
             ['<S-C-h>'] = '@call.outer',
             ['<S-C-t>'] = '@call.inner',
 
-            ['<S-C-M-h>'] = '@conditional.outer',
-            ['<S-C-M-t>'] = '@conditional.inner',
+            ['<S-M-C-h>'] = '@conditional.outer',
+            ['<S-M-C-t>'] = '@conditional.inner',
 
             ['<M-[>'] = '@parameter.inner', -- more useful
           },

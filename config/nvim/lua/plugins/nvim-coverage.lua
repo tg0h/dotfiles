@@ -4,22 +4,22 @@ return {
   keys = {
 
     {
-      '<C-M-c>',
+      '<M-C-c>',
       function() require('tg.toggle-coverage').toggle_coverage() end,
       desc = 'toggle nvim coverage',
     },
     {
-      '<C-M-d>',
+      '<M-C-d>',
       function() require('tg.toggle-coverage').toggle_summary() end,
       desc = 'toggle nvim coverage summary',
     },
     {
-      '<C-M-n>',
+      '<M-C-n>',
       '<CMD>lua require"coverage".jump_next("uncovered")<CR>',
       desc = 'coverage next uncovered',
     },
     {
-      '<C-M-p>',
+      '<M-C-p>',
       '<CMD>lua require"coverage".jump_prev("uncovered")<CR>',
       desc = 'coverage previous uncovered',
     },
