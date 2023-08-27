@@ -79,7 +79,7 @@ return {
         desc = 'replace current line',
       },
       ['run_replace'] = {
-        map = '<leader>R',
+        map = "<leader>'",
         cmd = "<cmd>lua require('spectre.actions').run_replace()<CR>",
         desc = 'replace all',
       },
