@@ -6,8 +6,8 @@ keybinding:
     # return: ":" # return to previous menu, will quit if there's nowhere to return
     quitWithoutChangingDirectory: "Q"
     togglePanel: "<C-n>" # goto the next panel
-    # prevItem: "n" # go one line up
-    nextItem: "t" # go one line down
+    # prevItem: "n" # go one line up - n is used in branch panel to create a new branch
+    # nextItem: "t" # go one line down - t reverts a commit
     prevItem-alt: "k" # go one line up
     nextItem-alt: "j" # go one line down
     prevPage: "," # go to next page in list
