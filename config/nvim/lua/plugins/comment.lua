@@ -1,6 +1,7 @@
 return {
   'numToStr/Comment.nvim',
   -- event = { 'BufReadPre', 'BufNewFile' },
+  dependencies = { 'JoosepAlviste/nvim-ts-context-commentstring' },
   event = 'VeryLazy',
   config = function()
     require('Comment').setup({
@@ -65,7 +66,7 @@ return {
 
       ---Pre-hook, called before commenting the line
       ---@type fun(ctx: Ctx):string
-      pre_hook = nil,
+      pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(), -- this adds support for tsx/jsx file comments
 
       ---Post-hook, called after commenting is done
       ---@type fun(ctx: Ctx)
