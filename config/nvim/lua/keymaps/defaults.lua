@@ -16,6 +16,9 @@ vim.keymap.set('i', '<C-d>', '<Del>', { desc = 'delete in insert mode' })
 -- Help
 vim.keymap.set('n', '<F1>', ':WhichKey<CR>', { desc = 'show all which key mappings' }) -- show all mappings
 
+-- VS%$%@
+vim.keymap.set('n', '<Leader>ee<CR>', ':! code %', { desc = 'open in vs%$%@' })
+
 -- nice defaults
 vim.keymap.set('n', '<C-d>', '<C-d>zz', { desc = 'centre after page down' })
 vim.keymap.set('n', '<C-u>', '<C-u>zz', { desc = 'centre after page up' })
