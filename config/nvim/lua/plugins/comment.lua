@@ -75,5 +75,8 @@ return {
 
     local api = require('Comment.api')
     vim.keymap.set('n', '<M-/>', api.toggle.linewise.current, { desc = 'comment' })
+
+    local ft = require('Comment.ft')
+    ft({ 'jq' }, '#%s')
   end,
 }
