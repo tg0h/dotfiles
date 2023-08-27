@@ -13,15 +13,16 @@ return {
       function() require('tg.toggle-coverage').toggle_summary() end,
       desc = 'toggle nvim coverage summary',
     },
-    {
-      '<M-C-n>',
-      '<CMD>lua require"coverage".jump_next("uncovered")<CR>',
-      desc = 'coverage next uncovered',
-    },
+    -- i use M-C-n to save the file
+    -- {
+    --   '<M-C-n>',
+    --   '<CMD>lua require"coverage".jump_next("uncovered")<CR>',
+    --   desc = 'coverage next uncovered',
+    -- },
     {
       '<M-C-p>',
-      '<CMD>lua require"coverage".jump_prev("uncovered")<CR>',
-      desc = 'coverage previous uncovered',
+      '<CMD>lua require"coverage".jump_next("uncovered")<CR>',
+      desc = 'coverage next uncovered',
     },
   },
 
