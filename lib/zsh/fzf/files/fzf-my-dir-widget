@@ -18,9 +18,9 @@ function fzf-my-dir-widget() {
   local DIR_PREVIEW="lsd {} --tree --color always --icon always"
   local BLAME_PREVIEW="git blame {} | delta --hyperlinks"
   local HEADER=$(cat <<-EOF
-   ⌥r - recent      | ⌥g - git
+   ⌥r - recent      | ⌥f - git
    ⌥r/l - depth 1/2 | ⌥c - default
-   ⌥f - no ignore
+   ⌥g - no ignore
    ⌥d - package.json
 EOF
 )
@@ -40,10 +40,10 @@ EOF
         --preview-window='right:nowrap,noborder,70%' \
         \
       --bind "alt-r:reload(exa --oneline --color always --sort accessed --reverse --only-dirs)+change-prompt(depth:1> )" \
-      --bind "alt-g:reload(fd $FD_GIT_DIR_OPTIONS )+change-prompt(git> )" \
+      --bind "alt-f:reload(fd $FD_GIT_DIR_OPTIONS )+change-prompt(git> )" \
       --bind "alt-l:reload(fd $FD_OPTIONS --max-depth 2 )+change-prompt(depth:2> )" \
       --bind "alt-c:reload(fd $FD_OPTIONS )+change-prompt(> )" \
-      --bind "alt-f:reload(fd $FD_OPTIONS_NO_IGNORE )+change-prompt(no-ignore> )" \
+      --bind "alt-g:reload(fd $FD_OPTIONS_NO_IGNORE )+change-prompt(no-ignore> )" \
       --bind "alt-d:reload(fd package.json | xargs dirname)+change-prompt(package.json> )" \
         \
         --expect=ctrl-b
