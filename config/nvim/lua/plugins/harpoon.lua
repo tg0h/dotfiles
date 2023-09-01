@@ -25,7 +25,7 @@ local M = {
         -- filetypes that you want to prevent from adding to the harpoon list menu.
         excluded_filetypes = { 'harpoon' },
         -- set marks specific to each git branch inside git repository
-        mark_branch = true,
+        mark_branch = false,
 
         base_dirs = { '/Users/tim/src/playground/harpoon/monoRepoDeep', '/Users/tim/src/candy/main/referralcandy-main' },
       },
@@ -50,6 +50,7 @@ local M = {
     -- map("n", "<M-C-s>", ":lua require('harpoon.ui').nav_file(6)<CR>", default_options)
 
     map('n', '<M-C-q>', ":lua require('harpoon.mark').add_file()<CR>", default_options)
+    map('n', '<M-Space>', ":lua require('harpoon.mark').add_file()<CR>", default_options)
     -- map('n', '<M-C-m>', ":lua require('harpoon.mark').add_file()<CR>", default_options)
 
     -- <CMD>lua require('harpoon.dev').reload()<CR>
