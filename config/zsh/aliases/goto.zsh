@@ -3,6 +3,7 @@ alias c.='cd ~/src/playground/cdk/cdk-workshop'
 alias c,='cd ~/src/playground/candy/referralcandy-secondary'
 
 alias s.='cd ~/src/candy/main/referralcandy-main'
+alias s..='cd ~/src/candy/main/referralcandy-main/packages/common-services/scripts/'
 
 alias dt.='cd ~/Documents/tim'
 # alias d.='dt'
