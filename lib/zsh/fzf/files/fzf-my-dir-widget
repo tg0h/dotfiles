@@ -10,10 +10,10 @@ function fzf-my-dir-widget() {
   --exclude .git \
   --exclude node_modules \
   --exclude .DS_Store \
-  --exclude build \
   --exclude cdk.out
   --type d
   "
+  # --exclude build \
 
   local DIR_PREVIEW="lsd {} --tree --color always --icon always"
   local BLAME_PREVIEW="git blame {} | delta --hyperlinks"
