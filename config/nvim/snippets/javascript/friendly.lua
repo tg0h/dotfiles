@@ -12,6 +12,7 @@ return {
       }
     )
   ),
+  s('cc', { t("console.log('timg 🔴')") }),
   s('ao', fmt([[console.log({})]], { i(1, '') })),
   s('c', fmt([[const {} = {}]], { i(1), i(0) })),
   s('l', { t('let '), i(1, '') }),
