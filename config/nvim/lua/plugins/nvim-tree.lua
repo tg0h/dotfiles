@@ -158,7 +158,7 @@ local M = {
     end
 
     vim.keymap.set('n', '<M-CR>', openNvimTreeAndKeepOpen, { desc = 'nvim-tree: toggle' })
-    vim.keymap.set('n', '<M-Space>', openNvimTreeAndKeepOpen, { desc = 'nvim-tree: toggle' })
+    -- vim.keymap.set('n', '<M-Space>', openNvimTreeAndKeepOpen, { desc = 'nvim-tree: toggle' })
 
     require('nvim-tree').setup({
 
