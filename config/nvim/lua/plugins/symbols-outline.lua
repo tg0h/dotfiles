@@ -65,7 +65,7 @@ local M = {
     },
   },
   keys = {
-    { '<leader>o', '<CMD>SymbolsOutline<cr>', desc = 'Toggle SymbolsOutline' },
+    { '<leader>so', '<CMD>SymbolsOutline<cr>', desc = 'Toggle SymbolsOutline' },
     { '<M-S-s>', '<CMD>SymbolsOutline<cr>', desc = 'Toggle SymbolsOutline' },
   },
 }
