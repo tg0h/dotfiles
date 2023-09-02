@@ -13,3 +13,4 @@ alias -s conf=nvim
 alias -s skdhrc=nvim
 alias -s md=nvim
 alias -s sql=nvim
+alias -s lua=nvim
