@@ -62,6 +62,11 @@ vim.keymap.set('n', '<LEADER>0', '"0p', { desc = 'paste 0 register' })
 -- copied from primeagen - https://www.youtube.com/watch?v=w7i4amO_zaE&t=562s
 vim.keymap.set('x', '<LEADER>p', '"_dP', { desc = 'preserve " buffer when visual mode pasting' })
 
+-- vim.keymap.set('n', '<LEADER>mc', 'ggVG:! rg -v console.log<CR>', { desc = 'remove all console.log in file' })
+-- https://vim.fandom.com/wiki/Delete_all_lines_containing_a_pattern
+-- this causes the cursor position to change, so C-o to go back to previous cursor position
+vim.keymap.set('n', '<LEADER>mc', ':g/console.log/d<CR><C-o>', { desc = 'remove all console.log lines in file' })
+
 -- vim.keymap.set('n', '<C-z>', '<NOP>', { desc = 'disable background job' })
 -- vim.keymap.set("n", "<M-C-z>", "<Esc>:ZenMode<CR>", {desc=''})
 -- vim.keymap.set('n', '<D-:>', ':lua print "hello"<CR>')
