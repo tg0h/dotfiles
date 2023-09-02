@@ -35,6 +35,17 @@ return {
     },
   },
   {
+    'tg/toggle-make',
+    dir = '~/.config/nvim/lua/tg/toggle-make',
+    keys = {
+      {
+        "<M-'>",
+        function() require('tg.toggle-make').Toggle() end,
+        desc = 'toggle make file',
+      },
+    },
+  },
+  {
     'tg/treesitter-utils',
     dir = '~/.config/nvim/lua/tg/treesitter-utils',
   },
