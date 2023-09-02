@@ -1,41 +1,45 @@
 return {
   {
     'tg/toggle-interface',
-    dev = true,
+    -- dev = true,
+    dir = '~/.config/nvim/lua/tg/toggle-interface',
     dependencies = { 'nvim-treesitter', 'treesitter-utils' },
     keys = {
       {
         '<A-i>',
-        function() require('toggle-interface').Toggle() end,
+        function() require('tg.toggle-interface').Toggle() end,
         desc = 'toggle interface file',
       },
     },
   },
-  { 'tg/treesitter-utils', dev = true },
+  {
+    'tg/treesitter-utils',
+    dir = '~/.config/nvim/lua/tg/treesitter-utils',
+  },
   {
     'tg/toggle-test',
-    dev = true,
+    dir = '~/.config/nvim/lua/tg/toggle-test',
     keys = {
       {
         '<A-.>',
-        function() require('toggle-test').Toggle() end,
+        function() require('tg.toggle-test').Toggle() end,
         desc = 'toggle test file',
       },
     },
   },
   {
     'tg/test-runner',
-    dev = true,
+    dir = '~/.config/nvim/lua/tg/test-runner',
     dependencies = { 'nvim-treesitter', 'treesitter-utils', 'toggle-test' },
     keys = {
       {
         '<M-p>',
-        function() require('test-runner').run_test() end,
+        function() require('tg.test-runner').run_test() end,
         desc = 'run all tests',
       },
       {
         '<M-y>',
-        function() require('test-runner').run_single_test() end,
+        function() require('tg.test-runner').run_single_test() end,
         desc = 'run single test',
       },
     },
