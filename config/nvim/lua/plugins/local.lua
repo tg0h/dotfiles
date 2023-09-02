@@ -24,6 +24,17 @@ return {
     },
   },
   {
+    'tg/toggle-model',
+    dir = '~/.config/nvim/lua/tg/toggle-model',
+    keys = {
+      {
+        '<M-`>',
+        function() require('tg.toggle-model').Toggle() end,
+        desc = 'toggle model file',
+      },
+    },
+  },
+  {
     'tg/treesitter-utils',
     dir = '~/.config/nvim/lua/tg/treesitter-utils',
   },
