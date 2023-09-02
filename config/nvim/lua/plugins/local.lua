@@ -13,6 +13,17 @@ return {
     },
   },
   {
+    'tg/toggle-repository',
+    dir = '~/.config/nvim/lua/tg/toggle-repository',
+    keys = {
+      {
+        '<M-x>',
+        function() require('tg.toggle-repository').Toggle() end,
+        desc = 'toggle repository file',
+      },
+    },
+  },
+  {
     'tg/treesitter-utils',
     dir = '~/.config/nvim/lua/tg/treesitter-utils',
   },
