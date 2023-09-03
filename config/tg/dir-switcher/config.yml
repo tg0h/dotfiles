@@ -15,75 +15,38 @@ keymaps:
   - [gnn, /opt/homebrew/opt/neovim/share/nvim/runtime, 5]
   - [gnm, $XDG_DATA_HOME/nvim/mason, 5]
   - [c, $XDG_CONFIG_HOME, 5]
+  - [cn, $XDG_CONFIG_HOME/nvim, 5]
+  - [ca, $XDG_CONFIG_HOME/zsh/aliases, 5]
   - [r, $XDG_CACHE_HOME, 2]
   - [l, $HOME/dotfiles/lib, 7]
-  - ["l,", $HOME/.local/lib, 7]
-  - [xs, $XDG_STATE_HOME, 5]
-  # Home Row
-  # - [d, $HOME/Documents, 2]
-  - [h, $HOME/src/me, 4, \\.git$, true, true, dirname | xargs dirname] # this yml file is converted to json. a backslash is an escape character in json. we need to escape the backslash. we want to pass \.git$ as the regex filter to fd
-  - [hn, $HOME/src/me/nvim] # this yml file is converted to json. a backslash is an escape character in json. we need to escape the backslash. we want to pass \.git$ as the regex filter to fd
-  - [t, $HOME/src/playground, 5, \\.git$, true, true, dirname | xargs dirname]
-  - ["t,", $HOME/src/playground/langs/ts/scratch]
-  - [n, $HOME/src/clones, 4, \\.git$, true, true, dirname | xargs dirname]
-  - [s, $HOME/src]
-  # Bottom row
-  - [b, $HOME/Documents/notes]
-  # - [m, $HOME/src/me/wiki/projects/ou]
-  - [w, $HOME/src/me/wiki, 8]
-  - [v, $HOME/Documents/candy/wiki, 5]
-  - [z, $HOME/dotfiles, 4]
-
-  - [k, $HOME/Desktop]
-  - [kt, $HOME/Desktop/tim]
-  - [kt., $HOME/Desktop/klaviyoPatch]
-
-  # trash
-  - [q, $HOME/.Trash]
-
-  - [p, /tmp]
-  - [tl, $HOME/Downloads]
-
-  - [ch, $XDG_CONFIG_HOME/skhd]
-  - [cn, $XDG_CONFIG_HOME/nvim, 5]
-  - [ck, $DOTFILES/config/kitty]
-  - [ca, $XDG_CONFIG_HOME/zsh/aliases, 5]
-
-  - [dn, ~/dotfiles/config/nvim, 5]
-
-  # LIB
-  - [lf, $HOME/.local/lib/zsh-functions]
-
-  # PLAYGROUND
-  - [ta, $HOME/src/playground/aws/cdk/my-pipeline]
-  - [ty, $HOME/src/playground/yarn]
-  - [th, $HOME/src/playground/refactoring]
-  - ["ty,", $HOME/src/playground/yarn/yarn-old]
-  - ["ty.", $HOME/src/playground/yarn/yarn-modern]
-  - ["ty,.", $HOME/src/playground/yarn/npm]
-  - [tg, $HOME/src/playground/github/scratch]
-  - [tp, $HOME/src/playground/python/]
   # - [th, $HOME/dotfiles/templates]
-  # - bindkey: th
-  #   dir: $HOME/dotfiles/templates
-  #   depth: 3
-  #   show-hidden: true
-  #   show-ignore: true
   - bindkey: td
     dir: $HOME/dotfiles/lib/zsh/candy/templates
     depth: 3
     show-hidden: true
     show-ignore: true
+  - ["l,", $HOME/.local/lib, 7]
+  - [xs, $XDG_STATE_HOME, 5]
+  # Home Row
+  - [h, $HOME/src/me, 4, \\.git$, true, true, dirname | xargs dirname] # this yml file is converted to json. a backslash is an escape character in json. we need to escape the backslash. we want to pass \.git$ as the regex filter to fd
+  - [ht, $HOME/src/me/scripts]
+  - [hc, $HOME/src/me/zsh/candy]
+  - [t, $HOME/src/playground, 5, \\.git$, true, true, dirname | xargs dirname]
+  - [n, $HOME/src/clones, 4, \\.git$, true, true, dirname | xargs dirname]
+  - [s, $HOME/src]
+  # Bottom row
+  - [w, $HOME/src/me/wiki, 8]
+  - [v, $HOME/Documents/candy/wiki, 5]
 
-  # CLONES
-  - [nk, $HOME/src/clones/python/kitty]
+  - [k, $HOME/Desktop]
 
-  # UDEMY
-  # - [k, /Users/tim/src/udemy/portilla/Complete-Python-3-Bootcamp]
+  # trash
+  - [q, $HOME/.Trash]
+  - [p, /tmp]
+  - [tl, $HOME/Downloads]
 
   # SRC
   - [d, $HOME/src/candy/db]
-  - [j, $HOME/src/candy/db]
   - [s., $HOME/src/candy/main/referralcandy-main, 5]
   - [sd, $HOME/src/candy/main/referralcandy-main/packages/daemons]
   - [se, $HOME/src/candy/main/referralcandy-main/packages/external-api, 5]
@@ -91,31 +54,22 @@ keymaps:
   - [
       s..,
       $HOME/src/candy/main/referralcandy-main/packages/common-services/scripts,
-      5,
     ]
-
+  # poor man's worktree
+  - ["s,", $HOME/src/candy/main2/referralcandy-main]
   - [s2, $HOME/src/candy/main2/referralcandy-main, 5]
   - [s3, $HOME/src/candy/main3/referralcandy-main, 5]
+
+  # OLD CANDY
   - [st, $HOME/src/candy/old/customer-tracks/]
-  - ["s,", $HOME/src/candy/main2/referralcandy-main]
-  - [sa, $HOME/src/candy/playground/github-actions]
   - [sb, $HOME/src/candy/old/business]
   - [sc, $HOME/src/candy, 5, \\.git$, true, true, dirname | xargs dirname]
-  - [sg, $HOME/src/candy/playground]
-  - [sgc, $HOME/src/candy/playground/referralcandy-secondary]
   # oops sh will create zsh shortcut which shadows zsh bin
   # - [sh, $HOME/src/candy/main/referralcandy-main/packages/daemons]
   - [so, $HOME/src/candy/old]
   - [soc, $HOME/src/candy/old/composer]
-  # - [si, $HOME/src/candy/old/internal_tools]
   - [sp, $HOME/src/candy/old/pentel]
   - [sp2, $HOME/src/candy/pentel]
   - [sr, $HOME/src/candy/old/referral_corner]
   - [sm, $HOME/src/candy/old/candymold]
-  # - [st, $HOME/src/candy/old/candymold/tools]
   - [sw, $HOME/src/candy/old/webapp/]
-
-  - [su, $HOME/src/udemy, 4, \\.git$, true, true, dirname | xargs dirname]
-
-  - [hc, $HOME/src/me/zsh/candy]
-  - [ht, $HOME/src/me/zsh/candy/klaviyo]
