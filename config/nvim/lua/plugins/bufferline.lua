@@ -101,5 +101,6 @@ return {
     vim.keymap.set('n', '<A-8>', ':BufferLineCloseLeft<CR>', { desc = 'close buffers to the left' })
     vim.keymap.set('n', '<A-9>', ':BufferLineCloseRight<CR>', { desc = 'close buffers to the right' })
     vim.keymap.set('n', '<A-0>', ':BufferLineCloseLeft<CR>:BufferLineCloseRight<CR>', { desc = 'close all except current buffer' })
+    vim.keymap.set('n', '<M-Esc>', ':BufferLineCloseLeft<CR>:BufferLineCloseRight<CR>', { desc = 'close all except current buffer' })
   end,
 }
