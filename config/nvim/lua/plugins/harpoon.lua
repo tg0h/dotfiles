@@ -31,26 +31,28 @@ local M = {
       },
     })
 
-    map('n', '<C-q>', ":lua require('harpoon.ui').toggle_quick_menu()<CR>", default_options)
-    map('n', '<C-Space>', ":lua require('harpoon.ui').toggle_quick_menu()<CR>", default_options)
+    -- map('n', '<C-q>', ":lua require('harpoon.ui').toggle_quick_menu()<CR>", default_options)
+    map('n', '<M-Space>', ":lua require('harpoon.ui').toggle_quick_menu()<CR>", default_options)
 
     map('n', '<C-h>', ":lua require('harpoon.ui').nav_file(1)<CR>", default_options)
     map('n', '<C-t>', ":lua require('harpoon.ui').nav_file(2)<CR>", default_options)
     map('n', '<C-n>', ":lua require('harpoon.ui').nav_file(3)<CR>", default_options)
     map('n', '<C-s>', ":lua require('harpoon.ui').nav_file(4)<CR>", default_options)
-    map('n', '<C-4>', ":lua require('harpoon.ui').nav_file(4)<CR>", default_options)
-    map('n', '<C-5>', ":lua require('harpoon.ui').nav_file(5)<CR>", default_options)
-    map('n', '<C-6>', ":lua require('harpoon.ui').nav_file(6)<CR>", default_options)
-    map('n', '<C-7>', ":lua require('harpoon.ui').nav_file(7)<CR>", default_options)
-    map('n', '<C-8>', ":lua require('harpoon.ui').nav_file(8)<CR>", default_options)
+    map('n', '<M-1>', ":lua require('harpoon.ui').nav_file(1)<CR>", default_options)
+    map('n', '<M-2>', ":lua require('harpoon.ui').nav_file(2)<CR>", default_options)
+    map('n', '<M-3>', ":lua require('harpoon.ui').nav_file(3)<CR>", default_options)
+    map('n', '<M-4>', ":lua require('harpoon.ui').nav_file(4)<CR>", default_options)
+    map('n', '<M-5>', ":lua require('harpoon.ui').nav_file(5)<CR>", default_options)
+    map('n', '<M-6>', ":lua require('harpoon.ui').nav_file(6)<CR>", default_options)
+    map('n', '<M-7>', ":lua require('harpoon.ui').nav_file(7)<CR>", default_options)
 
     -- map("n", "<M-C-h>", ":lua require('harpoon.ui').nav_file(5)<CR>", default_options)
     -- map("n", "<M-C-t>", ":lua require('harpoon.ui').nav_file(6)<CR>", default_options)
     -- map("n", "<M-C-n>", ":lua require('harpoon.ui').nav_file(5)<CR>", default_options)
     -- map("n", "<M-C-s>", ":lua require('harpoon.ui').nav_file(6)<CR>", default_options)
 
-    map('n', '<M-C-q>', ":lua require('harpoon.mark').add_file()<CR>", default_options)
-    map('n', '<M-Space>', ":lua require('harpoon.mark').add_file()<CR>", default_options)
+    -- map('n', '<M-C-q>', ":lua require('harpoon.mark').add_file()<CR>", default_options)
+    map('n', '<M-C-Space>', ":lua require('harpoon.mark').add_file()<CR>", default_options)
     -- map('n', '<M-C-m>', ":lua require('harpoon.mark').add_file()<CR>", default_options)
 
     -- <CMD>lua require('harpoon.dev').reload()<CR>
