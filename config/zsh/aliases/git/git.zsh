@@ -1,5 +1,6 @@
 alias g="git -P" # turn off pager to disable delta
 alias gc,="git-conventional-commit"
+alias gcro='git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"'
 
 # status
 alias a='git status -s'
