@@ -42,7 +42,9 @@ alias gy,.="git fuzzy reflog"
 # alias u="git fuzzy status"
 alias gya="git fuzzy stash"
 
-alias q="lazygit"
+# alias q="lazygit"
+# call the lg function which wraps lazygit and changes directory on lazygit exit
+alias q="lg"
 # the zsh git plugin defines git aliases in ~/.oh-my-zsh/plugins/git/git.plugin.zsh
 # unalias gg # remove alias set by omz git plugin
 alias g.="gloz -10 --color=always D"
