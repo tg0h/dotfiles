@@ -29,7 +29,8 @@ keymaps:
   - [xs, $XDG_STATE_HOME, 5]
   # Home Row
   - [h, $HOME/src/me, 4, \\.git$, true, true, dirname | xargs dirname] # this yml file is converted to json. a backslash is an escape character in json. we need to escape the backslash. we want to pass \.git$ as the regex filter to fd
-  - [ht, $HOME/src/me/scripts]
+  - [ht, $HOME/src/me/nvim]
+  - [htn, $HOME/src/me/nvim/git-worktree.nvim]
   - [hc, $HOME/src/me/zsh/candy]
   - [t, $HOME/src/playground, 5, \\.git$, true, true, dirname | xargs dirname]
   - [n, $HOME/src/clones, 4, \\.git$, true, true, dirname | xargs dirname]
@@ -47,7 +48,8 @@ keymaps:
 
   # SRC
   - [d, $HOME/src/candy/db]
-  - [s., $HOME/src/candy/main/referralcandy-main, 5]
+  - [s., $HOME/src/candy/referralcandy-main/main, 5]
+  - ["s,", $HOME/src/candy/main/referralcandy-main, 5]
   - [sd, $HOME/src/candy/main/referralcandy-main/packages/daemons]
   - [se, $HOME/src/candy/main/referralcandy-main/packages/external-api, 5]
   - [si, $HOME/src/candy/main/referralcandy-main/packages/infra, 5]
@@ -56,7 +58,7 @@ keymaps:
       $HOME/src/candy/main/referralcandy-main/packages/common-services/scripts,
     ]
   # poor man's worktree
-  - ["s,", $HOME/src/candy/main2/referralcandy-main]
+  - ["s,.", $HOME/src/candy/main2/referralcandy-main]
   - [s2, $HOME/src/candy/main2/referralcandy-main, 5]
   - [s3, $HOME/src/candy/main3/referralcandy-main, 5]
 
