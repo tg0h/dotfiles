@@ -167,3 +167,4 @@ tap 'dbcli/tap'
 brew 'pgcli'
 brew 'postgresql@15'
 brew 'sd' # rust sed
+brew 'turbot/tap/steampipe'
