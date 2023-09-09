@@ -1,8 +1,8 @@
 return {
   'rgroli/other.nvim',
+  event = 'VeryLazy',
   config = function()
     vim.api.nvim_set_keymap('n', '<LEADER>oa', '<CMD>:Other<CR>', { noremap = true, silent = true })
-    vim.api.nvim_set_keymap('n', '<C-b>', '<CMD>:Other<CR>', { noremap = true, silent = true })
     vim.api.nvim_set_keymap('n', '<LEADER>otn', '<CMD>:OtherTabNew<CR>', { noremap = true, silent = true })
     vim.api.nvim_set_keymap('n', '<LEADER>op', '<CMD>:OtherSplit<CR>', { noremap = true, silent = true })
     vim.api.nvim_set_keymap('n', '<LEADER>ov', '<CMD>:OtherVSplit<CR>', { noremap = true, silent = true })
