@@ -20,6 +20,7 @@ return {
 
       -- vim.keymap.set('n', '<M-x>', '<CMD>GitBlameToggle<CR>', { desc = 'git blame toggle' })
       vim.keymap.set('n', '<LEADER>gz', '<CMD>GitBlameToggle<CR>', { desc = 'git blame toggle' })
+      vim.keymap.set('n', '<M-z>', '<CMD>GitBlameToggle<CR>', { desc = 'git blame toggle' })
     end,
   },
   -- { 'ggandor/leap.nvim', dependencies = { 'tpope/vim-repeat' } },
