@@ -51,7 +51,7 @@ local M = {
     -- map("n", "<M-C-n>", ":lua require('harpoon.ui').nav_file(5)<CR>", default_options)
     -- map("n", "<M-C-s>", ":lua require('harpoon.ui').nav_file(6)<CR>", default_options)
 
-    -- map('n', '<M-C-q>', ":lua require('harpoon.mark').add_file()<CR>", default_options)
+    map('n', '<M-C-q>', ":lua require('harpoon.mark').add_file()<CR>", default_options)
     map('n', '<M-C-Space>', ":lua require('harpoon.mark').add_file()<CR>", default_options)
     -- map('n', '<M-C-m>', ":lua require('harpoon.mark').add_file()<CR>", default_options)
 
