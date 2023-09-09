@@ -163,7 +163,7 @@ return {
     })
 
     wk.register({
-      t = {
+      v = {
         name = 'ChatGPT',
         h = { '<cmd>ChatGPT<CR>', 'ChatGPT' },
         e = { '<cmd>ChatGPTEditWithInstruction<CR>', 'Edit with instruction' },
