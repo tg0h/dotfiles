@@ -139,7 +139,7 @@ local M = {
       vim.keymap.set('n', 'm', api.marks.toggle, opts('Toggle Bookmark'))
     end
 
-    local tree_cb = require('nvim-tree.config').nvim_tree_callback
+    -- local tree_cb = require('nvim-tree.config').nvim_tree_callback
 
     -- vim.keymap.set('n', '<leader>mn', require('nvim-tree.api').marks.navigate.next, { desc = 'nvim-tree marks next' })
     -- vim.keymap.set('n', '<leader>mp', require('nvim-tree.api').marks.navigate.next, { desc = 'nvim-tree marks previous' })
@@ -193,9 +193,9 @@ local M = {
         number = true,
         relativenumber = true,
         signcolumn = 'yes',
-        mappings = {
-          custom_only = true,
-        },
+        -- mappings = {
+        --   custom_only = true,
+        -- },
         float = {
           enable = false,
           quit_on_focus_loss = true,
