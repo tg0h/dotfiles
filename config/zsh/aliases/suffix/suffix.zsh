@@ -5,6 +5,7 @@ alias -s json=nvim
 # alias -s zsh=nvim # interferes with alias zsh.h.zsh which runs the script
 # alias -s js=nvim
 alias -s ts=nvim
+alias -s rb=nvim
 alias -s yaml=nvim
 alias -s yml=nvim
 alias -s config=nvim
