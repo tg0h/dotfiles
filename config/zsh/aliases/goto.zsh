@@ -1,6 +1,7 @@
 # alias c.='cd ~/src/playground/cdk'
 alias c.='cd ~/src/playground/cdk/cdk-workshop'
 alias c,='cd ~/src/playground/candy/referralcandy-secondary'
+alias cs.='cd ./packages/common-services/scripts'
 
 alias s.='cd ~/src/candy/main/referralcandy-main'
 alias s..='cd ~/src/candy/main/referralcandy-main/packages/common-services/scripts/'
