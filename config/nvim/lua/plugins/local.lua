@@ -8,7 +8,7 @@ return {
       {
         '<A-i>',
         function() require('tg.toggle-interface').Toggle() end,
-        desc = 'toggle interface file',
+        desc = 'timtoggle interface file',
       },
     },
   },
@@ -19,7 +19,7 @@ return {
       {
         '<M-x>',
         function() require('tg.toggle-repository').Toggle() end,
-        desc = 'toggle repository file',
+        desc = 'timtoggle repository file',
       },
     },
   },
@@ -30,7 +30,7 @@ return {
       {
         '<M-`>',
         function() require('tg.toggle-model').Toggle() end,
-        desc = 'toggle model file',
+        desc = 'timtoggle model file',
       },
     },
   },
@@ -41,7 +41,7 @@ return {
       {
         "<M-'>",
         function() require('tg.toggle-make').Toggle() end,
-        desc = 'toggle make file',
+        desc = 'timtoggle make file',
       },
     },
   },
@@ -56,7 +56,7 @@ return {
       {
         '<A-.>',
         function() require('tg.toggle-test').Toggle() end,
-        desc = 'toggle test file',
+        desc = 'timtoggle test file',
       },
     },
   },
