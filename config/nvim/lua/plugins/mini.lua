@@ -1,5 +1,5 @@
 return {
-  { 'echasnovski/mini.cursorword', opts = { delay = 100 }, event = 'VeryLazy', enabled = false },
+  { 'echasnovski/mini.cursorword', opts = { delay = 100 }, event = 'VeryLazy', enabled = true },
   {
     'echasnovski/mini.indentscope',
     opts = {
