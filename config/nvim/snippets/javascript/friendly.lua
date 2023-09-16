@@ -13,6 +13,18 @@ return {
     )
   ),
   s('cc', { t("console.log('timg 🔴')") }),
+  s(
+    'pp',
+    fmt(
+      [[
+const start = performance.now();
+const end = performance.now();
+console.log(`timg 🔴 get rewards time taken ${{((end - start) / 1000).toFixed(2)}}s`);
+{}
+]],
+      { i(0) }
+    )
+  ),
   s('ao', fmt([[console.log({})]], { i(1, '') })),
   s('c', fmt([[const {} = {}]], { i(1), i(0) })),
   s('l', { t('let '), i(1, '') }),
