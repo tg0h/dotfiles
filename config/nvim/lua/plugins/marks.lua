@@ -36,7 +36,26 @@ return {
         -- defaults to false.
         annotate = false,
       },
-      mappings = {},
+      mappings = {
+        set_next = 'm,',
+        toggle = 'm;',
+        delete_line = 'dm-', -- delete all marks on the current line
+        delete_buf = 'dm<SPACE>', -- delete all marks in the current buff
+        next = 'm]',
+        prev = 'm[',
+        preview = 'm:',
+        set = 'm',
+        delete = 'dm',
+        next_bookmark = 'm}', -- go to next bookmark in the bookmark group (assumes cursor currently on a bookmark )
+        prev_bookmark = 'm{',
+        -- bookmark groups work across files but do not persist between sessions
+        -- use m[0-9] to set bookmarks 0-9
+        -- use dm[0-9] to delete all marks in bookmark group 0-9
+        set_bookmark0 = 'n0',
+        next_bookmark0 = 'n,',
+        -- prev_bookmark0 = 'n,',
+        -- delete_bookmark0  = 'n,',
+      },
     })
   end,
 }
