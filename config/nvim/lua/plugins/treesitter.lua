@@ -80,6 +80,9 @@ local M = {
             ['ak'] = '@block.outer',
             ['ir'] = '@parameter.inner',
             ['ar'] = '@parameter.outer',
+            ['ii'] = '@conditional.inner',
+            ['ai'] = '@conditional.outer',
+            ['at'] = '@comment.outer',
           },
         },
         move = {
