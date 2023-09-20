@@ -51,8 +51,10 @@ return {
       -- javascript = {coverage_file = "packages/api/api/coverage/lcov.info"},
       -- typescript = {coverage_file = "packages/api/api/coverage/lcov.info"},
       -- javascript = {coverage_file = "coverage/lcov.info"},
-      javascript = { coverage_file = '/Users/tim/src/candy/main/referralcandy-main/coverage/lcov.info' },
-      typescript = { coverage_file = '/Users/tim/src/candy/main/referralcandy-main/coverage/lcov.info' },
+      -- javascript = { coverage_file = '/Users/tim/src/candy/main/referralcandy-main/coverage/lcov.info' },
+      javascript = { coverage_file = 'coverage/lcov.info' },
+      typescript = { coverage_file = 'coverage/lcov.info' },
+      -- typescript = { coverage_file = '/Users/tim/src/candy/main/referralcandy-main/coverage/lcov.info' },
     },
   },
 
