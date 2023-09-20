@@ -29,7 +29,7 @@ alias ta=ttw    # this week
 alias t,=ttsd   # summary this week
 alias t.=ttdd   # detail this week
 alias t,.=ttsdt # summary today
-alias tp=ttm    # this month
+# alias tp=ttm    # this month
 
 # candy
 alias na=tw     # this week
