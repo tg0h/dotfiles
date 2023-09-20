@@ -15,7 +15,8 @@ return {
         end
       end,
       -- kitty maps C-- to C-\, so use C-\ to open toggleterm
-      open_mapping = [[<C-Bslash>]], -- NOTE: opens toggleterm!
+      -- open_mapping = [[<C-Bslash>]], -- NOTE: opens toggleterm!
+      open_mapping = [[<C-0]], -- NOTE: opens toggleterm!
       hide_numbers = true, -- hide the number column in toggleterm buffers
       shade_filetypes = {},
       autochdir = false, -- when neovim changes it current directory the terminal will change it's own when next it's opened
