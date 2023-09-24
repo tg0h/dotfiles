@@ -5,5 +5,6 @@ rshift + ralt + rctrl + lshift + lalt - t : yabai -m space --layout stack
 # rshift + ralt + rctrl - n : yabai -m space --layout bsp
 # rshift + ralt + rctrl - s : yabai -m space --layout stack
 
-rshift + ralt + rctrl - n : [ $(yabai -m query --spaces | gojq --raw-output 'map(select(."has-focus"==true))[] | .type') = "bsp" ] \
+# toggle btw bsp and stack
+rshift + ralt + rctrl - v : [ $(yabai -m query --spaces | gojq --raw-output 'map(select(."has-focus"==true))[] | .type') = "bsp" ] \
 && ( yabai -m space --layout stack ) || ( yabai -m space --layout bsp )
