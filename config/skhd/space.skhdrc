@@ -21,7 +21,7 @@ rshift + ralt + rctrl + lalt - 0x1E : yabai -m window --space next && yabai -m s
 # rshift + ralt + rctrl + lcmd - r : yabai -m space --focus next || yabai -m space --focus first # next
 
 # rotate windows
-rshift + ralt + rctrl - l : yabai -m space --rotate 270
+rshift + ralt + rctrl + lshift - l : yabai -m space --rotate 270
 
 # Space
 # space create/destroy
