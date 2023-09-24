@@ -74,7 +74,11 @@ return {
     })
 
     local api = require('Comment.api')
-    vim.keymap.set('n', '<M-/>', api.toggle.linewise.current, { desc = 'comment' })
+    vim.keymap.set('n', '<M-/>', function()
+      api.toggle.linewise.current()
+      -- local esc = vim.api.nvim_replace_termcodes('<ESC>', true, false, true)
+      vim.api.nvim_feedkeys('j', 'nx', false)
+    end, { desc = 'comment' })
 
     local ft = require('Comment.ft')
     ft({ 'jq' }, '#%s')
