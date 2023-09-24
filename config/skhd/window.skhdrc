@@ -1,45 +1,20 @@
-# NOTE: good trick add shift key to shift behaviour.
-# move window to recent workspace
-
-
 # zoom
 rshift + ralt + rctrl - z : yabai -m window --toggle zoom-fullscreen # enter fullscreen mode for the focused container
-# float
 # rshift + ralt + rctrl - f : yabai -m window --toggle float
-
-# rshift + ralt + rctrl - w : yabai -m window --toggle float; yabai -m window --grid 1:4:0:0:3:1
-# rshift + ralt + rctrl - w : yabai -m window --grid 1:4:0:0:3:1
 rshift + ralt + rctrl - w : yabai -m window --resize right:700:0
-
 rshift + ralt + rctrl - b : yabai -m space --balance
 
-
-# how to resize windows
-# https://github.com/koekeishiya/yabai/issues/200
-# rshift + ralt + rctrl - left : yabai -m window --resize left:10:0
+# Rmeh arrows - resize windows https://github.com/koekeishiya/yabai/issues/200
 rshift + ralt + rctrl - left : yabai -m window --resize right:-100:0 2> /dev/null || yabai -m window --resize left:-100:0 2> /dev/null
 rshift + ralt + rctrl - down : yabai -m window --resize bottom:0:100 2> /dev/null || yabai -m window --resize top:0:100 2> /dev/null
 rshift + ralt + rctrl - up : yabai -m window --resize top:0:-100 2> /dev/null || yabai -m window --resize bottom:0:-100 2> /dev/null
 rshift + ralt + rctrl - right : yabai -m window --resize right:100:0 2> /dev/null || yabai -m window --resize left:100:0 2> /dev/null
+
 # Cycling
-# cycle through bsp/stack windows RMeh-/
-# rshift + ralt + rctrl - 0x2C : yabai -m window --focus stack.next || yabai -m window --focus next || yabai -m window --focus stack.first || yabai -m window --focus first # only works for bsp windows, not floating windows
-
-# cycle through all visible windows sorted by: coordinates -> display index
-# rshift + ralt + rctrl - return: yabai -m window --focus "$(yabai -m query --windows | jq -re "sort_by(.display, .frame.x, .frame.y, .id) | map(select(.\"is-visible\" == true and .role != \"AXUnknown\" and .app != \"Toggl Track\")) | reverse | nth(index(map(select(.\"has-focus\" == true))) - 1).id")"
-
-# toggle btw 2 windows
-# rshift + ralt + rctrl - backspace : yabai -m window --focus recent
-
-# lctrl + lalt - n : yabai -m window --focus "$(yabai -m query --windows | jq -re "sort_by(.display, .frame.x, .frame.y, .id) | map(select(.\"is-visible\" == true and .role != \"AXUnknown\" and .app != \"Toggl Track\")) | reverse | nth(index(map(select(.\"has-focus\" == true))) - 1).id")"
-
 # cycle among windows in current monitor only
 # yabai -m query --windows --space means for the currently focussed space only
 rshift + ralt + rctrl - m : yabai -m window --focus "$(yabai -m query --windows --space | jq -re "sort_by(.display, .frame.x, .frame.y, .id) | map(select(.\"is-visible\" == true and .role != \"AXUnknown\" and .app != \"Toggl Track\")) | reverse | nth(index(map(select(.\"has-focus\" == true))) - 1).id")"
 # lshift + lctrl - s : yabai -m window --focus stack.next || yabai -m window --focus next || yabai -m window --focus stack.first || yabai -m window --focus first # only works for bsp windows, not floating windows
-# lctrl + lalt - s : yabai -m window --focus stack.next || yabai -m window --focus next || yabai -m window --focus stack.first || yabai -m window --focus first # only works for bsp windows, not floating windows
-
-
 
 # Window navigation --------------------------------------------------------------------------------------
 rshift + ralt + rctrl - h : yabai -m window --focus west || yabai -m window --focus last
@@ -61,6 +36,7 @@ rshift + ralt + rctrl + lshift + lcmd - t : yabai -m window --warp south
 rshift + ralt + rctrl + lshift + lcmd - n : yabai -m window --warp north
 rshift + ralt + rctrl + lshift + lcmd - s : yabai -m window --warp east
 
+# 0,1 - insert windows
 # Rmeh + Lshift <bottom row> - Insert in container - trigger shortcut again to turn off
 rshift + ralt + rctrl + lshift - m : yabai -m window --insert west
 rshift + ralt + rctrl + lshift - w : yabai -m window --insert south
