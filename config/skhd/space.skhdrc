@@ -13,8 +13,8 @@ rshift + ralt + rctrl - 0x1E : yabai -m space --focus next || yabai -m space --f
 ## move window to next/prev space
 # rshift + ralt + rctrl + lalt - g : yabai -m window --space prev && yabai -m space --focus prev 
 # rshift + ralt + rctrl + lalt - r : yabai -m window --space next && yabai -m space --focus next 
-rshift + ralt + rctrl + lalt - 0x21 : yabai -m window --space prev && yabai -m space --focus prev 
-rshift + ralt + rctrl + lalt - 0x1E : yabai -m window --space next && yabai -m space --focus next 
+rshift + ralt + rctrl + lalt - 0x21 : yabai -m window --space prev && yabai -m space --focus prev # [
+rshift + ralt + rctrl + lalt - 0x1E : yabai -m window --space next && yabai -m space --focus next # ]
 
 ## for laptop use
 # rshift + ralt + rctrl + lcmd - g : yabai -m space --focus prev || yabai -m space --focus last # previous
@@ -31,11 +31,11 @@ rshift + ralt + rctrl + lcmd - g : yabai -m space --create
 # lshift + lctrl + lalt + lcmd - b : yabai -m space --balance # rebalance all windows after resizing them
 
 # Space harpoon
-rshift + ralt + rctrl + lcmd - h : yabai -m space --focus 1
-rshift + ralt + rctrl + lcmd - t : yabai -m space --focus 2
-rshift + ralt + rctrl + lcmd - n : yabai -m space --focus 3
-rshift + ralt + rctrl + lcmd - s : yabai -m space --focus 4
-rshift + ralt + rctrl + lcmd - 0x1B : yabai -m space --focus 5 # -
+# rshift + ralt + rctrl + lcmd - h : yabai -m space --focus 1
+# rshift + ralt + rctrl + lcmd - t : yabai -m space --focus 2
+# rshift + ralt + rctrl + lcmd - n : yabai -m space --focus 3
+# rshift + ralt + rctrl + lcmd - s : yabai -m space --focus 4
+# rshift + ralt + rctrl + lcmd - 0x1B : yabai -m space --focus 5 # -
 
 # go to space
 rshift + ralt + rctrl - d : [ $(yabai -m query --spaces --space | jq '.index') -eq 1 ] && ( yabai -m space --focus recent ) || yabai -m space --focus 1
@@ -54,7 +54,8 @@ rshift + ralt + rctrl - w : [ $(yabai -m query --spaces --space | jq '.index') -
 # cycle forwards on current display with Rmeh -
 # rshift + ralt + rctrl - 0x1B : id="$(yabai -m query --spaces --display | jq 'sort_by(.index) | reverse | .[map(."has-focus") | index(true) - 1].index')" && yabai -m space --focus "${id}"
 # cycle forwards on current display with Rmeh space
-rshift + ralt + rctrl - space : id="$(yabai -m query --spaces --display | jq 'sort_by(.index) | reverse | .[map(."has-focus") | index(true) - 1].index')" && yabai -m space --focus "${id}"
+# rshift + ralt + rctrl - space : id="$(yabai -m query --spaces --display | jq 'sort_by(.index) | reverse | .[map(."has-focus") | index(true) - 1].index')" && yabai -m space --focus "${id}"
+
 # this cycles backwards
 # id="$(yabai -m query --spaces --display | jq 'sort_by(.index) | .[map(."has-focus") | index(true) - 1].index')" && yabai -m space --focus "${id}"
 # rshift + ralt + rctrl - p: yabai -m space --focus 7
