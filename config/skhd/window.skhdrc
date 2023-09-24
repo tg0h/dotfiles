@@ -48,12 +48,14 @@ rshift + ralt + rctrl - t : yabai -m window --focus south
 rshift + ralt + rctrl - n : yabai -m window --focus north
 rshift + ralt + rctrl - s : yabai -m window --focus east || yabai -m window --focus first
 
+# 0,1 - swap
 # Rmeh + Lshift <home> - Move window (swap - assume shape of target)
 rshift + ralt + rctrl + lshift - h : yabai -m window --swap west || $(yabai -m window --display west; yabai -m display --focus west)
 rshift + ralt + rctrl + lshift - t : yabai -m window --swap south || $(yabai -m window --display south; yabai -m display --focus south)
 rshift + ralt + rctrl + lshift - n : yabai -m window --swap north || $(yabai -m window --display north; yabai -m display --focus north)
 rshift + ralt + rctrl + lshift - s : yabai -m window --swap east || $(yabai -m window --display east; yabai -m display --focus east)
 
+# 0,1,4 - move to
 # Rmeh + Lshift + Lcmd <home> - Warp window (keep size)
 rshift + ralt + rctrl + lshift + lcmd - h : yabai -m window --warp west
 rshift + ralt + rctrl + lshift + lcmd - t : yabai -m window --warp south
