@@ -1,12 +1,11 @@
 # NOTE: good trick add shift key to shift behaviour.
 # move window to recent workspace
 
-# rshift + ralt + rctrl + lshift - t : yabai -m window --space recent; yabai -m space --focus recent # move focused window to previous workspace
 
 # zoom
 rshift + ralt + rctrl - z : yabai -m window --toggle zoom-fullscreen # enter fullscreen mode for the focused container
 # float
-rshift + ralt + rctrl - f : yabai -m window --toggle float
+# rshift + ralt + rctrl - f : yabai -m window --toggle float
 
 # rshift + ralt + rctrl - w : yabai -m window --toggle float; yabai -m window --grid 1:4:0:0:3:1
 # rshift + ralt + rctrl - w : yabai -m window --grid 1:4:0:0:3:1
