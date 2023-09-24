@@ -47,7 +47,7 @@ vim.keymap.set('n', '<M-C-z>', ':cquit<CR>', { desc = 'normal mode exit with err
 vim.keymap.set('i', '<M-C-z>', '<Esc>:cquit<CR>', { desc = 'insert mode exit with error code' }) -- exit with error code
 
 vim.keymap.set('n', '<M-C-e>', ':w<CR>', { desc = 'normal mode save' }) -- normal mode save
-vim.keymap.set('i', '<M-C-e>', '<Esc>:w<CR>a', { desc = 'insert mode save' }) -- insert mode save
+vim.keymap.set('i', '<M-C-e>', '<Esc>:w<CR>', { desc = 'insert mode save' }) -- insert mode save
 
 vim.keymap.set('n', '<M-C-S>', ':wq<CR>', { desc = 'normal mode save and exit' }) -- normal mode - save and exit
 vim.keymap.set('i', '<M-C-S>', '<Esc>:wq<CR>', { desc = 'insert mode save and exit' }) -- insert mode - save and exit
