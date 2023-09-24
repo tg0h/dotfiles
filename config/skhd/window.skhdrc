@@ -36,7 +36,7 @@ rshift + ralt + rctrl - right : yabai -m window --resize right:100:0 2> /dev/nul
 
 # cycle among windows in current monitor only
 # yabai -m query --windows --space means for the currently focussed space only
-rshift + ralt + rctrl - h : yabai -m window --focus "$(yabai -m query --windows --space | jq -re "sort_by(.display, .frame.x, .frame.y, .id) | map(select(.\"is-visible\" == true and .role != \"AXUnknown\" and .app != \"Toggl Track\")) | reverse | nth(index(map(select(.\"has-focus\" == true))) - 1).id")"
+rshift + ralt + rctrl - m : yabai -m window --focus "$(yabai -m query --windows --space | jq -re "sort_by(.display, .frame.x, .frame.y, .id) | map(select(.\"is-visible\" == true and .role != \"AXUnknown\" and .app != \"Toggl Track\")) | reverse | nth(index(map(select(.\"has-focus\" == true))) - 1).id")"
 # lshift + lctrl - s : yabai -m window --focus stack.next || yabai -m window --focus next || yabai -m window --focus stack.first || yabai -m window --focus first # only works for bsp windows, not floating windows
 # lctrl + lalt - s : yabai -m window --focus stack.next || yabai -m window --focus next || yabai -m window --focus stack.first || yabai -m window --focus first # only works for bsp windows, not floating windows
 
