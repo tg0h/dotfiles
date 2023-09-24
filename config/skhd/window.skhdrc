@@ -8,6 +8,9 @@ rshift + ralt + rctrl - z : yabai -m window --toggle zoom-fullscreen # enter ful
 rshift + ralt + rctrl - f : yabai -m window --toggle float
 
 
+rshift + ralt + rctrl - b : yabai -m space --balance
+
+
 # how to resize windows
 # https://github.com/koekeishiya/yabai/issues/200
 # rshift + ralt + rctrl - left : yabai -m window --resize left:10:0
