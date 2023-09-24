@@ -38,7 +38,7 @@ rshift + ralt + rctrl + lcmd - g : yabai -m space --create
 # rshift + ralt + rctrl + lcmd - 0x1B : yabai -m space --focus 5 # -
 
 # go to space
-rshift + ralt + rctrl - d : [ $(yabai -m query --spaces --space | jq '.index') -eq 1 ] && ( yabai -m space --focus recent ) || yabai -m space --focus 1
+rshift + ralt + rctrl + lshift - 0x18 : [ $(yabai -m query --spaces --space | jq '.index') -eq 1 ] && ( yabai -m space --focus recent ) || yabai -m space --focus 1 # rmeh + is actually equalso to rmeh lshift =
 rshift + ralt + rctrl - g : [ $(yabai -m query --spaces --space | jq '.index') -eq 2 ] && ( yabai -m space --focus recent ) || yabai -m space --focus 2
 # rshift + ralt + rctrl + lshift - 0x1C : yabai -m space --focus 1 # *
 # rshift + ralt + rctrl + lshift - 0x1D : yabai -m space --focus 2 # )
