@@ -13,7 +13,7 @@ vim.keymap.set('n', '<S-M-h>', ':wincmd w<CR>', { desc = 'switch to next window'
 vim.keymap.set('n', '<A-d>', function() require('core.utils.functions').close_floating_windows() end, { desc = 'close floating windows' })
 
 -- Resizing windows
-vim.keymap.set('n', '<Left>', ':vertical resize +5<CR>', { desc = 'resize left window' })
-vim.keymap.set('n', '<Right>', ':vertical resize -5<CR>', { desc = 'resize right window' })
-vim.keymap.set('n', '<Up>', ':resize -5<CR>', { desc = 'resize up window' }) -- do not use Up/Down so that mousewheel scroll can be used to navigate
-vim.keymap.set('n', '<Down>', ':resize +5<CR>', { desc = 'resize down window' })
+vim.keymap.set('n', '<C-Left>', ':vertical resize +5<CR>', { desc = 'resize left window' })
+vim.keymap.set('n', '<C-Right>', ':vertical resize -5<CR>', { desc = 'resize right window' })
+vim.keymap.set('n', '<C-Up>', ':resize -5<CR>', { desc = 'resize up window' }) -- do not use Up/Down so that mousewheel scroll can be used to navigate
+vim.keymap.set('n', '<C-Down>', ':resize +5<CR>', { desc = 'resize down window' })
