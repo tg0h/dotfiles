@@ -47,8 +47,8 @@ rshift + ralt + rctrl - c : [ $(yabai -m query --spaces --space | jq '.index') -
 rshift + ralt + rctrl - r : [ $(yabai -m query --spaces --space | jq '.index') -eq 4 ] && ( yabai -m space --focus recent ) || yabai -m space --focus 4
 # rshift + ralt + rctrl - 0x1E : yabai -m space --focus 4 # ]
 # rshift + ralt + rctrl + lshift - 0x12 : yabai -m space --focus 5 # !
-rshift + ralt + rctrl - escape : [ $(yabai -m query --spaces --space | jq '.index') -eq 5 ] && ( yabai -m space --focus recent ) || yabai -m space --focus 5
-rshift + ralt + rctrl - w : [ $(yabai -m query --spaces --space | jq '.index') -eq 6 ] && ( yabai -m space --focus recent ) || yabai -m space --focus 6
+rshift + ralt + rctrl - l : [ $(yabai -m query --spaces --space | jq '.index') -eq 5 ] && ( yabai -m space --focus recent ) || yabai -m space --focus 5
+rshift + ralt + rctrl - 0x2C : [ $(yabai -m query --spaces --space | jq '.index') -eq 6 ] && ( yabai -m space --focus recent ) || yabai -m space --focus 6 # /
 # rshift + ralt + rctrl + lshift - 0x14 : yabai -m space --focus 6 # *
 # https://github.com/koekeishiya/yabai/issues/1291
 # cycle forwards on current display with Rmeh -
