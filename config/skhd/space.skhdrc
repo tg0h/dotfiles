@@ -13,8 +13,8 @@ rshift + ralt + rctrl - 0x1E : yabai -m space --focus next || yabai -m space --f
 ## move window to next/prev space
 # rshift + ralt + rctrl + lalt - g : yabai -m window --space prev && yabai -m space --focus prev 
 # rshift + ralt + rctrl + lalt - r : yabai -m window --space next && yabai -m space --focus next 
-rshift + ralt + rctrl + lalt - 0x21 : yabai -m window --space prev && yabai -m space --focus prev # [
-rshift + ralt + rctrl + lalt - 0x1E : yabai -m window --space next && yabai -m space --focus next # ]
+rshift + ralt + rctrl + lshift - 0x21 : yabai -m window --space prev && yabai -m space --focus prev # [
+rshift + ralt + rctrl + lshift - 0x1E : yabai -m window --space next && yabai -m space --focus next # ]
 
 ## for laptop use
 # rshift + ralt + rctrl + lcmd - g : yabai -m space --focus prev || yabai -m space --focus last # previous
@@ -41,6 +41,7 @@ rshift + ralt + rctrl + lcmd - g : yabai -m space --create
 # go to space
 # rshift + ralt + rctrl + lshift - 0x18 : [ $(yabai -m query --spaces --space | jq '.index') -eq 1 ] && ( yabai -m space --focus recent ) || yabai -m space --focus 1 # rmeh + is actually equalso to rmeh lshift =
 rshift + ralt + rctrl - f : [ $(yabai -m query --spaces --space | jq '.index') -eq 1 ] && ( yabai -m space --focus recent ) || yabai -m space --focus 1 # rmeh + is actually equalso to rmeh lshift =
+# rshift + ralt + rctrl + lshift + lctrl - m : yabai -m window --space 1 && yabai -m space --focus 1
 rshift + ralt + rctrl - g : [ $(yabai -m query --spaces --space | jq '.index') -eq 2 ] && ( yabai -m space --focus recent ) || yabai -m space --focus 2
 # rshift + ralt + rctrl + lshift - 0x1C : yabai -m space --focus 1 # *
 # rshift + ralt + rctrl + lshift - 0x1D : yabai -m space --focus 2 # )
@@ -76,17 +77,14 @@ rshift + ralt + rctrl - 0x2C : [ $(yabai -m query --spaces --space | jq '.index'
 # rshift + ralt + rctrl - 9 : yabai -m space --focus 9
 # rshift + ralt + rctrl - 0 : yabai -m space --focus 10
 
-# Rmeh + Lshift + Lctrl <num> - Move to space
-# TODO: add shift to move to space
-rshift + ralt + rctrl + lshift + lctrl - m : yabai -m window --space 1 && yabai -m space --focus 1
-rshift + ralt + rctrl + lshift + lctrl - w : yabai -m window --space 2 && yabai -m space --focus 2
-rshift + ralt + rctrl + lshift + lctrl - v : yabai -m window --space 3 && yabai -m space --focus 3
-rshift + ralt + rctrl + lshift + lctrl - h : yabai -m window --space 4 && yabai -m space --focus 4
-rshift + ralt + rctrl + lshift + lctrl - t : yabai -m window --space 5 && yabai -m space --focus 5
-rshift + ralt + rctrl + lshift + lctrl - n : yabai -m window --space 6 && yabai -m space --focus 6
-rshift + ralt + rctrl + lshift + lctrl - g : yabai -m window --space 7 && yabai -m space --focus 7
-rshift + ralt + rctrl + lshift + lctrl - c : yabai -m window --space 8 && yabai -m space --focus 8
-rshift + ralt + rctrl + lshift + lctrl - r : yabai -m window --space 9 && yabai -m space --focus 9
+# move to space
+rshift + ralt + rctrl + lshift - f : yabai -m window --space 1 && yabai -m space --focus 1
+rshift + ralt + rctrl + lshift - g : yabai -m window --space 2 && yabai -m space --focus 2
+rshift + ralt + rctrl + lshift - c : yabai -m window --space 3 && yabai -m space --focus 3
+rshift + ralt + rctrl + lshift - r : yabai -m window --space 4 && yabai -m space --focus 4
+rshift + ralt + rctrl + lshift - l : yabai -m window --space 5 && yabai -m space --focus 5
+rshift + ralt + rctrl + lshift - 0x2C : yabai -m window --space 6 && yabai -m space --focus 6
+rshift + ralt + rctrl + lshift - escape : yabai -m window --space recent; yabai -m space --focus recent # move focused window to previous workspace
 
 # laptop - move to space n
 rshift + ralt + rctrl + lalt - 1 : yabai -m window --space 1 && yabai -m space --focus 1
