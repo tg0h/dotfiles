@@ -90,11 +90,12 @@ local M = {
           set_jumps = true, -- whether to set jumps in the jumplist
           goto_next_start = {
             [']m'] = '@function.outer',
-            [']]'] = { query = '@class.outer', desc = 'Next class start' },
+            -- [']]'] = { query = '@class.outer', desc = 'Next class start' },
             -- function.outer can refer to both the start of the function or the end fo the function
             -- goto_next_start means go to the start of the next function
             ['<S-C-r>'] = '@function.outer',
             ['<S-C-l>'] = '@function.inner',
+            [']]'] = '@function.*',
 
             ['<S-C-7>'] = '@assignment.outer',
             ['<S-C-8>'] = '@assignment.inner',
@@ -142,7 +143,8 @@ local M = {
 
           goto_previous_start = {
             ['[m'] = '@function.outer',
-            ['[['] = '@class.outer',
+            -- ['[['] = '@class.outer',
+            ['[['] = '@function.*',
 
             ['<S-C-g>'] = '@function.outer',
             ['<S-C-c>'] = '@function.inner',
