@@ -9,6 +9,8 @@ rshift + ralt + rctrl - left : yabai -m window --resize right:-100:0 2> /dev/nul
 rshift + ralt + rctrl - down : yabai -m window --resize bottom:0:100 2> /dev/null || yabai -m window --resize top:0:100 2> /dev/null
 rshift + ralt + rctrl - up : yabai -m window --resize top:0:-100 2> /dev/null || yabai -m window --resize bottom:0:-100 2> /dev/null
 rshift + ralt + rctrl - right : yabai -m window --resize right:100:0 2> /dev/null || yabai -m window --resize left:100:0 2> /dev/null
+rshift + ralt + rctrl + lshift - left : yabai -m window --resize right:-300:0 2> /dev/null || yabai -m window --resize left:-300:0 2> /dev/null
+rshift + ralt + rctrl + lshift - right : yabai -m window --resize right:300:0 2> /dev/null || yabai -m window --resize left:300:0 2> /dev/null
 
 # Cycling
 # cycle among windows in current monitor only
