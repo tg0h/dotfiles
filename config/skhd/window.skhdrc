@@ -43,10 +43,10 @@ rshift + ralt + rctrl - m : yabai -m window --focus "$(yabai -m query --windows 
 
 
 # Window navigation --------------------------------------------------------------------------------------
-# rshift + ralt + rctrl - h : yabai -m window --focus west || yabai -m window --focus last
-# rshift + ralt + rctrl - t : yabai -m window --focus south
-# rshift + ralt + rctrl - n : yabai -m window --focus north
-# rshift + ralt + rctrl - s : yabai -m window --focus east || yabai -m window --focus first
+rshift + ralt + rctrl - h : yabai -m window --focus west || yabai -m window --focus last
+rshift + ralt + rctrl - t : yabai -m window --focus south
+rshift + ralt + rctrl - n : yabai -m window --focus north
+rshift + ralt + rctrl - s : yabai -m window --focus east || yabai -m window --focus first
 
 # Rmeh + Lshift <home> - Move window (swap - assume shape of target)
 rshift + ralt + rctrl + lshift - h : yabai -m window --swap west || $(yabai -m window --display west; yabai -m display --focus west)
