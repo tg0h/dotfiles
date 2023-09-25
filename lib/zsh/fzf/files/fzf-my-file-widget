@@ -36,7 +36,7 @@ EOF
         --header="$HEADER"\
         --header-first \
         --preview="fzf-fd-preview {}" \
-        --preview-window='right:nowrap,noborder,65%' \
+        --preview-window='right:nowrap,noborder,55%' \
         --bind "ctrl-a:execute(fzf-make-dir {1} $(pwd))+reload(fd $FD_OPTIONS)" \
         --bind="alt-c:execute(trash {})+reload(fd $FD_OPTIONS)" \
         --bind="alt-C:execute(rm {})+reload(fd $FD_OPTIONS)" \
