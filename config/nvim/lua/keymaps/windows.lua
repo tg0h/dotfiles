@@ -10,7 +10,7 @@ vim.keymap.set('n', '<S-M-h>', ':wincmd w<CR>', { desc = 'switch to next window'
 -- vim.keymap.set("n", "<S-A-e>", ":wincmd =<CR>", {desc=''}) -- equal splits
 
 -- vim.keymap.set('n', '<A-d>', ":lua require'utils'.close_floating_windows()<CR>", {desc=''}) -- close all floating windows (eg lsp hover windows)
-vim.keymap.set('n', '<A-d>', function() require('core.utils.functions').close_floating_windows() end, { desc = 'close floating windows' })
+-- vim.keymap.set('n', '<M-d>', function() require('core.utils.functions').close_floating_windows() end, { desc = 'close floating windows' })
 
 -- Resizing windows
 vim.keymap.set('n', '<C-Left>', ':vertical resize +5<CR>', { desc = 'resize left window' })

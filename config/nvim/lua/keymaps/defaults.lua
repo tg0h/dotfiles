@@ -55,7 +55,7 @@ vim.keymap.set('i', '<M-C-S>', '<Esc>:wq<CR>', { desc = 'insert mode save and ex
 vim.keymap.set('n', '<M-C-N>', ':w<CR>', { desc = 'normal mode save' })
 vim.keymap.set('i', '<M-C-N>', '<Esc>:w<CR>a', { desc = 'insert mode save' })
 
-vim.keymap.set('n', '<M-->', 'yyp', { desc = '' }) -- open dash docs with word under cursor
+vim.keymap.set('n', '<M-d>', 'yyp', { desc = 'copy line' })
 
 vim.keymap.set('n', '<LEADER>0', '"0p', { desc = 'paste 0 register' })
 
