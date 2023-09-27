@@ -1,8 +1,8 @@
 # shortcut to toggle monitors
 # if 2 monitors, RMeh - return toggles monitors, else toggles spaces
-# rshift + ralt + rctrl - return: [ $(yabai -m query --displays | jq 'length') -eq 1 ] \
-# && ( yabai -m space --focus recent ) \
-# || ( yabai -m display --focus prev || yabai -m display --focus last )
+rshift + ralt + rctrl - b: [ $(yabai -m query --displays | jq 'length') -eq 1 ] \
+&& ( yabai -m space --focus recent ) \
+|| ( yabai -m display --focus prev || yabai -m display --focus last )
 
 # rshift + ralt + rctrl - space: [ $(yabai -m query --displays | jq 'length') -eq 1 ] \
 # && ( yabai -m space --focus recent ) \
