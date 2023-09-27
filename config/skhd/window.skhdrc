@@ -2,7 +2,7 @@
 rshift + ralt + rctrl - z : yabai -m window --toggle zoom-fullscreen # enter fullscreen mode for the focused container
 # rshift + ralt + rctrl - f : yabai -m window --toggle float
 rshift + ralt + rctrl - w : yabai -m window --resize right:700:0
-rshift + ralt + rctrl - b : yabai -m space --balance
+shift + ralt + rctrl - 0x14 : yabai -m space --balance # #key note use of shift instead of rshift
 
 # Rmeh arrows - resize windows https://github.com/koekeishiya/yabai/issues/200
 rshift + ralt + rctrl - left : yabai -m window --resize right:-100:0 2> /dev/null || yabai -m window --resize left:-100:0 2> /dev/null
