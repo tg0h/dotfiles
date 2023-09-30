@@ -1,1 +1,2 @@
 set clipboard+=unnamed " copy to system clipboard
+set number relativenumber
