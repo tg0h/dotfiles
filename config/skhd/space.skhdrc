@@ -7,7 +7,8 @@ rshift + ralt + rctrl + lshift - 0x21 : yabai -m window --space prev && yabai -m
 rshift + ralt + rctrl + lshift - 0x1E : yabai -m window --space next && yabai -m space --focus next # ]
 # go to space
 rshift + ralt + rctrl - escape : yabai -m space --focus recent # focus previous space
-rshift + ralt + rctrl - f : [ $(yabai -m query --spaces --space | jq '.index') -eq 1 ] && ( yabai -m space --focus recent ) || yabai -m space --focus 1 # rmeh + is actually equalso to rmeh lshift =
+# rshift + ralt + rctrl - f : [ $(yabai -m query --spaces --space | jq '.index') -eq 1 ] && ( yabai -m space --focus recent ) || yabai -m space --focus 1 # rmeh + is actually equalso to rmeh lshift =
+rshift + ralt + rctrl - u : [ $(yabai -m query --spaces --space | jq '.index') -eq 1 ] && ( yabai -m space --focus recent ) || yabai -m space --focus 1
 rshift + ralt + rctrl - g : [ $(yabai -m query --spaces --space | jq '.index') -eq 2 ] && ( yabai -m space --focus recent ) || yabai -m space --focus 2
 rshift + ralt + rctrl - c : [ $(yabai -m query --spaces --space | jq '.index') -eq 3 ] && ( yabai -m space --focus recent ) || yabai -m space --focus 3
 rshift + ralt + rctrl - r : [ $(yabai -m query --spaces --space | jq '.index') -eq 4 ] && ( yabai -m space --focus recent ) || yabai -m space --focus 4
