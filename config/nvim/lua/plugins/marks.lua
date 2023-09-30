@@ -51,8 +51,8 @@ return {
         -- bookmark groups work across files but do not persist between sessions
         -- use m[0-9] to set bookmarks 0-9
         -- use dm[0-9] to delete all marks in bookmark group 0-9
-        set_bookmark0 = 'n0',
-        next_bookmark0 = 'n,',
+        -- set_bookmark0 = 'n0',
+        -- next_bookmark0 = 'n,',
         -- prev_bookmark0 = 'n,',
         -- delete_bookmark0  = 'n,',
       },
