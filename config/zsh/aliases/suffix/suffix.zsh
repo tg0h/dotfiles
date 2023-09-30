@@ -10,6 +10,7 @@ alias -s lua=nvim
 alias -s md=nvim
 alias -s rb=nvim
 alias -s skdhrc=nvim
+alias -s skhdrc=nvim
 alias -s sql=nvim
 alias -s ts=nvim
 alias -s txt=nvim
