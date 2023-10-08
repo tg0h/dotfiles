@@ -9,9 +9,15 @@ vim.g.mapleader = ' '
 -- vim.g.maplocalleader = '<BS>' --doesn't work
 
 -- Emacs emulation
-vim.keymap.set('i', '<C-a>', '<Esc>I', { desc = 'go to beginning of line in insert mode' }) -- go to beginning of line in insert mode
-vim.keymap.set('i', '<C-e>', '<Esc>A', { desc = 'go to end of line in insert mode' }) -- go to end of line in insert mode
-vim.keymap.set('i', '<C-d>', '<Del>', { desc = 'delete in insert mode' })
+vim.keymap.set('i', '<C-a>', '<Esc>I', { desc = 'go to beginning of line in insert mode' })
+vim.keymap.set('i', '<C-e>', '<Esc>A', { desc = 'go to end of line in insert mode' })
+vim.keymap.set('i', '<M-b>', '<Esc>bi', { desc = 'go back a word in insert mode' })
+vim.keymap.set('i', '<M-f>', '<Esc>ea', { desc = 'go forward a word in insert mode' })
+
+vim.keymap.set('i', '<C-d>', '<Del>', { desc = 'delete forward in insert mode' })
+vim.keymap.set('i', '<C-h>', '<BS>', { desc = 'delete backward in insert mode' })
+vim.keymap.set('i', '<C-k>', '<Esc>lC', { desc = 'delete to end of line in insert mode' })
+vim.keymap.set('i', '<M-d>', '<Esc>cw', { desc = 'delete forward to end of word in insert mode' })
 
 -- Help
 vim.keymap.set('n', '<F1>', ':WhichKey<CR>', { desc = 'show all which key mappings' }) -- show all mappings
