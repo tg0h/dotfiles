@@ -28,6 +28,7 @@ local M = {
         'markdown',
         'ruby',
         'vimdoc',
+        'sql',
       },
       -- Install parsers synchronously (only applied to `ensure_installed`)
       sync_install = false,
