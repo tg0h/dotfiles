@@ -49,3 +49,5 @@ scratch.jq
 
 # ignore datafold datadiff config files
 datadiff.toml
+
+config/dadbod
