@@ -11,6 +11,7 @@ alias sx='cd ~/src/candy/referralcandy-main/fix'
 alias ss='cd ~/src/candy/referralcandy-main/scripts'
 # alias s..='cd ~/src/candy/main/referralcandy-main/packages/common-services/scripts/'
 alias s..='cd ~/src/candy/referralcandy-main/scripts/packages/common-services/scripts/timg'
+alias s,.='cd ~/src/candy/referralcandy-main/feature/packages/redshift-services/scripts'
 alias tp='cd ~/src/playground/playwright/'
 alias dr='cd ~/src/candy/db/redshift-migration'
 
