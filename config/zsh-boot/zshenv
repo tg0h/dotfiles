@@ -67,6 +67,8 @@ export LG_CONFIG_FILE=$XDG_CONFIG_HOME/lazygit/config.yml,$XDG_CONFIG_HOME/lazyg
 export JQ_CONFIG="~/.config/jq"
 export JQ_LIB="~/.local/lib/jq"
 
+export GOKU_EDN_CONFIG_FILE=$XDG_CONFIG_HOME/goku/karabiner.edn
+
 # https://unix.stackexchange.com/questions/298329/constantly-display-status-line-in-less
 # export LESS='-Pslines %lt-%lb (%Pt-%Pb \%) bytes %bt-%bb file %f'
 # -K - tell less to quit with ctrl-C
@@ -102,4 +104,4 @@ for f in $XDG_CONFIG_HOME/zsh/***/*.zsh~*/start/*; do # exclude start folders
 done 
 unsetopt EXTENDED_GLOB
 
-# asst > /dev/null
+
