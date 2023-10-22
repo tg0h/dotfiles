@@ -59,6 +59,7 @@ augroup END
           function()
             return {
               exe = 'zprint',
+              args = { "'{:style :indent-only}'" },
               stdin = true,
             }
           end,
