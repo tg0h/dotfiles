@@ -14,6 +14,7 @@ local M = {
       ensure_installed = {
         'bash',
         -- 'cmake',
+        'clojure',
         'dockerfile',
         'go',
         'html',
