@@ -2,6 +2,8 @@
  [
   {:des "Caps Lock to RMeh", :rules [[:caps_lock :!WEright_shift nil {:alone :escape}]]}
 
+  {:des "RCmd to LHyper", :rules [[:right_command :!TOCleft_shift]]}
+
   {:des "dvorak",
    :rules [;
            [:##hyphen :open_bracket]
