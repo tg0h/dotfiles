@@ -1,5 +1,7 @@
 {:main
  [
+  {:des "Caps Lock to RMeh", :rules [[:caps_lock :!WEright_shift nil {:alone :escape}]]}
+
   {:des "dvorak",
    :rules [;
            [:##hyphen :open_bracket]
