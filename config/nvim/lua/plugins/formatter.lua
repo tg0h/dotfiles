@@ -6,7 +6,7 @@ local M = {
       [[
 augroup FormatAutogroup
   autocmd!
-  autocmd BufWritePost *.md,*.yaml,*.yml,*.json,*.js,*.mjs,*.jsx,*.tsx,*.ts,*.html,*.lua FormatWrite
+  autocmd BufWritePost *.md,*.yaml,*.yml,*.json,*.js,*.mjs,*.jsx,*.tsx,*.ts,*.html,*.lua,*.edn FormatWrite
 augroup END
 ]],
       true
@@ -53,6 +53,16 @@ augroup END
         --         }
         --     end
         -- }
+
+        -- homebrew install zprint cask
+        clojure = {
+          function()
+            return {
+              exe = 'zprint',
+              stdin = true,
+            }
+          end,
+        },
       },
     })
   end,
