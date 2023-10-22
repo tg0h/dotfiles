@@ -31,7 +31,8 @@
            [:##semicolon :s]
            [:##quote :hyphen]
 
-           [:##z :!Ssemicolon]
+           ; [:##z :!Ssemicolon] ; TODO: figure out how to Shift : to semicolon
+           [:##z :semicolon]
            [:##x :q]
            [:##c :j]
            [:##v :k]
