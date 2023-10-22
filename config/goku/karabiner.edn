@@ -2,6 +2,9 @@
  [
   {:des "dvorak",
    :rules [;
+           [:##hyphen :open_bracket]
+           [:##equal_sign :close_bracket]
+
            [:##q :quote]
            [:##w :comma]
            [:##e :period]
@@ -12,6 +15,9 @@
            [:##i :c]
            [:##o :r]
            [:##p :l]
+           [:##open_bracket :slash]
+           [:##close_bracket :equal_sign]
+           [:##close_bracket :backslash]
 
            [:##a :a]
            [:##s :o]
@@ -23,6 +29,7 @@
            [:##k :t]
            [:##l :n]
            [:##semicolon :s]
+           [:##quote :hyphen]
 
            [:##z :!Ssemicolon]
            [:##x :q]
