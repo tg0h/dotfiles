@@ -1594,7 +1594,7 @@
 
   ###################################[ example: db ]####################################
   function prompt_db() {
-local loc dev staging prod_read prod customerTracks customerTracksStaging redshiftLocal redshiftProd
+local loc dev staging prod_read prod customerTracks customerTracksStaging redshiftLocal redshiftProd redisLocal redisStaging redisProd
 local result=$(csg)
 if rg -q 3305 <<< $result; then
   loc=l
@@ -1631,9 +1631,21 @@ fi
 if rg -q 5433 <<< $result; then
   redshiftProd=R
 fi
+
+if rg -q 6379 <<< $result; then
+  redisLocal=a
+fi
+
+if rg -q 6380 <<< $result; then
+  redisStaging=â
+fi
+
+if rg -q 6381 <<< $result; then
+  redisProd=A
+fi
 # local db_state=$(p10k-get-db-connection)
 
-    p10k segment -f 208 -t "$loc$dev$staging$prod_read$prod$customerTracksStaging$customerTracks$redshiftLocal$redshiftProd"
+    p10k segment -f 208 -t "$loc$dev$staging$prod_read$prod$customerTracksStaging$customerTracks$redshiftLocal$redshiftProd$redisLocal$redisStaging$redisProd"
     # p10k segment -t "$db_state"
   }
 
