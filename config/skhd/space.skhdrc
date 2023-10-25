@@ -17,12 +17,14 @@ rshift + ralt + rctrl - l : [ $(yabai -m query --spaces --space | jq '.index') -
 rshift + ralt + rctrl - 0x2C : [ $(yabai -m query --spaces --space | jq '.index') -eq 6 ] && ( yabai -m space --focus recent ) || yabai -m space --focus 6 # /
 # move to space
 rshift + ralt + rctrl + lshift - 0x1B : yabai -m window --space recent; yabai -m space --focus recent # move focused window to previous workspace # -
-rshift + ralt + rctrl + lshift - f : yabai -m window --space 1 && yabai -m space --focus 1
-rshift + ralt + rctrl + lshift - g : yabai -m window --space 2 && yabai -m space --focus 2
-rshift + ralt + rctrl + lshift - c : yabai -m window --space 3 && yabai -m space --focus 3
-rshift + ralt + rctrl + lshift - r : yabai -m window --space 4 && yabai -m space --focus 4
-rshift + ralt + rctrl + lshift - l : yabai -m window --space 5 && yabai -m space --focus 5
-rshift + ralt + rctrl + lshift - 0x2C : yabai -m window --space 6 && yabai -m space --focus 6
+# rshift + ralt + rctrl + lshift - u : yabai -m window --space 1 && yabai -m space --focus 1
+rshift + ralt + rctrl + lshift - u : [ $(yabai -m query --spaces --space | jq '.index') -eq 1 ] && ( yabai -m window --space recent; yabai -m space --focus recent) || (yabai -m window --space 1; yabai -m space --focus 1)
+rshift + ralt + rctrl + lshift - g : [ $(yabai -m query --spaces --space | jq '.index') -eq 2 ] && ( yabai -m window --space recent; yabai -m space --focus recent) || (yabai -m window --space 2; yabai -m space --focus 2)
+rshift + ralt + rctrl + lshift - c : [ $(yabai -m query --spaces --space | jq '.index') -eq 3 ] && ( yabai -m window --space recent; yabai -m space --focus recent) || (yabai -m window --space 3; yabai -m space --focus 3)
+rshift + ralt + rctrl + lshift - r : [ $(yabai -m query --spaces --space | jq '.index') -eq 4 ] && ( yabai -m window --space recent; yabai -m space --focus recent) || (yabai -m window --space 4; yabai -m space --focus 4)
+rshift + ralt + rctrl + lshift - l : [ $(yabai -m query --spaces --space | jq '.index') -eq 5 ] && ( yabai -m window --space recent; yabai -m space --focus recent) || (yabai -m window --space 5; yabai -m space --focus 5)
+rshift + ralt + rctrl + lshift - 0x2C : [ $(yabai -m query --spaces --space | jq '.index') -eq 6 ] && ( yabai -m window --space recent; yabai -m space --focus recent) || (yabai -m window --space 6; yabai -m space --focus 6)
+# rshift + ralt + rctrl + lshift - 0x2C : yabai -m window --space 6 && yabai -m space --focus 6
 
 # laptop - move to space n
 rshift + ralt + rctrl + lalt - 1 : yabai -m window --space 1 && yabai -m space --focus 1
