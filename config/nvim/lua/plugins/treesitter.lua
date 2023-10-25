@@ -112,7 +112,7 @@ local M = {
             ['<S-C-n>'] = '@call.outer',
             ['<S-C-s>'] = '@call.inner',
 
-            -- ['<leader>nc'] = '@comment.outer',
+            ['],'] = '@comment.outer',
             -- [']o'] = '@comment.inner', -- not supported in ts
 
             -- if
@@ -159,6 +159,8 @@ local M = {
 
             ['<S-C-h>'] = '@call.outer',
             ['<S-C-t>'] = '@call.inner',
+
+            ['[,'] = '@comment.outer',
 
             ['<S-M-C-h>'] = '@conditional.outer',
             ['<S-M-C-t>'] = '@conditional.inner',
