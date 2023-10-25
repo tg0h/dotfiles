@@ -17,8 +17,10 @@ alias ycg="yarn config get"
 alias ycs="yarn config set"
 
 alias ys="yarn start"
+alias ysp="yarn start | pino-pretty"
 alias ysf="yarn start-frontend"
 alias ysa="yarn start-api"
+alias ysaw="yarn start-api-wonka"
 alias ysd="yarn start-daemon"
 alias yse="yarn workspace @rc-main/external-api start"
 
