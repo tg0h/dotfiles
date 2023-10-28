@@ -24,12 +24,22 @@
              :l-mode {:key :l} ;; right command
              :semicolon-mode {:key :semicolon} ;; right shift
 
+             :e-mode {:key :e} ;; period ;; nav layer - TODO: how to add nav with modifiers?
              :spacebar-mode {:key :spacebar}
-             :quote-mode {:key :quote}
+             :quote-mode {:key :quote} ;; LHyper
             }
 
  :main
  [
+
+  {:des "e mode"
+   :rules [[:condi :e-mode :apple]
+           [:##i :up_arrow]
+           [:##j :left_arrow]
+           [:##k :down_arrow]
+           [:##l :right_arrow]
+          ]
+  }
 
   {:des "spacebar mode"
    :rules [[:condi :spacebar-mode :apple]
@@ -41,7 +51,7 @@
 
   {:des "quote mode" ; hyphen
    :rules [[:condi :quote-mode :apple]
-           [:r :!COTSp] ; Rmeh p
+           [:r :!COTSp] ; LHyper p
           ]
   }
 
