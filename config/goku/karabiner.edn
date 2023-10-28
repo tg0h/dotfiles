@@ -9,6 +9,11 @@
             }
            }
 
+ :devices {
+           :apple [{:product_id 835 :vendor_id 1452}]
+           :ergodox [{:product_id 18806 :vendor_id 12951}]
+          }
+
  :simlayers {
              :a-mode {:key :a} ;; left shift
              :s-mode {:key :s} ;; left control
@@ -23,7 +28,7 @@
  :main
  [
   {:des "a to lshift" ;;home row modifiers
-   :rules [[:condi :a-mode :!s-mode :!d-mode :!f-mode :!j-mode :!k-mode :!l-mode :!semicolon-mode]
+   :rules [[:condi :a-mode :!s-mode :!d-mode :!f-mode :!j-mode :!k-mode :!l-mode :!semicolon-mode :apple]
            ;;[:##a :left_control]
            [:##s :left_control]
            [:##d :left_option]
@@ -48,7 +53,7 @@
   }
 
   {:des "s to lctrl" ;;home row modifiers
-   :rules [[:condi :!a-mode :s-mode :!d-mode :!f-mode :!j-mode :!k-mode :!l-mode :!semicolon-mode]
+   :rules [[:condi :!a-mode :s-mode :!d-mode :!f-mode :!j-mode :!k-mode :!l-mode :!semicolon-mode :apple]
            [:##a :left_shift]
            ; [:##s :left_control]
            [:##d :left_option]
@@ -75,7 +80,7 @@
   }
 
   {:des "d to lopt" ;;home row modifiers
-   :rules [[:condi :!a-mode :!s-mode :d-mode :!f-mode :!j-mode :!k-mode :!l-mode :!semicolon-mode]
+   :rules [[:condi :!a-mode :!s-mode :d-mode :!f-mode :!j-mode :!k-mode :!l-mode :!semicolon-mode :apple]
            [:##a :left_shift]
            [:##s :left_control]
            ; [:##d :left_option]
@@ -101,7 +106,7 @@
   }
 
   {:des "f to lcmd" ;;home row modifiers
-   :rules [[:condi :!a-mode :!s-mode :!d-mode :f-mode :!j-mode :!k-mode :!l-mode :!semicolon-mode]
+   :rules [[:condi :!a-mode :!s-mode :!d-mode :f-mode :!j-mode :!k-mode :!l-mode :!semicolon-mode :apple]
            [:##a :left_shift]
            [:##s :left_control]
            [:##d :left_option]
@@ -127,7 +132,7 @@
   }
 
   {:des "j to ropt" ;;home row modifiers
-   :rules [[:condi :!a-mode :!s-mode :!d-mode :!f-mode :j-mode :!k-mode :!l-mode :!semicolon-mode]
+   :rules [[:condi :!a-mode :!s-mode :!d-mode :!f-mode :j-mode :!k-mode :!l-mode :!semicolon-mode :apple]
            ; [:##j :right_option]
            [:##k :right_control]
            [:##l :right_command]
@@ -153,7 +158,7 @@
   }
 
   {:des "k to rctrl" ;;home row modifiers
-   :rules [[:condi :!a-mode :!s-mode :!d-mode :!f-mode :!j-mode :k-mode :!l-mode :!semicolon-mode]
+   :rules [[:condi :!a-mode :!s-mode :!d-mode :!f-mode :!j-mode :k-mode :!l-mode :!semicolon-mode :apple]
            [:##j :right_option]
            ; [:##k :right_control]
            [:##l :right_command]
@@ -179,7 +184,7 @@
   }
 
   {:des "l to rcmd" ;;home row modifiers
-   :rules [[:condi :!a-mode :!s-mode :!d-mode :!f-mode :!j-mode :!k-mode :l-mode :!semicolon-mode]
+   :rules [[:condi :!a-mode :!s-mode :!d-mode :!f-mode :!j-mode :!k-mode :l-mode :!semicolon-mode :apple]
            [:##j :right_option]
            [:##k :right_control]
            ; [:##l :right_command]
@@ -205,7 +210,7 @@
   }
 
   {:des "semicolon to rshift" ;;home row modifiers
-   :rules [[:condi :!a-mode :!s-mode :!d-mode :!f-mode :!j-mode :!k-mode :!l-mode :semicolon-mode]
+   :rules [[:condi :!a-mode :!s-mode :!d-mode :!f-mode :!j-mode :!k-mode :!l-mode :semicolon-mode :apple]
            [:##j :right_option]
            [:##k :right_control]
            [:##l :right_command]
@@ -236,7 +241,8 @@
   {:des "RCmd to LHyper", :rules [[:right_command :!TOCleft_shift]]}
 
   {:des "dvorak",
-   :rules [;
+   :rules [
+           [:condi :apple]
            [:##hyphen :open_bracket]
            [:##equal_sign :close_bracket]
 
