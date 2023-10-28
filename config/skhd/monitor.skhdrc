@@ -4,6 +4,10 @@ rshift + ralt + rctrl - b: [ $(yabai -m query --displays | jq 'length') -eq 1 ] 
 && ( yabai -m space --focus recent ) \
 || ( yabai -m display --focus prev || yabai -m display --focus last )
 
+rshift + ralt + rctrl + lshift - b: [ $(yabai -m query --displays | jq 'length') -eq 1 ] \
+&& ( yabai -m window --space recent; yabai -m space --focus recent ) \
+|| ( yabai -m window --display recent; yabai -m display --focus recent )
+
 # rshift + ralt + rctrl - space: [ $(yabai -m query --displays | jq 'length') -eq 1 ] \
 # && ( yabai -m space --focus recent ) \
 # || ( yabai -m display --focus prev || yabai -m display --focus last )
