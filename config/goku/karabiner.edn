@@ -25,15 +25,23 @@
              :semicolon-mode {:key :semicolon} ;; right shift
 
              :spacebar-mode {:key :spacebar}
-             :e-mode {:key :e}
+             :quote-mode {:key :quote}
             }
 
  :main
  [
+
   {:des "spacebar mode"
    :rules [[:condi :spacebar-mode :apple]
-           [:a :!CS4] ; screenshot
-           [:f :!CSv] ; paste
+           [:a :!CS4] ; a -> screenshot
+           [:f :!CSv] ; u -> paste
+           [:s :!WERslash] ; o -> space 6
+          ]
+  }
+
+  {:des "quote mode" ; hyphen
+   :rules [[:condi :quote-mode :apple]
+           [:r :!COTSp] ; Rmeh p
           ]
   }
 
