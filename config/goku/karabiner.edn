@@ -23,12 +23,23 @@
              :k-mode {:key :k} ;; right control
              :l-mode {:key :l} ;; right command
              :semicolon-mode {:key :semicolon} ;; right shift
+
+             :spacebar-mode {:key :spacebar}
+             :e-mode {:key :e}
             }
 
  :main
  [
+  {:des "spacebar mode"
+   :rules [[:condi :spacebar-mode :apple]
+           [:a :!CS4] ; screenshot
+           [:f :!CSv] ; paste
+          ]
+  }
+
   {:des "a to lshift" ;;home row modifiers
-   :rules [[:condi :a-mode :!s-mode :!d-mode :!f-mode :!j-mode :!k-mode :!l-mode :!semicolon-mode :apple]
+   :rules [
+           [:condi :a-mode :!s-mode :!d-mode :!f-mode :!j-mode :!k-mode :!l-mode :!semicolon-mode :apple]
            ;;[:##a :left_control]
            [:##s :left_control]
            [:##d :left_option]
