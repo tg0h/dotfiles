@@ -212,57 +212,57 @@
            [:##f1 :!Wf1] [:##f2 :!Wf2] [:##f3 :!Wf3] [:##f4 :!Wf4] [:##f5 :!Wf5] [:##f6 :!Wf6] [:##f7 :!Wf7] [:##f8 :!Wf8] [:##f9 :!Wf9] [:##f10 :!Wf10] [:##f11 :!Wf11] [:##f12 :!Wf12] [:##f13 :!Wf13] [:##f14 :!Wf14] [:##f15 :!Wf15] [:##f16 :!Wf16] [:##f17 :!Wf17] [:##f18 :!Wf18] [:##f19 :!Wf19] [:##f20 :!Wf20]]
   }
 
-  {:des "l to rcmd" ;;home row modifiers
-   :rules [[:condi :!a-mode :!s-mode :!d-mode :!f-mode :!j-mode :!k-mode :l-mode :!semicolon-mode :apple]
-           [:##j :right_option]
-           [:##k :right_control]
-           ; [:##l :right_command]
-           [:##semicolon :right_shift]
+  ; {:des "l to rcmd" ;;home row modifiers
+  ;  :rules [[:condi :!a-mode :!s-mode :!d-mode :!f-mode :!j-mode :!k-mode :l-mode :!semicolon-mode :apple]
+  ;          [:##j :right_option]
+  ;          [:##k :right_control]
+  ;          ; [:##l :right_command]
+  ;          [:##semicolon :right_shift]
+  ;
+  ;          ; top-row
+  ;          [:##q :!Qquote] [:##w :!Qcomma] [:##e :!Qperiod] [:##r :!Qp] [:##t :!Qy] [:##y :!Qf] [:##u :!Qg] [:##i :!Qc] [:##o :!Qr] [:##p :!Ql] [:##open_bracket :!Qslash] [:##close_bracket :!Qequal_sign] [:##backslash :!Qbackslash]
+  ;          ; home-row
+  ;          [:##a :!Qa] [:##s :!Qo] [:##d :!Qe] [:##f :!Qu] [:##g :!Qi] [:##h :!Qd] [:##j :!Qh] [:##k :!Qt]
+  ;          ; [:##l :!Qn]
+  ;          [:##semicolon :!Qs] [:##quote :!Qhyphen]
+  ;          ;botton row
+  ;          [:##z :!Qsemicolon] [:##x :!Qq] [:##c :!Qj] [:##v :!Qk] [:##b :!Qx] [:##n :!Qb] [:##m :!Qm] [:##comma :!Qw] [:##period :!Qv] [:##slash :!Qz]
+  ;          ;; number row
+  ;          [:##1 :!Q1] [:##2 :!Q2] [:##3 :!Q3] [:##4 :!Q4] [:##5 :!Q5] [:##6 :!Q6] [:##7 :!Q7] [:##8 :!Q8] [:##9 :!Q9] [:##0 :!Q0]
+  ;
+  ;          ;; other keys
+  ;          [:##hyphen :!Qopen_bracket] [:##equal_sign :!Qclose_bracket] [:##delete_or_backspace :!Qdelete_or_backspace] [:##grave_accent_and_tilde :!Qgrave_accent_and_tilde] [:##return_or_enter :!Qreturn_or_enter] [:##tab :!Qtab] [:##escape :!Qescape]
+  ;          [:##left_arrow :!Qleft_arrow] [:##right_arrow :!Qright_arrow] [:##up_arrow :!Qup_arrow] [:##down_arrow :!Qdown_arrow]
+  ;          [:##spacebar :!Qspacebar]
+  ;          ;;functions
+  ;          [:##f1 :!Qf1] [:##f2 :!Qf2] [:##f3 :!Qf3] [:##f4 :!Qf4] [:##f5 :!Qf5] [:##f6 :!Qf6] [:##f7 :!Qf7] [:##f8 :!Qf8] [:##f9 :!Qf9] [:##f10 :!Qf10] [:##f11 :!Qf11] [:##f12 :!Qf12] [:##f13 :!Qf13] [:##f14 :!Qf14] [:##f15 :!Qf15] [:##f16 :!Qf16] [:##f17 :!Qf17] [:##f18 :!Qf18] [:##f19 :!Qf19] [:##f20 :!Qf20]]
+  ; }
 
-           ; top-row
-           [:##q :!Qquote] [:##w :!Qcomma] [:##e :!Qperiod] [:##r :!Qp] [:##t :!Qy] [:##y :!Qf] [:##u :!Qg] [:##i :!Qc] [:##o :!Qr] [:##p :!Ql] [:##open_bracket :!Qslash] [:##close_bracket :!Qequal_sign] [:##backslash :!Qbackslash]
-           ; home-row
-           [:##a :!Qa] [:##s :!Qo] [:##d :!Qe] [:##f :!Qu] [:##g :!Qi] [:##h :!Qd] [:##j :!Qh] [:##k :!Qt]
-           ; [:##l :!Qn]
-           [:##semicolon :!Qs] [:##quote :!Qhyphen]
-           ;botton row
-           [:##z :!Qsemicolon] [:##x :!Qq] [:##c :!Qj] [:##v :!Qk] [:##b :!Qx] [:##n :!Qb] [:##m :!Qm] [:##comma :!Qw] [:##period :!Qv] [:##slash :!Qz]
-           ;; number row
-           [:##1 :!Q1] [:##2 :!Q2] [:##3 :!Q3] [:##4 :!Q4] [:##5 :!Q5] [:##6 :!Q6] [:##7 :!Q7] [:##8 :!Q8] [:##9 :!Q9] [:##0 :!Q0]
-
-           ;; other keys
-           [:##hyphen :!Qopen_bracket] [:##equal_sign :!Qclose_bracket] [:##delete_or_backspace :!Qdelete_or_backspace] [:##grave_accent_and_tilde :!Qgrave_accent_and_tilde] [:##return_or_enter :!Qreturn_or_enter] [:##tab :!Qtab] [:##escape :!Qescape]
-           [:##left_arrow :!Qleft_arrow] [:##right_arrow :!Qright_arrow] [:##up_arrow :!Qup_arrow] [:##down_arrow :!Qdown_arrow]
-           [:##spacebar :!Qspacebar]
-           ;;functions
-           [:##f1 :!Qf1] [:##f2 :!Qf2] [:##f3 :!Qf3] [:##f4 :!Qf4] [:##f5 :!Qf5] [:##f6 :!Qf6] [:##f7 :!Qf7] [:##f8 :!Qf8] [:##f9 :!Qf9] [:##f10 :!Qf10] [:##f11 :!Qf11] [:##f12 :!Qf12] [:##f13 :!Qf13] [:##f14 :!Qf14] [:##f15 :!Qf15] [:##f16 :!Qf16] [:##f17 :!Qf17] [:##f18 :!Qf18] [:##f19 :!Qf19] [:##f20 :!Qf20]]
-  }
-
-  {:des "semicolon to rshift" ;;home row modifiers
-   :rules [[:condi :!a-mode :!s-mode :!d-mode :!f-mode :!j-mode :!k-mode :!l-mode :semicolon-mode :apple]
-           [:##j :right_option]
-           [:##k :right_control]
-           [:##l :right_command]
-           ; [:##semicolon :right_shift]
-
-           ; top-row
-           [:##q :!Rquote] [:##w :!Rcomma] [:##e :!Rperiod] [:##r :!Rp] [:##t :!Ry] [:##y :!Rf] [:##u :!Rg] [:##i :!Rc] [:##o :!Rr] [:##p :!Rl] [:##open_bracket :!Rslash] [:##close_bracket :!Requal_sign] [:##backslash :!Rbackslash]
-           ; home-row
-           [:##a :!Ra] [:##s :!Ro] [:##d :!Re] [:##f :!Ru] [:##g :!Ri] [:##h :!Rd] [:##j :!Rh] [:##k :!Rt] [:##l :!Rn]
-           ; [:##semicolon :!Rs]
-           [:##quote :!Rhyphen]
-           ;botton row
-           [:##z :!Rsemicolon] [:##x :!Rq] [:##c :!Rj] [:##v :!Rk] [:##b :!Rx] [:##n :!Rb] [:##m :!Rm] [:##comma :!Rw] [:##period :!Rv] [:##slash :!Rz]
-           ;; number row
-           [:##1 :!R1] [:##2 :!R2] [:##3 :!R3] [:##4 :!R4] [:##5 :!R5] [:##6 :!R6] [:##7 :!R7] [:##8 :!R8] [:##9 :!R9] [:##0 :!R0]
-
-           ;; other keys
-           [:##hyphen :!Ropen_bracket] [:##equal_sign :!Rclose_bracket] [:##delete_or_backspace :!Rdelete_or_backspace] [:##grave_accent_and_tilde :!Rgrave_accent_and_tilde] [:##return_or_enter :!Rreturn_or_enter] [:##tab :!Rtab] [:##escape :!Rescape]
-           [:##left_arrow :!Rleft_arrow] [:##right_arrow :!Rright_arrow] [:##up_arrow :!Rup_arrow] [:##down_arrow :!Rdown_arrow]
-           [:##spacebar :!Rspacebar]
-           ;;functions
-           [:##f1 :!Rf1] [:##f2 :!Rf2] [:##f3 :!Rf3] [:##f4 :!Rf4] [:##f5 :!Rf5] [:##f6 :!Rf6] [:##f7 :!Rf7] [:##f8 :!Rf8] [:##f9 :!Rf9] [:##f10 :!Rf10] [:##f11 :!Rf11] [:##f12 :!Rf12] [:##f13 :!Rf13] [:##f14 :!Rf14] [:##f15 :!Rf15] [:##f16 :!Rf16] [:##f17 :!Rf17] [:##f18 :!Rf18] [:##f19 :!Rf19] [:##f20 :!Rf20]]
-  }
+  ; {:des "semicolon to rshift" ;;home row modifiers
+  ;  :rules [[:condi :!a-mode :!s-mode :!d-mode :!f-mode :!j-mode :!k-mode :!l-mode :semicolon-mode :apple]
+  ;          [:##j :right_option]
+  ;          [:##k :right_control]
+  ;          [:##l :right_command]
+  ;          ; [:##semicolon :right_shift]
+  ;
+  ;          ; top-row
+  ;          [:##q :!Rquote] [:##w :!Rcomma] [:##e :!Rperiod] [:##r :!Rp] [:##t :!Ry] [:##y :!Rf] [:##u :!Rg] [:##i :!Rc] [:##o :!Rr] [:##p :!Rl] [:##open_bracket :!Rslash] [:##close_bracket :!Requal_sign] [:##backslash :!Rbackslash]
+  ;          ; home-row
+  ;          [:##a :!Ra] [:##s :!Ro] [:##d :!Re] [:##f :!Ru] [:##g :!Ri] [:##h :!Rd] [:##j :!Rh] [:##k :!Rt] [:##l :!Rn]
+  ;          ; [:##semicolon :!Rs]
+  ;          [:##quote :!Rhyphen]
+  ;          ;botton row
+  ;          [:##z :!Rsemicolon] [:##x :!Rq] [:##c :!Rj] [:##v :!Rk] [:##b :!Rx] [:##n :!Rb] [:##m :!Rm] [:##comma :!Rw] [:##period :!Rv] [:##slash :!Rz]
+  ;          ;; number row
+  ;          [:##1 :!R1] [:##2 :!R2] [:##3 :!R3] [:##4 :!R4] [:##5 :!R5] [:##6 :!R6] [:##7 :!R7] [:##8 :!R8] [:##9 :!R9] [:##0 :!R0]
+  ;
+  ;          ;; other keys
+  ;          [:##hyphen :!Ropen_bracket] [:##equal_sign :!Rclose_bracket] [:##delete_or_backspace :!Rdelete_or_backspace] [:##grave_accent_and_tilde :!Rgrave_accent_and_tilde] [:##return_or_enter :!Rreturn_or_enter] [:##tab :!Rtab] [:##escape :!Rescape]
+  ;          [:##left_arrow :!Rleft_arrow] [:##right_arrow :!Rright_arrow] [:##up_arrow :!Rup_arrow] [:##down_arrow :!Rdown_arrow]
+  ;          [:##spacebar :!Rspacebar]
+  ;          ;;functions
+  ;          [:##f1 :!Rf1] [:##f2 :!Rf2] [:##f3 :!Rf3] [:##f4 :!Rf4] [:##f5 :!Rf5] [:##f6 :!Rf6] [:##f7 :!Rf7] [:##f8 :!Rf8] [:##f9 :!Rf9] [:##f10 :!Rf10] [:##f11 :!Rf11] [:##f12 :!Rf12] [:##f13 :!Rf13] [:##f14 :!Rf14] [:##f15 :!Rf15] [:##f16 :!Rf16] [:##f17 :!Rf17] [:##f18 :!Rf18] [:##f19 :!Rf19] [:##f20 :!Rf20]]
+  ; }
 
 
   {:des "Caps Lock to RMeh", :rules [[:caps_lock :!WEright_shift nil {:alone :escape}]]}
