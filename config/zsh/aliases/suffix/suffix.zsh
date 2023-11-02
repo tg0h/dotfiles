@@ -13,6 +13,7 @@ alias -s skdhrc=nvim
 alias -s skhdrc=nvim
 alias -s sql=nvim
 alias -s ts=nvim
+alias -s tsx=nvim
 alias -s txt=nvim
 alias -s yaml=nvim
 alias -s yml=nvim
