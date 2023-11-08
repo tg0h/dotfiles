@@ -17,7 +17,7 @@ function smg(){
   local arn=$(sml | fzf | choose -1)
 
   if [ -n "$arn" ]; then 
-    local result=$(aws secretsmanager get-secret-value --secret-id $arn)
+    local result=$(aws secretsmanager get-secret-value --secret-id $arn --profile secret)
 
     local jqQuery=$(cat <<-EOF
    include "pad";
