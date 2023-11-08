@@ -28,7 +28,7 @@ return {
     dir = '~/.config/nvim/lua/tg/toggle-model',
     keys = {
       {
-        '<M-`>',
+        '<M-Tab>',
         function() require('tg.toggle-model').Toggle() end,
         desc = 'timtoggle model file',
       },
