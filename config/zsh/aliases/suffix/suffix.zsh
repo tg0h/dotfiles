@@ -6,6 +6,7 @@ alias -s cfg=nvim
 alias -s conf=nvim
 alias -s config=nvim
 alias -s json=nvim
+alias -s local=nvim
 alias -s lua=nvim
 alias -s md=nvim
 alias -s rb=nvim
