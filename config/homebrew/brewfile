@@ -172,3 +172,8 @@ brew 'percona-toolkit'
 tap 'yqrashawn/goku'
 brew 'yqrashawn/goku/goku'
 cask 'zprint'
+
+# tap 'noahgorstein/tap/jqp'
+tap 'noahgorstein/tap'
+brew 'noahgorstein/tap/jqp'
+# brew 'jqp'
