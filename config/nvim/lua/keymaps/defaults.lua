@@ -22,7 +22,7 @@ vim.keymap.set('i', '<M-d>', '<Esc>cw', { desc = 'delete forward to end of word 
 -- Help
 vim.keymap.set('n', '<F1>', ':WhichKey<CR>', { desc = 'show all which key mappings' }) -- show all mappings
 
--- VS%$%@
+-- VS%$%@ open in vscode
 vim.keymap.set('n', '<Leader>ee<CR>', ':! code %', { desc = 'open in vs%$%@' })
 
 -- nice defaults
