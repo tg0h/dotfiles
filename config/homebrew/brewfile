@@ -64,6 +64,7 @@ brew 'gnupg'
 brew 'pass' # password store
 brew 'pass-otp' # password store
 brew 'imagemagick'
+brew 'pygments' # try to fix httpie pyments colors
 brew 'httpie'
 brew 'hyperfine'
 # brew 'redis', restart_service: true
