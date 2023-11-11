@@ -1,5 +1,13 @@
 customCommands:
   - key: "_"
+  - key: "<C-g>"
+    command: "gh pr view --web"
+    context: "global"
+    loadingText: "View pull request on GitHub"
+  - key: "<C-r>"
+    command: "gh pr create --fill --web"
+    context: "global"
+    loadingText: "Creating pull request on GitHub"
     context: "files"
     prompts:
       - type: "menu"
