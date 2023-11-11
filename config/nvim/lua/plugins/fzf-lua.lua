@@ -62,9 +62,9 @@ return {
           -- native fzf previewers (bat/cat/git/etc)
           wrap = 'nowrap', -- wrap|nowrap
           hidden = 'nohidden', -- hidden|nohidden
-          vertical = 'down:45%', -- up|down:size
+          vertical = 'down:70%', -- up|down:size
           horizontal = 'right:60%', -- right|left:size
-          layout = 'flex', -- horizontal|vertical|flex
+          layout = 'vertical', -- horizontal|vertical|flex
           flip_columns = 120, -- #cols to switch to horizontal on flex
           -- Only used with the builtin previewer:
           title = true, -- preview border title (file/buf)?
