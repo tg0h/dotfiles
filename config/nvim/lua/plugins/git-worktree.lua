@@ -5,10 +5,10 @@ return {
   dependencies = { 'nvim-telescope/telescope.nvim' },
   keys = {
     -- { '<LEADER>t', ":lua require('telescope').load_extension('git-worktree')<CR>", desc = 'git worktree' },
-    { '<C-Esc>', ":lua require('git-worktree').switch_worktree('../main')<CR>", desc = 'switch to main' },
+    { '<C-/>', ":lua require('git-worktree').switch_worktree('../main')<CR>", desc = 'switch to main' },
     { '<C-S-=>', ":lua require('git-worktree').switch_worktree('../scripts')<CR>", desc = 'switch to scripts' }, -- C-+
     -- kitty maps C-- to C-\
-    { '<C-Bslash>', ":lua require('git-worktree').switch_worktree('../feature')<CR>", desc = 'switch to feature' }, -- C-+
+    { '<C-Bslash>', ":lua require('git-worktree').switch_worktree('../feature')<CR>", desc = 'switch to feature' }, -- C--
     { '<C-9>', ":lua require('git-worktree').switch_worktree('../review')<CR>", desc = 'switch to review' },
     { '<C-8>', ":lua require('git-worktree').switch_worktree('../fix')<CR>", desc = 'switch to fix' },
     { '<LEADER>t.', ":lua require('git-worktree').switch_worktree('../scripts')<CR>", desc = 'switch to scripts' },
