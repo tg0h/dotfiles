@@ -1,5 +1,4 @@
 customCommands:
-  - key: "_"
   - key: "<C-g>"
     command: "gh pr view --web"
     context: "global"
@@ -8,6 +7,7 @@ customCommands:
     command: "gh pr create --fill --web"
     context: "global"
     loadingText: "Creating pull request on GitHub"
+  - key: "-"
     context: "files"
     prompts:
       - type: "menu"
@@ -37,7 +37,7 @@ customCommands:
         title: "message:"
         initialValue: ""
     command: 'git-conventional-commit -f {{.SelectedFile.Name}} -t {{index .PromptResponses 0}} -m "{{index .PromptResponses 1}}"'
-  - key: "_"
+  - key: "-"
     context: "files"
     prompts:
       - type: "menu"
@@ -157,7 +157,7 @@ customCommands:
         title: "message:"
         initialValue: ""
     command: 'git-conventional-commit -f {{.SelectedFile.Name}} -t {{index .PromptResponses 0}} -m "{{index .PromptResponses 1}}"'
-  - key: "_"
+  - key: "-"
     context: "stagingSecondary"
     prompts:
       - type: "menu"
