@@ -43,6 +43,7 @@ vim.api.nvim_set_hl(ns_id, 'HarpoonInfra', { fg = '#000000', bg = '#ff8000' })
 local highlightConfig = {
   api = {
     api = 'HarpoonApi',
+    ['%.test%.'] = 'HarpoonCommonServicesTests', -- highlight file.test.ts
   },
   frontend = {
     frontend = 'HarpoonFrontend',
@@ -61,6 +62,7 @@ local highlightConfig = {
     models = 'HarpoonCommonServicesModels',
     repositories = 'HarpoonCommonServicesRepositories',
     tests = 'HarpoonCommonServicesTests',
+    ['%.test%.'] = 'HarpoonCommonServicesTests', -- highlight file.test.ts
   },
   ['common%-lib'] = {
     ['common%-lib'] = 'HarpoonCommonLib',
