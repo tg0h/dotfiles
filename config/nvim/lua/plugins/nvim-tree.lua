@@ -88,7 +88,7 @@ local M = {
       vim.keymap.set('n', '<CR>', api.node.open.edit, opts('Open'))
       -- vim.keymap.set('n', '<C-e>', api.node.open.replace_tree_buffer, opts('Open: In Place')) -- open in same pane as nvim tree
       vim.keymap.set('n', 'O', api.node.open.no_window_picker, opts('Open: No Window Picker'))
-      vim.keymap.set('n', 'o', api.node.open.edit, opts('Open'))
+      -- vim.keymap.set('n', 'o', api.node.open.edit, opts('Open'))
       vim.keymap.set('n', '<2-LeftMouse>', api.node.open.edit, opts('Open'))
 
       vim.keymap.set('n', '<C-v>', api.node.open.vertical, opts('Open: Vertical Split'))
@@ -99,7 +99,9 @@ local M = {
       vim.keymap.set('n', '<Tab>', api.node.open.preview, opts('Open Preview'))
       vim.keymap.set('n', 'D', api.node.navigate.parent, opts('Parent Directory'))
       vim.keymap.set('n', 'h', api.node.navigate.parent_close, opts('Close Directory'))
-      vim.keymap.set('n', 'H', api.tree.collapse_all, opts('Collapse'))
+
+      vim.keymap.set('n', 'e', api.tree.collapse_all, opts('Collapse'))
+      vim.keymap.set('n', 'o', api.tree.expand_all, opts('Expand All'))
       -- just use j and k
       -- previous and next sibling is slightly better, keeping it on the same level
       -- vim.keymap.set('n', 'n', api.node.navigate.sibling.prev, opts('Previous Sibling'))
@@ -121,7 +123,6 @@ local M = {
       vim.keymap.set('n', '<C-p>', previous_sibling_preview, opts('no description'))
       vim.keymap.set('n', '<M-p>', previous_sibling_preview, opts('no description'))
 
-      vim.keymap.set('n', 'E', api.tree.expand_all, opts('Expand All'))
       vim.keymap.set('n', '<2-RightMouse>', api.tree.change_root_to_node, opts('CD'))
 
       vim.keymap.set('n', '<A-g>', api.node.navigate.git.prev, opts('Prev Git'))
@@ -285,11 +286,16 @@ local M = {
       },
       filters = { dotfiles = false, custom = {}, exclude = {} },
       filesystem_watchers = { enable = true, debounce_delay = 50 },
-      git = { enable = true, ignore = true, show_on_dirs = true, timeout = 400 },
+      git = {
+        enable = true,
+        ignore = true,
+        show_on_dirs = false, -- do not mark directories so that git navigate prev/next can go to changed file immediately. use with expand/collapes all and git changed filter for navigation
+        timeout = 400,
+      },
       actions = {
         use_system_clipboard = true,
         change_dir = { enable = true, global = false, restrict_above_cwd = false },
-        expand_all = { max_folder_discovery = 300, exclude = {} },
+        expand_all = { max_folder_discovery = 50, exclude = {} },
         open_file = {
           quit_on_open = false,
           resize_window = true,
