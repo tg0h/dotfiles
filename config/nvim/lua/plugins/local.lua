@@ -72,6 +72,17 @@ return {
     },
   },
   {
+    'tg/toggle-api',
+    dir = '~/.config/nvim/lua/tg/toggle-api',
+    keys = {
+      {
+        '<M-;>',
+        function() require('tg.toggle-api').Toggle() end,
+        desc = 'timtoggle api file',
+      },
+    },
+  },
+  {
     'tg/test-runner',
     dir = '~/.config/nvim/lua/tg/test-runner',
     dependencies = { 'nvim-treesitter', 'treesitter-utils', 'toggle-test' },
