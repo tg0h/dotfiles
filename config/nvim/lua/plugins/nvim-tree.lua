@@ -135,6 +135,7 @@ local M = {
 
       vim.keymap.set('n', 'I', api.tree.toggle_gitignore_filter, opts('Toggle Git Ignore'))
       vim.keymap.set('n', 'g', api.tree.toggle_git_clean_filter, opts('Toggle Git Clean'))
+      vim.keymap.set('n', 'b', api.tree.toggle_no_buffer_filter, opts('Toggle Buffers'))
       vim.keymap.set('n', 'u', api.tree.toggle_hidden_filter, opts('Toggle Dotfiles'))
       vim.keymap.set('n', 'U', api.tree.toggle_custom_filter, opts('Toggle Hidden'))
 
