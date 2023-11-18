@@ -107,6 +107,9 @@ local M = {
       vim.keymap.set('n', '<A-g>', api.node.navigate.git.prev, opts('Prev Git'))
       vim.keymap.set('n', '<A-r>', api.node.navigate.git.next, opts('Next Git'))
 
+      vim.keymap.set('n', '<C-g>', api.marks.navigate.prev, opts('Prev Mark'))
+      vim.keymap.set('n', '<C-r>', api.marks.navigate.next, opts('Next Mark'))
+
       vim.keymap.set('n', '[e', api.node.navigate.diagnostics.prev, opts('Prev Diagnostic'))
       vim.keymap.set('n', ']e', api.node.navigate.diagnostics.next, opts('Next Diagnostic'))
 
@@ -121,7 +124,7 @@ local M = {
       vim.keymap.set('n', 'a', api.fs.create, opts('Create'))
       vim.keymap.set('n', 'd', api.fs.remove, opts('Delete'))
       vim.keymap.set('n', 'r', api.fs.rename, opts('Rename'))
-      vim.keymap.set('n', '<C-r>', api.fs.rename_sub, opts('Rename: Omit Filename'))
+      vim.keymap.set('n', 'R', api.fs.rename_sub, opts('Rename: Omit Filename'))
       vim.keymap.set('n', 'x', api.fs.cut, opts('Cut'))
       vim.keymap.set('n', 'c', api.fs.copy.node, opts('Copy'))
       vim.keymap.set('n', 'p', api.fs.paste, opts('Paste'))
