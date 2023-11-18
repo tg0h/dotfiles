@@ -29,6 +29,7 @@ scope:
   config/zsh: "zsh"
   config/nvim/lua/setup: vim
   config/nvim/lua/tg: "vim/tg"
+  config/nvim/lua/plugins: "vim" # so that config/nivm/lua/plugins/nvim-tree.lua becomes vim/nvim-tree
   config/nvim/lua: "vim"
   config/nvim/snippets: "vim/snippets"
   config/nvim/after/plugin: "vim/plugin"
