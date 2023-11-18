@@ -54,7 +54,7 @@ return {
     dir = '~/.config/nvim/lua/tg/toggle-test',
     keys = {
       {
-        '<A-.>',
+        '<M-.>',
         function() require('tg.toggle-test').Toggle() end,
         desc = 'timtoggle test file',
       },
