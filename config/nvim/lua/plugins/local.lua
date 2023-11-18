@@ -61,6 +61,17 @@ return {
     },
   },
   {
+    'tg/toggle-front',
+    dir = '~/.config/nvim/lua/tg/toggle-front',
+    keys = {
+      {
+        '<M-Esc>',
+        function() require('tg.toggle-front').Toggle() end,
+        desc = 'timtoggle frontend file',
+      },
+    },
+  },
+  {
     'tg/test-runner',
     dir = '~/.config/nvim/lua/tg/test-runner',
     dependencies = { 'nvim-treesitter', 'treesitter-utils', 'toggle-test' },
