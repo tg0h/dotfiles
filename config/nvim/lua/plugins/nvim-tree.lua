@@ -60,6 +60,26 @@ local M = {
       api.node.open.preview()
     end
 
+    -- https://github.com/nvim-tree/nvim-tree.lua/wiki/Recipes#cycle-sort-methods
+    local SORT_METHODS = {
+      'name',
+      -- 'case_sensitive',
+      'modification_time',
+      'extension',
+    }
+    local sort_current = 1
+
+    local cycle_sort = function()
+      if sort_current >= #SORT_METHODS then
+        sort_current = 1
+      else
+        sort_current = sort_current + 1
+      end
+      api.tree.reload()
+    end
+
+    local sort_by = function() return SORT_METHODS[sort_current] end
+
     local function on_attach(bufnr)
       local api = require('nvim-tree.api')
 
@@ -140,6 +160,8 @@ local M = {
       vim.keymap.set('n', 'f', api.live_filter.start, opts('Filter'))
       vim.keymap.set('n', 'F', api.live_filter.clear, opts('Clean Filter'))
       vim.keymap.set('n', 'm', api.marks.toggle, opts('Toggle Bookmark'))
+
+      vim.keymap.set('n', 'T', cycle_sort, opts('Cycle Sort'))
     end
 
     -- local tree_cb = require('nvim-tree.config').nvim_tree_callback
@@ -175,7 +197,8 @@ local M = {
       -- open_on_setup = true, -- open the tree when running this setup function
       -- open_on_setup_file = false,
       open_on_tab = false,
-      sort_by = 'name',
+      sort_by = sort_by,
+      -- sort_by = 'name',
       root_dirs = {},
       prefer_startup_root = false,
       sync_root_with_cwd = false,
