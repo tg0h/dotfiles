@@ -284,7 +284,11 @@ local M = {
         show_on_dirs = false,
         icons = { hint = '', info = '', warning = '', error = '' },
       },
-      filters = { dotfiles = false, custom = {}, exclude = {} },
+      filters = {
+        dotfiles = true, -- do not show dotfiles by default
+        custom = {},
+        exclude = {},
+      },
       filesystem_watchers = { enable = true, debounce_delay = 50 },
       git = {
         enable = true,
