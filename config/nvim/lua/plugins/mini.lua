@@ -1,5 +1,23 @@
 return {
-  { 'echasnovski/mini.cursorword', opts = { delay = 100 }, event = 'VeryLazy', enabled = true },
+  {
+    'echasnovski/mini.cursorword',
+    opts = { delay = 100 },
+    init = function()
+      vim.api.nvim_create_autocmd({ 'FileType' }, {
+        pattern = { '*' },
+        -- change the current cursor word highlight group to make distinct from visual select
+        callback = function()
+          vim.api.nvim_set_hl(0, 'MiniCursorwordCurrent', {
+            default = false, -- default false overrides the existing highlight group set up by mini
+            underline = true,
+            -- reverse = true,
+          })
+        end,
+      })
+    end,
+    event = 'VeryLazy',
+    enabled = true,
+  },
   {
     'echasnovski/mini.indentscope',
     opts = {
