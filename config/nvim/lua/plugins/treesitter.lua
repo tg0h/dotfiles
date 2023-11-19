@@ -53,8 +53,8 @@ local M = {
         keymaps = {
           init_selection = '<CR>',
           scope_incremental = '<CR>',
-          node_incremental = '<TAB>',
-          node_decremental = '<S-TAB>',
+          node_incremental = 'g2',
+          node_decremental = 'g1',
         },
       },
       indent = { enable = true }, -- Indentation based on treesitter for the = operator
