@@ -62,6 +62,7 @@ autocmd VimResized * :wincmd =
 
 -- highlight yanked text for 200ms using the "Visual" highlight group
 vim.cmd([[
+" TODO: throws an error when running Y in nvim tree
 augroup highlight_yank
 autocmd!
 au TextYankPost * silent! lua vim.highlight.on_yank({higroup="Visual", timeout=200})
