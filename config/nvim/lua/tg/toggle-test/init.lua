@@ -29,6 +29,9 @@ local packageFolders = {
   'packages/referralcorner/api',
   'packages/external%-api',
   'packages/redshift%-services',
+  'packages/frontend',
+  'packages/frontend%-referralCorner',
+  'packages/frontend%-wonka',
 }
 
 local function isTestFile(filename)
