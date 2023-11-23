@@ -87,7 +87,7 @@ local M = {
     wk.setup(opts)
 
     local keyMaps = {
-      h = { name = 'diagnostics' },
+      h = { name = 'telescope' },
       r = { name = 'Notes' },
       c = { name = 'config' },
       s = { name = 'search' },
