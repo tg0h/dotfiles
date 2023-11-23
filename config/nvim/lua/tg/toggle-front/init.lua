@@ -1,5 +1,11 @@
 local M = {}
 
+-- toggle frontend and component
+-- handle plural and singular folder names
+-- handle nested [merchantId] / [xxx]
+-- special case handling
+-- remove underscore
+
 local function open_buf(buf_id)
   vim.api.nvim_set_current_buf(buf_id)
   vim.api.nvim_buf_set_option(buf_id, 'buflisted', true)
@@ -12,6 +18,7 @@ local function does_file_exist(filename)
   local dirname = vim.fs.dirname(filename)
 
   local files = vim.fs.find(fname, { path = dirname, upward = false, type = 'file' })
+  -- print('files is ' .. (vim.inspect(files)))
 
   local file = files[1]
   return file
@@ -31,9 +38,10 @@ local function get_first_file_in_path(absoluteDir)
   local function searchWildCard(name) return name:match('.*') end
 
   -- vim.fs.find does not support globs with strings, must provide a search function
+  -- searches downwards in all sub dirs ... nice
   local files = vim.fs.find(searchWildCard, { path = absoluteDir, upward = false, type = 'file' })
 
-  local file = files[1]
+  local file = files and files[1]
   return file
 end
 
@@ -50,6 +58,11 @@ local packageFolders = {
   'packages/frontend',
   'packages/frontend%-referralCorner',
   'packages/frontend%-wonka',
+}
+
+local packageMap = {
+  ['pages'] = 'components',
+  ['components'] = 'pages',
 }
 
 -- from packages/frontend/pages/signup/index.tsx
@@ -84,19 +97,56 @@ local function getAlternateFile(dirname, filename)
 
   -- local segmentName = getSegmentName(dirname)
   -- print(' dirname ' .. dirname)
-  local segmentName = getSegmentName(dirname)
-  -- print(' segmentName ' .. segmentName)
+  -- local segmentName = getSegmentName(dirname)
+  -- print(' segmentName ' .. (segmentName or ''))
   local folder, file
-  if isPageFile(dirname) then
-    -- from packagess/frontend/pages/signup/index.tsx
-    -- to   packages/frontend/components/signup/FooterText.tsx
-    folder = string.gsub(dirname, 'pages', 'components')
-  else
-    folder = string.gsub(dirname, 'components', 'pages')
+
+  local to_dir, count
+  for from_path, to_path in pairs(packageMap) do
+    to_dir, count = string.gsub(dirname, from_path, to_path)
+    if count == 1 then break end
   end
-  -- local fullFileName = folder .. '/' .. file
-  local fullFileName = get_first_file_in_path(folder)
-  return fullFileName
+
+  local to_file = to_dir .. '/' .. filename
+  -- print('search same file : to_file is ' .. (to_file or ''))
+  if does_file_exist(to_file) then return to_file end
+
+  to_file = to_dir .. '/' .. 'index.ts'
+  -- print('search index.ts to_file is ' .. (to_file or ''))
+  if does_file_exist(to_file) then return to_file end
+
+  to_file = get_first_file_in_path(to_dir)
+  -- print('get first file in  dir: ' .. (to_dir or '') .. ' to_file is: ' .. (to_file or ''))
+  if to_file and does_file_exist(to_file) then return to_file end
+
+  local test_dir
+  test_dir = to_dir .. 's' -- search plural directory
+  to_file = get_first_file_in_path(test_dir)
+  -- print('get first file in  dir: ' .. (test_dir or '') .. ' to_file is: ' .. (to_file or ''))
+  if to_file and does_file_exist(to_file) then return to_file end
+
+  test_dir = to_dir:sub(1, -2) -- remove last char from string (singular)
+  to_file = get_first_file_in_path(test_dir)
+  -- print('get first file in  dir: ' .. (test_dir or '') .. ' to_file is: ' .. (to_file or ''))
+  if to_file and does_file_exist(to_file) then return to_file end
+
+  local parent = vim.fs.dirname(to_dir)
+  test_dir = parent
+  to_file = get_first_file_in_path(test_dir)
+  -- print('get first file in  dir: ' .. (test_dir or '') .. ' to_file is: ' .. (to_file or ''))
+  if to_file and does_file_exist(to_file) then return to_file end
+
+  test_dir = parent .. 's' -- search plural directory
+  to_file = get_first_file_in_path(test_dir)
+  -- print('get first file in  dir: ' .. (test_dir or '') .. ' to_file is: ' .. (to_file or ''))
+  if to_file and does_file_exist(to_file) then return to_file end
+
+  test_dir = parent:sub(1, -2) -- remove last char from string (singular)
+  to_file = get_first_file_in_path(test_dir)
+  -- print('get first file in  dir: ' .. (test_dir or '') .. ' to_file is: ' .. (to_file or ''))
+  if to_file and does_file_exist(to_file) then return to_file end
+
+  return nil
 end
 
 local function find_alternate_file()
