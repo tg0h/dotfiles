@@ -90,7 +90,7 @@ return {
     -- vim.keymap.set('n', '<A-8>', ':BufferLineGoToBuffer 8<CR>', default_options)
     -- vim.keymap.set('n', '<A-9>', ':BufferLineGoToBuffer 9<CR>', default_options)
 
-    vim.keymap.set('n', '<S-A-4>', ':BufferLineGoToBuffer -1<CR>', { desc = 'go to last buffer' }) -- A-$
+    -- vim.keymap.set('n', '<S-A-4>', ':BufferLineGoToBuffer -1<CR>', { desc = 'go to last buffer' }) -- A-$
 
     vim.keymap.set('n', '<A-g>', ':BufferLineCyclePrev<CR>', { desc = 'go to previous buffer' }) -- go to left buffer
     vim.keymap.set('n', '<A-r>', ':BufferLineCycleNext<CR>', { desc = 'go to next buffer' }) -- go to right buffer
