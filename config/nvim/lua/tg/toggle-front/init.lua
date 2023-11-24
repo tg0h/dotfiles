@@ -35,6 +35,7 @@ local function does_dir_exist(absoluteDir)
 end
 
 local function get_first_file_in_path(absoluteDir)
+  -- use vim.fn.isdirectory to check if dir exists
   local function searchWildCard(name) return name:match('.*') end
 
   -- vim.fs.find does not support globs with strings, must provide a search function
