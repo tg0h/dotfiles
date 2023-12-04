@@ -3,7 +3,7 @@
 function thp() {
   # trash snagit pictures with name 2022*
 
-  for f in "/Users/tim/Pictures/Snagit/Autosaved Captures.localized/2023"*; do
+  for f in "/Users/tim/Pictures/Snagit/temp/2023"*; do
     local base=$(basename "$f")
     echo trashing $fg[yellow]$base$reset_color
     th $f
