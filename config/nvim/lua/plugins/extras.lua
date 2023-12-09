@@ -9,18 +9,13 @@ return {
   {
     'f-person/git-blame.nvim',
     event = 'VeryLazy',
-    init = function() vim.g.gitblame_enabled = 0 end,
-    config = function()
-      local g = vim.g
-      g.gitblame_enabled = 0
-
-      g.gitblame_message_template = '<author> • <summary> • <date> • <sha>'
-
-      g.gitblame_date_format = '%r - %a %d %b %y %X'
-
-      -- vim.keymap.set('n', '<M-x>', '<CMD>GitBlameToggle<CR>', { desc = 'git blame toggle' })
-      vim.keymap.set('n', '<LEADER>gz', '<CMD>GitBlameToggle<CR>', { desc = 'git blame toggle' })
-      vim.keymap.set('n', '<M-z>', '<CMD>GitBlameToggle<CR>', { desc = 'git blame toggle' })
+    keys = {
+      { '<LEADER>gz', '<CMD>GitBlameToggle<CR>', desc = 'git blame toggle' },
+    },
+    init = function()
+      vim.g.gitblame_enabled = 0
+      vim.g.gitblame_message_template = '<author> • <summary> • <date> • <sha>'
+      vim.g.gitblame_date_format = '%r - %a %d %b %y %X'
     end,
   },
   -- { 'ggandor/leap.nvim', dependencies = { 'tpope/vim-repeat' } },
