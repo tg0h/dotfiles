@@ -18,10 +18,8 @@ return {
       vim.g.gitblame_date_format = '%r - %a %d %b %y %X'
     end,
   },
-  -- { 'ggandor/leap.nvim', dependencies = { 'tpope/vim-repeat' } },
   { 'hiphish/rainbow-delimiters.nvim', event = 'VeryLazy' },
   { 'fladson/vim-kitty' },
-  -- { 'vito-c/jq.vim', },
   { 'dkarter/bullets.vim', event = 'VeryLazy' },
   { 'rhysd/committia.vim' },
 }
