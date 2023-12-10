@@ -28,6 +28,9 @@ return {
   },
   init = function()
     vim.g.git_worktree_log_level = 'error'
+
+    local wk = require('which-key')
+    wk.register({ ['<LEADER>t'] = { name = 'git-worktree' } })
     -- require('telescope').load_extension('git_worktree')
   end,
   -- config = function(_, opts) require('git-worktree').setup(opts) end,
