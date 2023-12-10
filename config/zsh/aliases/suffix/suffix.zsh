@@ -2,9 +2,11 @@
 # eg test.txt enter becomes nvim test.txt
 # alias -s js=nvim
 # alias -s zsh=nvim # interferes with alias zsh.h.zsh which runs the script
+
 alias -s cfg=nvim
 alias -s conf=nvim
 alias -s config=nvim
+alias -s http=nvim
 alias -s json=nvim
 alias -s local=nvim
 alias -s lua=nvim
