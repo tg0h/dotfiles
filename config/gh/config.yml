@@ -8,15 +8,16 @@ prompt: enabled
 pager:
 # Aliases allow you to create nicknames for gh commands
 aliases:
-  co: pr checkout
-  # https://stackoverflow.com/questions/21083933/what-does-the-exclamation-mark-mean-in-git-config-alias
-  # ! runs the gh subcommand as a shell command and in the git repo root directory
-  # if not, the alias runs as a gh sub command
-  personal: "!cp ~/.config/gh/hosts.personal.yml ~/.config/gh/hosts.yml && gh auth status"
-  p: "!cp ~/.config/gh/hosts.personal.yml ~/.config/gh/hosts.yml && gh auth status"
-  work: "!cp ~/.config/gh/hosts.work.yml ~/.config/gh/hosts.yml && gh auth status"
-  w: "!cp ~/.config/gh/hosts.work.yml ~/.config/gh/hosts.yml && gh auth status"
+    co: pr checkout
+    # https://stackoverflow.com/questions/21083933/what-does-the-exclamation-mark-mean-in-git-config-alias
+    # ! runs the gh subcommand as a shell command and in the git repo root directory
+    # if not, the alias runs as a gh sub command
+    personal: "!cp ~/.config/gh/hosts.personal.yml ~/.config/gh/hosts.yml && gh auth status"
+    p: "!cp ~/.config/gh/hosts.personal.yml ~/.config/gh/hosts.yml && gh auth status"
+    work: "!cp ~/.config/gh/hosts.work.yml ~/.config/gh/hosts.yml && gh auth status"
+    w: "!cp ~/.config/gh/hosts.work.yml ~/.config/gh/hosts.yml && gh auth status"
 # The path to a unix socket through which send HTTP connections. If blank, HTTP traffic will be handled by net/http.DefaultTransport.
 http_unix_socket:
 # What web browser gh should use when opening URLs. If blank, will refer to environment.
 browser:
+version: "1"
