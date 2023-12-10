@@ -14,6 +14,7 @@ cask 'font-jetbrains-mono-nerd-font'
 
 brew 'rbenv'
 brew "pyenv"
+brew 'openjdk'
 brew 'dotbot'
 # brew 'zinit' # do not brew, instead, manually git clone to data folder in setup.zsh
 brew 'mas' # brew installer for the mac app store
@@ -178,3 +179,4 @@ cask 'zprint'
 tap 'noahgorstein/tap'
 brew 'noahgorstein/tap/jqp'
 # brew 'jqp'
+brew 'vips'  # fix Something went wrong installing the "sharp" module when running yarn on rc main
