@@ -17,6 +17,7 @@ local M = {
         'clojure',
         'dockerfile',
         'go',
+        'http',
         'html',
         'javascript',
         'typescript',
