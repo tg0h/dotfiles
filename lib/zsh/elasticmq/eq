@@ -1,0 +1,11 @@
+#!/bin/zsh
+
+function eq(){
+  # run elasticmq sqs server at localhost:9324
+  # web console at localhost:9325
+
+  local elasticmq_jar_path="/Users/tim/.local/share/elasticmq"
+  local candy_sqs_config="/Users/tim/src/me/zsh/candy/config/sqs.conf"
+
+  java -Dconfig.file=$candy_sqs_config -jar $elasticmq_jar_path/elasticmq-server-1.4.2.jar 
+}
