@@ -7,6 +7,8 @@ g.tg_quickfix_global = 0
 
 local M = {}
 
+-- local OUICKFIX_HEIGHT = 20
+
 function M.ToggleQFList(global)
   if global == 1 then
     -- quickfix list
@@ -15,7 +17,11 @@ function M.ToggleQFList(global)
       cmd('cclose')
     else
       g.tg_quickfix_global = 1
-      cmd('copen')
+      cmd('copen 20') -- open with height of 20
+      -- vim.api.nvim_cmd({ cmd = 'copen', args = { 20 }, nargs = 1 }, {})
+      -- vim.api.nvim_cmd.copen(20)
+      -- vim.cmd.copen(OUICKFIX_HEIGHT)
+      -- vim.api.nvim_cmd({ cmd = 'copen' }, {})
     end
   else
     -- loclist
