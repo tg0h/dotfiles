@@ -13,6 +13,7 @@ return {
     { '<LEADER>rg', '<CMD>FzfLua live_grep<CR>', desc = 'fzf lua live grep' },
     { '<LEADER>rr', '<CMD>FzfLua live_grep_resume<CR>', desc = 'fzf live grep resume' },
     { '<LEADER>rf', '<CMD>FzfLua live_grep_glob<CR>', desc = 'fzf live grep glob' },
+    { '<LEADER>rq', '<CMD>FzfLua quickfix_stack<CR>', desc = 'fzf quickfix stack history' },
     { '<LEADER>r,', '<CMD>FzfLua live_grep_native<CR>', desc = 'fzf live grep native' },
 
     { '<C-p>', '<CMD>FzfLua git_files<CR>', desc = 'fzf git files' },
