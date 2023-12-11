@@ -1,6 +1,10 @@
 return {
   'rgroli/other.nvim',
   event = 'VeryLazy',
+  init = function()
+    local wk = require('which-key')
+    wk.register({ ['<LEADER>o'] = { name = 'other' } })
+  end,
   config = function()
     vim.api.nvim_set_keymap('n', '<LEADER>oa', '<CMD>:Other<CR>', { noremap = true, silent = true })
     vim.api.nvim_set_keymap('n', '<LEADER>otn', '<CMD>:OtherTabNew<CR>', { noremap = true, silent = true })
