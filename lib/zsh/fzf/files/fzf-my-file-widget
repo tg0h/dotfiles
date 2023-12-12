@@ -11,6 +11,7 @@ function fzf-my-file-widget() {
   ⌃a add file/dir      | ⌃c/⌥C trash/rm
   ⌃h recent            | ⌃t default
   ⌃g .test files       | ⌃c no ignore | ⌃r files | ^f dirs
+  ⌃s .env files       
   ⌃\\ no .test files 
   ⌥g/⌥r depth 1/2
   ⌃o/⌃b blame preview/blame
@@ -43,6 +44,7 @@ EOF
         \
         --bind "ctrl-f:reload(fd $FD_OPTIONS --type d)+change-prompt(dir> )" \
         --bind "ctrl-g:reload(fd $FD_OPTIONS --type f --case-sensitive '\.test\.' )+change-prompt(test-files> )" \
+        --bind "ctrl-s:reload(fd $FD_OPTIONS_NO_IGNORE --type f '\.env' )+change-prompt(env-files> )" \
         --bind "ctrl-\\:reload(fd $FD_OPTIONS --type f --case-sensitive --exclude '\.test\.' )+change-prompt(exclude-test-files> )" \
         --bind "ctrl-c:reload(fd $FD_OPTIONS_NO_IGNORE)+change-prompt(no-ignore> )" \
         --bind "ctrl-r:reload(fd $FD_OPTIONS --type f)+change-prompt(file> )" \

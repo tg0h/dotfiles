@@ -61,7 +61,8 @@ FD_OPTIONS_NO_IGNORE="$FD_OPTIONS \
 --exclude node_modules \
 --exclude .DS_Store \
 --exclude build \
---exclude cdk.out
+--exclude cdk.out \
+--exclude '*.yarn/cache' \
 "
 export FZF_DEFAULT_COMMAND="fd . --type f --hidden --follow --exclude .git $FD_OPTIONS"
 
