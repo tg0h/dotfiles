@@ -57,6 +57,10 @@ keymaps:
       s..,
       $HOME/src/candy/main/referralcandy-main/packages/common-services/scripts,
     ]
+
+  # Candy playground
+  - [ts, $HOME/src/playground/candy/candyStore/embedded-signup]
+
   # poor man's worktree
   - ["s,.", $HOME/src/candy/main2/referralcandy-main]
   - [s2, $HOME/src/candy/main2/referralcandy-main, 5]
