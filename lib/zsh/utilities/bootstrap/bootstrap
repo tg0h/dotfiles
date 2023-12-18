@@ -1,0 +1,14 @@
+#!bin/zsh
+
+function bootstrap(){
+  # bootstrap local from backup ssd
+  # overrwrites history and pass!
+
+  local destination=/Volumes/penwhel/tim
+
+  # cp $destination/local/state/zsh/history $XDG_STATE_HOME/zsh/history
+ 
+  # cp -r $destination/local/share/pass $XDG_DATA_HOME/pass
+
+  # cp -r $destination/local/share/gnupg $XDG_DATA_HOME/gnupg/
+}
