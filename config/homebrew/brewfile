@@ -43,7 +43,7 @@ cask 'meetingbar'
 cask 'anki'
 cask 'qutebrowser'
 
-brew 'gnu-getopt'
+# brew 'gnu-getopt'
 brew 'less'
 brew 'mysql'
 brew 'openssh'
@@ -58,7 +58,7 @@ tap 'jesseduffield/lazygit' # use tap to get frequent updates
 brew 'jesseduffield/lazygit/lazygit'
 # tap does not support m1 mac https://github.com/jesseduffield/lazydocker/issues/279
 # brew 'jesseduffield/lazydocker/lazydocker'
-brew 'lazydocker'
+# brew 'lazydocker'
 brew 'rsync'
 brew 'fzf'
 brew 'ripgrep'
@@ -73,9 +73,9 @@ brew 'gnupg'
 brew 'pass' # password store
 brew 'pass-otp' # password store
 brew 'imagemagick'
-brew 'pygments' # try to fix httpie pyments colors
+# brew 'pygments' # try to fix httpie pyments colors
 brew 'httpie'
-brew 'hyperfine'
+# brew 'hyperfine'
 # brew 'redis', restart_service: true
 brew 'redis'
 
@@ -100,7 +100,7 @@ cask 'karabiner-elements'
 cask 'postman'
 # cask 'houdahspot'
 # cask 'hook'
-cask 'pixelsnap'
+# cask 'pixelsnap'
 cask 'keyboard-maestro'
 # cask 'cold-turkey-blocker'
 # cask 'glyphfinder'
@@ -113,8 +113,8 @@ cask 'spotify'
 # tap 'homebrew/cask-drivers'
 cask 'zsa-wally'
 
-mas 'Aquarelo', id: 1263012549
-mas 'Goldie', id: 1375037046
+# mas 'Aquarelo', id: 1263012549
+# mas 'Goldie', id: 1375037046
 
 brew 'tealdeer'
 # brew 'mutt'
@@ -155,8 +155,8 @@ brew 'pgcli'
 cask 'qutebrowser'
 brew 'gojq'
 brew 'zoxide'
-brew 'nginx'
-brew 'consul'
+# brew 'nginx'
+# brew 'consul'
 brew 'duf'
 
 
@@ -170,8 +170,8 @@ cask 'orbstack'
 brew 'hex' # modern hexdump
 brew 'hexyl'
 brew 'aichat'
-tap 'ankitpokhrel/jira-cli'
-brew 'jira-cli'
+# tap 'ankitpokhrel/jira-cli'
+# brew 'jira-cli'
 # brew 'chafa' # image previewer svg?
 brew 'viu' # rust image previewer
 tap 'dbcli/tap'
@@ -180,9 +180,10 @@ brew 'postgresql@15'
 brew 'sd' # rust sed
 # brew 'turbot/tap/steampipe'
 # brew 'percona-toolkit'
-tap 'yqrashawn/goku'
-brew 'yqrashawn/goku/goku'
-cask 'zprint'
+# tap 'yqrashawn/goku'
+# brew 'yqrashawn/goku/goku'
+# haskell formatter
+# cask 'zprint'
 
 # tap 'noahgorstein/tap/jqp'
 tap 'noahgorstein/tap'
