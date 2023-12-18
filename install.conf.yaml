@@ -20,6 +20,7 @@
       recursive: true
 
 - create:
+    - ~/.hushlogin # create a hushlogin file so kitty doesnt give me a last login: <date time> on ttys000
     - ~/.local/bin # binaries for any ad hoc binaries, eg authy
     - ~/.local/bin/scratch
     - ~/.local/lib/zsh-functions # store all zsh functions here (non generated)
