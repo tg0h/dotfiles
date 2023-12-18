@@ -18,3 +18,4 @@ alias hrc="gh repo clone"
 alias hrd="gh repo delete"
 alias hrdf="gh repo delete --confirm"
 
+alias hco="gh pr checkout"
