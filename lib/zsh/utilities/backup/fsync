@@ -43,5 +43,8 @@ function fsync(){
   rsync --progress -aP --stats --delete ~/.local/bin $destination/local
 
   # backup passwordstore and gpg
-  # rsync -aP --stats --delete ~/.local/share/pass ~/.local/share/gnupg $destination/local/share
+  rsync -aP --stats --delete ~/.local/share/pass ~/.local/share/gnupg $destination/local/share
+  
+  # backup zsh history $HISTFILE
+  rsync -aP --stats --delete ~/.local/state/zsh $destination/local/state/
 }
