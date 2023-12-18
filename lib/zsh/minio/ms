@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+function ms(){
+  # run minio server at localhost:9000
+
+  minio server ~/data/s3
+}
