@@ -10,7 +10,7 @@ export KEYTIMEOUT=1 # 10ms
 # // globally removes 
 # anything in [] is removed
 export WORDCHARS=${WORDCHARS//[\/=_.$\{\}()]}
-export HISTFILE="$XDG_STATE_HOME"/zsh/history # overrid HISTFILE setting in /etc/zshenv
+export HISTFILE="$XDG_STATE_HOME"/zsh/history # override HISTFILE setting in /etc/zshenv
 export HISTFILESIZE=1000000000
 export HISTSIZE=1000000000 # Number of commands that are loaded into memory from the history file
 export SAVEHIST=1000000000 # Refers to the number of commands that are stored in the zsh history file
