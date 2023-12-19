@@ -47,4 +47,7 @@ function fsync(){
   
   # backup zsh history $HISTFILE
   rsync -aP --stats --delete ~/.local/state/zsh $destination/local/state/
+
+  # backup elasticmq binary
+  rsync -aP --stats --delete ~/.local/share/elasticmq $destination/local/share/
 }
