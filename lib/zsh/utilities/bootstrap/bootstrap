@@ -11,4 +11,6 @@ function bootstrap(){
   # cp -r $destination/local/share/pass $XDG_DATA_HOME/pass
 
   # cp -r $destination/local/share/gnupg $XDG_DATA_HOME/gnupg/
+
+  # cp -r $destination/local/share/elasticmq $XDG_DATA_HOME/elasticmq/
 }
