@@ -4,7 +4,7 @@ alias xx="tmux kill-server"
 alias xt="tmux list-commands"
 alias x="fzf_tmux_create_or_switch_session"
 
-alias xs="tmux list-sessions"
+alias xs="x x"
 alias xw="tmux list-windows"
 alias xp="tmux list-panes"
 alias xdp="tmux display -p" # show format variables eg tmux display -p "{#pid}"
