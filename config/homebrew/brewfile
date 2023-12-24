@@ -189,7 +189,9 @@ brew 'sd' # rust sed
 tap 'noahgorstein/tap'
 brew 'noahgorstein/tap/jqp'
 # brew 'jqp'
-brew 'vips'  # fix Something went wrong installing the "sharp" module when running yarn on rc main
+# brew 'vips'  # fix Something went wrong installing the "sharp" module when running yarn on rc main
 tap 'minio/stable'
 brew 'minio/stable/minio'
 brew 'minio/stable/mc'
+brew 'ipinfo-cli'
+brew 'solargraph'
