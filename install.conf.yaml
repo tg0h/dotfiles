@@ -20,6 +20,8 @@
       recursive: true
 
 - create:
+    - ~/data # create a data folder for minio s3 or mysql dbs
+    - ~/data/s3 # create a data folder for minio s3 or mysql dbs
     - ~/.hushlogin # create a hushlogin file so kitty doesnt give me a last login: <date time> on ttys000
     - ~/.local/bin # binaries for any ad hoc binaries, eg authy
     - ~/.local/bin/scratch
