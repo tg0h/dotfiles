@@ -1,13 +1,13 @@
 #!/bin/zsh
 
-  local file=$1
-  local func=$2
-  cache=$XDG_STATE_HOME/dir-switcher/cache # store MRU files for each directory here
+local file=$1
+local func=$2
+cache=$XDG_STATE_HOME/dir-switcher/cache # store MRU files for each directory here
 
-  # TODO: remove nvim cache
-  echo $_fzf_homeFn_dir$file $line > /tmp/_nvim_cache
+# TODO: remove nvim cache
+echo $_fzf_homeFn_dir$file $line > /tmp/_nvim_cache
 
-  cache "$cache" "$ZSH_FUNCTIONS_PATH" "$ZSH_FUNCTIONS_PATH$file"
- 
-  nvim $_fzf_homeFn_dir$file
+cache "$cache" "$ZSH_FUNCTIONS_PATH" "$ZSH_FUNCTIONS_PATH$file"
+
+nvim $_fzf_homeFn_dir$file
 
