@@ -34,6 +34,8 @@ alias f/='fsCheat' # show ud cheatsheet
 # alias fscl='fswitch configure list' # show ud configuration
 alias fsce='fswitch configure edit' # edit ud configuration
 
+alias cle='nvim $HOME/src/me/zsh/candy/linker/candy-links.yml' # edit candy link config
+
 # alias eo='scratcher-cheat'
 
 # quick print eval loop ====================================================
