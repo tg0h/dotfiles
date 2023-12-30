@@ -13,6 +13,7 @@ function open_latest_changed_file()
   -- hexdump shows 61 0a or a followed by linefeed
   -- ttps://www.ibm.com/docs/en/aix/7.2?topic=adapters-ascii-decimal-hexadecimal-octal-binary-conversion-table
   -- 0x0a is 10 is linefeed is '\n'
+  -- use tr to remove trailing newline
 
   local cmd = [[ fd --follow --hidden --type f --exec-batch ls -lt | choose 8 | head -n1 | tr -d '\n' ]]
   local handle = io.popen(cmd)
