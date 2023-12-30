@@ -18,7 +18,7 @@ alias zcf='zsh-compile-functions'
 alias ag="alias | grep"
 alias sg="set | grep"
 
-alias rl=reload-function
+# alias rl=reload-function
 alias th='trash'
 alias tha='trash *'  # trash all files
 alias th.='trash .*' # trash . files - needs both normal and . files to be present zzz

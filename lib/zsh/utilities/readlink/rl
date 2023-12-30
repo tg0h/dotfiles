@@ -1,0 +1,16 @@
+#!/bin/zsh
+
+function rl(){
+  # readlink - get full path of file and paste to clipboard
+  # display full path in stdout
+
+  if [ -z "$1" ]; then
+    echo no args provided
+    return 
+  fi
+  # readlink -f $1 | tee >(pbcopy)
+
+  # remove trailing newline
+  # show output in stdout
+  readlink -f $1 | tr -d '\n' | pbcopy && pbpaste
+}
