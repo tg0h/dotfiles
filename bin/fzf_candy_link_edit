@@ -1,0 +1,8 @@
+#!/bin/zsh
+
+local inputFile=$1
+
+local file=$(readlink $XDG_BIN/candy/$inputFile)
+echo file is $file
+
+nvim $file

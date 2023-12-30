@@ -1,0 +1,57 @@
+#!bin/zsh
+
+export _fzf_candy_links_dir="$XDG_BIN/candy"
+
+_fzf_candy_getLinks(){
+  # get all the links in the $XDG_BIN/candy folder that point to the ts scripts in the candy scripts worktree
+  # works with cl candy link function
+  
+  # | gsed -E 's!//!!g' -- delete string //
+  # | gsed -E '/#!/d' -- delete lines containing #!
+  local shebang="#!"
+  rg \
+    --follow \
+    --color always \
+    --field-context-separator '' \
+    --no-context-separator \
+    --only-matching -e "^$shebang" -A 1 \
+    --field-match-separator ' ' \
+    $XDG_BIN/candy \
+    | gsed -E 's!//!!g' \
+    | gsed -E '/#!/d' \
+    | gsed "s!$XDG_BIN/candy!!" \
+    # | gsed 'N;s/\n/ /' \
+    # | gawk '{$3="-"; print}' 
+    # gawk {$3 ..} is dangerous because it depends on previous code
+
+    # | gsed -E 's!(\s*)(/)!\2!' \
+}
+
+function _fzf_home-function_nvim_edit(){
+
+  local file=$1
+  local func=$2
+  # echo file: $file
+  # echo func: $func
+
+  local line=$(rg '^function\s+'$func'\s*\(' $_fzf_homeFn_dir$file -n | choose -f ':' 0)
+  # echo line: $line
+
+  #TODO: turn this into a function
+  echo $_fzf_homeFn_dir$file $line > /tmp/_nvim_cache
+ 
+  nvim $_fzf_homeFn_dir$file +$line -c 'normal! zz'
+}
+
+function an(){
+  # search candy link ts scripts in $XDG_BIN/candy
+
+  # --preview-window ~5,bottom,noborder,85% \
+  local result=$(
+  _fzf_candy_getLinks | fzf --ansi \
+    --preview="fzf_candy_link_preview {1}" \
+    --bind "enter:execute(fzf_candy_link_edit {1} < /dev/tty > /dev/tty 2>&1)+abort"
+)
+}
+
+an
