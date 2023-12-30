@@ -44,6 +44,7 @@ fpath=(/opt/homebrew/share/zsh/site-functions $fpath) # add homebrew completions
 # export PATH="/Users/tim/Library/Python/3.9/bin:$PATH"
 
 export PATH="$PATH:$HOME/.local/bin"
+export PATH="$PATH:$HOME/.local/bin/candy"
 export PATH="$PATH:$HOME/.local/bin/scratch"
 export PATH="$PATH:$CARGO_HOME/bin"
 export PATH="$PATH:$GOPATH/bin"
