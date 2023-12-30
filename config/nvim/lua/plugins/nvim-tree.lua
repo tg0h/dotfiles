@@ -293,7 +293,7 @@ local M = {
       git = {
         enable = true,
         ignore = true,
-        show_on_dirs = false, -- do not mark directories so that git navigate prev/next can go to changed file immediately. use with expand/collapes all and git changed filter for navigation
+        show_on_dirs = true, -- do not mark directories so that git navigate prev/next can go to changed file immediately. use with expand/collapes all and git changed filter for navigation
         timeout = 400,
       },
       actions = {
