@@ -7,7 +7,7 @@
 keymaps:
   # XDG_CONFIG DIRS - Top Row
   - [f, $HOME/dotfiles/bin]
-  - ["ff", $HOME/.local/bin]
+  - ["ff", $XDG_BIN]
   - [g, $XDG_DATA_HOME, 3]
   # local nvim runtime
   - [gn, $XDG_DATA_HOME/nvim, 5]

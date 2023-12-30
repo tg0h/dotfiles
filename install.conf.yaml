@@ -23,9 +23,9 @@
     - ~/data # create a data folder for minio s3 or mysql dbs
     - ~/data/s3 # create a data folder for minio s3 or mysql dbs
     - ~/.hushlogin # create a hushlogin file so kitty doesnt give me a last login: <date time> on ttys000
-    - ~/.local/bin # binaries for any ad hoc binaries, eg authy
-    - ~/.local/bin/scratch
-    - ~/.local/bin/candy # link to candy ts scripts
+    - $XDG_BIN # ~/.local/bin binaries for any ad hoc binaries, eg authy
+    - $XDG_BIN/scratch
+    - $XDG_BIN/candy # link to candy ts scripts
     - ~/.local/lib/zsh-functions # store all zsh functions here (non generated)
     - ~/.local/lib/zsh-compiled # store compiled output here - do not pollute zsh functions
     - $HOME/.local/lib/zsh/utilities/dir-switcher/out # compile output folder for dir-switcher funcs
