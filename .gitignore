@@ -51,3 +51,6 @@ scratch.jq
 datadiff.toml
 
 config/dadbod
+
+# contains sensitive url names for rc
+lib/jq/aws/route53/subSpecialNames.jq
