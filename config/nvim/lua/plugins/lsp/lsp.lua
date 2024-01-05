@@ -49,7 +49,7 @@ capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 --     root_dir = util.root_pattern(".git", "tsconfig.json")
 -- })
 
-local servers = { 'tsserver', 'jsonls', 'dockerls', 'yamlls', 'lua_ls', 'solargraph', 'pyright', 'sqlls', 'eslint' }
+local servers = { 'tsserver', 'jsonls', 'dockerls', 'yamlls', 'lua_ls', 'solargraph', 'pyright', 'sqlls', 'eslint', 'marksman' }
 
 -- Use a loop to conveniently call 'setup' on multiple servers
 for _, lsp in ipairs(servers) do
