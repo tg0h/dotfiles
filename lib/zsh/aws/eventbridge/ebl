@@ -1,0 +1,27 @@
+#!/bin/zsh
+
+function ebl(){
+  # list eventbridge rules
+  local verbose
+  while getopts 'v' opt; do
+    case "$opt" in
+      v) verbose=true;;
+    esac
+  done
+  shift $(($OPTIND - 1))
+
+  # local result=$(aws events list-rules)
+  local result=$(CT)
+
+  local jqQuery=$(cat <<-EOF
+    include "aws/eventbridge/ebl";
+    ebl
+EOF
+)
+
+  if [ $verbose ]; then
+    jq --raw-output "." <<< "$result"
+  else
+    jq --raw-output -L "~/.config/jq" -L "~/.local/lib/jq" "$jqQuery" <<< "$result"
+  fi
+}
