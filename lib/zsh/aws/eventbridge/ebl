@@ -10,8 +10,8 @@ function ebl(){
   done
   shift $(($OPTIND - 1))
 
-  # local result=$(aws events list-rules)
-  local result=$(CT)
+  local result=$(aws events list-rules)
+  # local result=$(CT)
 
   local jqQuery=$(cat <<-EOF
     include "aws/eventbridge/ebl";

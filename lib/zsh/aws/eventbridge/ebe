@@ -1,0 +1,19 @@
+#!/bin/zsh
+function ebe(){
+  # enable event bridge rules
+  local search=$1
+  local force=$2
+
+  results=$(aws events list-rules| jq --raw-output '.Rules[] | .Name' | rg "$search" )
+
+  while read -r line; do
+    echo "$line"
+  done <<< "$results"
+
+  if [ -n "$force" ]; then
+    while read -r line; do
+      echo "$fg[green]Enabling${reset_color} $line"
+      aws events enable-rule --name $line
+    done <<< "$results"
+  fi
+}
