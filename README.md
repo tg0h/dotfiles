@@ -86,6 +86,10 @@
   - run command after file change - use as scratchpad, test runner
 - viddy
   - modern watch command - has access to zsh functions
+- jq scratch pad
+  - store json in /tmp/t, call scratchz to run scratch.jq in lib/jq/scratch/scratch.jq
+- global aliases
+  - T, CT, F, G
 
 ## Inspiration
 
@@ -102,9 +106,9 @@
   - add display order
   - reload function or config from fuzzy finder
 - add archive function
-- how to manage sym links to eg work function repo
 - how to manage env variables and display state on cli - similar to an aws global profile but for any of my functions
 
 ## done
 
 - better kitty tab bar - done 25 aug 22
+- how to manage sym links to eg work function repo - done via candy linker ~ jan 2024
