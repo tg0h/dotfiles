@@ -1,0 +1,42 @@
+#!/bin/zsh
+
+function acus(){
+  # aws ecs update service - acus <serviceName> <desired count>
+  # aws ecs update service - acus -cp <serviceName> <desired count>
+  # default to staging cluster
+  # -c d|s|p # to get dev, staging or prod cluster
+
+  local verbose cluster clusterOpt service number
+  while getopts 'c:' opt; do
+    case "$opt" in
+      c) clusterOpt=$OPTARG
+        case "$clusterOpt" in
+          d) cluster="DeveloperCluster";;
+          s) cluster="StagingCluster";;
+          p) cluster="ProductionCluster";;
+        esac
+        ;;
+    esac
+  done
+  shift $(($OPTIND - 1))
+
+  cluster=${cluster:-StagingCluster}
+  service=$1
+  number=$2
+
+  [ -z "$service" ] && echo service not provided && return 1
+  [ -z "$number" ] && echo desired count not provided && return 1
+
+  echo updating $cluster service $service desired count to $number
+
+  # returns the service following the update call
+  local result=$(aws ecs update-service --cluster $cluster --service $service --desired-count $number)
+
+    local jqQuery=$(cat <<-EOF
+    # remove events key from the service
+    del(.service.events)
+EOF
+)
+
+  jq --raw-output -L "~/.config/jq" "$jqQuery" <<< $result
+}
