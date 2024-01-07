@@ -237,6 +237,7 @@ def _fp(text):
 def _sdb(text):
   escape + colours["spiroDiscoBall"] + text + escape + colours.reset;
 
+# ebony is almost invisibly black
 def _ebony(text):
   escape + colours["ebony"] + text + escape + colours.reset;
 
