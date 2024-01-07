@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 function acds(){
-  # aws ecs describe services
+  # aws ecs describe services - acds service1 service2 service3
   # default to staging cluster
   # -c d|s|p # to get dev, staging or prod cluster
   # -n # number of events to display for the service
@@ -43,63 +43,14 @@ function acds(){
   #   COMPLETED
 
     local jqQuery=$(cat <<-EOF
-   include "pad";
-   include "colour";
-   include "aws-time";
-   include "aws-ecs";
-   def placementStrategy:
-     map("\(.type | lp(10) | _y(.)):\(.field)")[];
-   def pTaskDefinition:
-     gsub(".*/(?<x>.*)";_orange((.x)));
-   def service:
-     "\(.serviceName| _brinkPink(.)) \(.taskDefinition | pTaskDefinition) 🎯\(.desiredCount) \(.runningCount|tostring|_g(.)) \(.pendingCount|tostring|_y(.)) \(.status | _serviceStatus) \(.deploymentConfiguration.minimumHealthyPercent)% \(.deploymentConfiguration.maximumPercent)%",
-     "\(.placementStrategy|placementStrategy)"
-  ;
-   def deployment:
-     # "\(.taskDefinition | __(.))"+"\n"+
-     "\(.status | _deploymentStatus) 🎯\(.desiredCount) \(.runningCount|tostring|_g(.)) \(.pendingCount|tostring|_y(.)) \(.failedTasks|tostring|_r(.)) 🚂 \(.createdAt | pTime) 🚀 \(.updatedAt | pTime) \(.rolloutState | _rolloutState) \(.rolloutStateReason)"
-   ;
-   def _completed:
-     sub("(?<dc>deployment completed)"; _nb((.dc)));
-   def _brackets:
-     gsub("(?<openb>\\\\()(?<br>.*?)(?<closeb>(\\\\)))"; __(.openb)+__((.br))+__(.closeb) );
-   def _stopped:
-     gsub("(?<x>stopped)"; _r((.x)));
-   def _started:
-     gsub("(?<x>started)"; _y((.x)));
-   def _reached:
-     gsub("(?<x>reached a steady state)"; _g((.x)));
-   def _filler:
-     gsub("(?<x>(has|\\\\.|:))"; __((.x)));
-   def _unable_to_place_a_task:
-     gsub("(?<x>unable to place a task)"; _brinkPink((.x)));
-   def _unhealthy:
-     gsub("(?<x>unhealthy)"; _brinkPink((.x)));
-   def registered:
-     gsub("(?<x> registered)"; _by((.x)));
-   def _colourFilter:
-     _completed | _filler | _started | _stopped | _reached | _brackets | _unable_to_place_a_task | _unhealthy ;
-   def event:
-     "  \(.createdAt | pTime) \(.message | _colourFilter)";
-
-   .services[] | 
-   service, 
-   "\(.deployments | map(deployment)[])",
-   "\(.events[0:$number] | map(event)[])"
+    include "aws/ecs/acds";
+    acds($number)
 EOF
 )
 
     local jqQueryPlain=$(cat <<-EOF
-   include "pad";
-   include "colour";
-   include "aws-time";
-   def pTaskDefinition:
-     gsub(".*/(?<x>.*)";_orange((.x)));
-   def deployment:
-     "🎯\(.desiredCount|lp(3))🟢\(.runningCount|lp(3))🟡\(.pendingCount)🔴\(.failedTasks) \(.status) 🚂\(.createdAt | pTime) 🚀\(.updatedAt | pTime) \(.rolloutState) ";
-   def service:
-     "\(.serviceName| rp(40) | _brinkPink(.)) 🎯\(.desiredCount|lp(3))🟢\(.runningCount|lp(3))🟡\(.pendingCount|lp(3)) \(.status) \(.deployments | map(deployment)[])";
-   .services[] | service
+    include "aws/ecs/acdsPlain";
+    acdsPlain
 EOF
 )
 
@@ -112,8 +63,8 @@ EOF
   if [ -n "$verbose" ]; then
     jq --raw-output -L "~/.config/jq" "." <<< $result
   elif [ -n "$plain" ]; then
-    jq --raw-output -L "~/.config/jq" "$jqQueryPlain" <<< $result
+    jq --raw-output -L "~/.config/jq" -L "~/.local/lib/jq" "$jqQueryPlain" <<< $result
   else
-    jq --raw-output -L "~/.config/jq" "$jqQuery" <<< $result
+    jq --raw-output -L "~/.config/jq" -L "~/.local/lib/jq" "$jqQuery" <<< $result
   fi
 }
