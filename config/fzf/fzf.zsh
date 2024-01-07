@@ -41,8 +41,10 @@ export FZF_DEFAULT_OPTS="
 --bind 'ctrl-s:preview-half-page-down'
 
 --bind='ctrl-a:beginning-of-line'
+--bind 'ctrl-e:end-of-line'
+
 --bind='ctrl-y:execute-silent(echo {+} | join-lines-fzf | pbcopy)+abort'
---bind 'ctrl-e:$FZF_X_NVIM'
+--bind 'alt-e:$FZF_X_NVIM'
 --bind 'ctrl-alt-e:$FZF_X_NVIM+abort'
 --bind 'ctrl-/:change-preview-window(right,80%|down,90%,border-top|hidden|)'
 --bind='alt-c:execute(trash {})'
