@@ -54,3 +54,4 @@ config/dadbod
 
 # contains sensitive url names for rc
 lib/jq/aws/route53/subSpecialNames.jq
+config/zsh/aliases/candy-secret.zsh 
