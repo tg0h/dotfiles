@@ -63,6 +63,9 @@ bindkey '^[^[' fzf-search-filenameAndContent-widget
 
 zle -N fzf-search-cloudwatch-logs-widget
 bindkey '^[^f' fzf-search-cloudwatch-logs-widget
+zle -N fzf-search-ecs-services-widget
+# emacs C-f just moves 1 char to the right
+bindkey '^f' fzf-search-ecs-services-widget
 zle -N dropdowner
 bindkey '^[^r' dropdowner
 zle -N fzf-search-sqs-queues-widget
