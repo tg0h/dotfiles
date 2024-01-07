@@ -1,0 +1,27 @@
+#!/bin/zsh
+
+function alb(){
+  # aws elbv2 describe load balancers
+  local verbose
+  while getopts 'v' opt; do
+    case "$opt" in
+      v) verbose=true;;
+    esac
+  done
+  shift $(($OPTIND - 1))
+
+  local result=$(aws elbv2 describe-load-balancers)
+  # local result=$(CT)
+
+  local jqQuery=$(cat <<-EOF
+  include "aws/loadbalancer/alb";
+  alb
+EOF
+)
+
+  if [ $verbose ]; then
+    jq --raw-output "." <<< "$result"
+  else
+    jq --raw-output -L "~/.config/jq" -L "~/.local/lib/jq" "$jqQuery" <<< "$result"
+  fi
+}
