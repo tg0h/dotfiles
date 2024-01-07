@@ -23,5 +23,5 @@ function acdsf(){
   local results=$(acls -c $clusterOpt | fzf | join-lines)
   [ -n "$debug" ] && echo running command:>&2
   [ -n "$debug" ] && echo acds $plain -n $number -c $clusterOpt $results >&2
-  acds $plain -n $number -c $clusterOpt $results
+  [ -n "$results" ] && acds $plain -n $number -c $clusterOpt $results
 } 
