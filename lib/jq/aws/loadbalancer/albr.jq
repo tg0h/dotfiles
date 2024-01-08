@@ -42,7 +42,7 @@ def subOtherSpecialNames:
 
 def mapConditionFieldValue:
 # map((.Field| subField ) + ":" + mapValue|trunc(30)) | join(",") | lp(60)
-map((.Field) + ":" + mapValue|trunc(130)) | join(",") | subField | subOtherSpecialNames | subCandyUrls | lp(150)
+map((.Field) + ":" + mapValue|trunc(50)) | join(",") | subField | subOtherSpecialNames | subCandyUrls | lp(80)
 # .Field 
 ;
 def mapConditions:
@@ -98,8 +98,14 @@ mapConditions
 | mapActions
 ;
 
+def subPriority:
+  sub("(?<x>default)";(_g("DEF")))
+;
+
 def showRules:
-"\(.Priority | lp(7)) \(._Conditions) \(._Actions)"
+" \(._Conditions)"
++" \(___(.Priority|subPriority) | lp(3)) "
++"\(._Actions)"
 ;
 
 def albr:
