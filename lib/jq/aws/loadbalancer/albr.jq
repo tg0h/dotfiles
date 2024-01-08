@@ -1,6 +1,7 @@
 include "pad";
 include "colour";
-include "aws/loadbalancer/subAction";
+include "aws/loadbalancer/subSpecialAction"; # sensitive actions
+include "aws/route53/subCandyUrls";
 # Priority
 # Conditions
 # Actions
@@ -32,9 +33,16 @@ def subField:
   | sub("(?<x>http-request-method)";(_y("method")))
 ;
 
+def subOtherSpecialNames:
+  sub("(?<x>partners.referralcandy.com)";("\(__u("partners.referralcandy.com"))"))
+  | sub("(?<x>blog.referralcandy.com)";("\(__u("blog.referralcandy.com"))"))
+  | sub("(?<x>bytes.referralcandy.com)";("\(__u("bytes.referralcandy.com"))"))
+  | sub("(?<x>help.referralcandy.com)";("\(__u("help.referralcandy.com"))"))
+;
+
 def mapConditionFieldValue:
 # map((.Field| subField ) + ":" + mapValue|trunc(30)) | join(",") | lp(60)
-map((.Field) + ":" + mapValue|trunc(130)) | join(",") | subField | lp(150)
+map((.Field) + ":" + mapValue|trunc(130)) | join(",") | subField | subOtherSpecialNames | subCandyUrls | lp(150)
 # .Field 
 ;
 def mapConditions:
@@ -47,7 +55,7 @@ def mapRedirectAction:
 ;
 
 def mapForwardAction:
-.ForwardConfig | .TargetGroups | map(.TargetGroupArn + "->"+(.Weight|tostring)) | join(",")
+.ForwardConfig | .TargetGroups | map(.TargetGroupArn + "\(_orange("->"))"+(.Weight|tostring)) | join(",")
 ;
 
 def mapFixedResponseAction:
@@ -64,8 +72,25 @@ elif (.Type == "fixed-response") then
 end
 ;
 
+def subAction:
+  sub("(?<x>redirect)";(_g("redir")))
+  | sub("(?<x>forward)";(_bgy("forwd")))
+  | sub("(?<x>fixed-response)";(__("fixed")))
+  | sub("(?<x>HTTP_301)";(_gold("301")))
+  | sub("(?<x>403)";(_r("403")))
+  | sub("(?<x>production)";(_g(.x)))
+  | sub("(?<x>referralcorner)";(_tacha(.x)))
+  | sub("(?<x>folp)";(_bt(.x)))
+  | sub("(?<x>frontend)";(_brinkPink(.x)))
+  | sub("(?<x>external-api)";(_mg(.x)))
+  | sub("(?<x>api)";(_purple(.x)))
+  | sub("(?<x>bigcommerce)";(_yaleBlue_b(.x) ))
+  | sub("(?<x>referralcandy.com)";(_sdb(.x) ))
+  | sub("(?<x>notfound)";(_r(.x) ))
+;
+
 def mapActions:
-._Actions = (.Actions[] | mapActionTypes | subAction)
+._Actions = (.Actions[] | mapActionTypes | subAction | subSpecialAction | subCandyUrls)
 ;
 
 def mapRules:
