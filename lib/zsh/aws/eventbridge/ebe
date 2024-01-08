@@ -1,6 +1,8 @@
 #!/bin/zsh
 function ebe(){
   # enable event bridge rules
+  # e.g. ebe "<search term>" - dry run the enable rule
+  # e.g. ebe "<search term>" "force" - actually enable the rule
   local search=$1
   local force=$2
 

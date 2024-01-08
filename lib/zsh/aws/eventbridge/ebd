@@ -1,8 +1,8 @@
 #!/bin/zsh
 function ebd(){
   # disable event bridge rules
-  # e.g. acdd "my-app" - dry run the delete
-  # e.g. acdd "my-app" "force" - actually delete the task definition
+  # e.g. ebd "<search term>" - dry run the disable rule
+  # e.g. ebd "<search term>" "force" - actually disable the rule
   local search=$1
   local force=$2
 
