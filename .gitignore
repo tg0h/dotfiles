@@ -53,6 +53,6 @@ datadiff.toml
 config/dadbod
 
 # contains sensitive url names for rc
-lib/jq/aws/route53/subSpecialNames.jq
-lib/jq/aws/loadbalancer/subAction.jq
+lib/jq/aws/route53/subCandyUrls.jq
+lib/jq/aws/loadbalancer/subSpecialAction.jq
 config/zsh/aliases/candy-secret.zsh 

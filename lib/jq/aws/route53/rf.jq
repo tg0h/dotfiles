@@ -1,7 +1,7 @@
 include "date";
 include "pad";
 include "colour";
-include "aws/route53/subSpecialNames";
+include "aws/route53/subCandyUrls";
 
 def subRecords: 
   sub("(?<x>dualstack)";("\(_orange("dualstack"))"))
@@ -83,18 +83,20 @@ def subJunkNames:
   | sub("(?<x>fabian)";("\(_bgy("fabian"))"))
   | sub("(?<x>jeancharles)";("\(_bgy("jeancharles"))"))
   ;
+
 def subOtherSpecialNames:
   sub("(?<x>partners.referralcandy.com)";("\(__u("partners.referralcandy.com"))"))
   | sub("(?<x>blog.referralcandy.com)";("\(__u("blog.referralcandy.com"))"))
   | sub("(?<x>bytes.referralcandy.com)";("\(__u("bytes.referralcandy.com"))"))
   | sub("(?<x>help.referralcandy.com)";("\(__u("help.referralcandy.com"))"))
 ;
+
 def subStagingJunk:
   sub("(?<x>dev)";("\(_fp("dev"))"))
 ;
 
 def subName:
-  subSpecialNames | subOtherSpecialNames | subJunkNames | subStar
+  subCandyUrls | subOtherSpecialNames | subJunkNames | subStar
   | subStagingJunk
 ;
 
