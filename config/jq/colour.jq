@@ -151,6 +151,10 @@ def colour(text; colour):
 def colourReverse(text; colour):
   escape + colours[colour] + _reverse + text + escape + colours.reset;
 
+def _v(text; colour):
+  colourReverse(text;colour)
+;
+
 def _colourCompile: 
   colours 
   | to_entries
@@ -265,7 +269,6 @@ def _yaleBlue(text):
 
 def _yaleBlue_b(text):
   escape + colours["yaleBlueBackground"] + text + escape + colours.reset;
-
 
 def _orange(text):
   escape + colours["orange"] + (text|tostring) + escape + colours.reset;
