@@ -10,8 +10,8 @@ function cr(){
   done
   shift $(($OPTIND - 1))
 
-  # local result=$(aws cloudfront list-distributions)
-  local result=$(CT)
+  local result=$(aws cloudfront list-distributions)
+  # local result=$(CT)
 
   local jqQuery=$(cat <<-EOF
     include "aws/cloudfront/cr";
