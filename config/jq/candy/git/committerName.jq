@@ -17,6 +17,7 @@ def formatCommitterName:{
 "Jared Tong": _cyan("jared"),
 "kelvyn": _danube("kelvn"), # sound of music
 "Kel Vyn Ong": _danube("kelvn"), # sound of music
+"Kye Jordan": _orange("kyeo"),
 "timt": _tan("timt"),
 "Timothy Tan": _tan("timt"),
 "cy": _y("cy"), # nepal buddist monk robes
