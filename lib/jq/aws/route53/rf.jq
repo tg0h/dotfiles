@@ -18,7 +18,8 @@ def subRecords:
 # [ {"Value": ...}, ...]
 def showResourceRecords: 
 if has("_ResourceRecords") then
-  ._ResourceRecords | subRecords | trunc(90)
+  # ._ResourceRecords | subRecords | trunc(90)
+  ._ResourceRecords | subRecords
 else
   ""
 end
