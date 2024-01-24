@@ -64,11 +64,6 @@ keymaps:
   - [tr, $HOME/src/playground/candy/candyStore/referral-widget/]
   - [tj, $HOME/src/playground/candy/candyStore/js-integration/]
 
-  # poor man's worktree
-  - ["s,.", $HOME/src/candy/main2/referralcandy-main]
-  - [s2, $HOME/src/candy/main2/referralcandy-main, 5]
-  - [s3, $HOME/src/candy/main3/referralcandy-main, 5]
-
   # OLD CANDY
   - [st, $HOME/src/candy/old/customer-tracks/]
   - [sb, $HOME/src/candy/old/business]
@@ -76,9 +71,10 @@ keymaps:
   # oops sh will create zsh shortcut which shadows zsh bin
   # - [sh, $HOME/src/candy/main/referralcandy-main/packages/daemons]
   - [so, $HOME/src/candy/old]
+  - [soi, $HOME/src/candy/old/referralcandy-integration-events]
   - [soc, $HOME/src/candy/old/composer]
   - [sp, $HOME/src/candy/old/pentel]
   - [sp2, $HOME/src/candy/pentel]
   - [sr, $HOME/src/candy/old/referral_corner]
-  - [sm, $HOME/src/candy/old/candymold]
+  - [sm, $HOME/src/candy/old/candymail]
   - [sw, $HOME/src/candy/old/webapp/]
