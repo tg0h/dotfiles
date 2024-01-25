@@ -34,7 +34,8 @@ export FZF_DEFAULT_OPTS="
 --bind='ctrl-z:toggle-preview'
 
 --bind='ctrl-d:half-page-down'
---bind='ctrl-u:half-page-up'
+--bind='ctrl-v:half-page-up'
+--bind='ctrl-u:execute-silent(echo -n {q} | pbcopy)'
 
 --bind 'ctrl-^:preview-half-page-up'
 --bind 'ctrl-h:preview-half-page-up'
