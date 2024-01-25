@@ -1,6 +1,6 @@
 # see https://github.com/Homebrew/homebrew-bundle for example brewfile
 
-tap 'homebrew/cask'
+# tap 'homebrew/cask'
 tap 'homebrew/services'
 
 cask 'kitty'
@@ -140,7 +140,7 @@ brew 'gnu-tar'
 brew 'tokei'
 brew 'ffmpeg'
 brew 'mycli'
-brew 'glow'
+# brew 'glow'
 brew 'choose-rust'
 brew 'gron'
 brew 'entr'
@@ -197,3 +197,4 @@ brew 'ipinfo-cli'
 brew 'solargraph'
 brew 'mailpit'
 brew 'php'
+brew 'hyperfine'
