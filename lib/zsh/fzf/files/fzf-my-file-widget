@@ -8,7 +8,7 @@ function fzf-my-file-widget() {
   local basename="fzf-my-file-widget"
 
   local HEADER=$(cat <<-EOF
-  ⌃a add file/dir      | ⌃c/⌥C trash/rm
+  ⌃a add file/dir(NA)  | ⌃c/⌥C trash/rm
   ⌃h recent            | ⌃t prefix with ts-node
   ⌃g .test files       | ⌃c no ignore | ⌃r files | ^f dirs
   ⌃s .env files       
@@ -33,13 +33,13 @@ EOF
   fi
 
         # --bind "ctrl-t:reload(fd $FD_OPTIONS)+change-prompt(> )" \
+        # --bind "ctrl-a:execute(fzf-make-dir {1} $(pwd))+reload(fd $FD_OPTIONS)" \
   local out=$(fd ${=FD_OPTIONS} | 
     FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS" fzf --ansi \
         --header="$HEADER"\
         --header-first \
         --preview="fzf-fd-preview {}" \
         --preview-window='right:nowrap,noborder,55%' \
-        --bind "ctrl-a:execute(fzf-make-dir {1} $(pwd))+reload(fd $FD_OPTIONS)" \
         --bind="alt-c:execute(trash {})+reload(fd $FD_OPTIONS)" \
         --bind="alt-C:execute(rm {})+reload(fd $FD_OPTIONS)" \
         \
