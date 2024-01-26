@@ -51,6 +51,14 @@ keymaps:
   - [s., $HOME/src/candy/referralcandy-main/main, 5]
   - ["s,", $HOME/src/candy/main/referralcandy-main, 5]
   - [sd, $HOME/src/candy/main/referralcandy-main/packages/daemons]
+  - [
+      sdb,
+      $HOME/src/candy/referralcandy-main/main/packages/api/database_migrations/api,
+    ]
+  - [
+      sdbf,
+      $HOME/src/candy/referralcandy-main/feature/packages/api/database_migrations/api,
+    ]
   - [se, $HOME/src/candy/main/referralcandy-main/packages/external-api, 5]
   - [si, $HOME/src/candy/main/referralcandy-main/packages/infra, 5]
   - [
