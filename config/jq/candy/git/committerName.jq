@@ -3,38 +3,40 @@ include "colour";
 
 # git branch does not use mailmap so we need to define the mapping here :(
 def formatCommitterName:{
-"brian": _christine("brian"), # aws orange
-"eri": _purple("eri"),
 "Eri Sitohang": _purple("eri"),
-"gary": _mySin("gary"), # lakers colours
 "Gary": _mySin("gary"), # lakers colours
-"giggs": _rossoCorsa("giggs"), # man u 
 "Giggs": _rossoCorsa("giggs"), # man u 
 "GitHub": __("GH"), # bright green
-"glenn": _sapphireBg("glenn"), # new zealand
+"FritzCalimagAnafore": "fritz", 
 "Glenn Sunkel": _sapphireBg("glenn"), # new zealand
-"jared": _cyan("jared"), # rc colours
 "Jared Tong": _cyan("jared"),
-"kelvyn": _danube("kelvn"), # sound of music
+"Joey Sayson": "joey",
 "Kel Vyn Ong": _danube("kelvn"), # sound of music
 "Kye Jordan": _orange("kyeo"),
-"timt": _tan("timt"),
+"Miguel": "miglb",
 "Timothy Tan": _tan("timt"),
-"cy": _y("cy"), # nepal buddist monk robes
+"Will Fong": "will",
+"brian": _christine("brian"), # aws orange
 "chingyeow": _y("cy"), # nepal buddist monk robes
+"cy": _y("cy"), # nepal buddist monk robes
 "darren": _beaver("darrn"), # otter singaporean beaver geddit lol
 "darrenong17": _beaver("darrn"), # otter singaporean beaver geddit lol
+"eri": _purple("eri"),
+"gary": _mySin("gary"), # lakers colours
 "garyfoo88": _mySin("gary"), # lakers
+"giggs": _rossoCorsa("giggs"), # man u 
+"glenn": _sapphireBg("glenn"), # new zealand
+"jared": _cyan("jared"), # rc colours
 "jasd": _morningGlory("jasd"), # princess jasmine
 "jasmined09": _morningGlory("jasd"), # princess jasmine
 "joel": _jazzberry("joel"),
-"timg": _steelPink("timg"),
-"tim goh": _steelPink("timg"),
-"shanhan": "shnhn",
-"Will Fong": "will",
-"wonsuk-cho": "wonsk",
-"miguel": "miglb",
-"Miguel": "miglb",
+"kelvyn": _danube("kelvn"), # sound of music
 "krushanu": "kru",
-"Joey Sayson": "joey",
+"marcusoh": "marco",
+"miguel": "miglb",
+"shanhan": "shnhn",
+"tim goh": _steelPink("timg"),
+"timg": _steelPink("timg"),
+"timt": _tan("timt"),
+"wonsuk-cho": "wonsk",
 };
