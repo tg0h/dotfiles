@@ -14,7 +14,7 @@ function fzf-my-file-widget() {
   ⌥v .env files        | ⌃s service files
   ⌃\\ no .test files   | ⌃⌥t prefix with ts-node
   ⌥g/⌥r depth 1/2
-  ⌃o/⌃b blame preview/blame
+  ⌃o/⌥b blame preview/blame
   ⌃l    log history of selected file
   ⌃⌥n   node <file>
 EOF
@@ -77,7 +77,7 @@ EOF
           )+refresh-preview+execute-silent(_fzf-docker-image-widget-toggle \"${logger_blame_state}\" logger_blame)" \
         --bind "alt-g:reload(fd $FD_OPTIONS --type f --max-depth 1 )+change-prompt(depth:1> )" \
         --bind "alt-r:reload(fd $FD_OPTIONS --type f --max-depth 2 )+change-prompt(depth:2> )" \
-        --expect=ctrl-b,ctrl-alt-n,ctrl-alt-t
+        --expect=alt-b,ctrl-alt-n,ctrl-alt-t
   )
   rm -f "${blame_state}" &> /dev/null
   rm -f "${logger_blame_state}" &> /dev/null
@@ -88,9 +88,8 @@ EOF
 
   local id=$(gawk '{print $1}' <<< "$target1")
 
-  echo key is $key
   if [ $id ]; then
-    if [ "$key" = ctrl-b ]; then
+    if [ "$key" = alt-b ]; then
       git blame $target1 | delta --hyperlinks
     elif [ "$key" = ctrl-alt-n ]; then
       node $target1
