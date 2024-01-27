@@ -13,7 +13,7 @@ function fzf-my-file-widget() {
   ⌃g .test files       | ⌃c no ignore | ⌃r files | ^f dirs
   ⌥v .env files        | ⌃s service files
   ⌃\\ no .test files   | ⌃⌥t prefix with ts-node
-  ⌥g/⌥r depth 1/2
+  ⌥g/⌥r depth 1/2      | ⌃b tsx files
   ⌃o/⌥b blame preview/blame
   ⌃l    log history of selected file
   ⌃⌥n   node <file>
@@ -46,6 +46,7 @@ EOF
         --bind "ctrl-g:reload(fd $FD_OPTIONS --type f --case-sensitive '\.test\.' )+change-prompt(test-files> )" \
         --bind "alt-v:reload(fd $FD_OPTIONS_NO_IGNORE --type f '\.env' )+change-prompt(env-files> )" \
         --bind "ctrl-s:reload(fd $FD_OPTIONS --type f --case-sensitive 'Service\.' )+change-prompt(service-files> )" \
+        --bind "ctrl-b:reload(fd $FD_OPTIONS --type f --extension tsx )+change-prompt(tsx-files> )" \
         --bind "ctrl-t:reload(fd $FD_OPTIONS)+change-prompt(> )" \
         --bind "ctrl-\\:reload(fd $FD_OPTIONS --type f --case-sensitive --exclude '\.test\.' )+change-prompt(exclude-test-files> )" \
         --bind "ctrl-c:reload(fd $FD_OPTIONS_NO_IGNORE)+change-prompt(no-ignore> )" \
