@@ -72,6 +72,17 @@ return {
     },
   },
   {
+    'tg/toggle-front-api',
+    dir = '~/.config/nvim/lua/tg/toggle-front-api',
+    keys = {
+      {
+        '<M-,>',
+        function() require('tg.toggle-front-api').Toggle() end,
+        desc = 'timtoggle frontend page/component to frontend api file',
+      },
+    },
+  },
+  {
     'tg/toggle-api',
     dir = '~/.config/nvim/lua/tg/toggle-api',
     keys = {

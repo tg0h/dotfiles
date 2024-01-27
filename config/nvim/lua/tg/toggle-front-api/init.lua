@@ -6,6 +6,10 @@ local M = {}
 -- special case handling
 -- remove underscore
 
+-- packages/frontend/pages/payments/[paymentId].tsx
+-- packages/frontend/components/payments/AccountCredits.tsx
+-- packages/frontend/lib/api/payments/getBillingGeneralInformation.ts
+
 local function open_buf(buf_id)
   vim.api.nvim_set_current_buf(buf_id)
   vim.api.nvim_buf_set_option(buf_id, 'buflisted', true)
@@ -62,8 +66,9 @@ local packageFolders = {
 }
 
 local packageMap = {
-  ['pages'] = 'components',
-  ['components'] = 'pages',
+  ['pages'] = 'lib/api',
+  ['components'] = 'lib/api',
+  ['lib/api'] = 'pages', -- how to cycle pages then components then lib/api
 }
 
 -- from packages/frontend/pages/signup/index.tsx
@@ -154,6 +159,8 @@ local function find_alternate_file()
   local filename = vim.api.nvim_buf_get_name(0)
   local fname = vim.fs.basename(filename)
   local dirname = vim.fs.dirname(filename)
+
+  -- print('get filename is:' .. (filename or ''))
 
   local switch_to_file = getAlternateFile(dirname, fname)
 
