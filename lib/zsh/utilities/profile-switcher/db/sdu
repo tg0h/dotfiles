@@ -33,6 +33,9 @@ function sdu(){
       # _aws-set-profile-env default
       # asst
       ;;
+    "x" ) # prod write
+      export DB_PROFILE=prod
+      ;;
     *)
       echo "${fg[red]} no profile found ${reset_color}"
   esac
