@@ -38,7 +38,7 @@ EOF
         --header="$HEADER"\
         --header-first \
         --preview="fzf-fd-preview {}" \
-        --preview-window='right:nowrap,noborder,55%' \
+        --preview-window='bottom:nowrap,noborder,55%' \
         --bind="alt-c:execute(trash {})+reload(fd $FD_OPTIONS)" \
         --bind="alt-C:execute(rm {})+reload(fd $FD_OPTIONS)" \
         \

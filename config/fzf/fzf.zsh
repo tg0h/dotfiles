@@ -24,6 +24,7 @@ export FZF_DEFAULT_OPTS="
 --multi
 --cycle
 --color='gutter:-1,hl:-1:underline:#03ff13,hl+:-1:underline:reverse,scrollbar:grey,preview-scrollbar:grey'
+--preview-window 'bottom'
 --separator=''
 --scrollbar='▏▏'
 
@@ -47,7 +48,7 @@ export FZF_DEFAULT_OPTS="
 --bind='ctrl-y:execute-silent(echo {+} | join-lines-fzf | pbcopy)+abort'
 --bind 'alt-e:$FZF_X_NVIM'
 --bind 'ctrl-alt-e:$FZF_X_NVIM+abort'
---bind 'ctrl-/:change-preview-window(right,80%|down,90%,border-top|hidden|)'
+--bind 'ctrl-/:change-preview-window(right|right,80%|bottom)'
 --bind='alt-c:execute(trash {})'
 --bind='alt-C:execute(rm {})'
 --bind='alt-a:toggle-all'
