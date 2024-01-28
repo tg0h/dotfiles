@@ -8,17 +8,16 @@ function fzf-my-file-widget() {
   local basename="fzf-my-file-widget"
 
   local HEADER=$(cat <<-EOF
-  ⌃a add file/dir(NA)  | ⌃c/⌥C trash/rm
-  ⌃h recent            | ⌃t reset
-  ⌃g .test files       | ⌃c no ignore | ⌃r files | ^f dirs
-  ⌥v .env files        | ⌃s service files
-  ⌃\\ no .test files   | ⌃⌥t prefix with ts-node
-  ⌥g/⌥r depth 1/2      | ⌃b tsx files
-  ⌃o/⌥b blame preview/blame
-  ⌃l    log history of selected file
-  ⌃⌥n   node <file>
+  ⌃c no ignore              | ⌃r files            | ^f dirs      | ⌃a add file/dir(NA)  | ⌃c/⌥C trash/rm 
+  ⌃\ exclude .test files    | ⌥g/⌥r depth 1/2
+  ⌃h recent                 | ⌥v .env files       | ⌃t reset
+  ⌃o blame preview          | ⌥b blame (and exit) | ⌃l log history of selected file
+  ⌃⌥n   node <file>         | ⌃⌥t prefix with ts-node
+  ⌃g .test files            | ⌃s service files    | ⌃b tsx files
+  ⌃⌥d daemon tasks
 EOF
 )
+
   local FD_COMMAND="fd $FD_OPTIONS"
   local FD_OPTIONS="--color always --follow --hidden"
   # local FILE_PREVIEW="[[ \$(file --mime {}) =~ inode/directory ]] && exa --tree --long --icons --git --color always --octal-permissions --sort created --reverse {} || (bat --style=numbers,header-filename --color=always {} || cat {}) 2> /dev/null | head -300"
