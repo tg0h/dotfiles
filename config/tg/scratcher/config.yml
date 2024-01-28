@@ -1,3 +1,6 @@
+# o<keymap> - executes file
+# e<keymap> - opens file in nvim
+# ea<keymap> - opens file with entr
 keymaps:
   - [h, zsh]
   - [ht, zsh]

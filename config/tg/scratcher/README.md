@@ -15,3 +15,10 @@ a single utility to manage my
   - languages to scratch
   - language information
     - extensions
+
+## how to run
+
+lua keymap is 'd'
+ed - edit lua scratch
+od - execute lua scratch
+ead - execute lua file and watch with entr
