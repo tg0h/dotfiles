@@ -18,6 +18,7 @@ alias dr='cd ~/src/candy/db/redshift-migration'
 alias dt.='cd ~/Documents/tim'
 # alias d.='dt'
 alias d.='cd $HOME/dotfiles'
+alias d,='cd $HOME/dotfiles/config/nvim'
 alias dl='cd $HOME/downloads'
 # alias dp='cd /tmp' - use :t instead
 # alias dc='cd ~/src/clones'
