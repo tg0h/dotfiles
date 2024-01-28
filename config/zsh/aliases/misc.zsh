@@ -40,7 +40,7 @@ alias cle='nvim $HOME/src/me/zsh/candy/linker/candy-links.yml' # edit candy link
 
 # quick print eval loop ====================================================
 # nvim
-alias ,="nvim"
+alias ,="nvim -c 'lua open_latest_changed_file()'"
 
 # source from nvim cache
 alias son="so -n"
