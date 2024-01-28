@@ -8,13 +8,12 @@ function fzf-my-file-widget() {
   local basename="fzf-my-file-widget"
 
   local HEADER=$(cat <<-EOF
-  ⌃c no ignore              | ⌃r files            | ^f dirs      | ⌃a add file/dir(NA)  | ⌃c/⌥C trash/rm 
+  ⌃c no ignore              | ⌃⌥r files            | ^f dirs      | ⌃a add file/dir(NA)  | ⌃c/⌥C trash/rm 
   ⌃\ exclude .test files    | ⌥g/⌥r depth 1/2
-  ⌃h recent                 | ⌥v .env files       | ⌃t reset
-  ⌃o blame preview          | ⌥b blame (and exit) | ⌃l log history of selected file
+  ⌃h recent                 | ⌥v .env files        | ⌃t reset
+  ⌃o blame preview          | ⌥b blame (and exit)  | ⌃l log history of selected file
   ⌃⌥n   node <file>         | ⌃⌥t prefix with ts-node
-  ⌃g .test files            | ⌃s service files    | ⌃b tsx files
-  ⌃⌥d daemon tasks
+  ⌃g .test files            | ⌃s service files     | ⌃b tsx files | ⌃r routes                | ⌃⌥d daemon tasks
 EOF
 )
 
@@ -46,11 +45,12 @@ EOF
         --bind "alt-v:reload(fd $FD_OPTIONS_NO_IGNORE --type f '\.env' )+change-prompt(env-files> )" \
         --bind "ctrl-s:reload(fd $FD_OPTIONS --type f --case-sensitive 'Service\.' )+change-prompt(service-files> )" \
         --bind "ctrl-alt-d:reload(fd $FD_OPTIONS --type f . packages/daemons/tasks )+change-prompt(daemon-files> )" \
+        --bind "ctrl-r:reload(fd $FD_OPTIONS --type f . packages/api/api/lambda packages/api/api/wonkaApi packages/external-api/controllers packages/folp/api/routes packages/daemons/tasks )+change-prompt(route-files> )" \
         --bind "ctrl-b:reload(fd $FD_OPTIONS --type f --extension tsx )+change-prompt(tsx-files> )" \
         --bind "ctrl-t:reload(fd $FD_OPTIONS)+change-prompt(> )" \
         --bind "ctrl-\\:reload(fd $FD_OPTIONS --type f --case-sensitive --exclude '\.test\.' )+change-prompt(exclude-test-files> )" \
         --bind "ctrl-c:reload(fd $FD_OPTIONS_NO_IGNORE)+change-prompt(no-ignore> )" \
-        --bind "ctrl-r:reload(fd $FD_OPTIONS --type f)+change-prompt(file> )" \
+        --bind "ctrl-alt-r:reload(fd $FD_OPTIONS --type f)+change-prompt(file> )" \
         \
         --bind "ctrl-h:reload(fd $FD_OPTIONS --type f --exec-batch ls -lt | choose 8)+change-prompt(files-sorted> )" \
         \
