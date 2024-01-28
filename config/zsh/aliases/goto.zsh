@@ -5,10 +5,15 @@ alias cs.='cd ./packages/common-services/scripts'
 
 # alias s.='cd ~/src/candy/main/referralcandy-main'
 alias s.='cd ~/src/candy/referralcandy-main/main'
+alias n.="cd ~/src/candy/referralcandy-main/main && nvim -c 'lua open_latest_changed_file()'"
 alias s,='cd ~/src/candy/referralcandy-main/feature'
+alias n,="cd ~/src/candy/referralcandy-main/feature && nvim -c 'lua open_latest_changed_file()'"
 alias sr='cd ~/src/candy/referralcandy-main/review'
+alias nr="cd ~/src/candy/referralcandy-main/review && nvim -c 'lua open_latest_changed_file()'"
 alias sx='cd ~/src/candy/referralcandy-main/fix'
+alias nx="cd ~/src/candy/referralcandy-main/fix && nvim -c 'lua open_latest_changed_file()'"
 alias ss='cd ~/src/candy/referralcandy-main/scripts'
+alias ns="cd ~/src/candy/referralcandy-main/scripts && nvim -c 'lua open_latest_changed_file()'"
 # alias s..='cd ~/src/candy/main/referralcandy-main/packages/common-services/scripts/'
 alias s..='cd ~/src/candy/referralcandy-main/scripts/packages/common-services/scripts/timg'
 alias s,.='cd ~/src/candy/referralcandy-main/feature/packages/redshift-services/scripts'

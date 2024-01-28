@@ -33,9 +33,9 @@ alias t,.=ttsdt # summary today
 
 # candy
 alias na=tw     # this week
-alias n,=tsd    # summary this week
-alias n.=tdd    # detail this week
-alias n,.=tsdt  # summary today
+# alias n,=tsd    # summary this week
+# alias n.=tdd    # detail this week
+# alias n,.=tsdt  # summary today
 alias np=tm     # this month
 
 ## candy
