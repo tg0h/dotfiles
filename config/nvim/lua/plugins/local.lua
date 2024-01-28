@@ -94,6 +94,17 @@ return {
     },
   },
   {
+    'tg/goto-daemon',
+    dir = '~/.config/nvim/lua/tg/goto-daemon',
+    keys = {
+      {
+        '<M-1>',
+        function() require('tg.goto-daemon').goto() end,
+        desc = 'go to daemon task file',
+      },
+    },
+  },
+  {
     'tg/test-runner',
     dir = '~/.config/nvim/lua/tg/test-runner',
     dependencies = { 'nvim-treesitter', 'treesitter-utils', 'toggle-test' },
