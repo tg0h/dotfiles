@@ -20,6 +20,7 @@ alias ss='cd ~/src/candy/referralcandy-main/scripts'
 alias ns="cd ~/src/candy/referralcandy-main/scripts && nvim -c 'lua open_latest_changed_file()'"
 # alias s..='cd ~/src/candy/main/referralcandy-main/packages/common-services/scripts/'
 alias s..='cd ~/src/candy/referralcandy-main/scripts/packages/common-services/scripts/timg'
+alias n..="cd ~/src/candy/referralcandy-main/scripts && nvim -c 'lua open_latest_changed_file()'"
 alias s,.='cd ~/src/candy/referralcandy-main/feature/packages/redshift-services/scripts'
 alias tp='cd ~/src/playground/playwright/'
 alias dr='cd ~/src/candy/db/redshift-migration'
