@@ -3,7 +3,11 @@ alias c.='cd ~/src/playground/cdk/cdk-workshop'
 alias c,='cd ~/src/playground/candy/referralcandy-secondary'
 alias cs.='cd ./packages/common-services/scripts'
 
+# relative change dir
+alias ada='cd packages/api/database_migrations/api'
+
 # alias s.='cd ~/src/candy/main/referralcandy-main'
+## global go to 
 alias s.='cd ~/src/candy/referralcandy-main/main'
 alias n.="cd ~/src/candy/referralcandy-main/main && nvim -c 'lua open_latest_changed_file()'"
 alias s,='cd ~/src/candy/referralcandy-main/feature'
@@ -23,6 +27,7 @@ alias dr='cd ~/src/candy/db/redshift-migration'
 alias dt.='cd ~/Documents/tim'
 # alias d.='dt'
 alias d.='cd $HOME/dotfiles'
+alias nd.="cd $HOME/dotfiles && nvim -c 'lua open_latest_changed_file()'"
 alias d,='cd $HOME/dotfiles/config/nvim'
 alias dl='cd $HOME/downloads'
 # alias dp='cd /tmp' - use :t instead
