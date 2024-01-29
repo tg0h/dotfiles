@@ -45,7 +45,7 @@ EOF
         --bind "alt-v:reload(fd $FD_OPTIONS_NO_IGNORE --type f '\.env' )+change-prompt(env-files> )" \
         --bind "ctrl-s:reload(fd $FD_OPTIONS --type f --case-sensitive 'Service\.' )+change-prompt(service-files> )" \
         --bind "ctrl-alt-d:reload(fd $FD_OPTIONS --type f . packages/daemons/tasks )+change-prompt(daemon-files> )" \
-        --bind "ctrl-r:reload(fd $FD_OPTIONS --type f . packages/api/api/lambda packages/api/api/wonkaApi packages/external-api/controllers packages/folp/api/routes packages/daemons/tasks )+change-prompt(route-files> )" \
+        --bind "ctrl-r:reload(fd $FD_OPTIONS --type f . packages/api/api/lambda packages/api/api/wonkaApi packages/external-api/controllers packages/folp/api/routes )+change-prompt(route-files> )" \
         --bind "ctrl-b:reload(fd $FD_OPTIONS --type f --extension tsx )+change-prompt(tsx-files> )" \
         --bind "ctrl-t:reload(fd $FD_OPTIONS)+change-prompt(> )" \
         --bind "ctrl-\\:reload(fd $FD_OPTIONS --type f --case-sensitive --exclude '\.test\.' )+change-prompt(exclude-test-files> )" \
