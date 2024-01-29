@@ -18,3 +18,6 @@ ehthumbs.db
 Thumbs.db
 
 config/git/mailmap
+
+# anything i want to ignore eg in rc main 
+*.timg.*
