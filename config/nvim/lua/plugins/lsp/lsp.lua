@@ -133,7 +133,17 @@ vim.keymap.set('n', '<M-u>', ':lua vim.lsp.buf.references()<CR>', { desc = 'lsp 
 local diagnostic = vim.diagnostic
 vim.keymap.set('n', '<S-C-;>', diagnostic.setloclist, { desc = 'add buffer diagnostics to loc list' }) -- C-:
 
-vim.keymap.set('n', '<M-C-g>', ':lua vim.diagnostic.goto_prev()<CR>', { desc = 'vim diagnostic goto prev' }) -- prev diagnostic
-vim.keymap.set('n', '<M-C-r>', ':lua vim.diagnostic.goto_next()<CR>', { desc = 'vim diagnostic goto next' }) -- next diagnostic
+vim.keymap.set(
+  'n',
+  '<M-C-g>',
+  ':lua vim.diagnostic.goto_prev({severity=vim.diagnostic.severity.ERROR})<CR>',
+  { desc = 'vim diagnostic goto prev' }
+) -- prev diagnostic ERROR (ignore warnings etc)
+vim.keymap.set(
+  'n',
+  '<M-C-r>',
+  ':lua vim.diagnostic.goto_next({severity=vim.diagnostic.severity.ERROR})<CR>',
+  { desc = 'vim diagnostic goto next' }
+) -- next diagnostic ERROR (ignore warnings etc)
 
 vim.keymap.set('n', '<M-C-l>', ':lua vim.diagnostic.open_float()<CR>', { desc = 'vim diagnostic open float' }) -- show diagnostic
