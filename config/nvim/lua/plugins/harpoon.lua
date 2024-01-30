@@ -39,7 +39,7 @@ local M = {
     map('n', '<C-n>', ":lua require('harpoon.ui').nav_file(3)<CR>", default_options)
     map('n', '<C-s>', ":lua require('harpoon.ui').nav_file(4)<CR>", default_options)
     -- map('n', '<M-1>', ":lua require('harpoon.ui').nav_file(1)<CR>", default_options)
-    map('n', '<M-2>', ":lua require('harpoon.ui').nav_file(2)<CR>", default_options)
+    -- map('n', '<M-2>', ":lua require('harpoon.ui').nav_file(2)<CR>", default_options)
     map('n', '<M-3>', ":lua require('harpoon.ui').nav_file(3)<CR>", default_options)
     map('n', '<M-4>', ":lua require('harpoon.ui').nav_file(4)<CR>", default_options)
     map('n', '<M-5>', ":lua require('harpoon.ui').nav_file(5)<CR>", default_options)

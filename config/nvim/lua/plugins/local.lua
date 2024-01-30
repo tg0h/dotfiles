@@ -67,7 +67,18 @@ return {
       {
         '<M-Esc>',
         function() require('tg.toggle-front').Toggle() end,
-        desc = 'timtoggle frontend file',
+        desc = 'timtoggle frontend file to component file',
+      },
+    },
+  },
+  {
+    'tg/toggle-route-service',
+    dir = '~/.config/nvim/lua/tg/toggle-route-service',
+    keys = {
+      {
+        '<M-2>',
+        function() require('tg.toggle-route-service').Toggle() end,
+        desc = 'timtoggle route handler to service',
       },
     },
   },
@@ -89,7 +100,7 @@ return {
       {
         '<M-;>',
         function() require('tg.toggle-api').Toggle() end,
-        desc = 'timtoggle api file',
+        desc = 'timtoggle frontend api to router file',
       },
     },
   },
