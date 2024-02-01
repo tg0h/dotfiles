@@ -110,7 +110,7 @@ return {
     keys = {
       {
         '<M-1>',
-        function() require('tg.goto-daemon').goto() end,
+        function() require('tg.goto-daemon').goTo() end,
         desc = 'go to daemon task file',
       },
     },

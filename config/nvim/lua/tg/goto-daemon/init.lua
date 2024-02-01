@@ -68,13 +68,19 @@ local function gotoDaemonFile(dirname, daemon_task_name)
   -- if not packageFolder then return end
 
   -- s = string.gsub(from_dir, '/packages/.*/', '/packages/daemons/')
-    local to_dir = string.gsub(dirname, '/packages/.*', '/packages/daemons/tasks')
-    local taskName = convertToPascalCase(daemon_task_name)
+  local to_dir = string.gsub(dirname, '/packages/.*', '/packages/daemons/tasks')
+  local taskName = convertToPascalCase(daemon_task_name)
 
   -- print('search same file : to_file is ' .. (to_file or ''))
   -- if does_file_exist(to_file) then return to_file end
   local to_file, found_file
   to_file = to_dir .. '/' .. taskName .. '.ts'
+  -- print('🔴search same file : to_file is ' .. (to_file or ''))
+  found_file = find_file(to_file)
+  if found_file then return found_file end
+
+  local lowercaseTaskName = taskName:sub(1, 1):lower() .. taskName:sub(2)
+  to_file = to_dir .. '/' .. lowercaseTaskName .. '.ts'
   -- print('🔴search same file : to_file is ' .. (to_file or ''))
   found_file = find_file(to_file)
   if found_file then return found_file end
@@ -107,7 +113,7 @@ end
 M.find_alternate_file = find_alternate_file
 M.is_test_file = isTestFile
 
-function M.goto()
+function M.goTo()
   -- if current file is Service.ts, switch to its Service.test.ts file
   -- if current file is Service.test.ts, switch to its Service.ts file
 
