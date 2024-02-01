@@ -139,11 +139,26 @@ vim.keymap.set(
   ':lua vim.diagnostic.goto_prev({severity=vim.diagnostic.severity.ERROR})<CR>',
   { desc = 'vim diagnostic goto prev' }
 ) -- prev diagnostic ERROR (ignore warnings etc)
+
+vim.keymap.set(
+  'n',
+  '<M-C-S-G>',
+  ':lua vim.diagnostic.goto_prev({severity=vim.diagnostic.severity.WARN})<CR>',
+  { desc = 'vim diagnostic goto prev' }
+) -- prev diagnostic WARNING
+
 vim.keymap.set(
   'n',
   '<M-C-r>',
   ':lua vim.diagnostic.goto_next({severity=vim.diagnostic.severity.ERROR})<CR>',
   { desc = 'vim diagnostic goto next' }
 ) -- next diagnostic ERROR (ignore warnings etc)
+
+vim.keymap.set(
+  'n',
+  '<M-C-S-R>',
+  ':lua vim.diagnostic.goto_next({severity=vim.diagnostic.severity.WARN})<CR>',
+  { desc = 'vim diagnostic goto next' }
+) -- next diagnostic WARNING
 
 vim.keymap.set('n', '<M-C-l>', ':lua vim.diagnostic.open_float()<CR>', { desc = 'vim diagnostic open float' }) -- show diagnostic
