@@ -5,6 +5,7 @@ alias cs.='cd ./packages/common-services/scripts'
 
 # relative change dir
 alias ada='cd packages/api/database_migrations/api'
+alias acs='cd packages/common-services/scripts'
 
 # alias s.='cd ~/src/candy/main/referralcandy-main'
 ## global go to 
