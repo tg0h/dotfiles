@@ -12,7 +12,7 @@ local M = {
     -- vim.g.harpoon_log_level = "debug"
 
     require('harpoon').setup({
-      menu = { width = 120, height = 18 },
+      menu = { width = 120, height = 30 },
       global_settings = {
         -- sets the marks upon calling `toggle` on the ui, instead of require `:w`.
         save_on_toggle = true,
