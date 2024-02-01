@@ -35,6 +35,10 @@ vim.api.nvim_set_hl(ns_id, 'HarpoonCommonServicesModels', { fg = '#6666ff' })
 vim.api.nvim_set_hl(ns_id, 'HarpoonCommonServicesRepositories', { fg = '#000000', bg = '#e0e0e0' })
 vim.api.nvim_set_hl(ns_id, 'HarpoonCommonServicesTests', { fg = '#ff00ff' })
 
+vim.api.nvim_set_hl(ns_id, 'HarpoonDaemons', { fg = '#ff0000' })
+vim.api.nvim_set_hl(ns_id, 'HarpoonDaemonsTasks', { fg = '#ffff00' })
+vim.api.nvim_set_hl(ns_id, 'HarpoonDaemonsSchedulerLambda', { fg = '#00ff00' })
+
 vim.api.nvim_set_hl(ns_id, 'HarpoonApi', { fg = '#ffff00' })
 
 vim.api.nvim_set_hl(ns_id, 'HarpoonCommonLib', { fg = '#000000', bg = '#3399ff' })
@@ -70,6 +74,11 @@ local highlightConfig = {
   },
   ['infra'] = {
     ['infra'] = 'HarpoonInfra',
+  },
+  ['daemons'] = {
+    ['daemons'] = 'HarpoonDaemons',
+    ['tasks'] = 'HarpoonDaemonsTasks',
+    ['scheduler%-lambda'] = 'HarpoonDaemonsSchedulerLambda',
   },
 }
 
