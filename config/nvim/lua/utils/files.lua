@@ -15,7 +15,7 @@ function open_latest_changed_file()
   -- 0x0a is 10 is linefeed is '\n'
   -- use tr to remove trailing newline
 
-  local cmd = [[ fd --follow --hidden --type f --exec-batch ls -lt | choose 8 | head -n1 | tr -d '\n' ]]
+  local cmd = [[ fd --follow --hidden --type f --exclude 'yarn.lock' --exec-batch ls -lt | choose 8 | head -n1 | tr -d '\n' ]]
   local handle = io.popen(cmd)
   -- The argument '*a' passed to the read function means it will read the entire output of the process. The '*a' pattern stands for "all," indicating that the function should read everything until the end of the file (in this case, the end of the output stream from the process).
   local latestEditedFile = handle:read('*a')
