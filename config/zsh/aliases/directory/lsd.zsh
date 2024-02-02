@@ -1,4 +1,5 @@
-alias l='lsd -l'
+# alias l='lsd -l'
+alias u='lsd -l'
 alias lo='exad' # with octal
 alias ll='lsd -la' # show hidden files
 alias llo='exad --all' # with octal
