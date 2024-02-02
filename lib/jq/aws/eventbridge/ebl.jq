@@ -16,7 +16,8 @@ def subName:
   | sub("(?<x>staging)";("\(_b(.x))"))
   # prod rules
   | sub("(?<x>onemindaemon)";("\(.x|_cs0)"))
-  | sub("(?<x>fifteenminsdaemon)";("\(.x|_cs5)"))
+  | sub("(?<x>fifteenminsdaemon)";("\(.x|_cs4)"))
+  | sub("(?<x>onehourdaemon)";("\(.x|_cs8)"))
   | sub("(?<x>dailydaemon)";("\(.x|_cs10)"))
   | sub("(?<x>tendaydaemon)";("\(.x|_cs14)"))
   | sub("(?<x>dailyrates)";("\(.x|_rb0)"))
@@ -34,8 +35,9 @@ def showName: "\(.Name | subName | lp(70)) "
 
 def subScheduleExpression:
   sub("(?<x>cron)";("\(_brinkPink(.x))"))
-  | sub("(?<x>minutes)";("\(.x|_cs0)"))
   | sub("(?<x>minute)";("\(.x|_cs0)"))
+  | sub("(?<x>minutes)";("\(.x|_cs0)"))
+  | sub("(?<x>hour)";("\(.x|_cs7)"))
   | sub("(?<x>hours)";("\(.x|_cs7)"))
   | sub("(?<x>day)";("\(.x|_cs12)"))
   | sub("(?<x>days)";("\(.x|_cs12)"))
