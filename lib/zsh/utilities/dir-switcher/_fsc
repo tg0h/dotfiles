@@ -70,8 +70,9 @@ EOF
 
     # NOTE: running eval adds 1s to zsh startup 
     # instead, generate and autoload the functions
+
     # search both directories and files
-    echo "fs$bindkey() {fswitch -d $dir $depth "$glob" $showHidden $showIgnore $xargs}" > $outputFolder/fs$bindkey
+    # echo "fs$bindkey() {fswitch -d $dir $depth "$glob" $showHidden $showIgnore $xargs}" > $outputFolder/fs$bindkey
     # echo "alias o$bindkey=fs$bindkey" >> $aliasFile
 
     # search files only
@@ -80,24 +81,24 @@ EOF
 
     # search directories only
     # note - also possible to reload in fzf to search for files and dirs etc
-    echo "fsd$bindkey() {fswitch -d $dir $depth "$glob" $showHidden $showIgnore $xargs -t d}" > $outputFolder/fsd$bindkey
+    # echo "fsd$bindkey() {fswitch -d $dir $depth "$glob" $showHidden $showIgnore $xargs -t d}" > $outputFolder/fsd$bindkey
     # do not do the below - much faster to use the ctrl-s reload to search dirs only
     # echo "alias u,$bindkey=fsd$bindkey" >> $aliasFile
 
     # search filename and content
-    echo "fsc$bindkey() {fzf-filename-and-content $dir }" > $outputFolder/fsc$bindkey
-    echo "alias .$bindkey=fsc$bindkey" >> $aliasFile
+    # echo "fsc$bindkey() {fzf-filename-and-content $dir }" > $outputFolder/fsc$bindkey
+    # echo "alias .$bindkey=fsc$bindkey" >> $aliasFile
 
     # go to base directory
     echo "dd$bindkey() {cd $dir }" > $outputFolder/dd$bindkey
     echo "alias :$bindkey=dd$bindkey" >> $aliasFile
-    echo "alias z$bindkey=dd$bindkey" >> $aliasFile
+    # echo "alias z$bindkey=dd$bindkey" >> $aliasFile
 
     # open directory in nvim
-    echo "alias q$bindkey='nvim $dir'" >> $aliasFile
+    # echo "alias q$bindkey='nvim $dir'" >> $aliasFile
 
     # open mru file
-    echo "fs-mru-open-$bindkey() {cache-open $cache $dir}" > $outputFolder/fs-mru-open-$bindkey
-    echo "alias ,$bindkey=fs-mru-open-$bindkey" >> $aliasFile
+    # echo "fs-mru-open-$bindkey() {cache-open $cache $dir}" > $outputFolder/fs-mru-open-$bindkey
+    # echo "alias ,$bindkey=fs-mru-open-$bindkey" >> $aliasFile
   done <<< $config
 }
