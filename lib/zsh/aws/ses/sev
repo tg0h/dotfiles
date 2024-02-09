@@ -1,0 +1,7 @@
+#!bin/zsh
+
+function sev(){
+  # get ses verification status of email
+  local email=$1
+  AWS_REGION='us-west-2' aws ses get-identity-verification-attributes --identities $email
+}

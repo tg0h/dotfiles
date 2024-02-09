@@ -1,0 +1,7 @@
+#!bin/zsh
+
+function sek(){
+  # get ses dkim status of domain
+  local domain=$1
+  AWS_DEFAULT_REGION=us-west-2 aws ses get-identity-dkim-attributes --identities $domain
+}
