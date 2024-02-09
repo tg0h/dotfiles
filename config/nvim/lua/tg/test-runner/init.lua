@@ -114,7 +114,10 @@ function M.run_test()
   end
 
   if test_file then
-    local cmd_template = [[ kitty @ launch --type=window --cwd=current --keep-focus zsh -c 'nt . npx ava %s' ]]
+    -- launch bottom split assuming monitor is in portrait mode
+    -- location=hsplit launches a bottom split
+    -- location=split is dynamic - it launches a side split if window is in landscape, launches a bottom split if portrait
+    local cmd_template = [[ kitty @ launch --type=window --location=split --cwd=current --keep-focus zsh -c 'nt . npx ava %s' ]]
     local cmd = string.format(cmd_template, test_file)
     os.execute(cmd)
 
@@ -148,7 +151,11 @@ function M.run_single_test()
   -- print('test name is ' .. (testname or ''))
 
   if test_file and testname then
-    local cmd_template = [[ kitty @ launch --type=window --cwd=current --keep-focus zsh -c "nt-run-single-candy-test . %s '%s'" ]]
+    -- launch bottom split assuming monitor is in portrait mode
+    -- location=hsplit launches a bottom split
+    -- location=split is dynamic - it launches a side split if window is in landscape, launches a bottom split if portrait
+    local cmd_template =
+      [[ kitty @ launch --type=window --location=split --cwd=current --keep-focus zsh -c "nt-run-single-candy-test . %s '%s'" ]]
     local cmd = string.format(cmd_template, test_file, testname)
     -- print('cmd is ', cmd or '')
     os.execute(cmd)
