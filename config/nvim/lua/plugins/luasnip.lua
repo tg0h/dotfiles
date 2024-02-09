@@ -69,6 +69,7 @@ local M = {
     }) -- }}}
 
     ls.filetype_extend('typescript', { 'javascript' })
+    ls.filetype_extend('typescriptreact', { 'typescript', 'javascript' })
     -- Key Mapping --{{{
 
     -- vim.keymap.set({"i", "s"}, "<c-s>", "<Esc>:w<cr>")
