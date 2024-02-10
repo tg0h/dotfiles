@@ -121,8 +121,12 @@ function M.run_test(kittyLaunchType)
     -- launch bottom split assuming monitor is in portrait mode
     -- location=hsplit launches a bottom split
     -- location=split is dynamic - it launches a side split if window is in landscape, launches a bottom split if portrait
-    local cmd_template = [[ kitty @ launch --type=%s --location=split --cwd=current --keep-focus zsh -c 'nt . npx ava %s' ]]
-    local cmd = string.format(cmd_template, kittyLaunchType, test_file)
+    local keepFocus = ''
+    -- do not keep focus if os window so that i can use yabai to move the new os window to another monitor
+    if kittyLaunchType == 'window' then keepFocus = '--keep-focus' end
+
+    local cmd_template = [[ kitty @ launch --type=%s --location=split --cwd=current %s zsh -c 'nt . npx ava %s' ]]
+    local cmd = string.format(cmd_template, kittyLaunchType, keepFocus, test_file)
     os.execute(cmd)
 
     local one_shot_cmd_template = [[ npx ava %s ]]
@@ -162,9 +166,13 @@ function M.run_single_test(kittyLaunchType)
     -- launch bottom split assuming monitor is in portrait mode
     -- location=hsplit launches a bottom split
     -- location=split is dynamic - it launches a side split if window is in landscape, launches a bottom split if portrait
-    local cmd_template =
-      [[ kitty @ launch --type=%s --location=split --cwd=current --keep-focus zsh -c "nt-run-single-candy-test . %s '%s'" ]]
-    local cmd = string.format(cmd_template, kittyLaunchType, test_file, testname)
+
+    local keepFocus = ''
+    -- do not keep focus if os window so that i can use yabai to move the new os window to another monitor
+    if kittyLaunchType == 'window' then keepFocus = '--keep-focus' end
+
+    local cmd_template = [[ kitty @ launch --type=%s --location=split --cwd=current %s zsh -c "nt-run-single-candy-test . %s '%s'" ]]
+    local cmd = string.format(cmd_template, kittyLaunchType, keepFocus, test_file, testname)
     -- print('cmd is ', cmd or '')
     os.execute(cmd)
 
