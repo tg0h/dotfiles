@@ -142,4 +142,20 @@ return {
       },
     },
   },
+  {
+    'tg/kitty-window-opener',
+    dir = '~/.config/nvim/lua/tg/kitty-window-opener',
+    keys = {
+      {
+        '<M-C-o>',
+        function() require('tg.kitty-window-opener').open_current_file('window') end,
+        desc = 'open current file in new kitty window',
+      },
+      {
+        '<M-C-S-D-o>', -- hyper o
+        function() require('tg.kitty-window-opener').open_current_file('os-window') end,
+        desc = 'open current file in new kitty window',
+      },
+    },
+  },
 }
