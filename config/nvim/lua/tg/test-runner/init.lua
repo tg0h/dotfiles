@@ -102,7 +102,7 @@ end
 -- specify a kitty launch type of window to open in current window
 -- specify a kitty launch type of os-window to open in new kitty window
 function M.run_test(kittyLaunchType)
-  print('launch type is ' .. (kittyLaunchType or ''))
+  -- print('launch type is ' .. (kittyLaunchType or ''))
   local testname = get_current_test_name()
   -- print('test name is ' .. (testname or ''))
 
@@ -117,6 +117,7 @@ function M.run_test(kittyLaunchType)
   end
 
   if test_file then
+    vim.fn.setreg('t', test_file) -- copy test file to register t -- paste in insert mode to easily copy, eg in insert mode, ctrl-r t, then yank
     -- launch bottom split assuming monitor is in portrait mode
     -- location=hsplit launches a bottom split
     -- location=split is dynamic - it launches a side split if window is in landscape, launches a bottom split if portrait
@@ -140,7 +141,9 @@ end
 
 -- current file must be a test file
 -- this runs the single test the cursor is on
-function M.run_single_test()
+-- specify a kitty launch type of window to open in current window
+-- specify a kitty launch type of os-window to open in new kitty window
+function M.run_single_test(kittyLaunchType)
   local filename = vim.api.nvim_buf_get_name(0)
   local test_file
   if tsu.is_test_file(filename) then
@@ -154,12 +157,14 @@ function M.run_single_test()
   -- print('test name is ' .. (testname or ''))
 
   if test_file and testname then
+    vim.fn.setreg('t', test_file) -- copy test file to register t -- paste in insert mode to easily copy, eg in insert mode, ctrl-r t, then yank
+    vim.fn.setreg('n', testname)
     -- launch bottom split assuming monitor is in portrait mode
     -- location=hsplit launches a bottom split
     -- location=split is dynamic - it launches a side split if window is in landscape, launches a bottom split if portrait
     local cmd_template =
-      [[ kitty @ launch --type=window --location=split --cwd=current --keep-focus zsh -c "nt-run-single-candy-test . %s '%s'" ]]
-    local cmd = string.format(cmd_template, test_file, testname)
+      [[ kitty @ launch --type=%s --location=split --cwd=current --keep-focus zsh -c "nt-run-single-candy-test . %s '%s'" ]]
+    local cmd = string.format(cmd_template, kittyLaunchType, test_file, testname)
     -- print('cmd is ', cmd or '')
     os.execute(cmd)
 
@@ -177,6 +182,4 @@ function M.run_single_test()
   end
 end
 
--- vim.keymap.set('n', '<M-p>', M.run_test, { desc = 'run test' })
--- vim.keymap.set('n', '<M-y>', M.run_single_test, { desc = 'run single test' })
 return M

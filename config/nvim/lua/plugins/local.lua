@@ -132,8 +132,13 @@ return {
       },
       {
         '<M-y>',
-        function() require('tg.test-runner').run_single_test() end,
-        desc = 'run single test',
+        function() require('tg.test-runner').run_single_test('window') end,
+        desc = 'run single test in kitty window (tab)',
+      },
+      {
+        '<M-C-y>',
+        function() require('tg.test-runner').run_single_test('os-window') end,
+        desc = 'run single test in kitty os window',
       },
     },
   },
