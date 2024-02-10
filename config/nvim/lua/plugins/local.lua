@@ -122,8 +122,13 @@ return {
     keys = {
       {
         '<M-p>',
-        function() require('tg.test-runner').run_test() end,
-        desc = 'run all tests',
+        function() require('tg.test-runner').run_test('window') end,
+        desc = 'run all tests in kitty window (tab)',
+      },
+      {
+        '<M-C-p>',
+        function() require('tg.test-runner').run_test('os-window') end,
+        desc = 'run all tests in kitty os window (new kitty window)',
       },
       {
         '<M-y>',

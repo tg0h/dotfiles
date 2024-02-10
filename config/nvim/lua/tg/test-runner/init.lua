@@ -99,7 +99,10 @@ local function get_current_test_name()
   return test_name
 end
 
-function M.run_test()
+-- specify a kitty launch type of window to open in current window
+-- specify a kitty launch type of os-window to open in new kitty window
+function M.run_test(kittyLaunchType)
+  print('launch type is ' .. (kittyLaunchType or ''))
   local testname = get_current_test_name()
   -- print('test name is ' .. (testname or ''))
 
@@ -117,8 +120,8 @@ function M.run_test()
     -- launch bottom split assuming monitor is in portrait mode
     -- location=hsplit launches a bottom split
     -- location=split is dynamic - it launches a side split if window is in landscape, launches a bottom split if portrait
-    local cmd_template = [[ kitty @ launch --type=window --location=split --cwd=current --keep-focus zsh -c 'nt . npx ava %s' ]]
-    local cmd = string.format(cmd_template, test_file)
+    local cmd_template = [[ kitty @ launch --type=%s --location=split --cwd=current --keep-focus zsh -c 'nt . npx ava %s' ]]
+    local cmd = string.format(cmd_template, kittyLaunchType, test_file)
     os.execute(cmd)
 
     local one_shot_cmd_template = [[ npx ava %s ]]
@@ -174,6 +177,6 @@ function M.run_single_test()
   end
 end
 
-vim.keymap.set('n', '<M-p>', M.run_test, { desc = 'run test' })
-vim.keymap.set('n', '<M-y>', M.run_single_test, { desc = 'run single test' })
+-- vim.keymap.set('n', '<M-p>', M.run_test, { desc = 'run test' })
+-- vim.keymap.set('n', '<M-y>', M.run_single_test, { desc = 'run single test' })
 return M

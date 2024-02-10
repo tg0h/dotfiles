@@ -19,11 +19,11 @@ return {
     --   '<CMD>lua require"coverage".jump_next("uncovered")<CR>',
     --   desc = 'coverage next uncovered',
     -- },
-    {
-      '<M-C-p>',
-      '<CMD>lua require"coverage".jump_next("uncovered")<CR>',
-      desc = 'coverage next uncovered',
-    },
+    -- {
+    --   '<M-C-p>',
+    --   '<CMD>lua require"coverage".jump_next("uncovered")<CR>',
+    --   desc = 'coverage next uncovered',
+    -- },
   },
 
   opts = {
