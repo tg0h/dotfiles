@@ -44,3 +44,7 @@ rshift + ralt + rctrl + lshift - m : yabai -m window --insert west
 rshift + ralt + rctrl + lshift - w : yabai -m window --insert south
 rshift + ralt + rctrl + lshift - v : yabai -m window --insert north
 rshift + ralt + rctrl + lshift - z : yabai -m window --insert east
+
+# close all non-active kitty windows
+# -P 0 means run in parallel by setting maxprocs to max cpus
+lshift + lalt + lcmd - w : yabai -m query --windows | jq '.[] | select (."has-focus"==false and .app=="kitty") | .id' | xargs -I {} -P 0 yabai -m window --close {}
