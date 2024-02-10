@@ -45,7 +45,7 @@ def formatTable:
   +"\(.subjectPullRequestNumberHyperlink//"")"
   +" "
   +"\(.subjectTicketIdHyperlink//"")"
-  +"\(.body | trunc(70) | _gs4 ) "
+  # +"\(.body | trunc(70) | _gs4 ) "
   +"\(.trailers)"
   ;
 
