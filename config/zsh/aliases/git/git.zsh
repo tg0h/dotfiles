@@ -24,7 +24,7 @@ alias oe="git diff --cached"
 alias i="git fuzzy status"
 
 # log
-alias e="glo -n 20"
+alias e="glo -n 30"
 # alias e.="glo | fzf"
 alias eu="git reflog"
 # alias ue="git status --short"
