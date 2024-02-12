@@ -29,6 +29,7 @@ alias dr='cd ~/src/candy/db/redshift-migration'
 alias dt.='cd ~/Documents/tim'
 # alias d.='dt'
 alias d.='cd $HOME/dotfiles'
+alias l.='cd $HOME/dotfiles/config/nvim/lua/tg' # my lua files
 alias nd.="cd $HOME/dotfiles && nvim -c 'lua open_latest_changed_file()'"
 alias d,='cd $HOME/dotfiles/config/nvim'
 alias dl='cd $HOME/downloads'
