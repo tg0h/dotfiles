@@ -1,0 +1,10 @@
+-- # add a modeline for vim to pick up the syntax
+-- # vi: ft=lua
+return {
+  _all = {
+    -- instead of using the default of ./src/?.lua;./src/?/?.lua;./src/?/init.lua
+    -- use this to add to the package path so that it can find my modules when running busted from this folder
+    lpath='./?.lua;./?/?.lua;./?/init.lua',
+    pattern='.test'
+  }
+}
