@@ -78,7 +78,7 @@ M.find_target_file = function(dirname, basename)
   if is_match then return potential_match_path end
 end
 
-local function get_current_location()
+M.get_current_location = function()
   local path = vim.api.nvim_buf_get_name(0)
   local dirname = vim.fs.dirname(path)
   local basename = vim.fs.basename(path)
@@ -89,7 +89,7 @@ end
 function M.Toggle()
   -- if current file is Service.ts, switch to its Service.test.ts file
   -- if current file is Service.test.ts, switch to its Service.ts file
-  local location = get_current_location()
+  local location = M.get_current_location()
 
   local targetFile = M.find_target_file(location.dirname, location.basename)
 

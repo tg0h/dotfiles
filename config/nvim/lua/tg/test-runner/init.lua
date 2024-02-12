@@ -1,9 +1,8 @@
 local M = {}
 local ts_utils = require('nvim-treesitter.ts_utils')
 local ts = vim.treesitter
-local tsu = require('tg.treesitter-utils')
 
-local tsu = require('tg.toggle-test')
+local toggle_test = require('tg.toggle-test')
 
 local function print_duration(start_time)
   local end_time = vim.loop.hrtime()
@@ -107,13 +106,12 @@ function M.run_test(kittyLaunchType)
   -- print('test name is ' .. (testname or ''))
 
   local filename = vim.api.nvim_buf_get_name(0)
-  -- local tt = tsu.is_test_file(filename)
-  -- print('tt tim' .. (tt or ''))
   local test_file
-  if tsu.is_test_file(filename) then
+  if toggle_test.is_test_file(filename) then
     test_file = filename
   else
-    test_file = tsu.find_alternate_file()
+    local location = toggle_test.get_current_location()
+    test_file = toggle_test.find_target_file(location.dirname, location.basename)
   end
 
   if test_file then
@@ -150,10 +148,9 @@ end
 function M.run_single_test(kittyLaunchType)
   local filename = vim.api.nvim_buf_get_name(0)
   local test_file
-  if tsu.is_test_file(filename) then
+  if toggle_test.is_test_file(filename) then
     test_file = filename
   else
-    -- test_file = tsu.find_alternate_file()
     return
   end
 
