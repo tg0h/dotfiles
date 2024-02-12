@@ -33,7 +33,7 @@ local PACKAGE_FOLDERS = {
 }
 
 M.is_test_file = function(filename)
-  local is_test_file = string.find(filename, '.test')
+  local is_test_file = string.find(filename, '%.test')
   return is_test_file
 end
 
@@ -54,13 +54,9 @@ M.get_potential_match = function(dirname, filename)
 
   local folder, file
   if M.is_test_file(filename) then
-    -- remove tests folder in path
-    -- warning: if gsub pattern contains special chars, need to escape with %
-    folder = string.gsub(dirname, '/tests/', '/')
-    -- replace .test. with .
-    file = filename:gsub('%.test%.', '%.')
+    folder = string.gsub(dirname, '/tests/', '/') -- warning: if gsub pattern contains special chars, need to escape with %
+    file = filename:gsub('%.test%.', '%.') -- replace .test. with .
   else
-    -- add /tests to the package folder, eg common-services to common-services/tests
     folder = string.gsub(dirname, packageFolder, packageFolder .. '/' .. 'tests')
     -- replace .ts with .test.ts
     -- replace .lua with .test.lua
@@ -87,8 +83,6 @@ M.get_current_location = function()
 end
 
 function M.Toggle()
-  -- if current file is Service.ts, switch to its Service.test.ts file
-  -- if current file is Service.test.ts, switch to its Service.ts file
   local location = M.get_current_location()
 
   local targetFile = M.find_target_file(location.dirname, location.basename)

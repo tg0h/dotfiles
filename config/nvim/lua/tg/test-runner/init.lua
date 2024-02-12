@@ -106,7 +106,9 @@ function M.run_test(kittyLaunchType)
   -- print('test name is ' .. (testname or ''))
 
   local filename = vim.api.nvim_buf_get_name(0)
+
   local test_file
+
   if toggle_test.is_test_file(filename) then
     test_file = filename
   else
@@ -115,6 +117,7 @@ function M.run_test(kittyLaunchType)
   end
 
   if test_file then
+    local filename_extension = filename:match('^.+%.(.+)$')
     vim.fn.setreg('t', test_file) -- copy test file to register t -- paste in insert mode to easily copy, eg in insert mode, ctrl-r t, then yank
     -- launch bottom split assuming monitor is in portrait mode
     -- location=hsplit launches a bottom split
@@ -123,8 +126,15 @@ function M.run_test(kittyLaunchType)
     -- do not keep focus if os window so that i can use yabai to move the new os window to another monitor
     if kittyLaunchType == 'window' then keepFocus = '--keep-focus' end
 
-    local cmd_template = [[ kitty @ launch --type=%s --location=split --cwd=current %s zsh -c 'nt . npx ava %s' ]]
-    local cmd = string.format(cmd_template, kittyLaunchType, keepFocus, test_file)
+    local test_cmd
+    if filename_extension == 'ts' then
+      test_cmd = 'npx ava '
+    elseif filename_extension == 'lua' then
+      test_cmd = 'busted '
+    end
+
+    local cmd_template = [[ kitty @ launch --type=%s --location=split --cwd=current %s zsh -c 'nt . %s %s' ]]
+    local cmd = string.format(cmd_template, kittyLaunchType, keepFocus, test_cmd, test_file)
     os.execute(cmd)
 
     local one_shot_cmd_template = [[ npx ava %s ]]

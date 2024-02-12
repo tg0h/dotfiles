@@ -1,6 +1,6 @@
 describe('test toggle-test', function()
+  local MODULE = 'toggle-test'
   describe('#find_target_file', function()
-    local MODULE = 'toggle-test'
     -- it('should have lots of features', function()
     --   -- deep check comparisons!
     --   assert.are.same({ table = 'great' }, { table = 'great' })
@@ -86,5 +86,19 @@ describe('test toggle-test', function()
     --   assert.spy(thing.greet).was.called()
     --   assert.spy(thing.greet).was.called_with('Hi!')
     -- end)
+  end)
+
+  describe('#is_test_file', function()
+    local M = require(MODULE)
+
+    it('should detect a test file', function()
+      local is_test_file = M.is_test_file('/folder/service.test.lua')
+      assert.truthy(is_test_file)
+    end)
+
+    it('should detect a non-test file', function()
+      local is_test_file = M.is_test_file('/folder/toggle-test.lua')
+      assert.falsy(is_test_file)
+    end)
   end)
 end)
