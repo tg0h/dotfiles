@@ -16,6 +16,7 @@ M.is_match = function(filename)
 end
 
 -- need to add % to escape - as - is a special char and interpreted differently in string.gsub
+-- this tells you which part of the path to append a /tests to
 local PACKAGE_FOLDERS = {
   'packages/common%-services',
   'packages/common%-lib',
@@ -28,6 +29,7 @@ local PACKAGE_FOLDERS = {
   'packages/frontend',
   'packages/frontend%-referralCorner',
   'packages/frontend%-wonka',
+  'lua/tg',
 }
 
 M.is_test_file = function(filename)
@@ -55,13 +57,14 @@ M.get_potential_match = function(dirname, filename)
     -- remove tests folder in path
     -- warning: if gsub pattern contains special chars, need to escape with %
     folder = string.gsub(dirname, '/tests/', '/')
-    -- replace .test.ts with .ts
-    file = filename:gsub('%.test%.ts$', '%.ts')
+    -- replace .test. with .
+    file = filename:gsub('%.test%.', '%.')
   else
     -- add /tests to the package folder, eg common-services to common-services/tests
     folder = string.gsub(dirname, packageFolder, packageFolder .. '/' .. 'tests')
     -- replace .ts with .test.ts
-    file = filename:gsub('%.ts$', '.test.ts')
+    -- replace .lua with .test.lua
+    file = filename:gsub('%.(.*)$', '.test.%1')
   end
 
   local path = folder .. '/' .. file

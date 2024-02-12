@@ -36,6 +36,20 @@ describe('test toggle-test', function()
       assert(target_file == TARGET_PATH)
     end)
 
+    it('should find the target file - in lua, if current file is source file, it goes to test file', function()
+      local M = require(MODULE)
+      local dirname = '/src/repo/packages/common-services/services/fooService'
+      local basename = 'FooService.lua'
+      local TARGET_PATH = '/src/repo/packages/common-services/tests/services/fooService/FooService.test.lua'
+      stub(M, 'is_match', function(potential_match_path)
+        if potential_match_path == TARGET_PATH then return true end
+      end)
+
+      local target_file = M.find_target_file(dirname, basename)
+
+      assert(target_file == TARGET_PATH)
+    end)
+
     it('should find the target file - if current file is test file, it goes to source file', function()
       local M = require(MODULE)
       local dirname = '/src/repo/packages/common-services/tests/services/fooService'
