@@ -58,6 +58,11 @@ return {
         function() require('tg.toggle-test').Toggle() end,
         desc = 'timtoggle test file',
       },
+      {
+        '<M-C-D-.>',
+        function() require('tg.toggle-test').create_test_file() end,
+        desc = 'timtoggle create test file if not found',
+      },
     },
   },
   {

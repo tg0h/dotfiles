@@ -82,7 +82,20 @@ M.get_current_location = function()
   return { dirname = dirname, basename = basename }
 end
 
-function M.Toggle()
+M.create_test_file = function()
+  local location = M.get_current_location()
+  local target_file = M.get_potential_match(location.dirname, location.basename)
+
+  if target_file then
+    local target_file_dirname = vim.fs.dirname(target_file)
+    vim.fn.mkdir(target_file_dirname, 'p') -- make intermediate dirs with p flag
+
+    local bufnr = vim.fn.bufnr(target_file, true)
+    open_buf(bufnr)
+  end
+end
+
+M.Toggle = function()
   local location = M.get_current_location()
 
   local targetFile = M.find_target_file(location.dirname, location.basename)
