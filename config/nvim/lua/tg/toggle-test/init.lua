@@ -6,16 +6,12 @@ local function open_buf(buf_id)
 end
 
 M.is_match = function(filename)
-  -- returns filename if filename exists
-
   local fname = vim.fs.basename(filename)
   local dirname = vim.fs.dirname(filename)
 
-  -- print('finding file ' .. fname)
   local files = vim.fs.find(fname, { path = dirname, upward = false, type = 'file' })
-
   local file = files[1]
-  -- print('returing file ' .. vim.inspect(file))
+
   return file ~= nil
 end
 
@@ -64,7 +60,6 @@ M.get_potential_match = function(dirname, filename)
   else
     -- add /tests to the package folder, eg common-services to common-services/tests
     folder = string.gsub(dirname, packageFolder, packageFolder .. '/' .. 'tests')
-    -- folder = string.gsub(dirname, 'a', 'a' .. '/' .. 'tests')
     -- replace .ts with .test.ts
     file = filename:gsub('%.ts$', '.test.ts')
   end
@@ -77,7 +72,6 @@ M.find_target_file = function(dirname, basename)
   local potential_match_path = M.get_potential_match(dirname, basename)
 
   local is_match = M.is_match(potential_match_path)
-  -- print('is_match is ' .. is_match)
   if is_match then return potential_match_path end
 end
 
@@ -95,11 +89,9 @@ function M.Toggle()
   local location = get_current_location()
 
   local targetFile = M.find_target_file(location.dirname, location.basename)
-  -- print('filename is ' .. (filename or ''))
 
   if targetFile then
     local bufnr = vim.fn.bufnr(targetFile, true)
-    -- local isLoaded = vim.api.nvim_buf_is_loaded(buf_id)
     open_buf(bufnr)
   end
 end
