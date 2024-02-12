@@ -19,8 +19,9 @@ brew 'dotbot'
 # brew 'zinit' # do not brew, instead, manually git clone to data folder in setup.zsh
 brew 'mas' # brew installer for the mac app store
 
+brew 'lua@5.1'
 brew 'lua'
-brew 'luarocks'
+# brew 'luarocks'
 brew 'rustup-init' # aka rustup
 brew 'bash'
 brew 'zsh'
