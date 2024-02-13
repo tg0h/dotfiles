@@ -8,9 +8,17 @@ function fzf-filename-and-content(){
 
   local dir=$1
 
+  local HEADER=$(cat <<-EOF
+  ⌥e/; edit file, preserve fzf search results
+EOF
+)
+
   local fzfEntry=$(rg --follow --line-number --with-filename . $dir --color=always --field-match-separator ' '\
-    | fzf --preview "bat --style=numbers,header-filename --color=always {1} --highlight-line {2}" \
-    --preview-window "right,noborder,~1,+{2}+1/2,<80(up)"
+    | fzf --header="$HEADER" \
+      --preview "bat --style=numbers,header-filename --color=always {1} --highlight-line {2}" \
+      --preview-window "right,noborder,~1,+{2}+1/2,<80(up)" \
+      --bind 'alt-e:execute(nvim {1} +{2} -c "normal! zz" > /dev/tty 2>&1)' \
+      --bind ';:execute(nvim {1} +{2} -c "normal! zz" > /dev/tty 2>&1)'
   )
 
   if [ -n "$fzfEntry" ]; then
