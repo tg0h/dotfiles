@@ -7,6 +7,8 @@ alias h='https'
 alias j='lnav .'
 alias tt='tail -n 20 -f /tmp/tim/log'
 alias t='ts-node'
+
+# busted
 alias b.='busted .'
 alias nb.='nt . busted .'
 
