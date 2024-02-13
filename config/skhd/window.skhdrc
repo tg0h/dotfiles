@@ -47,4 +47,4 @@ rshift + ralt + rctrl + lshift - z : yabai -m window --insert east
 
 # close all non-active kitty windows
 # -P 0 means run in parallel by setting maxprocs to max cpus
-lshift + lalt + lcmd - w : yabai -m query --windows | jq '.[] | select (."has-focus"==false and .app=="kitty") | .id' | xargs -I {} -P 0 yabai -m window --close {}
+# lshift + lalt + lcmd - w : yabai -m query --windows | jq '.[] | select (."has-focus"==false and .app=="kitty") | .id' | xargs -I {} -P 0 yabai -m window --close {}
