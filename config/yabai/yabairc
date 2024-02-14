@@ -86,4 +86,7 @@ yabai -m rule --add app='Sip' manage=off
 # yabai -m rule --add app="iStat Menus" manage=off
 # yabai -m rule --add app="AVG AntiVirus" manage=off
 
+# open snagit in space 6
+yabai -m signal --add event=window_focused app='^Snagit' action="yabai -m window $YABAI_WINDOW_ID --space 6"
+
 echo "yabai configuration loaded.."
