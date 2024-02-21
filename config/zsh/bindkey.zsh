@@ -159,3 +159,7 @@ bindkey -M emacs '^R' fzf-my-history-widget
 
 zle     -N            test-widget
 bindkey '^[^t'        test-widget
+
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey '^x^e' edit-command-line
