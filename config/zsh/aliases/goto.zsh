@@ -4,6 +4,7 @@ alias c,='cd ~/src/playground/candy/referralcandy-secondary'
 alias cs.='cd ./packages/common-services/scripts'
 
 # relative change dir
+alias apd='cd packages/daemons'
 alias ada='cd packages/api/database_migrations/api'
 alias acs='cd packages/common-services/scripts'
 
