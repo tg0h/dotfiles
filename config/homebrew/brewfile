@@ -12,8 +12,8 @@ cask 'logitech-options'
 tap 'homebrew/cask-fonts'
 cask 'font-jetbrains-mono-nerd-font'
 
-brew 'rbenv'
-brew "pyenv"
+# brew 'rbenv'
+# brew "pyenv"
 brew 'openjdk'
 brew 'dotbot'
 # brew 'zinit' # do not brew, instead, manually git clone to data folder in setup.zsh
@@ -37,7 +37,7 @@ brew 'koekeishiya/formulae/skhd'
 brew 'koekeishiya/formulae/yabai' 
 tap 'cmacrae/formulae'
 cask 'spaceman'
-cask 'shortcutdetective'
+# cask 'shortcutdetective'
 # cask 'vlc'
 cask 'visual-studio-code'
 cask 'meetingbar'
@@ -91,7 +91,7 @@ cask 'istat-menus'
 # cask 'bartender'
 cask 'cleanshot'
 # cask 'toggl-track'
-cask 'ngrok'
+# cask 'ngrok'
 
 # cask 'foxitreader'
 # cask 'google-chrome'
