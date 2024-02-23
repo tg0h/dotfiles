@@ -1,5 +1,6 @@
 #!bin/zsh
 
 function rcf(){
-  redis-cli flushall
+  # flushall is dangerous since it will flush all the databases
+  redis-cli flushdb
 }
