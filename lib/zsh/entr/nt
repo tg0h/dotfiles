@@ -16,6 +16,7 @@ function nt(){
   if [[ $directories == /Users/tim/src/candy/main/referralcandy-main/* ]]; then
     fd --no-ignore --exclude '.git' --exclude 'node_modules' . ${=directories} | entr -cc npx ava --fail-fast $cmd
   else
-    fd --no-ignore --exclude '.git' --exclude 'node_modules' . ${=directories} | entr -cc zsh -c $cmd
+    # fd --no-ignore --exclude '.git' --exclude 'node_modules' . ${=directories} | entr -cc zsh -c $cmd
+    fd --no-ignore --exclude '.git' --exclude 'node_modules' . ${=directories} | entr -cr ${=cmd}
   fi
 }
