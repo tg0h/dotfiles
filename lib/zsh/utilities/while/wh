@@ -1,0 +1,12 @@
+#!/bin/zsh
+
+function wh(){
+  # wh <sleep> <cmd> - run a command every <sleep> seconds
+  local sleep=$1
+  local cmd="${@:2}"
+
+  while true; 
+    do ${=cmd} 
+    sleep $sleep; 
+  done
+}
