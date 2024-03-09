@@ -26,11 +26,6 @@ end
 
 local function getPackageFolder(currentDirName)
   for i, packageFolder in ipairs(PACKAGE_FOLDERS) do
-    -- turn off pattern matching with a 4th arg of true
-    -- the third arg specifies where to start searching in the string
-    -- if not - is interpreted as a special char
-    -- if string.find(currentDirName, packageFolder, nil, true) then
-    -- if string.find(currentDirName, packageFolder) then return packageFolder end
     if currentDirName:find(packageFolder) then return packageFolder end
   end
 end
