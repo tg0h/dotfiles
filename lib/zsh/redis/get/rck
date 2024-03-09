@@ -1,0 +1,10 @@
+#!bin/zsh
+
+function rck(){
+  # get keys starting with
+
+  [ -n "$1" ] || { echo "please provide a key"; return 1; }
+
+  rci keys "$1*"
+}
+
