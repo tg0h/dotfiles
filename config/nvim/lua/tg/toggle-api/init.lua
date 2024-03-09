@@ -1,3 +1,5 @@
+local utils = require('tg.utils')
+
 local M = {}
 
 local function open_buf(buf_id)
@@ -30,26 +32,10 @@ end
 
 -- need to add % to escape - as - is a special char and interpreted differently in string.gsub
 local packageFolders = {
-  -- 'packages/common%-services',
-  -- 'packages/common%-lib',
   'packages/api/api',
-  -- 'packages/daemons',
-  -- 'packages/folp/api',
-  -- 'packages/referralcorner/api',
-  -- 'packages/external%-api',
-  -- 'packages/redshift%-services',
   'packages/frontend',
-  -- 'packages/frontend%-referralCorner',
   'packages/frontend%-wonka',
 }
-
--- from packages/frontend/lib/api/bigcommerce/bigCommerceAuth.ts
--- jump to
--- packages/api/api/lambda/serveApi/routes/bigcommerce/index.ts
-
--- from packages/frontend-wonka/lib/api/admin/addAdmin.ts
--- jump to
--- packages/api/api/wonkaApi/admin/addAdmin.ts -- fallback to index.ts if not found
 
 local packageMap = {
   ['frontend/lib/api'] = 'api/api/lambda/serveApi/routes',
