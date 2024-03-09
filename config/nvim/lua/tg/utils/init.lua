@@ -13,4 +13,14 @@ M.open_buf = function(buf_id)
   vim.api.nvim_buf_set_option(buf_id, 'buflisted', true)
 end
 
+M.is_file_exist = function(filename)
+  local fname = vim.fs.basename(filename)
+  local dirname = vim.fs.dirname(filename)
+
+  local files = vim.fs.find(fname, { path = dirname, upward = false, type = 'file' })
+  local file = files[1]
+
+  return file ~= nil
+end
+
 return M

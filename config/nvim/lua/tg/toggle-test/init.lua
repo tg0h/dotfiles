@@ -1,16 +1,6 @@
-local M = {}
-
 local utils = require('tg.utils')
 
-M.is_match = function(filename)
-  local fname = vim.fs.basename(filename)
-  local dirname = vim.fs.dirname(filename)
-
-  local files = vim.fs.find(fname, { path = dirname, upward = false, type = 'file' })
-  local file = files[1]
-
-  return file ~= nil
-end
+local M = {}
 
 -- need to add % to escape - as - is a special char and interpreted differently in string.gsub
 -- this tells you which part of the path to append a /tests to
@@ -67,7 +57,7 @@ end
 M.find_target_file = function(dirname, basename)
   local potential_match_path = M.get_potential_match(dirname, basename)
 
-  local is_match = M.is_match(potential_match_path)
+  local is_match = utils.is_file_exist(potential_match_path)
   if is_match then return potential_match_path end
 end
 
