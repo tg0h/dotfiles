@@ -1,6 +1,7 @@
 local M = {}
 local ts_utils = require('nvim-treesitter.ts_utils')
 local ts = vim.treesitter
+local utils = require('tg.utils')
 
 local toggle_test = require('tg.toggle-test')
 
@@ -112,7 +113,7 @@ function M.run_test(kittyLaunchType)
   if toggle_test.is_test_file(filename) then
     test_file = filename
   else
-    local location = toggle_test.get_current_location()
+    local location = utils.get_current_location()
     test_file = toggle_test.find_target_file(location.dirname, location.basename)
   end
 

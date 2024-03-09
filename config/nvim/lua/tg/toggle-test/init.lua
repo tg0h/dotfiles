@@ -1,9 +1,6 @@
 local M = {}
 
-local function open_buf(buf_id)
-  vim.api.nvim_set_current_buf(buf_id)
-  vim.api.nvim_buf_set_option(buf_id, 'buflisted', true)
-end
+local utils = require('tg.utils')
 
 M.is_match = function(filename)
   local fname = vim.fs.basename(filename)
@@ -74,16 +71,8 @@ M.find_target_file = function(dirname, basename)
   if is_match then return potential_match_path end
 end
 
-M.get_current_location = function()
-  local path = vim.api.nvim_buf_get_name(0)
-  local dirname = vim.fs.dirname(path)
-  local basename = vim.fs.basename(path)
-
-  return { dirname = dirname, basename = basename }
-end
-
 M.create_test_file = function()
-  local location = M.get_current_location()
+  local location = utils.get_current_location()
   local target_file = M.get_potential_match(location.dirname, location.basename)
 
   if target_file then
@@ -91,18 +80,18 @@ M.create_test_file = function()
     vim.fn.mkdir(target_file_dirname, 'p') -- make intermediate dirs with p flag
 
     local bufnr = vim.fn.bufnr(target_file, true)
-    open_buf(bufnr)
+    utils.open_buf(bufnr)
   end
 end
 
 M.Toggle = function()
-  local location = M.get_current_location()
+  local location = utils.get_current_location()
 
   local targetFile = M.find_target_file(location.dirname, location.basename)
 
   if targetFile then
     local bufnr = vim.fn.bufnr(targetFile, true)
-    open_buf(bufnr)
+    utils.open_buf(bufnr)
   end
 end
 
