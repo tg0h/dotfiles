@@ -23,4 +23,14 @@ M.is_file_exist = function(filename)
   return file ~= nil
 end
 
+M.get_first_file_in_path = function(absoluteDir)
+  local function searchWildCard(name) return name:match('.*') end
+
+  -- vim.fs.find does not support globs with strings, must provide a search function
+  local files = vim.fs.find(searchWildCard, { path = absoluteDir, upward = false, type = 'file' })
+
+  local file = files[1]
+  return file
+end
+
 return M

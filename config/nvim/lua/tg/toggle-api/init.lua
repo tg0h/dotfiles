@@ -28,16 +28,6 @@ local function does_dir_exist(absoluteDir)
   return dir
 end
 
-local function get_first_file_in_path(absoluteDir)
-  local function searchWildCard(name) return name:match('.*') end
-
-  -- vim.fs.find does not support globs with strings, must provide a search function
-  local files = vim.fs.find(searchWildCard, { path = absoluteDir, upward = false, type = 'file' })
-
-  local file = files[1]
-  return file
-end
-
 -- need to add % to escape - as - is a special char and interpreted differently in string.gsub
 local packageFolders = {
   -- 'packages/common%-services',
@@ -114,11 +104,11 @@ local function getAlternateFile(dirname, filename)
   if does_file_exist(to_file) then return to_file end
 
   -- print('to_dir is ' .. to_dir)
-  to_file = get_first_file_in_path(to_dir)
+  to_file = utils.get_first_file_in_path(to_dir)
   if does_file_exist(to_file) then return to_file end
 
   local parent = vim.fs.dirname(to_dir)
-  to_file = get_first_file_in_path(parent)
+  to_file = utils.get_first_file_in_path(parent)
   if does_file_exist(to_file) then return to_file end
 
   return to_file
