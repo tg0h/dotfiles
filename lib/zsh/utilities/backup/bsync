@@ -1,7 +1,11 @@
 #!bin/zsh
 
 function bsync(){
-  rsync -aP --stats --delete /Volumes/penwhel/archive/timline /Volumes/Lydia
-  rsync -aP --stats --delete /Volumes/penwhel/archive/timline /Volumes/Moop
-  rsync -aP --stats --delete /Volumes/penwhel/archive/timline /Volumes/Joop
+  # rsync -aP --stats --delete /Volumes/penwhel/archive/timline /Volumes/Lydia
+  # rsync -aP --stats --delete /Volumes/penwhel/archive/timline /Volumes/Moop
+  # rsync -aP --stats --delete /Volumes/penwhel/archive/timline /Volumes/Joop
+
+  rsync -aP --stats --delete /Users/tim/Documents/archive /Volumes/Lydia
+  rsync -aP --stats --delete /Users/tim/Documents/archive /Volumes/Moop
+  rsync -aP --stats --delete /Users/tim/Documents/archive /Volumes/Joop
 }
