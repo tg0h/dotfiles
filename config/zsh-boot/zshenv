@@ -70,6 +70,11 @@ export JQ_LIB="~/.local/lib/jq"
 
 export GOKU_EDN_CONFIG_FILE=$XDG_CONFIG_HOME/goku/karabiner.edn
 
+# silicon nvim screenshot uses fontconfig
+# tell fontconfig where to find fonts on macos
+# export FONTCONFIG_PATH='/System/Library/Fonts'
+export FONTCONFIG_FILE=$XDG_CONFIG_HOME/fontconfig/fonts.conf
+
 # https://unix.stackexchange.com/questions/298329/constantly-display-status-line-in-less
 # export LESS='-Pslines %lt-%lb (%Pt-%Pb \%) bytes %bt-%bb file %f'
 # -K - tell less to quit with ctrl-C

@@ -80,7 +80,7 @@ return {
     -- nnorevim.keymap.set <silent><leader>1 <cmd>lua require("bufferline").go_to_buffer(1, true)<cr>
 
     -- go to nth visible buffer, not by absolute position
-    vim.keymap.set('n', '<C-1>', ':BufferLineGoToBuffer 1<CR>', { desc = 'go to buffer 1' })
+    -- vim.keymap.set('n', '<C-1>', ':BufferLineGoToBuffer 1<CR>', { desc = 'go to buffer 1' })
     vim.keymap.set('n', '<C-2>', ':BufferLineGoToBuffer 2<CR>', { desc = 'go to buffer 2' })
     vim.keymap.set('n', '<C-3>', ':BufferLineGoToBuffer 3<CR>', { desc = 'go to buffer 3' })
     vim.keymap.set('n', '<C-4>', ':BufferLineGoToBuffer 4<CR>', { desc = 'go to buffer 4' })

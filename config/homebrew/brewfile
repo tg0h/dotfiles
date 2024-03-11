@@ -199,3 +199,4 @@ brew 'solargraph'
 brew 'mailpit'
 brew 'php'
 brew 'hyperfine'
+brew 'silicon' # rust code screenshots, also installs fontconfig i think
