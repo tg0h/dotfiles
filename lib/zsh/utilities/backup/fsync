@@ -50,4 +50,7 @@ function fsync(){
 
   # backup elasticmq binary
   rsync -aP --stats --delete ~/.local/share/elasticmq $destination/local/share/
+
+  # backup exp
+  rsync -aP --stats --delete '/Users/tim/Library/Mobile Documents/com~apple~CloudDocs/exp.xlsb' /Volumes/penwhel/icloud-drive
 }
