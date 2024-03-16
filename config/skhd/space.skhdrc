@@ -1,13 +1,17 @@
 # https://github.com/koekeishiya/skhd/issues/1 - list of keys
 # escape
+# skhd -o to debug keycodes
 
 # go to space Rmeh [] / move to space Rmeh shift []
+rshift + ralt + rctrl - 0x2B : yabai -m space --focus prev || yabai -m space --focus last  # ,
+rshift + ralt + rctrl - p : yabai -m space --focus next || yabai -m space --focus first # p
 rshift + ralt + rctrl - 0x21 : yabai -m space --focus prev || yabai -m space --focus last  # [
 rshift + ralt + rctrl - 0x1E : yabai -m space --focus next || yabai -m space --focus first # ]
 rshift + ralt + rctrl + lshift - 0x21 : yabai -m window --space prev && yabai -m space --focus prev # [
 rshift + ralt + rctrl + lshift - 0x1E : yabai -m window --space next && yabai -m space --focus next # ]
 # go to space
 rshift + ralt + rctrl - 0x1B : yabai -m space --focus recent # focus previous space # -
+rshift + ralt + rctrl - 0x2F : yabai -m space --focus recent # focus previous space # .
 # rshift + ralt + rctrl - f : [ $(yabai -m query --spaces --space | jq '.index') -eq 1 ] && ( yabai -m space --focus recent ) || yabai -m space --focus 1 # rmeh + is actually equalso to rmeh lshift =
 rshift + ralt + rctrl - u : [ $(yabai -m query --spaces --space | jq '.index') -eq 1 ] && ( yabai -m space --focus recent ) || yabai -m space --focus 1
 rshift + ralt + rctrl - g : [ $(yabai -m query --spaces --space | jq '.index') -eq 2 ] && ( yabai -m space --focus recent ) || yabai -m space --focus 2
