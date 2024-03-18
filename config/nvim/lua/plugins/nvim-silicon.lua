@@ -1,6 +1,7 @@
 return {
   'michaelrommel/nvim-silicon',
   lazy = true,
+  -- dev = true, --- download to src/me/nvim :ht
   cmd = 'Silicon',
   init = function() vim.keymap.set('v', '<C-1>', ":'<,'>Silicon<CR>", { desc = 'Silicon screenshot visual range' }) end,
   config = function()
