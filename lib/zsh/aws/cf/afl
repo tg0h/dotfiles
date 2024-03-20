@@ -1,16 +1,18 @@
 #!/bin/zsh
 
 function afl(){
-  # aws cloudformation list-stacks
+  # aws cloudformation list-stacks sort by update time descending
   # aws lists stacks that have been deleted for up to 90 days
   # -v
   # -a - show all, else exclude deleted
+  # -n - sort by name
 
-  local verbose filter all
-  while getopts 'va' opt; do
+  local verbose filter all sortByName
+  while getopts 'van' opt; do
     case "$opt" in
       v) verbose=true;;
       a) all=true;;
+      n) sortByName=true;;
     esac
   done
   shift $(($OPTIND - 1))
@@ -19,9 +21,17 @@ function afl(){
 
   local result=$(aws cloudformation list-stacks --stack-status-filter $filter)
 
+  local sortOpt
+  if [ $sortByName ]; then
+    sortOpt="name"
+  else
+    sortOpt="date"
+  fi
+  echo sortOpt is $sortOpt
+
   local jqQuery=$(cat <<-EOF
-    include "aws/cf/acl";
-    acl("$all")
+    include "aws/cf/afl";
+    afl("$all"; "$sortOpt")
 EOF
 )
 

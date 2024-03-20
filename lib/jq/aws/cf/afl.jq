@@ -3,17 +3,17 @@ include "pad";
 
 def printLastUpdatedTime:
 if . == null then
-  ""
+  "n/a"
 else 
   . | pTime
 end;
 
 def mapStackSummary:
 "\(.LastUpdatedTime|printLastUpdatedTime|rp(11)) "+
-"\(.StackName | rp(30)) "+
+"\(.StackName | trunc(50) | rp(50)) "+
 "\(.StackStatus) "+
-"\(.DriftInformation) "+
-"\(.TemplateDescription//"" | trunc(40))"
+# "\(.DriftInformation) "+
+"\(.TemplateDescription//"" | trunc(70))"
 ;
 
 def mapRemoveDeleted($all):
@@ -23,9 +23,17 @@ def mapRemoveDeleted($all):
     map(select(.StackStatus != "DELETE_COMPLETE"))
   end;
 
-def acl($all):
+def sortBy($sortBy):
+  if $sortBy == "name" then
+    sort_by(.StackName)
+  else 
+    sort_by(.LastUpdatedTime) | reverse
+  end;
+
+
+def afl($all; $sortBy):
 .StackSummaries 
-| sort_by(.StackName)
+| sortBy($sortBy)
 | mapRemoveDeleted($all)
 | map(mapStackSummary)[]
 ;
