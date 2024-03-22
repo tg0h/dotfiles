@@ -4,15 +4,16 @@ include "date";
 
 def printLastUpdatedTime:
 if . == null then
-  "n/a"
+  "n/a" | rp(14)
 else 
-  . | pTimedmyhm
+  . 
+  | aws_fromdate # Convert to Unix timestamp
+  | ToLocalDateFormatObject("ymdhM") # Convert to local time date object 
+  | FormatDate(.) # pretty print
 end;
 
-# use git branch format committerDate to convert to sg
 def mapStackSummary:
-"\(.LastUpdatedTime|printLastUpdatedTime|rp(11)) "+
-# "\(.LastUpdatedTime|aws_fromdate|ToLocalDateFormatObject("ymdhM"")) "+  
+"\(.LastUpdatedTime|printLastUpdatedTime) "+
 "\(.StackName | trunc(50) | rp(50)) "+
 "\(.StackStatus) "+
 # "\(.DriftInformation) "+

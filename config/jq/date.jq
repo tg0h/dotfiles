@@ -1,5 +1,6 @@
 include "pad";
 include "time-format";
+include "colour";
 
 # https://github.com/stedolan/jq/issues/1053
 # https://ijmacd.github.io/rfc3339-iso8601/
@@ -163,3 +164,22 @@ def ToLocalDateFormatObject($_format): ToDateFormatObject($_format; 8);
 
 # accepts unixTime and converts to iso date in SG time
 def ToLocalDate:.;
+
+# see afl for example
+def FormatDate($dateFormatObject):
+  $dateFormatObject.year as $year
+  | $dateFormatObject.month as $month
+  | $dateFormatObject.day as $day
+  | $dateFormatObject.hour as $hour
+  | $dateFormatObject.minute as $minute
+  | "\($year|__(.))"
+      +__("/")
+      +"\($month|__(.))"
+      +__("/")
+      +"\($day|_bt(.))"
+      +" "
+      +"\($hour)"
+      +__(":")
+      +"\($minute|__(.))"
+;
+
