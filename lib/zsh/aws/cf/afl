@@ -5,14 +5,16 @@ function afl(){
   # aws lists stacks that have been deleted for up to 90 days
   # -v
   # -a - show all, else exclude deleted
-  # -n - sort by name
+  # -s - sort by name
+  # -n - limit
 
-  local verbose filter all sortByName
-  while getopts 'van' opt; do
+  local verbose filter all sortByName limit
+  while getopts 'vasn:' opt; do
     case "$opt" in
       v) verbose=true;;
       a) all=true;;
-      n) sortByName=true;;
+      s) sortByName=true;;
+      n) limit=$OPTARG;;
     esac
   done
   shift $(($OPTIND - 1))
@@ -20,6 +22,7 @@ function afl(){
   # https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-describing-stacks.html
 
   local result=$(aws cloudformation list-stacks --stack-status-filter $filter)
+  local limit=${limit:-40}
 
   local sortOpt
   if [ $sortByName ]; then
@@ -36,9 +39,9 @@ EOF
 )
 
   if [ $verbose ]; then
-    jq --raw-output "." <<< "$result"
+    jq --raw-output "." <<< "$result" | head -n $limit
   else
-    jq --raw-output -L "~/.config/jq" -L "~/.local/lib/jq" "$jqQuery" <<< "$result"
+    jq --raw-output -L "~/.config/jq" -L "~/.local/lib/jq" "$jqQuery" <<< "$result" | head -n $limit
   fi
 
 }

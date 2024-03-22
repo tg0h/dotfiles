@@ -1,15 +1,18 @@
 include "aws-time";
 include "pad";
+include "date";
 
 def printLastUpdatedTime:
 if . == null then
   "n/a"
 else 
-  . | pTime
+  . | pTimedmyhm
 end;
 
+# use git branch format committerDate to convert to sg
 def mapStackSummary:
 "\(.LastUpdatedTime|printLastUpdatedTime|rp(11)) "+
+# "\(.LastUpdatedTime|aws_fromdate|ToLocalDateFormatObject("ymdhM"")) "+  
 "\(.StackName | trunc(50) | rp(50)) "+
 "\(.StackStatus) "+
 # "\(.DriftInformation) "+
