@@ -89,6 +89,11 @@ local function gotoDaemonFile(dirname, daemon_task_name)
   -- print('🔴search same file : to_file is ' .. (to_file or ''))
   found_file = find_file(to_file)
   if found_file then return found_file end
+
+  to_file = to_dir .. '/' .. lowercaseTaskName .. 'Task' .. '.ts'
+  -- print('🔴search same file : to_file is ' .. (to_file or ''))
+  found_file = find_file(to_file)
+  if found_file then return found_file end
 end
 
 local function get_cursor_word() return vim.fn.escape(vim.fn.expand('<cword>'), [[\/]]) end
