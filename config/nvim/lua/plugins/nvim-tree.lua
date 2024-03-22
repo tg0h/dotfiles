@@ -287,7 +287,7 @@ local M = {
       filters = {
         dotfiles = true, -- do not show dotfiles by default
         custom = {},
-        exclude = {},
+        exclude = { '.github' },
       },
       filesystem_watchers = { enable = true, debounce_delay = 50 },
       git = {
