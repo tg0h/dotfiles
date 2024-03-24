@@ -6,6 +6,7 @@ alias gcro='git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
 alias a='git status -s'
 alias a,='git commit -m'
 alias ao='git add'
+alias ao='git pull'
 alias ao.='git add .'
 alias aoe='git commit --amend --no-edit'
 alias aoeu='gg' # quickly add and commit
