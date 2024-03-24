@@ -58,6 +58,46 @@ M.get_files_in_dir = function(absoluteDir)
   return files
 end
 
+M.get_file_in_dir = function(offset)
+  local location = M.get_current_location()
+  local dirname = location.dirname
+  local filename = location.basename
+
+  local files = {}
+  for name, type in vim.fs.dir(location.dirname) do
+    if type == 'file' then
+      local fullpath = dirname .. '/' .. name
+      -- print('inserting file ' .. fullpath)
+      table.insert(files, fullpath)
+    end
+  end
+
+  for index, value in ipairs(files) do
+    if value == (dirname .. '/' .. filename) then
+      currentFileIndex = index
+      break
+    end
+  end
+
+  local targetIndex = currentFileIndex + offset
+  -- print('targetIndex: ' .. targetIndex)
+
+  if #files == 1 then
+    return files[#files]
+  elseif targetIndex == 0 then
+    return files[#files] -- ring arithmetic
+  elseif targetIndex > #files then
+    -- print('outside file length' .. #files)
+    -- print('targetIndex ' .. targetIndex)
+    -- print('outside modulo ' .. targetIndex % #files)
+    local f = files[targetIndex % #files]
+    -- print(' f is ' .. f)
+    return files[targetIndex % #files]
+  else
+    return files[targetIndex]
+  end
+end
+
 M.get_parent = function(to_dir)
   local parent = vim.fs.dirname(to_dir)
   return parent

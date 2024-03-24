@@ -52,9 +52,38 @@ return {
           padding = { left = 5 },
         },
       },
-      lualine_x = {},
-      lualine_y = {},
-      lualine_z = {},
+      lualine_x = {
+        {
+          function()
+            local path = vim.api.nvim_buf_get_name(0)
+            local dirname = vim.fs.dirname(path)
+
+            local count = 0
+            for name, type in vim.fs.dir(dirname) do
+              if type == 'file' then count = count + 1 end
+            end
+            return count
+          end,
+        },
+      },
+      lualine_y = {
+        {
+          function()
+            local file = require('tg.utils').get_file_in_dir(-1)
+            return file
+          end,
+          fmt = function(file) return vim.fs.basename(file) end,
+        },
+      },
+      lualine_z = {
+        {
+          function()
+            local file = require('tg.utils').get_file_in_dir(1)
+            return file
+          end,
+          fmt = function(file) return vim.fs.basename(file) end,
+        },
+      },
     },
     inactive_winbar = {
       lualine_a = {},
