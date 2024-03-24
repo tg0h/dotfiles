@@ -1,5 +1,23 @@
 return {
   {
+    'tg/toggle-file',
+    dir = '~/.config/nvim/lua/tg/toggle-file',
+    keys = {
+      {
+        '<C-8>',
+        -- toggle to files in same folder
+        function() require('tg.toggle-file').Toggle(1) end,
+        desc = 'timtoggle next file in directory',
+      },
+      {
+        '<C-9>',
+        -- toggle to files in same folder
+        function() require('tg.toggle-file').Toggle(-1) end,
+        desc = 'timtoggle previous file in directory',
+      },
+    },
+  },
+  {
     'tg/toggle-interface',
     -- dev = true,
     dir = '~/.config/nvim/lua/tg/toggle-interface',

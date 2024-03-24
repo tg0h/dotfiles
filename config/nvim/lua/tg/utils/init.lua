@@ -29,10 +29,33 @@ M.get_first_file_in_path = function(absoluteDir)
   local function searchWildCard(name) return name:match('.*') end
 
   -- vim.fs.find does not support globs with strings, must provide a search function
-  local files = vim.fs.find(searchWildCard, { path = absoluteDir, upward = false, type = 'file' })
+  local files = vim.fs.find(searchWildCard, { path = absoluteDir, upward = false, type = 'file', limit = 1 })
 
   local file = files[1]
   return file
+end
+
+-- gets files recursively
+M.get_files_in_path_recursive = function(absoluteDir)
+  local function searchWildCard(name) return name:match('.*') end
+
+  -- vim.fs.find does not support globs with strings, must provide a search function
+  -- this searches downwards recursively! :(
+  local files = vim.fs.find(searchWildCard, { path = absoluteDir, upward = false, type = 'file', limit = math.huge })
+
+  return files
+end
+
+-- get all files in a directory, does not search recursively
+M.get_files_in_dir = function(absoluteDir)
+  local files = {}
+  for name, type in vim.fs.dir(absoluteDir) do
+    if type == 'file' then
+      local fullpath = absoluteDir .. '/' .. name
+      table.insert(files, fullpath)
+    end
+  end
+  return files
 end
 
 M.get_parent = function(to_dir)
