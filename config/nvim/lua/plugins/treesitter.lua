@@ -126,7 +126,9 @@ local M = {
             -- [']u'] = '@number.inner',
             -- [']j'] = '@parameter.outer',
             -- [']k'] = '@parameter.inner', --more useful
-            ['<M-]>'] = '@parameter.inner', --more useful
+
+            -- ['<M-]>'] = '@parameter.inner', --more useful
+
             -- [']j'] = '@regex.outer',
             -- [']k'] = '@regex.inner',
 
@@ -166,7 +168,7 @@ local M = {
             ['<S-M-C-h>'] = '@conditional.outer',
             ['<S-M-C-t>'] = '@conditional.inner',
 
-            ['<M-[>'] = '@parameter.inner', -- more useful
+            -- ['<M-[>'] = '@parameter.inner', -- more useful
           },
           goto_previous_end = {
             ['[M'] = '@function.outer',

@@ -4,13 +4,14 @@ return {
     dir = '~/.config/nvim/lua/tg/toggle-file',
     keys = {
       {
-        '<C-8>',
+        '<M-]>',
         -- toggle to files in same folder
         function() require('tg.toggle-file').Toggle(1) end,
         desc = 'timtoggle next file in directory',
       },
       {
-        '<C-9>',
+        -- '<C-[>', -- esc is ^[ so this doesn't work
+        '<M-[>', -- esc is ^[ so this doesn't work
         -- toggle to files in same folder
         function() require('tg.toggle-file').Toggle(-1) end,
         desc = 'timtoggle previous file in directory',
