@@ -120,9 +120,9 @@ def draw_tab(
         is_last,
         extra_data,
     )
-    _draw_right_status(
-        screen,
-        is_last
-    )
+    # _draw_right_status(
+    #     screen,
+    #     is_last
+    # )
     return screen.cursor.x
 
