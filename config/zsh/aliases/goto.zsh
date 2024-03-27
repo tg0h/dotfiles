@@ -5,7 +5,13 @@ alias cs.='cd ./packages/common-services/scripts'
 
 # relative change dir
 alias apd='cd packages/daemons'
+
 alias api='cd packages/infra'
+alias app='cd packages/api/api'
+alias apx='cd packages/external-api'
+alias apei='cd packages/external-api/infra'
+alias apri='cd packages/referralcorner/infra'
+
 alias ada='cd packages/api/database_migrations/api'
 alias acs='cd packages/common-services/scripts'
 
