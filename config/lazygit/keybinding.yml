@@ -92,6 +92,7 @@ keybinding:
     pushTag: "P"
     setUpstream: "u" # set as upstream of checked-out branch
     fetchRemote: "f"
+    sortOrder: "-"
   commits:
     squashDown: "w"
     renameCommit: "r"
