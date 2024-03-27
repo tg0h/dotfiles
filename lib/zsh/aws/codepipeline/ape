@@ -17,7 +17,7 @@ function ape(){
   done
   shift $(($OPTIND - 1))
 
-  n=${n:-30}
+  n=${n:-100}
   local pipelineName=${1:-$CANDY_PIPELINE}
   # local result=$(aws codepipeline list-pipeline-executions --pipeline-name $CANDY_PIPELINE --max-items $n)
 
