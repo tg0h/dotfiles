@@ -1,0 +1,17 @@
+#!/bin/zsh
+
+function grl(){
+  # grl <file> returns grealpath --relative-to git root - get relative path of file to git root and paste to clipboard
+  # useful when checking out files from other branches eg 
+  # git checkout <branch> -- <relative path of file to git root>
+  # get relative path of file to git root with grl <file>
+  # git checkout scripts -- packages/common-services/scripts/timg/shopify-test.ts
+
+  if [ -z "$1" ]; then
+    echo no args provided
+    return 
+  fi
+  # remove trailing newline
+  # show output in stdout
+  grealpath $1 --relative-to $(git rev-parse --show-toplevel) | tr -d '\n' | pbcopy && pbpaste
+}
