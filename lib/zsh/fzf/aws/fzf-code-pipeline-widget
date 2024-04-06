@@ -1,5 +1,9 @@
 #!bin/zsh
 
+# calls ape
+# calls _ape
+# aws codepipeline lst-pipeline-executions
+
 function fzf-code-pipeline-widget() {
 # show the action executions for a pipeline 
 # show ape by default
@@ -49,6 +53,7 @@ function fzf-code-pipeline-widget() {
         apa -p $pipelineName -o $id
       done <<< "$targets"
     else
+      # show detail view of pipeline
       apa -p $pipelineName $id
     fi
   fi
