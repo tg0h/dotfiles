@@ -13,8 +13,13 @@ function fzf-filename-and-content(){
 EOF
 )
 
-  local fzfEntry=$(rg --follow --line-number --with-filename . $dir --color=always --field-match-separator ' '\
+  # https://github.com/junegunn/fzf/issues/2789
+  # to show the preview even when there are spaces in the filename,
+  # use ansi c quoting to specify non-breaking space character
+  local FIELD_MATCH_SEPARATOR=$'\u00a0'
+  local fzfEntry=$(rg --follow --line-number --with-filename . $dir --color=always --field-match-separator $FIELD_MATCH_SEPARATOR\
     | fzf --header="$HEADER" \
+      --delimiter $FIELD_MATCH_SEPARATOR \
       --preview "bat --style=numbers,header-filename --color=always {1} --highlight-line {2}" \
       --preview-window "right,noborder,~1,+{2}+1/2,<80(up)" \
       --bind 'alt-e:execute(nvim {1} +{2} -c "normal! zz" > /dev/tty 2>&1)' \
