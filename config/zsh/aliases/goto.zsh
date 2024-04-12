@@ -23,6 +23,7 @@ alias s,='cd ~/src/candy/referralcandy-main/feature'
 alias n,="cd ~/src/candy/referralcandy-main/feature && nvim -c 'lua open_latest_changed_file()'"
 alias sr='cd ~/src/candy/referralcandy-main/review'
 alias sp='cd ~/src/candy/referralcandy-main/play'
+alias spi='cd ~/src/candy/referralcandy-main/play/packages/infra'
 alias nr="cd ~/src/candy/referralcandy-main/review && nvim -c 'lua open_latest_changed_file()'"
 alias sx='cd ~/src/candy/referralcandy-main/fix'
 alias nx="cd ~/src/candy/referralcandy-main/fix && nvim -c 'lua open_latest_changed_file()'"
