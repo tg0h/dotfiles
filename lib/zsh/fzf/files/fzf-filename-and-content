@@ -21,10 +21,11 @@ EOF
     | fzf --header="$HEADER" \
       --delimiter $FIELD_MATCH_SEPARATOR \
       --preview "bat --style=numbers,header-filename --color=always {1} --highlight-line {2}" \
-      --preview-window "right,noborder,~1,+{2}+1/2,<80(up)" \
+      --preview-window='bottom:nowrap,noborder,55%' \
       --bind 'alt-e:execute(nvim {1} +{2} -c "normal! zz" > /dev/tty 2>&1)' \
       --bind ';:execute(nvim {1} +{2} -c "normal! zz" > /dev/tty 2>&1)'
   )
+      # --preview-window "right,noborder,~1,+{2}+1/2,<80(up)" \
 
   if [ -n "$fzfEntry" ]; then
     local file lineNumber
