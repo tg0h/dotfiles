@@ -53,7 +53,7 @@ git:
     showGraph: "when-maximised"
     # displays the whole git graph by default in the commits panel (equivalent to passing the `--all` argument to `git log`)
     showWholeGraph: false # if true, fixing up commits etc shows many commits
-  skipHookPrefix: WIP
+  skipHookPrefix: cc
   mainBranches: [master, main]
   autoFetch: true
   autoRefresh: true
