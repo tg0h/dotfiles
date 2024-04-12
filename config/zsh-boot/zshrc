@@ -15,8 +15,20 @@ export HISTFILESIZE=1000000000
 export HISTSIZE=1000000000 # Number of commands that are loaded into memory from the history file
 export SAVEHIST=1000000000 # Refers to the number of commands that are stored in the zsh history file
 export HISTTIMEFORMAT="%Y-%m-%dT%H:%M:%S " # Show the timestamp for each entry of the history file
+export HISTORY_IGNORE="(ls|cd|pwd|exit|cd)*" # do not save these commands in history
+
 setopt SHARE_HISTORY # share history between terminals running at the same time, adds the strange numbers to the beginning of each line in the history file
-setopt EXTENDED_HISTORY # record timestamp of command in HISTFLE
+setopt EXTENDED_HISTORY      # Write the history file in the ':start:elapsed;command' format., record timestamp of command in HISTFLE
+# https://martinheinz.dev/blog/110
+setopt INC_APPEND_HISTORY    # Write to the history file immediately, not when the shell exits.
+setopt HIST_IGNORE_DUPS      # Do not record an event that was just recorded again.
+setopt HIST_IGNORE_ALL_DUPS  # Delete an old recorded event if a new event is a duplicate.
+setopt HIST_IGNORE_SPACE     # Do not record an event starting with a space. (use this to avoid storing secrets by starting your command with a space)
+setopt HIST_SAVE_NO_DUPS     # Do not write a duplicate event to the history file.
+setopt HIST_VERIFY           # Do not execute immediately upon history expansion.
+setopt APPEND_HISTORY        # append to history file (Default)
+setopt HIST_NO_STORE         # Don't store history commands
+setopt HIST_REDUCE_BLANKS    # Remove superfluous blanks from each command line being added to the history.
 
 # do NOT turn auto_use on... it slows down cd to 0.2s :(
 export NVM_AUTO_USE=false # zsh-nvm plugin autoloads .nvmrc, set before the plugins array
