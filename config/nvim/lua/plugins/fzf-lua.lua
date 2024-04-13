@@ -280,6 +280,11 @@ return {
         -- NOTE: 'find -printf' requires GNU find
         -- cmd            = "find . -type f -printf '%P\n'",
         find_opts = [[-type f -not -path '*/\.git/*' -printf '%P\n']],
+        -- https://github.com/ibhagwan/fzf-lua/wiki#how-do-i-setup-input-history-keybinds
+        fzf_opts = {
+          -- C-n/p goes to next/prev history
+          ['--history'] = vim.fn.stdpath('data') .. '/fzf-lua-files-history', -- save to ~/.local/share/nvim/
+        },
         rg_opts = "--color=never --files --hidden --follow -g '!.git'",
         fd_opts = '--color=never --type f --hidden --follow --exclude .git',
         -- by default, cwd appears in the header only if {opts} contain a cwd
@@ -416,6 +421,11 @@ return {
         -- default options are controlled by 'rg|grep_opts'
         -- cmd            = "rg --vimgrep",
         grep_opts = '--binary-files=without-match --line-number --recursive --color=auto --perl-regexp -e',
+        -- https://github.com/ibhagwan/fzf-lua/wiki#how-do-i-setup-input-history-keybinds
+        fzf_opts = {
+          -- C-n/p goes to next/prev history
+          ['--history'] = vim.fn.stdpath('data') .. '/fzf-lua-grep-history', -- save to ~/.local/share/nvim/
+        },
         rg_opts = '--column --line-number --no-heading --color=always --smart-case --max-columns=4096 -e',
         -- set to 'true' to always parse globs in both 'grep' and 'live_grep'
         -- search strings will be split using the 'glob_separator' and translated
