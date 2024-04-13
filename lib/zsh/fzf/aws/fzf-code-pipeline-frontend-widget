@@ -1,0 +1,5 @@
+#!bin/zsh
+
+function fzf-code-pipeline-frontend-widget() {
+  _fzf-code-pipeline-widget 'ReferralCandy-Main-Frontend-Pipeline'
+}

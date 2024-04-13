@@ -4,19 +4,19 @@
 # calls _ape
 # aws codepipeline lst-pipeline-executions
 
-function fzf-code-pipeline-widget() {
+function _fzf-code-pipeline-widget() {
 # show the action executions for a pipeline 
 # show ape by default
   local id
+  local PIPELINE_NAME=$1
   # id=$(ape | fzf | awk '{print $4}')
-  local out=$( ape | \
+  local out=$( ape $PIPELINE_NAME | \
     fzf --ansi --multi \
     --preview-window top,noborder,7 \
     --header="⌃S ⌃L" \
     --preview 'apa -p {3} -s {5}' \
     --bind 'ctrl-/:change-preview-window(right,40%|down,60%,border-top|hidden|)' \
-    --bind 'alt-g:reload(rcda aws >/dev/null ; ape lambda-stack-cdk-pipeline)' \
-    --bind 'alt-r:reload(rcda aws >/dev/null ; ape)' \
+    --bind "alt-r:reload(rcda aws >/dev/null ; ape $PIPELINE_NAME)" \
     --expect=ctrl-s,ctrl-l
   )
 
@@ -37,6 +37,10 @@ function fzf-code-pipeline-widget() {
         local id=$(gawk '{print $5}' <<< "$execution")
         local pipelineName=$(gawk '{print $3}' <<< "$execution")
         apa -p $pipelineName -s $id
+        # add a newline so that zle reset-prompt doesnt swallow the last line of apa
+        # apparently, zle-reset-prompt doesn't play well with multiline prompts
+        # https://stackoverflow.com/questions/9212508/how-to-redraw-the-zsh-prompt-after-widget-action
+        echo
       done <<< "$targets"
 
       # for branch in $branches; do
@@ -51,10 +55,18 @@ function fzf-code-pipeline-widget() {
         local id=$(gawk '{print $5}' <<< "$execution")
         local pipelineName=$(gawk '{print $3}' <<< "$execution")
         apa -p $pipelineName -o $id
+        # add a newline so that zle reset-prompt doesnt swallow the last line of apa
+        # apparently, zle-reset-prompt doesn't play well with multiline prompts
+        # https://stackoverflow.com/questions/9212508/how-to-redraw-the-zsh-prompt-after-widget-action
+        echo
       done <<< "$targets"
     else
       # show detail view of pipeline
       apa -p $pipelineName $id
+      # add a newline so that zle reset-prompt doesnt swallow the last line of apa
+      # apparently, zle-reset-prompt doesn't play well with multiline prompts
+      # https://stackoverflow.com/questions/9212508/how-to-redraw-the-zsh-prompt-after-widget-action
+      echo
     fi
   fi
 

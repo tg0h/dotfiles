@@ -96,8 +96,10 @@ bindkey '^[r' fzf-differ-widget
 zle -N fzf-git-repo-widget 
 bindkey '^[^l' fzf-git-repo-widget
 
-zle -N fzf-code-pipeline-widget # show action executions for a code pipeline
-bindkey '^[^g' fzf-code-pipeline-widget
+zle -N fzf-code-pipeline-rc-main-widget # show action executions for a code pipeline
+bindkey '^[^g' fzf-code-pipeline-rc-main-widget
+zle -N fzf-code-pipeline-frontend-widget # show action executions for a code pipeline
+bindkey '^[^r' fzf-code-pipeline-frontend-widget
 zle -N fzf-s3-bucket-widget # show action executions for a code pipeline
 bindkey '^[^b' fzf-s3-bucket-widget
 
