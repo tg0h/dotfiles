@@ -17,6 +17,7 @@ EOF
   # to show the preview even when there are spaces in the filename,
   # use ansi c quoting to specify non-breaking space character
   local FIELD_MATCH_SEPARATOR=$'\u00a0'
+  # local FIELD_MATCH_SEPARATOR=' '
   local fzfEntry=$(rg --follow --line-number --with-filename . $dir --color=always --field-match-separator $FIELD_MATCH_SEPARATOR\
     | fzf --header="$HEADER" \
       --delimiter $FIELD_MATCH_SEPARATOR \
@@ -29,7 +30,7 @@ EOF
 
   if [ -n "$fzfEntry" ]; then
     local file lineNumber
-    read -r file lineNumber _ <<< $fzfEntry
+    IFS=$FIELD_MATCH_SEPARATOR read -r file lineNumber _ <<< $fzfEntry
     nvim $file +$lineNumber -c 'normal! zz'
   fi
 }
