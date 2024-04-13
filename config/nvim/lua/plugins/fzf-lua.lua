@@ -41,8 +41,8 @@ return {
         -- "aboveleft vnew   : split left
         -- Only valid when using a float window
         -- (i.e. when 'split' is not defined, default)
-        height = 0.85, -- window height
-        width = 0.80, -- window width
+        height = 1, -- window height
+        width = 1, -- window width
         row = 0.35, -- window row position (0=top, 1=bottom)
         col = 0.50, -- window col position (0=left, 1=right)
         -- border argument passthrough to nvim_open_win(), also used
