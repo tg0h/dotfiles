@@ -1,9 +1,5 @@
 #!bin/zsh
 
-# calls ape
-# calls _ape
-# aws codepipeline lst-pipeline-executions
-
 function fzf-code-pipeline-rc-main-widget() {
   _fzf-code-pipeline-widget 'ReferralCandy-Main-Pipeline'
 }

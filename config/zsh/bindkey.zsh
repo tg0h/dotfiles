@@ -93,14 +93,18 @@ zle -N fzf-status-widget
 bindkey '^s' fzf-status-widget
 zle -N fzf-differ-widget # git logger widget
 bindkey '^[r' fzf-differ-widget
-zle -N fzf-git-repo-widget 
-bindkey '^[^l' fzf-git-repo-widget
+
+# zle -N fzf-git-repo-widget 
+# bindkey '^[^l' fzf-git-repo-widget
 
 zle -N fzf-code-pipeline-rc-main-widget # show action executions for a code pipeline
 bindkey '^[^g' fzf-code-pipeline-rc-main-widget
 zle -N fzf-code-pipeline-frontend-widget # show action executions for a code pipeline
 bindkey '^[^r' fzf-code-pipeline-frontend-widget
-zle -N fzf-s3-bucket-widget # show action executions for a code pipeline
+zle -N fzf-code-pipeline-referralcorner-widget # show action executions for a code pipeline
+bindkey '^[^l' fzf-code-pipeline-referralcorner-widget
+
+zle -N fzf-s3-bucket-widget 
 bindkey '^[^b' fzf-s3-bucket-widget
 
 # # Alt+Backspace to backward kill to dir segment
