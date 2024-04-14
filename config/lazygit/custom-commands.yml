@@ -1,4 +1,8 @@
 customCommands:
+  - key: "e"
+    command: "git rebase main"
+    context: "localBranches"
+    loadingText: "rebase main"
   - key: "<C-g>"
     command: "gh pr view --web"
     context: "global"
