@@ -1,4 +1,8 @@
 customCommands:
+  - key: "a"
+    command: "git pull --ff-only origin main:main"
+    context: "localBranches"
+    loadingText: "pull main"
   - key: "e"
     command: "git rebase main"
     context: "localBranches"
