@@ -13,6 +13,7 @@ alias apei='cd packages/external-api/infra'
 alias apri='cd packages/referralcorner/infra'
 
 alias ada='cd packages/api/database_migrations/api'
+alias macs='mkdir packages/common-services/scripts/timg'
 alias acs='cd packages/common-services/scripts/timg'
 
 # alias s.='cd ~/src/candy/main/referralcandy-main'
