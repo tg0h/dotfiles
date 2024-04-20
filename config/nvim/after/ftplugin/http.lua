@@ -1,3 +1,4 @@
-vim.api.nvim_buf_set_keymap(0, 'n', '<C-g>', '<Plug>RestNvim', { desc = 'rest nvim run' })
-vim.api.nvim_buf_set_keymap(0, 'n', '<C-p>', '<Plug>RestNvimLast', { desc = 'rest nvim last' })
-vim.api.nvim_buf_set_keymap(0, 'n', '<C-b>', '<Plug>RestNvimPreview', { desc = 'rest nvim preview' })
+vim.api.nvim_buf_set_keymap(0, 'n', '<C-Bslash>', '<CMD>Rest run<CR>', { desc = 'rest run' }) -- C--
+vim.api.nvim_buf_set_keymap(0, 'n', '<C-g>', '<CMD>Rest result prev<CR>', { desc = 'rest result next' })
+vim.api.nvim_buf_set_keymap(0, 'n', '<C-r>', '<CMD>Rest result next<CR>', { desc = 'rest result prev' })
+vim.api.nvim_buf_set_keymap(0, 'n', '<C-p>', '<CMD>Rest run last<CR>', { desc = 'rest run last' })

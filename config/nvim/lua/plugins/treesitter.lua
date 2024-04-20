@@ -31,6 +31,8 @@ local M = {
         'ruby',
         'vimdoc',
         'sql',
+        'xml',
+        'graphql',
       },
       -- Install parsers synchronously (only applied to `ensure_installed`)
       sync_install = false,

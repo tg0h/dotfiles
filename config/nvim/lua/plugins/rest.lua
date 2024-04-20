@@ -2,6 +2,9 @@
 return {
   {
     'vhyrro/luarocks.nvim',
+    opts = {
+      rocks = { 'lua-curl', 'nvim-nio', 'mimetypes', 'xml2lua' }, -- Specify LuaRocks packages to install
+    },
     priority = 1000,
     config = true,
   },
@@ -31,8 +34,8 @@ return {
         },
         result = {
           split = {
-            horizontal = false,
-            in_place = false,
+            horizontal = true,
+            in_place = true,
             stay_in_current_window_after_split = true,
           },
           behavior = {

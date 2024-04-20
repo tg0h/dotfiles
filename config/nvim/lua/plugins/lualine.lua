@@ -13,7 +13,10 @@ return {
       section_separators = { left = '', right = '' },
       -- a component is an element in a section
       component_separators = { left = '', right = '' },
-      disabled_filetypes = {},
+      disabled_filetypes = {
+        statusline = { 'NvimTree' },
+        winbar = { 'NvimTree', 'httpResult' }, -- rest.nvim uses winbar so disable winbar for httpResult
+      },
       always_divide_middle = true,
     },
     sections = {
