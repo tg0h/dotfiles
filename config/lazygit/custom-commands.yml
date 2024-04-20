@@ -1,13 +1,13 @@
 customCommands:
-  - key: "n"
-    command: "git checkout -b {{.Form.BranchName}} refs/heads/main"
-    context: "localBranches"
-    loadingText: "new branch off main"
-    prompts:
-      - type: "input"
-        title: "New branch name off main"
-        key: "BranchName"
-        initialValue: ""
+  # - key: "n"
+  #   command: "git checkout -b {{.Form.BranchName}} refs/heads/main"
+  #   context: "localBranches"
+  #   loadingText: "new branch off main"
+  #   prompts:
+  #     - type: "input"
+  #       title: "New branch name off main"
+  #       key: "BranchName"
+  #       initialValue: ""
   - key: "a"
     command: "git pull --ff-only origin main:main"
     context: "localBranches"

@@ -32,7 +32,7 @@ keybinding:
     confirm: "<enter>"
     confirm-alt1: "y"
     remove: "d"
-    new: "N"
+    new: "n"
     edit: "e"
     openFile: "o"
     scrollUpMain: "<pgup>" # main panel scroll up
