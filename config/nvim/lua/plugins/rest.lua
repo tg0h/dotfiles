@@ -20,6 +20,21 @@ return {
     --   { '<leader>z.', '<Plug>RestNvimLast', desc = 'rest nvim last' },
     -- },
     config = function()
+      -- log request data if needed
+      -- vim.api.nvim_create_autocmd('User', {
+      --   pattern = 'RestStartRequest',
+      --   once = true, -- This is optional, only if you want the hook to run once
+      --   callback = function()
+      --     print('Started request')
+      --     -- You can access and modify the request data (body, headers, etc) by
+      --     -- using the following temporal global variable
+      --     vim.print(_G._rest_nvim_req_data)
+      --     -- You can also access environment variables from both your current
+      --     -- shell session and your environment file by using 'vim.env'
+      --     -- _G._rest_nvim_req_data.headers['USER'] = vim.env.USERNAME
+      --   end,
+      -- })
+
       require('rest-nvim').setup({
         client = 'curl',
         env_file = '.env',
@@ -44,7 +59,7 @@ return {
               url = true,
               headers = true,
               http_info = true,
-              curl_command = true,
+              -- curl_command = true,  -- no longer supported - https://github.com/rest-nvim/rest.nvim/issues/333
             },
             statistics = {
               enable = true,
