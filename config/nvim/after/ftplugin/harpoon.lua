@@ -113,6 +113,8 @@ local function highlight_line(line_index, line, highlightConfig)
   end
 end
 
+-- harpoon2 broke this
+-- lines is now empty ... :(
 local lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
 for line_index, line in ipairs(lines) do
   highlight_line(line_index, line, highlightConfig)
