@@ -1,4 +1,4 @@
-local map = vim.api.nvim_set_keymap
+local map = vim.api.nvim_set_keymap -- this is a deprecated api, use vim.keymap.set instead
 -- {desc=''} = { noremap = true, silent = true }
 expr_options = { noremap = true, expr = true, silent = true }
 
