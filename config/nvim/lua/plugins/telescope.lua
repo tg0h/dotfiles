@@ -218,11 +218,6 @@ local M = {
       function() require('tg.telescope-multi-rg')() end,
       desc = 'tj multi rg',
     },
-    {
-      '<LEADER>sh',
-      function() require('telescope').load_extension('harpoon').marks() end,
-      desc = 'harpoon marks',
-    },
 
     -- diagnostics ####################################################################################
     {
