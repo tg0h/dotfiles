@@ -10,7 +10,14 @@ local M = {
   config = function()
     -- vim.g.harpoon_log_level = "debug"
     local harpoon = require('harpoon')
-    harpoon:setup()
+    -- https://github.com/ThePrimeagen/harpoon/issues/502
+    harpoon:setup({
+      settings = {
+        save_on_toggle = false,
+        sync_on_ui_close = false,
+        key = function() return vim.loop.cwd() end,
+      },
+    })
 
     -- require('harpoon').setup({
     --   menu = { width = 120, height = 30 },
