@@ -69,6 +69,7 @@ keymaps:
 
   - [tg, $HOME/dotfiles/config/nvim/lua/tg]
   # Candy playground
+  - [ta, $HOME/src/playground/candy/github-actions/]
   - [ts, $HOME/src/playground/candy/candyStore/embedded-signup]
   - [tp, $HOME/src/playground/candy/candyStore/post-purchase-popup/]
   - [tr, $HOME/src/playground/candy/candyStore/referral-widget/]
