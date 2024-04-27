@@ -8,6 +8,7 @@ alias apd='cd packages/daemons'
 
 alias api='cd packages/infra'
 alias app='cd packages/api/api'
+alias apf='cd packages/frontend'
 alias apx='cd packages/external-api'
 alias apei='cd packages/external-api/infra'
 alias apri='cd packages/referralcorner/infra'
