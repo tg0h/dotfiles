@@ -86,3 +86,6 @@ function manz(){
   # manz cd to read man for cd
   man zshbuiltins | less -p "^       $1 "
 }
+
+alias sc='cp template.ts'
+alias scg='cp template-client-id.ts'
