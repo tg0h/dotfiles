@@ -16,7 +16,7 @@ vim.keymap.set('i', '<M-f>', '<Esc>ea', { desc = 'go forward a word in insert mo
 
 vim.keymap.set('i', '<C-d>', '<Del>', { desc = 'delete forward in insert mode' })
 vim.keymap.set('i', '<C-h>', '<BS>', { desc = 'delete backward in insert mode' })
-vim.keymap.set('i', '<C-k>', '<Esc>lC', { desc = 'delete to end of line in insert mode' })
+-- vim.keymap.set('i', '<C-k>', '<Esc>lC', { desc = 'delete to end of line in insert mode' })
 vim.keymap.set('i', '<M-d>', '<Esc>cw', { desc = 'delete forward to end of word in insert mode' })
 
 -- Help
