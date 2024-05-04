@@ -1,0 +1,5 @@
+#!bin/zsh
+
+function fzf-code-pipeline-shopify-embedded-app-widget() {
+  _fzf-code-pipeline-widget 'ReferralCandy-ShopifyEmbeddedApp-Pipeline'
+}
