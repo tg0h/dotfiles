@@ -13,7 +13,7 @@ local M = {
     -- https://github.com/ThePrimeagen/harpoon/issues/502
     harpoon:setup({
       settings = {
-        save_on_toggle = false,
+        save_on_toggle = true, -- so that we can rearrange the list
         sync_on_ui_close = false,
         key = function() return vim.loop.cwd() end,
       },
@@ -40,6 +40,8 @@ local M = {
     -- })
 
     vim.keymap.set('n', '<M-C-q>', function() harpoon:list():add() end)
+    -- vim.keymap.set('n', '<leader>a', function() harpoon:list():append() end)
+    -- vim.keymap.set('n', '<leader>d', function() harpoon:list():remove() end)
     vim.keymap.set('n', '<M-Space>', function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
 
     vim.keymap.set('n', '<C-h>', function() harpoon:list():select(1) end)
