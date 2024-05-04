@@ -12,6 +12,8 @@ alias apf='cd packages/frontend'
 alias apx='cd packages/external-api'
 alias apei='cd packages/external-api/infra'
 alias apri='cd packages/referralcorner/infra'
+alias aprf='cd packages/referralcorner/frontend'
+alias apra='cd packages/referralcorner/api'
 
 alias ada='cd packages/api/database_migrations/api'
 alias macs='mkdir packages/common-services/scripts/timg'
