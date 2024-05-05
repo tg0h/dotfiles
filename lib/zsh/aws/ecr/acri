@@ -19,18 +19,22 @@ function acri(){
   done
   shift $(($OPTIND - 1))
 
-  _n=${number:-20}
+  _n=${number:-999}
   repository=${repository:-$1}
 
+    # aws ecr describe-images --repository-name ... --query 'reverse(sort_by(imageDetails, &(lastRecordedPullTime || ``)))'
     local jqQuery=$(cat <<-EOF
    include "pad";
    include "colour";
    include "aws-time";
      .imageDetails | 
-     sort_by(.imagePushedAt) | reverse | 
-     .[0:$_n] |
+     sort_by(.imagePushedAt) | reverse
+     | to_entries
+     | map(.value.index = .key + 1 ) # add a row number to count the number of images
+     | map(.value)
+     | .[0:$_n] |
      .[] |
-     "\(.imagePushedAt ) \(.imageSizeInBytes / 1000000 | floor) MB \(.imageTags )"
+     "\(.index | lp(3)) \(.imagePushedAt ) \(.lastRecordedPullTime // "" | lp(32)) \(.imageSizeInBytes / 1000000 | floor) MB \(.imageTags )"
 EOF
 )
 
