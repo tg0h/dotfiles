@@ -22,19 +22,14 @@ function acri(){
   _n=${number:-999}
   repository=${repository:-$1}
 
+  # TODO: sort by last pull time
     # aws ecr describe-images --repository-name ... --query 'reverse(sort_by(imageDetails, &(lastRecordedPullTime || ``)))'
-    local jqQuery=$(cat <<-EOF
-   include "pad";
-   include "colour";
-   include "aws-time";
-     .imageDetails | 
-     sort_by(.imagePushedAt) | reverse
-     | to_entries
-     | map(.value.index = .key + 1 ) # add a row number to count the number of images
-     | map(.value)
-     | .[0:$_n] |
-     .[] |
-     "\(.index | lp(3)) \(.imagePushedAt ) \(.lastRecordedPullTime // "" | lp(32)) \(.imageSizeInBytes / 1000000 | floor) MB \(.imageTags )"
+    # TODO: pass n
+    # TODO format date
+
+  local jqQuery=$(cat <<-EOF
+    include "aws/ecr/acri";
+    acri
 EOF
 )
 
@@ -43,6 +38,6 @@ EOF
   if [ -n "$verbose" ]; then
     jq --raw-output -L "~/.config/jq" "." <<< $result
   else
-    jq --raw-output -L "~/.config/jq" "$jqQuery" <<< $result
+    jq --raw-output -L "~/.config/jq" -L "~/.local/lib/jq" "$jqQuery" <<< $result
   fi
 }
