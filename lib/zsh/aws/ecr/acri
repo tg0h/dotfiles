@@ -9,12 +9,13 @@ function acri(){
 
   # if you provide max items, it won't get the latest image!!!
 
-  local verbose repository number _n
-  while getopts 'vr:n:' opt; do
+  local verbose repository number _n sort
+  while getopts 'vr:n:s' opt; do
     case "$opt" in
       v) verbose=true;;
       r) repository=$OPTARG;;
       n) number=$OPTARG;;
+      s) sort=true;;
     esac
   done
   shift $(($OPTIND - 1))
@@ -22,18 +23,18 @@ function acri(){
   _n=${number:-999}
   repository=${repository:-$1}
 
-  # TODO: sort by last pull time
-    # aws ecr describe-images --repository-name ... --query 'reverse(sort_by(imageDetails, &(lastRecordedPullTime || ``)))'
-    # TODO: pass n
-    # TODO format date
-
   local jqQuery=$(cat <<-EOF
     include "aws/ecr/acri";
     acri
 EOF
 )
 
-  local result=$(aws ecr describe-images --repository-name $repository )
+  local result
+  if [ -n "$sort" ]; then
+    result=$(aws ecr describe-images --repository-name $repository --query 'reverse(sort_by(imageDetails, &(lastRecordedPullTime || ``)))')
+  else
+    result=$(aws ecr describe-images --repository-name $repository )
+  fi
 
   if [ -n "$verbose" ]; then
     jq --raw-output -L "~/.config/jq" "." <<< $result
