@@ -29,19 +29,21 @@ def printLine:
 ;
 
 # the input data depends on if a jmespath query was used
-def getImageDetailsIfExists:
-if (.|type == "object") then
-  # no jmespath query was used
-  .imageDetails | sort_by(.imagePushedAt) | reverse
-else
-  # a jmespath query was used
-  .
-end;
+def getImageDetailsIfExists($sort):
+  if $sort == "descending" then
+    # no jmespath query was used
+    .imageDetails | sort_by(.imagePushedAt) | reverse
+  elif $sort == "ascending" then
+    .imageDetails | sort_by(.imagePushedAt)
+  else
+    .imageDetails | sort_by(.lastRecordedPullTime) | reverse
+  end
+;
 
-def acri:
+def acri($sort; $_n):
   .
-  | getImageDetailsIfExists
+  | getImageDetailsIfExists($sort)
   | addRowNumber
-  | .[] 
+  | .[0:$_n].[]
   | printLine
 ;
