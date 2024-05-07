@@ -1,0 +1,40 @@
+#!/bin/zsh
+
+function acrid(){
+  # aws ecr batch-delete-image
+  # acrid <repository name> -n 40 # delete earliest 40 images
+  # acri -n 40 <repository name>
+  # acri -r <repository name>
+
+  # aws ecr batch-delete-image --repository-name ... --image-ids imageTag=xyz imageTag=abc
+
+  local repository number _n force
+  while getopts 'fr:n:' opt; do
+    case "$opt" in
+      f) force=true;;
+      r) repository=$OPTARG;;
+      n) number=$OPTARG;;
+    esac
+  done
+  shift $(($OPTIND - 1))
+
+  _n=${number:-1999}
+  repository=${repository:-$1}
+
+  #   result=$(aws ecr describe-images --repository-name $repository --query 'reverse(sort_by(imageDetails, &(lastRecordedPullTime || ``)))')
+
+
+  # sorts by imagePushedAt ascending (earliest first)
+  local jqQuery=$(cat <<-EOF
+    [ .imageDetails | sort_by(.imagePushedAt) | .[:$_n] | .[] | "imageTag=\(.imageTags[0])" ] | join(" ")
+EOF
+)
+
+    local tags=$(aws ecr describe-images --repository-name $repository | jq -r "$jqQuery")
+
+  if [ -n "$force" ]; then
+    aws ecr batch-delete-image --repository-name $repository --image-ids ${=tags}
+  else # dry run
+    echo $tags
+  fi
+}
