@@ -127,11 +127,12 @@ zle -N execute-buffer-with-git-show-widget
 # bindkey -s '^[^m' 'node index.mjs' 
 
 
-zle -N edit-index-nvim-widget
+# zle -N edit-index-nvim-widget
 # ctrl-, works with kitty map which maps ctrl- to ctrl-\
-bindkey '^\' edit-index-nvim-widget
+# bindkey '^\' edit-index-nvim-widget
 zle -N execute-index-node-widget
 # ctrl+alt+-
+# depends on kitty send keys
 bindkey '^[^]' execute-index-node-widget
 
 zle -N execute-buffer-with-node-widget
