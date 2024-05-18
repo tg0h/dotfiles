@@ -8,6 +8,7 @@ alias apd='cd packages/daemons'
 
 alias api='cd packages/infra'
 alias app='cd packages/api/api'
+alias apm='cd packages/shopify-embedded-app'
 alias apf='cd packages/frontend'
 alias apfw='cd packages/frontend-wonka'
 alias apx='cd packages/external-api'
