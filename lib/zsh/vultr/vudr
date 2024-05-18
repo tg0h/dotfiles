@@ -1,0 +1,30 @@
+#!/bin/zsh
+
+function vudr(){
+  # list vultr domain records for my domain
+
+  local verbose quiet
+  while getopts 'vq' opt; do
+    case "$opt" in
+      v) verbose=true;;
+      q) quiet=true;;
+    esac
+  done
+  shift $(($OPTIND - 1))
+
+#     local jqQuery=$(cat <<-EOF
+#    include "pad";
+#    include "colour";
+#    .
+# EOF
+# )
+
+https $VULTR_API_URL/domains/timothygoh.org/records \
+      "Authorization:Bearer $VULTR_API_KEY"
+
+  # if [ -n "$verbose" ]; then
+  #   jq --raw-output -L "~/.config/jq" "." <<< $result
+  # else
+    # jq --raw-output -L "~/.config/jq" "$jqQuery" <<< $result
+  # fi
+}

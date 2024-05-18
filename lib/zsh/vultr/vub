@@ -1,0 +1,9 @@
+#!/bin/zsh
+
+function vub(){
+  # list vultr block storages
+
+https $VULTR_API_URL/blocks \
+      "Authorization:Bearer $VULTR_API_KEY"
+}
+
