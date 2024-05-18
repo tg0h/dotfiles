@@ -1,6 +1,7 @@
 -- Lazy
 return {
   'jackMort/ChatGPT.nvim',
+  enabled = false,
   event = 'VeryLazy',
   commit = '24bcca7', -- temporary fix for no url error
   opts = {
