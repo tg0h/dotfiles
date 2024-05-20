@@ -7,21 +7,26 @@ function afl(){
   # -a - show all, else exclude deleted
   # -s - sort by name
   # -n - limit
+  # -u - region us-east-1
 
-  local verbose filter all sortByName limit
-  while getopts 'vasn:' opt; do
+  local verbose filter all sortByName limit region
+  while getopts 'vasn:u' opt; do
     case "$opt" in
       v) verbose=true;;
       a) all=true;;
       s) sortByName=true;;
       n) limit=$OPTARG;;
+      u) region=us-east-1
     esac
   done
   shift $(($OPTIND - 1))
 
   # https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-describing-stacks.html
 
-  local result=$(aws cloudformation list-stacks --stack-status-filter $filter)
+  region=${region:-ap-southeast-1}
+  echo region is $region
+
+  local result=$(aws cloudformation list-stacks --stack-status-filter $filter --region $region)
   local limit=${limit:-40}
 
   local sortOpt
