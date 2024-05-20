@@ -1,0 +1,6 @@
+#!/bin/zsh
+
+function rt.(){
+  # reverse tunnel to sharky
+  ssh -R $SHARKY_SSH_TUNNEL $SHARKY_HOST
+}
