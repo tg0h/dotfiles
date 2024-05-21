@@ -4,7 +4,11 @@
 
 # Key bindings
 # ------------
-source /opt/homebrew/opt/fzf/shell/key-bindings.zsh
+if [[ `uname` == "Darwin" ]]  then # macos
+  source /opt/homebrew/opt/fzf/shell/key-bindings.zsh
+else # ubuntu
+  source /usr/share/doc/fzf/examples/key-bindings.zsh
+fi
 
 # TODO: understand piping wizadry needed to open terminal nvim with ctrl e keybind
 # https://github.com/junegunn/fzf/issues/1593#issuecomment-498007983
