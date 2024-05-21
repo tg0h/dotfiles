@@ -64,7 +64,7 @@ export RIPGREP_CONFIG_PATH=$XDG_CONFIG_HOME/ripgrep/ripgreprc
 
 export LG_CONFIG_FILE=$XDG_CONFIG_HOME/lazygit/config.yml,$XDG_CONFIG_HOME/lazygit/keybinding.yml,$XDG_CONFIG_HOME/lazygit/theme.yml,$XDG_CONFIG_HOME/lazygit/custom-commands.yml
 
-# use these env vars when I specify jq -L $JQ_CONOFIG
+# use these env vars when I specify jq -L $JQ_CONFIG
 export JQ_CONFIG="~/.config/jq"
 export JQ_LIB="~/.local/lib/jq"
 
