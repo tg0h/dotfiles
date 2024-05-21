@@ -27,7 +27,10 @@ echo removing files in "$ZSH_FUNCTIONS_PATH" "..."
 # exclude /Users/tim/dotfiles/lib/zsh/utilities/dir-switcher/out
 for func in $DOTFILES/lib/zsh/***/*~(*/archive/*|*.zsh|*.md|*/out/*)(.); do
   # if link already exists, overwrite it
-  ln $verbose -Fs $func $ZSH_FUNCTIONS_PATH
+  # use a relative link so that the link can be used in macos or ubuntu
+  # eg the home dir name is different across os
+  gln --symbolic --relative --force --verbose $func $ZSH_FUNCTIONS_PATH
+  # ln $verbose -Fs $func $ZSH_FUNCTIONS_PATH
 done
 
 echo removing files in "$ZSH_FUNCTIONS_COMPILED_PATH" "..."
