@@ -2,6 +2,7 @@
 alias c.='cd ~/src/playground/cdk/cdk-workshop'
 alias c,='cd ~/src/playground/candy/referralcandy-secondary'
 alias cs.='cd ./packages/common-services/scripts'
+alias hs='ssh timg@sharky'
 
 # relative change dir
 alias apd='cd packages/daemons'
