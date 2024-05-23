@@ -29,7 +29,7 @@ for func in $DOTFILES/lib/zsh/***/*~(*/archive/*|*.zsh|*.md|*/out/*)(.); do
   # if link already exists, overwrite it
   # use a relative link so that the link can be used in macos or ubuntu
   # eg the home dir name is different across os
-  gln --symbolic --relative --force --verbose $func $ZSH_FUNCTIONS_PATH
+  gln --symbolic --relative --force $verbose $func $ZSH_FUNCTIONS_PATH
   # ln $verbose -Fs $func $ZSH_FUNCTIONS_PATH
 done
 
@@ -39,5 +39,5 @@ echo removing files in "$ZSH_FUNCTIONS_COMPILED_PATH" "..."
 for func in /Users/tim/dotfiles/lib/zsh/utilities/dir-switcher/out/*; do
   # if link already exists, overwrite it
   # echo compiled func is $func
-  gln --symbolic --relative --force --verbose $func $ZSH_FUNCTIONS_COMPILED_PATH
+  gln --symbolic --relative --force $verbose $func $ZSH_FUNCTIONS_COMPILED_PATH
 done
