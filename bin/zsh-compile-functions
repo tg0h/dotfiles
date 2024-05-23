@@ -39,5 +39,5 @@ echo removing files in "$ZSH_FUNCTIONS_COMPILED_PATH" "..."
 for func in /Users/tim/dotfiles/lib/zsh/utilities/dir-switcher/out/*; do
   # if link already exists, overwrite it
   # echo compiled func is $func
-  ln $verbose -Fs $func "$ZSH_FUNCTIONS_COMPILED_PATH"
+  gln --symbolic --relative --force --verbose $func $ZSH_FUNCTIONS_COMPILED_PATH
 done
