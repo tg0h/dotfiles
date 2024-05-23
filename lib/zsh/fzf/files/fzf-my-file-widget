@@ -52,7 +52,7 @@ EOF
         --bind "ctrl-c:reload(fd $FD_OPTIONS_NO_IGNORE)+change-prompt(no-ignore> )" \
         --bind "ctrl-alt-r:reload(fd $FD_OPTIONS --type f)+change-prompt(file> )" \
         \
-        --bind "ctrl-h:reload(fd $FD_OPTIONS --type f --exec-batch ls -lt | choose 8)+change-prompt(files-sorted> )" \
+        --bind "ctrl-h:reload(fd $FD_OPTIONS --type f --exec-batch ls -lt | gawk '{print \$9}')+change-prompt(files-sorted> )" \
         \
         --bind "ctrl-o:change-preview(
           if grep -q 'blame' ${blame_state}; then 
