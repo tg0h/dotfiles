@@ -1,6 +1,6 @@
 return {
   'kristijanhusak/vim-dadbod-ui',
-  keys = { { '<M-v>', '<CMD>DBUIToggle<CR>', desc = { 'dadbod ui' } } },
+  keys = { { '<M-v>', '<CMD>DBUIToggle<CR>', desc = 'dadbod ui' } },
   dependencies = {
     'tpope/vim-dadbod',
     'kristijanhusak/vim-dadbod-completion',
