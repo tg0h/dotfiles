@@ -91,3 +91,11 @@ keymaps:
   - [sr, $HOME/src/candy/old/referral_corner]
   - [sm, $HOME/src/candy/old/candymail]
   - [sw, $HOME/src/candy/old/webapp/]
+
+  # /etc
+  - [en, /etc/nginx]
+  - [el, /etc/letsencrypt]
+  - [ed, /etc/dovecot]
+
+  # /var
+  - [rl, /var/log]
