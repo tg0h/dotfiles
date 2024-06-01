@@ -8,29 +8,29 @@ return {
   init = function()
     local wk = require('which-key')
     wk.register({
-      R = { 'Replace' },
+      z = { 'spectre' },
     }, { prefix = '<leader>', mode = 'n', {} })
   end,
   -- enabled = vim.g.config.plugins.spectre.enable,
   keys = {
     {
-      '<leader>Rr',
+      '<leader>zz',
       function() require('spectre').toggle() end,
       desc = 'Toggle search and replace',
     },
     {
-      '<leader>Rw',
+      '<leader>zw',
       function() require('spectre').open_visual({ select_word = true }) end,
       desc = 'Search current word',
     },
     {
-      '<leader>Rw',
+      '<leader>zw',
       mode = 'v',
       function() require('spectre').open_visual({ select_word = true }) end,
       desc = 'Search current word',
     },
     {
-      '<leader>Rf',
+      '<leader>zf',
       function() require('spectre').open_file_search({ select_word = true }) end,
       desc = 'Search on current file',
     },
@@ -38,7 +38,7 @@ return {
   opts = {
 
     color_devicons = true,
-    open_cmd = 'vnew',
+    open_cmd = 'new', -- instead of vnew, use new to open a new horizontal window
     live_update = false, -- auto execute search again when you write to any file in vim
     line_sep_start = '┌-----------------------------------------',
     result_padding = '¦  ',
@@ -49,6 +49,16 @@ return {
       replace = 'DiffDelete',
     },
     mapping = {
+      ['tab'] = {
+        map = '<Tab>',
+        cmd = "<cmd>lua require('spectre').tab()<cr>",
+        desc = 'next query',
+      },
+      ['shift-tab'] = {
+        map = '<S-Tab>',
+        cmd = "<cmd>lua require('spectre').tab_shift()<cr>",
+        desc = 'previous query',
+      },
       ['toggle_line'] = {
         map = 'dd',
         cmd = "<cmd>lua require('spectre').toggle_line()<CR>",
@@ -75,17 +85,17 @@ return {
         desc = 'show options',
       },
       ['run_current_replace'] = {
-        map = '<leader>rc',
+        map = 'rc',
         cmd = "<cmd>lua require('spectre.actions').run_current_replace()<CR>",
         desc = 'replace current line',
       },
       ['run_replace'] = {
-        map = "<leader>'",
+        map = 'ra',
         cmd = "<cmd>lua require('spectre.actions').run_replace()<CR>",
         desc = 'replace all',
       },
       ['change_view_mode'] = {
-        map = '<leader>v',
+        map = '<C-g>',
         cmd = "<cmd>lua require('spectre').change_view()<CR>",
         desc = 'change result view mode',
       },
@@ -115,7 +125,7 @@ return {
         desc = 'toggle search hidden',
       },
       ['resume_last_search'] = {
-        map = '<leader>l',
+        map = 'rr',
         cmd = "<cmd>lua require('spectre').resume_last_search()<CR>",
         desc = 'repeat last search',
       },
