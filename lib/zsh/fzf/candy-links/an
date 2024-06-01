@@ -1,5 +1,7 @@
 #!bin/zsh
 
+# run cle to edit the candy links yml file
+
 export _fzf_candy_links_dir="$XDG_BIN/candy"
 
 _fzf_candy_getLinks(){
