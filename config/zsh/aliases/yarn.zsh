@@ -29,7 +29,7 @@ alias ysawps="LOG_LEVEL=silent yarn start-api-wonka | pino-pretty"
 alias ysd="yarn start-daemon"
 alias ysdp="yarn start-daemon | pino-pretty"
 alias ysds="LOG_LEVEL=silent yarn start-daemon"
-alias yse="yarn workspace @rc-main/external-api start"
+alias ysx="yarn workspace @rc-main/external-api start"
 
 alias yw="yarn workspaces"
 # alias ywl="yarn workspaces list"
