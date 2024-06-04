@@ -81,7 +81,7 @@ vim.keymap.set('n', '<LEADER>mc', ':g/console.log/d<CR><C-o>', { desc = 'remove 
 vim.keymap.set('n', '<leader>a', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = 'replace word under cursor' })
 
 -- gg
-vim.keymap.set('n', '<LEADER>gg', '<CMD>silent !gg<CR>', { desc = 'commit with gg script' }) --silent means supress all stdout (not added to message history)
+vim.keymap.set('n', '<LEADER>cg', '<CMD>silent !gg<CR>', { desc = 'commit with gg script' }) --silent means supress all stdout (not added to message history)
 vim.keymap.set(
   'n',
   '<LEADER>go',
