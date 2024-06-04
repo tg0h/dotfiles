@@ -9,7 +9,7 @@ function fzf-fd-preview(){
     viu --blocks $entry
     # chafa --format kitty $entry
   elif [[ $(file --mime $entry) =~ inode/directory ]]; then 
-    exa --tree --long --icons --git --color always --octal-permissions --sort created --reverse $entry 
+    eza --tree --long --icons --git --color always --octal-permissions --sort created --reverse $entry 
   else
     bat --style=numbers,header-filename --color=always $entry
     # || cat $entry 2> /dev/null | head -300
