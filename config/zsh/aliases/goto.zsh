@@ -5,9 +5,11 @@ alias cs.='cd ./packages/common-services/scripts'
 alias hs='ssh timg@sharky'
 
 # relative change dir
-alias apd='cd packages/daemons'
+alias agf='cd .github/workflows'
 
+alias apd='cd packages/daemons'
 alias api='cd packages/infra'
+alias apc='cd packages/common-services'
 alias app='cd packages/api/api'
 alias apm='cd packages/shopify-embedded-app'
 alias apf='cd packages/frontend'
