@@ -1,0 +1,28 @@
+#!bin/zsh
+
+function hdd(){
+  # delete deployments of a workflow given workflow id - use workflow filename in url or use gh workflow list to get workflow id
+
+  # workflow_id can also be the workflow filename, eg test-daemon.yml
+  # see the url of the workflow for the workflow filename
+  # https://github.com/Anafore/referralcandy-main/actions/workflows/test-daemon.yml
+  local _owner_repo=$1
+  per_page=100
+
+
+  local owner_repo=${_owner_repo:-timgsl/github-public-actions}
+  echo owner_repo is $owner_repo
+
+  # get random page number to parallelize the deletion
+  # (run hwrd in parallel)
+  page=$(( ( RANDOM % 5 )  + 1 ))
+  echo deleting deployments
+  echo deleting page $page
+
+  gh api -X GET /repos/$owner_repo/deployments \
+    -F per_page=100 \
+    -F page=1 \
+    -q '.[] | .id' | 
+    xargs -I {} -P 10 gh api -X DELETE /repos/$owner_repo/deployments/{}
+}
+
