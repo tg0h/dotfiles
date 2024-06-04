@@ -6,8 +6,13 @@ function hwrd(){
   # workflow_id can also be the workflow filename, eg test-daemon.yml
   # see the url of the workflow for the workflow filename
   # https://github.com/Anafore/referralcandy-main/actions/workflows/test-daemon.yml
-  workflow_id=$1
+  local workflow_id=$1
+  local _owner_repo=$2
   per_page=100
+
+
+  local owner_repo=${_owner_repo:-Anafore/referralcandy-main}
+  echo owner_repo is $owner_repo
 
   # get random page number to parallelize the deletion
   # (run hwrd in parallel)
@@ -15,10 +20,10 @@ function hwrd(){
   echo deleting runs of workflow id $workflow_id
   echo deleting page $page
 
-  gh api -X GET /repos/Anafore/referralcandy-main/actions/workflows/$workflow_id/runs \
+  gh api -X GET /repos/$owner_repo/actions/workflows/$workflow_id/runs \
     -F per_page=100 \
     -F page=1 \
     -q '.workflow_runs[] | .id' |
-    xargs -I {} -P 10 gh api -X DELETE /repos/Anafore/referralcandy-main/actions/runs/{}
+    xargs -I {} -P 10 gh api -X DELETE /repos/$owner_repo/actions/runs/{}
     # -F page=$page \
 }
