@@ -1,0 +1,18 @@
+#!bin/zsh
+
+function hdi(){
+  # delete deployment given id and repo
+  # hdi <deployment id> [owner/repo]
+
+  local deployment_id=$1
+  local _owner_repo=$1
+  per_page=100
+
+
+  local owner_repo=${_owner_repo:-timgsl/github-public-actions}
+  echo owner_repo is $owner_repo
+
+  echo deleting deployment with id $
+  gh api -X DELETE /repos/$owner_repo/deployments/{}
+}
+
