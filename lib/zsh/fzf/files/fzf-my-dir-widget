@@ -39,7 +39,7 @@ EOF
         --preview="$DIR_PREVIEW" \
         --preview-window='right:nowrap,noborder,70%' \
         \
-      --bind "alt-r:reload(exa --oneline --color always --sort accessed --reverse --only-dirs)+change-prompt(depth:1> )" \
+      --bind "alt-r:reload(eza --oneline --color always --sort accessed --reverse --only-dirs)+change-prompt(depth:1> )" \
       --bind "alt-f:reload(fd $FD_GIT_DIR_OPTIONS )+change-prompt(git> )" \
       --bind "alt-l:reload(fd $FD_OPTIONS --max-depth 2 )+change-prompt(depth:2> )" \
       --bind "alt-c:reload(fd $FD_OPTIONS )+change-prompt(> )" \
