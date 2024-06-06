@@ -7,21 +7,24 @@ alias hs='ssh timg@sharky'
 # relative change dir
 alias agf='cd .github/workflows'
 
-alias apd='cd packages/daemons'
-alias api='cd packages/infra'
-alias apc='cd packages/common-services'
+alias apf='cd packages/frontend'
 alias app='cd packages/api/api'
 alias apm='cd packages/shopify-embedded-app'
-alias apf='cd packages/frontend'
 alias apfw='cd packages/frontend-wonka'
-alias apx='cd packages/external-api'
-alias apei='cd packages/external-api/infra'
+
+alias apof='cd packages/folp/frontend'
+alias apoa='cd packages/folp/api'
 alias apri='cd packages/referralcorner/infra'
 alias aprf='cd packages/referralcorner/frontend'
 alias apra='cd packages/referralcorner/api'
 
+alias apd='cd packages/daemons'
+alias api='cd packages/infra'
+alias apc='cd packages/common-services'
+alias apx='cd packages/external-api'
+alias apxi='cd packages/external-api/infra'
+
 alias ada='cd packages/api/database_migrations/api'
-alias macs='mkdir packages/common-services/scripts/timg'
 alias acs='cd packages/common-services/scripts/timg'
 
 # alias s.='cd ~/src/candy/main/referralcandy-main'
