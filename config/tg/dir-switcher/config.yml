@@ -99,4 +99,5 @@ keymaps:
   - [ed, /etc/dovecot]
 
   # /var
-  - [rl, /var/log]
+  - [al, /var/log]
+  - [aln, /var/log/nginx]
