@@ -1,0 +1,46 @@
+{
+  "title": "Snagit mouse zoom",
+  "rules": [
+    {
+      "description": "Map thumb buttons zoom in and zoom out",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "pointing_button": "button5"
+          },
+          "to": [
+            {
+              "key_code": "equal_sign",
+              "modifiers": ["left_shift", "left_command"]
+            }
+          ],
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": ["^com\\.TechSmith\\.Snagit2024$"]
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "pointing_button": "button4"
+          },
+          "to": [
+            {
+              "key_code": "hyphen",
+              "modifiers": ["left_command"]
+            }
+          ],
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": ["^com\\.TechSmith\\.Snagit2024$"]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
