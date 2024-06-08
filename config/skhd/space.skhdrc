@@ -2,11 +2,13 @@
 # escape
 # skhd -o to debug keycodes
 
-### go to space Rmeh [] / move to space Rmeh shift []
+# use script to cycle to next space of current display
+rshift + ralt + rctrl - 0x2F : yabai-display-current-space-cycle-next
 
+### go to space Rmeh [] / move to space Rmeh shift []
 # go to space
 rshift + ralt + rctrl - 0x1B : yabai -m space --focus recent # focus previous space # -
-rshift + ralt + rctrl - 0x2F : yabai -m space --focus recent # focus previous space # .
+# rshift + ralt + rctrl - 0x2F : yabai -m space --focus recent # focus previous space # .
 rshift + ralt + rctrl - 0x2B : yabai -m space --focus prev || yabai -m space --focus last  # ,
 rshift + ralt + rctrl - p : yabai -m space --focus next || yabai -m space --focus first # p
 rshift + ralt + rctrl - 0x21 : yabai -m space --focus prev || yabai -m space --focus last  # [
@@ -58,3 +60,4 @@ rshift + ralt + rctrl +lshift - 0x27 : yabai -m space --rotate 270 # Rmeh "
 # Space create/destroy
 rshift + ralt + rctrl - 0x1C : yabai -m space --destroy # Rmeh 8
 rshift + ralt + rctrl - 0x19 : yabai -m space --create # Remh 9
+
