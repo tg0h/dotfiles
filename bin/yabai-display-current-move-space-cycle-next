@@ -1,0 +1,18 @@
+#!/bin/zsh
+# move window to next space of current display
+# https://github.com/koekeishiya/yabai/wiki/Tips-and-tricks#constrain-space-focus-to-current-display-with-optional-cycling
+
+# get the spaces of the current display
+info=$(yabai -m query --spaces --display)
+# check if the last space of the current display is focussed
+last=$(echo $info | jq '.[-1]."has-focus"')
+
+if [[ $last == "false" ]]; then # if the last space is not focussed, we can safely go to the next display
+    yabai -m window --space next
+    yabai -m space --focus next
+else # wrap around to the first space of the current display
+    # the index refers to the macos space index eg desktop '1', '2', '3
+    next_space_id=$(echo $info | jq '.[0].index')
+    yabai -m window --space $next_space_id
+    yabai -m space --focus $next_space_id
+fi

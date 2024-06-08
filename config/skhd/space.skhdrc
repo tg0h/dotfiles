@@ -4,6 +4,7 @@
 
 # use script to cycle to next space of current display
 rshift + ralt + rctrl - 0x2F : yabai-display-current-space-cycle-next
+rshift + ralt + rctrl + lshift - 0x2F : yabai-display-current-move-space-cycle-next
 
 ### go to space Rmeh [] / move to space Rmeh shift []
 # go to space
