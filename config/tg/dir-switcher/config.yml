@@ -29,6 +29,7 @@ keymaps:
   - ["l,", $HOME/.local/lib, 7]
   - [xs, $XDG_STATE_HOME, 5]
   # Home Row
+  - [d, $HOME/documents]
   - [h, $HOME/src/me, 4, \\.git$, true, true, dirname | xargs dirname] # this yml file is converted to json. a backslash is an escape character in json. we need to escape the backslash. we want to pass \.git$ as the regex filter to fd
   - [ht, $HOME/src/me/nvim]
   - [htn, $HOME/src/me/nvim/git-worktree.nvim]
@@ -48,7 +49,7 @@ keymaps:
   - [tl, $HOME/Downloads]
 
   # SRC
-  - [d, $HOME/src/candy/db]
+  - [b, $HOME/src/candy/db]
   - [s., $HOME/src/candy/referralcandy-main/main, 5]
   - ["s,", $HOME/src/candy/main/referralcandy-main, 5]
   - [sd, $HOME/src/candy/main/referralcandy-main/packages/daemons]
