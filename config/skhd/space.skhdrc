@@ -60,7 +60,10 @@ rshift + ralt + rctrl + lalt - 9 : yabai -m window --space 9 && yabai -m space -
 
 # rotate windows 
 rshift + ralt + rctrl +lshift - 0x27 : yabai -m space --rotate 270 # Rmeh "
+
 # Space create/destroy
-rshift + ralt + rctrl - 0x1C : yabai -m space --destroy # Rmeh 8
-rshift + ralt + rctrl - 0x19 : yabai -m space --create # Remh 9
+# rshift + ralt + rctrl - 0x1C : yabai -m space --destroy # Rmeh 8
+# rshift + ralt + rctrl - 0x19 : yabai -m space --create # Remh 9
+rshift + ralt + rctrl + lalt - w: yabai -m space --destroy 
+rshift + ralt + rctrl + lalt - m: yabai -m space --create
 
