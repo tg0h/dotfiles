@@ -12,3 +12,13 @@ rshift + ralt + rctrl + lshift - b: [ $(yabai -m query --displays | jq 'length')
 # rshift + ralt + rctrl - space: [ $(yabai -m query --displays | jq 'length') -eq 1 ] \
 # && ( yabai -m space --focus recent ) \
 # || ( yabai -m display --focus prev || yabai -m display --focus last )
+
+# focus display
+rshift + ralt + rctrl + lshift - 0x19 : yabai -m display --focus 1 # rmeh ( - note that '(' is lshift + 0x19 aka 9
+rshift + ralt + rctrl + lshift - 0x1D : yabai -m display --focus 2 # rmeh )
+rshift + ralt + rctrl + lshift - 0x2A : yabai -m display --focus 3 # rmeh |
+
+# move display - rmeh + rcmd
+# rshift + ralt + rctrl + lshift + rcmd - 0x19 : yabai -m window --display 1 && yabai -m display --focus 1 # (
+# rshift + ralt + rctrl + lshift + rcmd - 0x1D : yabai -m window --display 2 # )
+# rshift + ralt + rctrl + lshift + rcmd - 0x2A : yabai -m window --display 3 # |
