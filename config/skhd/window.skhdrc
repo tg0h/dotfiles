@@ -50,3 +50,8 @@ rshift + ralt + rctrl + lshift - z : yabai -m window --insert east
 # close all non-active kitty windows
 # -P 0 means run in parallel by setting maxprocs to max cpus
 # lshift + lalt + lcmd - w : yabai -m query --windows | jq '.[] | select (."has-focus"==false and .app=="kitty") | .id' | xargs -I {} -P 0 yabai -m window --close {}
+
+
+# flash window to identify focussed window
+# https://github.com/koekeishiya/yabai/wiki/Tips-and-tricks#flash-highlight-to-identify-focused-window
+rshift + ralt + rctrl - 0x18 : yabai -m window --opacity 0.1 && sleep $(yabai -m config window_opacity_duration) && yabai -m window --opacity 0.0 # Rmeh =
