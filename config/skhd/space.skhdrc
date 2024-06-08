@@ -6,18 +6,21 @@
 rshift + ralt + rctrl - 0x2F : yabai-display-current-space-cycle-next
 rshift + ralt + rctrl + lshift - 0x2F : yabai-display-current-move-space-cycle-next
 
-### go to space Rmeh [] / move to space Rmeh shift []
-# go to space
-# rshift + ralt + rctrl - 0x1B : yabai -m space --focus recent # focus previous space # -
-# rshift + ralt + rctrl + lshift - 0x1B : yabai -m window --space recent; yabai -m space --focus recent # move focused window to previous workspace # -
-# rshift + ralt + rctrl - 0x2F : yabai -m space --focus recent # focus previous space # .
-rshift + ralt + rctrl - 0x2B : yabai -m space --focus prev || yabai -m space --focus last  # ,
-rshift + ralt + rctrl - p : yabai -m space --focus next || yabai -m space --focus first # p
+##
+# go to recent space
+rshift + ralt + rctrl - x : yabai -m space --focus recent # focus previous space # rmeh x
+rshift + ralt + rctrl + lshift - x : yabai -m window --space recent; yabai -m space --focus recent 
+# go to next/prev space
+rshift + ralt + rctrl - 0x2B : yabai -m space --focus prev || yabai -m space --focus last  # rmeh ,
+rshift + ralt + rctrl + lshift - 0x2B : yabai -m window --space prev && yabai -m space --focus prev # rmeh lshift ,
+rshift + ralt + rctrl - p : yabai -m space --focus next || yabai -m space --focus first # rmeh p
+rshift + ralt + rctrl + lshift - p: yabai -m window --space next && yabai -m space --focus next  # rmeh lshift p
 
-# rshift + ralt + rctrl - 0x21 : yabai -m space --focus prev || yabai -m space --focus last  # [
-# rshift + ralt + rctrl - 0x1E : yabai -m space --focus next || yabai -m space --focus first # ]
-# rshift + ralt + rctrl + lshift - 0x21 : yabai -m window --space prev && yabai -m space --focus prev # [
-# rshift + ralt + rctrl + lshift - 0x1E : yabai -m window --space next && yabai -m space --focus next # ]
+# # () to go to next/prev space
+# rshift + ralt + rctrl + lshift - 0x19 : yabai -m space --focus prev || yabai -m space --focus last  # Rmeh ( - ( is shift 9 so need lshift - 0x19
+# rshift + ralt + rctrl + lshift - 0x1D : yabai -m space --focus next || yabai -m space --focus first # Rmeh ) - ) is shift 0
+# rshift + ralt + rctrl + lshift + rcmd - 0x19 : yabai -m window --space prev && yabai -m space --focus prev  # Rmeh rcmd (
+# rshift + ralt + rctrl + lshift + rcmd - 0x1D : yabai -m window --space next && yabai -m space --focus next  # Rmeh rcmd )
 
 # rshift + ralt + rctrl - f : [ $(yabai -m query --spaces --space | jq '.index') -eq 1 ] && ( yabai -m space --focus recent ) || yabai -m space --focus 1 # rmeh + is actually equalso to rmeh lshift =
 rshift + ralt + rctrl - u : [ $(yabai -m query --spaces --space | jq '.index') -eq 1 ] && ( yabai -m space --focus recent ) || yabai -m space --focus 1
