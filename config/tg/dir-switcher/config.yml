@@ -32,6 +32,7 @@ keymaps:
   - [d, $HOME/documents]
   - [h, $HOME/src/me, 4, \\.git$, true, true, dirname | xargs dirname] # this yml file is converted to json. a backslash is an escape character in json. we need to escape the backslash. we want to pass \.git$ as the regex filter to fd
   - [ht, $HOME/src/me/nvim]
+  - [hl, $HOME/src/me/cl/cl]
   - [htn, $HOME/src/me/nvim/git-worktree.nvim]
   - [hc, $HOME/src/me/zsh/candy]
   - [t, $HOME/src/playground, 5, \\.git$, true, true, dirname | xargs dirname]
