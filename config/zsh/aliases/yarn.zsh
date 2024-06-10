@@ -9,6 +9,7 @@ alias y,.a="LOG_LEVEL=silent yarn workspace @rc-main/api test"
 alias y,.ra="LOG_LEVEL=silent yarn workspace @rc-main/referralcorner-api test"
 
 alias yi="yarn install"
+alias ynb="NODE_OPTIONS=--openssl-legacy-provider yarn next build"
 
 alias yy="yarn why"
 
@@ -21,14 +22,18 @@ alias ys="killport 3001 && NODE_OPTIONS=--openssl-legacy-provider yarn start"
 alias ysp="yarn start | pino-pretty"
 alias ysf="yarn start-frontend"
 alias ysa="yarn start-api"
+# embedded app
 alias ysm="yarn start-embedded-app"
-alias ynb="NODE_OPTIONS=--openssl-legacy-provider yarn next build"
+# wonka
+alias ysfw="yarn start-frontend-wonka"
 alias ysaw="killport 3001 && NODE_OPTIONS=--openssl-legacy-provider yarn start-api-wonka"
 alias ysawp="yarn start-api-wonka | pino-pretty"
 alias ysawps="LOG_LEVEL=silent yarn start-api-wonka | pino-pretty"
+# daemon
 alias ysd="yarn start-daemon"
 alias ysdp="yarn start-daemon | pino-pretty"
 alias ysds="LOG_LEVEL=silent yarn start-daemon"
+# external-api
 alias ysx="yarn workspace @rc-main/external-api start"
 
 alias yw="yarn workspaces"
