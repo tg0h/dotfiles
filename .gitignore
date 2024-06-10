@@ -56,3 +56,5 @@ config/dadbod
 lib/jq/aws/route53/subCandyUrls.jq
 lib/jq/aws/loadbalancer/subSpecialAction.jq
 config/zsh/aliases/candy-secret.zsh 
+
+config/zsh/aliases/cl.zsh
