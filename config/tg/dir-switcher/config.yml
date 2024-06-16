@@ -82,6 +82,7 @@ keymaps:
 
   # OLD CANDY
   - [st, $HOME/src/candy/old/customer-tracks/]
+  - [sx, $HOME/src/candy/old/shopify-app-extension/]
   - [sb, $HOME/src/candy/old/business]
   - [sc, $HOME/src/candy, 5, \\.git$, true, true, dirname | xargs dirname]
   # oops sh will create zsh shortcut which shadows zsh bin
