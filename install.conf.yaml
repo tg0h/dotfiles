@@ -78,6 +78,7 @@
     ~/.npmrc: config/npm/npmrc
 
     ~/.local/bin/: bin/*
+    ~/.local/bin/candy: ~/src/me/zsh/candy/bin/*
 
     ~/.ssh/:
       path: config/ssh/*
