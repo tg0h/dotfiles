@@ -10,3 +10,9 @@ vim.keymap.set('n', '<C-e>', function()
   -- then use it, you can also use the `:Telescope rest select_env` command
   require('telescope').extensions.rest.select_env()
 end, { buffer = true })
+
+-- buffer = true means local buffer mapping
+vim.keymap.set('n', '<C-;>', function() require('tg.candy-sign-in').set_env_candy_id_token() end, {
+  desc = 'set candy id token in env',
+  buffer = true,
+})
