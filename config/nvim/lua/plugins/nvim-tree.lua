@@ -134,7 +134,7 @@ local M = {
       vim.keymap.set('n', '[e', api.node.navigate.diagnostics.prev, opts('Prev Diagnostic'))
       vim.keymap.set('n', ']e', api.node.navigate.diagnostics.next, opts('Next Diagnostic'))
 
-      vim.keymap.set('n', 'I', api.tree.toggle_gitignore_filter, opts('Toggle Git Ignore'))
+      vim.keymap.set('n', 'i', api.tree.toggle_gitignore_filter, opts('Toggle Git Ignore'))
       vim.keymap.set('n', 'g', api.tree.toggle_git_clean_filter, opts('Toggle Git Clean'))
       vim.keymap.set('n', 'b', api.tree.toggle_no_buffer_filter, opts('Toggle Buffers'))
       vim.keymap.set('n', 'u', api.tree.toggle_hidden_filter, opts('Toggle Dotfiles'))
@@ -158,7 +158,7 @@ local M = {
       vim.keymap.set('n', "'", api.node.run.system, opts('Run System'))
 
       vim.keymap.set('n', 'q', api.tree.close, opts('Close'))
-      vim.keymap.set('n', 'i', api.node.show_info_popup, opts('Info'))
+      vim.keymap.set('n', 'I', api.node.show_info_popup, opts('Info'))
       vim.keymap.set('n', 'g?', api.tree.toggle_help, opts('Help'))
       vim.keymap.set('n', 'f', api.live_filter.start, opts('Filter'))
       vim.keymap.set('n', 'F', api.live_filter.clear, opts('Clean Filter'))
