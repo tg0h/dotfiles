@@ -79,6 +79,7 @@ alias z,='nvim ~/.dotfiles/config/zsh-boot/zshrc'
 
 # aliases
 alias zag='nvim $XDG_CONFIG_HOME/zsh/aliases/goto.zsh'
+alias zan='nvim $XDG_CONFIG_HOME/zsh/aliases/neovim-edit.zsh'
 alias zaG='nvim $XDG_CONFIG_HOME/zsh/aliases/global.zsh'
 alias zam='nvim $XDG_CONFIG_HOME/zsh/aliases/misc.zsh'
 alias zas='nvim $XDG_CONFIG_HOME/zsh/aliases/scratch.zsh'
