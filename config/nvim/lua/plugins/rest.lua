@@ -33,6 +33,11 @@ return {
           elseif string.find(_G._rest_nvim_req_data.request.url, vim.env.SHOPIFY_API_URL, 1, true) then
             _G._rest_nvim_req_data.headers['X-Shopify-Access-Token'] = vim.env.SHOPIFY_TOKEN
           end
+
+          if string.find(_G._rest_nvim_req_data.request.url, 'myshopify.com/admin/api.*graphql.json', 1) then
+            print('setting content type json')
+            _G._rest_nvim_req_data.headers['Content-Type'] = 'application/json'
+          end
           -- vim.print(_G._rest_nvim_req_data)
         end,
       })
