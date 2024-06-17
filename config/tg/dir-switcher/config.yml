@@ -35,6 +35,7 @@ keymaps:
   - [hl, $HOME/src/me/cl/cl]
   - [htn, $HOME/src/me/nvim/git-worktree.nvim]
   - [hc, $HOME/src/me/zsh/candy]
+  - [hcb, $HOME/src/me/zsh/candy/bin]
   - [t, $HOME/src/playground, 5, \\.git$, true, true, dirname | xargs dirname]
   - [n, $HOME/src/clones, 4, \\.git$, true, true, dirname | xargs dirname]
   - [s, $HOME/src]
