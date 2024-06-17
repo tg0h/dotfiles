@@ -1,5 +1,24 @@
 return {
   'stevearc/oil.nvim',
+  -- lazy = true,
+  init = function()
+    vim.keymap.set(
+      'n',
+      '<M-->',
+      -- '<CMD>Oil<CR>'
+      function()
+        -- toggle open/close oil
+        local current_buf = vim.api.nvim_get_current_buf()
+        local current_filetype = vim.api.nvim_buf_get_option(current_buf, 'filetype')
+        if current_filetype == 'oil' then
+          require('oil').close()
+        else
+          require('oil').open()
+        end
+      end,
+      { desc = 'toggle oil' }
+    )
+  end,
   opts = {
     -- Oil will take over directory buffers (e.g. `vim .` or `:e src/`)
     -- Set to false if you still want to use netrw.
