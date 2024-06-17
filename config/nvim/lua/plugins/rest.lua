@@ -21,19 +21,19 @@ return {
     -- },
     config = function()
       -- log request data if needed
-      -- vim.api.nvim_create_autocmd('User', {
-      --   pattern = 'RestStartRequest',
-      --   once = true, -- This is optional, only if you want the hook to run once
-      --   callback = function()
-      --     print('Started request')
-      --     -- You can access and modify the request data (body, headers, etc) by
-      --     -- using the following temporal global variable
-      --     vim.print(_G._rest_nvim_req_data)
-      --     -- You can also access environment variables from both your current
-      --     -- shell session and your environment file by using 'vim.env'
-      --     -- _G._rest_nvim_req_data.headers['USER'] = vim.env.USERNAME
-      --   end,
-      -- })
+      vim.api.nvim_create_autocmd('User', {
+        pattern = 'RestStartRequest',
+        -- once = true, -- This is optional, only if you want the hook to run once
+        callback = function()
+          -- search for substring in string without pattern matching
+          if string.find(_G._rest_nvim_req_data.request.url, vim.env.CANDY_PRODUCTION_API_URL, 1, true) then
+            _G._rest_nvim_req_data.headers['Authorization'] = 'Bearer ' .. require('tg.candy-sign-in').get_env_candy_id_token('production')
+          elseif string.find(_G._rest_nvim_req_data.request.url, vim.env.CANDY_STAGING_API_URL, 1, true) then
+            _G._rest_nvim_req_data.headers['Authorization'] = 'Bearer ' .. require('tg.candy-sign-in').get_env_candy_id_token('staging')
+          end
+          -- vim.print(_G._rest_nvim_req_data)
+        end,
+      })
 
       require('rest-nvim').setup({
         client = 'curl',

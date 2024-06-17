@@ -1,43 +1,25 @@
 local M = {}
 
-local id_token
--- this seems to be called twice
--- first time returns { 'id_token',''} which seems to mean id_token and newline?
--- second time returns { ''} ... which seems to mean EOF
-local function append_data(data)
-  -- print('append')
-  for i, v in ipairs(data) do
-    -- print('data is ' .. tostring(i) .. ' ' .. v)
-    id_token = id_token .. v
-  end
-end
+local id_tokens = {}
 
 -- call this to get a new id token and set it in env
-function M.set_env_candy_id_token()
-  local one_shot_cmd_template = [[ candy-get-id-token]]
-  local one_shot_cmd = string.format(one_shot_cmd_template)
+function M.get_env_candy_id_token(environment)
+  -- environment is either staging or production
 
-  -- reset id token
-  id_token = ''
-  local job = vim.fn.jobstart(one_shot_cmd, {
-    -- cwd = '/path/to/working/dir',
-    on_stdout = function(channel_id, data)
-      -- table concat joins all values in a table into a string
-      append_data(data)
-    end,
-    on_exit = function()
-      -- print('id_token' .. id_token)
-      print('setting candy id token in env ' .. string.sub(id_token, -10))
+  local id_token = id_tokens[environment]
 
-      -- if vim.env.CANDY_ID_TOKEN ~= '' then
-      -- print('setting env')
-      vim.env.CANDY_BEARER_ID_TOKEN = 'Bearer ' .. id_token
-      -- end
+  if id_token then
+    print('using cached id token ' .. string.sub(id_token, -10))
+    return id_token
+  else
+    local one_shot_cmd_template = [[ candy-get-id-token %s ]]
+    local one_shot_cmd = string.format(one_shot_cmd_template, environment)
 
-      -- print('EXIT candy id token is ' .. (vim.env.CANDY_BEARER_ID_TOKEN or ''))
-    end,
-    -- on_stderr = some_third_function
-  })
+    id_tokens[environment] = vim.fn.system(one_shot_cmd)
+
+    print('using new id token ' .. string.sub(id_tokens[environment], -10))
+    return id_tokens[environment]
+  end
 end
 
 return M
