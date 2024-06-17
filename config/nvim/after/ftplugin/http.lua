@@ -12,7 +12,7 @@ vim.keymap.set('n', '<C-e>', function()
 end, { buffer = true })
 
 -- buffer = true means local buffer mapping
-vim.keymap.set('n', '<C-;>', function() require('tg.candy-sign-in').set_env_candy_id_token() end, {
-  desc = 'set candy id token in env',
-  buffer = true,
-})
+-- vim.keymap.set('n', '<C-;>', function() require('tg.candy-sign-in').set_env_candy_id_token() end, {
+--   desc = 'set candy id token in env',
+--   buffer = true,
+-- })
