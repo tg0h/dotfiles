@@ -36,7 +36,10 @@ function M.load_env()
   if f then
     for line in f:lines() do
       local _, var, val = line:match('(export )([^=]+)=(.*)')
-      if var and val then vim.env[var] = val end
+      if var and val then
+        -- print('Setting ' .. var .. ' to ' .. val)
+        vim.env[var] = val
+      end
     end
     f:close()
   end
