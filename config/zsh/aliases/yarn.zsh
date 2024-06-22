@@ -22,6 +22,8 @@ alias ys="killport 3001 && NODE_OPTIONS=--openssl-legacy-provider yarn start"
 alias ysp="yarn start | pino-pretty"
 alias ysf="yarn start-frontend"
 alias ysa="yarn start-api"
+# referralcorner-api
+alias ysar="yarn start-api-referralcorner"
 # embedded app
 alias ysm="yarn start-embedded-app"
 # wonka
