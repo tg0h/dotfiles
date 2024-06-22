@@ -30,6 +30,8 @@ return {
             _G._rest_nvim_req_data.headers['Authorization'] = 'Bearer ' .. require('tg.candy-sign-in').get_env_candy_id_token('production')
           elseif string.find(_G._rest_nvim_req_data.request.url, vim.env.CANDY_STAGING_API_URL, 1, true) then
             _G._rest_nvim_req_data.headers['Authorization'] = 'Bearer ' .. require('tg.candy-sign-in').get_env_candy_id_token('staging')
+          elseif string.find(_G._rest_nvim_req_data.request.url, vim.env.CANDY_LOCAL_API_URL, 1, true) then
+            _G._rest_nvim_req_data.headers['Authorization'] = 'Bearer ' .. vim.env.CANDY_LOCAL_API_COGNITO_TOKEN
           elseif string.find(_G._rest_nvim_req_data.request.url, vim.env.SHOPIFY_API_URL, 1, true) then
             _G._rest_nvim_req_data.headers['X-Shopify-Access-Token'] = vim.env.SHOPIFY_TOKEN
           end
