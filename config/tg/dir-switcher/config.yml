@@ -71,19 +71,23 @@ keymaps:
     ]
 
   - [tg, $HOME/dotfiles/config/nvim/lua/tg]
-  # Candy playground
+
+  # playground
   - [tw, $HOME/src/playground/playwright]
   - [th, $HOME/src/playground/playwright-script]
+  # Candy playground
+  - [tc, $HOME/src/playground/candy]
+  - [tx, $HOME/src/playground/candy/checkout]
   - [ta, $HOME/src/playground/candy/github-actions/]
   - [tgpa, $HOME/src/playground/candy/github-public-actions/]
-  - [ts, $HOME/src/playground/candy/candyStore/embedded-signup]
+  - [te, $HOME/src/playground/candy/candyStore/embedded-signup]
   - [tp, $HOME/src/playground/candy/candyStore/post-purchase-popup/]
   - [tr, $HOME/src/playground/candy/candyStore/referral-widget/]
   - [tj, $HOME/src/playground/candy/candyStore/js-integration/]
 
   # OLD CANDY
   - [st, $HOME/src/candy/old/customer-tracks/]
-  - [sx, $HOME/src/candy/old/shopify-app-extension/]
+  - [sox, $HOME/src/candy/old/shopify-app-extension/]
   - [sb, $HOME/src/candy/old/business]
   - [sc, $HOME/src/candy, 5, \\.git$, true, true, dirname | xargs dirname]
   # oops sh will create zsh shortcut which shadows zsh bin
