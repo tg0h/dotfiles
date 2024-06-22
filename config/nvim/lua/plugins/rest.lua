@@ -11,6 +11,7 @@ return {
   {
     'rest-nvim/rest.nvim',
     -- dependencies = { { 'nvim-lua/.nvim' } },
+    dev = true,
     dependencies = { 'luarocks.nvim' },
     -- event = 'VeryLazy',
     ft = 'http', -- https://github.com/rest-nvim/rest.nvim/discussions/249, get rest.nvim to work and recognize http filetype
