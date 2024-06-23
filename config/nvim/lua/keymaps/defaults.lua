@@ -91,7 +91,14 @@ vim.keymap.set(
 
 vim.keymap.set('n', '<LEADER>.g', '<CMD>messages<CR>', { desc = 'show vim messages' })
 vim.keymap.set('n', '<LEADER>.c', '<CMD>messages clear<CR>', { desc = 'clear vim messages' })
-vim.keymap.set('n', '<RightMouse>', function() require('tg.toggle-interface').Toggle() end, { desc = 'toggle interface' })
+
+vim.keymap.set('n', '<RightMouse>', function()
+  if vim.opt.relativenumber:get() == true then
+    vim.opt.relativenumber = false
+  else
+    vim.opt.relativenumber = true
+  end
+end, { desc = 'toggle relative number' })
 
 -- go to next ) and then a
 -- vim.keymap.set('i', '<C-S-n>', '<Esc>%%a', { desc = 'place cursor after next )' })
