@@ -16,6 +16,10 @@ rshift + ralt + rctrl + lshift - 0x2B : yabai -m window --space prev && yabai -m
 rshift + ralt + rctrl - p : yabai -m space --focus next || yabai -m space --focus first # rmeh p
 rshift + ralt + rctrl + lshift - p: yabai -m window --space next && yabai -m space --focus next  # rmeh lshift p
 
+# move space to display
+rshift + ralt + rctrl + lshift + lctrl - h : yabai -m space --display west
+rshift + ralt + rctrl + lshift + lctrl - s : yabai -m space --display east 
+
 # # () to go to next/prev space
 # rshift + ralt + rctrl + lshift - 0x19 : yabai -m space --focus prev || yabai -m space --focus last  # Rmeh ( - ( is shift 9 so need lshift - 0x19
 # rshift + ralt + rctrl + lshift - 0x1D : yabai -m space --focus next || yabai -m space --focus first # Rmeh ) - ) is shift 0
