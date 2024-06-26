@@ -10,7 +10,7 @@ o.swapfile = false -- enable/disable swap file creation
 o.backup = false
 
 o.termguicolors = true -- set term gui colors (most terminals support this)
-o.scrolloff = 1 -- Minimal number of screen lines to keep above and below the cursor
+o.scrolloff = 0 -- Minimal number of screen lines to keep above and below the cursor
 o.number = true -- set numbered lines
 o.relativenumber = true -- set relative numbered lines
 o.clipboard = 'unnamedplus' -- allows neovim to access the system clipboard
