@@ -13,6 +13,15 @@ function fzf-filename-and-content(){
 EOF
 )
 
+# fzf
+  # --preview window ~1,+{2}+1/2
+  #   ~1   - header - show first line as bat has the filename from the first line
+  #   +{2} - scroll - pass the second variable from bat (which is the line number)
+  #                   the number is signed, you can show eg the +n row or the -n row (the nth row from the bottom)
+  #                   fzf will scroll to this line
+  #   +1   - offset - you can add an additional offset to scroll, to compensate for the header of 1
+  #   /2   - denom  - show in middle of preview window
+
   # https://github.com/junegunn/fzf/issues/2789
   # to show the preview even when there are spaces in the filename,
   # use ansi c quoting to specify non-breaking space character
@@ -22,7 +31,7 @@ EOF
     | fzf --header="$HEADER" \
       --delimiter $FIELD_MATCH_SEPARATOR \
       --preview "bat --style=numbers,header-filename --color=always {1} --highlight-line {2}" \
-      --preview-window='bottom:nowrap,noborder,55%' \
+      --preview-window='bottom:nowrap,noborder,55%,~1,+{2}+1/2' \
       --bind 'alt-e:execute(nvim {1} +{2} -c "normal! zz" > /dev/tty 2>&1)' \
       --bind ';:execute(nvim {1} +{2} -c "normal! zz" > /dev/tty 2>&1)'
   )
