@@ -1,8 +1,6 @@
 #!/bin/zsh
 
 function fzf-my-history-widget() {
-  local selected num
-  setopt localoptions noglobsubst noposixbuiltins pipefail no_aliases 2> /dev/null
   # sub(/^[ \t]*[0-9]+\**[ \t]+/, "", cmd)
   # sub(/^[ \t]*[0-9]+\**[ \t]+[0-9-]{10} [0-9:]{5}[ \t]*/, "", cmd)
   #
@@ -17,16 +15,27 @@ function fzf-my-history-widget() {
   # selected=$(fc -rl 1 | awk $filterUniqueCommands \
   #         | fzf
   #         ) 
-  selected=( $(fc -rl 1 | awk '{ cmd=$0; sub(/^[ \t]*[0-9]+\**[ \t]+/, "", cmd); if (!seen[cmd]++) print $0 }' |
-    FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} ${FZF_DEFAULT_OPTS-} -n2..,.. --scheme=history --bind=ctrl-r:toggle-sort,ctrl-z:ignore ${FZF_CTRL_R_OPTS-} --query=${(qqq)LBUFFER} +m" $(__fzfcmd)) )
 
-  # echo selected is $selected
+  local selected num
+  setopt localoptions noglobsubst noposixbuiltins pipefail no_aliases noglob 2> /dev/null
+  # Ensure the associative history array, which maps event numbers to the full
+  # history lines, is loaded, and that Perl is installed for multi-line output.
+  if zmodload -F zsh/parameter p:history 2>/dev/null && (( ${#commands[perl]} )); then
+    selected="$(printf '%s\t%s\000' "${(kv)history[@]}" |
+      perl -0 -ne 'if (!$seen{(/^\s*[0-9]+\**\t(.*)/s, $1)}++) { s/\n/\n\t/g; print; }' |
+      FZF_DEFAULT_OPTS=$(__fzf_defaults "" "-n2..,.. --scheme=history --bind=ctrl-r:toggle-sort --highlight-line ${FZF_CTRL_R_OPTS-} --query=${(qqq)LBUFFER} +m --read0") \
+      FZF_DEFAULT_OPTS_FILE='' $(__fzfcmd))"
+  else
+    selected="$(fc -rl 1 | awk '{ cmd=$0; sub(/^[ \t]*[0-9]+\**[ \t]+/, "", cmd); if (!seen[cmd]++) print $0 }' |
+      FZF_DEFAULT_OPTS=$(__fzf_defaults "" "-n2..,.. --scheme=history --bind=ctrl-r:toggle-sort --highlight-line ${FZF_CTRL_R_OPTS-} --query=${(qqq)LBUFFER} +m") \
+      FZF_DEFAULT_OPTS_FILE='' $(__fzfcmd))"
+  fi
   local ret=$?
   if [ -n "$selected" ]; then
-    num=$selected[1]
-    # echo num is $num
-    if [ -n "$num" ]; then
+    if num=$(awk '{print $1; exit}' <<< "$selected" | grep -o '^[1-9][0-9]*'); then
       zle vi-fetch-history -n $num
+    else # selected is a custom query, not from history
+      LBUFFER="$selected"
     fi
   fi
   zle reset-prompt
